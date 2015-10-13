@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="spot Test" duration-ms="6404" started-at="2015-10-12T15:17:30Z" finished-at="2015-10-12T15:17:36Z">
+    <groups>
+    </groups>
+    <test name="Login Test" duration-ms="6404" started-at="2015-10-12T15:17:30Z" finished-at="2015-10-12T15:17:36Z">
+      <class name="spot.SeleniumTestSuite">
+        <test-method status="PASS" signature="launchDriver(java.lang.String)[pri:0, instance:spot.SeleniumTestSuite@e139a4]" name="launchDriver" is-config="true" duration-ms="6111" started-at="2015-10-12T17:17:24Z" finished-at="2015-10-12T17:17:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchDriver -->
+        <test-method status="PASS" signature="quitDriver()[pri:0, instance:spot.SeleniumTestSuite@e139a4]" name="quitDriver" is-config="true" duration-ms="1" started-at="2015-10-12T17:17:36Z" finished-at="2015-10-12T17:17:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitDriver -->
+      </class> <!-- spot.SeleniumTestSuite -->
+      <class name="spot.scripts.SingleUploadTest">
+        <test-method status="PASS" signature="loginAsAdmin()[pri:0, instance:spot.scripts.SingleUploadTest@1d6b83b]" name="loginAsAdmin" is-config="true" duration-ms="2401" started-at="2015-10-12T17:17:30Z" finished-at="2015-10-12T17:17:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginAsAdmin -->
+        <test-method status="PASS" signature="loadRandomFile()[pri:0, instance:spot.scripts.SingleUploadTest@1d6b83b]" name="loadRandomFile" duration-ms="3993" started-at="2015-10-12T17:17:32Z" finished-at="2015-10-12T17:17:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loadRandomFile -->
+      </class> <!-- spot.scripts.SingleUploadTest -->
+    </test> <!-- Login Test -->
+  </suite> <!-- spot Test -->
+</testng-results>
