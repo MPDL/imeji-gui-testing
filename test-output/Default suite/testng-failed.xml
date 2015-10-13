@@ -5,8 +5,10 @@
     <classes>
       <class name="spot.scripts.SingleUploadTest">
         <methods>
-          <include name="loadRandomFile"/>
+          <include name="testSelectCollectionToUploadFile"/>
           <include name="loginAsAdmin"/>
+          <include name="testLoadFile"/>
+          <include name="testSaveFile"/>
         </methods>
       </class> <!-- spot.scripts.SingleUploadTest -->
     </classes>

@@ -24,21 +24,25 @@ public class SingleUploadPage extends BasePage {
 	private WebElement selectedFileLabel;
 	
 	@FindBy(xpath=".//*[@id='singleUpload:collections']")
-	private Select collectionComboBox;
+	private WebElement collectionComboBoxWebElement;
 	
 	@FindBy(xpath=".//*[@id='singleUpload:submitTop']")
 	private WebElement saveTopButton;
+
+	private Select collectionComboBox;
 	
-	@FindBy(xpath=".//*[@id='singleUpload:submitBottom']")
-	private WebElement saveBottomButton;
+//	@FindBy(xpath=".//*[@id='singleUpload:submitBottom']")
+//	private WebElement saveBottomButton;
 	
 	public SingleUploadPage(WebDriver driver) {
 		super(driver);
+		
+		PageFactory.initElements(driver, this);
 	}
 
 	public String upload(String pathToFile) throws AWTException {
 				
-		singleUploadButton.click();
+		singleUploadButton.click();		
 		
 		selectFile(pathToFile);
 		
@@ -46,10 +50,8 @@ public class SingleUploadPage extends BasePage {
 	}
 
 	private String getSelectedFileName() {
-		
 		ElementLocatorFactory elementLocatorFactory =  new AjaxElementLocatorFactory(driver, 5);
 		PageFactory.initElements(elementLocatorFactory, this);
-		
 		String selectedFileName = "";
 		
 		String tmp = selectedFileLabel.getText();
@@ -75,14 +77,14 @@ public class SingleUploadPage extends BasePage {
 	}
 
 	public String selectCollectionToUploadFile(String collectionName) {
-		ElementLocatorFactory elementLocatorFactory =  new AjaxElementLocatorFactory(driver, 5);
-		PageFactory.initElements(elementLocatorFactory, this);
+		
+		collectionComboBox = new Select(collectionComboBoxWebElement);
 		
 		collectionComboBox.selectByVisibleText(collectionName);
 		
-		String selectedComboText = collectionComboBox.getFirstSelectedOption().getText();
-		
+		String selectedComboText = collectionComboBox.getFirstSelectedOption().getText();		
 		return selectedComboText;
+//		return "";
 	}
 
 	public DetailedFileView saveFile() {

@@ -23,7 +23,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -37,7 +37,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-spot_Test">
-              <span class="suite-name border-passed">spot Test</span>
+              <span class="suite-name border-failed">spot Test</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -90,7 +90,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">3 methods, 1 failed,   2 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-spot_Test" class="hide-methods failed suite-spot_Test"> (hide)</a> <!-- hide-methods failed suite-spot_Test -->
+                      <a href="#" panel-name="suite-spot_Test" class="show-methods failed suite-spot_Test"> (show)</a> <!-- show-methods failed suite-spot_Test -->
+                    </span>
+                    <div class="method-list-content failed suite-spot_Test">
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-spot_Test" title="spot.scripts.SingleUploadTest" hash-for-method="testSaveFile">testSaveFile</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-spot_Test -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -101,7 +115,12 @@
                     <div class="method-list-content passed suite-spot_Test">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-spot_Test" title="spot.scripts.SingleUploadTest" hash-for-method="loadRandomFile">loadRandomFile</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-spot_Test" title="spot.scripts.SingleUploadTest" hash-for-method="testLoadFile">testLoadFile</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-spot_Test" title="spot.scripts.SingleUploadTest" hash-for-method="testSelectCollectionToUploadFile">testSelectCollectionToUploadFile</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-spot_Test -->
@@ -116,6 +135,35 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-spot_Test" class="panel spot_Test">
+          <div class="suite-spot_Test-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">spot.scripts.SingleUploadTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testSaveFile">
+                  </a> <!-- testSaveFile -->
+                  <span class="method-name">testSaveFile</span>
+                  <div class="stack-trace">java.lang.RuntimeException: java.lang.InstantiationException: spot.pages.DetailedFileView
+	at org.openqa.selenium.support.PageFactory.instantiatePage(PageFactory.java:133)
+	at org.openqa.selenium.support.PageFactory.initElements(PageFactory.java:63)
+	at spot.pages.SingleUploadPage.saveFile(SingleUploadPage.java:96)
+	at spot.scripts.SingleUploadTest.testSaveFile(SingleUploadTest.java:60)
+Caused by: java.lang.InstantiationException: spot.pages.DetailedFileView
+	at java.lang.Class.newInstance(Unknown Source)
+	at org.openqa.selenium.support.PageFactory.instantiatePage(PageFactory.java:130)
+	... 27 more
+Caused by: java.lang.NoSuchMethodException: spot.pages.DetailedFileView.&lt;init&gt;()
+	at java.lang.Class.getConstructor0(Unknown Source)
+	... 29 more
+... Removed 24 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-spot_Test-class-failed -->
           <div class="suite-spot_Test-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -124,9 +172,16 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="loadRandomFile">
-                  </a> <!-- loadRandomFile -->
-                  <span class="method-name">loadRandomFile</span>
+                  <a name="testLoadFile">
+                  </a> <!-- testLoadFile -->
+                  <span class="method-name">testLoadFile</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testSelectCollectionToUploadFile">
+                  </a> <!-- testSelectCollectionToUploadFile -->
+                  <span class="method-name">testSelectCollectionToUploadFile</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -185,16 +240,24 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(3);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'loadRandomFile')
+data.setCell(0, 1, 'testLoadFile')
 data.setCell(0, 2, 'spot.scripts.SingleUploadTest')
-data.setCell(0, 3, 3993);
+data.setCell(0, 3, 6076);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'testSaveFile')
+data.setCell(1, 2, 'spot.scripts.SingleUploadTest')
+data.setCell(1, 3, 3364);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'testSelectCollectionToUploadFile')
+data.setCell(2, 2, 'spot.scripts.SingleUploadTest')
+data.setCell(2, 3, 913);
 window.suiteTableData['spot_Test']= { tableData: data, tableDiv: 'times-div-spot_Test'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 3 seconds</span>
+              <span class="suite-total-time">Total running time: 10 seconds</span>
               <div id="times-div-spot_Test">
               </div> <!-- times-div-spot_Test -->
             </div> <!-- times-div -->
@@ -230,18 +293,32 @@ return data;
               <div class="chronological-class-name">spot.scripts.SingleUploadTest</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">loginAsAdmin</span>
-                <span class="method-start">6117 ms</span>
+                <span class="method-start">11058 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <span class="method-name">loadRandomFile</span>
-                <span class="method-start">8520 ms</span>
+                <span class="method-name">testLoadFile</span>
+                <span class="method-start">13607 ms</span>
               </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testSelectCollectionToUploadFile</span>
+                <span class="method-start">19684 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testSaveFile</span>
+                <span class="method-start">20597 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">logout</span>
+                <span class="method-start">23963 ms</span>
+              </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">spot.SeleniumTestSuite</div> <!-- chronological-class-name -->
               <div class="configuration-suite after">
                 <span class="method-name">quitDriver</span>
-                <span class="method-start">12537 ms</span>
+                <span class="method-start">26504 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

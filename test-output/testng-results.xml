@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="1" passed="1">
+<testng-results skipped="0" failed="1" total="3" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="spot Test" duration-ms="6404" started-at="2015-10-12T15:17:30Z" finished-at="2015-10-12T15:17:36Z">
+  <suite name="spot Test" duration-ms="15447" started-at="2015-10-13T13:58:15Z" finished-at="2015-10-13T13:58:31Z">
     <groups>
     </groups>
-    <test name="Login Test" duration-ms="6404" started-at="2015-10-12T15:17:30Z" finished-at="2015-10-12T15:17:36Z">
+    <test name="Login Test" duration-ms="15447" started-at="2015-10-13T13:58:15Z" finished-at="2015-10-13T13:58:31Z">
       <class name="spot.SeleniumTestSuite">
-        <test-method status="PASS" signature="launchDriver(java.lang.String)[pri:0, instance:spot.SeleniumTestSuite@e139a4]" name="launchDriver" is-config="true" duration-ms="6111" started-at="2015-10-12T17:17:24Z" finished-at="2015-10-12T17:17:30Z">
+        <test-method status="PASS" signature="launchDriver(java.lang.String)[pri:0, instance:spot.SeleniumTestSuite@173bf95]" name="launchDriver" is-config="true" duration-ms="11010" started-at="2015-10-13T15:58:04Z" finished-at="2015-10-13T15:58:15Z">
           <params>
             <param index="0">
               <value>
@@ -18,20 +18,76 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchDriver -->
-        <test-method status="PASS" signature="quitDriver()[pri:0, instance:spot.SeleniumTestSuite@e139a4]" name="quitDriver" is-config="true" duration-ms="1" started-at="2015-10-12T17:17:36Z" finished-at="2015-10-12T17:17:36Z">
+        <test-method status="PASS" signature="quitDriver()[pri:0, instance:spot.SeleniumTestSuite@173bf95]" name="quitDriver" is-config="true" duration-ms="1" started-at="2015-10-13T15:58:31Z" finished-at="2015-10-13T15:58:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quitDriver -->
       </class> <!-- spot.SeleniumTestSuite -->
       <class name="spot.scripts.SingleUploadTest">
-        <test-method status="PASS" signature="loginAsAdmin()[pri:0, instance:spot.scripts.SingleUploadTest@1d6b83b]" name="loginAsAdmin" is-config="true" duration-ms="2401" started-at="2015-10-12T17:17:30Z" finished-at="2015-10-12T17:17:32Z">
+        <test-method status="PASS" signature="loginAsAdmin()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="loginAsAdmin" is-config="true" duration-ms="2547" started-at="2015-10-13T15:58:15Z" finished-at="2015-10-13T15:58:18Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginAsAdmin -->
-        <test-method status="PASS" signature="loadRandomFile()[pri:0, instance:spot.scripts.SingleUploadTest@1d6b83b]" name="loadRandomFile" duration-ms="3993" started-at="2015-10-12T17:17:32Z" finished-at="2015-10-12T17:17:36Z">
+        <test-method status="PASS" signature="testLoadFile()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="testLoadFile" duration-ms="6076" started-at="2015-10-13T15:58:18Z" finished-at="2015-10-13T15:58:24Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- loadRandomFile -->
+        </test-method> <!-- testLoadFile -->
+        <test-method status="PASS" signature="testSelectCollectionToUploadFile()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="testSelectCollectionToUploadFile" duration-ms="913" started-at="2015-10-13T15:58:24Z" finished-at="2015-10-13T15:58:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSelectCollectionToUploadFile -->
+        <test-method status="FAIL" signature="testSaveFile()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="testSaveFile" duration-ms="3364" started-at="2015-10-13T15:58:25Z" finished-at="2015-10-13T15:58:28Z">
+          <exception class="java.lang.RuntimeException">
+            <message>
+              <![CDATA[java.lang.InstantiationException: spot.pages.DetailedFileView]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.RuntimeException: java.lang.InstantiationException: spot.pages.DetailedFileView
+	at org.openqa.selenium.support.PageFactory.instantiatePage(PageFactory.java:133)
+	at org.openqa.selenium.support.PageFactory.initElements(PageFactory.java:63)
+	at spot.pages.SingleUploadPage.saveFile(SingleUploadPage.java:96)
+	at spot.scripts.SingleUploadTest.testSaveFile(SingleUploadTest.java:60)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+Caused by: java.lang.InstantiationException: spot.pages.DetailedFileView
+	at java.lang.Class.newInstance(Unknown Source)
+	at org.openqa.selenium.support.PageFactory.instantiatePage(PageFactory.java:130)
+	... 27 more
+Caused by: java.lang.NoSuchMethodException: spot.pages.DetailedFileView.<init>()
+	at java.lang.Class.getConstructor0(Unknown Source)
+	... 29 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.RuntimeException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSaveFile -->
+        <test-method status="PASS" signature="logout()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="logout" is-config="true" duration-ms="2493" started-at="2015-10-13T15:58:28Z" finished-at="2015-10-13T15:58:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logout -->
       </class> <!-- spot.scripts.SingleUploadTest -->
     </test> <!-- Login Test -->
   </suite> <!-- spot Test -->

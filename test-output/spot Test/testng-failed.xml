@@ -6,8 +6,9 @@
     <classes>
       <class name="spot.scripts.SingleUploadTest">
         <methods>
-          <include name="loadRandomFile"/>
           <include name="loginAsAdmin"/>
+          <include name="testSaveFile"/>
+          <include name="logout"/>
         </methods>
       </class> <!-- spot.scripts.SingleUploadTest -->
       <class name="spot.SeleniumTestSuite">

@@ -4,6 +4,8 @@ import java.awt.AWTException;
 import java.io.IOException;
 
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -62,8 +64,8 @@ public class SingleUploadTest extends BaseSelenium{
 	}
 	
 	
-//	@AfterClass
-//	public void logout() {
-//		logout(PageFactory.initElements(getDriver(), AdminHomePage.class));	
-//	}
+	@AfterClass
+	public void logout() {
+		logout(PageFactory.initElements(getDriver(), AdminHomePage.class));	
+	}
 }
