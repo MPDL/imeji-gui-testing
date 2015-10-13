@@ -10,7 +10,7 @@ import spot.pages.notAdmin.HomePage;
 import spot.pages.RegistrationPage;
 
 /**
- * This is a class.
+ * WebDriver used by all test classes is set in this class. 
  * @author kocar
  *
  */
