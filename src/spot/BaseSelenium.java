@@ -9,6 +9,11 @@ import spot.pages.StartPage;
 import spot.pages.notAdmin.HomePage;
 import spot.pages.RegistrationPage;
 
+/**
+ * This is a class.
+ * @author kocar
+ *
+ */
 public abstract class BaseSelenium {
 
 	/** Driver instance. 
