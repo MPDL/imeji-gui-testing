@@ -12,7 +12,7 @@ public class DetailedFileView extends BasePage{
 	@FindBy(xpath=".//*[@id='j_idt294']/div[2]/div[1]/div[2]/div[2]/a")
 	private WebElement metaData_collectionName;
 	
-	protected DetailedFileView(WebDriver driver) {
+	public DetailedFileView(WebDriver driver) {
 		super(driver);
 	}
 

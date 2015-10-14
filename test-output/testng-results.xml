@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" total="3" passed="2">
+<testng-results skipped="0" failed="2" total="3" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="spot Test" duration-ms="15447" started-at="2015-10-13T13:58:15Z" finished-at="2015-10-13T13:58:31Z">
+  <suite name="spot Test" duration-ms="11418" started-at="2015-10-14T07:26:00Z" finished-at="2015-10-14T07:26:11Z">
     <groups>
     </groups>
-    <test name="Login Test" duration-ms="15447" started-at="2015-10-13T13:58:15Z" finished-at="2015-10-13T13:58:31Z">
+    <test name="Login Test" duration-ms="11418" started-at="2015-10-14T07:26:00Z" finished-at="2015-10-14T07:26:11Z">
       <class name="spot.SeleniumTestSuite">
-        <test-method status="PASS" signature="launchDriver(java.lang.String)[pri:0, instance:spot.SeleniumTestSuite@173bf95]" name="launchDriver" is-config="true" duration-ms="11010" started-at="2015-10-13T15:58:04Z" finished-at="2015-10-13T15:58:15Z">
+        <test-method status="PASS" signature="launchDriver(java.lang.String)[pri:0, instance:spot.SeleniumTestSuite@173bf95]" name="launchDriver" is-config="true" duration-ms="5379" started-at="2015-10-14T09:25:54Z" finished-at="2015-10-14T09:26:00Z">
           <params>
             <param index="0">
               <value>
@@ -18,35 +18,38 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchDriver -->
-        <test-method status="PASS" signature="quitDriver()[pri:0, instance:spot.SeleniumTestSuite@173bf95]" name="quitDriver" is-config="true" duration-ms="1" started-at="2015-10-13T15:58:31Z" finished-at="2015-10-13T15:58:31Z">
+        <test-method status="PASS" signature="quitDriver()[pri:0, instance:spot.SeleniumTestSuite@173bf95]" name="quitDriver" is-config="true" duration-ms="0" started-at="2015-10-14T09:26:11Z" finished-at="2015-10-14T09:26:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quitDriver -->
       </class> <!-- spot.SeleniumTestSuite -->
       <class name="spot.scripts.SingleUploadTest">
-        <test-method status="PASS" signature="loginAsAdmin()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="loginAsAdmin" is-config="true" duration-ms="2547" started-at="2015-10-13T15:58:15Z" finished-at="2015-10-13T15:58:18Z">
+        <test-method status="PASS" signature="loginAsAdmin()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="loginAsAdmin" is-config="true" duration-ms="1708" started-at="2015-10-14T09:26:00Z" finished-at="2015-10-14T09:26:02Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginAsAdmin -->
-        <test-method status="PASS" signature="testLoadFile()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="testLoadFile" duration-ms="6076" started-at="2015-10-13T15:58:18Z" finished-at="2015-10-13T15:58:24Z">
+        <test-method status="PASS" signature="testLoadFile()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="testLoadFile" duration-ms="2890" started-at="2015-10-14T09:26:02Z" finished-at="2015-10-14T09:26:04Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLoadFile -->
-        <test-method status="PASS" signature="testSelectCollectionToUploadFile()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="testSelectCollectionToUploadFile" duration-ms="913" started-at="2015-10-13T15:58:24Z" finished-at="2015-10-13T15:58:25Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testSelectCollectionToUploadFile -->
-        <test-method status="FAIL" signature="testSaveFile()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="testSaveFile" duration-ms="3364" started-at="2015-10-13T15:58:25Z" finished-at="2015-10-13T15:58:28Z">
-          <exception class="java.lang.RuntimeException">
+        <test-method status="FAIL" signature="testSelectCollectionToUploadFile()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="testSelectCollectionToUploadFile" duration-ms="749" started-at="2015-10-14T09:26:04Z" finished-at="2015-10-14T09:26:05Z">
+          <exception class="org.openqa.selenium.NoSuchElementException">
             <message>
-              <![CDATA[java.lang.InstantiationException: spot.pages.DetailedFileView]]>
+              <![CDATA[Cannot locate element with text: Default first collection of Kocar, Gülüsan
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.47.1', revision: '411b314', time: '2015-07-30 02:56:46'
+System info: host: 'B276', ip: '10.20.3.25', os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_51'
+Driver info: driver.version: unknown]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.RuntimeException: java.lang.InstantiationException: spot.pages.DetailedFileView
-	at org.openqa.selenium.support.PageFactory.instantiatePage(PageFactory.java:133)
-	at org.openqa.selenium.support.PageFactory.initElements(PageFactory.java:63)
-	at spot.pages.SingleUploadPage.saveFile(SingleUploadPage.java:96)
-	at spot.scripts.SingleUploadTest.testSaveFile(SingleUploadTest.java:60)
+              <![CDATA[org.openqa.selenium.NoSuchElementException: Cannot locate element with text: Default first collection of Kocar, Gülüsan
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.47.1', revision: '411b314', time: '2015-07-30 02:56:46'
+System info: host: 'B276', ip: '10.20.3.25', os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_51'
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:150)
+	at spot.pages.SingleUploadPage.selectCollectionToUploadFile(SingleUploadPage.java:83)
+	at spot.scripts.SingleUploadTest.testSelectCollectionToUploadFile(SingleUploadTest.java:67)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -71,20 +74,98 @@
 	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-Caused by: java.lang.InstantiationException: spot.pages.DetailedFileView
-	at java.lang.Class.newInstance(Unknown Source)
-	at org.openqa.selenium.support.PageFactory.instantiatePage(PageFactory.java:130)
-	... 27 more
-Caused by: java.lang.NoSuchMethodException: spot.pages.DetailedFileView.<init>()
-	at java.lang.Class.getConstructor0(Unknown Source)
-	... 29 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.RuntimeException -->
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSelectCollectionToUploadFile -->
+        <test-method status="FAIL" signature="testSaveFile()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="testSaveFile" duration-ms="5112" started-at="2015-10-14T09:26:05Z" finished-at="2015-10-14T09:26:10Z">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[Timed out after 5 seconds. Unable to locate the element
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.47.1', revision: '411b314', time: '2015-07-30 02:56:46'
+System info: host: 'B276', ip: '10.20.3.25', os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_51'
+Driver info: driver.version: unknown]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: Timed out after 5 seconds. Unable to locate the element
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.47.1', revision: '411b314', time: '2015-07-30 02:56:46'
+System info: host: 'B276', ip: '10.20.3.25', os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_51'
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:89)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy24.click(Unknown Source)
+	at spot.pages.SingleUploadPage.saveFile(SingleUploadPage.java:94)
+	at spot.scripts.SingleUploadTest.testSaveFile(SingleUploadTest.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":".//*[@id='singleUpload:submitTop']"}
+Command duration or timeout: 28 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.47.1', revision: '411b314', time: '2015-07-30 02:56:46'
+System info: host: 'B276', ip: '10.20.3.25', os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_51'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{applicationCacheEnabled=true, rotatable=false, handlesAlerts=true, databaseEnabled=true, version=41.0.1, platform=WINDOWS, nativeEvents=false, acceptSslCerts=true, webStorageEnabled=true, locationContextEnabled=true, browserName=firefox, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 8117b197-437c-4580-9952-e27f79b243f9
+*** Element info: {Using=xpath, value=.//*[@id='singleUpload:submitTop']}
+	at sun.reflect.GeneratedConstructorAccessor16.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:445)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:358)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:340)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.access$0(AjaxElementLocator.java:1)
+	at org.openqa.selenium.support.pagefactory.AjaxElementLocator$SlowLoadingElement.isLoaded(AjaxElementLocator.java:157)
+	at org.openqa.selenium.support.ui.SlowLoadableComponent.get(SlowLoadableComponent.java:70)
+	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:87)
+	... 28 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {"method":"xpath","selector":".//*[@id='singleUpload:submitTop']"}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.47.1', revision: '411b314', time: '2015-07-30 02:56:46'
+System info: host: 'B276', ip: '10.20.3.25', os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.8.0_51'
+Driver info: driver.version: unknown
+	at <anonymous class>.FirefoxDriver.prototype.findElementInternal_(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10667)
+	at <anonymous class>.FirefoxDriver.prototype.findElement(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10676)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_/h(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12643)
+	at <anonymous class>.DelayedCommand.prototype.executeInternal_(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12648)
+	at <anonymous class>.DelayedCommand.prototype.execute/<(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12590)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSaveFile -->
-        <test-method status="PASS" signature="logout()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="logout" is-config="true" duration-ms="2493" started-at="2015-10-13T15:58:28Z" finished-at="2015-10-13T15:58:31Z">
+        <test-method status="PASS" signature="logout()[pri:0, instance:spot.scripts.SingleUploadTest@1706f19]" name="logout" is-config="true" duration-ms="914" started-at="2015-10-14T09:26:10Z" finished-at="2015-10-14T09:26:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logout -->

@@ -6,6 +6,7 @@
     <classes>
       <class name="spot.scripts.SingleUploadTest">
         <methods>
+          <include name="testSelectCollectionToUploadFile"/>
           <include name="loginAsAdmin"/>
           <include name="testSaveFile"/>
           <include name="logout"/>

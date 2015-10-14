@@ -19,7 +19,8 @@ public class SeleniumTestSuite {
 	private static Properties properties;	
 	public static final String propertiesFileName = "testData.properties";
 	
-	public static final String spotStartPageURL = "http://qa-imeji.mpdl.mpg.de/"; 	
+//	public static final String testEnvironmentURL = "http://qa-edmond.mpdl.mpg.de/"; 	
+	public static final String testEnvironmentURL = "http://qa-imeji.mpdl.mpg.de/";
 
 	private static final Logger log4j = LogManager.getLogger(SeleniumTestSuite.class.getName());
 	
@@ -33,7 +34,7 @@ public class SeleniumTestSuite {
 		setDriver(browserType);
 		loadPropertiesFile();
 		
-		driver.navigate().to(spotStartPageURL);
+		driver.navigate().to(testEnvironmentURL);
 	}
 
 	private void loadPropertiesFile() {

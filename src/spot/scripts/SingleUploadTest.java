@@ -29,13 +29,12 @@ public class SingleUploadTest extends BaseSelenium{
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
 	}
 	
-	@Test (priority = 1)
+	@Test (priority = 1/*, invocationCount = 10*/)
 	public void testLoadFile() {
 		
 		singleUploadPage = adminHomePage.goToUploadPage();
 		try {
-			
-			
+						
 			String absolutePathToFile = "C:\\Users\\kocar\\Pictures\\" + fileName;
 			String uploadedFile = singleUploadPage.upload(absolutePathToFile);
 			
@@ -60,7 +59,8 @@ public class SingleUploadTest extends BaseSelenium{
 		DetailedFileView detailedFileView = singleUploadPage.saveFile();
 		String fileTitle = detailedFileView.getFileTitle();
 		
-		Assert.assertTrue(fileName.equals(fileTitle), "Name of uploaded file doesn't match with priorly selected file's name");
+		Assert.assertTrue(fileName.equalsIgnoreCase(fileTitle), "Name of uploaded file doesn't match with priorly selected file's name");
+		
 	}
 	
 	

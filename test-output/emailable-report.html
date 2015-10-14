@@ -1,14 +1,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>TestNG Report</title><style type="text/css">table {margin-bottom:10px;border-collapse:collapse;empty-cells:show}th,td {border:1px solid #009;padding:.25em .5em}th {vertical-align:bottom}td {vertical-align:top}table a {font-weight:bold}.stripe td {background-color: #E6EBF9}.num {text-align:right}.passedodd td {background-color: #3F3}.passedeven td {background-color: #0A0}.skippedodd td {background-color: #DDD}.skippedeven td {background-color: #CCC}.failedodd td,.attn {background-color: #F33}.failedeven td,.stripe .attn {background-color: #D00}.stacktrace {white-space:pre;font-family:monospace}.totop {font-size:85%;text-align:center;border-bottom:2px solid #000}</style></head><body><table><tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr><tr><th colspan="7">spot Test</th></tr><tr><td><a href="#t0">Login Test</a></td><td class="num">2</td><td class="num">0</td><td class="num attn">1</td><td class="num">15.447</td><td></td><td></td></tr></table><table><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">spot Test</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Login Test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">spot.scripts.SingleUploadTest</td><td><a href="#m0">testSaveFile</a></td><td rowspan="1">1444744705476</td><td rowspan="1">3364</td></tr><tr><th colspan="4">Login Test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="2">spot.scripts.SingleUploadTest</td><td><a href="#m1">testLoadFile</a></td><td rowspan="1">1444744698486</td><td rowspan="1">6076</td></tr><tr class="passedeven"><td><a href="#m2">testSelectCollectionToUploadFile</a></td><td rowspan="1">1444744704563</td><td rowspan="1">913</td></tr></tbody></table><h2>Login Test</h2><h3 id="m0">spot.scripts.SingleUploadTest#testSaveFile</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.RuntimeException: java.lang.InstantiationException: spot.pages.DetailedFileView
-	at org.openqa.selenium.support.PageFactory.instantiatePage(PageFactory.java:133)
-	at org.openqa.selenium.support.PageFactory.initElements(PageFactory.java:63)
-	at spot.pages.SingleUploadPage.saveFile(SingleUploadPage.java:96)
-	at spot.scripts.SingleUploadTest.testSaveFile(SingleUploadTest.java:60)
-Caused by: java.lang.InstantiationException: spot.pages.DetailedFileView
-	at java.lang.Class.newInstance(Unknown Source)
-	at org.openqa.selenium.support.PageFactory.instantiatePage(PageFactory.java:130)
-	... 27 more
-Caused by: java.lang.NoSuchMethodException: spot.pages.DetailedFileView.&lt;init&gt;()
-	at java.lang.Class.getConstructor0(Unknown Source)
-	... 29 more
-... Removed 24 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p><h3 id="m1">spot.scripts.SingleUploadTest#testLoadFile</h3><table class="result"></table><p class="totop"><a href="#summary">back to summary</a></p><h3 id="m2">spot.scripts.SingleUploadTest#testSelectCollectionToUploadFile</h3><table class="result"></table><p class="totop"><a href="#summary">back to summary</a></p></body></html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>TestNG Report</title><style type="text/css">table {margin-bottom:10px;border-collapse:collapse;empty-cells:show}th,td {border:1px solid #009;padding:.25em .5em}th {vertical-align:bottom}td {vertical-align:top}table a {font-weight:bold}.stripe td {background-color: #E6EBF9}.num {text-align:right}.passedodd td {background-color: #3F3}.passedeven td {background-color: #0A0}.skippedodd td {background-color: #DDD}.skippedeven td {background-color: #CCC}.failedodd td,.attn {background-color: #F33}.failedeven td,.stripe .attn {background-color: #D00}.stacktrace {white-space:pre;font-family:monospace}.totop {font-size:85%;text-align:center;border-bottom:2px solid #000}</style></head><body><table><tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr><tr><th colspan="7">spot Test</th></tr><tr><td><a href="#t0">Login Test</a></td><td class="num">1</td><td class="num">0</td><td class="num attn">2</td><td class="num">11.418</td><td></td><td></td></tr></table><table><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">spot Test</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Login Test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="2">spot.scripts.SingleUploadTest</td><td><a href="#m0">testSaveFile</a></td><td rowspan="1">1444807565753</td><td rowspan="1">5112</td></tr><tr class="failedeven"><td><a href="#m1">testSelectCollectionToUploadFile</a></td><td rowspan="1">1444807564999</td><td rowspan="1">749</td></tr><tr><th colspan="4">Login Test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">spot.scripts.SingleUploadTest</td><td><a href="#m2">testLoadFile</a></td><td rowspan="1">1444807562108</td><td rowspan="1">2890</td></tr></tbody></table><h2>Login Test</h2><h3 id="m0">spot.scripts.SingleUploadTest#testSaveFile</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: Timed out after 5 seconds. Unable to locate the element
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.47.1&apos;, revision: &apos;411b314&apos;, time: &apos;2015-07-30 02:56:46&apos;
+System info: host: &apos;B276&apos;, ip: &apos;10.20.3.25&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_51&apos;
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:89)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy24.click(Unknown Source)
+	at spot.pages.SingleUploadPage.saveFile(SingleUploadPage.java:94)
+	at spot.scripts.SingleUploadTest.testSaveFile(SingleUploadTest.java:74)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;.//*[@id=&apos;singleUpload:submitTop&apos;]&quot;}
+Command duration or timeout: 28 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.47.1&apos;, revision: &apos;411b314&apos;, time: &apos;2015-07-30 02:56:46&apos;
+System info: host: &apos;B276&apos;, ip: &apos;10.20.3.25&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_51&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{applicationCacheEnabled=true, rotatable=false, handlesAlerts=true, databaseEnabled=true, version=41.0.1, platform=WINDOWS, nativeEvents=false, acceptSslCerts=true, webStorageEnabled=true, locationContextEnabled=true, browserName=firefox, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 8117b197-437c-4580-9952-e27f79b243f9
+*** Element info: {Using=xpath, value=.//*[@id=&apos;singleUpload:submitTop&apos;]}
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:445)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:358)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:340)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.access$0(AjaxElementLocator.java:1)
+	at org.openqa.selenium.support.pagefactory.AjaxElementLocator$SlowLoadingElement.isLoaded(AjaxElementLocator.java:157)
+	at org.openqa.selenium.support.ui.SlowLoadableComponent.get(SlowLoadableComponent.java:70)
+	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:87)
+	... 28 more
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;.//*[@id=&apos;singleUpload:submitTop&apos;]&quot;}
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.47.1&apos;, revision: &apos;411b314&apos;, time: &apos;2015-07-30 02:56:46&apos;
+System info: host: &apos;B276&apos;, ip: &apos;10.20.3.25&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_51&apos;
+Driver info: driver.version: unknown
+	at &lt;anonymous class&gt;.FirefoxDriver.prototype.findElementInternal_(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10667)
+	at &lt;anonymous class&gt;.FirefoxDriver.prototype.findElement(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10676)
+	at &lt;anonymous class&gt;.DelayedCommand.prototype.executeInternal_/h(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12643)
+	at &lt;anonymous class&gt;.DelayedCommand.prototype.executeInternal_(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12648)
+	at &lt;anonymous class&gt;.DelayedCommand.prototype.execute/&lt;(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12590)
+... Removed 27 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p><h3 id="m1">spot.scripts.SingleUploadTest#testSelectCollectionToUploadFile</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: Cannot locate element with text: Default first collection of Kocar, Gülüsan
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.47.1&apos;, revision: &apos;411b314&apos;, time: &apos;2015-07-30 02:56:46&apos;
+System info: host: &apos;B276&apos;, ip: &apos;10.20.3.25&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_51&apos;
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:150)
+	at spot.pages.SingleUploadPage.selectCollectionToUploadFile(SingleUploadPage.java:83)
+	at spot.scripts.SingleUploadTest.testSelectCollectionToUploadFile(SingleUploadTest.java:67)
+... Removed 24 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p><h3 id="m2">spot.scripts.SingleUploadTest#testLoadFile</h3><table class="result"></table><p class="totop"><a href="#summary">back to summary</a></p></body></html>
