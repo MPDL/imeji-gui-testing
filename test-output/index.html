@@ -23,7 +23,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 2 failed tests</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -37,7 +37,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-spot_Test">
-              <span class="suite-name border-failed">spot Test</span>
+              <span class="suite-name border-passed">spot Test</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -48,7 +48,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-spot_Test">
-                    <span>C:\workspace\SpotGUITesting\res\testng.xml</span>
+                    <span>C:\Users\kocar\github\imeji-gui-testing\res\testng.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -90,26 +90,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">3 methods, 2 failed,   1 passed</span>
-                  </li>
-                  <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-spot_Test" class="hide-methods failed suite-spot_Test"> (hide)</a> <!-- hide-methods failed suite-spot_Test -->
-                      <a href="#" panel-name="suite-spot_Test" class="show-methods failed suite-spot_Test"> (show)</a> <!-- show-methods failed suite-spot_Test -->
-                    </span>
-                    <div class="method-list-content failed suite-spot_Test">
-                      <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-spot_Test" title="spot.scripts.SingleUploadTest" hash-for-method="testSaveFile">testSaveFile</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-spot_Test" title="spot.scripts.SingleUploadTest" hash-for-method="testSelectCollectionToUploadFile">testSelectCollectionToUploadFile</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content failed suite-spot_Test -->
+                    <span class="method-stats">4 methods,   4 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -120,7 +101,22 @@
                     <div class="method-list-content passed suite-spot_Test">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-spot_Test" title="spot.scripts.SingleUploadTest" hash-for-method="testLoadFile">testLoadFile</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-spot_Test" title="spot.scripts.RegistrationTest" hash-for-method="changePasswordTest">changePasswordTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-spot_Test" title="spot.scripts.RegistrationTest" hash-for-method="testActivateAccount">testActivateAccount</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-spot_Test" title="spot.scripts.RegistrationTest" hash-for-method="testSubmitRegistrationForm">testSubmitRegistrationForm</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-spot_Test" title="spot.scripts.RegistrationTest" hash-for-method="testVerificationMail">testVerificationMail</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-spot_Test -->
@@ -135,93 +131,38 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-spot_Test" class="panel spot_Test">
-          <div class="suite-spot_Test-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">spot.scripts.SingleUploadTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="testSaveFile">
-                  </a> <!-- testSaveFile -->
-                  <span class="method-name">testSaveFile</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: Timed out after 5 seconds. Unable to locate the element
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.47.1&apos;, revision: &apos;411b314&apos;, time: &apos;2015-07-30 02:56:46&apos;
-System info: host: &apos;B276&apos;, ip: &apos;10.20.3.25&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_51&apos;
-Driver info: driver.version: unknown
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:89)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at com.sun.proxy.$Proxy24.click(Unknown Source)
-	at spot.pages.SingleUploadPage.saveFile(SingleUploadPage.java:94)
-	at spot.scripts.SingleUploadTest.testSaveFile(SingleUploadTest.java:74)
-Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;.//*[@id=&apos;singleUpload:submitTop&apos;]&quot;}
-Command duration or timeout: 28 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.47.1&apos;, revision: &apos;411b314&apos;, time: &apos;2015-07-30 02:56:46&apos;
-System info: host: &apos;B276&apos;, ip: &apos;10.20.3.25&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_51&apos;
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities [{applicationCacheEnabled=true, rotatable=false, handlesAlerts=true, databaseEnabled=true, version=41.0.1, platform=WINDOWS, nativeEvents=false, acceptSslCerts=true, webStorageEnabled=true, locationContextEnabled=true, browserName=firefox, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 8117b197-437c-4580-9952-e27f79b243f9
-*** Element info: {Using=xpath, value=.//*[@id=&apos;singleUpload:submitTop&apos;]}
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:445)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:358)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:340)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.access$0(AjaxElementLocator.java:1)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator$SlowLoadingElement.isLoaded(AjaxElementLocator.java:157)
-	at org.openqa.selenium.support.ui.SlowLoadableComponent.get(SlowLoadableComponent.java:70)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:87)
-	... 28 more
-Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;.//*[@id=&apos;singleUpload:submitTop&apos;]&quot;}
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.47.1&apos;, revision: &apos;411b314&apos;, time: &apos;2015-07-30 02:56:46&apos;
-System info: host: &apos;B276&apos;, ip: &apos;10.20.3.25&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_51&apos;
-Driver info: driver.version: unknown
-	at &lt;anonymous class&gt;.FirefoxDriver.prototype.findElementInternal_(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10667)
-	at &lt;anonymous class&gt;.FirefoxDriver.prototype.findElement(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/driver-component.js:10676)
-	at &lt;anonymous class&gt;.DelayedCommand.prototype.executeInternal_/h(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12643)
-	at &lt;anonymous class&gt;.DelayedCommand.prototype.executeInternal_(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12648)
-	at &lt;anonymous class&gt;.DelayedCommand.prototype.execute/&lt;(file:///C:/Users/kocar/AppData/Local/Temp/anonymous8995272979114562416webdriver-profile/extensions/fxdriver@googlecode.com/components/command-processor.js:12590)
-... Removed 27 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="testSelectCollectionToUploadFile">
-                  </a> <!-- testSelectCollectionToUploadFile -->
-                  <span class="method-name">testSelectCollectionToUploadFile</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: Cannot locate element with text: Default first collection of Kocar, Gülüsan
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.47.1&apos;, revision: &apos;411b314&apos;, time: &apos;2015-07-30 02:56:46&apos;
-System info: host: &apos;B276&apos;, ip: &apos;10.20.3.25&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;x86&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_51&apos;
-Driver info: driver.version: unknown
-	at org.openqa.selenium.support.ui.Select.selectByVisibleText(Select.java:150)
-	at spot.pages.SingleUploadPage.selectCollectionToUploadFile(SingleUploadPage.java:83)
-	at spot.scripts.SingleUploadTest.testSelectCollectionToUploadFile(SingleUploadTest.java:67)
-... Removed 24 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-spot_Test-class-failed -->
           <div class="suite-spot_Test-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">spot.scripts.SingleUploadTest</span>
+              <span class="class-name">spot.scripts.RegistrationTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testLoadFile">
-                  </a> <!-- testLoadFile -->
-                  <span class="method-name">testLoadFile</span>
+                  <a name="changePasswordTest">
+                  </a> <!-- changePasswordTest -->
+                  <span class="method-name">changePasswordTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testActivateAccount">
+                  </a> <!-- testActivateAccount -->
+                  <span class="method-name">testActivateAccount</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testSubmitRegistrationForm">
+                  </a> <!-- testSubmitRegistrationForm -->
+                  <span class="method-name">testSubmitRegistrationForm</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testVerificationMail">
+                  </a> <!-- testVerificationMail -->
+                  <span class="method-name">testVerificationMail</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -229,7 +170,7 @@ Driver info: driver.version: unknown
         </div> <!-- panel spot_Test -->
         <div panel-name="test-xml-spot_Test" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\workspace\SpotGUITesting\res\testng.xml</span>
+            <span class="header-content">C:\Users\kocar\github\imeji-gui-testing\res\testng.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -240,7 +181,7 @@ Driver info: driver.version: unknown
   &lt;test name=&quot;Login Test&quot;&gt;
     &lt;classes&gt;
       &lt;class name=&quot;spot.SeleniumTestSuite&quot;/&gt;
-      &lt;class name=&quot;spot.scripts.SingleUploadTest&quot;/&gt;
+      &lt;class name=&quot;spot.scripts.RegistrationTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Login Test --&gt;
 &lt;/suite&gt; &lt;!-- spot Test --&gt;
@@ -280,24 +221,28 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(3);
+data.addRows(4);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testSaveFile')
-data.setCell(0, 2, 'spot.scripts.SingleUploadTest')
-data.setCell(0, 3, 5112);
+data.setCell(0, 1, 'testActivateAccount')
+data.setCell(0, 2, 'spot.scripts.RegistrationTest')
+data.setCell(0, 3, 2693);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'testLoadFile')
-data.setCell(1, 2, 'spot.scripts.SingleUploadTest')
-data.setCell(1, 3, 2890);
+data.setCell(1, 1, 'testSubmitRegistrationForm')
+data.setCell(1, 2, 'spot.scripts.RegistrationTest')
+data.setCell(1, 3, 2672);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'testSelectCollectionToUploadFile')
-data.setCell(2, 2, 'spot.scripts.SingleUploadTest')
-data.setCell(2, 3, 749);
+data.setCell(2, 1, 'testVerificationMail')
+data.setCell(2, 2, 'spot.scripts.RegistrationTest')
+data.setCell(2, 3, 12);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'changePasswordTest')
+data.setCell(3, 2, 'spot.scripts.RegistrationTest')
+data.setCell(3, 3, 1);
 window.suiteTableData['spot_Test']= { tableData: data, tableDiv: 'times-div-spot_Test'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 8 seconds</span>
+              <span class="suite-total-time">Total running time: 5 seconds</span>
               <div id="times-div-spot_Test">
               </div> <!-- times-div-spot_Test -->
             </div> <!-- times-div -->
@@ -330,37 +275,37 @@ return data;
               </div> <!-- configuration-suite before -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
-              <div class="chronological-class-name">spot.scripts.SingleUploadTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">spot.scripts.RegistrationTest</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
-                <span class="method-name">loginAsAdmin</span>
-                <span class="method-start">5411 ms</span>
+                <span class="method-name">accessEmailAccount</span>
+                <span class="method-start">6330 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <span class="method-name">testLoadFile</span>
-                <span class="method-start">7122 ms</span>
+                <span class="method-name">testSubmitRegistrationForm</span>
+                <span class="method-start">7148 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">testSelectCollectionToUploadFile</span>
-                <span class="method-start">10013 ms</span>
+                <span class="method-name">testVerificationMail</span>
+                <span class="method-start">9821 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">testSaveFile</span>
-                <span class="method-start">10767 ms</span>
+                <span class="method-name">testActivateAccount</span>
+                <span class="method-start">9834 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">changePasswordTest</span>
+                <span class="method-start">12533 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">logout</span>
-                <span class="method-start">15883 ms</span>
+                <span class="method-start">12534 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">spot.SeleniumTestSuite</div> <!-- chronological-class-name -->
               <div class="configuration-suite after">
                 <span class="method-name">quitDriver</span>
-                <span class="method-start">16821 ms</span>
+                <span class="method-start">12744 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
