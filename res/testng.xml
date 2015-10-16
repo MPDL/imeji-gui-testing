@@ -5,8 +5,8 @@
 	<test name="Login Test">
 		<classes>
 			<class name="spot.SeleniumTestSuite" />
-<!-- 			<class name="spot.scripts.LoginLogoutTest" /> -->
-			<class name="spot.scripts.RegistrationTest" />
+			<class name="spot.scripts.LoginLogoutTest" />
+<!-- 			<class name="spot.scripts.RegistrationTest" /> -->
 <!-- 			<class name="spot.scripts.admin.UserPolicyManagementTest" /> -->
 <!-- 			<class name="spot.scripts.SingleUploadTest" />  -->
 		</classes>
