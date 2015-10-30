@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="HOME" verbose="1">
+<parameter name="browserType" value="firefox"/>
+	
+	<test name="Login Logout Test">
+		<classes>
+			<class name="spot.SeleniumTestSuite" />
+			<class name="spot.scripts.LoginLogoutTest" />
+		</classes>
+	</test>
+	
+	<test name="Extern Links and Further Services">
+	     <classes>
+	        <class name="spot.SeleniumTestSuite" />
+<!-- 	        <class name="spot.scripts.HelpTest" /> -->
+<!-- 	        <class name="spot.scripts.ContactSupportTest" /> -->
+<!-- 	        <class name="spot.scripts.ImejiHomePageTest" /> -->
+	        <class name="spot.scripts.DisclaimerTest" />
+<!-- 	        <class name="spot.scripts.MpdlHomePageTest" />	        	         -->
+	    </classes>
+	</test>
+
+<!-- 	<test name="User Preference Settings"> -->
+<!-- 	    <classes> -->
+<!-- 	        <class name="spot.SeleniumTestSuite" /> -->
+<!-- 	        <class name="spot.scripts.EditLanguageSetupTest" /> -->
+<!-- 	    </classes> -->
+<!-- 	</test>		 -->
+	
+	<test name="Search Functionality">
+	     <classes>
+	        <class name="spot.SeleniumTestSuite" />
+	        <class name="spot.scripts.SearchTest" />
+	    </classes>
+	</test>
+	
+<!-- 	<test name="Access Limitation for Non-Registered Users"> -->
+<!-- 	     <classes> -->
+<!-- 	        <class name="spot.SeleniumTestSuite" /> -->
+<!-- 			<class name="spot.scripts.LimitedAccessForNruTest" /> -->
+<!-- 	    </classes> -->
+<!-- 	</test> -->
+	
+<!-- 	<test name="Action -New- "> -->
+<!-- 	     <classes> -->
+<!-- 	        <class name="spot.SeleniumTestSuite" /> -->
+<!-- 	        <class name="spot.scripts.NewActionTest" /> -->
+<!-- 	    </classes> -->
+<!-- 	</test> -->
+	
+	<test name="Category Selection">
+	     <classes>
+	        <class name="spot.SeleniumTestSuite" />
+	        <class name="spot.scripts.CategorySelectionTest" />
+	    </classes>
+	</test>	
+		
+<!-- calling other suite files; but rather than this, use the way via pom 	-->
+<!-- 	<suite-files> -->
+<!-- 	    <suite-file path="" /> -->
+<!-- 	    <suite-file path="" /> -->
+<!-- 	</suite-files> -->
+	
+</suite>
+

@@ -3,14 +3,16 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="spot.scripts.SingleUploadTest">
+      <class name="spot.scripts.CategorySelectionTest">
         <methods>
-          <include name="testSelectCollectionToUploadFile"/>
-          <include name="loginAsAdmin"/>
-          <include name="testLoadFile"/>
-          <include name="testSaveFile"/>
+          <include name="afterClass"/>
+          <include name="afterMethod"/>
+          <include name="beforeClass"/>
+          <include name="setup"/>
+          <include name="beforeMethod"/>
+          <include name="openUploadPageTest"/>
         </methods>
-      </class> <!-- spot.scripts.SingleUploadTest -->
+      </class> <!-- spot.scripts.CategorySelectionTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

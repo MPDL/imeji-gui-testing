@@ -9,7 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import spot.BaseSelenium;
-import spot.pages.BasePage.MessageType;
+import spot.components.MessageComponent.MessageType;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
@@ -31,6 +31,14 @@ public class LoginLogoutTest extends BaseSelenium {
 
 	private static final Logger log4j = LogManager.getLogger(LoginLogoutTest.class.getName());
 	
+	private LoginPage loginPage;
+
+	@BeforeMethod
+	public void beforeMethod() {
+		System.out.println("BeforeMethod");		
+		loginPage = new StartPage(driver).openLoginForm();
+	}
+	
 	/**
 	 * Test login with invalid credentials.
 	 * Resulting into unsuccessful login. 
@@ -38,38 +46,49 @@ public class LoginLogoutTest extends BaseSelenium {
 	 */
 	@Test 
 	public void testLogInWithInvalidCredentials() {
-		LoginPage loginPage = getStartPage().openLoginForm();
+		System.out.println("testLogInWithInvalidCredentials");
+		
 		loginPage = loginPage.loginWithBadCredentials("invalid", "credentials");
 		
-		Assert.assertTrue(loginPage.getMessageTypeOfPageMessageArea() == MessageType.ERROR, "Login was proceeded with invalid credentials, but no error message appeared on the message area of the page");
+		Assert.assertTrue(loginPage.getMessageComponent().getMessageTypeOfPageMessageArea() == MessageType.ERROR, "Login was proceeded with invalid credentials, but no error message appeared on the message area of the page");
 	}
 	
 	/**
 	 * Test successful login as admin.
 	 * 
 	 */
-	@Test
+	@Test 
 	public void testLogInAsAdmin() {
-				
-		LoginPage loginPage = getStartPage().openLoginForm();
+		System.out.println("testLogInAsAdmin");
+		
 		AdminHomePage loginAsAdmin = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
 		
 		String adminFullName = getPropertyAttribute("aGivenName") + " " + getPropertyAttribute("aFamilyName");
 		Assert.assertEquals(loginAsAdmin.getLoggedInUserFullName(), adminFullName, "User name doesn't match");
 	}
 	
+//	@Test
+//	public void testLoginAsRegisteredUser() {
+//		System.out.println("testLoginAsRegisteredUser");
+//		
+////		HomePage homePage = loginPage.loginAsNotAdmin(user, pw)
+//	}
+	
 	@AfterMethod
 	public void logout(Method method) {
 		String methodName = method.getName();
 		
+		System.out.println("AfterMethod");
+		
 		// since logout doesn't apply for testLogInWithInvalidCredentials
 		if (!methodName.equals("testLogInWithInvalidCredentials")) {
-			HomePage homePage = PageFactory.initElements(getDriver(), HomePage.class);
+			HomePage homePage = new HomePage(driver);
 			homePage.logout();
+			
 			// if logout was successful -> openLoginForm Button is displayed on StartPage
-			StartPage startPage = PageFactory.initElements(getDriver(), StartPage.class);
+			StartPage startPage = new StartPage(driver);
 			Assert.assertTrue(startPage.isOpenLoginFormButtonPresent(), "Logout failed");
 		}
 	}
-	
+
 }

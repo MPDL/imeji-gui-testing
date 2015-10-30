@@ -1,9 +1,8 @@
 package spot.pages;
 
-import java.util.NoSuchElementException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +28,9 @@ public class StartPage extends BasePage {
 	@FindBy(xpath =".//*[@id='Header:j_idt38']/a")
 	private WebElement registrationButton;
 	
+	@FindBy(xpath=".//*[@id='tabsDE-1']/p[2]/b[2]/a")
+	private WebElement contactEdmondsupportLink;
+	
 	public StartPage(WebDriver driver) {
 		super(driver);
 				
@@ -36,7 +38,13 @@ public class StartPage extends BasePage {
 	}	
 	
 	public LoginPage openLoginForm() {
-		openLoginFormButton.click();
+		
+		try {
+			openLoginFormButton.click();	
+		} catch (NoSuchElementException e) {
+			// the login form is already visible
+			// do nothing
+		}
 		
 		return PageFactory.initElements(driver, LoginPage.class);
 	}
@@ -44,6 +52,12 @@ public class StartPage extends BasePage {
 	public RegistrationPage goToRegistrationPage() {
 		registrationButton.click();		
 		return PageFactory.initElements(driver, RegistrationPage.class);
+	}
+	
+	public String contactEdmondSupport() {
+		String href = contactEdmondsupportLink.getAttribute("href");		
+
+		return extractMailDestinationAddressFromLink(href);
 	}
 	
 	/**

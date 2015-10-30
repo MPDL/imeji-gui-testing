@@ -30,6 +30,9 @@
       	<configuration>
       		<suiteXmlFiles>
       			<suiteXmlFile>res/testng.xml</suiteXmlFile>
+<!--       			!!! 									 -->
+<!--       			Add other suite xml files HERE if needed -->
+<!--       			<suiteXmlFile></suiteXmlFile> -->
       		</suiteXmlFiles>
       	</configuration>
       </plugin>

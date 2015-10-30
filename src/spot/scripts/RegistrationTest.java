@@ -97,7 +97,9 @@ public class RegistrationTest extends BaseSelenium {
 	public void testActivateAccount() {
 		navigateDriverTo(verificationURL);
 		
-		HomePage homePage = getRegistrationPage().activateAccount(getPropertyAttribute("tuSpotPassword"));
+		RegistrationPage  registrationPage = new RegistrationPage(getDriver());
+		
+		HomePage homePage = registrationPage.activateAccount(getPropertyAttribute("tuSpotPassword"));
 
 		String userFullName = getPropertyAttribute("tuGivenName") + " " + getPropertyAttribute("tuFamilyName");
 		

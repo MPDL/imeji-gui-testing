@@ -1,13 +1,227 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="4" passed="4">
+<testng-results skipped="0" failed="4" total="12" passed="8">
   <reporter-output>
   </reporter-output>
-  <suite name="spot Test" duration-ms="6433" started-at="2015-10-14T13:52:17Z" finished-at="2015-10-14T13:52:23Z">
+  <suite name="HOME" duration-ms="19705" started-at="2015-10-30T14:45:10Z" finished-at="2015-10-30T14:45:29Z">
     <groups>
     </groups>
-    <test name="Login Test" duration-ms="6433" started-at="2015-10-14T13:52:17Z" finished-at="2015-10-14T13:52:23Z">
+    <test name="Login Logout Test" duration-ms="3891" started-at="2015-10-30T14:45:10Z" finished-at="2015-10-30T14:45:14Z">
       <class name="spot.SeleniumTestSuite">
-        <test-method status="PASS" signature="launchDriver(java.lang.String)[pri:0, instance:spot.SeleniumTestSuite@1dc8ecb]" name="launchDriver" is-config="true" duration-ms="6293" started-at="2015-10-14T15:52:11Z" finished-at="2015-10-14T15:52:17Z">
+        <test-method status="PASS" signature="testBeforeTest()[pri:0, instance:spot.SeleniumTestSuite@769f71a9]" name="testBeforeTest" is-config="true" duration-ms="0" started-at="2015-10-30T15:45:10Z" finished-at="2015-10-30T15:45:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testBeforeTest -->
+        <test-method status="PASS" signature="testAfterTest()[pri:0, instance:spot.SeleniumTestSuite@769f71a9]" name="testAfterTest" is-config="true" duration-ms="0" started-at="2015-10-30T15:45:14Z" finished-at="2015-10-30T15:45:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAfterTest -->
+      </class> <!-- spot.SeleniumTestSuite -->
+      <class name="spot.scripts.LoginLogoutTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:spot.scripts.LoginLogoutTest@3ba9ad43]" name="setup" is-config="true" duration-ms="0" started-at="2015-10-30T15:45:10Z" finished-at="2015-10-30T15:45:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:spot.scripts.LoginLogoutTest@3ba9ad43]" name="beforeMethod" is-config="true" duration-ms="278" started-at="2015-10-30T15:45:10Z" finished-at="2015-10-30T15:45:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testLogInAsAdmin()[pri:0, instance:spot.scripts.LoginLogoutTest@3ba9ad43]" name="testLogInAsAdmin" duration-ms="1463" started-at="2015-10-30T15:45:10Z" finished-at="2015-10-30T15:45:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLogInAsAdmin -->
+        <test-method status="PASS" signature="logout(java.lang.reflect.Method)[pri:0, instance:spot.scripts.LoginLogoutTest@3ba9ad43]" name="logout" is-config="true" duration-ms="852" started-at="2015-10-30T15:45:11Z" finished-at="2015-10-30T15:45:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void spot.scripts.LoginLogoutTest.testLogInAsAdmin()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logout -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:spot.scripts.LoginLogoutTest@3ba9ad43]" name="beforeMethod" is-config="true" duration-ms="143" started-at="2015-10-30T15:45:12Z" finished-at="2015-10-30T15:45:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testLogInWithInvalidCredentials()[pri:0, instance:spot.scripts.LoginLogoutTest@3ba9ad43]" name="testLogInWithInvalidCredentials" duration-ms="1140" started-at="2015-10-30T15:45:12Z" finished-at="2015-10-30T15:45:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLogInWithInvalidCredentials -->
+        <test-method status="PASS" signature="logout(java.lang.reflect.Method)[pri:0, instance:spot.scripts.LoginLogoutTest@3ba9ad43]" name="logout" is-config="true" duration-ms="0" started-at="2015-10-30T15:45:13Z" finished-at="2015-10-30T15:45:13Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void spot.scripts.LoginLogoutTest.testLogInWithInvalidCredentials()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logout -->
+      </class> <!-- spot.scripts.LoginLogoutTest -->
+    </test> <!-- Login Logout Test -->
+    <test name="Extern Links and Further Services" duration-ms="3262" started-at="2015-10-30T14:45:14Z" finished-at="2015-10-30T14:45:17Z">
+      <class name="spot.SeleniumTestSuite">
+        <test-method status="PASS" signature="testBeforeTest()[pri:0, instance:spot.SeleniumTestSuite@19bb07ed]" name="testBeforeTest" is-config="true" duration-ms="0" started-at="2015-10-30T15:45:14Z" finished-at="2015-10-30T15:45:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testBeforeTest -->
+        <test-method status="PASS" signature="testAfterTest()[pri:0, instance:spot.SeleniumTestSuite@19bb07ed]" name="testAfterTest" is-config="true" duration-ms="0" started-at="2015-10-30T15:45:17Z" finished-at="2015-10-30T15:45:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAfterTest -->
+      </class> <!-- spot.SeleniumTestSuite -->
+      <class name="spot.scripts.DisclaimerTest">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:spot.scripts.DisclaimerTest@10e41621]" name="beforeClass" is-config="true" duration-ms="53" started-at="2015-10-30T15:45:14Z" finished-at="2015-10-30T15:45:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:spot.scripts.DisclaimerTest@10e41621]" name="setup" is-config="true" duration-ms="0" started-at="2015-10-30T15:45:14Z" finished-at="2015-10-30T15:45:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="FAIL" signature="openDisclaimerTest()[pri:0, instance:spot.scripts.DisclaimerTest@10e41621]" name="openDisclaimerTest" duration-ms="3207" started-at="2015-10-30T15:45:14Z" finished-at="2015-10-30T15:45:17Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Not known test environment url expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Not known test environment url expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:494)
+	at org.testng.Assert.assertEquals(Assert.java:123)
+	at org.testng.Assert.assertEquals(Assert.java:286)
+	at spot.scripts.DisclaimerTest.openDisclaimerTest(DisclaimerTest.java:39)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openDisclaimerTest -->
+      </class> <!-- spot.scripts.DisclaimerTest -->
+    </test> <!-- Extern Links and Further Services -->
+    <test name="Search Functionality" duration-ms="7398" started-at="2015-10-30T14:45:17Z" finished-at="2015-10-30T14:45:24Z">
+      <class name="spot.SeleniumTestSuite">
+        <test-method status="PASS" signature="testBeforeTest()[pri:0, instance:spot.SeleniumTestSuite@654f0d9c]" name="testBeforeTest" is-config="true" duration-ms="1" started-at="2015-10-30T15:45:17Z" finished-at="2015-10-30T15:45:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testBeforeTest -->
+        <test-method status="PASS" signature="testAfterTest()[pri:0, instance:spot.SeleniumTestSuite@654f0d9c]" name="testAfterTest" is-config="true" duration-ms="0" started-at="2015-10-30T15:45:24Z" finished-at="2015-10-30T15:45:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAfterTest -->
+      </class> <!-- spot.SeleniumTestSuite -->
+      <class name="spot.scripts.SearchTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:spot.scripts.SearchTest@6a400542]" name="setup" is-config="true" duration-ms="0" started-at="2015-10-30T15:45:17Z" finished-at="2015-10-30T15:45:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="beforeClassTest()[pri:0, instance:spot.scripts.SearchTest@6a400542]" name="beforeClassTest" is-config="true" duration-ms="1" started-at="2015-10-30T15:45:17Z" finished-at="2015-10-30T15:45:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClassTest -->
+        <test-method status="PASS" signature="beforeMethodTest()[pri:0, instance:spot.scripts.SearchTest@6a400542]" name="beforeMethodTest" is-config="true" duration-ms="630" started-at="2015-10-30T15:45:17Z" finished-at="2015-10-30T15:45:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTest -->
+        <test-method status="PASS" signature="openAdvancedSearchTest()[pri:0, instance:spot.scripts.SearchTest@6a400542]" name="openAdvancedSearchTest" duration-ms="790" started-at="2015-10-30T15:45:18Z" finished-at="2015-10-30T15:45:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openAdvancedSearchTest -->
+        <test-method status="PASS" signature="beforeMethodTest()[pri:0, instance:spot.scripts.SearchTest@6a400542]" name="beforeMethodTest" is-config="true" duration-ms="589" started-at="2015-10-30T15:45:18Z" finished-at="2015-10-30T15:45:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTest -->
+        <test-method status="PASS" signature="searchForAlbumsTest()[pri:0, instance:spot.scripts.SearchTest@6a400542]" name="searchForAlbumsTest" duration-ms="1460" started-at="2015-10-30T15:45:19Z" finished-at="2015-10-30T15:45:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchForAlbumsTest -->
+        <test-method status="PASS" signature="beforeMethodTest()[pri:0, instance:spot.scripts.SearchTest@6a400542]" name="beforeMethodTest" is-config="true" duration-ms="563" started-at="2015-10-30T15:45:20Z" finished-at="2015-10-30T15:45:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTest -->
+        <test-method status="PASS" signature="searchForCollectionsTest()[pri:0, instance:spot.scripts.SearchTest@6a400542]" name="searchForCollectionsTest" duration-ms="1523" started-at="2015-10-30T15:45:21Z" finished-at="2015-10-30T15:45:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchForCollectionsTest -->
+        <test-method status="PASS" signature="beforeMethodTest()[pri:0, instance:spot.scripts.SearchTest@6a400542]" name="beforeMethodTest" is-config="true" duration-ms="567" started-at="2015-10-30T15:45:22Z" finished-at="2015-10-30T15:45:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTest -->
+        <test-method status="FAIL" signature="searchForItemsTest()[pri:0, instance:spot.scripts.SearchTest@6a400542]" name="searchForItemsTest" duration-ms="1272" started-at="2015-10-30T15:45:23Z" finished-at="2015-10-30T15:45:24Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [items:(awob)] but found [Inhalte:(awob)]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [items:(awob)] but found [Inhalte:(awob)]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:494)
+	at org.testng.Assert.assertEquals(Assert.java:123)
+	at org.testng.Assert.assertEquals(Assert.java:176)
+	at org.testng.Assert.assertEquals(Assert.java:186)
+	at spot.scripts.SearchTest.searchFor(SearchTest.java:67)
+	at spot.scripts.SearchTest.searchForItemsTest(SearchTest.java:43)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchForItemsTest -->
+      </class> <!-- spot.scripts.SearchTest -->
+    </test> <!-- Search Functionality -->
+    <test name="Category Selection" duration-ms="5015" started-at="2015-10-30T14:45:24Z" finished-at="2015-10-30T14:45:29Z">
+      <class name="spot.SeleniumTestSuite">
+        <test-method status="PASS" signature="launchDriver(java.lang.String)[pri:0, instance:spot.SeleniumTestSuite@30ee2816]" name="launchDriver" is-config="true" duration-ms="12690" started-at="2015-10-30T15:44:57Z" finished-at="2015-10-30T15:45:10Z">
           <params>
             <param index="0">
               <value>
@@ -18,37 +232,147 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchDriver -->
-        <test-method status="PASS" signature="quitDriver()[pri:0, instance:spot.SeleniumTestSuite@1dc8ecb]" name="quitDriver" is-config="true" duration-ms="1" started-at="2015-10-14T15:52:23Z" finished-at="2015-10-14T15:52:23Z">
+        <test-method status="PASS" signature="testBeforeTest()[pri:0, instance:spot.SeleniumTestSuite@30ee2816]" name="testBeforeTest" is-config="true" duration-ms="1" started-at="2015-10-30T15:45:24Z" finished-at="2015-10-30T15:45:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testBeforeTest -->
+        <test-method status="PASS" signature="testAfterTest()[pri:0, instance:spot.SeleniumTestSuite@30ee2816]" name="testAfterTest" is-config="true" duration-ms="0" started-at="2015-10-30T15:45:29Z" finished-at="2015-10-30T15:45:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAfterTest -->
+        <test-method status="PASS" signature="quitDriver()[pri:0, instance:spot.SeleniumTestSuite@30ee2816]" name="quitDriver" is-config="true" duration-ms="1" started-at="2015-10-30T15:45:29Z" finished-at="2015-10-30T15:45:29Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quitDriver -->
       </class> <!-- spot.SeleniumTestSuite -->
-      <class name="spot.scripts.RegistrationTest">
-        <test-method status="PASS" signature="accessEmailAccount()[pri:0, instance:spot.scripts.RegistrationTest@b7c004]" name="accessEmailAccount" is-config="true" duration-ms="816" started-at="2015-10-14T15:52:17Z" finished-at="2015-10-14T15:52:18Z">
+      <class name="spot.scripts.CategorySelectionTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:spot.scripts.CategorySelectionTest@31d7b7bf]" name="setup" is-config="true" duration-ms="0" started-at="2015-10-30T15:45:24Z" finished-at="2015-10-30T15:45:24Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- accessEmailAccount -->
-        <test-method status="PASS" signature="testSubmitRegistrationForm()[pri:0, instance:spot.scripts.RegistrationTest@b7c004]" name="testSubmitRegistrationForm" duration-ms="2672" started-at="2015-10-14T15:52:18Z" finished-at="2015-10-14T15:52:20Z">
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="beforeClassTest()[pri:0, instance:spot.scripts.CategorySelectionTest@31d7b7bf]" name="beforeClassTest" is-config="true" duration-ms="1" started-at="2015-10-30T15:45:24Z" finished-at="2015-10-30T15:45:24Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testSubmitRegistrationForm -->
-        <test-method status="PASS" signature="testVerificationMail()[pri:0, instance:spot.scripts.RegistrationTest@b7c004]" name="testVerificationMail" duration-ms="12" started-at="2015-10-14T15:52:20Z" finished-at="2015-10-14T15:52:20Z">
+        </test-method> <!-- beforeClassTest -->
+        <test-method status="PASS" signature="beforeMethodTest()[pri:0, instance:spot.scripts.CategorySelectionTest@31d7b7bf]" name="beforeMethodTest" is-config="true" duration-ms="531" started-at="2015-10-30T15:45:24Z" finished-at="2015-10-30T15:45:25Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testVerificationMail -->
-        <test-method status="PASS" signature="testActivateAccount()[pri:0, instance:spot.scripts.RegistrationTest@b7c004]" name="testActivateAccount" duration-ms="2693" started-at="2015-10-14T15:52:20Z" finished-at="2015-10-14T15:52:23Z">
+        </test-method> <!-- beforeMethodTest -->
+        <test-method status="PASS" signature="openAlbumPageTest()[pri:0, instance:spot.scripts.CategorySelectionTest@31d7b7bf]" name="openAlbumPageTest" duration-ms="704" started-at="2015-10-30T15:45:25Z" finished-at="2015-10-30T15:45:26Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testActivateAccount -->
-        <test-method status="PASS" signature="changePasswordTest()[pri:0, instance:spot.scripts.RegistrationTest@b7c004]" name="changePasswordTest" duration-ms="1" started-at="2015-10-14T15:52:23Z" finished-at="2015-10-14T15:52:23Z">
+        </test-method> <!-- openAlbumPageTest -->
+        <test-method status="PASS" signature="beforeMethodTest()[pri:0, instance:spot.scripts.CategorySelectionTest@31d7b7bf]" name="beforeMethodTest" is-config="true" duration-ms="532" started-at="2015-10-30T15:45:26Z" finished-at="2015-10-30T15:45:26Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- changePasswordTest -->
-        <test-method status="PASS" signature="logout()[pri:0, instance:spot.scripts.RegistrationTest@b7c004]" name="logout" is-config="true" duration-ms="191" started-at="2015-10-14T15:52:23Z" finished-at="2015-10-14T15:52:23Z">
+        </test-method> <!-- beforeMethodTest -->
+        <test-method status="PASS" signature="openCollectionPageTest()[pri:0, instance:spot.scripts.CategorySelectionTest@31d7b7bf]" name="openCollectionPageTest" duration-ms="941" started-at="2015-10-30T15:45:26Z" finished-at="2015-10-30T15:45:27Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- logout -->
-      </class> <!-- spot.scripts.RegistrationTest -->
-    </test> <!-- Login Test -->
-  </suite> <!-- spot Test -->
+        </test-method> <!-- openCollectionPageTest -->
+        <test-method status="PASS" signature="beforeMethodTest()[pri:0, instance:spot.scripts.CategorySelectionTest@31d7b7bf]" name="beforeMethodTest" is-config="true" duration-ms="546" started-at="2015-10-30T15:45:27Z" finished-at="2015-10-30T15:45:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTest -->
+        <test-method status="PASS" signature="openItemPageTest()[pri:0, instance:spot.scripts.CategorySelectionTest@31d7b7bf]" name="openItemPageTest" duration-ms="1187" started-at="2015-10-30T15:45:28Z" finished-at="2015-10-30T15:45:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openItemPageTest -->
+        <test-method status="PASS" signature="beforeMethodTest()[pri:0, instance:spot.scripts.CategorySelectionTest@31d7b7bf]" name="beforeMethodTest" is-config="true" duration-ms="517" started-at="2015-10-30T15:45:29Z" finished-at="2015-10-30T15:45:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTest -->
+        <test-method status="FAIL" signature="openStartPageTest()[pri:0, instance:spot.scripts.CategorySelectionTest@31d7b7bf]" name="openStartPageTest" duration-ms="1" started-at="2015-10-30T15:45:29Z" finished-at="2015-10-30T15:45:29Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [false] but found [true]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:494)
+	at org.testng.Assert.assertEquals(Assert.java:123)
+	at org.testng.Assert.assertEquals(Assert.java:286)
+	at org.testng.Assert.assertEquals(Assert.java:296)
+	at spot.scripts.CategorySelectionTest.openStartPageTest(CategorySelectionTest.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openStartPageTest -->
+        <test-method status="PASS" signature="beforeMethodTest()[pri:0, instance:spot.scripts.CategorySelectionTest@31d7b7bf]" name="beforeMethodTest" is-config="true" duration-ms="52" started-at="2015-10-30T15:45:29Z" finished-at="2015-10-30T15:45:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTest -->
+        <test-method status="FAIL" signature="openUploadPageTest()[pri:0, instance:spot.scripts.CategorySelectionTest@31d7b7bf]" name="openUploadPageTest" duration-ms="0" started-at="2015-10-30T15:45:29Z" finished-at="2015-10-30T15:45:29Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [false] but found [true]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:494)
+	at org.testng.Assert.assertEquals(Assert.java:123)
+	at org.testng.Assert.assertEquals(Assert.java:286)
+	at org.testng.Assert.assertEquals(Assert.java:296)
+	at spot.scripts.CategorySelectionTest.openUploadPageTest(CategorySelectionTest.java:35)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openUploadPageTest -->
+      </class> <!-- spot.scripts.CategorySelectionTest -->
+    </test> <!-- Category Selection -->
+  </suite> <!-- HOME -->
 </testng-results>

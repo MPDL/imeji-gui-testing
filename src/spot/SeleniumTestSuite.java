@@ -19,8 +19,11 @@ public class SeleniumTestSuite {
 	private static Properties properties;	
 	public static final String propertiesFileName = "testData.properties";
 	
-//	public static final String testEnvironmentURL = "http://qa-edmond.mpdl.mpg.de/"; 	
-	public static final String testEnvironmentURL = "http://qa-imeji.mpdl.mpg.de/";
+	public static final String qaEdmond = "http://qa-edmond.mpdl.mpg.de/";
+	public static final String qaImeji = "http://qa-imeji.mpdl.mpg.de/";
+	
+	public static final String testEnvironmentURL = "http://qa-edmond.mpdl.mpg.de/imeji/"; 	
+//	public static final String testEnvironmentURL = "http://qa-imeji.mpdl.mpg.de/";
 
 	private static final Logger log4j = LogManager.getLogger(SeleniumTestSuite.class.getName());
 	
@@ -28,6 +31,8 @@ public class SeleniumTestSuite {
 	@BeforeSuite
 	public void launchDriver(String browserType) throws MalformedURLException {
 
+		System.out.println("BeforeSuite");
+		
 		log4j.info("Launching driver..");
 		log4j.info("Browser is " + browserType);
 
@@ -91,6 +96,7 @@ public class SeleniumTestSuite {
 
 	@AfterSuite
 	public static void quitDriver() {
+		System.out.println("AfterSuite");
 		log4j.info("Quitting driver..");
 //		driver.quit();
 	}	
@@ -103,4 +109,13 @@ public class SeleniumTestSuite {
 		return properties;
 	}	
 
+	@BeforeTest
+	public void testBeforeTest() {
+		System.out.println("testBeforeTest()");
+	}
+
+	@AfterTest
+	public void testAfterTest() {
+		System.out.println("testAfterTest()");
+	}
 }

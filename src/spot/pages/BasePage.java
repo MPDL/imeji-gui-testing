@@ -1,15 +1,28 @@
 package spot.pages;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.Select;
+
+import spot.CategoryType;
+import spot.components.MainMenuComponent;
+import spot.components.MessageComponent;
+import spot.components.NewComponent;
+import spot.components.SearchComponent;
+import spot.components.UserPreferenceComponent;
 
 /**
  * This class is abstract.
@@ -23,78 +36,132 @@ public abstract class BasePage {
 	private static final Logger log4j = LogManager.getLogger(BasePage.class.getName());
 	
 	protected WebDriver driver;
+	
+	/** holds the five menu items: start, items, collections, albums, single upload */
+	protected MainMenuComponent mainMenuComponent;
+	
+	/** success or failure of user actions are reflected in the message area of the current page, e.g. login failed due to bad credentials */
+	private MessageComponent messageComponent;
+	
+	/** class for creating new collections, albums etc. */
+	private NewComponent newComponent;
+	
+	/** class for searching activities */
+	private SearchComponent searchComponent;
+	
+	/** editing user preference settings; e.g. language change */
+	private UserPreferenceComponent userPreferenceComponent;	
 
-	@FindBy (xpath=".//*[@id='imj_pageMessageArea']")
-	private WebElement pageMessageArea;
+	@FindBy(css=".imj_siteContentHeadline>h1")
+	private WebElement siteContentHeadline;
 	
-	public enum MessageType { ERROR, INFO };
-		
-	@FindBy (xpath=".//*[@id='Header:j_idt59:lnkHome']")
-	private WebElement startButton;
+	@FindBy (xpath=".//*[@id='Header:lnkHelp']")
+	private WebElement helpButton;
 	
-	@FindBy (xpath=".//*[@id='Header:j_idt59:lnkBrowse']")
-	private WebElement itemsButton;
+	@FindBy (xpath="html/body/div[1]/div[4]/div/div[2]/a")
+	private WebElement disclaimer;	
 	
-	@FindBy (xpath=".//*[@id='Header:j_idt59:lnkCollections']")
-	private WebElement collectionsButton;
+	@FindBy(xpath="html/body/div[1]/div[4]/div/div[1]/div[2]/a")
+	private WebElement imejiHomePageLink;
 	
-	@FindBy (xpath=".//*[@id='Header:j_idt59:lnkAlbums']")
-	private WebElement albumsButton;
-	
-	@FindBy (xpath=".//*[@id='Header:j_idt59:lnkUpload']")
-	private WebElement singleUploadButton;
-	
-	protected BasePage(WebDriver driver) {
-		this.driver = driver;
-	}
-	
-	public SingleUploadPage goToUploadPage() {
-		singleUploadButton.click();
-		
-		return PageFactory.initElements(driver, SingleUploadPage.class);
-	}
+	@FindBy(xpath="html/body/div[1]/div[4]/div/div[3]/div/a")
+	private WebElement mpdlHomePage;
 	
 	/**
-	 * Used for e.g. Login. 
-	 * Login action results into update of page message area in any case (fail/success).
-	 * Successful login is associated with message type messageInfo.
-	 * Failed login with message type messageError.
+	 * Constructor
 	 * 
-	 * @return the messageType - either info or error
+	 * @param driver
 	 */
-	public MessageType getMessageTypeOfPageMessageArea() {
+	protected BasePage(WebDriver driver) {
+		this.driver = driver;
+		this.messageComponent = new MessageComponent(driver);
+		this.mainMenuComponent = new MainMenuComponent(driver);
+		this.newComponent = new NewComponent(driver);
+		this.searchComponent = new SearchComponent(driver);
+		this.userPreferenceComponent = new UserPreferenceComponent(driver);		
+	}
+	
+	public String getSiteContentHeadline() {
+		return siteContentHeadline.getText();
+	}
+
+	public ItemPage navigateToItemPage() {
 				
-		MessageType msgType = MessageType.INFO;			
+		return mainMenuComponent.navigateTo(ItemPage.class);
+	}
+	
+	public AlbumPage goToAlbumPage() {
+				
+		return mainMenuComponent.navigateTo(AlbumPage.class);
+	}
+	
+	public CollectionsPage goToCollectionPage() {
 		
-		// Either info or error components, depending on whether login failed or succeeded
-		List<WebElement> pageMsgAreaComponents = pageMessageArea.findElements(By.tagName("li"));
+		return mainMenuComponent.navigateTo(CollectionsPage.class);
+	}
+	
+	public HelpPage goToHelpPage() {
+		helpButton.click();
 		
-		for (WebElement we : pageMsgAreaComponents) {
-			String messageType = we.getAttribute("class");			
-			boolean isError = StringUtils.containsIgnoreCase(messageType, MessageType.ERROR.toString());
-			if (isError) {
-				msgType = MessageType.ERROR;
-				break;
+		return PageFactory.initElements(driver, HelpPage.class);
+	}
+	
+	public void lookUpDisclaimer() {
+		disclaimer.click();
+	}
+	
+	public void lookUpMpdlHomePage() {
+		mpdlHomePage.click();
+	}
+	
+	public void lookUpImejiHomePage() {		
+		imejiHomePageLink.click();
+	}
+	
+	public void selectLanguage(String language) {
+		
+		userPreferenceComponent.selectLanguage(language);
+	}
+	
+	public String getCurrentLanguageSetup() {
+		
+		return userPreferenceComponent.getCurrentLanguage();		
+	}	
+	
+	protected String extractMailDestinationAddressFromLink(String href) {
+		String destination = "";
+
+		String mailto = "mailto:";
+
+		if (href.startsWith(mailto)) {
+			String[] split = href.split(mailto);
+			if (split.length > 0) {
+				List<String> arrayList = new ArrayList<String>(Arrays.asList(split));
+				arrayList.removeAll(Arrays.asList("", null));
+				destination = arrayList.get(0);
 			}
 		}
-		
-		return msgType; 
+		// TODO contact support link via javascript
+		/*
+		 * else if (href.startsWith("javascript:")) {
+		 * 
+		 * }
+		 */
+
+		return destination;
+	}
+	
+	protected void waitForInitationPageElements() {
+		ElementLocatorFactory elementLocatorFactory =  new AjaxElementLocatorFactory(driver, 10);
+		PageFactory.initElements(elementLocatorFactory, this);
+	}
+
+	public SearchComponent getSearchComponent() {
+		return searchComponent;
+	}
+
+	public MessageComponent getMessageComponent() {
+		return messageComponent;
 	}
 		
-//	public boolean isElementPresent(By selector) {
-//		return findElements(selector).size() > 0;		
-//	}
-//
-//	public boolean isElementVisible(By selector) {
-//		return findElement(selector).isDisplayed();
-//	}
-//	
-//	private WebElement findElement(By wantedElementXpath) {
-//		return driver.findElement(wantedElementXpath);
-//	}
-//		
-//	private List<WebElement> findElements(By wantedElementXpath) {
-//		return driver.findElements(wantedElementXpath);
-//	}
-	
 }
