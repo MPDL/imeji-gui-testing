@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="COLLECTIONS" verbose="1">
+<parameter name="browserType" value="firefox"/>
+
+	<test name="Test">
+		<classes>
+			<class name="spot.SeleniumTestSuite" />
+<!-- 			<class name="spot.scripts.ItemHitsPerCollectionViewTest" /> -->
+			<class name="spot.scripts.CreateCollectionTest" />
+		</classes>
+	</test>
+	
+</suite>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [COLLECTIONS]">
+  <parameter name="browserType" value="firefox"/>
+  <test name="Test(failed)">
+    <classes>
+      <class name="spot.SeleniumTestSuite">
+        <methods>
+          <include name="quitDriver"/>
+          <include name="testBeforeTest"/>
+          <include name="testAfterTest"/>
+          <include name="launchDriver"/>
+        </methods>
+      </class> <!-- spot.SeleniumTestSuite -->
+      <class name="spot.scripts.CreateCollectionTest">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="afterMethod"/>
+          <include name="createCollectionFromStartPage"/>
+          <include name="afterClass"/>
+          <include name="beforeClass"/>
+        </methods>
+      </class> <!-- spot.scripts.CreateCollectionTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [COLLECTIONS] -->
