@@ -2,6 +2,8 @@
 <suite name="HOME" verbose="1">
 <parameter name="browserType" value="firefox"/>
 	
+<!-- commenting just for testing purposes  -->
+
 	<test name="Login Logout Test">
 		<classes>
 			<class name="spot.SeleniumTestSuite" />
