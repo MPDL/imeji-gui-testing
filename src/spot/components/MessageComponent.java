@@ -1,5 +1,6 @@
 package spot.components;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,42 +13,78 @@ import org.openqa.selenium.support.PageFactory;
 public class MessageComponent {
 
 	private WebDriver driver;
-	
-	@FindBy (xpath=".//*[@id='imj_pageMessageArea']")
+
+	@FindBy(xpath = ".//*[@id='imj_pageMessageArea']")
 	private WebElement pageMessageArea;
-	
-	public enum MessageType { ERROR, INFO };
-	
+
+	public enum MessageType {
+		ERROR, INFO
+	};
+
 	public MessageComponent(WebDriver driver) {
 		this.driver = driver;
-		
+
 		PageFactory.initElements(driver, this);
 	}
-	
+
 	/**
-	 * Used for e.g. Login. 
-	 * Login action results into update of page message area in any case (fail/success).
-	 * Successful login is associated with message type messageInfo.
-	 * Failed login with message type messageError.
+	 * Used for e.g. Login. Login action results into update of page message
+	 * area in any case (fail/success). Successful login is associated with
+	 * message type messageInfo. Failed login with message type messageError.
 	 * 
 	 * @return the messageType - either info or error
 	 */
 	public MessageType getMessageTypeOfPageMessageArea() {
-				
-		MessageType msgType = MessageType.INFO;			
-		
-		// Either info or error components, depending on whether login failed or succeeded
-		List<WebElement> pageMsgAreaComponents = pageMessageArea.findElements(By.tagName("li"));
-		
+
+		MessageType msgType = MessageType.INFO;
+
+		// Either info or error components, depending on whether action failed
+		// or succeeded
+		List<WebElement> pageMsgAreaComponents = pageMessageArea
+				.findElements(By.tagName("li"));
+
 		for (WebElement we : pageMsgAreaComponents) {
-			String messageType = we.getAttribute("class");			
-			boolean isError = StringUtils.containsIgnoreCase(messageType, MessageType.ERROR.toString());
+			String messageType = we.getAttribute("class");
+			boolean isError = StringUtils.containsIgnoreCase(messageType,
+					MessageType.ERROR.toString());
 			if (isError) {
 				msgType = MessageType.ERROR;
 				break;
 			}
 		}
-		
-		return msgType; 
+
+		return msgType;
+	}
+
+	public String getErrorMessage() {
+		List<String> errorMessages = new ArrayList<String>();
+
+		List<WebElement> errorWebElements = pageMessageArea.findElements(By
+				.className("imj_messageError"));
+
+		for (WebElement we : errorWebElements) {
+			errorMessages.add(we.getText());
+		}
+
+		if (errorMessages.size() > 0)
+			return errorMessages.get(0).trim();
+		else
+			return "";
+	}
+
+	public String getInfoMessage() {
+		List<String> infoMessages = new ArrayList<String>();
+
+		List<WebElement> errorWebElements = pageMessageArea.findElements(By
+				.className("imj_messageInfo"));
+
+		for (WebElement we : errorWebElements) {
+			infoMessages.add(we.getText());
+		}
+
+		if (infoMessages.size() > 0)
+			return infoMessages.get(0).trim();
+		else
+			return "";
 	}
 }

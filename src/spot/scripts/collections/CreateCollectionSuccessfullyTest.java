@@ -1,13 +1,14 @@
-package spot.scripts;
+package spot.scripts.collections;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import spot.BaseSelenium;
-import spot.pages.BasePage.MessageType;
+import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
 import spot.pages.LoginPage;
+import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.CreateNewCollectionPage;
 
@@ -17,7 +18,7 @@ import spot.pages.notAdmin.CreateNewCollectionPage;
  * @author kocar
  *
  */
-public class CreateCollectionTest extends BaseSelenium {
+public class CreateCollectionSuccessfullyTest extends BaseSelenium {
 
 	private AdminHomePage adminHomePage;
 
@@ -33,7 +34,7 @@ public class CreateCollectionTest extends BaseSelenium {
 	@BeforeClass
 	public void beforeClass() {
 		navigateToStartPage();
-		LoginPage loginPage = getStartPage().openLoginForm();
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
 
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"),
 				getPropertyAttribute("aSpotPassword"));
@@ -41,18 +42,21 @@ public class CreateCollectionTest extends BaseSelenium {
 
 	@AfterClass
 	public void afterClass() {
+		adminHomePage.logout();
 	}
 
-	@Test
-	public void createCollectionFromStartPage() {
+	@Test (groups="createCollectionSuccessfully")
+	public void createCollectionFromStartPageTest() {
 
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage.createNewCollection();
+		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 		
 		String collectionTitle = "Testsammlung Montag";
-		CollectionEntryPage collectionEntryPage = createNewCollectionPage.fillForm(collectionTitle, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
+		String collectionDescription = "Das ist eine Testbeschreibung für eine neue Sammlung.";
+		
+		CollectionEntryPage collectionEntryPage = createNewCollectionPage.fillForm(collectionTitle, collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
 				getPropertyAttribute("aOrganizationName"));
 
-		Assert.assertTrue(collectionEntryPage.getMessageTypeOfPageMessageArea() == MessageType.INFO, "Collection couldn't be created");
+		Assert.assertTrue(collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea() == MessageType.INFO, "Collection couldn't be created");
 		
 		String siteContentHeadline = collectionEntryPage.getSiteContentHeadline();		
 		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");		
@@ -61,6 +65,7 @@ public class CreateCollectionTest extends BaseSelenium {
 	@Test
 	public void createCollectionFromCollectionStartPage() {
 		CollectionsPage collectionsPage = adminHomePage.goToCollectionPage();
+		Assert.assertEquals(true, false);
 //		collectionsPage.
 	}
 

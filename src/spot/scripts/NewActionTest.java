@@ -3,8 +3,12 @@ package spot.scripts;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
+import spot.components.MessageComponent.MessageType;
+import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
+import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
+import spot.pages.notAdmin.CreateNewCollectionPage;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
@@ -20,7 +24,7 @@ public class NewActionTest extends BaseSelenium {
 	@BeforeClass
 	public void beforeClass() {
 		navigateToStartPage();
-		LoginPage loginPage = getStartPage().openLoginForm();
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
 			
@@ -28,18 +32,28 @@ public class NewActionTest extends BaseSelenium {
 
 	@AfterClass
 	public void afterClass() {
-		logout(PageFactory.initElements(getDriver(), AdminHomePage.class));
+		logout(PageFactory.initElements(driver, AdminHomePage.class));
 	}
 
 	@Test
 	public void createCollectionTest() {
-		adminHomePage.createNewCollection();
-		Assert.assertEquals(true, false);
+		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
+		
+		String collectionTitle = "Testsammlung Montag";
+		String collectionDescription = "Das ist eine Testbeschreibung für eine neue Sammlung.";
+		
+		CollectionEntryPage collectionEntryPage = createNewCollectionPage.fillForm(collectionTitle, collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
+				getPropertyAttribute("aOrganizationName"));
+		
+		Assert.assertTrue(collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea() == MessageType.INFO, "Collection couldn't be created");
+		
+		String siteContentHeadline = collectionEntryPage.getSiteContentHeadline();		
+		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");		
 	}
 
 	@Test
 	public void createAlbumTest() {
-		adminHomePage.createNewAlbum();
+//		adminHomePage.createNewAlbum();
 		Assert.assertEquals(true, false);
 	}
 }

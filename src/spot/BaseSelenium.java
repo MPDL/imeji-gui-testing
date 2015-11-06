@@ -3,6 +3,7 @@ package spot;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeClass;
 
@@ -28,6 +29,16 @@ public abstract class BaseSelenium {
 	@BeforeClass
 	public void setup() {
 		configureDriver();
+	}
+	
+	public boolean isElementDisplayed(WebElement webElement) {
+		
+		boolean isDisplayed = true;
+		
+		if (!webElement.isDisplayed())
+			isDisplayed = false;
+		
+		return isDisplayed;
 	}
 	
 	private void configureDriver() {

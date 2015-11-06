@@ -6,6 +6,7 @@ import org.testng.annotations.*;
 import spot.BaseSelenium;
 import spot.SeleniumTestSuite;
 import spot.pages.HelpPage;
+import spot.pages.StartPage;
 
 public class ContactSupportTest extends BaseSelenium {
 
@@ -21,15 +22,14 @@ public class ContactSupportTest extends BaseSelenium {
 
 	@Test(dependsOnGroups = "helpTest")
 	public void contactSupportTest() {
-		System.out.println("contactSupportTest");
 		
 		/* instead of navigateToHelpPage using beforeClass is possible in theory;
 		 * but beforeClass annotated methods will still run even though the group failed.
 		 * -> beforeClass doesn't work with dependsOnGroups
 		*/ 
-		String windowHandleBeforeHelp = getDriver().getWindowHandle();
+		String windowHandleBeforeHelp = driver.getWindowHandle();
 		
-		HelpPage helpPage = navigateToHelpPage();
+		HelpPage helpPage = new StartPage(driver).goToHelpPage();
 		
 		String supportMailAddress = helpPage.contactSupport();
 		
@@ -43,16 +43,16 @@ public class ContactSupportTest extends BaseSelenium {
 		
 		
 		// closing the (help page) window; since that window's no more required
-		getDriver().close();
+		driver.close();
 	  
 		// switching back to original browser (start page)
-		getDriver().switchTo().window(windowHandleBeforeHelp);
+		driver.switchTo().window(windowHandleBeforeHelp);
 		
 	}
 	
 	@Test
 	public void contactEdmondsupportFromStartPage() {
-		String edmondSupportMailAddress = getStartPage().contactEdmondSupport();
+		String edmondSupportMailAddress = new StartPage(driver).contactEdmondSupport();
 		
 		Assert.assertEquals(edmondSupportMailAddress, "edmond-support@gwdg.de");		
 	  

@@ -16,6 +16,7 @@ import org.testng.annotations.*;
 import spot.BaseSelenium;
 import spot.SeleniumTestSuite;
 import spot.pages.RegistrationPage;
+import spot.pages.StartPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.MailAccountManager;
 
@@ -45,7 +46,7 @@ public class RegistrationTest extends BaseSelenium {
 		log4j.info("Testing properties file: " + getPropertyAttribute("tuSpotPassword"));
 		
 		// getting hold of registrationPage
-		RegistrationPage registrationPage = getStartPage().goToRegistrationPage();
+		RegistrationPage registrationPage = new StartPage(driver).goToRegistrationPage();
 		registrationPage.register(getPropertyAttribute("tuEmailAddress"), getPropertyAttribute("tuFamilyName"),
 				getPropertyAttribute("tuGivenName"), getPropertyAttribute("tuOrganization"));
 
@@ -97,7 +98,7 @@ public class RegistrationTest extends BaseSelenium {
 	public void testActivateAccount() {
 		navigateDriverTo(verificationURL);
 		
-		RegistrationPage  registrationPage = new RegistrationPage(getDriver());
+		RegistrationPage  registrationPage = new RegistrationPage(driver);
 		
 		HomePage homePage = registrationPage.activateAccount(getPropertyAttribute("tuSpotPassword"));
 
@@ -108,13 +109,13 @@ public class RegistrationTest extends BaseSelenium {
 	
 	@Test (priority = 5)
 	public void changePasswordTest() {
-		HomePage homePage = PageFactory.initElements(getDriver(), HomePage.class);
-		
+		HomePage homePage = PageFactory.initElements(driver, HomePage.class);
+		Assert.assertEquals(true, false);
 	}
 	
 	@AfterClass
 	public void logout() {
-		logout(PageFactory.initElements(getDriver(), HomePage.class));
+		logout(PageFactory.initElements(driver, HomePage.class));
 	}
 
 	private void editDataProperties() {

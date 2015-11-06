@@ -1,144 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [HOME]">
+<suite name="Failed suite [EDMONDTEST]">
   <parameter name="browserType" value="firefox"/>
-  <test name="Extern Links and Further Services(failed)">
+  <test name="UploadFilesTest(failed)">
     <classes>
-      <class name="spot.scripts.SearchTest">
-        <methods>
-          <include name="beforeClassTest"/>
-          <include name="setup"/>
-          <include name="beforeMethodTest"/>
-        </methods>
-      </class> <!-- spot.scripts.SearchTest -->
       <class name="spot.SeleniumTestSuite">
         <methods>
           <include name="quitDriver"/>
           <include name="testBeforeTest"/>
-          <include name="testBeforeTest"/>
-          <include name="testBeforeTest"/>
-          <include name="testBeforeTest"/>
-          <include name="testAfterTest"/>
-          <include name="testAfterTest"/>
-          <include name="testAfterTest"/>
           <include name="testAfterTest"/>
           <include name="launchDriver"/>
         </methods>
       </class> <!-- spot.SeleniumTestSuite -->
-      <class name="spot.scripts.LoginLogoutTest">
+      <class name="edmond.DataUploadWithoutMetaDataProfileTest">
         <methods>
-          <include name="setup"/>
-          <include name="logout"/>
+          <include name="uploadFilesTest"/>
           <include name="beforeMethod"/>
-        </methods>
-      </class> <!-- spot.scripts.LoginLogoutTest -->
-      <class name="spot.scripts.CategorySelectionTest">
-        <methods>
+          <include name="createCollectionWithoutMetaDataProfileTest"/>
           <include name="setup"/>
-          <include name="beforeMethodTest"/>
-          <include name="beforeClassTest"/>
-        </methods>
-      </class> <!-- spot.scripts.CategorySelectionTest -->
-      <class name="spot.scripts.DisclaimerTest">
-        <methods>
-          <include name="setup"/>
-          <include name="beforeClass"/>
-          <include name="openDisclaimerTest"/>
-        </methods>
-      </class> <!-- spot.scripts.DisclaimerTest -->
-    </classes>
-  </test> <!-- Extern Links and Further Services(failed) -->
-  <test name="Search Functionality(failed)">
-    <classes>
-      <class name="spot.scripts.SearchTest">
-        <methods>
-          <include name="beforeClassTest"/>
-          <include name="setup"/>
-          <include name="searchForItemsTest"/>
-          <include name="beforeMethodTest"/>
-        </methods>
-      </class> <!-- spot.scripts.SearchTest -->
-      <class name="spot.SeleniumTestSuite">
-        <methods>
-          <include name="quitDriver"/>
-          <include name="testBeforeTest"/>
-          <include name="testBeforeTest"/>
-          <include name="testBeforeTest"/>
-          <include name="testBeforeTest"/>
-          <include name="testAfterTest"/>
-          <include name="testAfterTest"/>
-          <include name="testAfterTest"/>
-          <include name="testAfterTest"/>
-          <include name="launchDriver"/>
-        </methods>
-      </class> <!-- spot.SeleniumTestSuite -->
-      <class name="spot.scripts.LoginLogoutTest">
-        <methods>
-          <include name="setup"/>
-          <include name="logout"/>
-          <include name="beforeMethod"/>
-        </methods>
-      </class> <!-- spot.scripts.LoginLogoutTest -->
-      <class name="spot.scripts.CategorySelectionTest">
-        <methods>
-          <include name="setup"/>
-          <include name="beforeMethodTest"/>
-          <include name="beforeClassTest"/>
-        </methods>
-      </class> <!-- spot.scripts.CategorySelectionTest -->
-      <class name="spot.scripts.DisclaimerTest">
-        <methods>
-          <include name="setup"/>
+          <include name="afterMethod"/>
+          <include name="loginTest"/>
+          <include name="afterClass"/>
           <include name="beforeClass"/>
         </methods>
-      </class> <!-- spot.scripts.DisclaimerTest -->
+      </class> <!-- edmond.DataUploadWithoutMetaDataProfileTest -->
     </classes>
-  </test> <!-- Search Functionality(failed) -->
-  <test name="Category Selection(failed)">
-    <classes>
-      <class name="spot.scripts.SearchTest">
-        <methods>
-          <include name="beforeClassTest"/>
-          <include name="setup"/>
-          <include name="beforeMethodTest"/>
-        </methods>
-      </class> <!-- spot.scripts.SearchTest -->
-      <class name="spot.SeleniumTestSuite">
-        <methods>
-          <include name="quitDriver"/>
-          <include name="testBeforeTest"/>
-          <include name="testBeforeTest"/>
-          <include name="testBeforeTest"/>
-          <include name="testBeforeTest"/>
-          <include name="testAfterTest"/>
-          <include name="testAfterTest"/>
-          <include name="testAfterTest"/>
-          <include name="testAfterTest"/>
-          <include name="launchDriver"/>
-        </methods>
-      </class> <!-- spot.SeleniumTestSuite -->
-      <class name="spot.scripts.LoginLogoutTest">
-        <methods>
-          <include name="setup"/>
-          <include name="logout"/>
-          <include name="beforeMethod"/>
-        </methods>
-      </class> <!-- spot.scripts.LoginLogoutTest -->
-      <class name="spot.scripts.CategorySelectionTest">
-        <methods>
-          <include name="setup"/>
-          <include name="openStartPageTest"/>
-          <include name="beforeMethodTest"/>
-          <include name="openUploadPageTest"/>
-          <include name="beforeClassTest"/>
-        </methods>
-      </class> <!-- spot.scripts.CategorySelectionTest -->
-      <class name="spot.scripts.DisclaimerTest">
-        <methods>
-          <include name="setup"/>
-          <include name="beforeClass"/>
-        </methods>
-      </class> <!-- spot.scripts.DisclaimerTest -->
-    </classes>
-  </test> <!-- Category Selection(failed) -->
-</suite> <!-- Failed suite [HOME] -->
+  </test> <!-- UploadFilesTest(failed) -->
+</suite> <!-- Failed suite [EDMONDTEST] -->

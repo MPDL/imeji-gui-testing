@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import spot.components.NewActionComponent;
 import spot.pages.BasePage;
 import spot.pages.SingleUploadPage;
 
@@ -28,9 +29,13 @@ public class HomePage extends BasePage {
 
 	@FindBy(xpath = "html/body/div[1]/div[2]/div/div[2]/ul/li[2]/a")
 	private WebElement createNewAlbumButton;
+	
+	private NewActionComponent newActionComponent;
 
 	public HomePage(WebDriver driver) {
 		super(driver);
+		
+		newActionComponent = new NewActionComponent(driver);
 		
 		PageFactory.initElements(driver, this);
 	}
@@ -44,21 +49,11 @@ public class HomePage extends BasePage {
 		logoutButton.click();
 	}
 
-//	public CreateNewCollectionPage createNewCollection() {
-//		clickCreateNewButton();
-//		clickCreateNewCollectionButton();
-//		
-//		return PageFactory.initElements(driver, CreateNewCollectionPage.class);
-//	}
-//	
-//	public void createNewAlbum() {
-//		clickCreateNewButton();
-//		clickCreateNewAlbumButton();
-//	}
-	
-//	private void clickCreateNewButton() {
-//		createNewButton.click();
-//	}
+	public CreateNewCollectionPage goToCreateNewCollectionPage() {
+		newActionComponent.clickCreateNewCollection();
+		
+		return PageFactory.initElements(driver, CreateNewCollectionPage.class);
+	}	
 	
 	public String getLoggedInUserFullName() {
 		return goToUserProfileButton.getText();
@@ -68,7 +63,4 @@ public class HomePage extends BasePage {
 		createNewAlbumButton.click();
 	}
 
-	private void clickCreateNewCollectionButton() {
-		createNewCollectionButton.click();
-	}
 }

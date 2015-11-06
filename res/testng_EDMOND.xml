@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="EDMONDTEST" verbose="1">
+<parameter name="browserType" value="firefox"/>
+
+	<test name="UploadFilesTest">
+		<classes>
+			<class name="spot.SeleniumTestSuite" />
+			<class name="edmond.DataUploadWithoutMetaDataProfileTest" />
+		</classes>
+	</test>
+	
+</suite>

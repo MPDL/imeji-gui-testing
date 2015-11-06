@@ -16,8 +16,6 @@ public class HelpPage extends BasePage {
 	@FindBy(xpath = ".//*[@id='imj_ajaxWrapper']/a[24]")
 	private WebElement chapterFiveLink;
 
-
-
 	public HelpPage(WebDriver driver) {
 		super(driver);
 

@@ -10,6 +10,9 @@ import spot.pages.CollectionEntryPage;
 
 public class CreateNewCollectionPage extends BasePage {
 
+	/** error occurred while filling in 'create new collection' form */
+	private boolean errorOccurred;
+	
 	@FindBy(name="editContainer:mediaContainerForm:inputTitleText")
 	private WebElement titleTextField;
 	
@@ -49,14 +52,45 @@ public class CreateNewCollectionPage extends BasePage {
 	@FindBy(name="editContainer:mediaContainerForm:j_idt344")
 	private WebElement saveButton;
 	
+	@FindBy(xpath=".//*[@id='editContainer:mediaContainerForm:submitButtonPanel']/a")
+	private WebElement cancelButton;
+	
+	@FindBy(name="editContainer:mediaContainerForm:persons:0:j_idt214")
+	private WebElement addAuthorButton;
+	
+	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:j_idt247:0:j_idt276")
+	private WebElement addOrganizationButton;
+	
 	public CreateNewCollectionPage(WebDriver driver) {
 		super(driver);
+		
+		errorOccurred = false;
 	}
 
-	public CollectionEntryPage fillForm(String collectionTitle, String givenName, String familyName, String orgName) {
+	public void cancelCollectionCreation() {
+		cancelButton.click();
+	}
+	
+	public void clearForm() {
+	
+		clearPreFilledTextFields();
+		submitForm();
+	}
+	
+	private void clearPreFilledTextFields() {
+		familyNameTextField.clear();
+		givenNameTextField.clear();
+		identifierTextField.clear();
+		
+		organizationNameTextField.clear();
+		organizationIdentifierTextField.clear();
+	}
+
+	public CollectionEntryPage fillForm(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
+		
 		// person related
 		setTitle(collectionTitle);
-		setDescription("Das ist eine Testbeschreibung für eine neue Sammlung.");
+		setDescription(collectionDescription);
 		confirmFamilyName(familyName);
 		confirmGivenName(givenName);
 		setAlternativeName("testtest");
@@ -73,6 +107,9 @@ public class CreateNewCollectionPage extends BasePage {
 		
 		submitForm();
 		
+		if (errorOccurred)
+			return null;
+		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
@@ -81,6 +118,9 @@ public class CreateNewCollectionPage extends BasePage {
 	}
 
 	private void setTitle(String title) {
+		if (title.equals(""))
+			errorOccurred = true;
+		
 		titleTextField.sendKeys(title);
 	}
 	
@@ -88,12 +128,11 @@ public class CreateNewCollectionPage extends BasePage {
 		descriptionTextField.sendKeys(description);
 	}
 
-	private boolean confirmFamilyName(String familyName) {
+	private void confirmFamilyName(String familyName) {
 		String preFilledFamilyName = familyNameTextField.getAttribute("value");
 		
 		if (!preFilledFamilyName.equals(familyName)) 
-			return false;
-		return true;
+			errorOccurred = true;
 	}
 	
 	private boolean confirmGivenName(String givenName) {
@@ -116,12 +155,12 @@ public class CreateNewCollectionPage extends BasePage {
 		return true;
 	}
 	
-	private boolean confirmOrganizationName(String orgName) {
+	private void confirmOrganizationName(String orgName) {
+		
 		String preFilledOrgName = organizationNameTextField.getAttribute("value");
 		
 		if (!preFilledOrgName.equals(orgName))
-			return false;
-		return true;
+			errorOccurred = true;
 	}
 	
 	private void setOrganizationDescription(String orgDescription) {
@@ -147,6 +186,14 @@ public class CreateNewCollectionPage extends BasePage {
 	private void selectRadioButtonDefineMetadataProfileLater() {
 		if (!defineMetaDataProfileLaterRadioBox.isSelected())
 			defineMetaDataProfileLaterRadioBox.click();
+	}
+
+	public void addAuthor() {
+		addAuthorButton.click();
+	}
+
+	public void addOrganization() {
+		addOrganizationButton.click();
 	}
 	
 }

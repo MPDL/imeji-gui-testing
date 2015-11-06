@@ -6,6 +6,7 @@ import org.testng.annotations.*;
 
 import spot.BaseSelenium;
 import spot.pages.LoginPage;
+import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.pages.admin.UserManagementOverviewPage;
 import spot.pages.admin.ViewEditUsersPage;
@@ -19,7 +20,7 @@ public class UserPolicyManagementTest extends BaseSelenium {
 	 */
 	@BeforeClass
 	public void loginAsAdmin() {
-		LoginPage loginPage = getStartPage().openLoginForm();
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
 	}
 	
@@ -37,6 +38,6 @@ public class UserPolicyManagementTest extends BaseSelenium {
 	
 	@AfterClass
 	public void logout() {
-		logout(PageFactory.initElements(getDriver(), AdminHomePage.class));	
+		logout(PageFactory.initElements(driver, AdminHomePage.class));	
 	}
 }

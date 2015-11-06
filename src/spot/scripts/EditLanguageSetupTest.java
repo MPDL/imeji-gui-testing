@@ -4,9 +4,12 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import spot.BaseSelenium;
+import spot.pages.StartPage;
 
 public class EditLanguageSetupTest extends BaseSelenium {
 
+	private StartPage startPage;
+	
 	private String germanSetup = "de - German";
 	private String englishSetup = "en - English";
 	private String spanishSetup = "es - Spanish";
@@ -27,33 +30,35 @@ public class EditLanguageSetupTest extends BaseSelenium {
 
 	@AfterClass
 	public void afterClass() {
+		startPage = new StartPage(driver);
 	}
 
 	@Test (priority = 1)
 	public void changeLanguageSetupToEnglishTest() {
-		getStartPage().selectLanguage(englishSetup);
 		
-		Assert.assertEquals(getStartPage().getCurrentLanguageSetup(), englishSetup);
+		startPage.selectLanguage(englishSetup);
+		
+		Assert.assertEquals(startPage.getCurrentLanguageSetup(), englishSetup);
 	}
 	
 	@Test (priority = 2)
 	public void changeLanguageSetupToSpanishTest() {
-		getStartPage().selectLanguage(spanishSetup);
+		startPage.selectLanguage(spanishSetup);
 		
-		Assert.assertEquals(getStartPage().getCurrentLanguageSetup(), spanishSetup);
+		Assert.assertEquals(startPage.getCurrentLanguageSetup(), spanishSetup);
 	}
 	
 	@Test (priority = 3)
 	public void changeLanguageSetupToJapaneseTest() {
-		getStartPage().selectLanguage(japaneseSetup);
+		startPage.selectLanguage(japaneseSetup);
 		
-		Assert.assertEquals(getStartPage().getCurrentLanguageSetup(), japaneseSetup);
+		Assert.assertEquals(startPage.getCurrentLanguageSetup(), japaneseSetup);
 	}
 	
 	@Test (priority = 4)
 	public void changeLanguageSetupToGermanTest() {
-		getStartPage().selectLanguage(germanSetup);
+		startPage.selectLanguage(germanSetup);
 		
-		Assert.assertEquals(getStartPage().getCurrentLanguageSetup(), germanSetup);
+		Assert.assertEquals(startPage.getCurrentLanguageSetup(), germanSetup);
 	}
 }

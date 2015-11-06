@@ -1,34 +1,30 @@
 package spot.scripts;
 
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import spot.BaseSelenium;
+import spot.components.NewActionComponent;
+import spot.pages.StartPage;
 
 public class LimitedAccessForNruTest extends BaseSelenium {
-  
-  @BeforeMethod  public void beforeMethod() {
-	  
-  }
 
-  @AfterMethod
-  public void afterMethod() {
-  }
+	@BeforeClass
+	public void beforeClass() {
+		navigateToStartPage();
+		// TODO make sure that no login took place
+	}
 
-  @BeforeClass
-  public void beforeClass() {
-	  navigateToStartPage();
-	  // TODO make sure that no login took place 
-  }
+	@Test
+	public void newActionNonExistentTest() {
+		WebElement newButton = new NewActionComponent(driver).getNewButton();
+		
+		boolean isNewButtonDisplayed = isElementDisplayed(newButton);
 
-  @AfterClass
-  public void afterClass() {
-  }
-
-  @Test
-  public void newActionNonExistentTest() {
-	  boolean isExistent = getStartPage().isCreateNewButtonExistent();
-	  
-	  Assert.assertEquals(isExistent, false, "New Button for creating new collections/albums exist despite being not logged in");
-  }
+		Assert.assertEquals(
+				isNewButtonDisplayed,
+				false,
+				"New Button for creating new collections/albums is displayed despite being not logged in");
+	}
 }

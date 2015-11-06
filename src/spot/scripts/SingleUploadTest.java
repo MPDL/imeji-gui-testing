@@ -13,19 +13,20 @@ import spot.BaseSelenium;
 import spot.pages.DetailedFileView;
 import spot.pages.LoginPage;
 import spot.pages.SingleUploadPage;
+import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 
 public class SingleUploadTest extends BaseSelenium{
 
 	/** name of file that is uploaded */
-	String fileName = "spotguitesting.png";
-	
+	private static final String fileName = "uploadTestFile.png";
+
 	private AdminHomePage adminHomePage;
 	private SingleUploadPage singleUploadPage;
 	
 	@BeforeClass
 	public void loginAsAdmin() {
-		LoginPage loginPage = getStartPage().openLoginForm();
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
 	}
 	
@@ -35,8 +36,9 @@ public class SingleUploadTest extends BaseSelenium{
 		singleUploadPage = adminHomePage.goToUploadPage();
 		try {
 						
-			String absolutePathToFile = "C:\\Users\\kocar\\Pictures\\" + fileName;
-			String uploadedFile = singleUploadPage.upload(absolutePathToFile);
+//			String absolutePathToFile = "C:\\Users\\kocar\\Pictures\\" + fileName;
+			String relativeFilePath = "res/" + fileName;
+			String uploadedFile = singleUploadPage.upload(relativeFilePath);
 			
 			Assert.assertTrue(uploadedFile.equalsIgnoreCase(fileName), "Name of uploaded file doesn't match with selected file's name");
 			
@@ -66,6 +68,6 @@ public class SingleUploadTest extends BaseSelenium{
 	
 	@AfterClass
 	public void logout() {
-		logout(PageFactory.initElements(getDriver(), AdminHomePage.class));	
+		logout(PageFactory.initElements(driver, AdminHomePage.class));	
 	}
 }

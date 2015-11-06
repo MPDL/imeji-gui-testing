@@ -20,7 +20,7 @@ import org.openqa.selenium.support.ui.Select;
 import spot.CategoryType;
 import spot.components.MainMenuComponent;
 import spot.components.MessageComponent;
-import spot.components.NewComponent;
+import spot.components.NewActionComponent;
 import spot.components.SearchComponent;
 import spot.components.UserPreferenceComponent;
 
@@ -44,7 +44,7 @@ public abstract class BasePage {
 	private MessageComponent messageComponent;
 	
 	/** class for creating new collections, albums etc. */
-	private NewComponent newComponent;
+	private NewActionComponent newComponent;
 	
 	/** class for searching activities */
 	private SearchComponent searchComponent;
@@ -76,7 +76,7 @@ public abstract class BasePage {
 		this.driver = driver;
 		this.messageComponent = new MessageComponent(driver);
 		this.mainMenuComponent = new MainMenuComponent(driver);
-		this.newComponent = new NewComponent(driver);
+		this.newComponent = new NewActionComponent(driver);
 		this.searchComponent = new SearchComponent(driver);
 		this.userPreferenceComponent = new UserPreferenceComponent(driver);		
 	}

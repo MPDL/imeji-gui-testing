@@ -1,4 +1,4 @@
-package spot.scripts;
+package spot.scripts.collections;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -6,6 +6,7 @@ import org.testng.annotations.*;
 import spot.BaseSelenium;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionsPage;
+import spot.pages.StartPage;
 
 public class ItemHitsPerCollectionViewTest extends BaseSelenium {
 
@@ -17,7 +18,7 @@ public class ItemHitsPerCollectionViewTest extends BaseSelenium {
 	public void beforeMethod() {
 		navigateToStartPage();
 		
-		CollectionsPage collectionsPage = getStartPage().goToCollectionPage();
+		CollectionsPage collectionsPage = new StartPage(driver).goToCollectionPage();
 
 		collectionContentPage = collectionsPage.getPageOfLargestCollection();
 		
@@ -36,17 +37,6 @@ public class ItemHitsPerCollectionViewTest extends BaseSelenium {
 	public void afterClass() {
 	}
 
-	public void changeItemHitNumber(int expectedHitNumber) {
-		collectionContentPage.changeItemHitNumberCollectionView(expectedHitNumber);
-		
-		int actualHitNumber = collectionContentPage.getMediaListSize();
-		
-		if (collectionContentPage.getTotalItemNumber() > expectedHitNumber)
-			Assert.assertEquals(actualHitNumber, expectedHitNumber, errorMessage);
-		else 
-			Assert.assertEquals(actualHitNumber, collectionContentPage.getTotalItemNumber(), errorMessage);
-	}
-	
 	@Test (priority = 1, invocationCount=5)
 	public void changeItemHitNumberPerCollectionViewToSixTest() {
 		int expectedHitNumber = 6;
@@ -95,4 +85,16 @@ public class ItemHitsPerCollectionViewTest extends BaseSelenium {
 
 		changeItemHitNumber(expectedHitNumber);
 	}
+	
+	public void changeItemHitNumber(int expectedHitNumber) {
+		collectionContentPage.changeItemHitNumberCollectionView(expectedHitNumber);
+		
+		int actualHitNumber = collectionContentPage.getMediaListSize();
+		
+		if (collectionContentPage.getTotalItemNumber() > expectedHitNumber)
+			Assert.assertEquals(actualHitNumber, expectedHitNumber, errorMessage);
+		else 
+			Assert.assertEquals(actualHitNumber, collectionContentPage.getTotalItemNumber(), errorMessage);
+	}
+	
 }

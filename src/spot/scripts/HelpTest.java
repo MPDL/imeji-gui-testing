@@ -8,6 +8,7 @@ import org.testng.annotations.*;
 import spot.BaseSelenium;
 import spot.SeleniumTestSuite;
 import spot.pages.HelpPage;
+import spot.pages.StartPage;
 
 public class HelpTest extends BaseSelenium {
   
@@ -21,14 +22,14 @@ public class HelpTest extends BaseSelenium {
   @Test(groups="helpTest")
   public void openHelpAsNRUTest() {
 	  //storing the current window handle (right before the help page is opened)
-	  String windowHandleBeforeHelp = getDriver().getWindowHandle();
+	  String windowHandleBeforeHelp = driver.getWindowHandle();
 	  
-	  HelpPage helpPage = getStartPage().goToHelpPage();
+	  HelpPage helpPage = new StartPage(driver).goToHelpPage();
 	  
-	  Set<String> windowHandles = getDriver().getWindowHandles();
+	  Set<String> windowHandles = driver.getWindowHandles();
 	  
 	  for (String winHandle : windowHandles) {
-		  getDriver().switchTo().window(winHandle);
+		  driver.switchTo().window(winHandle);
 	  }
 	  
 	  String actualHelpPageSubtitle = helpPage.getHelpPageSubtitle();
@@ -41,10 +42,10 @@ public class HelpTest extends BaseSelenium {
 		  Assert.assertEquals(false, true, "Not known test environment url");
 	  
 	  // closing the (help page) window; since that window's no more required
-	  getDriver().close();
+	  driver.close();
 	  
 	  // switching back to original browser (start page)
-	  getDriver().switchTo().window(windowHandleBeforeHelp);
+	  driver.switchTo().window(windowHandleBeforeHelp);
   }
 
 }

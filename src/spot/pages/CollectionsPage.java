@@ -7,9 +7,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import spot.components.SortingComponent;
+
 public class CollectionsPage extends BasePage {
 
 	private List<WebElement> collectionList;
+	
+	private SortingComponent sortingComponent;
 	
 	public CollectionsPage(WebDriver driver) {
 		super(driver);
@@ -17,7 +21,13 @@ public class CollectionsPage extends BasePage {
 		collectionList = driver.findElements(By.className("imj_bibliographicListItem"));
 	}
 
-//	public void createNewCollection
+	private WebElement getFirstCollectionInList() {
+		return collectionList.get(0);
+	}
+	
+	public void goToDetailedViewOfRandomCollection() {
+		WebElement goToDetailedViewButton = getFirstCollectionInList().findElement(By.name("j_idt256:j_idt333:list:0:j_idt337:lnkViewMetadataDetail"));
+	}
 	
 	public CollectionContentPage getPageOfLargestCollection() {
 	
@@ -68,6 +78,10 @@ public class CollectionsPage extends BasePage {
 		}
 		
 		return largestCollection;
+	}
+
+	public SortingComponent getSortingComponent() {
+		return sortingComponent;
 	}
 
 }

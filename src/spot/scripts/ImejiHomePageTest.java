@@ -7,6 +7,7 @@ import org.testng.annotations.*;
 
 import spot.BaseSelenium;
 import spot.pages.HelpPage;
+import spot.pages.StartPage;
 
 public class ImejiHomePageTest extends BaseSelenium {
 
@@ -28,25 +29,25 @@ public class ImejiHomePageTest extends BaseSelenium {
 		 * the group failed. -> beforeClass doesn't work with dependsOnGroups
 		 */
 
-		String windowHandleStartPage = getDriver().getWindowHandle();
+		String windowHandleStartPage = driver.getWindowHandle();
 
-		HelpPage helpPage = navigateToHelpPage();
+		HelpPage helpPage = new StartPage(driver).goToHelpPage();
 
-		String windowHandleHelpPage = getDriver().getWindowHandle();
+		String windowHandleHelpPage = driver.getWindowHandle();
 
-		Set<String> windowHandlesBeforeImejiHomePage = getDriver().getWindowHandles();
+		Set<String> windowHandlesBeforeImejiHomePage = driver.getWindowHandles();
 
 		helpPage.lookUpImejiHomePage();
 
-		Set<String> windowHandlesAfterImejiHomePage = getDriver().getWindowHandles();
+		Set<String> windowHandlesAfterImejiHomePage = driver.getWindowHandles();
 
 		windowHandlesAfterImejiHomePage.removeAll(windowHandlesBeforeImejiHomePage);
 
 		for (String winHandle : windowHandlesAfterImejiHomePage) {
-			getDriver().switchTo().window(winHandle);
+			driver.switchTo().window(winHandle);
 		}
 
-		String currentUrl = getDriver().getCurrentUrl();
+		String currentUrl = driver.getCurrentUrl();
 
 		String imejiHomePageUrl = "http://imeji.org/";
 
@@ -54,31 +55,31 @@ public class ImejiHomePageTest extends BaseSelenium {
 		Assert.assertEquals(currentUrl, imejiHomePageUrl);
 
 		// closing the (imeji home page) window; since that window's no more required
-		getDriver().close();
+		driver.close();
 
 		// switch back to window handle of help page
-		getDriver().switchTo().window(windowHandleHelpPage);
+		driver.switchTo().window(windowHandleHelpPage);
 
 		// closing the (help page) window; since that window's no more required
-		getDriver().close();
+		driver.close();
 
 		// switching back to original browser (start page)
-		getDriver().switchTo().window(windowHandleStartPage);
+		driver.switchTo().window(windowHandleStartPage);
 	}
 	
 	@Test
 	public void callImejiHomePageFromStartPageTest() {
-		String windowHandleStartPage = getDriver().getWindowHandle();
+		String windowHandleStartPage = driver.getWindowHandle();
 		
-		getStartPage().lookUpImejiHomePage();
+		new StartPage(driver).lookUpImejiHomePage();
 
-		Set<String> windowHandlesAfterImejiHomePage = getDriver().getWindowHandles();
+		Set<String> windowHandlesAfterImejiHomePage = driver.getWindowHandles();
 		
 		for (String winHandle : windowHandlesAfterImejiHomePage) {
-			getDriver().switchTo().window(winHandle);
+			driver.switchTo().window(winHandle);
 		}
 		
-		String currentUrl = getDriver().getCurrentUrl();
+		String currentUrl = driver.getCurrentUrl();
 
 		String imejiHomePageUrl = "http://imeji.org/";
 
@@ -86,10 +87,10 @@ public class ImejiHomePageTest extends BaseSelenium {
 		Assert.assertEquals(currentUrl, imejiHomePageUrl);
 
 		// closing the (imeji home page) window; since that window's no more required
-		getDriver().close();
+		driver.close();
 		
 		// switching back to original browser (start page)
-		getDriver().switchTo().window(windowHandleStartPage);
+		driver.switchTo().window(windowHandleStartPage);
 	}
 
 }

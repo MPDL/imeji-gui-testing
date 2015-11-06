@@ -1,6 +1,7 @@
 package spot.scripts;
 
 import spot.BaseSelenium;
+import spot.pages.StartPage;
 
 import org.testng.annotations.*;
 
@@ -17,14 +18,14 @@ public class MpdlHomePageTest extends BaseSelenium {
 
 	@Test
 	public void callMpdlHomePageTest() {
-		String windowHandleStartPage = getDriver().getWindowHandle();
+		String windowHandleStartPage = driver.getWindowHandle();
 
-		getStartPage().lookUpMpdlHomePage();
+		new StartPage(driver).lookUpMpdlHomePage();
 
-		Set<String> windowHandlesAfterMpdlHomePage = getDriver().getWindowHandles();
+		Set<String> windowHandlesAfterMpdlHomePage = driver.getWindowHandles();
 
 		for (String winHandle : windowHandlesAfterMpdlHomePage) {
-			getDriver().switchTo().window(winHandle);
+			driver.switchTo().window(winHandle);
 		}
 
 		String currentURL = getCurrentURL();
@@ -34,10 +35,10 @@ public class MpdlHomePageTest extends BaseSelenium {
 
 		// closing the (mpdl home page) window; since that window's no more
 		// required
-		getDriver().close();
+		driver.close();
 
 		// switching back to original browser (start page)
-		getDriver().switchTo().window(windowHandleStartPage);
+		driver.switchTo().window(windowHandleStartPage);
 	}
 
 }
