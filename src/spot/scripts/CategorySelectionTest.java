@@ -6,7 +6,7 @@ import org.testng.annotations.*;
 import spot.BaseSelenium;
 import spot.pages.AlbumPage;
 import spot.pages.CollectionsPage;
-import spot.pages.ItemPage;
+import spot.pages.DetailedItemViewPage;
 import spot.pages.StartPage;
 
 public class CategorySelectionTest extends BaseSelenium {
@@ -37,7 +37,7 @@ public class CategorySelectionTest extends BaseSelenium {
 
 	@Test
 	public void openItemPageTest() {
-		ItemPage itemPage = startPage.navigateToItemPage();
+		DetailedItemViewPage itemPage = startPage.navigateToItemPage();
 
 		String actualSiteContentHeadline = itemPage.getSiteContentHeadline();
 

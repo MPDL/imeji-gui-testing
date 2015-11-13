@@ -87,12 +87,12 @@ public class SingleUploadPage extends BasePage {
 //		return "";
 	}
 
-	public DetailedFileView saveFile() {
+	public DetailedItemViewPage saveFile() {
 		ElementLocatorFactory elementLocatorFactory =  new AjaxElementLocatorFactory(driver, 5);
 		PageFactory.initElements(elementLocatorFactory, this);
 		
 		saveTopButton.click();
 		
-		return PageFactory.initElements(driver, DetailedFileView.class);
+		return PageFactory.initElements(driver, DetailedItemViewPage.class);
 	}
 }

@@ -4,6 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import spot.pages.BasePage;
 import spot.pages.CollectionEntryPage;
@@ -49,6 +52,16 @@ public class CreateNewCollectionPage extends BasePage {
 	@FindBy(name="editContainer:mediaContainerForm:j_idt299")
 	private WebElement defineMetaDataProfileLaterRadioBox;
 	
+	@FindBy(xpath=".//*[@id='editContainer:mediaContainerForm:j_idt299:1']")
+	private WebElement selectExistingMetaDataProfileRadioBox;
+	
+	@FindBy(name="editContainer:mediaContainerForm:j_idt303:j_idt305:profileTemplates")
+	private WebElement profileTemplatesDropBoxWebElement;
+	
+	private Select profileTemplatesDrobBox;
+	
+	private final String defaultProfileIdentifier = "default profile";
+	
 	@FindBy(name="editContainer:mediaContainerForm:j_idt344")
 	private WebElement saveButton;
 	
@@ -65,6 +78,8 @@ public class CreateNewCollectionPage extends BasePage {
 		super(driver);
 		
 		errorOccurred = false;
+		
+		PageFactory.initElements(driver, this);
 	}
 
 	public void cancelCollectionCreation() {
@@ -86,7 +101,44 @@ public class CreateNewCollectionPage extends BasePage {
 		organizationIdentifierTextField.clear();
 	}
 
-	public CollectionEntryPage fillForm(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
+	public CollectionEntryPage createCollectionWithoutStandardMetaDataProfile(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
+		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
+		
+		selectRadioButtonDefineMetadataProfileLater();
+		
+		submitForm();
+		
+		if (errorOccurred)
+			return null;
+		
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	public CollectionEntryPage createCollectionWithStandardMetaDataProfile(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
+		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
+		
+		selectAnExistingMetaDataProfile();
+		
+		submitForm();
+		
+		if (errorOccurred)
+			return null;
+		
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	private void selectAnExistingMetaDataProfile() {
+		if (!selectExistingMetaDataProfileRadioBox.isSelected())
+			selectExistingMetaDataProfileRadioBox.click();
+		
+		ElementLocatorFactory elementLocatorFactory =  new AjaxElementLocatorFactory(driver, 5);
+		PageFactory.initElements(elementLocatorFactory, this);
+		
+		profileTemplatesDrobBox = new Select(profileTemplatesDropBoxWebElement);
+		profileTemplatesDrobBox.selectByVisibleText(defaultProfileIdentifier);
+	}
+
+	private void fillForm(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
 		
 		// person related
 		setTitle(collectionTitle);
@@ -103,14 +155,6 @@ public class CreateNewCollectionPage extends BasePage {
 		setCity("München");
 		setCountry("Deutschland");
 		
-		selectRadioButtonDefineMetadataProfileLater();
-		
-		submitForm();
-		
-		if (errorOccurred)
-			return null;
-		
-		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
 	private void submitForm() {

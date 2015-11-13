@@ -13,7 +13,7 @@ public class ActionComponent {
 
 	private WebDriver driver;
 	
-	public enum ActionType {SHARE, DELETE, PUBLISH};
+	public enum ActionType {SHARE, DELETE, PUBLISH, DISCARD};
 	
 	@FindBy(xpath="html/body/div[1]/div[3]/div[3]/div[1]/span")
 	private WebElement actionButton;
@@ -26,6 +26,9 @@ public class ActionComponent {
 	
 	@FindBy(xpath="html/body/div[1]/div[3]/div[3]/div[2]/ul/li[3]/a")
 	private WebElement deleteButton;
+	
+	@FindBy(css="#j_idt103:lnkWithdrawCollection")
+	private WebElement discardButton;
 	
 	@FindBy(xpath=".//*[@id='j_idt390:j_idt397']/input[2]")
 	private WebElement confirmDeletionButton;
@@ -56,7 +59,12 @@ public class ActionComponent {
 		returnPage = new KindOfSharePage(driver);
 		break;
 		
-		case PUBLISH: publishButton.click();
+		case PUBLISH: 
+		publishButton.click();
+		break;
+		
+		case DISCARD: 
+		discardButton.click();
 		break;
 		}
 		

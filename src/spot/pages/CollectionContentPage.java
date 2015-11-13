@@ -28,11 +28,11 @@ public class CollectionContentPage extends BasePage {
 	public CollectionContentPage(WebDriver driver) {
 		super(driver);
 		
-		waitForInitationPageElements();
+		PageFactory.initElements(driver, this);
 	}
 
 	public void declareTotalItemNumber() {
-		waitForInitationPageElements();
+		waitForInitationPageElements(10);
 		
 		String[] split = totalItemNumberWebElement.getText().split("\\s+");
 		try {
@@ -47,7 +47,7 @@ public class CollectionContentPage extends BasePage {
 	}
 
 	public void changeItemHitNumberCollectionView(int itemHit) {
-		waitForInitationPageElements();
+		waitForInitationPageElements(10);
 		
 		Select itemHitDropDown = new Select(itemHitNumberPerView);
 		
@@ -56,10 +56,44 @@ public class CollectionContentPage extends BasePage {
 		itemHitNumberPerView.submit();
 	}
 	
-	public int getMediaListSize() {
+	public int getItemListSize() {
 		
-		List<WebElement> mediaList = tiledMediaList.findElements(By.className("imj_tileItem"));
+		List<WebElement> mediaList = getItemList();
 		
 		return mediaList.size();		
+	}
+	
+	public List<WebElement> getItemList() {
+		waitForInitationPageElements(20);
+		return tiledMediaList.findElements(By.className("imj_tileItem"));
+	}
+
+	public void checkMetaDataOfItems(String title, String author, String id, String publicationLink, String date) {
+		waitForInitationPageElements(20);
+		
+		List<WebElement> itemList = getItemList();
+		
+		
+		for (int i=0; i<itemList.size(); i++) {
+			
+			WebElement item = itemList.get(i);
+									
+			WebElement itemThumbNail = item.findElement(By.className("browseContent:pictureList:"+i+":itemSelectForm:lnkPicDetailBrowse"));
+			itemThumbNail.click();
+			driver.navigate().back();
+		}
+		
+//		for (WebElement item : itemList) {
+//
+//			
+//			WebElement tooltip = item.findElement(By.className("imj_tooltip"));
+//			
+//			List<WebElement> toolTipValues = tooltip.findElements(By.className("imj_metadataValue"));
+//			
+//			for (WebElement toolTipValue : toolTipValues) {
+//				String text = toolTipValue.getText();
+//				System.out.println("Tooltip value text: " + text);
+//			}
+//		}
 	}
 }

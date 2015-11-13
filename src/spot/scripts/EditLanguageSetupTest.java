@@ -10,11 +10,6 @@ public class EditLanguageSetupTest extends BaseSelenium {
 
 	private StartPage startPage;
 	
-	private String germanSetup = "de - German";
-	private String englishSetup = "en - English";
-	private String spanishSetup = "es - Spanish";
-	private String japaneseSetup = "ja - Japanese";	
-	
 	@BeforeMethod
 	public void beforeMethod() {
 	}
@@ -26,11 +21,12 @@ public class EditLanguageSetupTest extends BaseSelenium {
 	@BeforeClass
 	public void beforeClass() {
 		navigateToStartPage();
+		startPage = new StartPage(driver);		
 	}
 
 	@AfterClass
 	public void afterClass() {
-		startPage = new StartPage(driver);
+		
 	}
 
 	@Test (priority = 1)

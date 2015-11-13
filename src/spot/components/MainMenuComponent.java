@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import spot.pages.AlbumPage;
 import spot.pages.CollectionsPage;
-import spot.pages.ItemPage;
+import spot.pages.DetailedItemViewPage;
 import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
 
@@ -38,7 +38,7 @@ public class MainMenuComponent {
 	
 	public <T> T navigateTo(Class<T> expectedPage) {
 	
-		if (expectedPage == ItemPage.class)
+		if (expectedPage == DetailedItemViewPage.class)
 			itemsButton.click();
 		else if (expectedPage == AlbumPage.class)
 			albumsButton.click();

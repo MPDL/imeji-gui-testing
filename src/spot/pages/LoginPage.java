@@ -26,7 +26,9 @@ public class LoginPage extends BasePage {
 	private WebElement submitLoginInfoButton;
 	
 	public LoginPage(WebDriver driver) {
-		super(driver);		
+		super(driver);
+		
+		PageFactory.initElements(driver, this);
 	}
 
 	private <T> T login(String userName, String password, Class<T> expectedPage){

@@ -1,4 +1,4 @@
-package spot.scripts.collections;
+package edmondScripts;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -21,6 +21,8 @@ import spot.pages.notAdmin.CreateNewCollectionPage;
 public class DeleteCollectionTest extends BaseSelenium {
 
 	private AdminHomePage adminHomePage;
+	private CollectionEntryPage collectionEntryPage;
+	private String collectionTitle;
 
 	@BeforeMethod
 	public void beforeMethod() {
@@ -35,6 +37,9 @@ public class DeleteCollectionTest extends BaseSelenium {
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"),
 				getPropertyAttribute("aSpotPassword"));
 
+		collectionTitle = "Sammlung zum LöschenTesten";
+
+		collectionEntryPage = createCollection(collectionTitle);
 	}
 
 	@AfterClass
@@ -44,10 +49,7 @@ public class DeleteCollectionTest extends BaseSelenium {
 
 	@Test(dependsOnGroups = "createCollectionSuccessfully")
 	public void deleteCollectionTest() {
-		String collectionTitle = "Sammlung zum LöschenTesten";
-
-		CollectionEntryPage collectionEntryPage = createCollection(collectionTitle);
-
+		
 		ActionComponent actionComponent = collectionEntryPage.getActionComponent();
 		CollectionsPage collectionsPage = (CollectionsPage) actionComponent.doAction(ActionType.DELETE);
 
@@ -63,7 +65,7 @@ public class DeleteCollectionTest extends BaseSelenium {
 
 		String collectionDescription = "Das ist eine Testbeschreibung für eine neue Sammlung.";
 
-		CollectionEntryPage collectionEntryPage = createNewCollectionPage.fillForm(collectionTitle,
+		CollectionEntryPage collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
 				collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
 				getPropertyAttribute("aOrganizationName"));
 

@@ -49,7 +49,7 @@ public class AddOrganizationTest extends BaseSelenium {
 		createNewCollectionPage.addOrganization();
 		
 		CollectionEntryPage collectionEntryPage = createNewCollectionPage
-				.fillForm(collectionTitle, collectionDescription,
+				.createCollectionWithoutStandardMetaDataProfile(collectionTitle, collectionDescription,
 						getPropertyAttribute("aGivenName"),
 						getPropertyAttribute("aFamilyName"), "");
 		

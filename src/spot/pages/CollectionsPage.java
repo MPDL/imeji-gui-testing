@@ -84,4 +84,14 @@ public class CollectionsPage extends BasePage {
 		return sortingComponent;
 	}
 
+	public WebElement getLatestCollection() {
+		WebElement latestCollectionWebElement = collectionList.get(0);
+		
+		WebElement collHeadLine = latestCollectionWebElement.findElement(By.className("imj_itemHeadline"));
+		WebElement linkLargestCollection = collHeadLine.findElement(By.xpath(".//a"));
+		
+		return linkLargestCollection;
+//		linkLargestCollection.click();
+	}
+
 }

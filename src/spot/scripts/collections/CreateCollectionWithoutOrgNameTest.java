@@ -51,7 +51,7 @@ public class CreateCollectionWithoutOrgNameTest extends BaseSelenium {
 		String collectionTitle = "Dienstag";
 		String collectionDescription = "Testtext für Dienstag.";
 		CollectionEntryPage collectionEntryPage = createNewCollectionPage
-				.fillForm(collectionTitle, collectionDescription, getPropertyAttribute("aGivenName"),
+				.createCollectionWithoutStandardMetaDataProfile(collectionTitle, collectionDescription, getPropertyAttribute("aGivenName"),
 						getPropertyAttribute("aFamilyName"), "");
 
 		Assert.assertTrue(

@@ -1,16 +1,13 @@
 package spot.scripts;
 
 import java.awt.AWTException;
-import java.io.IOException;
 
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import spot.BaseSelenium;
-import spot.pages.DetailedFileView;
+import spot.pages.DetailedItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
@@ -58,7 +55,7 @@ public class SingleUploadTest extends BaseSelenium{
 	
 	@Test (priority = 3) 
 	public void testSaveFile() {
-		DetailedFileView detailedFileView = singleUploadPage.saveFile();
+		DetailedItemViewPage detailedFileView = singleUploadPage.saveFile();
 		String fileTitle = detailedFileView.getFileTitle();
 		
 		Assert.assertTrue(fileName.equalsIgnoreCase(fileTitle), "Name of uploaded file doesn't match with priorly selected file's name");

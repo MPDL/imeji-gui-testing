@@ -13,6 +13,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import spot.components.ActionComponent;
 import spot.components.ActionComponent.ActionType;
@@ -25,15 +26,21 @@ public class MultipleUploadPage extends BasePage {
 	@FindBy(xpath=".//*[@id='uploader_container']/div/div[2]/div[2]/div[1]/div/a[2]")
 	private WebElement startUploadButton;
 	
+	@FindBy(name="lnkSelectEdit")
+	private WebElement editUploadedImagesButton;
+	
 	private ActionComponent actionComponent;
 	
 	public MultipleUploadPage(WebDriver driver) {
 		super(driver);
 		
 		actionComponent = new ActionComponent(driver);
+		
+		PageFactory.initElements(driver, this);
 	}
 
 	public void addFile(String filePath) throws AWTException {
+		waitForInitationPageElements(10);
 		addFileButton.click();
 		selectFile(filePath);
 	}
@@ -46,16 +53,21 @@ public class MultipleUploadPage extends BasePage {
 		StringSelection stringSelection = new StringSelection(pathToFile);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 		Robot robot = new Robot();
+		robot.delay(1000);
 	    robot.keyPress(KeyEvent.VK_CONTROL);
 	    robot.keyPress(KeyEvent.VK_V);
 	    robot.keyRelease(KeyEvent.VK_V);
+	    robot.delay(1000);
 	    robot.keyRelease(KeyEvent.VK_CONTROL);
 	    robot.keyPress(KeyEvent.VK_ENTER);
 	    robot.keyRelease(KeyEvent.VK_ENTER);
+	    robot.delay(1000);
 	}
 
 	public boolean verifyUploadedFiles(List<String> fileNames) {
 		boolean successfullVerification = true;
+		
+		waitForInitationPageElements(50);
 		
 		WebElement uploadFileList = driver.findElement(By.className("imj_fileSuccessMessageArea"));
 		
@@ -87,5 +99,11 @@ public class MultipleUploadPage extends BasePage {
 		
 		SharePage sharePage = kindOfSharePage.shareWithAUser();
 		sharePage.sendEmailtoUser(emailUser);
+	}
+	
+	public CollectiveEditOfDefaultMetaDataPage editUploadedImages() {
+		editUploadedImagesButton.click();
+		
+		return PageFactory.initElements(driver, CollectiveEditOfDefaultMetaDataPage.class);
 	}
 }

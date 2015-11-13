@@ -5,7 +5,9 @@
 	<test name="UploadFilesTest">
 		<classes>
 			<class name="spot.SeleniumTestSuite" />
-			<class name="edmond.DataUploadWithoutMetaDataProfileTest" />
+<!-- 			<class name="edmondScripts.DataUploadWithoutMetaDataProfileTest" /> -->
+			<class name="edmondScripts.DataUploadWithStandardMetaDataProfileTest" />
+<!-- 			<class name="spot.scripts.collections.DeleteCollectionTest" /> -->
 		</classes>
 	</test>
 	

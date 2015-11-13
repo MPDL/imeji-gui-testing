@@ -20,7 +20,10 @@ public abstract class BaseSelenium {
 	 *  Even within own class; access through getter strongly recommended */
 	protected WebDriver driver;
 	
-//	protected final StartPage startPage = new StartPage(getDriver());;
+	protected static final String germanSetup = "de - German";
+	protected static final String englishSetup = "en - English";
+	protected static final String spanishSetup = "es - Spanish";
+	protected static final String japaneseSetup = "ja - Japanese";	
 	
 	public Properties getProperties() {				
 		return SeleniumTestSuite.getProperties(); 

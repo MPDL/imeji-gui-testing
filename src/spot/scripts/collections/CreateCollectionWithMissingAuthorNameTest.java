@@ -51,7 +51,7 @@ public class CreateCollectionWithMissingAuthorNameTest extends BaseSelenium {
 		String collectionDescription = "Some collection description";
 
 		CollectionEntryPage collectionEntryPage = createNewCollectionPage
-				.fillForm(collectionTitle, collectionDescription,
+				.createCollectionWithoutStandardMetaDataProfile(collectionTitle, collectionDescription,
 						"",
 						"", "");
 

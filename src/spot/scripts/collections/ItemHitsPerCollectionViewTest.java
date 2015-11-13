@@ -89,7 +89,7 @@ public class ItemHitsPerCollectionViewTest extends BaseSelenium {
 	public void changeItemHitNumber(int expectedHitNumber) {
 		collectionContentPage.changeItemHitNumberCollectionView(expectedHitNumber);
 		
-		int actualHitNumber = collectionContentPage.getMediaListSize();
+		int actualHitNumber = collectionContentPage.getItemListSize();
 		
 		if (collectionContentPage.getTotalItemNumber() > expectedHitNumber)
 			Assert.assertEquals(actualHitNumber, expectedHitNumber, errorMessage);

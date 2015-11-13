@@ -85,9 +85,9 @@ public abstract class BasePage {
 		return siteContentHeadline.getText();
 	}
 
-	public ItemPage navigateToItemPage() {
+	public DetailedItemViewPage navigateToItemPage() {
 				
-		return mainMenuComponent.navigateTo(ItemPage.class);
+		return mainMenuComponent.navigateTo(DetailedItemViewPage.class);
 	}
 	
 	public AlbumPage goToAlbumPage() {
@@ -151,8 +151,8 @@ public abstract class BasePage {
 		return destination;
 	}
 	
-	protected void waitForInitationPageElements() {
-		ElementLocatorFactory elementLocatorFactory =  new AjaxElementLocatorFactory(driver, 10);
+	protected void waitForInitationPageElements(int waitTime) {
+		ElementLocatorFactory elementLocatorFactory =  new AjaxElementLocatorFactory(driver, waitTime);
 		PageFactory.initElements(elementLocatorFactory, this);
 	}
 

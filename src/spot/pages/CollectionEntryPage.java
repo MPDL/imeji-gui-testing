@@ -18,6 +18,8 @@ public class CollectionEntryPage extends BasePage {
 		super(driver);
 		
 		actionComponent = new ActionComponent(driver);
+		
+		PageFactory.initElements(driver, this);
 	}
 
 	public ActionComponent getActionComponent() {

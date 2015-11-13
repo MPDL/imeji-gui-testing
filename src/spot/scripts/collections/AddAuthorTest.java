@@ -53,7 +53,7 @@ public class AddAuthorTest extends BaseSelenium {
 		createNewCollectionPage.addAuthor();
 		
 		CollectionEntryPage collectionEntryPage = createNewCollectionPage
-				.fillForm(collectionTitle, collectionDescription,
+				.createCollectionWithoutStandardMetaDataProfile(collectionTitle, collectionDescription,
 						getPropertyAttribute("aGivenName"),
 						getPropertyAttribute("aFamilyName"), "");
 		

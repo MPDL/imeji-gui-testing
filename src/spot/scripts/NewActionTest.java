@@ -42,7 +42,7 @@ public class NewActionTest extends BaseSelenium {
 		String collectionTitle = "Testsammlung Montag";
 		String collectionDescription = "Das ist eine Testbeschreibung für eine neue Sammlung.";
 		
-		CollectionEntryPage collectionEntryPage = createNewCollectionPage.fillForm(collectionTitle, collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
+		CollectionEntryPage collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle, collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
 				getPropertyAttribute("aOrganizationName"));
 		
 		Assert.assertTrue(collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea() == MessageType.INFO, "Collection couldn't be created");
