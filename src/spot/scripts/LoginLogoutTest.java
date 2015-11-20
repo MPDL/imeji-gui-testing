@@ -65,6 +65,7 @@ public class LoginLogoutTest extends BaseSelenium {
 		
 		String adminFullName = getPropertyAttribute("aGivenName") + " " + getPropertyAttribute("aFamilyName");
 		Assert.assertEquals(loginAsAdmin.getLoggedInUserFullName(), adminFullName, "User name doesn't match");
+		
 	}
 	
 //	@Test

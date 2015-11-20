@@ -30,10 +30,8 @@ import java.util.Map;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium {
+public class DataUploadWithoutMetaDataProfileTest extends BaseTest {
 
-	
-	
 	private LoginPage loginPage;
 	private AdminHomePage adminHomePage;
 	private CollectionEntryPage collectionEntryPage;
@@ -43,50 +41,71 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium {
 
 	public final String collectionTitle = "Testsammlung Edmond ohne Metadatenprofil";
 	
-	@BeforeMethod
-	public void beforeMethod() {
-	}
-
-	@AfterMethod
-	public void afterMethod() {
+	public DataUploadWithoutMetaDataProfileTest(String username, String password, String givenName, String familyName, String organizationName) {
+		super(username, password, givenName, familyName, organizationName);
+		System.out.println("DataUploadWithoutMetaDataProfileTest Constructor : " + this.username);
+		System.out.println("===============================");
 	}
 
 	@AfterClass
 	public void afterClass() {
 		adminHomePage.logout();
+		System.out.println("Logging out: " + username);
 	}
 	
 	@BeforeClass
 	public void beforeClass() {
+		System.out.println("Opening login page for: " + username);
+		
 		navigateToStartPage();
 		
 		loginPage = new StartPage(driver).openLoginForm();
 		
 		files = new HashMap<String, String>();
 		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
-		files.put("Desert.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Desert.jpg");
-		files.put("Hydrangeas.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Hydrangeas.jpg");
-		files.put("Jellyfish.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Jellyfish.jpg");
 	}
 
 	@Test(groups = {"login", "dataUploadWithoutMetaDataProfile"})
 	public void loginTest() {
-		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"),
-				getPropertyAttribute("aSpotPassword"));
+//		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
+//
+//		String adminFullName = getPropertyAttribute("aGivenName") + " " + getPropertyAttribute("aFamilyName");
+//		Assert.assertEquals(adminHomePage.getLoggedInUserFullName(), adminFullName, "User name doesn't match");
+		
+		System.out.println("Logging in: " + username);
+		
+		adminHomePage = loginPage.loginAsAdmin(username, password);
 
-		String adminFullName = getPropertyAttribute("aGivenName") + " " + getPropertyAttribute("aFamilyName");
+		String adminFullName = givenName + " " + familyName;
 		Assert.assertEquals(adminHomePage.getLoggedInUserFullName(), adminFullName, "User name doesn't match");
 	}
 
 	@Test(groups={"collectionCreated", "dataUploadWithoutMetaDataProfile"}, dependsOnGroups = "login")
 	public void createCollectionWithoutMetaDataProfileTest() {
+//		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
+//		
+//		String collectionDescription = "Das ist eine Testbeschreibung für eine neue Sammlung mit dem Titel " + collectionTitle + ".";
+//
+//		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
+//				collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
+//				getPropertyAttribute("aOrganizationName"));
+//
+//		Assert.assertTrue(
+//				collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea() == MessageType.INFO,
+//				"Collection couldn't be created");
+//
+//		String siteContentHeadline = collectionEntryPage.getSiteContentHeadline();
+//		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");
+		
+		System.out.println("-Create Collection without meta data profile-PROCESS initiated by: " + username);
+		
 		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 		
 		String collectionDescription = "Das ist eine Testbeschreibung für eine neue Sammlung mit dem Titel " + collectionTitle + ".";
 
 		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
-				collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
-				getPropertyAttribute("aOrganizationName"));
+				collectionDescription, givenName, familyName,
+				organizationName);
 
 		Assert.assertTrue(
 				collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea() == MessageType.INFO,
@@ -98,7 +117,9 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium {
 
 	@Test (groups="dataUploadWithoutMetaDataProfile", dependsOnGroups="collectionCreated")
 	public void uploadFilesTest() throws AWTException {
-		multipleUploadPage = collectionEntryPage.uploadContent();		
+		System.out.println("-uploadin files- PROCESS initiated by: " + username);
+		
+		multipleUploadPage = collectionEntryPage.uploadContent();
 		
 		for (Map.Entry<String, String> file : files.entrySet()) {
 			multipleUploadPage.addFile(file.getValue());
@@ -113,18 +134,10 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium {
 		Assert.assertTrue(isVerificationSuccessfull, "The list of uploaded files is probably incomplete.");
 	}
 
-//	@Test (groups = "dataUploadWithoutMetaDataProfile")
-//	public void sendCollectionUrlToUserPerMailTest() {
-//		
-//		String emailUser = getPropertyAttribute("tuEmailAddress");
-//		
-//		multipleUploadPage.shareCollectionWithUser(emailUser);
-//		
-//		Assert.assertTrue(false);
-//	}
-
 	@Test (groups = "dataUploadWithoutMetaDataProfile")
 	public void publishCollectionTest() {
+		System.out.println("-publish Collection- PROCESS initiated by: " + username);
+		
 //		new ActionComponent(driver).doAction(ActionType.PUBLISH);
 		Assert.assertTrue(false);
 	}

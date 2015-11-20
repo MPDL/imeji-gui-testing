@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="Sample test suite" verbose="1" preserve-order="false">
+    
+    <!-- 
+    <listeners>
+    <listener class-name="workshop.GroupByInstanceEnabler" />
+</listeners>
+     -->
+	<test name="Sample Test Demonstrating testNG dataprovider Factory flow">
+		<classes>
+			<!--  
+			<class name="workshop2.SampleTest3"></class>
+			<class name="workshop2.UseLessTest"></class>
+			 -->
+			 <class name="spot.SeleniumTestSuite" />
+			 <class name="workshop2.EdmondTestFactory"></class>
+			     
+		</classes>
+	</test>
+</suite>

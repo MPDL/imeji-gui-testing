@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="Edmond test suite" verbose="1" preserve-order="false">
+<parameter name="browserType" value="firefox"/>
+    
+	<test name="testing Edmond use cases">
+		<classes>
+			<class name="spot.SeleniumTestSuite" />
+			 <class name="edmondScripts.EdmondTestFactory"></class>			     
+		</classes>
+	</test>
+</suite>
