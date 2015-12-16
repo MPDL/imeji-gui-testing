@@ -1,11 +1,14 @@
 package spot.pages.notAdmin;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import spot.pages.BasePage;
@@ -34,38 +37,38 @@ public class CreateNewCollectionPage extends BasePage {
 	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:inputIdentifier1")
 	private WebElement identifierTextField;
 	
-	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:j_idt247:0:inputOrgaName1")
+	@FindBy(css="div.imj_organisation>div:nth-of-type(1)>div.imj_admindataValue>div.imj_admindataValueEntry>input")
 	private WebElement organizationNameTextField;
 	
-	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:j_idt247:0:inputOrgaDescription1")
+	@FindBy(css="div.imj_organisation>div:nth-of-type(2)>div.imj_admindataValue>div.imj_admindataValueEntry>textarea")
 	private WebElement organizationDecriptionTextField;
 	
-	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:j_idt247:0:inputOrgaIdentifier1")
+	@FindBy(css="div.imj_organisation>div:nth-of-type(3)>div.imj_admindataValue>div.imj_admindataValueEntry>input")
 	private WebElement organizationIdentifierTextField;
 	
-	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:j_idt247:0:inputOrgaCity1")
+	@FindBy(css="div.imj_organisation>div:nth-of-type(4)>div.imj_admindataValue>div.imj_admindataValueEntry>input")
 	private WebElement organizationCityTextField;
 	
-	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:j_idt247:0:inputOrgaCountry1")
+	@FindBy(css="div.imj_organisation>div:nth-of-type(5)>div.imj_admindataValue>div.imj_admindataValueEntry>input")
 	private WebElement organizationCountryTextField;
 	
-	@FindBy(name="editContainer:mediaContainerForm:j_idt299")
+	@FindBy(css="table>tbody>tr>td:nth-of-type(1)>input:nth-of-type(1)")
 	private WebElement defineMetaDataProfileLaterRadioBox;
 	
-	@FindBy(xpath=".//*[@id='editContainer:mediaContainerForm:j_idt299:1']")
+	@FindBy(css="table>tbody>tr>td:nth-of-type(2)>input:nth-of-type(1)")
 	private WebElement selectExistingMetaDataProfileRadioBox;
 	
-	@FindBy(name="editContainer:mediaContainerForm:j_idt303:j_idt305:profileTemplates")
+	@FindBy(css=".imj_descriptionArea select")
 	private WebElement profileTemplatesDropBoxWebElement;
 	
 	private Select profileTemplatesDrobBox;
 	
 	private final String defaultProfileIdentifier = "default profile";
 	
-	@FindBy(name="editContainer:mediaContainerForm:j_idt344")
+	@FindBy(css=".imj_submitButton")
 	private WebElement saveButton;
 	
-	@FindBy(xpath=".//*[@id='editContainer:mediaContainerForm:submitButtonPanel']/a")
+	@FindBy(css=".imj_cancelButton")
 	private WebElement cancelButton;
 	
 	@FindBy(name="editContainer:mediaContainerForm:persons:0:j_idt214")
@@ -119,6 +122,9 @@ public class CreateNewCollectionPage extends BasePage {
 		
 		selectAnExistingMetaDataProfile();
 		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_metadataProfilePreviewList .imj_listBody>li:nth-of-type(1)")));
+//		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".imj_metadataProfilePreviewList .imj_listBody li")));
+		
 		submitForm();
 		
 		if (errorOccurred)
@@ -130,12 +136,11 @@ public class CreateNewCollectionPage extends BasePage {
 	private void selectAnExistingMetaDataProfile() {
 		if (!selectExistingMetaDataProfileRadioBox.isSelected())
 			selectExistingMetaDataProfileRadioBox.click();
+			
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_descriptionArea select")));		
 		
-		ElementLocatorFactory elementLocatorFactory =  new AjaxElementLocatorFactory(driver, 5);
-		PageFactory.initElements(elementLocatorFactory, this);
-		
-		profileTemplatesDrobBox = new Select(profileTemplatesDropBoxWebElement);
-		profileTemplatesDrobBox.selectByVisibleText(defaultProfileIdentifier);
+		profileTemplatesDrobBox = new Select(profileTemplatesDropBoxWebElement);		
+		profileTemplatesDrobBox.selectByVisibleText(defaultProfileIdentifier);		
 	}
 
 	private void fillForm(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
@@ -153,8 +158,7 @@ public class CreateNewCollectionPage extends BasePage {
 		setOrganizationDescription("Das ist eine Testbeschreibung für die Organisation.");
 		confirmOrganizationIdentifier();
 		setCity("München");
-		setCountry("Deutschland");
-		
+		setCountry("Deutschland");		
 	}
 	
 	private void submitForm() {

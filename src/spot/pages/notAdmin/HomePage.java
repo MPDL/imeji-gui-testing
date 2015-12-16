@@ -53,14 +53,17 @@ public class HomePage extends BasePage {
 		newActionComponent.clickCreateNewCollection();
 		
 		return PageFactory.initElements(driver, CreateNewCollectionPage.class);
-	}	
+	}
+	
+	public CreateNewAlbumPage goToCreateNewAlbumPage() {
+		newActionComponent.clickCreateNewAlbum();
+		
+		return PageFactory.initElements(driver, CreateNewAlbumPage.class);
+	}
 	
 	public String getLoggedInUserFullName() {
 		return goToUserProfileButton.getText();
 	}
 
-	private void clickCreateNewAlbumButton() {
-		createNewAlbumButton.click();
-	}
 
 }

@@ -24,20 +24,17 @@ public class DeleteCollectionTest extends BaseSelenium {
 	private CollectionEntryPage collectionEntryPage;
 	private String collectionTitle;
 
-	@BeforeMethod
-	public void beforeMethod() {
-		navigateToStartPage();
-	}
-
 	@BeforeClass
 	public void beforeClass() {
 		navigateToStartPage();
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 
-		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"),
-				getPropertyAttribute("aSpotPassword"));
+		new StartPage(driver).selectLanguage(englishSetup);
+		
+		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName),
+				getPropertyAttribute(spotRUPassWord));
 
-		collectionTitle = "Sammlung zum LöschenTesten";
+		collectionTitle = "Collection doomed to be deleted";
 
 		collectionEntryPage = createCollection(collectionTitle);
 	}
@@ -47,27 +44,27 @@ public class DeleteCollectionTest extends BaseSelenium {
 		adminHomePage.logout();
 	}
 
-	@Test(dependsOnGroups = "createCollectionSuccessfully")
+	@Test
 	public void deleteCollectionTest() {
 		
 		ActionComponent actionComponent = collectionEntryPage.getActionComponent();
 		CollectionsPage collectionsPage = (CollectionsPage) actionComponent.doAction(ActionType.DELETE);
 
 		String actualInfoMessage = collectionsPage.getMessageComponent().getInfoMessage();
-		String expectedInfoMessage = "Sammlung " + collectionTitle + " erfolgreich gelöscht";
+		String expectedInfoMessage = "Collection " + collectionTitle + " deleted successfully";
 		Assert.assertEquals(actualInfoMessage, expectedInfoMessage,
-				"Collection deletion most probably unsuccessful, since delection confirmation info message is not displayed.");
+				"Collection deletion most probably unsuccessful, since deletion confirmation info message is not displayed.");
 
 	}
 
 	private CollectionEntryPage createCollection(String collectionTitle) {
 		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 
-		String collectionDescription = "Das ist eine Testbeschreibung für eine neue Sammlung.";
+		String collectionDescription = "This collection is doomed to be deleted. For testing purposes.";
 
 		CollectionEntryPage collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
-				collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
-				getPropertyAttribute("aOrganizationName"));
+				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
+				getPropertyAttribute(ruOrganizationName));
 
 		return collectionEntryPage;
 	}

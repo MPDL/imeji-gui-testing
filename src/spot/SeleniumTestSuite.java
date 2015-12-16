@@ -31,7 +31,6 @@ public class SeleniumTestSuite {
 	@BeforeSuite
 	public void launchDriver(String browserType) throws MalformedURLException {
 
-		System.out.println("BeforeSuite");
 		
 		log4j.info("Launching driver..");
 		log4j.info("Browser is " + browserType);
@@ -40,6 +39,7 @@ public class SeleniumTestSuite {
 		loadPropertiesFile();
 		
 		driver.navigate().to(testEnvironmentURL);
+		System.out.println("test environment url loaded");
 	}
 
 	private void loadPropertiesFile() {
@@ -81,6 +81,9 @@ public class SeleniumTestSuite {
 						+ " is invalid. Launching default browser instead (Firefox)..");
 				driver = initFirefoxDriver();
 		}
+		// maximize browser window; only works for firefox & internet explorer; but not chrome
+		driver.manage().window().maximize();
+		System.out.println("window maximized");
 	}
 
 	/**---
@@ -96,7 +99,6 @@ public class SeleniumTestSuite {
 
 	@AfterSuite
 	public static void quitDriver() {
-		System.out.println("AfterSuite");
 		log4j.info("Quitting driver..");
 //		driver.quit();
 	}	
@@ -111,11 +113,9 @@ public class SeleniumTestSuite {
 
 	@BeforeTest
 	public void testBeforeTest() {
-		System.out.println("testBeforeTest()");
 	}
 
 	@AfterTest
 	public void testAfterTest() {
-		System.out.println("testAfterTest()");
 	}
 }

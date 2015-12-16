@@ -1,28 +1,23 @@
 package edmondScripts;
 
 import java.awt.AWTException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import spot.BaseSelenium;
 import spot.components.MessageComponent.MessageType;
-import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
-import spot.pages.CollectiveEditOfDefaultMetaDataPage;
+import spot.pages.DetailedItemViewPage;
 import spot.pages.LoginPage;
-import spot.pages.MultipleUploadPage;
+import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.util.DefaultMetaDataProfile;
+import spot.util.TimeStamp;
 
 public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 
@@ -31,17 +26,8 @@ public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 	private CollectionEntryPage collectionEntryPage;
 
 	private HashMap<String, String> files;
-	private MultipleUploadPage multipleUploadPage;
 
-	public final String collectionTitle = "Testsammlung Edmond mit Standardmetadatenprofil";
-
-	@BeforeMethod
-	public void beforeMethod() {
-	}
-
-	@AfterMethod
-	public void afterMethod() {
-	}
+	public final String collectionTitle = "Not published test collection with default meta data profile: " + TimeStamp.getTimeStamp();
 
 	@BeforeClass
 	public void beforeClass() {
@@ -50,10 +36,7 @@ public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 		loginPage = new StartPage(driver).openLoginForm();
 
 		files = new HashMap<String, String>();
-		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
-		files.put("Desert.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Desert.jpg");
-//		files.put("Hydrangeas.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Hydrangeas.jpg");
-//		files.put("Jellyfish.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Jellyfish.jpg");
+		files.put("SampleTIFFFile.tiff", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleTIFFFile.tiff");
 		
 		new StartPage(driver).selectLanguage(englishSetup);
 	}
@@ -63,25 +46,24 @@ public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 		adminHomePage.logout();
 	}
 
-	@Test(groups = { "login", "dataUploadWithStandardMetaDataProfile" })
+	@Test(priority=1)/*(groups = { "login", "dataUploadWithStandardMetaDataProfile" })*/
 	public void loginTest() {
-		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"),
-				getPropertyAttribute("aSpotPassword"));
+		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName),
+				getPropertyAttribute(spotRUPassWord));
 
-		String adminFullName = getPropertyAttribute("aGivenName") + " " + getPropertyAttribute("aFamilyName");
+		String adminFullName = getPropertyAttribute(ruFamilyName) + ", " + getPropertyAttribute(ruGivenName);
 		Assert.assertEquals(adminHomePage.getLoggedInUserFullName(), adminFullName, "User name doesn't match");
 	}
 
-	@Test(groups = { "collectionCreated", "dataUploadWithStandardMetaDataProfile" }, dependsOnGroups = "login")
-	public void createCollectionWithoutMetaDataProfileTest() {
+	@Test(priority=2)/*(groups = { "collectionCreated", "dataUploadWithStandardMetaDataProfile" }, dependsOnGroups = "login")*/
+	public void createCollectionWithMetaDataProfileTest() {
 		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 
-		String collectionDescription = "Das ist eine Testbeschreibung für eine neue Sammlung mit dem Titel "
-				+ collectionTitle + ".";
+		String collectionDescription = "This collection has a meta data profile. It is not being published.";
 
 		collectionEntryPage = createNewCollectionPage.createCollectionWithStandardMetaDataProfile(collectionTitle,
-				collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
-				getPropertyAttribute("aOrganizationName"));
+				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
+				getPropertyAttribute(ruOrganizationName));
 
 		Assert.assertTrue(
 				collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea() == MessageType.INFO,
@@ -91,46 +73,48 @@ public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");
 	}
 
-	@Test(groups = {"collectionUploaded", "dataUploadWithStandardMetaDataProfile"}, dependsOnGroups = "collectionCreated")
+	@Test(priority=3)/*(groups = {"collectionUploaded", "dataUploadWithStandardMetaDataProfile"}, dependsOnGroups = "collectionCreated")*/
 	public void uploadFilesTest() throws AWTException {
-		multipleUploadPage = collectionEntryPage.uploadContent();
-
+		navigateToStartPage();
+		
 		for (Map.Entry<String, String> file : files.entrySet()) {
-			multipleUploadPage.addFile(file.getValue());
+			String fileTitle = file.getKey();
+			String filePath = file.getValue();
+			
+			uploadFile(fileTitle, filePath);
 		}
-
-		List<String> fileNames = new ArrayList<String>(files.keySet());
-
-		multipleUploadPage.startUpload();
-
-		boolean isVerificationSuccessfull = multipleUploadPage.verifyUploadedFiles(fileNames);
-
-		Assert.assertTrue(isVerificationSuccessfull, "The list of uploaded files is probably incomplete.");
 	}
 
-	@Test(dependsOnGroups="collectionUploaded", groups = "dataUploadWithStandardMetaDataProfile")
-	public void fillMetaDataFieldsOfFilesTest() {
+	private void uploadFile(String fileTitle, String filePath) throws AWTException {
+		SingleUploadPage singleUploadPage = navigateToUploadPage();
+		
+		DetailedItemViewPage detailedItemViewPage = singleUploadPage.uploadAndFillMetaData(filePath, collectionTitle);		
+		
+		DefaultMetaDataProfile defaultMetaDataProfile = DefaultMetaDataProfile.getInstance();
+		
+		// is detailed item view page displayed
+		Assert.assertTrue(detailedItemViewPage.isDetailedItemViewPageDisplayed(), "Detailed item view page not displayed");		
 
-		String title = "test title";
-		String author = "test author family name";
-		String id = "test id";
-		String publicationLink = "https://www.test-publication-link.de";
-		String date = "1999-01-01";
+		// is collection title correct
+		Assert.assertTrue(detailedItemViewPage.getCollectionTitle().equals(collectionTitle), "Something went wrong with uploading file; collection title not the one that was selected");
+		
+		// is file name correct		
+		Assert.assertTrue(detailedItemViewPage.getFileTitle().equals(fileTitle), "Something went wrong with uploading file; file name title not the one that was selected");
+		
+		// is meta data title correct
+		Assert.assertTrue(detailedItemViewPage.getTitleLabel().equals(defaultMetaDataProfile.getTitle()), "Something went wrong with uploading file; title not correct");
 
-		CollectiveEditOfDefaultMetaDataPage collectiveEditOfDefaultMetaDataPage = multipleUploadPage
-				.editUploadedImages();
-		CollectionContentPage collectionContentPage = collectiveEditOfDefaultMetaDataPage.editMetaData(title, author,
-				id, publicationLink, date);
-
-		collectionContentPage.checkMetaDataOfItems(title, author, id, publicationLink, date);
-
-		Assert.assertTrue(false);
-	}
-
-	@Test(groups = "dataUploadWithStandardMetaDataProfile")
-	public void publishCollectionTest() {
-		// new ActionComponent(driver).doAction(ActionType.PUBLISH);
-		Assert.assertTrue(false);
-	}
-
+		// is meta data id correct
+		Assert.assertTrue(detailedItemViewPage.getIDLabel().equals(defaultMetaDataProfile.getId()), "Something went wrong with uploading file; id not correct");
+		
+		// is meta data author family name correct
+		Assert.assertTrue(detailedItemViewPage.getAuthorFamilyNameLabel().equals(defaultMetaDataProfile.getAuthor()), "Something went wrong with uploading file; autor not correct");
+		
+		// is publication link correct
+		Assert.assertTrue(detailedItemViewPage.getPublicationLinkLabel().equals(defaultMetaDataProfile.getPublicationLink()), "Something went wrong with uploading file; publication link not correct");
+		
+		// is date correct
+		Assert.assertTrue(detailedItemViewPage.getDateLabel().equals(defaultMetaDataProfile.getDate()), "Something went wrong with uploading file; date not correct");
+	}	
+	
 }

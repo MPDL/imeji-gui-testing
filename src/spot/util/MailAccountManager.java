@@ -30,7 +30,7 @@ public class MailAccountManager {
 	
 	private IMAPFolder inboxFolder;
 	
-	private String verificationMessage;
+	private String message;
 
 	private Properties data;
 	
@@ -53,7 +53,7 @@ public class MailAccountManager {
 		emailSession = Session.getDefaultInstance(properties, auth);
 	}
 
-	public void accessInboxFolder() {				
+	public synchronized void accessInboxFolder() {				
 		
 		// create the imap store object and connect with the pop server
 		try {
@@ -74,7 +74,7 @@ public class MailAccountManager {
 					Message mostRecentUnseenRegistrationMsg = msgs[msgs.length-1];
 					
 					try {
-						verificationMessage = getContentText(mostRecentUnseenRegistrationMsg);
+						message = getContentText(mostRecentUnseenRegistrationMsg);
 						
 						mostRecentUnseenRegistrationMsg.setFlag(Flags.Flag.SEEN, true);
 						inboxFolder.removeMessageCountListener(this);
@@ -139,7 +139,7 @@ public class MailAccountManager {
 		return null;
 	}
 	
-	public String checkForNewMessage() {
+	public synchronized String checkForNewMessage() {
 		
 		try {
 			int freq = 5000;
@@ -175,6 +175,6 @@ public class MailAccountManager {
 			ex.printStackTrace();
 		}
 		
-		return verificationMessage;
+		return message;
 	}
 }

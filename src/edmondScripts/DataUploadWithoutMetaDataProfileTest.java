@@ -7,11 +7,15 @@ import spot.components.ActionComponent;
 import spot.components.ActionComponent.ActionType;
 import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionEntryPage;
+import spot.pages.DetailedItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
+import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.HomePage;
+import spot.util.TimeStamp;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
@@ -26,120 +30,91 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class DataUploadWithoutMetaDataProfileTest extends BaseTest {
+public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium/*extends BaseTest*/ {
 
 	private LoginPage loginPage;
-	private AdminHomePage adminHomePage;
+	private HomePage homePage;
 	private CollectionEntryPage collectionEntryPage;
 	
 	private HashMap<String, String> files;
-	private MultipleUploadPage multipleUploadPage;
-
-	public final String collectionTitle = "Testsammlung Edmond ohne Metadatenprofil";
 	
-	public DataUploadWithoutMetaDataProfileTest(String username, String password, String givenName, String familyName, String organizationName) {
-		super(username, password, givenName, familyName, organizationName);
-		System.out.println("DataUploadWithoutMetaDataProfileTest Constructor : " + this.username);
-		System.out.println("===============================");
-	}
-
+	public final String collectionTitle = "Not published test collection without meta data profile: " + TimeStamp.getTimeStamp();
+	
 	@AfterClass
 	public void afterClass() {
-		adminHomePage.logout();
-		System.out.println("Logging out: " + username);
+//		adminHomePage.logout();
 	}
 	
 	@BeforeClass
 	public void beforeClass() {
-		System.out.println("Opening login page for: " + username);
-		
-		navigateToStartPage();
+		navigateToStartPage();		
 		
 		loginPage = new StartPage(driver).openLoginForm();
 		
 		files = new HashMap<String, String>();
-		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
+		files.put("SamplePNGFile.png", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePNGFile.png");
+		files.put("SampleWordFile.docx", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleWordFile.docx");		
+		
+		new StartPage(driver).selectLanguage(englishSetup);
 	}
 
-	@Test(groups = {"login", "dataUploadWithoutMetaDataProfile"})
+	@Test (priority = 1)/*(groups = {"login", "dataUploadWithoutMetaDataProfile"})*/
 	public void loginTest() {
-//		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
-//
-//		String adminFullName = getPropertyAttribute("aGivenName") + " " + getPropertyAttribute("aFamilyName");
-//		Assert.assertEquals(adminHomePage.getLoggedInUserFullName(), adminFullName, "User name doesn't match");
-		
-		System.out.println("Logging in: " + username);
-		
-		adminHomePage = loginPage.loginAsAdmin(username, password);
+		homePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 
-		String adminFullName = givenName + " " + familyName;
-		Assert.assertEquals(adminHomePage.getLoggedInUserFullName(), adminFullName, "User name doesn't match");
+		String adminFullName = getPropertyAttribute(ruFamilyName) + ", " + getPropertyAttribute(ruGivenName);
+		Assert.assertEquals(homePage.getLoggedInUserFullName(), adminFullName, "User name doesn't match");
+	
 	}
 
-	@Test(groups={"collectionCreated", "dataUploadWithoutMetaDataProfile"}, dependsOnGroups = "login")
+	@Test(priority = 2)/*(groups={"collectionCreated", "dataUploadWithoutMetaDataProfile"}, dependsOnGroups = "login")*/
 	public void createCollectionWithoutMetaDataProfileTest() {
-//		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
-//		
-//		String collectionDescription = "Das ist eine Testbeschreibung für eine neue Sammlung mit dem Titel " + collectionTitle + ".";
-//
-//		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
-//				collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
-//				getPropertyAttribute("aOrganizationName"));
-//
-//		Assert.assertTrue(
-//				collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea() == MessageType.INFO,
-//				"Collection couldn't be created");
-//
-//		String siteContentHeadline = collectionEntryPage.getSiteContentHeadline();
-//		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");
 		
-		System.out.println("-Create Collection without meta data profile-PROCESS initiated by: " + username);
+		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
-		
-		String collectionDescription = "Das ist eine Testbeschreibung für eine neue Sammlung mit dem Titel " + collectionTitle + ".";
+		String collectionDescription = "This collection has no meta data profile. It is not being published.";
 
 		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
-				collectionDescription, givenName, familyName,
-				organizationName);
+				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
+				getPropertyAttribute(ruOrganizationName));
 
 		Assert.assertTrue(
 				collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea() == MessageType.INFO,
 				"Collection couldn't be created");
 
 		String siteContentHeadline = collectionEntryPage.getSiteContentHeadline();
-		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");
+		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");	
 	}
 
-	@Test (groups="dataUploadWithoutMetaDataProfile", dependsOnGroups="collectionCreated")
-	public void uploadFilesTest() throws AWTException {
-		System.out.println("-uploadin files- PROCESS initiated by: " + username);
-		
-		multipleUploadPage = collectionEntryPage.uploadContent();
+	@Test (priority = 3)/*(groups="dataUploadWithoutMetaDataProfile", dependsOnGroups="collectionCreated")*/
+	public void uploadFilesTest() throws AWTException {				
+	
+		navigateToStartPage();
 		
 		for (Map.Entry<String, String> file : files.entrySet()) {
-			multipleUploadPage.addFile(file.getValue());
+			String fileTitle = file.getKey();
+			String filePath = file.getValue();
+			
+			testFile(fileTitle, filePath);
 		}
-		
-		List<String> fileNames = new ArrayList<String>(files.keySet());
-		
-		multipleUploadPage.startUpload();
-		
-		boolean isVerificationSuccessfull = multipleUploadPage.verifyUploadedFiles(fileNames);
-		
-		Assert.assertTrue(isVerificationSuccessfull, "The list of uploaded files is probably incomplete.");
 	}
 
-	@Test (groups = "dataUploadWithoutMetaDataProfile")
-	public void publishCollectionTest() {
-		System.out.println("-publish Collection- PROCESS initiated by: " + username);
+	private void testFile(String fileTitle, String filePath) throws AWTException {
+		SingleUploadPage singleUploadPage = navigateToUploadPage();
 		
-//		new ActionComponent(driver).doAction(ActionType.PUBLISH);
-		Assert.assertTrue(false);
+		DetailedItemViewPage detailedItemViewPage = singleUploadPage.upload(filePath, collectionTitle);		
+		
+		Assert.assertTrue(detailedItemViewPage.isDetailedItemViewPageDisplayed(), "Detailed item view page not displayed");		
+		
+		Assert.assertTrue(detailedItemViewPage.getCollectionTitle().equals(collectionTitle), "Something went wrong with uploading file; collection title not the one that was selected");
+		
+		Assert.assertTrue(detailedItemViewPage.getFileTitle().equals(fileTitle), "Something went wrong with uploading file; file title not the one that was selected");
+		
 	}
 		
 }

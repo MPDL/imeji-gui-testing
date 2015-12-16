@@ -1,11 +1,44 @@
 <!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
-<suite name="Edmond test suite" verbose="1" preserve-order="false">
-<parameter name="browserType" value="firefox"/>
-    
+<suite name="Edmond test suite" verbose="1" preserve-order="true">
+	<parameter name="browserType" value="firefox" />
+
 	<test name="testing Edmond use cases">
 		<classes>
 			<class name="spot.SeleniumTestSuite" />
-			 <class name="edmondScripts.EdmondTestFactory"></class>			     
+
+<!-- 			<class name="edmondScripts.ProvidePublicWithItemsWithoutMetaDataProfileTest" /> -->
+		
+<!-- 			<class name="edmondScripts.ProvidePublicWithItemsWithMetaDataProfileTest" /> -->
+			
+<!-- 			<class name="edmondScripts.DataUploadWithoutMetaDataProfileTest" /> -->
+			
+<!-- 			<class name="edmondScripts.DataUploadWithStandardMetaDataProfileTest" /> -->
+			
+<!-- 			<class name="edmondScripts.DeleteCollectionTest" /> -->
+			
+<!-- 			<class name="edmondScripts.DiscardCollectionTest" /> -->
+			 
+<!-- 			<class name="edmondScripts.DownloadFileTest" /> -->
+
+<!-- 			<class name="edmondScripts.CreateIndividualMetaDataProfileTest" /> -->
+			
+<!-- 			<class name="edmondScripts.DownloadFileRUTest" /> -->
+
+<!-- 			<class name="spot.scripts.CreateUserWithRestrictedRightsTest" /> -->
+			
+<!-- 			<class name="spot.scripts.EditUserProfileTest" /> -->
+
+<!-- 			<class name="edmondScripts.CreateAlbumTest" /> -->
+			
+<!-- 			<class name="edmondScripts.PublishAlbumTest" /> -->
+	
+			<class name="edmondScripts.UserInformsOtherUserAboutHisNewGrantsViaSystemTest" />
+			
+<!-- 			<class name="edmondScripts.UserSharesAdminGrantsTest" /> -->
+			
+<!-- 			<class name="edmondScripts.CreationOfNewUserGroupTest" /> -->
+			
+<!-- 			<class name="edmondScripts.AddingNewUserToUserGroupTest" /> -->
 		</classes>
 	</test>
 </suite>

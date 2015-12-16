@@ -3,9 +3,12 @@ package spot.pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.components.SortingComponent;
 
@@ -15,10 +18,15 @@ public class CollectionsPage extends BasePage {
 	
 	private SortingComponent sortingComponent;
 	
+	@FindBy(css="#ajaxWrapper>div:nth-of-type(2)>form>a")
+	private WebElement showAllCollectionsButton;
+	
 	public CollectionsPage(WebDriver driver) {
 		super(driver);
 		
 		collectionList = driver.findElements(By.className("imj_bibliographicListItem"));
+		
+		PageFactory.initElements(driver, this);
 	}
 
 	private WebElement getFirstCollectionInList() {
@@ -84,14 +92,91 @@ public class CollectionsPage extends BasePage {
 		return sortingComponent;
 	}
 
-	public WebElement getLatestCollection() {
-		WebElement latestCollectionWebElement = collectionList.get(0);
+	public CollectionContentPage openSomePublishedCollection() {
 		
-		WebElement collHeadLine = latestCollectionWebElement.findElement(By.className("imj_itemHeadline"));
-		WebElement linkLargestCollection = collHeadLine.findElement(By.xpath(".//a"));
+		checkCollectionList();
 		
-		return linkLargestCollection;
-//		linkLargestCollection.click();
+		WebElement somePublishedCollection = null;
+		
+		// since page could have been refreshed due to checkCollectionList()
+		collectionList = driver.findElements(By.className("imj_bibliographicListItem"));
+		
+		for (WebElement collection : collectionList) {
+			
+			WebElement status = collection.findElement(By.className("imj_statusArea"));
+			
+			if (status.findElements(By.xpath(".//*")).size()==0) {
+				System.out.println("This collection is published");
+				
+				somePublishedCollection = collection;				
+				break;
+			} 
+		}
+		
+		// open start page of the selected collection
+		somePublishedCollection.findElement(By.cssSelector(".imj_itemActionArea li:nth-of-type(2) a")).click();
+		
+		return PageFactory.initElements(driver, CollectionContentPage.class);
+	}
+
+	public CollectionContentPage openSomeNotPublishedCollection() {
+		
+		checkCollectionList();
+		
+		WebElement someNotPublishedCollection = null;
+		
+		// any need for finding again? since page could have been refreshed due to checkCollectionList()
+		try {
+			collectionList.get(0).findElement(By.className("imj_statusArea"));		
+		} catch (StaleElementReferenceException e) {
+			collectionList = driver.findElements(By.className("imj_bibliographicListItem"));	
+		}
+				
+		
+		for (WebElement collection : collectionList) {
+			
+			WebElement status = collection.findElement(By.className("imj_statusArea"));
+			
+			if (status.findElements(By.xpath(".//*")).size()>0) {
+				
+				System.out.println("This collection is not yet published");
+				
+				// it also needs to have files, at least one; does it?
+				WebElement collItemCount= collection.findElement(By.cssSelector(".imj_itemCount"));
+				String[] split = collItemCount.getText().split("\\s+");
+				
+				try {
+					String itemCountString = split[0];
+					int itemCount = Integer.parseInt(itemCountString);
+				
+					if (itemCount>0) {
+						someNotPublishedCollection = collection;				
+						break;				
+					}
+				} catch (NumberFormatException nfe) {
+					// no valid number
+					// do nothing
+				}				
+			} 
+		}
+		
+		// open start page of the selected collection
+		someNotPublishedCollection.findElement(By.cssSelector(".imj_itemActionArea li:nth-of-type(2) a")).click();
+		
+		return PageFactory.initElements(driver, CollectionContentPage.class);
+	}
+
+	private void checkCollectionList() {		
+		
+		if (collectionList.size() == 0) {
+			showAllCollectionsButton.click();
+		} else if (collectionList.size() == 1) {
+			WebElement emptyList = collectionList.get(0);
+			String emptyListInnerHTML = emptyList.getText();
+			if (emptyListInnerHTML.equals("No results found")) {
+				showAllCollectionsButton.click();
+			}
+		}
 	}
 
 }

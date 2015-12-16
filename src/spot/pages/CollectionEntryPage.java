@@ -11,8 +11,11 @@ public class CollectionEntryPage extends BasePage {
 
 	private ActionComponent actionComponent;
 	
-	@FindBy(xpath="html/body/div[1]/div[5]/div[2]/div[1]/h2/a")
+	@FindBy(css=".imj_collectionEntryPage .imj_entryPagePreviewTiledList a")
 	private WebElement uploadContentButton;
+	
+	@FindBy(css=".imj_collectionEntryPage>h2>a")
+	private WebElement addMetaDataProfileButton;	 
 	
 	public CollectionEntryPage(WebDriver driver) {
 		super(driver);
@@ -30,5 +33,11 @@ public class CollectionEntryPage extends BasePage {
 		uploadContentButton.click();
 		
 		return PageFactory.initElements(driver, MultipleUploadPage.class);
+	}
+
+	public KindOfMetaDataProfilePage addMetaDataProfile() {
+		addMetaDataProfileButton.click();
+		
+		return PageFactory.initElements(driver, KindOfMetaDataProfilePage.class);
 	}
 }

@@ -9,6 +9,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import spot.pages.BasePage;
 
 public class MessageComponent {
 
@@ -75,8 +79,10 @@ public class MessageComponent {
 	public String getInfoMessage() {
 		List<String> infoMessages = new ArrayList<String>();
 
-		List<WebElement> errorWebElements = pageMessageArea.findElements(By
-				.className("imj_messageInfo"));
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("imj_messageInfo")));
+		
+		List<WebElement> errorWebElements = pageMessageArea.findElements(By.className("imj_messageInfo"));
 
 		for (WebElement we : errorWebElements) {
 			infoMessages.add(we.getText());

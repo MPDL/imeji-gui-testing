@@ -9,7 +9,7 @@ import testlink.api.java.client.TestLinkAPIResults;
 
 public class AutomatedUpdateExample {
 
-	public static String DEVKEY = "6920230bbcd6c3875efbf519d3aec19c";
+	public static String DEVKEY = "55d98b5f4eb5139f57418541506f075c";
 
 	public static String URL = "http://rd.mpdl.mpg.de/testlink/lib/api/xmlrpc/v1/xmlrpc.php";
 	

@@ -2,12 +2,14 @@ package spot.pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.HomePage;
@@ -33,9 +35,6 @@ public class LoginPage extends BasePage {
 
 	private <T> T login(String userName, String password, Class<T> expectedPage){
 	    
-		ElementLocatorFactory elementLocatorFactory =  new AjaxElementLocatorFactory(driver, 5);
-		PageFactory.initElements(elementLocatorFactory, this);
-		
 		enterUserName(userName);
 		enterPassword(password);
 		clickOnSignIn();
@@ -55,6 +54,7 @@ public class LoginPage extends BasePage {
 	}
 	
 	private void enterUserName(String userName) {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='Header:loginForm']/span/input[1]")));
 		userNameTextField.sendKeys(userName);
 	}
 	
@@ -66,16 +66,5 @@ public class LoginPage extends BasePage {
 		submitLoginInfoButton.click();
 	}
 	
-	/*
-	public void login(String userName, String password) {
-		
-		ElementLocatorFactory elementLocatorFactory =  new AjaxElementLocatorFactory(driver, 5);
-		PageFactory.initElements(elementLocatorFactory, this);
-		
-		enterUserName(userName);
-		enterPassword(password);
-		clickOnSignIn();		
-	}
 	
-	*/
 }

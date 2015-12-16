@@ -13,7 +13,7 @@ public class UserPreferenceComponent {
 	@FindBy(xpath=".//*[@id='Header:langForm']/div/div/div[1]")
 	private WebElement currentLanguageComboEntry;
 	
-	@FindBy(xpath="/html/body/div[1]/div[1]/div[1]/span/form[3]/div/select")
+	@FindBy(css=".imj_metaMenuItemSelect")
 	private WebElement languageSelect;
 	
 	@FindBy(xpath=".//*[@id='Header:langForm']/div/select")

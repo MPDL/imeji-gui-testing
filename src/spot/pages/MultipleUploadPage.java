@@ -14,6 +14,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import spot.components.ActionComponent;
 import spot.components.ActionComponent.ActionType;
@@ -42,6 +44,8 @@ public class MultipleUploadPage extends BasePage {
 	public void addFile(String filePath) throws AWTException {
 		waitForInitationPageElements(10);
 		addFileButton.click();
+//		addFileButton.sendKeys(filePath);
+//		addFileButton.submit();
 		selectFile(filePath);
 	}
 	
@@ -53,21 +57,23 @@ public class MultipleUploadPage extends BasePage {
 		StringSelection stringSelection = new StringSelection(pathToFile);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 		Robot robot = new Robot();
-		robot.delay(1000);
+//		robot.delay(5000);
+		
 	    robot.keyPress(KeyEvent.VK_CONTROL);
 	    robot.keyPress(KeyEvent.VK_V);
 	    robot.keyRelease(KeyEvent.VK_V);
-	    robot.delay(1000);
 	    robot.keyRelease(KeyEvent.VK_CONTROL);
+	    
+	    robot.delay(3000);
 	    robot.keyPress(KeyEvent.VK_ENTER);
 	    robot.keyRelease(KeyEvent.VK_ENTER);
-	    robot.delay(1000);
+//	    robot.delay(5000);
 	}
 
 	public boolean verifyUploadedFiles(List<String> fileNames) {
 		boolean successfullVerification = true;
-		
-		waitForInitationPageElements(50);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("imj_fileSuccessMessageArea")));
 		
 		WebElement uploadFileList = driver.findElement(By.className("imj_fileSuccessMessageArea"));
 		
@@ -98,7 +104,15 @@ public class MultipleUploadPage extends BasePage {
 		KindOfSharePage kindOfSharePage = (KindOfSharePage)actionComponent.doAction(ActionType.SHARE);
 		
 		SharePage sharePage = kindOfSharePage.shareWithAUser();
-		sharePage.sendEmailtoUser(emailUser);
+		sharePage.share(true, emailUser, true, true, true, false, false, false, false);
+	}
+	
+	public void publishCollection() {
+		actionComponent.doAction(ActionType.PUBLISH);
+	}
+	
+	public ActionComponent getActionComponent() {
+		return actionComponent;
 	}
 	
 	public CollectiveEditOfDefaultMetaDataPage editUploadedImages() {

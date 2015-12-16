@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +17,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import spot.CategoryType;
 import spot.components.MainMenuComponent;
@@ -23,6 +25,8 @@ import spot.components.MessageComponent;
 import spot.components.NewActionComponent;
 import spot.components.SearchComponent;
 import spot.components.UserPreferenceComponent;
+import spot.pages.admin.AdminHomePage;
+import spot.pages.notAdmin.HomePage;
 
 /**
  * This class is abstract.
@@ -36,6 +40,8 @@ public abstract class BasePage {
 	private static final Logger log4j = LogManager.getLogger(BasePage.class.getName());
 	
 	protected WebDriver driver;
+	
+	protected WebDriverWait wait; 
 	
 	/** holds the five menu items: start, items, collections, albums, single upload */
 	protected MainMenuComponent mainMenuComponent;
@@ -67,6 +73,12 @@ public abstract class BasePage {
 	@FindBy(xpath="html/body/div[1]/div[4]/div/div[3]/div/a")
 	private WebElement mpdlHomePage;
 	
+	@FindBy(css=".fa-star")
+	private WebElement activeAlbumMenueLabel;
+	
+	@FindBy(css=".imj_overlayMenuList li>a[title='View']")
+	private WebElement viewActiveAlbumButton;
+	
 	/**
 	 * Constructor
 	 * 
@@ -78,7 +90,9 @@ public abstract class BasePage {
 		this.mainMenuComponent = new MainMenuComponent(driver);
 		this.newComponent = new NewActionComponent(driver);
 		this.searchComponent = new SearchComponent(driver);
-		this.userPreferenceComponent = new UserPreferenceComponent(driver);		
+		this.userPreferenceComponent = new UserPreferenceComponent(driver);
+		
+		wait = new WebDriverWait(driver, 50);
 	}
 	
 	public String getSiteContentHeadline() {
@@ -90,6 +104,18 @@ public abstract class BasePage {
 		return mainMenuComponent.navigateTo(DetailedItemViewPage.class);
 	}
 	
+	public SingleUploadPage goToSingleUploadPage() {
+		return mainMenuComponent.navigateTo(SingleUploadPage.class);
+	}
+	
+	public HomePage goToHomePage(HomePage homePage) {
+		if (homePage instanceof HomePage)
+			return mainMenuComponent.navigateTo(HomePage.class);
+		else if (homePage instanceof AdminHomePage)
+			return mainMenuComponent.navigateTo(AdminHomePage.class);
+		return null;
+	}
+	
 	public AlbumPage goToAlbumPage() {
 				
 		return mainMenuComponent.navigateTo(AlbumPage.class);
@@ -98,6 +124,17 @@ public abstract class BasePage {
 	public CollectionsPage goToCollectionPage() {
 		
 		return mainMenuComponent.navigateTo(CollectionsPage.class);
+	}
+	
+	public AdministrationPage goToAdminPage() {
+		
+		return mainMenuComponent.navigateTo(AdministrationPage.class);
+	}
+	
+	public AlbumEntryPage openActiveAlbumEntryPage() {
+		activeAlbumMenueLabel.click();
+		viewActiveAlbumButton.click();
+		return PageFactory.initElements(driver, AlbumEntryPage.class);
 	}
 	
 	public HelpPage goToHelpPage() {
@@ -163,5 +200,34 @@ public abstract class BasePage {
 	public MessageComponent getMessageComponent() {
 		return messageComponent;
 	}
-		
+
+	public boolean retryingFindClick(By by) {
+        boolean result = false;
+        int attempts = 0;
+        while(attempts < 2) {
+            try {
+                driver.findElement(by).click();
+                result = true;
+                break;
+            } catch(StaleElementReferenceException | NoSuchElementException e) {
+            }
+            attempts++;
+        }
+        return result;
+	}
+	
+	public boolean retryingFinding(By by) {
+        boolean result = false;
+        int attempts = 0;
+        while(attempts < 4) {
+            try {
+                driver.findElement(by).isDisplayed();
+                result = true;
+                break;
+            } catch(StaleElementReferenceException | NoSuchElementException e) {
+            }
+            attempts++;
+        }
+        return result;
+	}
 }
