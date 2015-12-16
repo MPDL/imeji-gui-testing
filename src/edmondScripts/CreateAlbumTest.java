@@ -1,0 +1,69 @@
+package edmondScripts;
+
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import spot.BaseSelenium;
+import spot.pages.AlbumEntryPage;
+import spot.pages.AlbumPage;
+import spot.pages.CollectionContentPage;
+import spot.pages.CollectionsPage;
+import spot.pages.LoginPage;
+import spot.pages.StartPage;
+import spot.pages.admin.AdminHomePage;
+import spot.pages.notAdmin.CreateNewAlbumPage;
+import spot.util.TimeStamp;
+
+public class CreateAlbumTest extends BaseSelenium {
+
+	private AdminHomePage adminHomePage;
+	private AlbumEntryPage albumEntryPage;
+	
+	@BeforeClass
+	public void beforeClass() {
+		navigateToStartPage();		
+	
+		new StartPage(driver).selectLanguage(englishSetup);
+		
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
+	}
+	
+	@Test
+	public void createAlbumTest() {
+		CreateNewAlbumPage createNewAlbumPage = adminHomePage.goToCreateNewAlbumPage();		
+		
+		String albumTitle = "Test Album " +	TimeStamp.getTimeStamp(); 
+		String albumDescription = "This album is created for testing purposes.";
+		
+		albumEntryPage = createNewAlbumPage.createAlbum(albumTitle, albumDescription);
+		
+		String actualInfoMessage = albumEntryPage.getMessageComponent().getInfoMessage();
+		String expectedInfoMessage = "Album created successfully";
+		
+		Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Album probably couldn't be be created.");
+		
+		addPublishedFileToAlbum();
+		
+	}
+
+	private void addPublishedFileToAlbum() {
+		CollectionsPage collectionPage = albumEntryPage.goToCollectionPage();
+		
+		CollectionContentPage releasedCollectionContentPage = collectionPage.openSomePublishedCollection();
+		releasedCollectionContentPage.addFirstItemToAlbum();
+		
+		String actualInfoMessage = releasedCollectionContentPage.getMessageComponent().getInfoMessage();
+		String expectedInfoMessage = "1 items added to active album.";
+		Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Item probably couldn't be added to active album.");
+		
+	}
+
+	@AfterClass
+	public void afterClass() {
+		
+		adminHomePage.logout();
+	}
+}

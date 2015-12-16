@@ -1,0 +1,116 @@
+package spot.pages;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+public class AllUsersOverViewPage extends BasePage {
+
+	@FindBy(css=".imj_admindataSet")
+	private List<WebElement> userList;
+	
+	public AllUsersOverViewPage(WebDriver driver) {
+		super(driver);
+		
+		PageFactory.initElements(driver, this);
+	}
+
+	public void deleteUserByEmail(String email) {
+		
+		WebElement toBeDeletedUser = findUserByEmail(email);
+		
+		List<WebElement> tmpElementList = toBeDeletedUser.findElements(By.tagName("a"));
+		
+		WebElement deleteButton = null;
+		
+		for (WebElement tmpWE : tmpElementList) {
+			String titleName = tmpWE.getAttribute("title");
+			if (titleName.equals("Delete user")) {
+				deleteButton = tmpWE;
+				break;
+			}
+		}
+
+		deleteButton.click();
+		
+		wait.until(ExpectedConditions.visibilityOf(toBeDeletedUser));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id, 'deleteUser')]")));
+		
+		WebElement deleteUserWebElemBlock = toBeDeletedUser.findElement(By.xpath("//div[contains(@id, 'deleteUser')]"));
+		
+		tmpElementList = deleteUserWebElemBlock.findElements(By.tagName("input"));
+		
+		WebElement confirmDeletion = null;
+		
+		for (WebElement tmpWE : tmpElementList) {
+			String valueName = tmpWE.getAttribute("value");
+			if (valueName.equals("Delete user")) {
+				confirmDeletion = tmpWE;
+				break;
+			}
+		}
+		
+		confirmDeletion.click();
+	}
+
+	private WebElement findUserByEmail(String emailInQuestion) {
+		
+		WebElement userInQuestion = null;
+		
+		for (WebElement user : userList) {
+			WebElement userIdentification = user.findElement(By.xpath(".//h2"));
+			String userNamePlusEmail = userIdentification.getText();
+			String mail = extractMail(userNamePlusEmail);
+			
+			if (mail.equals(emailInQuestion)) {
+				userInQuestion = user;
+				break;
+			}
+		}
+		return userInQuestion;
+	}
+
+	private String extractMail(String userNamePlusEmail) {
+		// userNamePlusEmail looks sth like this:          familyName, givenName (email@test.de)
+		// aiming to get only email-address
+		userNamePlusEmail = userNamePlusEmail.trim();
+		int tmpIndex = userNamePlusEmail.indexOf('(');
+		String email = userNamePlusEmail.substring(tmpIndex+1, userNamePlusEmail.length()-1);
+		return email;
+	}
+
+	public UserProfilePage viewDetails(String userName) {
+		WebElement userInQuestion = findUserByEmail(userName);
+		
+		List<WebElement> tmpElementList = userInQuestion.findElements(By.tagName("a"));
+		
+		WebElement viewProfileButton = null;
+		
+		for (WebElement tmpWE : tmpElementList) {
+			String href = tmpWE.getAttribute("href");
+			if (href.startsWith("http://qa-edmond.mpdl.mpg.de/imeji/user?id=")) {
+				viewProfileButton = tmpWE;
+				break;
+			}
+		}
+		
+		viewProfileButton.click();
+		
+		return PageFactory.initElements(driver, UserProfilePage.class);
+	}
+	
+	public void addUserToUserGroup(String userEmail) {
+		WebElement userInQuestion = findUserByEmail(userEmail);
+		WebElement addToUserGroupButton = userInQuestion.findElement(By.cssSelector("form>a"));
+		addToUserGroupButton.click();
+		
+		
+	}
+	
+}
