@@ -10,8 +10,6 @@ import org.testng.annotations.BeforeClass;
 
 import spot.pages.SingleUploadPage;
 import spot.pages.notAdmin.HomePage;
-import testlink.api.java.client.TestLinkAPIClient;
-import testlink.api.java.client.TestLinkAPIException;
 
 /**
  * WebDriver used by all test classes is set in this class. 
@@ -162,14 +160,7 @@ public abstract class BaseSelenium {
 	public void logout(HomePage homePage) {
 		homePage.logout();
 	}
-	
-	public static void reportResult(String TestProject, String TestPlan, String Testcase, String Build, String Notes,
-			String Result) throws TestLinkAPIException {
 
-		TestLinkAPIClient api = new TestLinkAPIClient(DEVKEY, URL);
-
-		api.reportTestCaseResult(TestProject, TestPlan, Testcase, Build, Notes, Result);
-	}
 	
 //	public abstract void setTestLinkTestCaseID();
 }

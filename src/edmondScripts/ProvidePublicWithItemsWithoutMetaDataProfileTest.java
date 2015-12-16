@@ -19,8 +19,7 @@ import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.CreateNewCollectionPage;
-import testlink.api.java.client.TestLinkAPIException;
-import testlink.api.java.client.TestLinkAPIResults;
+
 
 public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSelenium {
 
@@ -101,34 +100,15 @@ public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSeleni
 	}
 
 	@Test (priority = 4)/*(groups = "dataUploadWithoutMetaDataProfile")*/
-	public void publishCollectionTest() throws TestLinkAPIException {
+	public void publishCollectionTest() {
 		
-		String testCase = "Release collection";
+			
+		multipleUploadPage.publishCollection();
 
-		String notes = null;
-
-		String result = TestLinkAPIResults.TEST_FAILED;
-				
-		try {
-			
-			multipleUploadPage.publishCollection();
-			
-			String actualInfoMessage = multipleUploadPage.getMessageComponent().getInfoMessage();
-			String expectedInfoMessage = "Collection released successfully";
-			Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Something went wrong with the release of the collection.");
-			
-			notes = "Successfully executed.";
-			result = TestLinkAPIResults.TEST_PASSED;
-			
-		} catch (AssertionError e) {
-			notes = "Not successfully executed.";
-			result = TestLinkAPIResults.TEST_FAILED;
-			
-		} finally {
-			reportResult(testProject, testPlan, testCase, build, notes, result);
-			
-		}
-		
-		
+		String actualInfoMessage = multipleUploadPage.getMessageComponent().getInfoMessage();
+		String expectedInfoMessage = "Collection released successfully";
+		Assert.assertEquals(actualInfoMessage, expectedInfoMessage,
+				"Something went wrong with the release of the collection.");
+	
 	}
 }
