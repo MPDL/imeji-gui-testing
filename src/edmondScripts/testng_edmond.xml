@@ -6,39 +6,42 @@
 		<classes>
 			<class name="spot.SeleniumTestSuite" />
 
-<!-- 			<class name="edmondScripts.ProvidePublicWithItemsWithoutMetaDataProfileTest" /> -->
+			<class name="edmondScripts.ProvidePublicWithItemsWithoutMetaDataProfileTest" />
 		
-<!-- 			<class name="edmondScripts.ProvidePublicWithItemsWithMetaDataProfileTest" /> -->
+			<class name="edmondScripts.ProvidePublicWithItemsWithMetaDataProfileTest" />
 			
-<!-- 			<class name="edmondScripts.DataUploadWithoutMetaDataProfileTest" /> -->
+			<class name="edmondScripts.DataUploadWithoutMetaDataProfileTest" />
 			
-<!-- 			<class name="edmondScripts.DataUploadWithStandardMetaDataProfileTest" /> -->
+			<class name="edmondScripts.DataUploadWithStandardMetaDataProfileTest" />
 			
-<!-- 			<class name="edmondScripts.DeleteCollectionTest" /> -->
+			<class name="edmondScripts.DeleteCollectionTest" />
 			
-<!-- 			<class name="edmondScripts.DiscardCollectionTest" /> -->
+			<class name="edmondScripts.DiscardCollectionTest" />
 			 
-<!-- 			<class name="edmondScripts.DownloadFileTest" /> -->
+			<class name="edmondScripts.DownloadFileTest" />
 
-<!-- 			<class name="edmondScripts.CreateIndividualMetaDataProfileTest" /> -->
+			<class name="edmondScripts.CreateIndividualMetaDataProfileTest" />
 			
-<!-- 			<class name="edmondScripts.DownloadFileRUTest" /> -->
+			<class name="edmondScripts.DownloadFileRUTest" />
 
-<!-- 			<class name="spot.scripts.CreateUserWithRestrictedRightsTest" /> -->
+			<class name="spot.scripts.CreateUserWithRestrictedRightsTest" />
 			
-<!-- 			<class name="spot.scripts.EditUserProfileTest" /> -->
+			<class name="spot.scripts.EditUserProfileTest" />
+			
+			<class name="edmondScripts.CreationOfNewUserGroupTest" />
+			
+			<class name="edmondScripts.AddingNewUserToUserGroupTest" />
 
-<!-- 			<class name="edmondScripts.CreateAlbumTest" /> -->
+			<class name="edmondScripts.CreateAlbumTest" />
 			
-<!-- 			<class name="edmondScripts.PublishAlbumTest" /> -->
+			<class name="edmondScripts.PublishAlbumTest" />
 	
-			<class name="edmondScripts.UserInformsOtherUserAboutHisNewGrantsViaSystemTest" />
+<!--  -->	
+<!-- 			<class name="edmondScripts.UserInformsOtherUserAboutHisNewGrantsViaSystemTest" /> -->
 			
 <!-- 			<class name="edmondScripts.UserSharesAdminGrantsTest" /> -->
+<!--  -->
 			
-<!-- 			<class name="edmondScripts.CreationOfNewUserGroupTest" /> -->
-			
-<!-- 			<class name="edmondScripts.AddingNewUserToUserGroupTest" /> -->
 		</classes>
 	</test>
 </suite>

@@ -44,13 +44,13 @@ public class UserSharesAdminGrantsTest extends BaseSelenium {
 	@Test
 	public void userSharesAdminGrantsForPublishedCollectionTest() {
 		
-		String sharedPersonName = getPropertyAttribute("tuFamilyName");
+		String sharedPersonName = getPropertyAttribute("tuFamilyName") + ", " + getPropertyAttribute("tuGivenName");
 		
 		boolean read=false, createItems=false, editItems=false, deleteItems=false, editCollectionInformation=false, editProfile=false;
 		boolean administrate = true;
 		
 		CollectionsPage collectionPage = adminHomePage.goToCollectionPage();
-		CollectionContentPage somePublishedCollection = collectionPage.openSomePublishedCollection();
+		CollectionContentPage somePublishedCollection = collectionPage.openSomeNotPublishedCollection();
 		KindOfSharePage kindOfSharePage = somePublishedCollection.share();
 		SharePage sharePage = kindOfSharePage.shareWithAUser();
 		sharePage.share(true, getPropertyAttribute(spotRUUserName), read, createItems, editItems, deleteItems, editCollectionInformation, editProfile , administrate);
@@ -79,7 +79,7 @@ public class UserSharesAdminGrantsTest extends BaseSelenium {
 	
 	@AfterClass
 	public void afterClass() {
-//		adminHomePage.logout();
+		adminHomePage.logout();
 	}
 	
 }

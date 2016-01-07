@@ -47,7 +47,7 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium/*extends 
 	
 	@AfterClass
 	public void afterClass() {
-//		adminHomePage.logout();
+		homePage.logout();
 	}
 	
 	@BeforeClass
@@ -94,7 +94,7 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium/*extends 
 	@Test (priority = 3)/*(groups="dataUploadWithoutMetaDataProfile", dependsOnGroups="collectionCreated")*/
 	public void uploadFilesTest() throws AWTException {				
 	
-		navigateToStartPage();
+//		navigateToStartPage();
 		
 		for (Map.Entry<String, String> file : files.entrySet()) {
 			String fileTitle = file.getKey();
@@ -102,10 +102,12 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium/*extends 
 			
 			testFile(fileTitle, filePath);
 		}
+		navigateToStartPage();
 	}
 
 	private void testFile(String fileTitle, String filePath) throws AWTException {
-		SingleUploadPage singleUploadPage = navigateToUploadPage();
+//		SingleUploadPage singleUploadPage = navigateToUploadPage();
+		SingleUploadPage singleUploadPage = homePage.goToSingleUploadPage();
 		
 		DetailedItemViewPage detailedItemViewPage = singleUploadPage.upload(filePath, collectionTitle);		
 		

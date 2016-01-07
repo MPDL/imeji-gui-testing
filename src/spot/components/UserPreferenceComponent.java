@@ -1,5 +1,7 @@
 package spot.components;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,7 +37,13 @@ public class UserPreferenceComponent {
 		languageComboBox = new Select(languageComboBoxWebElement);
 		
 		languageComboBox.selectByVisibleText(language);
-		languageComboBoxWebElement.submit();
+
+		try {
+			languageComboBoxWebElement.submit();
+		} catch (StaleElementReferenceException e) {
+			languageComboBoxWebElement = driver.findElement(By.xpath(".//*[@id='Header:langForm']/div/select"));
+			languageComboBoxWebElement.submit();
+		}
 	}
 
 	public String getCurrentLanguage() {

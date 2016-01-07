@@ -3,12 +3,17 @@ package spot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 
 public class SeleniumTestSuite {
@@ -24,6 +29,7 @@ public class SeleniumTestSuite {
 	
 	public static final String testEnvironmentURL = "http://qa-edmond.mpdl.mpg.de/imeji/"; 	
 //	public static final String testEnvironmentURL = "http://qa-imeji.mpdl.mpg.de/";
+//	public static final String testEnvironmentURL = "http://dev-faces.mpdl.mpg.de/";
 
 	private static final Logger log4j = LogManager.getLogger(SeleniumTestSuite.class.getName());
 	
@@ -70,8 +76,11 @@ public class SeleniumTestSuite {
 	private void setDriver(String browserType) {
 		switch (browserType) {
 			case "chrome":
-				log4j.warn("Chrome not yet supported. Launching default browser instead (Firefox)..");
-				driver = initFirefoxDriver(); 
+				ChromeOptions options = new ChromeOptions();
+				System.setProperty("webdriver.chrome.driver", "/Users/kocar/WebDrivers/chromedriver.exe");
+				DesiredCapabilities chrome = DesiredCapabilities.chrome();
+				chrome.setCapability(ChromeOptions.CAPABILITY, options);
+				driver = new ChromeDriver(); 
 				break;
 			case "firefox":
 				driver = initFirefoxDriver();

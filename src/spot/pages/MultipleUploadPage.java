@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,7 +23,8 @@ import spot.components.ActionComponent.ActionType;
 
 public class MultipleUploadPage extends BasePage {
 
-	@FindBy(xpath=".//*[@id='uploader_browse']")
+//	@FindBy(xpath=".//*[@id='uploader_browse']")
+	@FindBy(css="#tabsUpload-1>div>div:nth-of-type(2)>input")
 	private WebElement addFileButton;
 	
 	@FindBy(xpath=".//*[@id='uploader_container']/div/div[2]/div[2]/div[1]/div/a[2]")
@@ -42,11 +44,15 @@ public class MultipleUploadPage extends BasePage {
 	}
 
 	public void addFile(String filePath) throws AWTException {
-		waitForInitationPageElements(10);
-		addFileButton.click();
-//		addFileButton.sendKeys(filePath);
-//		addFileButton.submit();
-		selectFile(filePath);
+
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		
+		String js = "arguments[0].style.visibility = 'visible';";
+	    jse.executeScript(js, addFileButton);
+	    addFileButton.sendKeys(filePath);
+	    String jsa = "arguments[0].style.visibility = 'hidden';";
+	    jse.executeScript(jsa, addFileButton);
+		
 	}
 	
 	public void startUpload() {
@@ -55,19 +61,24 @@ public class MultipleUploadPage extends BasePage {
 	
 	private void selectFile(String pathToFile) throws AWTException {
 		StringSelection stringSelection = new StringSelection(pathToFile);
-		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+		
 		Robot robot = new Robot();
-//		robot.delay(5000);
+		robot.delay(1000);
+		
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 		
 	    robot.keyPress(KeyEvent.VK_CONTROL);
 	    robot.keyPress(KeyEvent.VK_V);
 	    robot.keyRelease(KeyEvent.VK_V);
 	    robot.keyRelease(KeyEvent.VK_CONTROL);
 	    
+	    
+	    
+	    
 	    robot.delay(3000);
 	    robot.keyPress(KeyEvent.VK_ENTER);
 	    robot.keyRelease(KeyEvent.VK_ENTER);
-//	    robot.delay(5000);
+	    robot.delay(2000);
 	}
 
 	public boolean verifyUploadedFiles(List<String> fileNames) {

@@ -61,23 +61,24 @@ public abstract class BasePage {
 	@FindBy(css=".imj_siteContentHeadline>h1")
 	private WebElement siteContentHeadline;
 	
-	@FindBy (xpath=".//*[@id='Header:lnkHelp']")
+	@FindBy (css="#Header\\:lnkHelp")
 	private WebElement helpButton;
 	
 	@FindBy (xpath="html/body/div[1]/div[4]/div/div[2]/a")
 	private WebElement disclaimer;	
-	
-	@FindBy(xpath="html/body/div[1]/div[4]/div/div[1]/div[2]/a")
-	private WebElement imejiHomePageLink;
-	
-	@FindBy(xpath="html/body/div[1]/div[4]/div/div[3]/div/a")
-	private WebElement mpdlHomePage;
 	
 	@FindBy(css=".fa-star")
 	private WebElement activeAlbumMenueLabel;
 	
 	@FindBy(css=".imj_overlayMenuList li>a[title='View']")
 	private WebElement viewActiveAlbumButton;
+	
+	/* @imejiHomePageLink & @mpdlHomePage only for Imeji */
+	@FindBy(xpath="html/body/div[1]/div[4]/div/div[1]/div[2]/a")
+	private WebElement imejiHomePageLink;
+	
+	@FindBy(xpath="html/body/div[1]/div[4]/div/div[3]/div/a")
+	private WebElement mpdlHomePage;
 	
 	/**
 	 * Constructor

@@ -30,13 +30,13 @@ public class UserInformsOtherUserAboutHisNewGrantsViaSystemTest extends BaseSele
 	
 	private String sharedPersonName;;
 	
-	private boolean read=false, createItems=false, editItems=false, deleteItems=false, editCollectionInformation=false, editProfile=false;
-	private boolean administrate = true;
+	private boolean read=true;
+	private boolean administrate = false, createItems=false, editItems=false, deleteItems=false, editCollectionInformation=false, editProfile=false;
 	
 	@BeforeClass
 	public void beforeClass() {		
 		
-		sharedPersonName = getPropertyAttribute("tuFamilyName");
+		sharedPersonName = getPropertyAttribute("tuFamilyName") + ", " + getPropertyAttribute("tuGivenName");
 		
 		navigateToStartPage();		
 	
@@ -52,7 +52,7 @@ public class UserInformsOtherUserAboutHisNewGrantsViaSystemTest extends BaseSele
 		mailAccountMngr.accessInboxFolder();
 	}
 	
-	@Test
+//	@Test
 	public void informUserAboutNewGrantsForNotPublishedCollectionTest() {
 		
 		CollectionsPage collectionPage = adminHomePage.goToCollectionPage();
@@ -89,7 +89,7 @@ public class UserInformsOtherUserAboutHisNewGrantsViaSystemTest extends BaseSele
 		CollectionContentPage somePublishedCollection = collectionPage.openSomePublishedCollection();
 		KindOfSharePage kindOfSharePage = somePublishedCollection.share();
 		SharePage sharePage = kindOfSharePage.shareWithAUser();
-		sharePage.share(true, getPropertyAttribute(spotRUUserName), true, false, false, false, false, false, false);
+		sharePage.share(true, getPropertyAttribute(spotRUUserName), read, createItems, editItems, deleteItems, editCollectionInformation, editProfile, administrate);
 
 		// 'shared with you' notification mail is going to be sent; Check mailBox		
 		SimpleTimeLimiter timeLimiter = new SimpleTimeLimiter();

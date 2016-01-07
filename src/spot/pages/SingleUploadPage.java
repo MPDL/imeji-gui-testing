@@ -8,8 +8,10 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -21,7 +23,7 @@ import spot.util.DefaultMetaDataProfile;
 
 public class SingleUploadPage extends BasePage {
 
-	@FindBy(css="#uploader")
+	@FindBy(css="input[type='file']")
 	private WebElement uploadButton;
 	
 	@FindBy(css="#singleUpload\\:collections")
@@ -45,17 +47,22 @@ public class SingleUploadPage extends BasePage {
 	@FindBy(css="#singleUpload\\:metadata\\:4\\:editMd\\:inputDate")
 	private WebElement metaDataDateTextField;
 	
+	@FindBy(css="#container")
+	private WebElement inputFileTagContainer;
+	
 	public SingleUploadPage(WebDriver driver) {
 		super(driver);
 		
 		PageFactory.initElements(driver, this);
 	}
 	
-	public DetailedItemViewPage upload(String pathToFile, String collectionTitle) throws AWTException {
-		
-		uploadButton.click();		
-		
-		selectFile(pathToFile);
+	public DetailedItemViewPage upload(String pathToFile, String collectionTitle) throws AWTException {	
+
+		JavascriptExecutor jse = (JavascriptExecutor)driver;		
+						
+		jse.executeScript("arguments[0].style.setProperty('display', 'block', 'important');", inputFileTagContainer);		
+		uploadButton.sendKeys(pathToFile);
+		jse.executeScript("arguments[0].style.setProperty('display', 'none', 'important');", inputFileTagContainer);		
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#singleUpload\\:collections")));
 		Select selectDropBox = new Select(selectCollectionToUploadDropBox);
@@ -67,26 +74,17 @@ public class SingleUploadPage extends BasePage {
 		return PageFactory.initElements(driver, DetailedItemViewPage.class);
 	}
 	
-	private void selectFile(String pathToFile) throws AWTException {
-		StringSelection stringSelection = new StringSelection(pathToFile);
-		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-		Robot robot = new Robot();
-		
-	    robot.keyPress(KeyEvent.VK_CONTROL);
-	    robot.keyPress(KeyEvent.VK_V);
-	    robot.keyRelease(KeyEvent.VK_V);
-	    robot.keyRelease(KeyEvent.VK_CONTROL);
-	    
-	    robot.delay(3000);
-	    robot.keyPress(KeyEvent.VK_ENTER);
-	    robot.keyRelease(KeyEvent.VK_ENTER);
+	public void jqClick(String selector, JavascriptExecutor driver, String path) {
+	    driver.executeScript("$('" + selector + "').sendKeys('" + path + "')");
 	}
-
+	
 	public DetailedItemViewPage uploadAndFillMetaData(String filePath, String collectionTitle) throws AWTException {
 		
-		uploadButton.click();		
+		JavascriptExecutor jse = (JavascriptExecutor)driver;		
 		
-		selectFile(filePath);
+		jse.executeScript("arguments[0].style.setProperty('display', 'block', 'important');", inputFileTagContainer);		
+		uploadButton.sendKeys(filePath);
+		jse.executeScript("arguments[0].style.setProperty('display', 'none', 'important');", inputFileTagContainer);
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#singleUpload\\:collections")));
 		Select selectDropBox = new Select(selectCollectionToUploadDropBox);
@@ -103,8 +101,7 @@ public class SingleUploadPage extends BasePage {
 	private void fillMetaData() {
 		
 		DefaultMetaDataProfile defaultMetaDataProfile = DefaultMetaDataProfile.getInstance();
-		
-		
+				
 		//setting title
 		wait.until(ExpectedConditions.visibilityOf(metaDataTitleTextField));
 		metaDataTitleTextField.sendKeys(defaultMetaDataProfile.getTitle());

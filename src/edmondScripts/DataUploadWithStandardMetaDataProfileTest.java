@@ -83,10 +83,11 @@ public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 			
 			uploadFile(fileTitle, filePath);
 		}
+		navigateToStartPage();
 	}
 
 	private void uploadFile(String fileTitle, String filePath) throws AWTException {
-		SingleUploadPage singleUploadPage = navigateToUploadPage();
+		SingleUploadPage singleUploadPage = adminHomePage.goToSingleUploadPage();
 		
 		DetailedItemViewPage detailedItemViewPage = singleUploadPage.uploadAndFillMetaData(filePath, collectionTitle);		
 		

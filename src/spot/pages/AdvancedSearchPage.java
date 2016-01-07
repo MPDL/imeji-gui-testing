@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class AdvancedSearchPage extends BasePage {
 
-	@FindBy(xpath=".//*[@id='imj_searchQueryMessageArea']")
+	@FindBy(css="#imj_searchQueryMessageArea")
 	private WebElement searchQueryMessageArea;
 	
 	public AdvancedSearchPage(WebDriver driver) {

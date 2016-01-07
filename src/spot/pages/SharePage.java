@@ -129,29 +129,42 @@ public class SharePage extends BasePage {
 			}
 		}
 		
+		boolean allGrantsCorrect = true;
 		List<WebElement> wantedSharedPersonCheckBoxes = wantedSharedPerson.findElements(By.cssSelector("td:nth-of-type(2) td>input"));
 		
-		// order as in html dom: read, create items, edit items, delete items, edit collection info, edit profile, administrate
-		Map<WebElement, Boolean> checkBoxes = new HashMap<WebElement, Boolean>();
-		checkBoxes.put(wantedSharedPersonCheckBoxes.get(0), read);
-		checkBoxes.put(wantedSharedPersonCheckBoxes.get(1), createItems);
-		checkBoxes.put(wantedSharedPersonCheckBoxes.get(2), editItems);
-		checkBoxes.put(wantedSharedPersonCheckBoxes.get(3), deleteItems);
-		checkBoxes.put(wantedSharedPersonCheckBoxes.get(4), editCollectionInformation);
-		checkBoxes.put(wantedSharedPersonCheckBoxes.get(5), editProfile);
-		checkBoxes.put(wantedSharedPersonCheckBoxes.get(6), administrate);
-		
-		
-		boolean allGrantsCorrect = true;		
-		Iterator iterator = checkBoxes.entrySet().iterator();
-		
-		while (iterator.hasNext() && allGrantsCorrect) {
-
-			Map.Entry<WebElement, Boolean> checkBox = (Map.Entry<WebElement, Boolean>) iterator.next();
+		if (administrate) {
 			
-			allGrantsCorrect = checkCorrectnessOfGrant(checkBox.getValue(), checkBox.getKey());
-		} 
-		
+			// since grant for administration is given, all the other grants are given to
+			Iterator<WebElement> iterator = wantedSharedPersonCheckBoxes.iterator();
+			
+			while (iterator.hasNext() && allGrantsCorrect) {
+				
+				WebElement grantCheckBox = iterator.next();
+				if (!grantCheckBox.isSelected())
+					allGrantsCorrect = false;
+			}
+						
+		} else {			
+			
+			// order as in html dom: read, create items, edit items, delete items, edit collection info, edit profile, administrate
+			Map<WebElement, Boolean> checkBoxes = new HashMap<WebElement, Boolean>();
+			checkBoxes.put(wantedSharedPersonCheckBoxes.get(0), read);
+			checkBoxes.put(wantedSharedPersonCheckBoxes.get(1), createItems);
+			checkBoxes.put(wantedSharedPersonCheckBoxes.get(2), editItems);
+			checkBoxes.put(wantedSharedPersonCheckBoxes.get(3), deleteItems);
+			checkBoxes.put(wantedSharedPersonCheckBoxes.get(4), editCollectionInformation);
+			checkBoxes.put(wantedSharedPersonCheckBoxes.get(5), editProfile);
+			checkBoxes.put(wantedSharedPersonCheckBoxes.get(6), administrate);
+							
+			Iterator iterator = checkBoxes.entrySet().iterator();
+			
+			while (iterator.hasNext() && allGrantsCorrect) {
+	
+				Map.Entry<WebElement, Boolean> checkBox = (Map.Entry<WebElement, Boolean>) iterator.next();
+				
+				allGrantsCorrect = checkCorrectnessOfGrant(checkBox.getValue(), checkBox.getKey());
+			} 
+		}
 		return allGrantsCorrect;
 	}
 
