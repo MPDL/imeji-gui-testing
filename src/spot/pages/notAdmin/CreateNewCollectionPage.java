@@ -155,9 +155,9 @@ public class CreateNewCollectionPage extends BasePage {
 		
 		// organization related
 		confirmOrganizationName(orgName);
-		setOrganizationDescription("Das ist eine Testbeschreibung für die Organisation.");
+		setOrganizationDescription("This is a test description for the organization.");
 		confirmOrganizationIdentifier();
-		setCity("München");
+		setCity("Munich");
 		setCountry("Deutschland");		
 	}
 	

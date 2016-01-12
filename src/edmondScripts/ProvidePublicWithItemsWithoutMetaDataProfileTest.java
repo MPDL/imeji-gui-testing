@@ -48,22 +48,6 @@ public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSeleni
 		files = new HashMap<String, String>();
 		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
 		files.put("SamplePDFFile.pdf", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePDFFile.pdf");
-//		files.put("Wüste.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Wüste.jpg");
-//		files.put("Hortensien.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Hortensien.jpg");
-//		files.put("Qualle.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Qualle.jpg");
-//		files.put("Koala.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Koala.jpg");
-//		files.put("Leuchtturm.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Leuchtturm.jpg");
-//		files.put("Pinguine.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Pinguine.jpg");		
-//		files.put("SamplePNGFile.png", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePNGFile.png");
-//		files.put("SampleSWCFile.swc", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleSWCFile.swc");
-//		files.put("SampleTIFFFile.tiff", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleTIFFFile.tiff");
-//		files.put("SampleWordFile.docx", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleWordFile.docx");
-//		files.put("SampleXLSXFile.xlsx", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleXLSXFile.xlsx");
-//		files.put("Tulpen.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Tulpen.jpg");
-		
-		
-		
-		
 		
 		new StartPage(driver).selectLanguage(englishSetup);
 	}

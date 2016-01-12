@@ -64,7 +64,7 @@ public class CreateCollectionWithLongDescriptionTest extends BaseSelenium {
 //		String errorMessage = createNewCollectionPage.getMessageComponent()
 //				.getErrorMessage();
 //		Assert.assertEquals(errorMessage,
-//				"Ein Organisation benötigt einen Namen",
+//				"",
 //				"Default error essage for missing organisation is not displayed");
 //
 //		String siteContentHeadline = collectionEntryPage
