@@ -109,7 +109,7 @@ public class SeleniumTestSuite {
 	@AfterSuite
 	public static void quitDriver() {
 		log4j.info("Quitting driver..");
-//		driver.quit();
+		driver.quit();
 	}	
 
 	public static WebDriver getDriver() {
