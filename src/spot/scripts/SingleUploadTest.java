@@ -49,7 +49,7 @@ public class SingleUploadTest extends BaseSelenium{
 	
 	@Test (priority = 2)
 	public void testSelectCollectionToUploadFile() {
-//		String collectionName = "Default first collection of Kocar, Gülüsan"; 
+//		String collectionName = "Default first collection of Kocar"; 
 //		String selectedComboText = singleUploadPage.selectCollectionToUploadFile(collectionName);
 //		
 //		Assert.assertTrue(collectionName.equalsIgnoreCase(selectedComboText), "Name of currently selected combobox value doesn't match with expected value");

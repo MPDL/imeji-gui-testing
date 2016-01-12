@@ -51,7 +51,7 @@ public class CreateCollectionSuccessfullyTest extends BaseSelenium {
 		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 		
 		String collectionTitle = "Testsammlung Montag";
-		String collectionDescription = "Das ist eine Testbeschreibung für eine neue Sammlung.";
+		String collectionDescription = "This is a test description for a new collection.";
 		
 		CollectionEntryPage collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle, collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
 				getPropertyAttribute("aOrganizationName"));
