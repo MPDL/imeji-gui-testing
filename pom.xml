@@ -35,6 +35,9 @@
 						<!-- Add other suite xml files HERE if needed -->
 						<!-- <suiteXmlFile></suiteXmlFile> -->
 					</suiteXmlFiles>
+					<skipTests>false</skipTests>
+                	<testFailureIgnore>true</testFailureIgnore>
+        			<forkMode>once</forkMode>
 				</configuration>
 			</plugin>
 		</plugins>
