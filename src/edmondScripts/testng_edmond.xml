@@ -35,12 +35,11 @@
 			<class name="edmondScripts.CreateAlbumTest" />
 			
 			<class name="edmondScripts.PublishAlbumTest" />
-	
-<!--  -->	
-<!-- 			<class name="edmondScripts.UserInformsOtherUserAboutHisNewGrantsViaSystemTest" /> -->
+		
+			<class name="edmondScripts.UserInformsOtherUserAboutHisNewGrantsViaSystemTest" />
 			
-<!-- 			<class name="edmondScripts.UserSharesAdminGrantsTest" /> -->
-<!--  -->
+			<class name="edmondScripts.UserSharesAdminGrantsTest" />
+
 			
 		</classes>
 	</test>
