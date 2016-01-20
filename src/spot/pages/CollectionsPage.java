@@ -8,8 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import spot.components.FilterComponent;
 import spot.components.SortingComponent;
 
 public class CollectionsPage extends BasePage {
@@ -17,6 +17,8 @@ public class CollectionsPage extends BasePage {
 	private List<WebElement> collectionList;
 	
 	private SortingComponent sortingComponent;
+	
+	private FilterComponent filterComponent;
 	
 	@FindBy(css="#ajaxWrapper>div:nth-of-type(2)>form>a")
 	private WebElement showAllCollectionsButton;
@@ -26,7 +28,13 @@ public class CollectionsPage extends BasePage {
 		
 		collectionList = driver.findElements(By.className("imj_bibliographicListItem"));
 		
+		filterComponent = new FilterComponent(driver);
+		
 		PageFactory.initElements(driver, this);
+	}
+	
+	public FilterComponent getFilterComponent() {
+		return filterComponent;
 	}
 
 	private WebElement getFirstCollectionInList() {
@@ -178,5 +186,12 @@ public class CollectionsPage extends BasePage {
 			}
 		}
 	}
+
+	public void deleteCollections() {
+		for (WebElement collection : collectionList) {
+			collection.findElement(By.cssSelector(".imj_itemActionArea li:nth-of-type(2) a")).click();
+		}
+	}
+
 
 }
