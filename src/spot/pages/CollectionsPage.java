@@ -116,17 +116,46 @@ public class CollectionsPage extends BasePage {
 			if (status.findElements(By.xpath(".//*")).size()==0) {
 				System.out.println("This collection is published");
 				
-				somePublishedCollection = collection;				
+				somePublishedCollection = collection;
 				break;
 			} 
 		}
 		
-		// open start page of the selected collection
-		somePublishedCollection.findElement(By.cssSelector(".imj_itemActionArea li:nth-of-type(2) a")).click();
+		if (somePublishedCollection != null) {
+			// open start page of the selected collection
+			somePublishedCollection.findElement(By.cssSelector(".imj_itemActionArea li:nth-of-type(2) a")).click();
+			
+			return PageFactory.initElements(driver, CollectionContentPage.class);
+		} else {
+			return null;
+		}
+	}
+
+	public CollectionContentPage openCollectionByTitle(String collectionTitle) {
+		
+		WebElement collectionInQuestion = null;
+		
+		// since page could have been refreshed due to checkCollectionList()
+		collectionList = driver.findElements(By.className("imj_bibliographicListItem"));
+		
+		for (WebElement collection : collectionList) {
+			
+			WebElement collBody = collection.findElement(By.className("imj_itemContent"));
+			
+			WebElement collHeadline = collBody.findElement(By.className("imj_itemHeadline"));
+			
+			String headline = collHeadline.getText();
+			
+			if (headline.equals(collectionTitle)) {
+				collectionInQuestion = collection;
+			}
+		}
+					
+		collectionInQuestion.findElement(By.cssSelector(".imj_itemActionArea li:nth-of-type(2) a")).click();
 		
 		return PageFactory.initElements(driver, CollectionContentPage.class);
 	}
-
+	
 	public CollectionContentPage openSomeNotPublishedCollection() {
 		
 		checkCollectionList();
@@ -164,7 +193,7 @@ public class CollectionsPage extends BasePage {
 				} catch (NumberFormatException nfe) {
 					// no valid number
 					// do nothing
-				}				
+				}
 			} 
 		}
 		
@@ -192,6 +221,7 @@ public class CollectionsPage extends BasePage {
 			collection.findElement(By.cssSelector(".imj_itemActionArea li:nth-of-type(2) a")).click();
 		}
 	}
+
 
 
 }

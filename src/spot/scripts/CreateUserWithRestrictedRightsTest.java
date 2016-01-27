@@ -53,8 +53,4 @@ public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
 		adminHomePage.logout();
 	}
 
-//	@Override
-//	public void setTestLinkTestCaseID() {
-//		testLinkTestCaseID = "IM-8";
-//	}
 }

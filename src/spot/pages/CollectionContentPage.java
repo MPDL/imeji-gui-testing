@@ -9,8 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
@@ -158,10 +156,10 @@ public class CollectionContentPage extends BasePage {
 		for (WebElement item : getItemList()) {
 			item.findElement(By.cssSelector("span>input")).click();
 		}
-		
+
 		try {
 			selectedItemCount.click();
-		} catch (StaleElementReferenceException e) {
+		} catch (NoSuchElementException e) {
 			retryingFindClick(By.cssSelector("#selPanel\\:preListForm\\:lblSelectedSize"));
 		}
 		

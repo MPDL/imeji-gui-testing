@@ -49,7 +49,7 @@ public class ProvidePublicWithItemsWithMetaDataProfileTest extends BaseSelenium 
 		new StartPage(driver).selectLanguage(englishSetup);
 	}
 
-	@Test (priority = 1)/*(groups = {"login", "dataUploadWithoutMetaDataProfile"})*/
+	@Test (priority = 1)
 	public void loginTest() {
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 
@@ -58,7 +58,7 @@ public class ProvidePublicWithItemsWithMetaDataProfileTest extends BaseSelenium 
 	
 	}
 
-	@Test(priority = 2)/*(groups={"collectionCreated", "dataUploadWithoutMetaDataProfile"}, dependsOnGroups = "login")*/
+	@Test(priority = 2)
 	public void createCollectionWithMetaDataProfileTest() {
 		System.out.println("Attempt to create collection without meta data");
 		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
@@ -78,7 +78,7 @@ public class ProvidePublicWithItemsWithMetaDataProfileTest extends BaseSelenium 
 
 	}
 
-	@Test (priority = 3)/*(groups="dataUploadWithoutMetaDataProfile", dependsOnGroups="collectionCreated")*/
+	@Test (priority = 3)
 	public void uploadFilesTest() throws AWTException {
 
 		multipleUploadPage = collectionEntryPage.uploadContent();
@@ -96,7 +96,7 @@ public class ProvidePublicWithItemsWithMetaDataProfileTest extends BaseSelenium 
 		Assert.assertTrue(isVerificationSuccessfull, "The list of uploaded files is probably incomplete.");
 	}
 
-	@Test (priority = 4)/*(groups = "dataUploadWithoutMetaDataProfile")*/
+	@Test (priority = 4)
 	public void publishCollectionTest() {
 		
 		multipleUploadPage.publishCollection();

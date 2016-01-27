@@ -6,7 +6,6 @@ import org.testng.annotations.*;
 
 import spot.BaseSelenium;
 import spot.components.NewActionComponent;
-import spot.pages.StartPage;
 
 public class LimitedAccessForNruTest extends BaseSelenium {
 

@@ -1,16 +1,12 @@
 package edmondScripts;
 
 import java.awt.AWTException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
@@ -18,7 +14,6 @@ import spot.components.ActionComponent;
 import spot.components.ActionComponent.ActionType;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
-import spot.pages.CollectionsPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
@@ -29,7 +24,6 @@ public class DiscardCollectionTest extends BaseSelenium {
  	
 	private AdminHomePage adminHomePage;
 	
-	private CollectionEntryPage collectionEntryPage;
 	private String collectionTitle;
 	
 	private HashMap<String, String> files;

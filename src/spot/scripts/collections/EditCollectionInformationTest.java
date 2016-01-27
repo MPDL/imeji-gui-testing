@@ -1,6 +1,5 @@
 package spot.scripts.collections;
 
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 

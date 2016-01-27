@@ -1,12 +1,7 @@
 package spot.pages;
 
 import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -16,7 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import spot.components.ActionComponent;
 import spot.components.ActionComponent.ActionType;
@@ -59,28 +53,6 @@ public class MultipleUploadPage extends BasePage {
 		startUploadButton.click();		
 	}
 	
-	private void selectFile(String pathToFile) throws AWTException {
-		StringSelection stringSelection = new StringSelection(pathToFile);
-		
-		Robot robot = new Robot();
-		robot.delay(1000);
-		
-		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-		
-	    robot.keyPress(KeyEvent.VK_CONTROL);
-	    robot.keyPress(KeyEvent.VK_V);
-	    robot.keyRelease(KeyEvent.VK_V);
-	    robot.keyRelease(KeyEvent.VK_CONTROL);
-	    
-	    
-	    
-	    
-	    robot.delay(3000);
-	    robot.keyPress(KeyEvent.VK_ENTER);
-	    robot.keyRelease(KeyEvent.VK_ENTER);
-	    robot.delay(2000);
-	}
-
 	public boolean verifyUploadedFiles(List<String> fileNames) {
 		boolean successfullVerification = true;
 

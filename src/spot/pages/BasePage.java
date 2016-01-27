@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -16,10 +15,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import spot.CategoryType;
 import spot.components.MainMenuComponent;
 import spot.components.MessageComponent;
 import spot.components.NewActionComponent;
@@ -37,8 +34,6 @@ import spot.pages.notAdmin.HomePage;
  */
 public abstract class BasePage {
 
-	private static final Logger log4j = LogManager.getLogger(BasePage.class.getName());
-	
 	protected WebDriver driver;
 	
 	protected WebDriverWait wait; 
@@ -179,12 +174,6 @@ public abstract class BasePage {
 				destination = arrayList.get(0);
 			}
 		}
-		// TODO contact support link via javascript
-		/*
-		 * else if (href.startsWith("javascript:")) {
-		 * 
-		 * }
-		 */
 
 		return destination;
 	}

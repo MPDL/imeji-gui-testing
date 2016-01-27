@@ -53,7 +53,7 @@ public class PublishAlbumTest extends BaseSelenium {
 	}
 
 	@Test (priority=2)
-	private void addPublishedFilesToAlbum() {
+	public void addPublishedFilesToAlbum() {
 		CollectionsPage collectionPage = adminHomePage.goToCollectionPage();
 		
 		CollectionContentPage releasedCollectionContentPage = collectionPage.openSomePublishedCollection();
@@ -65,7 +65,7 @@ public class PublishAlbumTest extends BaseSelenium {
 	}
 	
 	@Test (priority=3)
-	private void addNotYetPublishedFilesToAlbum() {
+	public void addNotYetPublishedFilesToAlbum() {
 		CollectionsPage collectionPage = adminHomePage.goToCollectionPage();
 		
 		// somehow get not yet published file

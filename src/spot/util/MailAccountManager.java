@@ -22,6 +22,12 @@ import org.apache.logging.log4j.Logger;
 import com.sun.mail.imap.IMAPFolder;
 import com.sun.mail.imap.IMAPStore;
 
+/**
+ * This class provides access to an email account.
+ * 
+ * @author kocar
+ *
+ */
 public class MailAccountManager {
 
 	private static final Logger log4j = LogManager.getLogger(MailAccountManager.class.getName());
@@ -34,11 +40,18 @@ public class MailAccountManager {
 
 	private Properties data;
 	
+	/**
+	 * constructor with the required email account access data
+	 * @param properties
+	 */
 	public MailAccountManager(Properties properties) {
 		data = properties;
 		setupEmailSession();
 	}
 	
+	/**
+	 * To be able to access the email account, a session with the required data needs to be established.
+	 */
 	private void setupEmailSession() {
 		Properties properties = new Properties();
 		properties.put("mail.imap.host", data.getProperty("tuHost"));
@@ -53,6 +66,9 @@ public class MailAccountManager {
 		emailSession = Session.getDefaultInstance(properties, auth);
 	}
 
+	/**
+	 * Accessing the inbox folder of the email account.
+	 */
 	public synchronized void accessInboxFolder() {				
 		
 		// create the imap store object and connect with the pop server
@@ -139,6 +155,11 @@ public class MailAccountManager {
 		return null;
 	}
 	
+	/**
+	 * This method checks for the the awaited mail every 5000 milliseconds.
+	 * 
+	 * @return The message in a string.
+	 */
 	public synchronized String checkForNewMessage() {
 		
 		try {

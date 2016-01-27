@@ -1,28 +1,21 @@
 package spot.pages;
 
 import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
-import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import spot.util.DefaultMetaDataProfile;
 
 public class SingleUploadPage extends BasePage {
-
+	
 	@FindBy(css="input[type='file']")
 	private WebElement uploadButton;
 	
@@ -56,7 +49,7 @@ public class SingleUploadPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public DetailedItemViewPage upload(String pathToFile, String collectionTitle) throws AWTException {	
+	public DetailedItemViewPage upload(String pathToFile, String collectionTitle) throws AWTException, TimeoutException {	
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;		
 						
@@ -67,7 +60,7 @@ public class SingleUploadPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#singleUpload\\:collections")));
 		Select selectDropBox = new Select(selectCollectionToUploadDropBox);
 		selectDropBox.selectByVisibleText(collectionTitle);
-		
+				
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#singleUpload\\:submitBottom")));
 		saveButton.click();
 		
@@ -78,7 +71,7 @@ public class SingleUploadPage extends BasePage {
 	    driver.executeScript("$('" + selector + "').sendKeys('" + path + "')");
 	}
 	
-	public DetailedItemViewPage uploadAndFillMetaData(String filePath, String collectionTitle) throws AWTException {
+	public DetailedItemViewPage uploadAndFillMetaData(String filePath, String collectionTitle) throws AWTException, TimeoutException {
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;		
 		
@@ -100,7 +93,7 @@ public class SingleUploadPage extends BasePage {
 
 	private void fillMetaData() {
 		
-		DefaultMetaDataProfile defaultMetaDataProfile = DefaultMetaDataProfile.getInstance();
+		DefaultMetaDataProfile defaultMetaDataProfile = DefaultMetaDataProfile.getDefaultMetaDataProfileInstance();
 				
 		//setting title
 		wait.until(ExpectedConditions.visibilityOf(metaDataTitleTextField));

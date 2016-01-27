@@ -52,7 +52,6 @@ public class UserInformsOtherUserAboutHisNewGrantsViaSystemTest extends BaseSele
 		mailAccountMngr.accessInboxFolder();
 	}
 	
-//	@Test
 	public void informUserAboutNewGrantsForNotPublishedCollectionTest() {
 		
 		CollectionsPage collectionPage = adminHomePage.goToCollectionPage();

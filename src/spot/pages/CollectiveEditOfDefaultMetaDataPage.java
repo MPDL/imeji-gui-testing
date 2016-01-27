@@ -1,11 +1,7 @@
 package spot.pages;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -16,7 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-import spot.components.SortingComponent.Order;
 
 /**
  * default meta data profile
@@ -59,8 +54,6 @@ public class CollectiveEditOfDefaultMetaDataPage extends BasePage {
 
 	@FindBy(xpath = ".//*[@id='batchEditForm:metadata:3:j_idt135:exportFormatSelection']")
 	private WebElement publicationCitationStyleDropBoxWebElement;
-
-	private Select publicationCitationStyleDropBox;
 
 	/** Meta data: Date **/	
 	@FindBy(css = "#dp1448611126646")

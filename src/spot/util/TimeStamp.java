@@ -3,6 +3,13 @@ package spot.util;
 import java.sql.Timestamp;
 import java.util.Date;
 
+/**
+ * Provides a time stamp.
+ * Format example: "2016-01-27 09:20:06" 
+ * 
+ * @author kocar
+ *
+ */
 public class TimeStamp {
 
 	public static String getTimeStamp() {

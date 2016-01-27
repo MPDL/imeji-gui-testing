@@ -4,6 +4,9 @@ import java.awt.AWTException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -21,6 +24,8 @@ import spot.util.TimeStamp;
 
 public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 
+	private static final Logger log4j = LogManager.getLogger(DataUploadWithStandardMetaDataProfileTest.class.getName());
+	
 	private LoginPage loginPage;
 	private AdminHomePage adminHomePage;
 	private CollectionEntryPage collectionEntryPage;
@@ -46,7 +51,7 @@ public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 		adminHomePage.logout();
 	}
 
-	@Test(priority=1)/*(groups = { "login", "dataUploadWithStandardMetaDataProfile" })*/
+	@Test(priority=1)
 	public void loginTest() {
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName),
 				getPropertyAttribute(spotRUPassWord));
@@ -55,7 +60,7 @@ public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 		Assert.assertEquals(adminHomePage.getLoggedInUserFullName(), adminFullName, "User name doesn't match");
 	}
 
-	@Test(priority=2)/*(groups = { "collectionCreated", "dataUploadWithStandardMetaDataProfile" }, dependsOnGroups = "login")*/
+	@Test(priority=2)
 	public void createCollectionWithMetaDataProfileTest() {
 		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 
@@ -73,7 +78,7 @@ public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");
 	}
 
-	@Test(priority=3)/*(groups = {"collectionUploaded", "dataUploadWithStandardMetaDataProfile"}, dependsOnGroups = "collectionCreated")*/
+	@Test(priority=3)
 	public void uploadFilesTest() throws AWTException {
 		navigateToStartPage();
 		
@@ -89,33 +94,39 @@ public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 	private void uploadFile(String fileTitle, String filePath) throws AWTException {
 		SingleUploadPage singleUploadPage = adminHomePage.goToSingleUploadPage();
 		
-		DetailedItemViewPage detailedItemViewPage = singleUploadPage.uploadAndFillMetaData(filePath, collectionTitle);		
+		try {
+			DetailedItemViewPage detailedItemViewPage = singleUploadPage.uploadAndFillMetaData(filePath, collectionTitle);		
+			
+			DefaultMetaDataProfile defaultMetaDataProfile = DefaultMetaDataProfile.getDefaultMetaDataProfileInstance();
+			
+			// is detailed item view page displayed
+			Assert.assertTrue(detailedItemViewPage.isDetailedItemViewPageDisplayed(), "Detailed item view page not displayed");		
+	
+			// is collection title correct
+			Assert.assertTrue(detailedItemViewPage.getCollectionTitle().equals(collectionTitle), "Something went wrong with uploading file; collection title not the one that was selected");
+			
+			// is file name correct		
+			Assert.assertTrue(detailedItemViewPage.getFileTitle().equals(fileTitle), "Something went wrong with uploading file; file name title not the one that was selected");
+			
+			// is meta data title correct
+			Assert.assertTrue(detailedItemViewPage.getTitleLabel().equals(defaultMetaDataProfile.getTitle()), "Something went wrong with uploading file; title not correct");
+	
+			// is meta data id correct
+			Assert.assertTrue(detailedItemViewPage.getIDLabel().equals(defaultMetaDataProfile.getId()), "Something went wrong with uploading file; id not correct");
+			
+			// is meta data author family name correct
+			Assert.assertTrue(detailedItemViewPage.getAuthorFamilyNameLabel().equals(defaultMetaDataProfile.getAuthor()), "Something went wrong with uploading file; autor not correct");
+			
+			// is publication link correct
+			Assert.assertTrue(detailedItemViewPage.getPublicationLinkLabel().equals(defaultMetaDataProfile.getPublicationLink()), "Something went wrong with uploading file; publication link not correct");
+			
+			// is date correct
+			Assert.assertTrue(detailedItemViewPage.getDateLabel().equals(defaultMetaDataProfile.getDate()), "Something went wrong with uploading file; date not correct");
 		
-		DefaultMetaDataProfile defaultMetaDataProfile = DefaultMetaDataProfile.getInstance();
-		
-		// is detailed item view page displayed
-		Assert.assertTrue(detailedItemViewPage.isDetailedItemViewPageDisplayed(), "Detailed item view page not displayed");		
-
-		// is collection title correct
-		Assert.assertTrue(detailedItemViewPage.getCollectionTitle().equals(collectionTitle), "Something went wrong with uploading file; collection title not the one that was selected");
-		
-		// is file name correct		
-		Assert.assertTrue(detailedItemViewPage.getFileTitle().equals(fileTitle), "Something went wrong with uploading file; file name title not the one that was selected");
-		
-		// is meta data title correct
-		Assert.assertTrue(detailedItemViewPage.getTitleLabel().equals(defaultMetaDataProfile.getTitle()), "Something went wrong with uploading file; title not correct");
-
-		// is meta data id correct
-		Assert.assertTrue(detailedItemViewPage.getIDLabel().equals(defaultMetaDataProfile.getId()), "Something went wrong with uploading file; id not correct");
-		
-		// is meta data author family name correct
-		Assert.assertTrue(detailedItemViewPage.getAuthorFamilyNameLabel().equals(defaultMetaDataProfile.getAuthor()), "Something went wrong with uploading file; autor not correct");
-		
-		// is publication link correct
-		Assert.assertTrue(detailedItemViewPage.getPublicationLinkLabel().equals(defaultMetaDataProfile.getPublicationLink()), "Something went wrong with uploading file; publication link not correct");
-		
-		// is date correct
-		Assert.assertTrue(detailedItemViewPage.getDateLabel().equals(defaultMetaDataProfile.getDate()), "Something went wrong with uploading file; date not correct");
+		} catch (TimeoutException timeOutExc) {
+			log4j.error(timeOutExc);
+			Assert.assertTrue(false, "Time out error regarding single upload: Either collection couldn't be found or the button 'save' didn't appear. Summarized: The upload failed.");
+		}
 	}	
 	
 }

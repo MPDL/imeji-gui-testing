@@ -1,7 +1,5 @@
 package spot.pages;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,8 +18,6 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class StartPage extends BasePage {
 
-	private static final Logger log4j = LogManager.getLogger(StartPage.class.getName());
-	
 	@FindBy(xpath =".//*[@id='Header:loginForm:lnkLogin1']")
 	private WebElement openLoginFormButton;
 	

@@ -6,7 +6,6 @@ import org.testng.annotations.*;
 import spot.BaseSelenium;
 import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionEntryPage;
-import spot.pages.CollectionsPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
@@ -51,7 +50,7 @@ public class CreateCollectionSuccessfullyTest extends BaseSelenium {
 		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 		
 		String collectionTitle = "Testsammlung Montag";
-		String collectionDescription = "This is a test description for a new collection.";
+		String collectionDescription = "Das ist eine Testbeschreibung f�r eine neue Sammlung.";
 		
 		CollectionEntryPage collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle, collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
 				getPropertyAttribute("aOrganizationName"));
@@ -62,11 +61,5 @@ public class CreateCollectionSuccessfullyTest extends BaseSelenium {
 		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");		
 	}
 
-	@Test
-	public void createCollectionFromCollectionStartPage() {
-		CollectionsPage collectionsPage = adminHomePage.goToCollectionPage();
-		Assert.assertEquals(true, false);
-//		collectionsPage.
-	}
 
 }

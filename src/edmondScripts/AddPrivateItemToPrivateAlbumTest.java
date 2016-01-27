@@ -9,11 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
-import spot.components.FilterComponent;
-import spot.components.FilterComponent.FilterOptions;
 import spot.pages.CollectionEntryPage;
-import spot.pages.CollectionsPage;
-import spot.pages.DetailedItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;

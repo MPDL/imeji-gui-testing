@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -40,23 +39,11 @@ public class AllUsersOverViewPage extends BasePage {
 		deleteButton.click();
 		
 		wait.until(ExpectedConditions.visibilityOf(toBeDeletedUser));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id, 'deleteUser')]")));
 		
-		WebElement deleteUserWebElemBlock = toBeDeletedUser.findElement(By.xpath("//div[contains(@id, 'deleteUser')]"));
-		
-		tmpElementList = deleteUserWebElemBlock.findElements(By.tagName("input"));
-		
-		WebElement confirmDeletion = null;
-		
-		for (WebElement tmpWE : tmpElementList) {
-			String valueName = tmpWE.getAttribute("value");
-			if (valueName.equals("Delete user")) {
-				confirmDeletion = tmpWE;
-				break;
-			}
-		}
-		
-		confirmDeletion.click();
+		WebElement confirmDelete = toBeDeletedUser.findElement(By.cssSelector("div:nth-of-type(2)> div[id^=deleteUser] .imj_submitPanel form .imj_submitButton"));
+
+		wait.until(ExpectedConditions.visibilityOf(confirmDelete));
+		confirmDelete.click();
 	}
 
 	private WebElement findUserByEmail(String emailInQuestion) {

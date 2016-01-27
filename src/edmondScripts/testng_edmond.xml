@@ -22,7 +22,7 @@
 
 <!-- 			<class name="edmondScripts.CreateIndividualMetaDataProfileTest" /> -->
 			
-			<class name="edmondScripts.DownloadFileRUTest" />
+<!-- 			<class name="edmondScripts.DownloadFileRUTest" /> -->
 
 <!-- 			<class name="spot.scripts.CreateUserWithRestrictedRightsTest" /> -->
 			
@@ -38,9 +38,7 @@
 		
 <!-- 			<class name="edmondScripts.UserInformsOtherUserAboutHisNewGrantsViaSystemTest" /> -->
 			
-<!-- 			<class name="edmondScripts.UserSharesAdminGrantsTest" /> -->
-
-<!-- 			<class name="edmondScripts.AddPrivateItemToPrivateAlbumTest"/> -->
+			<class name="edmondScripts.UserSharesAdminGrantsTest" />
 			
 		</classes>
 	</test>

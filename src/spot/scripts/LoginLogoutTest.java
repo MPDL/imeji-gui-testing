@@ -2,9 +2,6 @@ package spot.scripts;
 
 import java.lang.reflect.Method;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -29,8 +26,6 @@ import spot.pages.notAdmin.HomePage;
  */
 public class LoginLogoutTest extends BaseSelenium {
 
-	private static final Logger log4j = LogManager.getLogger(LoginLogoutTest.class.getName());
-	
 	private LoginPage loginPage;
 
 	@BeforeMethod

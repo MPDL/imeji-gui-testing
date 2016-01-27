@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterClass;
 
 import spot.BaseSelenium;
-import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
@@ -49,7 +48,7 @@ public class CreateCollectionWithoutOrgNameTest extends BaseSelenium {
 				.goToCreateNewCollectionPage();
 
 		String collectionTitle = "Dienstag";
-		String collectionDescription = "test text for Tuesday.";
+		String collectionDescription = "Testtext f�r Dienstag.";
 		CollectionEntryPage collectionEntryPage = createNewCollectionPage
 				.createCollectionWithoutStandardMetaDataProfile(collectionTitle, collectionDescription, getPropertyAttribute("aGivenName"),
 						getPropertyAttribute("aFamilyName"), "");
@@ -60,9 +59,8 @@ public class CreateCollectionWithoutOrgNameTest extends BaseSelenium {
 
 		String errorMessage = createNewCollectionPage.getMessageComponent()
 				.getErrorMessage();
-		// TODO
 		Assert.assertEquals(errorMessage,
-				"",
+				"Ein Organisation ben�tigt einen Namen",
 				"Default error essage for missing organisation is not displayed");
 
 	}

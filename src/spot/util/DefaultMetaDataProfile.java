@@ -1,5 +1,12 @@
 package spot.util;
 
+/**
+ * This class provides a singleton object by accessing the method 'getDefaultMetaDataProfileInstance'.
+ * The instance represents a default meta data profile object.
+ * 
+ * @author kocar
+ *
+ */
 public class DefaultMetaDataProfile {
 	
 	private static final DefaultMetaDataProfile DMDP = new DefaultMetaDataProfile();
@@ -39,7 +46,7 @@ public class DefaultMetaDataProfile {
 		return date;
 	}
 	
-	public static DefaultMetaDataProfile getInstance() {
+	public static DefaultMetaDataProfile getDefaultMetaDataProfileInstance() {
 		return DMDP;
 	}
 	

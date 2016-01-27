@@ -10,8 +10,6 @@ import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.CreateNewCollectionPage;
 
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -51,9 +49,4 @@ public class NewActionTest extends BaseSelenium {
 		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");		
 	}
 
-	@Test
-	public void createAlbumTest() {
-//		adminHomePage.createNewAlbum();
-		Assert.assertEquals(true, false);
-	}
 }

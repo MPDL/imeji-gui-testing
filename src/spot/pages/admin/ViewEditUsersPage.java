@@ -2,10 +2,7 @@ package spot.pages.admin;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,8 +12,6 @@ import spot.pages.BasePage;
 
 public class ViewEditUsersPage extends BasePage {
 
-	private static final Logger log4j = LogManager.getLogger(ViewEditUsersPage.class.getName());
-	
 	@FindBy (xpath ="html/body/div[1]/div[4]/div[3]/div/div[2]")
 	private WebElement userList;
 	

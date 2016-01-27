@@ -1,6 +1,5 @@
 package spot.scripts;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -105,12 +104,6 @@ public class RegistrationTest extends BaseSelenium {
 		String userFullName = getPropertyAttribute("tuGivenName") + " " + getPropertyAttribute("tuFamilyName");
 		
 		Assert.assertEquals(homePage.getLoggedInUserFullName(), userFullName, "User name doesn't match");		
-	}
-	
-	@Test (priority = 5)
-	public void changePasswordTest() {
-		HomePage homePage = PageFactory.initElements(driver, HomePage.class);
-		Assert.assertEquals(true, false);
 	}
 	
 	@AfterClass
