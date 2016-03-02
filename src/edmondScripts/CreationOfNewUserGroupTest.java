@@ -26,7 +26,7 @@ public class CreationOfNewUserGroupTest extends BaseSelenium {
 	public void beforeClass() {		
 		navigateToStartPage();		
 	
-		new StartPage(driver).selectLanguage(englishSetup);
+//		new StartPage(driver).selectLanguage(englishSetup);
 		
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName), getPropertyAttribute(spotAdminPassWord));

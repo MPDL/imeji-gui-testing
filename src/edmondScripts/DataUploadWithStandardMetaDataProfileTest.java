@@ -41,9 +41,10 @@ public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 		loginPage = new StartPage(driver).openLoginForm();
 
 		files = new HashMap<String, String>();
-		files.put("SampleTIFFFile.tiff", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleTIFFFile.tiff");
+		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
+//		files.put("SampleTIFFFile.tiff", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleTIFFFile.tiff");
 		
-		new StartPage(driver).selectLanguage(englishSetup);
+//		new StartPage(driver).selectLanguage(englishSetup);
 	}
 
 	@AfterClass

@@ -43,10 +43,11 @@ public class ProvidePublicWithItemsWithMetaDataProfileTest extends BaseSelenium 
 		loginPage = new StartPage(driver).openLoginForm();
 		
 		files = new HashMap<String, String>();
-		files.put("SampleXLSXFile.xlsx", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleXLSXFile.xlsx");
-		files.put("SampleSWCFile.swc", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleSWCFile.swc");		
+		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
+//		files.put("SampleXLSXFile.xlsx", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleXLSXFile.xlsx");
+//		files.put("SampleSWCFile.swc", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleSWCFile.swc");		
 		
-		new StartPage(driver).selectLanguage(englishSetup);
+//		new StartPage(driver).selectLanguage(englishSetup);
 	}
 
 	@Test (priority = 1)

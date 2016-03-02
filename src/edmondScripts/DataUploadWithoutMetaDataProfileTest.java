@@ -49,10 +49,11 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium/*extends 
 		loginPage = new StartPage(driver).openLoginForm();
 		
 		files = new HashMap<String, String>();
-		files.put("SamplePNGFile.png", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePNGFile.png");
-		files.put("SampleWordFile.docx", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleWordFile.docx");		
+		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
+//		files.put("SamplePNGFile.png", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePNGFile.png");
+//		files.put("SampleWordFile.docx", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleWordFile.docx");		
 		
-		new StartPage(driver).selectLanguage(englishSetup);
+//		new StartPage(driver).selectLanguage(englishSetup);
 	}
 
 	@Test (priority = 1)

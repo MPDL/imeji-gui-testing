@@ -26,7 +26,7 @@ public class DeleteCollectionTest extends BaseSelenium {
 		navigateToStartPage();
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 
-		new StartPage(driver).selectLanguage(englishSetup);
+//		new StartPage(driver).selectLanguage(englishSetup);
 		
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName),
 				getPropertyAttribute(spotRUPassWord));

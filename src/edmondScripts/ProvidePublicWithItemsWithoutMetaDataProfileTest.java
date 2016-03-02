@@ -46,9 +46,9 @@ public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSeleni
 		
 		files = new HashMap<String, String>();
 		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
-		files.put("SamplePDFFile.pdf", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePDFFile.pdf");
+//		files.put("SamplePDFFile.pdf", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePDFFile.pdf");
 		
-		new StartPage(driver).selectLanguage(englishSetup);
+		//new StartPage(driver).selectLanguage(englishSetup);
 	}
 
 	@Test (priority = 1)
@@ -107,6 +107,5 @@ public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSeleni
 		String expectedInfoMessage = "Collection released successfully";
 		Assert.assertEquals(actualInfoMessage, expectedInfoMessage,
 				"Something went wrong with the release of the collection.");
-	
 	}
 }
