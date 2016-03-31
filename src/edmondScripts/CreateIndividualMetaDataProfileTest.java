@@ -49,7 +49,7 @@ public class CreateIndividualMetaDataProfileTest extends BaseSelenium {
 	public void createIndividualMetaDataProfileTest() {
 		KindOfMetaDataProfilePage kindOfMetaDataProfilePage = collectionEntryPage.addMetaDataProfile();
 		CreateIndividualMetaDataProfilePage createIndividualMetaDataProfilePage = kindOfMetaDataProfilePage.selectNewIndividualMetaDataProfile();
-		
+		//hello
 		// 8 metadata fields are needed; one already exists, create seven more
 		Map<String, String> metaDataTypes = new HashMap<String, String>();
 		metaDataTypes.put("Person", "This is a person meta data field");
