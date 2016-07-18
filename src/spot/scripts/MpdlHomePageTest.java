@@ -13,6 +13,7 @@ public class MpdlHomePageTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();
 	}
 

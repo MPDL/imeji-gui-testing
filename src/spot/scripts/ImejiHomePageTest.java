@@ -13,6 +13,7 @@ public class ImejiHomePageTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();
 	}
 	

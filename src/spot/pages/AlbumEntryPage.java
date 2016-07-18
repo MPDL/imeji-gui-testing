@@ -22,7 +22,21 @@ public class AlbumEntryPage extends BasePage {
 		return actionComponent;
 	}
 
-	public void publish() {
+	public AlbumEntryPage publish() {
 		actionComponent.doAction(ActionType.PUBLISH);
+		
+		return PageFactory.initElements(driver, AlbumEntryPage.class);
+	}
+	
+	public AlbumPage deleteAlbum() {
+		getActionComponent().doAction(ActionType.DELETE);
+		
+		return PageFactory.initElements(driver, AlbumPage.class);
+	}
+	
+	public DiscardedAlbumEntryPage discardAlbum() {
+		getActionComponent().doAction(ActionType.DISCARD);
+		
+		return PageFactory.initElements(driver,  DiscardedAlbumEntryPage.class);
 	}
 }

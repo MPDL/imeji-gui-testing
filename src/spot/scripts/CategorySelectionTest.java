@@ -6,7 +6,6 @@ import org.testng.annotations.*;
 import spot.BaseSelenium;
 import spot.pages.AlbumPage;
 import spot.pages.CollectionsPage;
-import spot.pages.DetailedItemViewPage;
 import spot.pages.StartPage;
 
 public class CategorySelectionTest extends BaseSelenium {
@@ -20,6 +19,7 @@ public class CategorySelectionTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClassTest() {
+		super.setup();
 		startPage = new StartPage(driver);
 	}
 
@@ -33,15 +33,6 @@ public class CategorySelectionTest extends BaseSelenium {
 		
 //		startPage.goToUploadPage();
 		Assert.assertEquals(true, false);
-	}
-
-	@Test
-	public void openItemPageTest() {
-		DetailedItemViewPage itemPage = startPage.navigateToItemPage();
-
-		String actualSiteContentHeadline = itemPage.getSiteContentHeadline();
-
-		Assert.assertEquals(actualSiteContentHeadline, "Inhalte", "Site content headline is not correct.");
 	}
 
 	@Test

@@ -24,14 +24,15 @@ public class AddingNewUserToUserGroupTest extends BaseSelenium {
 	private String newUserGroupName;
 	
 	@BeforeClass
-	public void beforeClass() {		
-		navigateToStartPage();		
-	
-//		new StartPage(driver).selectLanguage(englishSetup);
+	public void beforeClass() {	
+		super.setup();
 		
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName), getPropertyAttribute(spotAdminPassWord));
-		
+	}
+	
+	@Test(priority = 1)
+	public void createNewUserGroup() {
 		adminPage = adminHomePage.goToAdminPage();
 		
 		newUserGroupName = "Test Group: " + TimeStamp.getTimeStamp();
@@ -39,8 +40,10 @@ public class AddingNewUserToUserGroupTest extends BaseSelenium {
 		allUserGroupsOverViewPage = adminPage.createNewUserGroup(newUserGroupName);
 	}
 	
-	@Test
+	@Test(priority = 2)
 	public void addNewUserToUserGroupTest() {
+		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
+		allUserGroupsOverViewPage = adminHomePage.goToAdminPage().viewAllUserGroups();
 		
 		String userEmail = getPropertyAttribute(spotRUUserName);
 		
@@ -51,8 +54,16 @@ public class AddingNewUserToUserGroupTest extends BaseSelenium {
 		Assert.assertTrue(isNewlyAddedUserPresent, "User '" + userEmail + "' couldn't be added.");
 	}
 	
+	@Test(priority = 3)
+	public void deleteUserGroup() {
+		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
+		allUserGroupsOverViewPage = adminHomePage.goToAdminPage().viewAllUserGroups();
+		allUserGroupsOverViewPage.deleteUserGroupByName(newUserGroupName);
+	}
+	
 	@AfterClass
 	public void afterClass() {
+		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
 		adminHomePage.logout();
 	}
 	

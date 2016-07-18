@@ -20,6 +20,7 @@ public class EditLanguageSetupTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();
 		startPage = new StartPage(driver);		
 	}

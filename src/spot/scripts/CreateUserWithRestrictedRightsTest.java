@@ -10,6 +10,7 @@ import spot.pages.AdministrationPage;
 import spot.pages.AllUsersOverViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
+import spot.pages.UserProfilePage;
 import spot.pages.admin.AdminHomePage;
 
 public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
@@ -22,6 +23,7 @@ public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
 	
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();		
 	
 //		new StartPage(driver).selectLanguage(englishSetup);
@@ -37,7 +39,8 @@ public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
 	@Test
 	public void createUserTest() {
 				
-		allUsersOverViewPage = adminPage.createNewUser(newUserName);
+		UserProfilePage userProfilePage = adminPage.createNewUser(newUserName);
+		allUsersOverViewPage = userProfilePage.goToAdminPage().viewAllUsers();
 		
 		String actualMessage = allUsersOverViewPage.getMessageComponent().getInfoMessage();	
 		String expectedMessage = "User created successfully.";
@@ -47,7 +50,6 @@ public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
 	@AfterClass
 	public void afterClass() {
 		
-		// delete the user again
 		allUsersOverViewPage.deleteUserByEmail(newUserName);
 		
 		adminHomePage.logout();

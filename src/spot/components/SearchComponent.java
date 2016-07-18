@@ -5,31 +5,25 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import spot.CategoryType;
 import spot.pages.AdvancedSearchPage;
+import spot.pages.BrowseItemsPage;
 import spot.pages.SearchQueryPage;
 
 public class SearchComponent {
 
 	private WebDriver driver;
 	
-	@FindBy(name="Header:j_idt71:quickSearchString")
+	@FindBy(id="quickSearchString")
 	private WebElement quickSearchTextField;
 	
-	@FindBy(name="Header:j_idt71:lnkAdvancedSearch")
+	@FindBy(id="Header:lnkAdvancedSearch")
 	private WebElement advancedSearchButton;
 	
-	@FindBy(xpath=".//*[@id='Header:j_idt71:quickSearchRadioBox:0']")
-	private WebElement itemRadioBox;
-		
-	@FindBy(xpath=".//*[@id='Header:j_idt71:quickSearchRadioBox:2']")
-	private WebElement albumRadioBox;
-	
-	@FindBy(xpath=".//*[@id='Header:j_idt71:quickSearchRadioBox:1']")
-	private WebElement collectionRadioBox;
-	
-	@FindBy(name="Header:j_idt71:btnQuickSearchStart")
+	@FindBy(id="btnQuickSearchStart")
 	private WebElement goToQuickSearchingButton;
+	
+	@FindBy(id="Header:lnkBrowse")
+	private WebElement browseItemsLink;
 	
 	public SearchComponent(WebDriver driver) {
 		
@@ -43,21 +37,16 @@ public class SearchComponent {
 		return PageFactory.initElements(driver, AdvancedSearchPage.class);
 	}
 	
-	public SearchQueryPage searchFor(CategoryType ct, String searchQueryKeyWord) {
+	public BrowseItemsPage callBrowseSection() {
+		
+		browseItemsLink.click();
+		return PageFactory.initElements(driver, BrowseItemsPage.class);
+	}
+	
+	public SearchQueryPage searchFor(String searchQueryKeyWord) {
 		
 		quickSearchTextField.clear();
 		quickSearchTextField.sendKeys(searchQueryKeyWord);
-		
-		if (ct == CategoryType.ALBUM) {
-			if (!albumRadioBox.isSelected())
-				albumRadioBox.click();	
-		} else if (ct == CategoryType.ITEM) {
-			if (!itemRadioBox.isSelected())
-				itemRadioBox.click();		
-		} else if (ct == CategoryType.COLLECTION) {
-			if (!collectionRadioBox.isSelected())
-				collectionRadioBox.click();		
-		}
 		
 		goToQuickSearchingButton.click();
 		

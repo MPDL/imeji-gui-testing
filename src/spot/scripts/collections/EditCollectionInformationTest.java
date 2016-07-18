@@ -11,6 +11,7 @@ public class EditCollectionInformationTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();
 	}
 

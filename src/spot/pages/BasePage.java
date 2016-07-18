@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -38,7 +36,7 @@ public abstract class BasePage {
 	
 	protected WebDriverWait wait; 
 	
-	/** holds the five menu items: start, items, collections, albums, single upload */
+	/** holds the four menu items: start, collections, albums, single upload */
 	protected MainMenuComponent mainMenuComponent;
 	
 	/** success or failure of user actions are reflected in the message area of the current page, e.g. login failed due to bad credentials */
@@ -88,16 +86,15 @@ public abstract class BasePage {
 		this.searchComponent = new SearchComponent(driver);
 		this.userPreferenceComponent = new UserPreferenceComponent(driver);
 		
-		wait = new WebDriverWait(driver, 50);
+		wait = new WebDriverWait(this.driver, 50);
 	}
 	
 	public String getSiteContentHeadline() {
 		return siteContentHeadline.getText();
 	}
-
-	public DetailedItemViewPage navigateToItemPage() {
-				
-		return mainMenuComponent.navigateTo(DetailedItemViewPage.class);
+	
+	public BrowseItemsPage navigateToItemPage() {
+		return searchComponent.callBrowseSection();
 	}
 	
 	public SingleUploadPage goToSingleUploadPage() {
@@ -105,10 +102,10 @@ public abstract class BasePage {
 	}
 	
 	public HomePage goToHomePage(HomePage homePage) {
-		if (homePage instanceof HomePage)
-			return mainMenuComponent.navigateTo(HomePage.class);
-		else if (homePage instanceof AdminHomePage)
+		if (homePage instanceof AdminHomePage)
 			return mainMenuComponent.navigateTo(AdminHomePage.class);
+		else if (homePage instanceof HomePage)
+			return mainMenuComponent.navigateTo(HomePage.class);
 		return null;
 	}
 	
@@ -190,6 +187,10 @@ public abstract class BasePage {
 	public MessageComponent getMessageComponent() {
 		return messageComponent;
 	}
+	
+	public void enableDarkMode() {
+		userPreferenceComponent.enableDarkMode();
+	}
 
 	public boolean retryingFindClick(By by) {
         boolean result = false;
@@ -220,4 +221,5 @@ public abstract class BasePage {
         }
         return result;
 	}
+	
 }

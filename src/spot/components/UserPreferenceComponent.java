@@ -26,6 +26,9 @@ public class UserPreferenceComponent {
 	@FindBy(xpath="/html/body/div[1]/div[1]/div[1]/span/form[3]/div/div/div[2]")
 	private WebElement buttonSortDescending;
 	
+	@FindBy(css=".fa-desktop")
+	private WebElement colorPreference;
+	
 	public UserPreferenceComponent(WebDriver driver) {
 		this.driver = driver;
 		
@@ -50,6 +53,20 @@ public class UserPreferenceComponent {
 		
 		String text = currentLanguageComboEntry.getText();		
 		return text;
+	}
+	
+	public void enableDarkMode() {
+		WebElement theme = driver.findElement(By.id("themeDefault"));
+		String themeHref = theme.getAttribute("href");
+		if (!themeHref.contains("dark.css"))
+			colorPreference.click();
+	}
+	
+	public void enableLightMode() {
+		WebElement theme = driver.findElement(By.id("themeDefault"));
+		String themeHref = theme.getAttribute("href");
+		if (!themeHref.equals("bright.css"))
+			colorPreference.click();
 	}
 	
 	

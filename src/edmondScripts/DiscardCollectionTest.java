@@ -10,83 +10,77 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
-import spot.components.ActionComponent;
-import spot.components.ActionComponent.ActionType;
-import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
+import spot.pages.DiscardedCollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
-import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.HomePage;
+import spot.util.TimeStamp;
 
 public class DiscardCollectionTest extends BaseSelenium {
  	
-	private AdminHomePage adminHomePage;
-	
 	private String collectionTitle;
-	
 	private HashMap<String, String> files;
-
-	private CollectionContentPage collectionContentPage;
-
-	private MultipleUploadPage multipleUploadPage;
+	
+	private HomePage homePage;
+	private CollectionEntryPage collectionEntryPage;
+	private DiscardedCollectionEntryPage discardedCollectionEntryPage;
 
 	@BeforeClass
 	public void beforeClass() throws AWTException {
+		super.setup();
 		navigateToStartPage();
-		
-		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		
 		files = new HashMap<String, String>();
 		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
 		
-//		new StartPage(driver).selectLanguage(englishSetup);
+		collectionTitle = "Collection doomed to be discarded: " + TimeStamp.getTimeStamp();
 		
-		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName),
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName),
 				getPropertyAttribute(spotRUPassWord));
-
-		collectionTitle = "Collection doomed to be discarded";
-
-		createAndReleaseCollection(collectionTitle);
 	}
 	
-	@AfterClass
-	public void afterClass() {
-		adminHomePage.logout();
-	}
-	
-	@Test
-	public void discardCollectionTest() {
-		
-		ActionComponent actionComponent = multipleUploadPage.getActionComponent();
-		
-		CollectionEntryPage collectionEntryPage = (CollectionEntryPage)actionComponent.doAction(ActionType.DISCARD);
-		
-		String actualInfoMessage = collectionEntryPage.getMessageComponent().getInfoMessage();
-		String expectedInfoMessage = "Collection discarded successfully";
-		
-		Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Discarding collection probably failed");
-	}
-	
-	private void createAndReleaseCollection(String collectionTitle) throws AWTException {
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
+	@Test(priority = 1)
+	private void createAndReleaseCollection() throws AWTException {
+		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 
 		String collectionDescription = "This collection is doomed to be discarded. For testing purposes.";
 
-		CollectionEntryPage collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
+		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
 				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
 				getPropertyAttribute(ruOrganizationName));
 		
-		multipleUploadPage = collectionEntryPage.uploadContent();
+		String siteContentHeadline = collectionEntryPage.getSiteContentHeadline();
+		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");
+		
+		MultipleUploadPage multipleUploadPage = collectionEntryPage.uploadContent();
 
 		for (Map.Entry<String, String> file : files.entrySet()) {
 			multipleUploadPage.addFile(file.getValue());
 		}
 
 		multipleUploadPage.startUpload();
-		
-		ActionComponent actionComponent = multipleUploadPage.getActionComponent();
-		collectionContentPage = (CollectionContentPage) actionComponent.doAction(ActionType.PUBLISH);
+		multipleUploadPage.publishCollection();
 	}
+	
+	@Test(priority = 2)
+	public void discardCollectionTest() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
+		discardedCollectionEntryPage = collectionEntryPage.discardCollection();
+		
+		Assert.assertTrue(discardedCollectionEntryPage.isDiscarded(), "Collection was probably not discarded.");
+	}
+	
+	@AfterClass
+	public void afterClass() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		homePage.logout();
+	}
+	
+	
+	
 }

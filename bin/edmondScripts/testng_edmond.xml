@@ -1,0 +1,77 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="Edmond test suite" verbose="1" preserve-order="true">
+	<parameter name="browserType" value="firefox" />
+
+	<test name="testing Edmond use cases">
+		<classes>
+			<class name="spot.SeleniumTestSuite" />
+
+			<class name="edmondScripts.ProvidePublicWithItemsWithoutMetaDataProfileTest" />
+		
+			<class name="edmondScripts.ProvidePublicWithItemsWithMetaDataProfileTest" />
+			
+			<class name="edmondScripts.DataUploadWithoutMetaDataProfileTest" />
+			
+			<class name="edmondScripts.DataUploadWithStandardMetaDataProfileTest" />
+			
+			<class name="edmondScripts.DeleteCollectionTest" />
+			
+			<class name="edmondScripts.DiscardCollectionTest" />
+			 
+			<class name="edmondScripts.DownloadFileTest" />
+
+			<class name="edmondScripts.CreateIndividualMetaDataProfileTest" /> 
+			
+			<class name="edmondScripts.DownloadFileRUTest" />
+
+			<class name="spot.scripts.CreateUserWithRestrictedRightsTest" />
+			
+			<class name="spot.scripts.EditUserProfileTest" />
+			
+			<class name="edmondScripts.CreationOfNewUserGroupTest" />
+			
+			<class name="edmondScripts.AddingNewUserToUserGroupTest" />
+
+			<class name="edmondScripts.CreateAlbumTest" />
+			
+			<class name="edmondScripts.PublishAlbumTest" />
+			
+			<class name="edmondScripts.AddPrivateItemToPrivateAlbumTest" />
+			
+			<class name="edmondScripts.DeleteAlbumTest" />
+			
+			<class name="edmondScripts.DeleteUserGroupTest" />
+			
+			<class name="edmondScripts.DiscardAlbumTest" />
+			
+			<class name="edmondScriptsPrivateMode.EnablePrivateModeTest" />
+			
+			<class name="edmondScriptsPrivateMode.DownloadFilePrivateModeTest" />
+			
+			<class name="edmondScriptsPrivateMode.DownloadFileRUPrivateModeTest" />
+			
+			<class name="edmondScriptsPrivateMode.EnableDarkModeTest" />
+			
+			<class name="edmondScriptsPrivateMode.UserCollectionWithoutMDPTest" />
+			
+			<class name="edmondScriptsPrivateMode.UserCollectionWithStandardMDPTest" />
+			
+			<class name="edmondScriptsPrivateMode.UserCreatedNewMetaDataProfileTest" />
+			
+			<class name="edmondScriptsPrivateMode.UserDeletesPrivateCollectionPrivateModeTest" />
+			
+			<class name="edmondScriptsPrivateMode.UserPublishedItemsWithMetaDataProfileTest" />
+			
+			<class name="edmondScriptsPrivateMode.UserPublishedItemsWithoutMetaDataProfileTest" />
+			
+			<class name="edmondScriptsPrivateMode.UserPublishesAlbumPrivateMode" />
+			
+			<class name="edmondScriptsPrivateMode.UserWithdrawsPublishedCollectionTest" />
+		
+<!-- 		the following two will be tested manually because currently we have no ressources to debug  -->
+<!-- 			<class name="edmondScripts.UserInformsOtherUserAboutHisNewGrantsViaSystemTest" /> -->
+<!-- 			<class name="edmondScripts.UserSharesAdminGrantsTest" /> -->
+			
+		</classes>
+	</test>
+</suite>

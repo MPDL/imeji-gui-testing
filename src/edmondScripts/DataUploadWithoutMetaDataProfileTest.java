@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
 import spot.components.MessageComponent.MessageType;
+import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
 import spot.pages.DetailedItemViewPage;
 import spot.pages.LoginPage;
@@ -25,7 +26,7 @@ import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium/*extends BaseTest*/ {
+public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium {
 
 	private static final Logger log4j = LogManager.getLogger(DataUploadWithoutMetaDataProfileTest.class.getName());
 	
@@ -37,35 +38,18 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium/*extends 
 	
 	public final String collectionTitle = "Not published test collection without meta data profile: " + TimeStamp.getTimeStamp();
 	
-	@AfterClass
-	public void afterClass() {
-		homePage.logout();
-	}
-	
 	@BeforeClass
 	public void beforeClass() {
-		navigateToStartPage();		
-		
+		super.setup();
 		loginPage = new StartPage(driver).openLoginForm();
+		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 		
 		files = new HashMap<String, String>();
-		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
-//		files.put("SamplePNGFile.png", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePNGFile.png");
-//		files.put("SampleWordFile.docx", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleWordFile.docx");		
-		
-//		new StartPage(driver).selectLanguage(englishSetup);
+		files.put("SamplePDFFile.pdf", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePDFFile.pdf");	
+		files.put("SampleWordFile.docx", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleWordFile.docx");
 	}
 
-	@Test (priority = 1)
-	public void loginTest() {
-		homePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
-
-		String adminFullName = getPropertyAttribute(ruFamilyName) + ", " + getPropertyAttribute(ruGivenName);
-		Assert.assertEquals(homePage.getLoggedInUserFullName(), adminFullName, "User name doesn't match");
-	
-	}
-
-	@Test(priority = 2)
+	@Test(priority = 1)
 	public void createCollectionWithoutMetaDataProfileTest() {
 		
 		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
@@ -76,15 +60,14 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium/*extends 
 				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
 				getPropertyAttribute(ruOrganizationName));
 
-		Assert.assertTrue(
-				collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea() == MessageType.INFO,
+		Assert.assertTrue(collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea() == MessageType.INFO,
 				"Collection couldn't be created");
 
 		String siteContentHeadline = collectionEntryPage.getSiteContentHeadline();
 		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");	
 	}
 
-	@Test (priority = 3)
+	@Test (priority = 2)
 	public void uploadFilesTest() throws AWTException {				
 	
 		for (Map.Entry<String, String> file : files.entrySet()) {
@@ -97,6 +80,7 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium/*extends 
 	}
 
 	private void testFile(String fileTitle, String filePath) throws AWTException {
+		homePage = collectionEntryPage.goToHomePage(homePage);
 		SingleUploadPage singleUploadPage = homePage.goToSingleUploadPage();
 		
 		DetailedItemViewPage detailedItemViewPage = null;
@@ -115,6 +99,19 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium/*extends 
 			Assert.assertTrue(false, "Time out error regarding single upload: Either collection couldn't be found or the button 'save' didn't appear. Summarized: The upload failed.");
 		}
 		
+	}
+	
+	@Test(priority = 3)
+	public void discardCollection() {
+		CollectionContentPage collectionContentPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		collectionEntryPage = collectionContentPage.viewCollectionInformation();
+		collectionEntryPage.deleteCollection();
+	}
+	
+	@AfterClass
+	public void afterClass() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		homePage.logout();
 	}
 		
 }

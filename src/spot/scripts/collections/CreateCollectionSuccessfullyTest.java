@@ -20,6 +20,7 @@ import spot.pages.notAdmin.CreateNewCollectionPage;
 public class CreateCollectionSuccessfullyTest extends BaseSelenium {
 
 	private AdminHomePage adminHomePage;
+	private CollectionEntryPage collectionEntryPage;
 
 	@BeforeMethod
 	public void beforeMethod() {
@@ -28,10 +29,15 @@ public class CreateCollectionSuccessfullyTest extends BaseSelenium {
 
 	@AfterMethod
 	public void afterMethod() {
+		if (collectionEntryPage != null)
+			collectionEntryPage.discardCollection();
+		
+		adminHomePage.logout();
 	}
 
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 
@@ -41,6 +47,7 @@ public class CreateCollectionSuccessfullyTest extends BaseSelenium {
 
 	@AfterClass
 	public void afterClass() {
+		navigateToStartPage();
 		adminHomePage.logout();
 	}
 
@@ -52,7 +59,7 @@ public class CreateCollectionSuccessfullyTest extends BaseSelenium {
 		String collectionTitle = "Testsammlung Montag";
 		String collectionDescription = "Das ist eine Testbeschreibung f�r eine neue Sammlung.";
 		
-		CollectionEntryPage collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle, collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
+		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle, collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
 				getPropertyAttribute("aOrganizationName"));
 
 		Assert.assertTrue(collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea() == MessageType.INFO, "Collection couldn't be created");

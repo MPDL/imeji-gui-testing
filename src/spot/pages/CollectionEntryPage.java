@@ -6,12 +6,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import spot.components.ActionComponent;
+import spot.components.ActionComponent.ActionType;
 
 public class CollectionEntryPage extends BasePage {
 
 	private ActionComponent actionComponent;
 	
-	@FindBy(css=".imj_collectionEntryPage .imj_entryPagePreviewTiledList a")
+	@FindBy(css=".imj_mainContentWrapper .imj_collectionEntryPage .imj_entryPagePreviewTiledList .imj_headline a")
 	private WebElement uploadContentButton;
 	
 	@FindBy(css=".imj_collectionEntryPage>h2>a")
@@ -39,5 +40,17 @@ public class CollectionEntryPage extends BasePage {
 		addMetaDataProfileButton.click();
 		
 		return PageFactory.initElements(driver, KindOfMetaDataProfilePage.class);
+	}
+	
+	public DiscardedCollectionEntryPage discardCollection() {
+		getActionComponent().doAction(ActionType.DISCARD);
+		
+		return PageFactory.initElements(driver, DiscardedCollectionEntryPage.class);
+	}
+	
+	public CollectionsPage deleteCollection() {
+		getActionComponent().doAction(ActionType.DELETE);
+		
+		return PageFactory.initElements(driver, CollectionsPage.class);
 	}
 }

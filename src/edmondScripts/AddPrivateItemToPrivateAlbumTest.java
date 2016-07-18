@@ -1,92 +1,58 @@
 package edmondScripts;
 
-import java.awt.AWTException;
-import java.util.HashMap;
-import java.util.Map;
-
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
-import spot.pages.CollectionEntryPage;
+import spot.pages.AlbumEntryPage;
 import spot.pages.LoginPage;
-import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
-import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.CreateNewAlbumPage;
+import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
 public class AddPrivateItemToPrivateAlbumTest extends BaseSelenium {
 
-	private AdminHomePage adminHomePage;
+	private HomePage homePage;
 	
-	public final String collectionTitle = "Private test collection with default meta data profile: " + TimeStamp.getTimeStamp();
-	
-	@Test
-	public void addPrivateItemToPrivateAlbum() {
-		
-		
-	}
-	
-	private void createPrivateCollection() throws AWTException {
-
-		String collectionDescription = "This collection has a meta data profile. It is private.";
-
-		HashMap<String, String> files = new HashMap<String, String>();
-		files.put("SampleTIFFFile.tiff", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleTIFFFile.tiff");
-		
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
-
-		CollectionEntryPage collectionEntryPage = createNewCollectionPage.createCollectionWithStandardMetaDataProfile(collectionTitle,
-				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
-				getPropertyAttribute(ruOrganizationName));
-		
-		uploadFiles(files);
-	}
-
-	public void uploadFiles(HashMap<String, String> files) throws AWTException {
-		navigateToStartPage();
-		
-		for (Map.Entry<String, String> file : files.entrySet()) {
-			String fileTitle = file.getKey();
-			String filePath = file.getValue();
-			
-			uploadFile(fileTitle, filePath);
-		}
-		navigateToStartPage();
-	}
-	
-	
-	private void uploadFile(String fileTitle, String filePath) throws AWTException {
-		SingleUploadPage singleUploadPage = adminHomePage.goToSingleUploadPage();
-		
-		singleUploadPage.uploadAndFillMetaData(filePath, collectionTitle);	
-	}
+	public final String albumTitle = "Private test album: " + TimeStamp.getTimeStamp();
+	public final String albumDescription = "Private test album with items from private test collection";
 	
 	@BeforeClass
-	public void beforeClass() throws AWTException {		
-		navigateToStartPage();		
-	
-		new StartPage(driver).selectLanguage(englishSetup);
-		
+	public void beforeClass() {	
+		super.setup();
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
-		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));		
+		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));	
+	}
+	
+	@Test(priority = 1)
+	public void createPrivateAlbum() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		CreateNewAlbumPage createNewAlbumPage = homePage.goToCreateNewAlbumPage();
+		AlbumEntryPage albumEntryPage = createNewAlbumPage.createAlbum(albumTitle, albumDescription);
 		
-		createPrivateCollection();
+		String siteContentHeadline = albumEntryPage.getSiteContentHeadline();
+		Assert.assertTrue(siteContentHeadline.equals(albumTitle), "Album title not correct");
+	}
+	
+	@Test(priority = 2)
+	public void addPrivateItemToAlbum() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		homePage.goToCollectionPage().openSomeNotPublishedCollection().addFirstItemToAlbum();
+	}
+
+	@Test(priority = 3)
+	public void deleteAlbum() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		homePage.openActiveAlbumEntryPage().deleteAlbum();
 	}
 	
 	@AfterClass
 	public void afterClass() {
-		// TODO delete collection
-//		navigateToStartPage();
-//		
-//		CollectionsPage collectionPage = adminHomePage.goToCollectionPage();
-//		collectionPage.getFilterComponent().filter(FilterOptions.MY);
-//				
-//		collectionPage.deleteCollections();
-		
-		adminHomePage.logout();
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		homePage.logout();
 	}
 	
 }

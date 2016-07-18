@@ -11,35 +11,33 @@ import spot.pages.CollectionsPage;
 import spot.pages.DetailedItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
-import spot.pages.admin.AdminHomePage;
+import spot.pages.notAdmin.HomePage;
 
 public class DownloadFileRUTest extends BaseSelenium {
 
 	private LoginPage loginPage;
-	private AdminHomePage adminHomePage;
+	private HomePage homePage;
 	
 	private DetailedItemViewPage detailedItemViewPage;
 
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();
+		
+		loginPage = new StartPage(driver).openLoginForm();
+		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName),
+				getPropertyAttribute(spotRUPassWord));
 		
 		CollectionsPage collectionPage = new StartPage(driver).goToCollectionPage();
 		CollectionContentPage collectionContentPage = collectionPage.getPageOfLargestCollection();
-		
-		loginPage = new StartPage(driver).openLoginForm();
-		
-//		new StartPage(driver).selectLanguage(englishSetup);
-		
-		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName),
-				getPropertyAttribute(spotRUPassWord));
 		
 		detailedItemViewPage = collectionContentPage.downloadFirstItemInList();	
 	}
 	
 	@AfterClass
 	public void afterClass() {
-		adminHomePage.logout();
+		homePage.logout();
 	}
 	
 	@Test 
@@ -47,6 +45,6 @@ public class DownloadFileRUTest extends BaseSelenium {
 		
 		boolean isDownloadPossible = detailedItemViewPage.isDownloadPossible();		
 		
-		Assert.assertTrue(isDownloadPossible, "Registered user couldn't download a item. Reason: Download Button most probabyl not displayed/enabled");	
+		Assert.assertTrue(isDownloadPossible, "Registered user couldn't download a item. Reason: Download Button most probably not displayed/enabled");	
 	}
 }

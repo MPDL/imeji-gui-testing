@@ -12,13 +12,13 @@ import spot.pages.notAdmin.HomePage;
 
 public class LoginPage extends BasePage {
 
-	@FindBy(xpath =".//*[@id='Header:loginForm']/span/input[1]")
+	@FindBy(name ="Header:loginForm:j_idt29")
 	private WebElement userNameTextField;
 	
-	@FindBy(xpath =".//*[@id='Header:loginForm']/span/input[2]")
+	@FindBy(name ="Header:loginForm:j_idt30")
 	private WebElement passwordTextField;
 		
-	@FindBy(xpath =".//*[@id='Header:loginForm:lnkLogin']")
+	@FindBy(name = "Header:loginForm:lnkLogin")
 	private WebElement submitLoginInfoButton;
 	
 	public LoginPage(WebDriver driver) {
@@ -58,6 +58,11 @@ public class LoginPage extends BasePage {
 	
 	private void clickOnSignIn() {
 		submitLoginInfoButton.click();
+	}
+	
+	public boolean loginFormIsOpen() {
+		wait.until(ExpectedConditions.visibilityOf(userNameTextField));
+		return userNameTextField.isDisplayed() && passwordTextField.isDisplayed() && submitLoginInfoButton.isEnabled();
 	}
 	
 	

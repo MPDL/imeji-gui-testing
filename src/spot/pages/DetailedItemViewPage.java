@@ -10,13 +10,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class DetailedItemViewPage extends BasePage {
 
 
-	@FindBy(css="#topPanel img")
+	@FindBy(id="j_idt432:txtUrl")
+	private WebElement fileName;
+	
+	@FindBy(id="picWebResolutionInternalDigilib")
 	private WebElement fileResolution;
 	
 	@FindBy(css="#actionsMenuArea .fa-download")
 	private WebElement downloadMenu;
 	
-	@FindBy(css=".imj_globalMetadataSet>.imj_metadataSet:nth-of-type(2) .imj_metadataValue")
+	@FindBy(css=".imj_metadataWrapper>.imj_globalMetadataSet>div:nth-of-type(2)>.imj_metadataValue>a")
 	private WebElement collectionName;
 	
 	@FindBy(css="#actionsMenuArea>div a[target='_blank']")
@@ -49,7 +52,7 @@ public class DetailedItemViewPage extends BasePage {
 	
 	public String getFileTitle() {
 		
-		String fileTitle = fileResolution.getAttribute("title");
+		String fileTitle = fileName.getText();
 		return fileTitle;
 	}
 	
@@ -83,7 +86,6 @@ public class DetailedItemViewPage extends BasePage {
 
 	public boolean isDetailedItemViewPageDisplayed() {
 		try {
-			
 			return collectionName.isDisplayed();
 		} catch (TimeoutException te) {
 			wait.until(ExpectedConditions.visibilityOf(fileResolution));

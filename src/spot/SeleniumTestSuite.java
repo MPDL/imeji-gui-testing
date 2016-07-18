@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class SeleniumTestSuite {
 	
@@ -25,9 +26,7 @@ public class SeleniumTestSuite {
 	public static final String qaEdmond = "http://qa-edmond.mpdl.mpg.de/imeji/";
 	public static final String qaImeji = "http://qa-imeji.mpdl.mpg.de/";
 	
-	public static final String testEnvironmentURL = "http://qa-edmond.mpdl.mpg.de/imeji/"; 	
-//	public static final String testEnvironmentURL = "http://qa-imeji.mpdl.mpg.de/";
-//	public static final String testEnvironmentURL = "http://dev-faces.mpdl.mpg.de/";
+	public static final String testEnvironmentURL = "http://qa-edmond.mpdl.mpg.de/imeji/";
 
 	private static final Logger log4j = LogManager.getLogger(SeleniumTestSuite.class.getName());
 	
@@ -36,14 +35,14 @@ public class SeleniumTestSuite {
 	public void launchDriver(String browserType) throws MalformedURLException {
 
 		
-		log4j.info("Launching driver..");
+		log4j.info("Launching driver...");
 		log4j.info("Browser is " + browserType);
 
 		setDriver(browserType);
 		loadPropertiesFile();
 		
 		driver.navigate().to(testEnvironmentURL);
-		System.out.println("test environment url loaded");
+		log4j.info("Test environment url loaded.");
 	}
 
 	private void loadPropertiesFile() {
@@ -75,7 +74,7 @@ public class SeleniumTestSuite {
 		switch (browserType) {
 			case "chrome":
 				ChromeOptions options = new ChromeOptions();
-				System.setProperty("webdriver.chrome.driver", "/Users/kocar/WebDrivers/chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", "/Users/apetrova/drivers/chromedriver.exe");
 				DesiredCapabilities chrome = DesiredCapabilities.chrome();
 				chrome.setCapability(ChromeOptions.CAPABILITY, options);
 				driver = new ChromeDriver(); 
@@ -84,13 +83,13 @@ public class SeleniumTestSuite {
 				driver = initFirefoxDriver();
 				break;
 			default:
-				log4j.warn("browser : " + browserType
-						+ " is invalid. Launching default browser instead (Firefox)..");
+				log4j.warn("Browser : " + browserType
+						+ " is invalid. Launching default browser instead (Firefox)...");
 				driver = initFirefoxDriver();
 		}
-		// maximize browser window; only works for firefox & internet explorer; but not chrome
 		driver.manage().window().maximize();
-		System.out.println("window maximized");
+		log4j.info("Window maximized.");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	/**---
@@ -98,7 +97,7 @@ public class SeleniumTestSuite {
 	 * @return
 	 */
 	private WebDriver initFirefoxDriver() {
-		log4j.info("Launching Firefox browser..");
+		log4j.info("Launching Firefox browser...");
 		WebDriver driver = new FirefoxDriver();
 		
 		return driver;
@@ -106,7 +105,7 @@ public class SeleniumTestSuite {
 
 	@AfterSuite
 	public static void quitDriver() {
-		log4j.info("Quitting driver..");
+		log4j.info("Quitting driver...");
 		driver.quit();
 	}	
 

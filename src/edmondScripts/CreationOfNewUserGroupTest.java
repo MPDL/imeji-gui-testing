@@ -13,6 +13,8 @@ import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.util.TimeStamp;
 
+import org.openqa.selenium.support.PageFactory;
+
 public class CreationOfNewUserGroupTest extends BaseSelenium {
 	
 	private AdminHomePage adminHomePage;
@@ -23,17 +25,16 @@ public class CreationOfNewUserGroupTest extends BaseSelenium {
 	private String newUserGroupName;
 	
 	@BeforeClass
-	public void beforeClass() {		
+	public void beforeClass() {	
+		super.setup();
 		navigateToStartPage();		
-	
-//		new StartPage(driver).selectLanguage(englishSetup);
 		
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName), getPropertyAttribute(spotAdminPassWord));
 		
 		adminPage = adminHomePage.goToAdminPage();
 		
-		newUserGroupName = "My Test Group For Testing Purposes " + TimeStamp.getTimeStamp();
+		newUserGroupName = "Test Group " + TimeStamp.getTimeStamp();
 	}
 	
 	@Test
@@ -49,6 +50,10 @@ public class CreationOfNewUserGroupTest extends BaseSelenium {
 	
 	@AfterClass
 	public void afterClass() {
+		
+		allUserGroupsOverViewPage = PageFactory.initElements(driver, AllUserGroupsOverViewPage.class);
+		allUserGroupsOverViewPage.deleteUserGroupByName(newUserGroupName);
+		
 		adminHomePage.logout();
 	}
 	

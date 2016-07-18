@@ -19,29 +19,44 @@ public class SingleUploadPage extends BasePage {
 	@FindBy(css="input[type='file']")
 	private WebElement uploadButton;
 	
-	@FindBy(css="#singleUpload\\:collections")
+	@FindBy(id="singleUpload:collections")
 	private WebElement selectCollectionToUploadDropBox;
 	
-	@FindBy(css="#singleUpload\\:submitBottom")
+	@FindBy(id="singleUpload:submitBottom")
 	private WebElement saveButton;
 	
-	@FindBy(css="#singleUpload\\:metadata\\:0\\:editMd\\:inputText")
+	@FindBy(id="singleUpload:metadata:0:editMd:inputText")
 	private WebElement metaDataTitleTextField;
 	
-	@FindBy(css="#singleUpload\\:metadata\\:1\\:editMd\\:inputNumber")
+	@FindBy(id="singleUpload:metadata:2:editMd:inputPerson:inputIdentifier1")
 	private WebElement metaDataIDTextField;
 	
-	@FindBy(css="#singleUpload\\:metadata\\:2\\:editMd\\:inputPerson\\:inputFamilyNameText1")
+	@FindBy(id="singleUpload:metadata:2:editMd:inputPerson:inputFamilyNameText1")
 	private WebElement metaDataAuthorFamilyNameTextField;
 	
-	@FindBy(css="#singleUpload\\:metadata\\:3\\:editMd\\:inputPublicationURI")
+	@FindBy(id="singleUpload:metadata:2:editMd:inputPerson:j_idt502:0:inputOrgaName1")
+	private WebElement metaDataOrganizationTextField;
+	
+	@FindBy(id="singleUpload:metadata:3:editMd:inputPublicationURI")
 	private WebElement metaDataPublicationTextField;
 	
-	@FindBy(css="#singleUpload\\:metadata\\:4\\:editMd\\:inputDate")
+	@FindBy(id="singleUpload:metadata:4:editMd:inputDate")
 	private WebElement metaDataDateTextField;
 	
-	@FindBy(css="#container")
+	@FindBy(id="singleUpload:metadata:5:editMd:inputLocationName")
+	private WebElement metaDataGeolocNameTextField;
+	
+	@FindBy(id="singleUpload:metadata:5:editMd:inputLatitude")
+	private WebElement metaDataGeolocLatitudeField;
+	
+	@FindBy(id="singleUpload:metadata:5:editMd:inputLongitude")
+	private WebElement metaDataGeolocLongitudeField;
+	
+	@FindBy(id="uploader")
 	private WebElement inputFileTagContainer;
+	
+	@FindBy(id="container")
+	private WebElement singleUploadForm;
 	
 	public SingleUploadPage(WebDriver driver) {
 		super(driver);
@@ -53,15 +68,20 @@ public class SingleUploadPage extends BasePage {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;		
 						
-		jse.executeScript("arguments[0].style.setProperty('display', 'block', 'important');", inputFileTagContainer);		
-		uploadButton.sendKeys(pathToFile);
-		jse.executeScript("arguments[0].style.setProperty('display', 'none', 'important');", inputFileTagContainer);		
+		jse.executeScript("arguments[0].style.visibility = 'visible';", singleUploadForm);
+		//jse.executeScript("arguments[0].style.visibility = 'visible';", inputTag);
+		jse.executeScript("arguments[0].style.display = 'block';", singleUploadForm);
+		jse.executeScript("arguments[0].style.opacity = '1';", singleUploadForm);
+		jse.executeScript("arguments[0].style.height = '1px';", singleUploadForm);
+		jse.executeScript("arguments[0].style.width = '1px';", singleUploadForm);
+		uploadButton = singleUploadForm.findElement(By.tagName("input"));
+		uploadButton.sendKeys(pathToFile);		
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#singleUpload\\:collections")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("singleUpload:collections")));
 		Select selectDropBox = new Select(selectCollectionToUploadDropBox);
 		selectDropBox.selectByVisibleText(collectionTitle);
 				
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#singleUpload\\:submitBottom")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("singleUpload:submitBottom")));
 		saveButton.click();
 		
 		return PageFactory.initElements(driver, DetailedItemViewPage.class);
@@ -75,9 +95,13 @@ public class SingleUploadPage extends BasePage {
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;		
 		
-		jse.executeScript("arguments[0].style.setProperty('display', 'block', 'important');", inputFileTagContainer);		
+		jse.executeScript("arguments[0].style.visibility = 'visible';", singleUploadForm);
+		jse.executeScript("arguments[0].style.display = 'block';", singleUploadForm);
+		jse.executeScript("arguments[0].style.opacity = '1';", singleUploadForm);
+		jse.executeScript("arguments[0].style.height = '1px';", singleUploadForm);
+		jse.executeScript("arguments[0].style.width = '1px';", singleUploadForm);
+		uploadButton = singleUploadForm.findElement(By.tagName("input"));
 		uploadButton.sendKeys(filePath);
-		jse.executeScript("arguments[0].style.setProperty('display', 'none', 'important');", inputFileTagContainer);
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#singleUpload\\:collections")));
 		Select selectDropBox = new Select(selectCollectionToUploadDropBox);
@@ -103,9 +127,9 @@ public class SingleUploadPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOf(metaDataAuthorFamilyNameTextField));
 		metaDataAuthorFamilyNameTextField.sendKeys(defaultMetaDataProfile.getAuthor());
 		
-		//setting id
-		wait.until(ExpectedConditions.visibilityOf(metaDataIDTextField));
-		metaDataIDTextField.sendKeys(defaultMetaDataProfile.getId());
+		//setting organization
+		wait.until(ExpectedConditions.visibilityOf(metaDataOrganizationTextField));
+		metaDataOrganizationTextField.sendKeys(defaultMetaDataProfile.getOrganization());
 		
 		//setting publication link
 		wait.until(ExpectedConditions.visibilityOf(metaDataPublicationTextField));
@@ -115,6 +139,11 @@ public class SingleUploadPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOf(metaDataDateTextField));
 		metaDataDateTextField.sendKeys(defaultMetaDataProfile.getDate());
 		
+		//setting geolocation
+		wait.until(ExpectedConditions.visibilityOf(metaDataGeolocNameTextField));
+		metaDataGeolocNameTextField.sendKeys(defaultMetaDataProfile.getGeolocName());
+		metaDataGeolocLatitudeField.sendKeys(defaultMetaDataProfile.getLatitude());
+		metaDataGeolocLongitudeField.sendKeys(defaultMetaDataProfile.getLongitude());
 	}
 	
 }

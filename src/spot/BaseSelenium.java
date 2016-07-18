@@ -57,6 +57,7 @@ public abstract class BaseSelenium {
 		return properties;
 	}
 	
+	//TestNG does not set superclass priority in BeforeClass methods
 	@BeforeClass
 	public void setup() {
 		configureDriver();
@@ -77,8 +78,8 @@ public abstract class BaseSelenium {
 	}
 
 	private void setupRegisteredUser() {
-		spotRUUserName = "tuSpotUserName";
-		spotRUPassWord = "tuSpotPassword";
+		spotRUUserName = "tuEmailAddress";
+		spotRUPassWord = "tuEmailPassword";
 		ruGivenName = "tuGivenName";
 		ruFamilyName = "tuFamilyName";
 		ruOrganizationName = "tuOrganization";

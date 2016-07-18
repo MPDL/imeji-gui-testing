@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
 
@@ -38,18 +39,23 @@ public class FilterComponent extends BasePage {
 		
 		switch (filter) {
 		case ALL:
+			wait.until(ExpectedConditions.visibilityOf(allFilter));
 			allFilter.click();				
 			break;
 		case MY:
+			wait.until(ExpectedConditions.visibilityOf(myFilter));
 			myFilter.click();
 			break;
 		case ONLY_PRIVATE:
+			wait.until(ExpectedConditions.visibilityOf(onlyPrivateFilter));
 			onlyPrivateFilter.click();
 			break;
 		case ONLY_PUBLISHED:
+			wait.until(ExpectedConditions.visibilityOf(onlyPublishedFilter));
 			onlyPublishedFilter.click();
 			break;
 		case ONLY_DISCARDED:
+			wait.until(ExpectedConditions.visibilityOf(onlyDiscardedFilter));
 			onlyDiscardedFilter.click();
 			break;
 		}

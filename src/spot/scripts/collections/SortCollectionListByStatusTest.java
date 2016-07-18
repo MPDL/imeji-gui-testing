@@ -17,6 +17,7 @@ public class SortCollectionListByStatusTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();
 		CollectionsPage collectionsPage = new StartPage(driver)
 				.goToCollectionPage();

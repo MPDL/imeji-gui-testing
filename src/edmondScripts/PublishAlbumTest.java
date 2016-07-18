@@ -23,9 +23,8 @@ public class PublishAlbumTest extends BaseSelenium {
 	
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();		
-	
-//		new StartPage(driver).selectLanguage(englishSetup);
 		
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
@@ -68,7 +67,6 @@ public class PublishAlbumTest extends BaseSelenium {
 	public void addNotYetPublishedFilesToAlbum() {
 		CollectionsPage collectionPage = adminHomePage.goToCollectionPage();
 		
-		// somehow get not yet published file
 		CollectionContentPage notYetPublishedCollectionContentPage = collectionPage.openSomeNotPublishedCollection();
 		notYetPublishedCollectionContentPage.addFirstItemToAlbum();
 		

@@ -13,6 +13,7 @@ public class DisclaimerTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();
 	}
 

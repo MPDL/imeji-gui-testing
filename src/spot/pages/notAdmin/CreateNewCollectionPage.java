@@ -22,16 +22,16 @@ public class CreateNewCollectionPage extends BasePage {
 	@FindBy(name="editContainer:mediaContainerForm:inputDescription")
 	private WebElement descriptionTextField;
 	
-	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:inputFamilyNameText1")
+	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:inputFamilyNameText")
 	private WebElement familyNameTextField;
 	
-	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:inputGiveNameText1")
+	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:inputGiveNameText")
 	private WebElement givenNameTextField;
 	
-	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:inputAlternativeName1")
+	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:inputAlternativeName")
 	private WebElement alternativeNameTextField;
 	
-	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:inputIdentifier1")
+	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:inputIdentifier")
 	private WebElement identifierTextField;
 	
 	@FindBy(css="div.imj_organisation>div:nth-of-type(1)>div.imj_admindataValue>div.imj_admindataValueEntry>input")
@@ -145,15 +145,15 @@ public class CreateNewCollectionPage extends BasePage {
 		// person related
 		setTitle(collectionTitle);
 		setDescription(collectionDescription);
-		confirmFamilyName(familyName);
-		confirmGivenName(givenName);
+		//confirmFamilyName(familyName);
+		//confirmGivenName(givenName);
 		setAlternativeName("testtest");
-		confirmIdentifier();
+		//confirmIdentifier();
 		
 		// organization related
-		confirmOrganizationName(orgName);
+		//confirmOrganizationName(orgName);
 		setOrganizationDescription("This is a test description for the organization.");
-		confirmOrganizationIdentifier();
+		//confirmOrganizationIdentifier();
 		setCity("Munich");
 		setCountry("Deutschland");		
 	}

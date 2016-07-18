@@ -31,6 +31,7 @@ public class ItemHitsPerCollectionViewTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 	}
 
 	@AfterClass

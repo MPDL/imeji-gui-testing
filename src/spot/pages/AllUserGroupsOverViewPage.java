@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AllUserGroupsOverViewPage extends BasePage {
 
@@ -19,15 +20,30 @@ public class AllUserGroupsOverViewPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void deleteUserGroupByName(String userGroupName) {
-		//TODO delete user group by name
+	public AllUserGroupsOverViewPage deleteUserGroupByName(String userGroupName) {
+		
+		if (isNewUserGroupPresent(userGroupName)) {
+			WebElement toBeDeletedUserGroup = findUserGroupByName(userGroupName);
+			WebElement deleteButton = toBeDeletedUserGroup.findElement(By.cssSelector(".imj_adminEditPanel>.imj_cancelButton"));
+			deleteButton.click();
+			
+			wait.until(ExpectedConditions.visibilityOf(toBeDeletedUserGroup));
+			
+			// TODO delete currently dependent on number in code
+			WebElement confirmDelete = toBeDeletedUserGroup.findElement(By.cssSelector("div[id^=deleteUserGroup] .imj_submitPanel form .imj_submitButton"));
+
+			wait.until(ExpectedConditions.visibilityOf(confirmDelete));
+			confirmDelete.click();
+		}
+		
+		return PageFactory.initElements(driver, AllUserGroupsOverViewPage.class);
 	}
 	
 	private WebElement findUserGroupByName(String userGroupNameInQuestion) {
 		WebElement userGroupInQuestion = null;
 		
 		for (WebElement userGroup : userGroupList) {
-			WebElement userGroupIdentification = userGroup.findElement(By.cssSelector("h2"));
+			WebElement userGroupIdentification = userGroup.findElement(By.className("imj_headline"));
 			String userGroupName  = userGroupIdentification.getText();
 			
 			if (userGroupName.equals(userGroupNameInQuestion)) {

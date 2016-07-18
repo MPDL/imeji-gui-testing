@@ -13,57 +13,46 @@ import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
 import spot.components.MessageComponent.MessageType;
+import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
-import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.HomePage;
+import spot.util.TimeStamp;
 
 
 public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSelenium {
 
 	private LoginPage loginPage;
-	private AdminHomePage adminHomePage;
+	private HomePage homePage;
 	private CollectionEntryPage collectionEntryPage;
 	
 	private HashMap<String, String> files;
 	private MultipleUploadPage multipleUploadPage;
 
-	public final String collectionTitle = "Published test collection without meta data profile";	
-
-	@AfterClass
-	public void afterClass() {
-		adminHomePage.logout();
-	}
+	public final String collectionTitle = "Published test collection without meta data profile "
+			+ TimeStamp.getTimeStamp();	
 	
 	@BeforeClass
 	public void beforeClass() {
-
+		super.setup();
 		navigateToStartPage();		
 		
 		loginPage = new StartPage(driver).openLoginForm();
 		
 		files = new HashMap<String, String>();
 		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
-//		files.put("SamplePDFFile.pdf", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePDFFile.pdf");
+		files.put("SamplePDFFile.pdf", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePDFFile.pdf");
 		
-		//new StartPage(driver).selectLanguage(englishSetup);
+		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 	}
 
-	@Test (priority = 1)
-	public void loginTest() {
-		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
-
-		String adminFullName = getPropertyAttribute(ruFamilyName) + ", " + getPropertyAttribute(ruGivenName);
-		Assert.assertEquals(adminHomePage.getLoggedInUserFullName(), adminFullName, "User name doesn't match");
-	
-	}
-
-	@Test(priority = 2)
+	@Test(priority = 1)
 	public void createCollectionWithoutMetaDataProfileTest() {
 		System.out.println("Attempt to create collection without meta data");
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
+		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		
 		String collectionDescription = "This collection has no meta data profile. It is being published.";
 
@@ -80,7 +69,7 @@ public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSeleni
 	
 	}
 
-	@Test (priority = 3)
+	@Test (priority = 2)
 	public void uploadFilesTest() throws AWTException {
 
 		multipleUploadPage = collectionEntryPage.uploadContent();
@@ -98,7 +87,7 @@ public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSeleni
 		Assert.assertTrue(isVerificationSuccessfull, "The list of uploaded files is probably incomplete.");
 	}
 
-	@Test (priority = 4)
+	@Test (priority = 3)
 	public void publishCollectionTest() {
 					
 		multipleUploadPage.publishCollection();
@@ -107,5 +96,21 @@ public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSeleni
 		String expectedInfoMessage = "Collection released successfully";
 		Assert.assertEquals(actualInfoMessage, expectedInfoMessage,
 				"Something went wrong with the release of the collection.");
+	}
+	
+	@Test (priority = 4)
+	public void noMetaDataProfileTest() {
+		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		boolean isMetaDataProfileDefined = createdCollection.isMetaDataProfileDefined();
+		Assert.assertFalse(isMetaDataProfileDefined, "This collection should not have a metadata profile.");
+	}
+	
+
+	@AfterClass
+	public void afterClass() {
+		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		createdCollection.discardCollection();
+		
+		homePage.logout();
 	}
 }

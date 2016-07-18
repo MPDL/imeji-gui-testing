@@ -5,35 +5,48 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import spot.BaseSelenium;
+import spot.pages.AdministrationPage;
+import spot.pages.AllUsersOverViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.admin.UserManagementOverviewPage;
-import spot.pages.admin.ViewEditUsersPage;
 
 public class UserPolicyManagementTest extends BaseSelenium {
 
 	private AdminHomePage adminHomePage;
+	private String emailOfNewUser;
 
 	/**
 	 * To carry out admin rights requires login as admin.
 	 */
 	@BeforeClass
-	public void loginAsAdmin() {
+	public void setup() {
+		super.setup();
+		navigateToStartPage();
+		loginAsAdmin();
+		createNewUser();
+	}
+	
+	private void loginAsAdmin() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
 	}
 	
+	private void createNewUser() {
+		emailOfNewUser = getPropertyAttribute("tuSpotUserName");
+		
+		AdministrationPage administrationPage = adminHomePage.goToAdminPage();
+		administrationPage.createNewUser(emailOfNewUser);
+		adminHomePage = (AdminHomePage) administrationPage.goToHomePage(adminHomePage);
+	}
+	
 	@Test
 	public void deleteTestUserTest() {
-		UserManagementOverviewPage userPolicyManagementOverviewPage = adminHomePage.goToUserPolicyManagementOverviewPage();
-		ViewEditUsersPage viewEditUsersPage = userPolicyManagementOverviewPage.goToViewEditUsersButton();
+		AllUsersOverViewPage allUsersOverViewPage = adminHomePage.goToAdminPage().viewAllUsers();
+		allUsersOverViewPage.deleteUserByEmail(emailOfNewUser);
+		allUsersOverViewPage = allUsersOverViewPage.goToAdminPage().viewAllUsers();
 		
-		String toBeDeletedUsersEmailAddress = getPropertyAttribute("tuEmailAddress"); 
-		
-		viewEditUsersPage.deleteUser(toBeDeletedUsersEmailAddress);
-		Assert.assertFalse(viewEditUsersPage.isUserPresent(toBeDeletedUsersEmailAddress), "User deletion failed: user still registered");
-		
+		Assert.assertFalse(allUsersOverViewPage.isEmailInUserList(emailOfNewUser), "User deletion failed: user still registered");
 	}
 	
 	@AfterClass

@@ -15,12 +15,19 @@ public class DownloadFileTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();
-		
+	}
+	
+	@Test 
+	public void downloadFileTest() {
 		CollectionsPage collectionPage = new StartPage(driver).goToCollectionPage();
 		CollectionContentPage collectionContentPage = collectionPage.getPageOfLargestCollection();
 		
 		detailedItemViewPage = collectionContentPage.downloadFirstItemInList();	
+		boolean isDownloadPossible = detailedItemViewPage.isDownloadPossible();		
+		
+		Assert.assertTrue(isDownloadPossible, "Download of a item seems not to be possible. Reason: Download Button most probably not displayed/enabled");	
 	}
 	
 	@AfterClass
@@ -28,11 +35,4 @@ public class DownloadFileTest extends BaseSelenium {
 		navigateToStartPage();
 	}
 	
-	@Test 
-	public void downloadFileTest() {
-		
-		boolean isDownloadPossible = detailedItemViewPage.isDownloadPossible();		
-		
-		Assert.assertTrue(isDownloadPossible, "Download of a item seems not to be possible. Reason: Download Button most probabyl not displayed/enabled");	
-	}
 }

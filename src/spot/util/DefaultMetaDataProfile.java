@@ -13,17 +13,26 @@ public class DefaultMetaDataProfile {
 	
 	private String title;
 	private String author;
+	private String organization;
 	private String id;
 	private String publicationLink;
 	private String date;
+	private String geolocName;
+	private String latitude;
+	private String longitude;
 
 	private DefaultMetaDataProfile() {
 	
 		title = "test title";
-		author = "test author family name";
-		id = "1234567890";
-		publicationLink = "https://www.test-publication-link.de";
-		date = "1999-01-01";
+		author = "Petrova";
+		organization = "MPDL";
+		id = "";
+		publicationLink = "http://qa-edmond.mpdl.mpg.de";
+		date = "2016-01-01";
+		geolocName = "Munich, Germany";
+		latitude = "49";
+		longitude = "12";
+		
 	}
 
 	public String getTitle() {
@@ -32,6 +41,10 @@ public class DefaultMetaDataProfile {
 
 	public String getAuthor() {
 		return author;
+	}
+	
+	public String getOrganization() {
+		return organization;
 	}
 
 	public String getId() {
@@ -44,6 +57,18 @@ public class DefaultMetaDataProfile {
 
 	public String getDate() {
 		return date;
+	}
+	
+	public String getGeolocName() {
+		return geolocName;
+	}
+	
+	public String getLatitude() {
+		return latitude;
+	}
+	
+	public String getLongitude() {
+		return longitude;
 	}
 	
 	public static DefaultMetaDataProfile getDefaultMetaDataProfileInstance() {

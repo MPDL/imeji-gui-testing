@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import spot.components.FilterComponent;
+import spot.components.FilterComponent.FilterOptions;
 import spot.components.SortingComponent;
 
 public class CollectionsPage extends BasePage {
@@ -101,34 +102,13 @@ public class CollectionsPage extends BasePage {
 	}
 
 	public CollectionContentPage openSomePublishedCollection() {
+		WebElement filter = driver.findElement(By.className("fa-filter"));
+		filter.click();
+		filterComponent.filter(FilterOptions.ONLY_PUBLISHED);
 		
-		checkCollectionList();
-		
-		WebElement somePublishedCollection = null;
-		
-		// since page could have been refreshed due to checkCollectionList()
-		collectionList = driver.findElements(By.className("imj_bibliographicListItem"));
-		
-		for (WebElement collection : collectionList) {
-			
-			WebElement status = collection.findElement(By.className("imj_statusArea"));
-			
-			if (status.findElements(By.xpath(".//*")).size()==0) {
-				System.out.println("This collection is published");
-				
-				somePublishedCollection = collection;
-				break;
-			} 
-		}
-		
-		if (somePublishedCollection != null) {
-			// open start page of the selected collection
-			somePublishedCollection.findElement(By.cssSelector(".imj_itemActionArea li:nth-of-type(2) a")).click();
-			
-			return PageFactory.initElements(driver, CollectionContentPage.class);
-		} else {
-			return null;
-		}
+		CollectionsPage collectionsPage = PageFactory.initElements(driver, CollectionsPage.class);
+		collectionsPage.getPageOfLargestCollection();
+		return PageFactory.initElements(driver, CollectionContentPage.class);
 	}
 
 	public CollectionContentPage openCollectionByTitle(String collectionTitle) {

@@ -10,7 +10,7 @@ public class SearchQueryPage extends BasePage {
 	@FindBy(xpath="html/body/div[1]/div[4]/div[1]")
 	private WebElement searchQueryDisplay;
 	
-	@FindBy(xpath="html/body/div[1]/div[4]/div[1]/span")
+	@FindBy(className="imj_searchQueryText")
 	private WebElement searchQueryKeyWord;
 	
 	public SearchQueryPage(WebDriver driver) {
@@ -20,6 +20,10 @@ public class SearchQueryPage extends BasePage {
 	}
 	
 	public String getSearchQueryDisplayText() {
+		return searchQueryKeyWord.getText();
+	}
+	
+	/*public String getSearchQueryDisplayText() {
 		String searchQueryDisplayText="";
 		String tmp = searchQueryDisplay.getText().trim();
 		String[] split = tmp.split("\\s+");
@@ -28,6 +32,6 @@ public class SearchQueryPage extends BasePage {
 		// sth like albums:(test)
 		searchQueryDisplayText = searchCategory + searchQueryKeyWord.getText().trim();
 		return searchQueryDisplayText;
-	}
+	}*/
 
 }

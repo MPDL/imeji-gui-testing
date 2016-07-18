@@ -20,6 +20,7 @@ public class SearchTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClassTest() {
+		super.setup();
 		startPage = new StartPage(driver);
 	}
 
@@ -51,7 +52,7 @@ public class SearchTest extends BaseSelenium {
 	}
 	
 	public void searchFor(String searchQueryKeyWord, CategoryType ct) {
-		SearchQueryPage searchQueryPage = startPage.getSearchComponent().searchFor(ct, searchQueryKeyWord);
+		SearchQueryPage searchQueryPage = startPage.getSearchComponent().searchFor(searchQueryKeyWord);
 		String searchQueryDisplayText = searchQueryPage.getSearchQueryDisplayText();
 		
 		String expectedDisplayText = "";

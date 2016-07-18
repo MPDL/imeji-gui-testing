@@ -1,5 +1,9 @@
 package edmondScripts;
 
+import java.awt.AWTException;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -11,38 +15,66 @@ import spot.components.ActionComponent.ActionType;
 import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
 import spot.pages.LoginPage;
+import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
-import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.HomePage;
+import spot.util.TimeStamp;
 
 public class DeleteCollectionTest extends BaseSelenium {
 
-	private AdminHomePage adminHomePage;
+	private HomePage homePage;
 	private CollectionEntryPage collectionEntryPage;
-	private String collectionTitle;
+	
+	private String collectionTitle = "Collection doomed to be deleted: " + TimeStamp.getTimeStamp();
+	private HashMap<String, String> files;
 
 	@BeforeClass
-	public void beforeClass() {
+	public void beforeClass() throws AWTException {
+		super.setup();
 		navigateToStartPage();
+		loginAsNotAdmin();
+	}
+	
+	private void loginAsNotAdmin() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 
-//		new StartPage(driver).selectLanguage(englishSetup);
-		
-		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName),
+		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName),
 				getPropertyAttribute(spotRUPassWord));
+	}
+	
+	@Test(priority = 1)
+	public void createCollection() {
+		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 
-		collectionTitle = "Collection doomed to be deleted";
+		String collectionDescription = "This collection is doomed to be deleted. For testing purposes.";
 
-		collectionEntryPage = createCollection(collectionTitle);
+		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
+				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
+				getPropertyAttribute(ruOrganizationName));
+		
+		String siteContentHeadline = collectionEntryPage.getSiteContentHeadline();
+		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");
+	}
+	
+	@Test(priority = 2)
+	public void uploadFiles() throws AWTException {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
+		files = new HashMap<String, String>();
+		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
+		
+		MultipleUploadPage multipleUploadPage = collectionEntryPage.uploadContent();
+		for (Map.Entry<String, String> file : files.entrySet()) {
+			multipleUploadPage.addFile(file.getValue());
+		}
+		multipleUploadPage.startUpload();
 	}
 
-	@AfterClass
-	public void afterClass() {
-		adminHomePage.logout();
-	}
-
-	@Test
+	@Test(priority = 3)
 	public void deleteCollectionTest() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		
 		ActionComponent actionComponent = collectionEntryPage.getActionComponent();
 		CollectionsPage collectionsPage = (CollectionsPage) actionComponent.doAction(ActionType.DELETE);
@@ -53,16 +85,11 @@ public class DeleteCollectionTest extends BaseSelenium {
 				"Collection deletion most probably unsuccessful, since deletion confirmation info message is not displayed.");
 
 	}
-
-	private CollectionEntryPage createCollection(String collectionTitle) {
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
-
-		String collectionDescription = "This collection is doomed to be deleted. For testing purposes.";
-
-		CollectionEntryPage collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
-				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
-				getPropertyAttribute(ruOrganizationName));
-
-		return collectionEntryPage;
+	
+	@AfterClass
+	public void afterClass() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		homePage.logout();
 	}
+
 }

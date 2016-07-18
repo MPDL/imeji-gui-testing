@@ -5,13 +5,11 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AllUsersOverViewPage extends BasePage {
 
-	@FindBy(css=".imj_admindataSet")
 	private List<WebElement> userList;
 	
 	public AllUsersOverViewPage(WebDriver driver) {
@@ -45,13 +43,22 @@ public class AllUsersOverViewPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOf(confirmDelete));
 		confirmDelete.click();
 	}
+	
+	public boolean isEmailInUserList(String email) {
+		WebElement userInQuestion = findUserByEmail(email);
+		if (userInQuestion == null)
+			return false;
+		else
+			return true;
+	}
 
 	private WebElement findUserByEmail(String emailInQuestion) {
 		
+		userList = driver.findElements(By.className("imj_admindataSet"));
 		WebElement userInQuestion = null;
 		
 		for (WebElement user : userList) {
-			WebElement userIdentification = user.findElement(By.xpath(".//h2"));
+			WebElement userIdentification = user.findElement(By.tagName("h2"));
 			String userNamePlusEmail = userIdentification.getText();
 			String mail = extractMail(userNamePlusEmail);
 			
@@ -64,7 +71,7 @@ public class AllUsersOverViewPage extends BasePage {
 	}
 
 	private String extractMail(String userNamePlusEmail) {
-		// userNamePlusEmail looks sth like this:          familyName, givenName (email@test.de)
+		// userNamePlusEmail looks sth like this:	familyName, givenName (email@test.de)
 		// aiming to get only email-address
 		userNamePlusEmail = userNamePlusEmail.trim();
 		int tmpIndex = userNamePlusEmail.indexOf('(');

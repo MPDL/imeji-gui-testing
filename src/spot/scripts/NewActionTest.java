@@ -21,6 +21,7 @@ public class NewActionTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		

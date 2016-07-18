@@ -30,7 +30,7 @@ public class StartPage extends BasePage {
 	public StartPage(WebDriver driver) {
 		super(driver);
 				
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(this.driver, this);
 	}	
 	
 	public LoginPage openLoginForm() {

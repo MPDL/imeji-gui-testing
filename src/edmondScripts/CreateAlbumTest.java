@@ -13,7 +13,6 @@ import spot.BaseSelenium;
 import spot.components.ActionComponent;
 import spot.components.ActionComponent.ActionType;
 import spot.pages.AlbumEntryPage;
-import spot.pages.AlbumPage;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
@@ -29,23 +28,19 @@ public class CreateAlbumTest extends BaseSelenium {
 
 	private AdminHomePage adminHomePage;
 	private AlbumEntryPage albumEntryPage;
+	private MultipleUploadPage multipleUploadPage;
 		
 	private String collectionTitle;
 	
 	private HashMap<String, String> files;
 
-	private CollectionContentPage collectionContentPage;
-
-	private MultipleUploadPage multipleUploadPage;
-	
 	@BeforeClass
 	public void beforeClass()  throws AWTException {
+		super.setup();
 		navigateToStartPage();		
 	
 		files = new HashMap<String, String>();
 		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
-		
-//		new StartPage(driver).selectLanguage(englishSetup);
 		
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));

@@ -12,6 +12,7 @@ public class ContactSupportTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();
 	}
 	

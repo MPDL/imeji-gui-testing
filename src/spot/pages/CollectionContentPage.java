@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +16,15 @@ import spot.components.ActionComponent.ActionType;
 
 public class CollectionContentPage extends BasePage {
 
-//	@FindBy(xpath=".//*[@id='j_idt330:j_idt334:extSelectTop']")
+	@FindBy(css="#actionsMenuArea .imj_contentMenu .imj_contentMenuItem")
+	private WebElement aboutLink;
+	
+	@FindBy(css=".imj_contentMenuItem:nth-of-type(2)")
+	private WebElement metaDataProfileLink;
+	
+	@FindBy(xpath="/html/body/div[1]/div[5]/div[1]/h2/a")
+	private WebElement addNewMetaDataProfile;
+	
 	@FindBy(xpath=".//*[@id='j_idt324:j_idt328:extSelectTop']")
 	private WebElement itemHitNumberPerView;
 	
@@ -27,10 +34,10 @@ public class CollectionContentPage extends BasePage {
 	@FindBy(css="div.imj_overlayMenu.imj_menuHeader")
 	private WebElement totalItemNumberWebElement;
 	
-	@FindBy(css="#selPanel\\:preListForm\\:lblSelectedSize")
+	@FindBy(id="selPanel:preListForm:lblSelectedSize")
 	private WebElement selectedItemCount;
 	
-	@FindBy(css="#selPanel\\:selectionInfoPanel .imj_overlayMenuListItem:nth-of-type(1)>a")
+	@FindBy(xpath="/html/body/div[1]/div[5]/div[1]/div[2]/form/div[2]/div[2]/ul/li[1]/a")
 	private WebElement addToActiveAlbumButton;
 	
 	private ActionComponent actionComponent;
@@ -117,19 +124,6 @@ public class CollectionContentPage extends BasePage {
 			itemThumbNail.click();
 			driver.navigate().back();
 		}
-		
-//		for (WebElement item : itemList) {
-//
-//			
-//			WebElement tooltip = item.findElement(By.className("imj_tooltip"));
-//			
-//			List<WebElement> toolTipValues = tooltip.findElements(By.className("imj_metadataValue"));
-//			
-//			for (WebElement toolTipValue : toolTipValues) {
-//				String text = toolTipValue.getText();
-//				System.out.println("Tooltip value text: " + text);
-//			}
-//		}
 	}
 
 	public DetailedItemViewPage downloadFirstItemInList() {
@@ -143,11 +137,8 @@ public class CollectionContentPage extends BasePage {
 		WebElement firstItem = getItemList().get(0);
 		firstItem.findElement(By.cssSelector("span>input")).click();
 		
-		try {
-			selectedItemCount.click();
-		} catch (NoSuchElementException e) {
-			retryingFindClick(By.cssSelector("#selPanel\\:preListForm\\:lblSelectedSize"));
-		}
+		wait.until(ExpectedConditions.visibilityOf(selectedItemCount));
+		selectedItemCount.click();
 		wait.until(ExpectedConditions.visibilityOf(addToActiveAlbumButton));
 		addToActiveAlbumButton.click();
 	}
@@ -167,6 +158,35 @@ public class CollectionContentPage extends BasePage {
 		addToActiveAlbumButton.click();
 		
 		return getItemListSize();
+	}
+	
+	public CollectionsPage discardCollection() {
+		
+		actionComponent.doAction(ActionType.DISCARD);
+		
+		return PageFactory.initElements(driver,  CollectionsPage.class);
+	}
+	
+	public boolean isMetaDataProfileDefined() {
+		metaDataProfileLink.click();
+		try {
+			driver.findElement(By.className(".imj_metaDataValue"));
+			return true;
+		}
+		catch (NoSuchElementException exc) {
+			return false;
+		}
+	}
+	
+	public MetaDataOverViewPage openMetaDataProfile() {
+		if (isMetaDataProfileDefined())
+			return PageFactory.initElements(driver, MetaDataOverViewPage.class);
+		return null;
+	}
+	
+	public CollectionEntryPage viewCollectionInformation() {
+		aboutLink.click();
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
 }

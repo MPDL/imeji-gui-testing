@@ -10,16 +10,16 @@ public class CreateNewUserPage extends BasePage {
 	@FindBy(id="userForm:inputEmailText")
 	private WebElement emailTextField;
 	
-	@FindBy(id="userForm:userPerson:inputFamilyNameText1")
+	@FindBy(id="userForm:userPerson:inputFamilyNameText")
 	private WebElement familyNameTextField;
 	
-	@FindBy(id="userForm:userPerson:inputGiveNameText1")
+	@FindBy(id="userForm:userPerson:inputGiveNameText")
 	private WebElement givenNameTextField;
 	
-	@FindBy(id="userForm:userPerson:inputAlternativeName1")
+	@FindBy(id="userForm:userPerson:inputAlternativeName")
 	private WebElement alternativeNameTextField;
 	
-	@FindBy(id="userForm:userPerson:inputIdentifier1")
+	@FindBy(id="userForm:userPerson:inputIdentifier")
 	private WebElement identifier;
 	
 	@FindBy(css="div.imj_organisation>div:nth-of-type(1)>div.imj_admindataValue>div.imj_admindataValueEntry>input")
@@ -52,7 +52,7 @@ public class CreateNewUserPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public AllUsersOverViewPage createNewUser(String newUserName) {
+	public UserProfilePage createNewUser(String newUserName) {
 		
 		fillPersonalData(newUserName);
 		
@@ -68,7 +68,7 @@ public class CreateNewUserPage extends BasePage {
 		
 		saveButton.click();
 		
-		return PageFactory.initElements(driver, AllUsersOverViewPage.class);
+		return PageFactory.initElements(driver, UserProfilePage.class);
 	}
 
 	private void fillOrganizationData() {

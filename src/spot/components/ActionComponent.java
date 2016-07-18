@@ -21,7 +21,8 @@ public class ActionComponent extends BasePage {
 	@FindBy(css="#actionMenu .imj_headerEntry")
 	private WebElement actionButton;
 	
-	@FindBy(xpath="html/body/div[1]/div[3]/div[2]/div[1]/span")
+	//@FindBy(xpath="html/body/div[1]/div[3]/div[2]/div[1]/span")
+	@FindBy(xpath="/html/body/div[1]/div[4]/div[2]/div[5]/div[1]/span[2]")
 	private WebElement actionButton_2;
 	
 	@FindBy(css=".fa-share")
@@ -30,7 +31,7 @@ public class ActionComponent extends BasePage {
 	@FindBy(css="#action\\:actionMenuShareCollection")
 	private WebElement shareButton;
 	
-	@FindBy(css="#action\\:actionMenuRelease")
+	@FindBy(id="action:actionMenuRelease")
 	private WebElement publishButton;
 	
 	@FindBy(id="releaseMenuItemDialog")

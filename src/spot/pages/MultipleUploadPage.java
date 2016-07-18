@@ -17,9 +17,11 @@ import spot.components.ActionComponent.ActionType;
 
 public class MultipleUploadPage extends BasePage {
 
-//	@FindBy(xpath=".//*[@id='uploader_browse']")
-	@FindBy(css="#tabsUpload-1>div>div:nth-of-type(2)>input")
+	@FindBy(id="uploader_browse")
 	private WebElement addFileButton;
+	
+	@FindBy(id="html5_1amijo7q41l2718uu19a7av8da33")
+	private WebElement inputFileWindow;
 	
 	@FindBy(xpath=".//*[@id='uploader_container']/div/div[2]/div[2]/div[1]/div/a[2]")
 	private WebElement startUploadButton;
@@ -40,17 +42,17 @@ public class MultipleUploadPage extends BasePage {
 	public void addFile(String filePath) throws AWTException {
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		
 		String js = "arguments[0].style.visibility = 'visible';";
-	    jse.executeScript(js, addFileButton);
-	    addFileButton.sendKeys(filePath);
+	    jse.executeScript(js, driver.findElement(By.xpath("/html/body/div[1]/div[5]/div[1]/div/div[1]/div/div[1]/div/div[2]/input")));
+	    driver.findElement(By.xpath("/html/body/div[1]/div[5]/div[1]/div/div[1]/div/div[1]/div/div[2]/input")).sendKeys(filePath);
 	    String jsa = "arguments[0].style.visibility = 'hidden';";
-	    jse.executeScript(jsa, addFileButton);
+	    jse.executeScript(jsa, driver.findElement(By.xpath("/html/body/div[1]/div[5]/div[1]/div/div[1]/div/div[1]/div/div[2]/input")));
 		
 	}
 	
 	public void startUpload() {
-		startUploadButton.click();		
+		startUploadButton.click();	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("imj_fileSuccessMessageArea")));
 	}
 	
 	public boolean verifyUploadedFiles(List<String> fileNames) {

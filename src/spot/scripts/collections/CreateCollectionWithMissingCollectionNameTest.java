@@ -25,10 +25,12 @@ public class CreateCollectionWithMissingCollectionNameTest extends BaseSelenium 
 
 	@AfterMethod
 	public void afterMethod() {
+		adminHomePage.logout();
 	}
 
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 

@@ -25,6 +25,7 @@ public class EditUserProfileTest extends BaseSelenium {
 	
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();		
 	
 //		new StartPage(driver).selectLanguage(englishSetup);
@@ -36,7 +37,9 @@ public class EditUserProfileTest extends BaseSelenium {
 	
 		newUserName = "edmond-test@mpdl.mpg.de";
 		
-		allUsersOverViewPage = adminPage.createNewUser(newUserName);
+		
+		UserProfilePage userProfilePage = adminPage.createNewUser(newUserName);
+		allUsersOverViewPage = userProfilePage.goToAdminPage().viewAllUsers();
 	}
 
 	@AfterMethod
@@ -46,7 +49,7 @@ public class EditUserProfileTest extends BaseSelenium {
 	}
 	
 	
-	@Test
+	@Test(priority = 1)
 	public void changeNameOfUserTest() {
 		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetails(newUserName);
 		EditUserProfilePage editUserProfilePage = userProfilePage.editProfile();
@@ -59,7 +62,7 @@ public class EditUserProfileTest extends BaseSelenium {
 		Assert.assertTrue(isEditedSuccessfully, "Edit Profile Test: Name of User couldn't be changed.");
 	}
 	
-	@Test
+	@Test(priority = 2)
 	public void changePasswordOfUserTest() {
 		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetails(newUserName);
 		userProfilePage.changePassword();
@@ -69,12 +72,14 @@ public class EditUserProfileTest extends BaseSelenium {
 		Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Edit Profile Test: Password couldn't be changed.");
 	}
 	
+	@Test(priority = 3)
+	public void deleteUser() {
+		allUsersOverViewPage.deleteUserByEmail(newUserName);
+	}
+	
 	@AfterClass
 	public void afterClass() {
-		
-		// delete the user again
-		allUsersOverViewPage.deleteUserByEmail(newUserName);
-		
+		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
 		adminHomePage.logout();
 	}
 }
