@@ -21,7 +21,7 @@ public class SeleniumTestSuite {
 	
 	/** properties file with required login information for test user and admin **/
 	private static Properties properties;	
-	public static final String propertiesFileName = "/testData.properties";
+	public static final String propertiesFileName = "testData.properties";
 	
 	public static final String qaEdmond = "http://qa-edmond.mpdl.mpg.de/imeji/";
 	public static final String qaImeji = "http://qa-imeji.mpdl.mpg.de/";
@@ -46,7 +46,7 @@ public class SeleniumTestSuite {
 	}
 
 	private void loadPropertiesFile() {
-		String propertiesEnvName = System.getenv(propertiesFileName);
+		String propertiesEnvName = "/" + System.getenv(propertiesFileName);
 		properties = new Properties();
 		InputStream input = getClass().getClassLoader().getResourceAsStream(propertiesEnvName);
 
