@@ -35,7 +35,7 @@ public class SeleniumTestSuite {
 	
 	@Parameters("browserType")
 	@BeforeSuite
-	public void launchDriver(String browserType) throws MalformedURLException {
+	public void launchDriver(String browserType) throws MalformedURLException, FileNotFoundException {
 
 		
 		log4j.info("Launching driver...");
