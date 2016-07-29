@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -47,7 +48,7 @@ public class SeleniumTestSuite {
 		log4j.info("Test environment url loaded.");
 	}
 
-	private void loadPropertiesFile() {
+	private void loadPropertiesFile() throws FileNotFoundException {
 		String propertiesEnvName = "/" + System.getenv(propertiesFileName);
 		properties = new Properties();
 		FileInputStream input = new FileInputStream(new File(propertiesEnvName));
