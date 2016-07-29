@@ -48,7 +48,7 @@ public class SeleniumTestSuite {
 	private void loadPropertiesFile() {
 		String propertiesEnvName = "/" + System.getenv(propertiesFileName);
 		properties = new Properties();
-		InputStream input = getClass().getClassLoader().getResourceAsStream(propertiesEnvName);
+		FileInputStream input = new FileInputStream(new File(propertiesEnvName));
 
 		try {	
 			properties.load(input);
