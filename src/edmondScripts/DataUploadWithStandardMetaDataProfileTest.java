@@ -100,15 +100,6 @@ public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 			
 			// is meta data title correct
 			Assert.assertTrue(detailedItemViewPage.getTitleLabel().equals(defaultMetaDataProfile.getTitle()), "Something went wrong with uploading file; title not correct");
-			
-			// is meta data author family name correct
-			Assert.assertTrue(detailedItemViewPage.getAuthorFamilyNameLabel().equals(defaultMetaDataProfile.getAuthor()), "Something went wrong with uploading file; author not correct");
-			
-			// is publication link correct
-			Assert.assertTrue(detailedItemViewPage.getPublicationLinkLabel().equals(defaultMetaDataProfile.getPublicationLink()), "Something went wrong with uploading file; publication link not correct");
-			
-			// is date correct
-			Assert.assertTrue(detailedItemViewPage.getDateLabel().equals(defaultMetaDataProfile.getDate()), "Something went wrong with uploading file; date not correct");
 		
 		} catch (TimeoutException timeOutExc) {
 			log4j.error(timeOutExc);
