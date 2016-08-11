@@ -19,7 +19,7 @@ public class CollectionContentPage extends BasePage {
 	@FindBy(css="#actionsMenuArea .imj_contentMenu .imj_contentMenuItem")
 	private WebElement aboutLink;
 	
-	@FindBy(css=".imj_contentMenuItem:nth-of-type(3)")
+	@FindBy(xpath="//a[contains(@title, 'Meta')]")
 	private WebElement metaDataProfileLink;
 	
 	@FindBy(xpath="/html/body/div[1]/div[5]/div[1]/h2/a")

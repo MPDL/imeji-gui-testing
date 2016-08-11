@@ -57,7 +57,6 @@ public class ProvidePublicWithItemsWithMetaDataProfileTest extends BaseSelenium 
 
 	@Test(priority = 1)
 	public void createCollectionWithMetaDataProfileTest() {
-		System.out.println("Attempt to create collection without meta data");
 		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		
 		String collectionDescription = "This collection has a default meta data profile. It is being published.";

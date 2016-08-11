@@ -51,7 +51,6 @@ public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSeleni
 
 	@Test(priority = 1)
 	public void createCollectionWithoutMetaDataProfileTest() {
-		System.out.println("Attempt to create collection without meta data");
 		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		
 		String collectionDescription = "This collection has no meta data profile. It is being published.";

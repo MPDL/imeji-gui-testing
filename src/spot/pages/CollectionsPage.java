@@ -155,9 +155,6 @@ public class CollectionsPage extends BasePage {
 			WebElement status = collection.findElement(By.className("imj_statusArea"));
 			
 			if (status.findElements(By.xpath(".//*")).size()>0) {
-				
-				System.out.println("This collection is not yet published");
-				
 				// it also needs to have files, at least one; does it?
 				WebElement collItemCount= collection.findElement(By.cssSelector(".imj_itemCount"));
 				String[] split = collItemCount.getText().split("\\s+");
