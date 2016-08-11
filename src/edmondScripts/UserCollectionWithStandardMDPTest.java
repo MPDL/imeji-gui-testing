@@ -39,7 +39,7 @@ public class UserCollectionWithStandardMDPTest extends BaseSelenium {
 	
 	private void prepareFiles() {
 		files = new HashMap<String, String>();
-		files.put("SampleTIFFFile.tiff", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleTIFFFile.tiff");
+		files.put("SampleTIFFile.tif", "file:" + getClass().getResource("/SampleTIFFile.tif").getPath());
 	}
 	
 	private void logInAsRegisteredUser() {
@@ -88,7 +88,6 @@ public class UserCollectionWithStandardMDPTest extends BaseSelenium {
 		
 		createdCollection.openMetaDataProfile();
 		String metaDataProfileTitle = driver.findElement(By.tagName("h3")).getText();
-		System.out.println(metaDataProfileTitle);
 		boolean metaDataProfileIsDefault = metaDataProfileTitle.contains("default profile");
 		Assert.assertTrue(metaDataProfileIsDefault, "This collection should have a default metadata profile.");
 	}

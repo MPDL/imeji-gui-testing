@@ -60,8 +60,8 @@ public class UserCollectionWithoutMDPPrivateMode extends BaseSelenium {
 	
 	private void prepareFiles() {
 		files = new HashMap<String, String>();
-		files.put("SamplePNGFile.png", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePNGFile.png");
-		files.put("SampleWordFile.docx", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleWordFile.docx");
+		files.put("SamplePNGFile.png", "file:" + getClass().getResource("/SamplePNGFile.png").getPath());
+		files.put("SampleWordFile.docx", "file:" + getClass().getResource("/SampleWordFile.docx").getPath());
 	}
 	
 	private void logInAsRegisteredUser() {

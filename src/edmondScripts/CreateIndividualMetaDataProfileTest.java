@@ -30,8 +30,6 @@ public class CreateIndividualMetaDataProfileTest extends BaseSelenium {
 		
 		loginPage = new StartPage(driver).openLoginForm();
 		
-//		new StartPage(driver).selectLanguage(englishSetup);
-		
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName),
 				getPropertyAttribute(spotRUPassWord));
 

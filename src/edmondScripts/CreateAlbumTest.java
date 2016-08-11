@@ -40,7 +40,7 @@ public class CreateAlbumTest extends BaseSelenium {
 		navigateToStartPage();		
 	
 		files = new HashMap<String, String>();
-		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
+		files.put("SampleJPGFile.jpg", "file:" + getClass().getResource("/SampleJPGFile.jpg").getPath());
 		
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));

@@ -41,8 +41,8 @@ public class ProvidePublicWithItemsWithMetaDataProfileTest extends BaseSelenium 
 		loginPage = new StartPage(driver).openLoginForm();
 		
 		files = new HashMap<String, String>();
-		files.put("SampleXLSXFile.xlsx", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleXLSXFile.xlsx");
-		files.put("SampleSWCFile.swc", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleSWCFile.swc");	
+		files.put("SampleXLSXFile.xlsx", "file:" + getClass().getResource("/SampleXLSXFile.xlsx").getPath());
+		files.put("SampleSWCFile.swc", "file:" + getClass().getResource("/SampleSWCFile.swc").getPath());	
 		
 		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 	}

@@ -139,7 +139,7 @@ public class UserPublishesAlbumPrivateMode extends BaseSelenium {
 		multipleUploadPage = collectionEntryPage.uploadContent();
 		
 		Map<String, String> files = new HashMap<String, String>();
-		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
+		files.put("SampleJPGFile.jpg", "file:" + getClass().getResource("/SampleJPGFile.jpg").getPath());
 		
 		for (Map.Entry<String, String> file : files.entrySet()) {
 			multipleUploadPage.addFile(file.getValue());

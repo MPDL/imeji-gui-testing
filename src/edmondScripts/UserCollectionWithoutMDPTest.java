@@ -38,8 +38,8 @@ public class UserCollectionWithoutMDPTest extends BaseSelenium {
 		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 		
 		files = new HashMap<String, String>();
-		files.put("SamplePDFFile.pdf", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePDFFile.pdf");	
-		files.put("SampleWordFile.docx", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleWordFile.docx");
+		files.put("SamplePDFFile.pdf", "file:" + getClass().getResource("/SamplePDFFile.pdf").getPath());	
+		files.put("SampleWordFile.docx", "file:" + getClass().getResource("/SampleWordFile.docx").getPath());
 	}
 
 	@Test(priority = 1)

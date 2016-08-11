@@ -58,8 +58,8 @@ public class UserPublishedItemsWithoutMetaDataProfilePrivateModeTest extends Bas
 	
 	private void prepareFiles() {
 		files = new HashMap<String, String>();
-		files.put("Penguins.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Penguins.jpg");
-		files.put("SamplePDFFile.pdf", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePDFFile.pdf");
+		files.put("SampleJPGFile2.jpg", "file:" + getClass().getResource("/SampleJPGFile2.jpg").getPath());
+		files.put("SamplePDFFile.pdf", "file:" + getClass().getResource("/SamplePDFFile.pdf").getPath());
 	}
 	
 	public void logInAsRegisteredUser() {

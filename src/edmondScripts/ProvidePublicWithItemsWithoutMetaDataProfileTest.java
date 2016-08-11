@@ -43,8 +43,8 @@ public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSeleni
 		loginPage = new StartPage(driver).openLoginForm();
 		
 		files = new HashMap<String, String>();
-		files.put("Chrysanthemum.jpg", "C:\\Users\\Public\\Pictures\\Sample Pictures\\Chrysanthemum.jpg");
-		files.put("SamplePDFFile.pdf", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SamplePDFFile.pdf");
+		files.put("SampleJPGFile.jpg", "file:" + getClass().getResource("/SampleJPGFile.jpg").getPath());
+		files.put("SamplePDFFile.pdf", "file:" + getClass().getResource("/SamplePDFFile.pdf").getPath());
 		
 		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 	}

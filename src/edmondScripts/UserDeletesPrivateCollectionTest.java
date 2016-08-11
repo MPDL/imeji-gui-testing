@@ -50,7 +50,7 @@ public class UserDeletesPrivateCollectionTest extends BaseSelenium {
 		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");
 		
 		files = new HashMap<String, String>();
-		files.put("SampleTIFFFile.tiff", "C:\\Users\\Public\\Pictures\\Sample Pictures\\SampleTIFFFile.tiff");
+		files.put("SampleTIFFile.tif", "file:" + getClass().getResource("/SampleTIFFile.tif").getPath());
 	}
 	
 	@Test(priority = 2)
