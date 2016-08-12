@@ -46,8 +46,8 @@ public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 				getPropertyAttribute(spotRUPassWord));
 
 		files = new HashMap<String, String>();
-		files.put("SampleJPGFile.jpg", "file:" + getClass().getResource("/SampleJPGFile.jpg").getPath());
-		files.put("SampleTIFFile.tif", "file:" + getClass().getResource("/SampleTIFFile.tif").getPath());
+		files.put("SampleJPGFile.jpg", getFilepath("SampleJPGFile.jpg"));
+		files.put("SampleTIFFile.tif", getFilepath("SampleTIFFile.tif"));
 	}
 
 	@Test(priority=1)

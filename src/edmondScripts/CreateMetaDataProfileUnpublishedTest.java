@@ -36,8 +36,8 @@ public class CreateMetaDataProfileUnpublishedTest extends BaseSelenium {
 	
 	private void prepareFiles() {
 		files = new HashMap<String, String>();
-		files.put("SamplePNGFile.png", "file:" + getClass().getResource("/SamplePNGFile.png").getPath());
-		files.put("SampleWordFile.docx", "file:" + getClass().getResource("/SampleWordFile.docx").getPath());
+		files.put("SamplePNGFile.png", getFilepath("SamplePNGFile.png"));
+		files.put("SampleWordFile.docx", getFilepath("SampleWordFile.docx"));
 	}
 	
 	private void logInAsRegisteredUser() {

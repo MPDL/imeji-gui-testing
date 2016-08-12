@@ -39,7 +39,7 @@ public class UserCollectionWithStandardMDPTest extends BaseSelenium {
 	
 	private void prepareFiles() {
 		files = new HashMap<String, String>();
-		files.put("SampleTIFFile.tif", "file:" + getClass().getResource("/SampleTIFFile.tif").getPath());
+		files.put("SampleTIFFile.tif", getFilepath("SampleTIFFile.tif"));
 	}
 	
 	private void logInAsRegisteredUser() {

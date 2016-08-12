@@ -45,7 +45,7 @@ public class CreateMetaDataProfilePublishedPrivateModeTest extends BaseSelenium 
 		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 		
 		files = new HashMap<String, String>();
-		files.put("SampleJPGFile2.jpg", "file:" + getClass().getResource("/SampleJPGFile2.jpg").getPath());
+		files.put("SampleJPGFile2.jpg", getFilepath("SampleJPGFile2.jpg"));
 	}
 	
 	private void switchToPrivateMode(boolean shouldPrivateModeBeOn) {

@@ -62,7 +62,7 @@ public class DeleteCollectionTest extends BaseSelenium {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		files = new HashMap<String, String>();
-		files.put("SampleJPGFile.jpg", "file:" + getClass().getResource("/SampleJPGFile.jpg").getPath());
+		files.put("SampleJPGFile.jpg", getFilepath("SampleJPGFile.jpg"));
 		
 		MultipleUploadPage multipleUploadPage = collectionEntryPage.uploadContent();
 		for (Map.Entry<String, String> file : files.entrySet()) {

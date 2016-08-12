@@ -45,8 +45,8 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium {
 		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 		
 		files = new HashMap<String, String>();
-		files.put("SamplePDFFile.pdf", "file:" + getClass().getResource("/SamplePDFFile.pdf").getPath());	
-		files.put("SampleWordFile.docx", "file:" + getClass().getResource("/SampleWordFile.docx").getPath());
+		files.put("SamplePDFFile.pdf", getFilepath("SamplePDFFile.pdf"));	
+		files.put("SampleWordFile.docx", getFilepath("SampleWordFile.docx"));
 	}
 
 	@Test(priority = 1)

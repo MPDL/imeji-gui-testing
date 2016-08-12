@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
@@ -160,6 +161,16 @@ public abstract class BaseSelenium {
 	
 	public void logout(HomePage homePage) {
 		homePage.logout();
+	}
+	
+	public String getFilepath(String fileName) {
+		fileName = "/" + fileName;
+		String filepath = getClass().getResource(fileName).getPath();
+		if (driver instanceof FirefoxDriver)
+			filepath = "file:" + filepath;
+		if (driver instanceof ChromeDriver)
+			filepath = filepath.substring(1, filepath.length());
+		return filepath;
 	}
 
 	

@@ -57,8 +57,8 @@ public class UserPublishedItemsWithMetaDataProfilePrivateModeTest extends BaseSe
 	
 	private void prepareFiles() {
 		files = new HashMap<String, String>();
-		files.put("SampleSWCFile.swc", "file:" + getClass().getResource("/SampleSWCFile.swc").getPath());
-		files.put("SampleXLSXFile.xlsx", "file:" + getClass().getResource("/SampleXLSXFile.xlsx").getPath());
+		files.put("SampleSWCFile.swc", getFilepath("SampleSWCFile.swc"));
+		files.put("SampleXLSXFile.xlsx", getFilepath("SampleXLSXFile.xlsx"));
 	}
 	
 	private void logInAsRegisteredUser() {

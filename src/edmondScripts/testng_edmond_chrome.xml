@@ -10,9 +10,9 @@
 			
 			<class name="spot.scripts.admin.UserPolicyManagementTest" /> 
 			
-			<class name="edmondScripts.DeleteUserGroupTest" /> 
+			<class name="edmondScripts.DeleteUserGroupTest" />
 
-			<class name="edmondScripts.DeleteCollectionTest" /> 
+			<class name="edmondScripts.DeleteCollectionTest" />
 			
 			<class name="edmondScripts.DeleteAlbumTest" /> 
 			

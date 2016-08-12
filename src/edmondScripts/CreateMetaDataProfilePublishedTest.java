@@ -86,8 +86,8 @@ public class CreateMetaDataProfilePublishedTest extends BaseSelenium {
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		
 		HashMap<String, String> files = new HashMap<String, String>();
-		files.put("SampleXLSXFile.xlsx", "file:" + getClass().getResource("/SampleXLSXFile.xlsx").getPath());
-		files.put("SampleSWCFile.swc", "file:" + getClass().getResource("/SampleSWCFile.swc").getPath());	
+		files.put("SampleXLSXFile.xlsx", getFilepath("SampleXLSXFile.xlsx"));
+		files.put("SampleSWCFile.swc", getFilepath("SampleSWCFile.swc"));	
 		
 		MultipleUploadPage multipleUploadPage = collectionEntryPage.uploadContent();
 		for (Map.Entry<String, String> file : files.entrySet()) {

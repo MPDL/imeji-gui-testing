@@ -44,8 +44,8 @@ public class UserWithdrawsPublishedCollection extends BaseSelenium {
 	
 	private void prepareFiles() {
 		files = new HashMap<String, String>();
-		files.put("SampleJPGFile2.jpg", "file:" + getClass().getResource("/SampleJPGFile2.jpg").getPath());
-		files.put("SampleTIFFile.tif", "file:" + getClass().getResource("/SampleTIFFile.tif").getPath());
+		files.put("SampleJPGFile2.jpg", getFilepath("SampleJPGFile2.jpg"));
+		files.put("SampleTIFFile.tif", getFilepath("SampleTIFFile.tif"));
 	}
 	
 	private void switchOnPrivateMode(boolean switchOnPrivateMode) {
