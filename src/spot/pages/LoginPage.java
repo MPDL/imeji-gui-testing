@@ -48,7 +48,7 @@ public class LoginPage extends BasePage {
 	}
 	
 	private void enterUserName(String userName) {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='Header:loginForm']/span/input[1]")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(userNameTextField));
 		userNameTextField.sendKeys(userName);
 	}
 	
