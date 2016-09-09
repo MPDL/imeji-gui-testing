@@ -48,7 +48,7 @@ public class LoginPage extends BasePage {
 	}
 	
 	private void enterUserName(String userName) {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(userNameTextField));
+		wait.until(ExpectedConditions.visibilityOf(userNameTextField));
 		userNameTextField.sendKeys(userName);
 	}
 	
