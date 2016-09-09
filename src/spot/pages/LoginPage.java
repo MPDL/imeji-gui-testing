@@ -18,7 +18,7 @@ public class LoginPage extends BasePage {
 	@FindBy(name ="Header:loginForm:j_idt30")
 	private WebElement passwordTextField;
 		
-	@FindBy(name = "Header:loginForm:lnkLogin")
+	@FindBy(name = "Header:loginForm:lnkLogin2")
 	private WebElement submitLoginInfoButton;
 	
 	public LoginPage(WebDriver driver) {
