@@ -18,7 +18,7 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class StartPage extends BasePage {
 
-	@FindBy(xpath =".//*[@id='Header:loginForm:lnkLogin1']")
+	@FindBy(id ="lnkshowLogin")
 	private WebElement openLoginFormButton;
 	
 	@FindBy(xpath =".//*[@id='Header:j_idt38']/a")
