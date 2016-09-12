@@ -62,7 +62,7 @@ public class LoginLogoutPrivateModeTest extends BaseSelenium {
 		MessageType messageType = loginPage.getMessageComponent().getMessageTypeOfPageMessageArea();
 		Assert.assertTrue(messageType == MessageType.INFO, "Login was proceeded with valid credentials, but no info message appeared on the message area of the page");
 		
-		String expectedUserFullName = getPropertyAttribute(ruFamilyName) + ", " + getPropertyAttribute(ruGivenName);
+		String expectedUserFullName = getPropertyAttribute(ruFamilyName) + getPropertyAttribute(ruGivenName);
 		String actualUserFullName = homePage.getLoggedInUserFullName();
 		Assert.assertEquals(actualUserFullName.trim(), expectedUserFullName.trim(), "Names do not match.");
 	}
