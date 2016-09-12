@@ -13,19 +13,19 @@ public class ConfigurationGeneralPanel extends BasePage {
 	@FindBy(xpath = "/html/body/div[1]/div[5]/div[2]/div/div/form/div[1]/div[1]")
 	private WebElement generalPanelReveal;
 	
-	@FindBy(id = "configForm:j_idt365:0")
+	@FindBy(id = "configForm:j_idt359:0")
 	private WebElement privateModeNoRadioButton;
 	
-	@FindBy(id = "configForm:j_idt365:1")
+	@FindBy(id = "configForm:j_idt359:1")
 	private WebElement privateModeYesRadioButton;
 	
-	@FindBy(id = "configForm:j_idt371:0")
+	@FindBy(id = "configForm:j_idt365:0")
 	private WebElement albumsNoRadioButton;
 	
-	@FindBy(id = "configForm:j_idt371:1")
+	@FindBy(id = "configForm:j_idt365:1")
 	private WebElement albumsYesRadioButton;
 	
-	@FindBy(name = "configForm:j_idt337")
+	@FindBy(name = "configForm:j_idt323")
 	private WebElement saveGeneralButton;
 	
 	public ConfigurationGeneralPanel(WebDriver driver) {

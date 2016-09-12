@@ -10,7 +10,7 @@ public class SearchQueryPage extends BasePage {
 	@FindBy(xpath="html/body/div[1]/div[4]/div[1]")
 	private WebElement searchQueryDisplay;
 	
-	@FindBy(className="imj_searchQueryText")
+	@FindBy(id="quickSearchString")
 	private WebElement searchQueryKeyWord;
 	
 	public SearchQueryPage(WebDriver driver) {
@@ -20,7 +20,7 @@ public class SearchQueryPage extends BasePage {
 	}
 	
 	public String getSearchQueryDisplayText() {
-		return searchQueryKeyWord.getText();
+		return searchQueryKeyWord.getAttribute("value");
 	}
 	
 	/*public String getSearchQueryDisplayText() {

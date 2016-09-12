@@ -1,5 +1,7 @@
 package spot.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -92,5 +94,18 @@ public class AdministrationPage extends BasePage {
 		configurationEdit.click();
 		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
 		return configurationEditPage.browseDefaultViewThumbnails();
+	}
+	
+	public boolean areAllComponentsDisplayed() {
+		try {
+			driver.findElement(By.className("imj_userConfig"));
+			driver.findElement(By.className("imj_config"));
+			driver.findElement(By.className("imj_spaceConfig"));
+			driver.findElement(By.className("imj_storageConfig"));
+			return true;
+		}
+		catch (NoSuchElementException exc) {
+			return false;
+		}
 	}
 }

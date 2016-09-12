@@ -12,10 +12,10 @@ public class CollectionEntryPage extends BasePage {
 
 	private ActionComponent actionComponent;
 	
-	@FindBy(css=".imj_mainContentWrapper .imj_collectionEntryPage .imj_entryPagePreviewTiledList .imj_headline a")
+	@FindBy(css=".imj_contentMenu>ul>li:nth-of-type(4)")
 	private WebElement uploadContentButton;
 	
-	@FindBy(css=".imj_collectionEntryPage>h2>a")
+	@FindBy(css="#metadata>a")
 	private WebElement addMetaDataProfileButton;	 
 	
 	public CollectionEntryPage(WebDriver driver) {

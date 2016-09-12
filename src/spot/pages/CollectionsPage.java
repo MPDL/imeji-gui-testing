@@ -9,8 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import spot.components.FilterComponent;
-import spot.components.FilterComponent.FilterOptions;
+import spot.components.StateComponent;
+import spot.components.StateComponent.StateOptions;
 import spot.components.SortingComponent;
 
 public class CollectionsPage extends BasePage {
@@ -19,7 +19,7 @@ public class CollectionsPage extends BasePage {
 	
 	private SortingComponent sortingComponent;
 	
-	private FilterComponent filterComponent;
+	private StateComponent stateComponent;
 	
 	@FindBy(css="#ajaxWrapper>div:nth-of-type(2)>form>a")
 	private WebElement showAllCollectionsButton;
@@ -29,13 +29,13 @@ public class CollectionsPage extends BasePage {
 		
 		collectionList = driver.findElements(By.className("imj_bibliographicListItem"));
 		
-		filterComponent = new FilterComponent(driver);
+		stateComponent = new StateComponent(driver);
 		
 		PageFactory.initElements(driver, this);
 	}
 	
-	public FilterComponent getFilterComponent() {
-		return filterComponent;
+	public StateComponent getFilterComponent() {
+		return stateComponent;
 	}
 
 	private WebElement getFirstCollectionInList() {
@@ -51,17 +51,15 @@ public class CollectionsPage extends BasePage {
 		WebElement largestCollection = getLargestCollection();
 		
 		if (largestCollection != null) {
-			WebElement collectionActionWE = largestCollection.findElement(By.className("imj_itemActionArea"));
-			List<WebElement> findElements = collectionActionWE.findElements(By.tagName("li"));
+			WebElement collectionLink = largestCollection.findElement(By.tagName("img"));
+			//List<WebElement> findElements = collectionActionWE.findElements(By.tagName("li"));
 			
-			WebElement showContentTag = findElements.get(1);
+			//WebElement showContentTag = findElements.get(1);
 			
-			WebElement showContentLink = showContentTag.findElement(By.tagName("a"));
+			//WebElement showContentLink = showContentTag.findElement(By.tagName("a"));
 			
-			showContentLink.click();
+			collectionLink.click();
 		}
-		
-		//TODO what if no largest collection received
 		
 		return PageFactory.initElements(driver, CollectionContentPage.class);
 	}
@@ -102,9 +100,9 @@ public class CollectionsPage extends BasePage {
 	}
 
 	public CollectionContentPage openSomePublishedCollection() {
-		WebElement filter = driver.findElement(By.className("fa-filter"));
-		filter.click();
-		filterComponent.filter(FilterOptions.ONLY_PUBLISHED);
+		WebElement stateDropdown = driver.findElement(By.id("j_idt346:j_idt366:txtFilter"));
+		stateDropdown.click();
+		stateComponent.filter(StateOptions.ONLY_PUBLISHED);
 		
 		CollectionsPage collectionsPage = PageFactory.initElements(driver, CollectionsPage.class);
 		collectionsPage.getPageOfLargestCollection();
@@ -175,7 +173,7 @@ public class CollectionsPage extends BasePage {
 		}
 		
 		// open start page of the selected collection
-		someNotPublishedCollection.findElement(By.cssSelector(".imj_itemActionArea li:nth-of-type(2) a")).click();
+		someNotPublishedCollection.findElement(By.tagName("img")).click();
 		
 		return PageFactory.initElements(driver, CollectionContentPage.class);
 	}

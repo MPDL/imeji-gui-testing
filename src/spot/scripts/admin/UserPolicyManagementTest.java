@@ -10,6 +10,7 @@ import spot.pages.AllUsersOverViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
+import spot.pages.notAdmin.HomePage;
 
 public class UserPolicyManagementTest extends BaseSelenium {
 
@@ -40,7 +41,14 @@ public class UserPolicyManagementTest extends BaseSelenium {
 		adminHomePage = (AdminHomePage) administrationPage.goToHomePage(adminHomePage);
 	}
 	
-	@Test
+	/*@Test(priority = 1)
+	public void userCanCreateCollections() {
+		adminHomePage.logout();
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		HomePage homePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
+	}*/
+	
+	@Test(priority = 2)
 	public void deleteTestUserTest() {
 		AllUsersOverViewPage allUsersOverViewPage = adminHomePage.goToAdminPage().viewAllUsers();
 		allUsersOverViewPage.deleteUserByEmail(emailOfNewUser);

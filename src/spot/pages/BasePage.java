@@ -86,7 +86,7 @@ public abstract class BasePage {
 		this.searchComponent = new SearchComponent(driver);
 		this.userPreferenceComponent = new UserPreferenceComponent(driver);
 		
-		wait = new WebDriverWait(this.driver, 50);
+		wait = new WebDriverWait(this.driver, 20);
 	}
 	
 	public String getSiteContentHeadline() {

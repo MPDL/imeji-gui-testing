@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
-import spot.components.FilterComponent.FilterOptions;
+import spot.components.StateComponent.StateOptions;
 import spot.pages.AlbumEntryPage;
 import spot.pages.AlbumPage;
 import spot.pages.CollectionContentPage;
@@ -127,9 +127,9 @@ public class DiscardAlbumTest extends BaseSelenium {
 		Assert.assertFalse(albumShowsUpInAlbums);
 		
 		// need to hover over filter options first
-		WebElement filter = driver.findElement(By.className("fa-filter"));
-		filter.click();
-		albumPage.getFilterComponent().filter(FilterOptions.ONLY_DISCARDED);
+		WebElement stateDropdown = driver.findElement(By.id("j_idt346:j_idt366:txtFilter"));
+		stateDropdown.click();
+		albumPage.getStateComponent().filter(StateOptions.ONLY_DISCARDED);
 		albumPage = PageFactory.initElements(driver, AlbumPage.class);
 		
 		boolean albumShowsUpInDiscarded = albumPage.isAlbumPresent(albumTitle);

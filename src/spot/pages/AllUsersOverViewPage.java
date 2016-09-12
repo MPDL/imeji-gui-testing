@@ -107,4 +107,9 @@ public class AllUsersOverViewPage extends BasePage {
 		
 	}
 	
+	public int userCount() {
+		List <WebElement> userCount = driver.findElements(By.className("imj_userConfig"));
+		return userCount.size();
+	}
+	
 }

@@ -78,6 +78,12 @@
 			
 			<class name="edmondScriptsPrivateMode.LimitedAccessForNRUPrivateMode" />
 			
+			<class name="spot.scripts.admin.EnterUserManagementTest" />
+			
+			<class name="spot.scripts.admin.AllUsersOverviewTest" />
+			
+			<class name="edmondScripts.SelectMetadataProfileReferenceTest" />
+			
 		</classes>
 	</test>
 </suite>

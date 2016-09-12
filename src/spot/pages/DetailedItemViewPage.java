@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class DetailedItemViewPage extends BasePage {
 
 
-	@FindBy(id="j_idt432:txtUrl")
+	@FindBy(id="j_idt451:txtUrl")
 	private WebElement fileName;
 	
 	@FindBy(id="picWebResolutionInternalDigilib")
@@ -19,7 +19,7 @@ public class DetailedItemViewPage extends BasePage {
 	@FindBy(css="#actionsMenuArea .fa-download")
 	private WebElement downloadMenu;
 	
-	@FindBy(css=".imj_metadataWrapper>.imj_globalMetadataSet>div:nth-of-type(2)>.imj_metadataValue>a")
+	@FindBy(css="#j_idt451 .imj_metadataSet:nth-of-type(2) .imj_metadataValue")
 	private WebElement collectionName;
 	
 	@FindBy(css="#actionsMenuArea>div a[target='_blank']")

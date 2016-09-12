@@ -61,6 +61,7 @@ public class CreateNewCollectionPage extends BasePage {
 	private Select profileTemplatesDrobBox;
 	
 	private final String defaultProfileIdentifier = "default profile";
+	private final String greenProfileIdentifier = "Collection green (Metadata profile)";
 	
 	@FindBy(css=".imj_submitButton")
 	private WebElement saveButton;
@@ -117,7 +118,7 @@ public class CreateNewCollectionPage extends BasePage {
 	public CollectionEntryPage createCollectionWithStandardMetaDataProfile(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
 		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
 		
-		selectAnExistingMetaDataProfile();
+		selectAnExistingMetaDataProfile(defaultProfileIdentifier);
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_metadataProfilePreviewList .imj_listBody>li:nth-of-type(1)")));
 //		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".imj_metadataProfilePreviewList .imj_listBody li")));
@@ -130,14 +131,30 @@ public class CreateNewCollectionPage extends BasePage {
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
-	private void selectAnExistingMetaDataProfile() {
+	public CollectionEntryPage createCollectionWithMetaDataProfileAsReference(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
+		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
+		
+		selectAnExistingMetaDataProfile(greenProfileIdentifier);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_metadataProfilePreviewList .imj_listBody>li:nth-of-type(1)")));
+//		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".imj_metadataProfilePreviewList .imj_listBody li")));
+		
+		submitForm();
+		
+		if (errorOccurred)
+			return null;
+		
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	private void selectAnExistingMetaDataProfile(String profileIdentifier) {
 		if (!selectExistingMetaDataProfileRadioBox.isSelected())
 			selectExistingMetaDataProfileRadioBox.click();
 			
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_descriptionArea select")));		
 		
 		profileTemplatesDrobBox = new Select(profileTemplatesDropBoxWebElement);		
-		profileTemplatesDrobBox.selectByVisibleText(defaultProfileIdentifier);		
+		profileTemplatesDrobBox.selectByVisibleText(profileIdentifier);		
 	}
 
 	private void fillForm(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {

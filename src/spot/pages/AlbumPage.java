@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import spot.components.FilterComponent;
+import spot.components.StateComponent;
 
 public class AlbumPage extends BasePage {
 
@@ -17,14 +17,14 @@ public class AlbumPage extends BasePage {
 	@FindBy(css = "#ajaxWrapper>div:nth-of-type(2)>form>a")
 	private WebElement showAllAlbumsButton;
 	
-	private FilterComponent filterComponent;
+	private StateComponent stateComponent;
 	
 	public AlbumPage(WebDriver driver) {
 		super(driver);
 		
 		albumList = driver.findElements(By.className("imj_bibliographicListItem"));
 		
-		filterComponent = new FilterComponent(driver);
+		stateComponent = new StateComponent(driver);
 		
 		PageFactory.initElements(driver,  this);
 	}
@@ -73,8 +73,8 @@ public class AlbumPage extends BasePage {
 			return true;
 	}
 	
-	public FilterComponent getFilterComponent() {
-		return filterComponent;
+	public StateComponent getStateComponent() {
+		return stateComponent;
 	}
 	
 
