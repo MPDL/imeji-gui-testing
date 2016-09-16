@@ -6,6 +6,7 @@ import org.testng.annotations.*;
 import spot.BaseSelenium;
 import spot.pages.AlbumPage;
 import spot.pages.CollectionsPage;
+import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
 
 public class CategorySelectionTest extends BaseSelenium {
@@ -25,14 +26,13 @@ public class CategorySelectionTest extends BaseSelenium {
 
 	@Test
 	public void openStartPageTest() {
-		Assert.assertEquals(true, false);
+		
 	}
 
 	@Test
 	public void openUploadPageTest() {
 		
-//		startPage.goToUploadPage();
-		Assert.assertEquals(true, false);
+		SingleUploadPage singleUploadPage = startPage.goToSingleUploadPage();
 	}
 
 	@Test

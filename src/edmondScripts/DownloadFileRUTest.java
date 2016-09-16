@@ -17,7 +17,6 @@ public class DownloadFileRUTest extends BaseSelenium {
 
 	private LoginPage loginPage;
 	private HomePage homePage;
-	
 	private DetailedItemViewPage detailedItemViewPage;
 
 	@BeforeClass

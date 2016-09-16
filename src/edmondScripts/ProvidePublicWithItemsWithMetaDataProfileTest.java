@@ -32,7 +32,7 @@ public class ProvidePublicWithItemsWithMetaDataProfileTest extends BaseSelenium 
 	private HashMap<String, String> files;
 	private MultipleUploadPage multipleUploadPage;
 
-	public final String collectionTitle = "Published test collection with default meta data profile "
+	public final String collectionTitle = "Published test collection with default meta data profile: "
 			+ TimeStamp.getTimeStamp();
 
 	@BeforeClass
@@ -45,14 +45,6 @@ public class ProvidePublicWithItemsWithMetaDataProfileTest extends BaseSelenium 
 		files.put("SampleSWCFile.swc", getFilepath("SampleSWCFile.swc"));	
 		
 		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
-	}
-	
-	@AfterClass
-	public void afterClass() {
-		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		createdCollection.discardCollection();
-		
-		homePage.logout();
 	}
 
 	@Test(priority = 1)
@@ -112,5 +104,13 @@ public class ProvidePublicWithItemsWithMetaDataProfileTest extends BaseSelenium 
 		String metaDataProfileTitle = driver.findElement(By.tagName("h3")).getText();
 		boolean metaDataProfileIsDefault = metaDataProfileTitle.contains("default profile");
 		Assert.assertTrue(metaDataProfileIsDefault, "This collection should have a default metadata profile.");
+	}
+	
+	@AfterClass
+	public void afterClass() {
+		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		createdCollection.discardCollection();
+		
+		homePage.logout();
 	}
 }

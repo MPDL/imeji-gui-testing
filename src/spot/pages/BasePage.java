@@ -86,7 +86,7 @@ public abstract class BasePage {
 		this.searchComponent = new SearchComponent(driver);
 		this.userPreferenceComponent = new UserPreferenceComponent(driver);
 		
-		wait = new WebDriverWait(this.driver, 20);
+		wait = new WebDriverWait(this.driver, 15);
 	}
 	
 	public String getSiteContentHeadline() {
@@ -190,6 +190,10 @@ public abstract class BasePage {
 	
 	public void enableDarkMode() {
 		userPreferenceComponent.enableDarkMode();
+	}
+	
+	public void enableLightMode() {
+		userPreferenceComponent.enableLightMode();
 	}
 
 	public boolean retryingFindClick(By by) {

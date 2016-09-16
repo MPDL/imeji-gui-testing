@@ -129,7 +129,8 @@ public class CollectionsPage extends BasePage {
 			}
 		}
 					
-		collectionInQuestion.findElement(By.cssSelector(".imj_itemActionArea li:nth-of-type(2) a")).click();
+		//collectionInQuestion.findElement(By.cssSelector(".imj_itemActionArea li:nth-of-type(2) a")).click();
+		collectionInQuestion.findElement(By.className("imj_itemHeadline")).click();
 		
 		return PageFactory.initElements(driver, CollectionContentPage.class);
 	}

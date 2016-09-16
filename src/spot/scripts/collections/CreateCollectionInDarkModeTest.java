@@ -62,6 +62,7 @@ public class CreateCollectionInDarkModeTest extends BaseSelenium {
 	@AfterClass
 	public void afterClass() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
+		homePage.enableLightMode();
 		homePage.logout();
 	}
 

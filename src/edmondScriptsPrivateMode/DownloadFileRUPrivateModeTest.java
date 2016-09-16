@@ -18,7 +18,6 @@ import spot.pages.notAdmin.HomePage;
 public class DownloadFileRUPrivateModeTest extends BaseSelenium {
 
 	private HomePage homePage;
-	
 	private DetailedItemViewPage detailedItemViewPage;
 
 	@BeforeClass

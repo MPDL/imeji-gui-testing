@@ -86,19 +86,18 @@ public class CollectionContentPage extends BasePage {
 	
 	public List<WebElement> getItemList() {
 		
-		List<WebElement> itemList = null;
+		List<WebElement> itemList = driver.findElements(By.className("imj_tileItem"));
 				
-		try {
+		/*try {
 			tiledMediaList.isDisplayed();
 			itemList = tiledMediaList.findElements(By.className("imj_tileItem"));
 		} catch (NoSuchElementException e) {
-			
 			retryingFinding(By.cssSelector(".imj_tiledMediaList"));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_tiledMediaList")));
 			tiledMediaList = driver.findElement(By.cssSelector(".imj_tiledMediaList"));
 			
-			itemList = tiledMediaList.findElements(By.className("imj_tileItem"));				
-		}
+			itemList = tiledMediaList.findElements(By.className("imj_tileItem"));			
+		}*/
 		return itemList;
 	}
 	
@@ -170,7 +169,7 @@ public class CollectionContentPage extends BasePage {
 	public boolean isMetaDataProfileDefined() {
 		metaDataProfileLink.click();
 		try {
-			driver.findElement(By.className(".imj_metaDataValue"));
+			driver.findElement(By.className("imj_metadataProfileItem"));
 			return true;
 		}
 		catch (NoSuchElementException exc) {

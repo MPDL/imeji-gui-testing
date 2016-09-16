@@ -1,6 +1,7 @@
 package spot.pages.notAdmin;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -61,7 +62,6 @@ public class CreateNewCollectionPage extends BasePage {
 	private Select profileTemplatesDrobBox;
 	
 	private final String defaultProfileIdentifier = "default profile";
-	private final String greenProfileIdentifier = "Collection green (Metadata profile)";
 	
 	@FindBy(css=".imj_submitButton")
 	private WebElement saveButton;
@@ -121,7 +121,6 @@ public class CreateNewCollectionPage extends BasePage {
 		selectAnExistingMetaDataProfile(defaultProfileIdentifier);
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_metadataProfilePreviewList .imj_listBody>li:nth-of-type(1)")));
-//		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".imj_metadataProfilePreviewList .imj_listBody li")));
 		
 		submitForm();
 		
@@ -131,13 +130,29 @@ public class CreateNewCollectionPage extends BasePage {
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
-	public CollectionEntryPage createCollectionWithMetaDataProfileAsReference(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
+	public CollectionEntryPage createCollectionWithMetaDataProfileAsReference(String profileIdentifier, String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
 		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
 		
-		selectAnExistingMetaDataProfile(greenProfileIdentifier);
+		selectAnExistingMetaDataProfile(profileIdentifier);
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_metadataProfilePreviewList .imj_listBody>li:nth-of-type(1)")));
-//		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".imj_metadataProfilePreviewList .imj_listBody li")));
+		
+		submitForm();
+		
+		if (errorOccurred)
+			return null;
+		
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	public CollectionEntryPage createCollectionWithTemplateMetaDataProfile(String profileIdentifier, String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
+		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
+		
+		selectAnExistingMetaDataProfile(profileIdentifier);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_metadataProfilePreviewList .imj_listBody>li:nth-of-type(1)")));
+		
+		checkNewMetaDataFromTemplate();
 		
 		submitForm();
 		
@@ -248,6 +263,10 @@ public class CreateNewCollectionPage extends BasePage {
 	private void selectRadioButtonDefineMetadataProfileLater() {
 		if (!defineMetaDataProfileLaterRadioBox.isSelected())
 			defineMetaDataProfileLaterRadioBox.click();
+	}
+	
+	private void checkNewMetaDataFromTemplate() {
+		driver.findElement(By.id("editContainer:mediaContainerForm:j_idt247:j_idt249:copyProfile")).click();
 	}
 
 	public void addAuthor() {

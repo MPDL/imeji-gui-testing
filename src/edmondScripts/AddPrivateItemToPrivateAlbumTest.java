@@ -3,6 +3,7 @@ package edmondScripts;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
@@ -23,13 +24,18 @@ public class AddPrivateItemToPrivateAlbumTest extends BaseSelenium {
 	@BeforeClass
 	public void beforeClass() {	
 		super.setup();
+		
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));	
 	}
 	
+	@BeforeMethod
+	public void goToHomePage() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+	}
+	
 	@Test(priority = 1)
 	public void createPrivateAlbum() {
-		homePage = new StartPage(driver).goToHomePage(homePage);
 		CreateNewAlbumPage createNewAlbumPage = homePage.goToCreateNewAlbumPage();
 		AlbumEntryPage albumEntryPage = createNewAlbumPage.createAlbum(albumTitle, albumDescription);
 		
@@ -39,19 +45,16 @@ public class AddPrivateItemToPrivateAlbumTest extends BaseSelenium {
 	
 	@Test(priority = 2)
 	public void addPrivateItemToAlbum() {
-		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.goToCollectionPage().openSomeNotPublishedCollection().addFirstItemToAlbum();
 	}
 
 	@Test(priority = 3)
 	public void deleteAlbum() {
-		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.openActiveAlbumEntryPage().deleteAlbum();
 	}
 	
 	@AfterClass
 	public void afterClass() {
-		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.logout();
 	}
 	

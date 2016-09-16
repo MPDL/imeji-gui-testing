@@ -84,7 +84,7 @@ public class UserCollectionWithStandardMDPTest extends BaseSelenium {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean isMetaDataProfileDefined = createdCollection.isMetaDataProfileDefined();
-		Assert.assertFalse(isMetaDataProfileDefined, "This collection should have a metadata profile.");
+		Assert.assertTrue(isMetaDataProfileDefined, "This collection should have a metadata profile.");
 		
 		createdCollection.openMetaDataProfile();
 		String metaDataProfileTitle = driver.findElement(By.tagName("h3")).getText();

@@ -84,6 +84,8 @@
 			
 			<class name="edmondScripts.SelectMetadataProfileReferenceTest" />
 			
+			<class name="edmondScripts.MetadataProfileAsTemplateTest" />
+			
 		</classes>
 	</test>
 </suite>

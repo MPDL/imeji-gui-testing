@@ -32,7 +32,7 @@ public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSeleni
 	private HashMap<String, String> files;
 	private MultipleUploadPage multipleUploadPage;
 
-	public final String collectionTitle = "Published test collection without meta data profile "
+	public final String collectionTitle = "Published test collection without meta data profile: "
 			+ TimeStamp.getTimeStamp();	
 	
 	@BeforeClass

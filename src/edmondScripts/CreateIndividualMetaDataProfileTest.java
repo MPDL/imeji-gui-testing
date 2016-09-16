@@ -26,6 +26,7 @@ public class CreateIndividualMetaDataProfileTest extends BaseSelenium {
 	
 	@BeforeClass
 	public void beforeClass() {
+		super.setup();
 		navigateToStartPage();
 		
 		loginPage = new StartPage(driver).openLoginForm();

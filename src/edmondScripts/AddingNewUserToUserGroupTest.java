@@ -17,8 +17,6 @@ import spot.util.TimeStamp;
 public class AddingNewUserToUserGroupTest extends BaseSelenium {
 	
 	private AdminHomePage adminHomePage;
-	private AdministrationPage adminPage;
-	
 	private AllUserGroupsOverViewPage allUserGroupsOverViewPage;
 	
 	private String newUserGroupName;
@@ -33,7 +31,7 @@ public class AddingNewUserToUserGroupTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	public void createNewUserGroup() {
-		adminPage = adminHomePage.goToAdminPage();
+		AdministrationPage adminPage = adminHomePage.goToAdminPage();
 		
 		newUserGroupName = "Test Group: " + TimeStamp.getTimeStamp();
 		

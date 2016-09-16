@@ -50,6 +50,7 @@ public class EnableDarkModeTest extends BaseSelenium {
 	
 	@AfterClass
 	public void afterClass() {
+		new StartPage(driver).enableLightMode();
 		switchToPrivateMode(false);
 	}
 }

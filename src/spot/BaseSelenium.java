@@ -1,6 +1,7 @@
 package spot;
 
 import java.util.Properties;
+import java.util.Set;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
 
+import spot.pages.HelpPage;
 import spot.pages.SingleUploadPage;
+import spot.pages.StartPage;
 import spot.pages.notAdmin.HomePage;
 
 /**
@@ -22,19 +25,6 @@ public abstract class BaseSelenium {
 	/** Driver instance. 
 	 *  Even within own class; access through getter strongly recommended */
 	protected WebDriver driver;
-	
-	public static String DEVKEY = "55d98b5f4eb5139f57418541506f075c";
-
-	public static String URL = "http://rd.mpdl.mpg.de/testlink/lib/api/xmlrpc/v1/xmlrpc.php";
-	
-	protected String testProject = "Imeji GUI testing";
-
-	protected String testPlan = "Imeji Release December 2015";
-	
-	protected String build = "Imeji Release December 1";
-	
-	/** TestLink test case ID*/
-	protected String testLinkTestCaseID;
 	
 	protected static final String germanSetup = "de - German";
 	protected static final String englishSetup = "en - English";
@@ -98,35 +88,19 @@ public abstract class BaseSelenium {
 	
 	private void configureDriver() {
 		driver = SeleniumTestSuite.getDriver();
-        if(driver == null) 
+        if (driver == null) 
         	driver = new FirefoxDriver();
 	}
-
-//	public WebDriver getDriver() {
-//		driver = SeleniumTestSuite.getDriver();
-//        if(driver != null) 
-//        	return driver; 
-//        
-//        return driver = new FirefoxDriver();
-//    }
 	
 	public String getPropertyAttribute(String key) {
 		return getProperties().getProperty(key);
 	}
 	
-//	public StartPage getStartPage() {
-//		if (startPage == null)
-//			return startPage = new StartPage(getDriver());
-//		return startPage;
-//	}
-	
 	public String getCurrentURL() {
-//		return getDriver().getCurrentUrl();
 		return driver.getCurrentUrl();
 	}
 	
 	public void navigateDriverTo(String URLtoLoad) {
-//		getDriver().navigate().to(URLtoLoad);
 		driver.navigate().to(URLtoLoad);
 	}
 	
@@ -142,20 +116,19 @@ public abstract class BaseSelenium {
 		return PageFactory.initElements(driver, SingleUploadPage.class);
 	}
 	
-//	public HelpPage navigateToHelpPage() {
-//		HelpPage helpPage = getStartPage().goToHelpPage();
-//
-//		Set<String> windowHandles = getDriver().getWindowHandles();
-//
-//		for (String winHandle : windowHandles) {
-//			getDriver().switchTo().window(winHandle);
-//		}
-//		
-//		return helpPage;
-//	}
+	public HelpPage navigateToHelpPage() {
+		HelpPage helpPage = new StartPage(driver).goToHelpPage();
+
+		Set<String> windowHandles = driver.getWindowHandles();
+
+		for (String winHandle : windowHandles) {
+			driver.switchTo().window(winHandle);
+		}
+		
+		return helpPage;
+	}
 	
 	public void navigateDriverBack() {
-//		getDriver().navigate().back();
 		driver.navigate().back();
 	}
 	
@@ -172,7 +145,5 @@ public abstract class BaseSelenium {
 			filepath = filepath.substring(1, filepath.length());
 		return filepath;
 	}
-
 	
-//	public abstract void setTestLinkTestCaseID();
 }

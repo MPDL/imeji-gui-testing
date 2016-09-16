@@ -9,25 +9,12 @@ import spot.pages.StartPage;
 public class EditLanguageSetupTest extends BaseSelenium {
 
 	private StartPage startPage;
-	
-	@BeforeMethod
-	public void beforeMethod() {
-	}
-
-	@AfterMethod
-	public void afterMethod() {
-	}
 
 	@BeforeClass
 	public void beforeClass() {
 		super.setup();
 		navigateToStartPage();
 		startPage = new StartPage(driver);		
-	}
-
-	@AfterClass
-	public void afterClass() {
-		
 	}
 
 	@Test (priority = 1)

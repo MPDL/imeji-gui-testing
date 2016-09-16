@@ -23,6 +23,7 @@ import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.CreateNewCollectionPage;
 import spot.pages.notAdmin.HomePage;
+import spot.util.TimeStamp;
 
 public class UserDeletesPrivateCollectionPrivateModeTest extends BaseSelenium {
 	
@@ -30,7 +31,7 @@ public class UserDeletesPrivateCollectionPrivateModeTest extends BaseSelenium {
 	private CollectionEntryPage collectionEntryPage;
 	
 	private HashMap<String, String> files;
-	private final String collectionTitle = "Private collection with default metadata profile";
+	private final String collectionTitle = "Private collection with default metadata profile: " + TimeStamp.getTimeStamp();
 	private String collectionDescription = "For testing purposes";
 	
 	@BeforeClass

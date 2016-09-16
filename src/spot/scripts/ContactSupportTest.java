@@ -4,12 +4,13 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import spot.BaseSelenium;
-import spot.SeleniumTestSuite;
 import spot.pages.HelpPage;
 import spot.pages.StartPage;
 
 public class ContactSupportTest extends BaseSelenium {
 
+	private String edmondSupportEmail = "edmond-support@gwdg.de";
+	
 	@BeforeClass
 	public void beforeClass() {
 		super.setup();
@@ -21,7 +22,7 @@ public class ContactSupportTest extends BaseSelenium {
 		navigateToStartPage();
 	}
 
-	@Test(dependsOnGroups = "helpTest")
+	@Test
 	public void contactSupportTest() {
 		
 		/* instead of navigateToHelpPage using beforeClass is possible in theory;
@@ -34,14 +35,7 @@ public class ContactSupportTest extends BaseSelenium {
 		
 		String supportMailAddress = helpPage.contactSupport();
 		
-		if (SeleniumTestSuite.testEnvironmentURL.equals(SeleniumTestSuite.qaImeji))
-			Assert.assertEquals(supportMailAddress, "spot-support@gwdg.de");
-		else if (SeleniumTestSuite.testEnvironmentURL.equals(SeleniumTestSuite.qaEdmond))
-			Assert.assertEquals(supportMailAddress, "edmond-support@gwdg.de");
-		else 
-			Assert.assertEquals(false, true, "Not known test environment url");
-		
-		
+		Assert.assertEquals(supportMailAddress, edmondSupportEmail, "Support mail adress can't be accessed");
 		
 		// closing the (help page) window; since that window's no more required
 		driver.close();
@@ -55,7 +49,7 @@ public class ContactSupportTest extends BaseSelenium {
 	public void contactEdmondsupportFromStartPage() {
 		String edmondSupportMailAddress = new StartPage(driver).contactEdmondSupport();
 		
-		Assert.assertEquals(edmondSupportMailAddress, "edmond-support@gwdg.de");		
+		Assert.assertEquals(edmondSupportMailAddress, edmondSupportEmail, "Support mail adress can't be accessed");		
 	  
 	}
 

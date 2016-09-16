@@ -6,8 +6,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
+import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
-import spot.pages.CollectionsPage;
 import spot.pages.LoginPage;
 import spot.pages.MetaDataOverViewPage;
 import spot.pages.StartPage;
@@ -15,7 +15,7 @@ import spot.pages.notAdmin.CreateNewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
-public class SelectMetadataProfileReferenceTest extends BaseSelenium {
+public class MetadataProfileAsTemplateTest extends BaseSelenium {
 
 	private HomePage homePage;
 	private CollectionEntryPage collectionEntryPage;
@@ -32,17 +32,16 @@ public class SelectMetadataProfileReferenceTest extends BaseSelenium {
 		
 		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName),
 				getPropertyAttribute(spotRUPassWord));
-
-		collectionTitle = "Collection with a meta data profile as a reference: " + TimeStamp.getTimeStamp();
+		collectionTitle = "Collection with existing metadata profile as a template: " + TimeStamp.getTimeStamp();
 	}
 	
 	@Test(priority = 1)
 	public void createCollection() {
 		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 
-		String collectionDescription = "This is a test description for a new collection with a referenced meta data profile.";
-
-		collectionEntryPage = createNewCollectionPage.createCollectionWithMetaDataProfileAsReference(purpleProfileIdentifier, collectionTitle,
+		String collectionDescription = "This is a test description for a new collection with an existing metadata profile as a template.";
+		
+		collectionEntryPage = createNewCollectionPage.createCollectionWithTemplateMetaDataProfile(purpleProfileIdentifier, collectionTitle,
 				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
 				getPropertyAttribute(ruOrganizationName));
 		
@@ -51,18 +50,20 @@ public class SelectMetadataProfileReferenceTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 2)
-	public void presenceInCollectionPage() {
+	public void collectionIsEmpty() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
-		CollectionsPage collectionPage = homePage.goToCollectionPage();
-		collectionPage.openCollectionByTitle(collectionTitle);
+		CollectionContentPage collectionContentPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		
+		int items = collectionContentPage.getItemListSize();
+		Assert.assertEquals(items, 0, "Collection is not empty.");
 	}
 	
 	@Test(priority = 3)
-	public void cannotEditMetadataProfile() {
+	public void canEditMetadataProfile() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		MetaDataOverViewPage metaDataOverViewPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).openMetaDataProfile();
 		boolean profileCanBeModified = metaDataOverViewPage.profileCanBeModified();
-		Assert.assertFalse(profileCanBeModified);
+		Assert.assertTrue(profileCanBeModified);
 	}
 	
 	@Test(priority = 4)

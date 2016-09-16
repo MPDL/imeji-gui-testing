@@ -11,8 +11,6 @@ import spot.pages.StartPage;
 
 public class DownloadFileTest extends BaseSelenium {
 
-	private DetailedItemViewPage detailedItemViewPage;
-
 	@BeforeClass
 	public void beforeClass() {
 		super.setup();
@@ -24,7 +22,7 @@ public class DownloadFileTest extends BaseSelenium {
 		CollectionsPage collectionPage = new StartPage(driver).goToCollectionPage();
 		CollectionContentPage collectionContentPage = collectionPage.getPageOfLargestCollection();
 		
-		detailedItemViewPage = collectionContentPage.downloadFirstItemInList();	
+		DetailedItemViewPage detailedItemViewPage = collectionContentPage.downloadFirstItemInList();	
 		boolean isDownloadPossible = detailedItemViewPage.isDownloadPossible();		
 		
 		Assert.assertTrue(isDownloadPossible, "Download of a item seems not to be possible. Reason: Download Button most probably not displayed/enabled");	

@@ -22,16 +22,5 @@ public class SearchQueryPage extends BasePage {
 	public String getSearchQueryDisplayText() {
 		return searchQueryKeyWord.getAttribute("value");
 	}
-	
-	/*public String getSearchQueryDisplayText() {
-		String searchQueryDisplayText="";
-		String tmp = searchQueryDisplay.getText().trim();
-		String[] split = tmp.split("\\s+");
-		// sth like e.g. albums: or collections:
-		String searchCategory = split[2];
-		// sth like albums:(test)
-		searchQueryDisplayText = searchCategory + searchQueryKeyWord.getText().trim();
-		return searchQueryDisplayText;
-	}*/
 
 }
