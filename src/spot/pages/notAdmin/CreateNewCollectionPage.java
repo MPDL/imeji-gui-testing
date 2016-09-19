@@ -87,8 +87,7 @@ public class CreateNewCollectionPage extends BasePage {
 		cancelButton.click();
 	}
 	
-	public void clearForm() {
-	
+	public void submitEmptyForm() {
 		clearPreFilledTextFields();
 		submitForm();
 	}
@@ -177,6 +176,7 @@ public class CreateNewCollectionPage extends BasePage {
 		// person related
 		setTitle(collectionTitle);
 		setDescription(collectionDescription);
+		clearSomePrefilledTextFields(familyName, orgName);
 		//confirmFamilyName(familyName);
 		//confirmGivenName(givenName);
 		setAlternativeName("testtest");
@@ -188,6 +188,17 @@ public class CreateNewCollectionPage extends BasePage {
 		//confirmOrganizationIdentifier();
 		setCity("Munich");
 		setCountry("Deutschland");		
+	}
+	
+	private void clearSomePrefilledTextFields(String familyName, String orgName) {
+		if (familyName.equals("")) {
+			familyNameTextField.clear();
+			errorOccurred = true;
+		}
+		if (orgName.equals("")) {
+			organizationNameTextField.clear();
+			errorOccurred = true;
+		}
 	}
 	
 	private void submitForm() {

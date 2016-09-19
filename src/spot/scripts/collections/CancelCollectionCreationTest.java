@@ -3,7 +3,6 @@ package spot.scripts.collections;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterClass;
 
@@ -16,46 +15,33 @@ import spot.pages.notAdmin.CreateNewCollectionPage;
 public class CancelCollectionCreationTest extends BaseSelenium {
 
 	private AdminHomePage adminHomePage;
-	
-	private String previousPageUrl; 
-
-	@BeforeMethod
-	public void beforeMethod() {
-		navigateToStartPage();
-	}
-
-	@AfterMethod
-	public void afterMethod() {
-	}
 
 	@BeforeClass
 	public void beforeClass() {
 		super.setup();
 		navigateToStartPage();
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
-
-		adminHomePage = loginPage.loginAsAdmin(
-				getPropertyAttribute("aSpotUserName"),
-				getPropertyAttribute("aSpotPassword"));
+		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName),getPropertyAttribute(spotRUPassWord));
 	}
-
-	@AfterClass
-	public void afterClass() {
-		adminHomePage.logout();
+	
+	@BeforeMethod
+	public void beforeMethod() {
+		navigateToStartPage();
 	}
 
 	@Test
 	public void cancelCollectionCreationTest() {
-		previousPageUrl = driver.getCurrentUrl();
+		String previousPageUrl = driver.getCurrentUrl();
 		
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage
-				.goToCreateNewCollectionPage();
-		
+		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 		createNewCollectionPage.cancelCollectionCreation();
 		
 		String currentUrl = driver.getCurrentUrl();
-		
-		Assert.assertEquals(currentUrl, previousPageUrl, "After cancelling the creation of collection, browser didn't go back to the page before the collection creation action.");
-		
+		Assert.assertEquals(currentUrl, previousPageUrl, "Browser doesn't go to previous page after cancelling collection.");
+	}
+	
+	@AfterClass
+	public void afterClass() {
+		adminHomePage.logout();
 	}
 }

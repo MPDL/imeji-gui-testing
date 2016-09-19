@@ -31,13 +31,7 @@ public class DisclaimerTest extends BaseSelenium {
 		}
 
 		String actualCurrentURL = getCurrentURL();		
-		
-		if (SeleniumTestSuite.testEnvironmentURL.equals(SeleniumTestSuite.qaImeji))
-			  Assert.assertEquals(actualCurrentURL, "http://qa-imeji.mpdl.mpg.de/imprint");
-		else if (SeleniumTestSuite.testEnvironmentURL.equals(SeleniumTestSuite.qaEdmond))
-			  Assert.assertEquals(actualCurrentURL, "http://colab.mpdl.mpg.de/mediawiki/Edmond_Disclaimer");
-		else 
-			  Assert.assertEquals(false, true, "Not known test environment url");
+		Assert.assertEquals(actualCurrentURL, "http://qa-edmond.mpdl.mpg.de/imeji/imprint");
 
 		// closing the (disclaimer page) window; since that window's no more required
 		driver.close();

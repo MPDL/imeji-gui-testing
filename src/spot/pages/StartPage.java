@@ -24,7 +24,7 @@ public class StartPage extends BasePage {
 	@FindBy(xpath =".//*[@id='Header:j_idt38']/a")
 	private WebElement registrationButton;
 	
-	@FindBy(xpath=".//*[@id='tabsDE-1']/p[2]/b[2]/a")
+	@FindBy(css="#columnEN-2 a:nth-of-type(2)")
 	private WebElement contactEdmondsupportLink;
 	
 	public StartPage(WebDriver driver) {

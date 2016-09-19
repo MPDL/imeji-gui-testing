@@ -2,12 +2,11 @@ package spot.scripts.collections;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterClass;
 
 import spot.BaseSelenium;
+import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
@@ -18,54 +17,35 @@ public class CreateCollectionWithMissingCollectionNameTest extends BaseSelenium 
 
 	private AdminHomePage adminHomePage;
 
-	@BeforeMethod
-	public void beforeMethod() {
-		navigateToStartPage();
-	}
-
-	@AfterMethod
-	public void afterMethod() {
-		adminHomePage.logout();
-	}
-
 	@BeforeClass
 	public void beforeClass() {
 		super.setup();
 		navigateToStartPage();
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
-
-		adminHomePage = loginPage.loginAsAdmin(
-				getPropertyAttribute("aSpotUserName"),
-				getPropertyAttribute("aSpotPassword"));
-	}
-
-	@AfterClass
-	public void afterClass() {
-		adminHomePage.logout();
+		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 	}
 
 	@Test
 	public void createCollectionWithMissingTitleTest() {
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage
-				.goToCreateNewCollectionPage();
+		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 
-		String collectionTitle = "";
 		String collectionDescription = "Some collection description";
 
-		CollectionEntryPage collectionEntryPage = createNewCollectionPage
-				.createCollectionWithoutStandardMetaDataProfile(collectionTitle, collectionDescription,
-						getPropertyAttribute("aGivenName"),
-						getPropertyAttribute("aFamilyName"), "");
+		CollectionEntryPage collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(
+				"", collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"), 
+				getPropertyAttribute(ruOrganizationName));
 
-		Assert.assertTrue(
-				collectionEntryPage == null,
-				"creation of collection shouldn't have succeeded since collection title was missing");
+		Assert.assertTrue(collectionEntryPage == null, "Collection shouldn't have been created since collection title was missing.");
 
-		String errorMessage = createNewCollectionPage.getMessageComponent()
-				.getErrorMessage();
-		Assert.assertEquals(errorMessage,
-				"Eine Sammlung benötigt einen Titel.",
-				"Default error essage for missing collection title is not displayed");
+		MessageType messageType = createNewCollectionPage.getMessageComponent().getMessageTypeOfPageMessageArea();
+		Assert.assertTrue(messageType == MessageType.ERROR, "No error message was displayed.");
 
 	}
+
+	@AfterClass
+	public void afterClass() {
+		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
+		adminHomePage.logout();
+	}
+
 }

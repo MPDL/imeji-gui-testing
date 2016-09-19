@@ -2,12 +2,11 @@ package spot.scripts.collections;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterClass;
 
 import spot.BaseSelenium;
+import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
@@ -18,52 +17,33 @@ public class CreateCollectionWithoutOrgNameTest extends BaseSelenium {
 
 	private AdminHomePage adminHomePage;
 
-	@BeforeMethod
-	public void beforeMethod() {
-		navigateToStartPage();
-	}
-
-	@AfterMethod
-	public void afterMethod() {
-		adminHomePage.logout();
-	}
-
 	@BeforeClass
 	public void beforeClass() {
 		super.setup();
 		navigateToStartPage();
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
-
-		adminHomePage = loginPage.loginAsAdmin(
-				getPropertyAttribute("aSpotUserName"),
-				getPropertyAttribute("aSpotPassword"));
+		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotRUUserName),getPropertyAttribute(spotRUPassWord));
 	}
-
-	@AfterClass
-	public void afterClass() {
-		adminHomePage.logout();
-	}
-
+	
 	@Test
 	public void createCollectionWithoutOrgNameTest() {
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage
-				.goToCreateNewCollectionPage();
+		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 
-		String collectionTitle = "Dienstag";
-		String collectionDescription = "Testtext f�r Dienstag.";
-		CollectionEntryPage collectionEntryPage = createNewCollectionPage
-				.createCollectionWithoutStandardMetaDataProfile(collectionTitle, collectionDescription, getPropertyAttribute("aGivenName"),
-						getPropertyAttribute("aFamilyName"), "");
+		String collectionTitle = "Collection without organisation name";
+		String collectionDescription = "Test collection";
+		
+		CollectionEntryPage collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(
+				collectionTitle, collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName), "");
+		Assert.assertTrue(collectionEntryPage == null, "Collection shouldn't have been created since organization name was missing");
 
-		Assert.assertTrue(
-				collectionEntryPage == null,
-				"creation of collection shouldn't have succeeded since organization name was missing");
+		MessageType messageType = createNewCollectionPage.getMessageComponent().getMessageTypeOfPageMessageArea();
+		Assert.assertTrue(messageType == MessageType.ERROR, "Error message for missing organisation is not displayed.");
 
-		String errorMessage = createNewCollectionPage.getMessageComponent()
-				.getErrorMessage();
-		Assert.assertEquals(errorMessage,
-				"Ein Organisation ben�tigt einen Namen",
-				"Default error essage for missing organisation is not displayed");
-
+	}
+	
+	@AfterClass
+	public void afterClass() {
+		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
+		adminHomePage.logout();
 	}
 }

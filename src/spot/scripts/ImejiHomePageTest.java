@@ -24,16 +24,15 @@ public class ImejiHomePageTest extends BaseSelenium {
 
 	@Test
 	public void callImejiHomePageFromHelpPageTest() {
-		/*
-		 * instead of navigateToHelpPage using beforeClass is possible in
-		 * theory; but beforeClass annotated methods will still run even though
-		 * the group failed. -> beforeClass doesn't work with dependsOnGroups
-		 */
-
 		String windowHandleStartPage = driver.getWindowHandle();
 
 		HelpPage helpPage = new StartPage(driver).goToHelpPage();
-
+		
+		Set<String> windowHandles = driver.getWindowHandles();
+		windowHandles.remove(windowHandleStartPage);
+		String helpHandle = windowHandles.iterator().next();
+		driver.switchTo().window(helpHandle);
+		
 		String windowHandleHelpPage = driver.getWindowHandle();
 
 		Set<String> windowHandlesBeforeImejiHomePage = driver.getWindowHandles();
@@ -41,7 +40,6 @@ public class ImejiHomePageTest extends BaseSelenium {
 		helpPage.lookUpImejiHomePage();
 
 		Set<String> windowHandlesAfterImejiHomePage = driver.getWindowHandles();
-
 		windowHandlesAfterImejiHomePage.removeAll(windowHandlesBeforeImejiHomePage);
 
 		for (String winHandle : windowHandlesAfterImejiHomePage) {
@@ -49,22 +47,16 @@ public class ImejiHomePageTest extends BaseSelenium {
 		}
 
 		String currentUrl = driver.getCurrentUrl();
-
 		String imejiHomePageUrl = "http://imeji.org/";
 
-		// is it really the Imeji Homepage?
 		Assert.assertEquals(currentUrl, imejiHomePageUrl);
 
-		// closing the (imeji home page) window; since that window's no more required
+		// close imeji window; switch to help page
 		driver.close();
-
-		// switch back to window handle of help page
 		driver.switchTo().window(windowHandleHelpPage);
 
-		// closing the (help page) window; since that window's no more required
+		// close help window; switch to start page
 		driver.close();
-
-		// switching back to original browser (start page)
 		driver.switchTo().window(windowHandleStartPage);
 	}
 	
@@ -81,16 +73,12 @@ public class ImejiHomePageTest extends BaseSelenium {
 		}
 		
 		String currentUrl = driver.getCurrentUrl();
-
 		String imejiHomePageUrl = "http://imeji.org/";
 
-		// is it really the Imeji Homepage?
 		Assert.assertEquals(currentUrl, imejiHomePageUrl);
 
-		// closing the (imeji home page) window; since that window's no more required
+		// close imeji window; switch to start page
 		driver.close();
-		
-		// switching back to original browser (start page)
 		driver.switchTo().window(windowHandleStartPage);
 	}
 

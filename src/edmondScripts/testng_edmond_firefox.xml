@@ -86,6 +86,30 @@
 			
 			<class name="edmondScripts.MetadataProfileAsTemplateTest" />
 			
+			<class name="spot.scripts.CategorySelectionTest" />
+			
+			<class name="spot.scripts.ContactSupportTest" />
+			
+			<class name="spot.scripts.DisclaimerTest" />
+			
+			<class name="spot.scripts.HelpTest" />
+			
+			<class name="spot.scripts.ImejiHomePageTest" />
+			
+			<class name="spot.scripts.MpdlHomePageTest" />
+			
+			<class name="spot.scripts.SearchTest" />
+			
+			<class name="spot.scripts.collections.SaveEmptyCollectionCreationFormTest" />
+			
+			<class name="spot.scripts.collections.CancelCollectionCreationTest" />
+			
+			<class name="spot.scripts.collections.CreateCollectionWithMissingAuthorNameTest" />
+			
+			<class name="spot.scripts.collections.CreateCollectionWithMissingCollectionNameTest" />
+			
+			<class name="spot.scripts.collections.CreateCollectionWithoutOrgNameTest" />
+			
 		</classes>
 	</test>
 </suite>

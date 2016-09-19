@@ -2,12 +2,12 @@ package spot.scripts.collections;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
+import spot.components.MessageComponent.MessageType;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
@@ -16,15 +16,6 @@ import spot.pages.notAdmin.CreateNewCollectionPage;
 public class SaveEmptyCollectionCreationFormTest extends BaseSelenium {
   
 	private AdminHomePage adminHomePage;
-
-	@BeforeMethod
-	public void beforeMethod() {
-		navigateToStartPage();
-	}
-
-	@AfterMethod
-	public void afterMethod() {
-	}
 
 	@BeforeClass
 	public void beforeClass() {
@@ -36,24 +27,24 @@ public class SaveEmptyCollectionCreationFormTest extends BaseSelenium {
 				getPropertyAttribute("aSpotUserName"),
 				getPropertyAttribute("aSpotPassword"));
 	}
+	
+	@BeforeMethod
+	public void beforeMethod() {
+		navigateToStartPage();
+	}
+
+	@Test
+	public void createCollectionWithMissingTitleTest() {
+		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
+		createNewCollectionPage.submitEmptyForm();
+		
+		MessageType messageType = createNewCollectionPage.getMessageComponent().getMessageTypeOfPageMessageArea();
+		Assert.assertTrue(messageType == MessageType.ERROR, "Error message for missing collection information is not displayed.");
+	}
 
 	@AfterClass
 	public void afterClass() {
 		adminHomePage.logout();
 	}
 
-	@Test
-	public void createCollectionWithMissingTitleTest() {
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage
-				.goToCreateNewCollectionPage();
-
-		createNewCollectionPage.clearForm();
-		
-		String errorMessage = createNewCollectionPage.getMessageComponent()
-				.getErrorMessage();
-		Assert.assertEquals(errorMessage,
-				"Eine Sammlung benötigt einen Titel.",
-				"Default error essage for missing collection title is not displayed");
-
-	}
 }

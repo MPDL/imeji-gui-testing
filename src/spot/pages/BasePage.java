@@ -57,7 +57,7 @@ public abstract class BasePage {
 	@FindBy (css="#Header\\:lnkHelp")
 	private WebElement helpButton;
 	
-	@FindBy (xpath="html/body/div[1]/div[4]/div/div[2]/a")
+	@FindBy (css="#poweredBy a")
 	private WebElement disclaimer;	
 	
 	@FindBy(css=".fa-star")
@@ -67,11 +67,11 @@ public abstract class BasePage {
 	private WebElement viewActiveAlbumButton;
 	
 	/* @imejiHomePageLink & @mpdlHomePage only for Imeji */
-	@FindBy(xpath="html/body/div[1]/div[4]/div/div[1]/div[2]/a")
-	private WebElement imejiHomePageLink;
+	@FindBy(css=".imj_poweredby_software_image")
+	protected WebElement imejiHomePageLink;
 	
-	@FindBy(xpath="html/body/div[1]/div[4]/div/div[3]/div/a")
-	private WebElement mpdlHomePage;
+	@FindBy(css=".imj_poweredby_institution")
+	protected WebElement mpdlHomePage;
 	
 	/**
 	 * Constructor
@@ -224,6 +224,10 @@ public abstract class BasePage {
             attempts++;
         }
         return result;
+	}
+	
+	public String getPageTitle() {
+		return driver.getTitle();
 	}
 	
 }

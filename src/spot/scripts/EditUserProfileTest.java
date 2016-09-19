@@ -20,34 +20,20 @@ public class EditUserProfileTest extends BaseSelenium {
 	private AdminHomePage adminHomePage;
 	private AdministrationPage adminPage;
 	
-	private String newUserName;
+	private String newUserName = "edmond-test@mpdl.mpg.de";
 	private AllUsersOverViewPage allUsersOverViewPage;
 	
 	@BeforeClass
 	public void beforeClass() {
 		super.setup();
-		navigateToStartPage();		
-	
-//		new StartPage(driver).selectLanguage(englishSetup);
+		navigateToStartPage();
 		
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName), getPropertyAttribute(spotAdminPassWord));
-		
 		adminPage = adminHomePage.goToAdminPage();
-	
-		newUserName = "edmond-test@mpdl.mpg.de";
-		
-		
 		UserProfilePage userProfilePage = adminPage.createNewUser(newUserName);
 		allUsersOverViewPage = userProfilePage.goToAdminPage().viewAllUsers();
 	}
-
-	@AfterMethod
-	public void afterMethod() {
-		String allUsersOverViewLink = "http://qa-edmond.mpdl.mpg.de/imeji/users";
-		driver.navigate().to(allUsersOverViewLink);
-	}
-	
 	
 	@Test(priority = 1)
 	public void changeNameOfUserTest() {
@@ -75,6 +61,12 @@ public class EditUserProfileTest extends BaseSelenium {
 	@Test(priority = 3)
 	public void deleteUser() {
 		allUsersOverViewPage.deleteUserByEmail(newUserName);
+	}
+	
+	@AfterMethod
+	public void afterMethod() {
+		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
+		allUsersOverViewPage = adminHomePage.goToAdminPage().viewAllUsers();
 	}
 	
 	@AfterClass

@@ -1,5 +1,8 @@
 package spot.scripts;
 
+import java.util.List;
+import java.util.Set;
+
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -10,6 +13,9 @@ import spot.pages.StartPage;
 public class ContactSupportTest extends BaseSelenium {
 
 	private String edmondSupportEmail = "edmond-support@gwdg.de";
+	
+	private String windowHandleBeforeHelp;
+	private String helpHandle;
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -24,24 +30,19 @@ public class ContactSupportTest extends BaseSelenium {
 
 	@Test
 	public void contactSupportTest() {
-		
-		/* instead of navigateToHelpPage using beforeClass is possible in theory;
-		 * but beforeClass annotated methods will still run even though the group failed.
-		 * -> beforeClass doesn't work with dependsOnGroups
-		*/ 
-		String windowHandleBeforeHelp = driver.getWindowHandle();
+		windowHandleBeforeHelp = driver.getWindowHandle();
 		
 		HelpPage helpPage = new StartPage(driver).goToHelpPage();
 		
-		String supportMailAddress = helpPage.contactSupport();
+		Set<String> windowHandles = driver.getWindowHandles();
+		windowHandles.remove(windowHandleBeforeHelp);
+		helpHandle = windowHandles.iterator().next();
+		driver.switchTo().window(helpHandle);
 		
-		Assert.assertEquals(supportMailAddress, edmondSupportEmail, "Support mail adress can't be accessed");
+		List<String> supportMailAddresses = helpPage.contactSupport();
 		
-		// closing the (help page) window; since that window's no more required
-		driver.close();
-	  
-		// switching back to original browser (start page)
-		driver.switchTo().window(windowHandleBeforeHelp);
+		for (String supportEmail : supportMailAddresses)
+			Assert.assertEquals(supportEmail, edmondSupportEmail, "Support mail address can't be accessed.");
 		
 	}
 	
@@ -49,8 +50,20 @@ public class ContactSupportTest extends BaseSelenium {
 	public void contactEdmondsupportFromStartPage() {
 		String edmondSupportMailAddress = new StartPage(driver).contactEdmondSupport();
 		
-		Assert.assertEquals(edmondSupportMailAddress, edmondSupportEmail, "Support mail adress can't be accessed");		
+		Assert.assertEquals(edmondSupportMailAddress, edmondSupportEmail, "Support mail address can't be accessed.");		
 	  
+	}
+	
+	@AfterClass
+	public void afterClass() {
+		if (driver.getWindowHandles().size() > 1) {
+			// closing the (help page) window; since that window's no more required
+			driver.switchTo().window(helpHandle);
+			driver.close();
+			
+			// switching back to original browser (start page)
+			driver.switchTo().window(windowHandleBeforeHelp);
+		}
 	}
 
 }
