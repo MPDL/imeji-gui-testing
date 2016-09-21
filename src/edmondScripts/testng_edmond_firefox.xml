@@ -8,7 +8,7 @@
 			
 			<class name="spot.BaseSelenium" />
 			
-			<class name="spot.scripts.admin.UserPolicyManagementTest" />
+			<!-- <class name="spot.scripts.admin.UserPolicyManagementTest" />
 			
 			<class name="edmondScripts.DeleteUserGroupTest" />
 
@@ -78,11 +78,11 @@
 			
 			<class name="edmondScriptsPrivateMode.LimitedAccessForNRUPrivateMode" />
 			
-			<class name="spot.scripts.admin.EnterUserManagementTest" />
+			<class name="spot.scripts.admin.EnterUserManagementTest" /> -->
 			
 			<class name="spot.scripts.admin.AllUsersOverviewTest" />
 			
-			<class name="edmondScripts.SelectMetadataProfileReferenceTest" />
+			<!-- <class name="edmondScripts.SelectMetadataProfileReferenceTest" />
 			
 			<class name="edmondScripts.MetadataProfileAsTemplateTest" />
 			
@@ -108,7 +108,7 @@
 			
 			<class name="spot.scripts.collections.CreateCollectionWithMissingCollectionNameTest" />
 			
-			<class name="spot.scripts.collections.CreateCollectionWithoutOrgNameTest" />
+			<class name="spot.scripts.collections.CreateCollectionWithoutOrgNameTest" /> -->
 			
 		</classes>
 	</test>
