@@ -48,7 +48,7 @@ public class PublishAlbumTest extends BaseSelenium {
 		String actualInfoMessage = albumEntryPage.getMessageComponent().getInfoMessage();
 		String expectedInfoMessage = "Album created successfully";
 		
-		Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Album probably couldn't be be created.");
+		Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Album probably couldn't be created.");
 	}
 
 	@Test (priority=2)

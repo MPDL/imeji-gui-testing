@@ -41,9 +41,9 @@ public class CreateCollectionInDarkModeTest extends BaseSelenium {
 		
 		String collectionDescription = "Testing functionality of dark mode";
 		
-		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle, 
-				collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"),
-				getPropertyAttribute("aOrganizationName"));
+		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
+				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
+				getPropertyAttribute(ruOrganizationName));
 
 		MessageType messageType = collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea();
 		Assert.assertTrue(messageType == MessageType.INFO, "Collection couldn't be created");
