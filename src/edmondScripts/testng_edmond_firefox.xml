@@ -76,9 +76,9 @@
 			
 			<class name="edmondScriptsPrivateMode.LoginLogoutPrivateModeTest" />
 			
-			<class name="edmondScriptsPrivateMode.LimitedAccessForNRUPrivateMode" />
+			<class name="edmondScriptsPrivateMode.LimitedAccessForNRUPrivateMode" /> -->
 			
-			<class name="spot.scripts.admin.EnterUserManagementTest" /> -->
+			<class name="spot.scripts.admin.EnterUserManagementTest" />
 			
 			<class name="spot.scripts.admin.AllUsersOverviewTest" />
 			
