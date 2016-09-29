@@ -70,6 +70,21 @@ public class CreateNewUserPage extends BasePage {
 		
 		return PageFactory.initElements(driver, UserProfilePage.class);
 	}
+	
+	public UserProfilePage createdNewRestrictedUser(String newUserName) {
+		
+		fillPersonalData(newUserName);
+		
+		fillOrganizationData();
+		
+		// restricted user cannot create collections
+		if (canCreateNewCollectionCheckBox.isSelected())
+			canCreateNewCollectionCheckBox.click();
+		
+		saveButton.click();
+		
+		return PageFactory.initElements(driver, UserProfilePage.class);
+	}
 
 	private void fillOrganizationData() {
 		organizationNameTextField.sendKeys("MPDL");

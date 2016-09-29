@@ -41,7 +41,7 @@ public class ActionComponent extends BasePage {
 	private WebElement deleteButton;
 	
 	@FindBy(id="action:actionMenuDelete")
-	private WebElement deleteButton_2;
+	private WebElement deleteButton2;
 	
 	@FindBy(id="action:actionMenuDiscard")
 	private WebElement discardButton;
@@ -75,7 +75,7 @@ public class ActionComponent extends BasePage {
 			
 				case DELETE: 
 				actionButton_2.click();		
-				deleteButton_2.click();
+				deleteButton2.click();
 				confirmDeletionButton.click();
 				returnPage = new CollectionsPage(driver);
 				break;
@@ -97,9 +97,7 @@ public class ActionComponent extends BasePage {
 					
 					releaseMenuItemDialog.findElement(By.className("imj_submitButton")).click();;
 					
-				} catch(NoSuchElementException e) {
-					System.out.println("nosuchelement release");
-				}
+				} catch(NoSuchElementException e) {}
 				
 				break;
 				
@@ -149,9 +147,7 @@ public class ActionComponent extends BasePage {
 					
 					releaseMenuItemDialog.findElement(By.className("imj_submitButton")).click();;
 					
-				} catch(NoSuchElementException e) {
-					System.out.println("nosuchelement release");
-				}
+				} catch(NoSuchElementException e) {}
 				returnPage = new CollectionContentPage(driver);
 				break;
 				

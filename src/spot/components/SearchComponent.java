@@ -1,10 +1,12 @@
 package spot.components;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import spot.CategoryType;
 import spot.pages.AdvancedSearchPage;
 import spot.pages.BrowseItemsPage;
 import spot.pages.SearchQueryPage;
@@ -43,14 +45,37 @@ public class SearchComponent {
 		return PageFactory.initElements(driver, BrowseItemsPage.class);
 	}
 	
-	public SearchQueryPage searchFor(String searchQueryKeyWord) {
+	public SearchQueryPage searchFor(String searchQuery) {
 		
 		quickSearchTextField.clear();
-		quickSearchTextField.sendKeys(searchQueryKeyWord);
+		quickSearchTextField.sendKeys(searchQuery);
 		
 		goToQuickSearchingButton.click();
 		
 		return PageFactory.initElements(driver, SearchQueryPage.class);
 	}	
+	
+	public SearchQueryPage searchByCategory(String searchQuery, CategoryType category) {
+		quickSearchTextField.clear();
+		quickSearchTextField.sendKeys(searchQuery);
+		
+		WebElement categoryMenu = driver.findElement(By.className("imj_menuSimpleSearch"));
+		switch(category) {
+			case ITEM:
+				categoryMenu.findElement(By.id("simpleSearchForItems")).click();
+				break;
+			case ALBUM:
+				categoryMenu.findElement(By.id("simpleSearchForCollections")).click();
+				break;
+			case COLLECTION:
+				categoryMenu.findElement(By.id("simpleSearchForAlbums")).click();
+				break;
+			default:
+				categoryMenu.findElement(By.id("simpleSearchForItems")).click();
+				break;
+		}
+		
+		return PageFactory.initElements(driver, SearchQueryPage.class);
+	}
 	
 }

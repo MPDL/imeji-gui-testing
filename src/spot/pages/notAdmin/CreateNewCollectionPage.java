@@ -59,7 +59,7 @@ public class CreateNewCollectionPage extends BasePage {
 	@FindBy(css=".imj_descriptionArea select")
 	private WebElement profileTemplatesDropBoxWebElement;
 	
-	private Select profileTemplatesDrobBox;
+	private Select profileTemplatesDropBox;
 	
 	private final String defaultProfileIdentifier = "default profile";
 	
@@ -167,8 +167,8 @@ public class CreateNewCollectionPage extends BasePage {
 			
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_descriptionArea select")));		
 		
-		profileTemplatesDrobBox = new Select(profileTemplatesDropBoxWebElement);		
-		profileTemplatesDrobBox.selectByVisibleText(profileIdentifier);		
+		profileTemplatesDropBox = new Select(profileTemplatesDropBoxWebElement);		
+		profileTemplatesDropBox.selectByVisibleText(profileIdentifier);		
 	}
 
 	private void fillForm(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {

@@ -80,24 +80,12 @@ public class CollectionContentPage extends BasePage {
 	public int getItemListSize() {
 		
 		List<WebElement> mediaList = getItemList();
-		
 		return mediaList.size();		
 	}
 	
 	public List<WebElement> getItemList() {
 		
 		List<WebElement> itemList = driver.findElements(By.className("imj_tileItem"));
-				
-		/*try {
-			tiledMediaList.isDisplayed();
-			itemList = tiledMediaList.findElements(By.className("imj_tileItem"));
-		} catch (NoSuchElementException e) {
-			retryingFinding(By.cssSelector(".imj_tiledMediaList"));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_tiledMediaList")));
-			tiledMediaList = driver.findElement(By.cssSelector(".imj_tiledMediaList"));
-			
-			itemList = tiledMediaList.findElements(By.className("imj_tileItem"));			
-		}*/
 		return itemList;
 	}
 	

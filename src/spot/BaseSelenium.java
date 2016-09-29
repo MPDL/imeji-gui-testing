@@ -26,11 +26,6 @@ public abstract class BaseSelenium {
 	 *  Even within own class; access through getter strongly recommended */
 	protected WebDriver driver;
 	
-	protected static final String germanSetup = "de - German";
-	protected static final String englishSetup = "en - English";
-	protected static final String spanishSetup = "es - Spanish";
-	protected static final String japaneseSetup = "ja - Japanese";
-	
 	protected String spotRUUserName;
 	protected String spotRUPassWord;
 	protected String ruFamilyName;
@@ -42,6 +37,12 @@ public abstract class BaseSelenium {
 	protected String adminFamilyName;
 	protected String adminGivenName;
 	protected String adminOrganizationName;
+	
+	protected String restrUserName;
+	protected String restrPassWord;
+	protected String restrFamilyName;
+	protected String restrGivenName;
+	protected String restrOrganizationName;
 	
 	public Properties getProperties() {				
 		Properties properties = SeleniumTestSuite.getProperties();
@@ -58,6 +59,7 @@ public abstract class BaseSelenium {
 	private void setupUsers() {		
 		setupRegisteredUser();
 		setupAdmin();
+		setupRestrictedUser();
 	}
 
 	private void setupAdmin() {
@@ -74,6 +76,14 @@ public abstract class BaseSelenium {
 		ruGivenName = "tuGivenName";
 		ruFamilyName = "tuFamilyName";
 		ruOrganizationName = "tuOrganization";
+	}
+	
+	private void setupRestrictedUser() {
+		restrUserName = "reEmailAddress";
+		restrPassWord = "reEmailPassword";
+		restrFamilyName = "reFamilyName";
+		restrGivenName = "reGivenName";
+		restrOrganizationName = "reOrganization";
 	}
 
 	public boolean isElementDisplayed(WebElement webElement) {
@@ -105,8 +115,8 @@ public abstract class BaseSelenium {
 	}
 	
 	public void navigateToStartPage() {
-		if (!getCurrentURL().equals(SeleniumTestSuite.testEnvironmentURL)) {
-			navigateDriverTo(SeleniumTestSuite.testEnvironmentURL);
+		if (!getCurrentURL().equals(SeleniumTestSuite.TEST_ENV_URL)) {
+			navigateDriverTo(SeleniumTestSuite.TEST_ENV_URL);
 		}
 	}
 	
@@ -136,7 +146,7 @@ public abstract class BaseSelenium {
 		homePage.logout();
 	}
 	
-	public String getFilepath(String fileName) {
+	public final String getFilepath(String fileName) {
 		fileName = "/" + fileName;
 		String filepath = getClass().getResource(fileName).getPath();
 		if (driver instanceof FirefoxDriver)

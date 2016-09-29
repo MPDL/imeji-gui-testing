@@ -12,7 +12,7 @@ import spot.pages.StartPage;
 
 public class ContactSupportTest extends BaseSelenium {
 
-	private String edmondSupportEmail = "edmond-support@gwdg.de";
+	private String edmondSupportEmail = "edmond@mpdl.mpg.de";
 	
 	private String windowHandleBeforeHelp;
 	private String helpHandle;

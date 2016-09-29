@@ -1,5 +1,6 @@
 package spot.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import spot.components.ActionComponent;
 import spot.components.ActionComponent.ActionType;
+import spot.pages.notAdmin.CreateNewCollectionPage;
 
 public class CollectionEntryPage extends BasePage {
 
@@ -16,7 +18,10 @@ public class CollectionEntryPage extends BasePage {
 	private WebElement uploadContentButton;
 	
 	@FindBy(css="#metadata>a")
-	private WebElement addMetaDataProfileButton;	 
+	private WebElement addMetaDataProfileButton;	
+	
+	@FindBy(id = "editMenu")
+	private WebElement editButton;
 	
 	public CollectionEntryPage(WebDriver driver) {
 		super(driver);
@@ -52,5 +57,12 @@ public class CollectionEntryPage extends BasePage {
 		getActionComponent().doAction(ActionType.DELETE);
 		
 		return PageFactory.initElements(driver, CollectionsPage.class);
+	}
+	
+	public EditCollectionPage editInformation() {
+		editButton.click();
+		driver.findElement(By.id("action:actionMenuEditCollection")).click();
+		
+		return PageFactory.initElements(driver, EditCollectionPage.class);
 	}
 }

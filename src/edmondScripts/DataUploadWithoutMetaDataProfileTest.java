@@ -28,7 +28,7 @@ import org.testng.annotations.AfterClass;
 
 public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium {
 
-	private static final Logger log4j = LogManager.getLogger(DataUploadWithoutMetaDataProfileTest.class.getName());
+	private static final Logger LOG4J = LogManager.getLogger(DataUploadWithoutMetaDataProfileTest.class.getName());
 	
 	private LoginPage loginPage;
 	private HomePage homePage;
@@ -95,7 +95,7 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium {
 			Assert.assertTrue(detailedItemViewPage.getFileTitle().equals(fileTitle), "Something went wrong with uploading file; file title not the one that was selected");
 			
 		} catch (TimeoutException timeOutExc) {
-			log4j.error(timeOutExc);
+			LOG4J.error(timeOutExc);
 			Assert.assertTrue(false, "Time out error regarding single upload: Either collection couldn't be found or the button 'save' didn't appear. Summarized: The upload failed.");
 		}
 		

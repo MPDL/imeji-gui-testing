@@ -13,6 +13,12 @@ public class SearchQueryPage extends BasePage {
 	@FindBy(id="quickSearchString")
 	private WebElement searchQueryKeyWord;
 	
+	@FindBy(xpath = "/html/body/div[1]/div[5]/div[1]/div[2]/form/div[1]")
+	private WebElement resultCount;
+	
+	@FindBy(id = "j_idt346:filterInfoPanel")
+	private WebElement filterInfoPanel;
+	
 	public SearchQueryPage(WebDriver driver) {
 		super(driver);
 		
@@ -21,6 +27,16 @@ public class SearchQueryPage extends BasePage {
 	
 	public String getSearchQueryDisplayText() {
 		return searchQueryKeyWord.getAttribute("value");
+	}
+	
+	public int getResultCount() {
+		String numResults = resultCount.getText().split(" ")[0];
+		return Integer.parseInt(numResults);
+	}
+	
+	public int getResultCountCategory() {
+		String numResults = filterInfoPanel.getText().split(" ")[0];
+		return Integer.parseInt(numResults);
 	}
 
 }

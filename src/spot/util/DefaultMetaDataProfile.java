@@ -7,7 +7,7 @@ package spot.util;
  * @author kocar
  *
  */
-public class DefaultMetaDataProfile {
+public final class DefaultMetaDataProfile {
 	
 	private static final DefaultMetaDataProfile DMDP = new DefaultMetaDataProfile();
 	

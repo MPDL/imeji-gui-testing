@@ -43,15 +43,15 @@ public class SearchPrivateModeTest extends BaseSelenium {
 	@Test(priority = 1)
 	public void searchPrivateModeGuest() {
 		startPage = new StartPage(driver);
-		boolean guestCanAccessSearchField = true;
+		boolean guestAccessSearchField = true;
 		try {
 			searchFor("koala");
 		}
 		catch (NoSuchElementException exc) {
-			guestCanAccessSearchField = false;
+			guestAccessSearchField = false;
 		}
 		
-		Assert.assertFalse(guestCanAccessSearchField, "Guest should not be able to search in private mode.");
+		Assert.assertFalse(guestAccessSearchField, "Guest should not be able to search in private mode.");
 	}
 	
 	@Test(priority = 2)
@@ -61,15 +61,15 @@ public class SearchPrivateModeTest extends BaseSelenium {
 		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), 
 				getPropertyAttribute(spotRUPassWord));
 		
-		boolean RUCanAccessSearchField = true;
+		boolean ruAccessSearchField = true;
 		try {
 			searchFor("jellyfish");
 		}
 		catch (NoSuchElementException exc) {
-			RUCanAccessSearchField = false;
+			ruAccessSearchField = false;
 		}
 		
-		Assert.assertTrue(RUCanAccessSearchField, "Registered user should be able to search in private mode.");
+		Assert.assertTrue(ruAccessSearchField, "Registered user should be able to search in private mode.");
 		
 		homePage = startPage.goToHomePage(homePage);
 		homePage.logout();
@@ -82,15 +82,15 @@ public class SearchPrivateModeTest extends BaseSelenium {
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName), 
 				getPropertyAttribute(spotAdminPassWord));
 		
-		boolean adminCanAccessSearchField = true;
+		boolean adminAccessSearchField = true;
 		try {
 			searchFor("jellyfish");
 		}
 		catch (NoSuchElementException exc) {
-			adminCanAccessSearchField = false;
+			adminAccessSearchField = false;
 		}
 		
-		Assert.assertTrue(adminCanAccessSearchField, "Admin should be able to search in private mode.");
+		Assert.assertTrue(adminAccessSearchField, "Admin should be able to search in private mode.");
 		
 		adminHomePage = (AdminHomePage)(startPage.goToHomePage(adminHomePage));
 		adminHomePage.logout();

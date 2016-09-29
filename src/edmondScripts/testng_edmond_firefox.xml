@@ -110,6 +110,12 @@
 			
 			<class name="spot.scripts.collections.CreateCollectionWithoutOrgNameTest" />
 			
+			<class name="edmondScripts.RestrictedUploadAttemptTest" />
+			
+			<class name="edmondScriptsPrivateMode.RestrictedUploadAttemptPMTest" />
+			
+			<class name="spot.scripts.SearchSpecialCharactersTest" />
+			
 		</classes>
 	</test>
 </suite>

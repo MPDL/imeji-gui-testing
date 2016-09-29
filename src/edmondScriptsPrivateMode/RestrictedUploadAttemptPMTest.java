@@ -6,33 +6,22 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
+import spot.components.MessageComponent;
+import spot.components.MessageComponent.MessageType;
 import spot.pages.AdministrationPage;
-import spot.pages.CollectionContentPage;
-import spot.pages.CollectionsPage;
-import spot.pages.DetailedItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.HomePage;
 
-public class DownloadFileRUPrivateModeTest extends BaseSelenium {
+public class RestrictedUploadAttemptPMTest extends BaseSelenium {
 
 	private HomePage homePage;
-	private DetailedItemViewPage detailedItemViewPage;
-
+	
 	@BeforeClass
 	public void beforeClass() {
 		super.setup();
-		navigateToStartPage();
-		
 		switchToPrivateMode(true);
-		loginAsRegisteredUser();
-		
-		CollectionsPage collectionPage = new StartPage(driver).goToCollectionPage();
-		CollectionContentPage collectionContentPage = collectionPage.getPageOfLargestCollection();
-		
-		detailedItemViewPage = collectionContentPage.downloadFirstItemInList();	
-		
 	}
 	
 	private void switchToPrivateMode(boolean shouldPrivateModeBeOn) {
@@ -49,23 +38,24 @@ public class DownloadFileRUPrivateModeTest extends BaseSelenium {
 		adminHomePage.logout();
 	}
 	
-	private void loginAsRegisteredUser() {
+	@Test(priority = 1)
+	public void loginRestricted() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
-		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
+		homePage = loginPage.loginRestricted(getPropertyAttribute(restrUserName), getPropertyAttribute(restrPassWord));
 	}
 	
-	@Test 
-	public void downloadFileTest() {
-		boolean isDownloadPossible = detailedItemViewPage.isDownloadPossible();
-		
-		Assert.assertTrue(isDownloadPossible, "Registered user couldn't download a item. Reason: Download Button most probably not displayed/enabled");	
+	@Test(priority = 2)
+	public void goToUploadPage() {
+		homePage.goToSingleUploadPage();
+		MessageComponent messageComponent = homePage.getMessageComponent();
+		MessageType messageType = messageComponent.getMessageTypeOfPageMessageArea();
+		Assert.assertEquals(messageType, MessageType.INFO, "No message was displayed.");
 	}
 	
 	@AfterClass
 	public void afterClass() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.logout();
 		switchToPrivateMode(false);
 	}
-	
-	
 }

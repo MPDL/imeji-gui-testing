@@ -9,6 +9,11 @@ import spot.pages.StartPage;
 public class EditLanguageSetupTest extends BaseSelenium {
 
 	private StartPage startPage;
+	
+	private String englishSetup;
+	private String germanSetup;
+	private String spanishSetup;
+	private String japaneseSetup;
 
 	@BeforeClass
 	public void beforeClass() {

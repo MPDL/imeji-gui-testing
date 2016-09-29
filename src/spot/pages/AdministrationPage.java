@@ -39,6 +39,15 @@ public class AdministrationPage extends BasePage {
 		return createNewUserPage.createNewUser(newUserName);
 	}
 	
+	public UserProfilePage createNewRestrictedUser(String newUserName) {
+		
+		createNewUser.click();
+		
+		CreateNewUserPage createNewUserPage = new CreateNewUserPage(driver);
+		
+		return createNewUserPage.createdNewRestrictedUser(newUserName);
+	}
+	
 	public AllUsersOverViewPage viewAllUsers() {
 		
 		viewAllUsers.click();

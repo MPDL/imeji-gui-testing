@@ -42,6 +42,10 @@ public class LoginPage extends BasePage {
 	public HomePage loginAsNotAdmin(String user, String pw){
 	    return login(user, pw, HomePage.class);
 	}
+	
+	public HomePage loginRestricted(String user, String pw){
+	    return login(user, pw, HomePage.class);
+	}
 
 	public LoginPage loginWithBadCredentials(String user, String pw){
 	    return login(user, pw, LoginPage.class);

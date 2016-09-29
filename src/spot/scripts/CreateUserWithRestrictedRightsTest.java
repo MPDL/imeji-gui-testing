@@ -25,8 +25,6 @@ public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
 	public void beforeClass() {
 		super.setup();
 		navigateToStartPage();		
-	
-//		new StartPage(driver).selectLanguage(englishSetup);
 		
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName), getPropertyAttribute(spotAdminPassWord));
@@ -38,13 +36,13 @@ public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
 
 	@Test
 	public void createUserTest() {
-				
-		UserProfilePage userProfilePage = adminPage.createNewUser(newUserName);
+		UserProfilePage userProfilePage = adminPage.createNewRestrictedUser(newUserName);
 		allUsersOverViewPage = userProfilePage.goToAdminPage().viewAllUsers();
 		
 		String actualMessage = allUsersOverViewPage.getMessageComponent().getInfoMessage();	
 		String expectedMessage = "User created successfully.";
-		Assert.assertEquals(actualMessage, expectedMessage, "User most probably couldn't be created");	
+		Assert.assertEquals(actualMessage, expectedMessage, "User most probably couldn't be created");
+		allUsersOverViewPage.goToHomePage(adminHomePage).logout();
 	}
 	
 	@AfterClass

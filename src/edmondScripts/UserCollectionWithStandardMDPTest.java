@@ -14,6 +14,7 @@ import spot.BaseSelenium;
 import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
+import spot.pages.EditCollectionPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
@@ -93,6 +94,20 @@ public class UserCollectionWithStandardMDPTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 4)
+	public void addExternalReference() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		EditCollectionPage editCollection = createdCollection.viewCollectionInformation().editInformation();
+		
+		editCollection.addInformation("Test collection");
+		editCollection.addLogo(getFilepath("SampleTIFFile.tif"));
+		CollectionEntryPage collectionEntryPage = editCollection.submitChanges();
+		
+		MessageType messageType = collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea();
+		Assert.assertEquals(messageType, MessageType.INFO, "Colelction was not successfully changed.");
+	}
+	
+	@Test(priority = 5)
 	public void deleteCollection() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
