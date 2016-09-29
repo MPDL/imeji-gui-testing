@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.components.ActionComponent;
 import spot.components.ActionComponent.ActionType;
@@ -22,6 +23,18 @@ public class CollectionEntryPage extends BasePage {
 	
 	@FindBy(id = "editMenu")
 	private WebElement editButton;
+	
+	@FindBy(id = "action:actionMenuEditCollection")
+	private WebElement editInfoOption;
+	
+	@FindBy(id = "sharingMenu")
+	private WebElement shareButton;
+	
+	@FindBy(id = "action:actionMenuShareCollection")
+	private WebElement shareOption;
+	
+	@FindBy(className = "imj_statusHeaderArea")
+	private WebElement status;
 	
 	public CollectionEntryPage(WebDriver driver) {
 		super(driver);
@@ -61,8 +74,17 @@ public class CollectionEntryPage extends BasePage {
 	
 	public EditCollectionPage editInformation() {
 		editButton.click();
-		driver.findElement(By.id("action:actionMenuEditCollection")).click();
+		wait.until(ExpectedConditions.visibilityOf(editInfoOption));
+		editInfoOption.click();
 		
 		return PageFactory.initElements(driver, EditCollectionPage.class);
+	}
+	
+	public SharePage goToSharePage() {
+		shareButton.click();
+		wait.until(ExpectedConditions.visibilityOf(shareOption));
+		shareOption.click();
+		
+		return PageFactory.initElements(driver, SharePage.class);
 	}
 }

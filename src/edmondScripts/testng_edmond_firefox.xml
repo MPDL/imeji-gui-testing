@@ -100,6 +100,8 @@
 			
 			<class name="spot.scripts.SearchTest" />
 			
+			<class name="spot.scripts.SearchSpecialCharactersTest" />
+			
 			<class name="spot.scripts.collections.SaveEmptyCollectionCreationFormTest" />
 			
 			<class name="spot.scripts.collections.CancelCollectionCreationTest" />
@@ -113,8 +115,6 @@
 			<class name="edmondScripts.RestrictedUploadAttemptTest" />
 			
 			<class name="edmondScriptsPrivateMode.RestrictedUploadAttemptPMTest" />
-			
-			<class name="spot.scripts.SearchSpecialCharactersTest" />
 			
 		</classes>
 	</test>

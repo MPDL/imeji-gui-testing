@@ -32,6 +32,7 @@ public class RestrictedUploadAttemptTest extends BaseSelenium {
 	@Test(priority = 2)
 	public void goToUploadPage() {
 		homePage.goToSingleUploadPage();
+		
 		MessageComponent messageComponent = homePage.getMessageComponent();
 		MessageType messageType = messageComponent.getMessageTypeOfPageMessageArea();
 		Assert.assertEquals(messageType, MessageType.INFO, "No message was displayed.");
