@@ -1,4 +1,4 @@
-package spot.pages;
+package spot.pages.admin;
 
 import java.util.List;
 
@@ -9,18 +9,20 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class AllUserGroupsOverViewPage extends BasePage {
+import spot.pages.BasePage;
+
+public class UserGroupsOverviewPage extends BasePage {
 
 	@FindBy(css=".imj_admindataSet")
 	private List<WebElement> userGroupList;
 	
-	public AllUserGroupsOverViewPage(WebDriver driver) {
+	public UserGroupsOverviewPage(WebDriver driver) {
 		super(driver);
 		
 		PageFactory.initElements(driver, this);
 	}
 
-	public AllUserGroupsOverViewPage deleteUserGroupByName(String userGroupName) {
+	public UserGroupsOverviewPage deleteUserGroupByName(String userGroupName) {
 		
 		if (isNewUserGroupPresent(userGroupName)) {
 			WebElement toBeDeletedUserGroup = findUserGroupByName(userGroupName);
@@ -36,7 +38,7 @@ public class AllUserGroupsOverViewPage extends BasePage {
 			confirmDelete.click();
 		}
 		
-		return PageFactory.initElements(driver, AllUserGroupsOverViewPage.class);
+		return PageFactory.initElements(driver, UserGroupsOverviewPage.class);
 	}
 	
 	private WebElement findUserGroupByName(String userGroupNameInQuestion) {

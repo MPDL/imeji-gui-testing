@@ -22,12 +22,12 @@ import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewAlbumPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewAlbumPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
-public class UserPublishesAlbumPrivateMode extends BaseSelenium {
+public class UserPublishesAlbumPM extends BaseSelenium {
 	
 	private LoginPage loginPage;
 	private AdminHomePage adminHomePage;
@@ -89,7 +89,7 @@ public class UserPublishesAlbumPrivateMode extends BaseSelenium {
 
 	@Test(priority = 1)
 	public void createAlbum() {
-		CreateNewAlbumPage createNewAlbumPage = homePage.goToCreateNewAlbumPage();
+		NewAlbumPage createNewAlbumPage = homePage.goToCreateNewAlbumPage();
 		albumEntryPage = createNewAlbumPage.createAlbum(albumTitle, "Album to be tested in private mode");
 		albumPage = albumEntryPage.goToAlbumPage();
 
@@ -128,7 +128,7 @@ public class UserPublishesAlbumPrivateMode extends BaseSelenium {
 	
 	private void createCollection() throws AWTException {
 		homePage = collectionsPage.goToHomePage(homePage);
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 
 		String collectionDescription = "This collection is for testing purposes.";
 

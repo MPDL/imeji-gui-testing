@@ -14,10 +14,10 @@ public class KindOfMetaDataProfilePage extends BasePage {
 		super(driver);
 	}
 	
-	public CreateIndividualMetaDataProfilePage selectNewIndividualMetaDataProfile() {
+	public NewMetadataProfilePage selectNewIndividualMetaDataProfile() {
 		createNewMetaDataProfileButton.click();
 		
-		return PageFactory.initElements(driver, CreateIndividualMetaDataProfilePage.class);
+		return PageFactory.initElements(driver, NewMetadataProfilePage.class);
 	}
 
 }

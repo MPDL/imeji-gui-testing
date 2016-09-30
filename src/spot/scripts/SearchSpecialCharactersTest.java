@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
-import spot.pages.SearchQueryPage;
+import spot.pages.SearchResultsPage;
 import spot.pages.StartPage;
 
 public class SearchSpecialCharactersTest extends BaseSelenium {
@@ -50,7 +50,7 @@ private StartPage startPage;
 	}
 	
 	private void search(String searchQuery) {
-		SearchQueryPage searchQueryPage = startPage.getSearchComponent().searchFor(searchQuery);
+		SearchResultsPage searchQueryPage = startPage.getSearchComponent().searchFor(searchQuery);
 		String searchQueryDisplayText = searchQueryPage.getSearchQueryDisplayText();
 		Assert.assertEquals(searchQueryDisplayText, searchQuery);
 		

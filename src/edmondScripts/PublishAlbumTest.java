@@ -13,7 +13,7 @@ import spot.pages.CollectionsPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewAlbumPage;
+import spot.pages.notAdmin.NewAlbumPage;
 import spot.util.TimeStamp;
 
 public class PublishAlbumTest extends BaseSelenium {
@@ -38,7 +38,7 @@ public class PublishAlbumTest extends BaseSelenium {
 	
 	@Test (priority=1)
 	public void createAlbum() {
-		CreateNewAlbumPage createNewAlbumPage = adminHomePage.goToCreateNewAlbumPage();		
+		NewAlbumPage createNewAlbumPage = adminHomePage.goToCreateNewAlbumPage();		
 		
 		String albumTitle = "Test Album " +	TimeStamp.getTimeStamp(); 
 		String albumDescription = "This album is created for testing purposes.";

@@ -11,7 +11,7 @@ import spot.pages.AlbumPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewAlbumPage;
+import spot.pages.notAdmin.NewAlbumPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
@@ -45,7 +45,7 @@ public class DeleteAlbumTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	private void createAlbum() {
-		CreateNewAlbumPage createNewAlbumPage = homePage.goToCreateNewAlbumPage();
+		NewAlbumPage createNewAlbumPage = homePage.goToCreateNewAlbumPage();
 		
 		albumTitle = "Non-published album to be deleted: " + TimeStamp.getTimeStamp();
 		String albumDescription = "For testing purposes";

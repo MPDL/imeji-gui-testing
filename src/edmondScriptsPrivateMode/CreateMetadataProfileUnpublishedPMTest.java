@@ -11,17 +11,17 @@ import org.testng.annotations.Test;
 import spot.BaseSelenium;
 import spot.pages.AdministrationPage;
 import spot.pages.CollectionEntryPage;
-import spot.pages.CreateIndividualMetaDataProfilePage;
+import spot.pages.NewMetadataProfilePage;
 import spot.pages.KindOfMetaDataProfilePage;
 import spot.pages.LoginPage;
 import spot.pages.MetaDataOverViewPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
-public class CreateMetaDataProfileUnpublishedPrivateModeTest extends BaseSelenium {
+public class CreateMetadataProfileUnpublishedPMTest extends BaseSelenium {
 
 	private LoginPage loginPage;
 	private HomePage homePage;
@@ -67,7 +67,7 @@ public class CreateMetaDataProfileUnpublishedPrivateModeTest extends BaseSeleniu
 	
 	@Test(priority = 1)
 	public void createUnpublishedCollection() {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle, 
 						collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
 						getPropertyAttribute(ruOrganizationName));
@@ -79,7 +79,7 @@ public class CreateMetaDataProfileUnpublishedPrivateModeTest extends BaseSeleniu
 	@Test(priority = 2)
 	public void createNewMetadataProfileTest() {
 		KindOfMetaDataProfilePage kindOfMetaDataProfilePage = collectionEntryPage.addMetaDataProfile();
-		CreateIndividualMetaDataProfilePage createIndividualMetaDataProfilePage = kindOfMetaDataProfilePage.selectNewIndividualMetaDataProfile();
+		NewMetadataProfilePage createIndividualMetaDataProfilePage = kindOfMetaDataProfilePage.selectNewIndividualMetaDataProfile();
 		
 		// 8 metadata fields are needed; one already exists, create seven more
 		Map<String, String> metaDataTypes = new HashMap<String, String>();

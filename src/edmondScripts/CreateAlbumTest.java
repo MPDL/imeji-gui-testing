@@ -20,8 +20,8 @@ import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewAlbumPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewAlbumPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.util.TimeStamp;
 
 public class CreateAlbumTest extends BaseSelenium {
@@ -49,7 +49,7 @@ public class CreateAlbumTest extends BaseSelenium {
 	
 	@Test
 	public void createAlbumTest() throws AWTException {
-		CreateNewAlbumPage createNewAlbumPage = adminHomePage.goToCreateNewAlbumPage();		
+		NewAlbumPage createNewAlbumPage = adminHomePage.goToCreateNewAlbumPage();		
 		
 		String albumTitle = "Test Album " +	TimeStamp.getTimeStamp(); 
 		String albumDescription = "This album is created for testing purposes.";
@@ -90,7 +90,7 @@ public class CreateAlbumTest extends BaseSelenium {
 	}
 	
 	private void createAndReleaseCollection(String collectionTitle) throws AWTException {
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 
 		String collectionDescription = "This collection is for testing purposes.";
 

@@ -1,11 +1,13 @@
-package spot.pages;
+package spot.pages.admin;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CreateNewUserPage extends BasePage {
+import spot.pages.BasePage;
+
+public class NewUserPage extends BasePage {
 
 	@FindBy(id="userForm:inputEmailText")
 	private WebElement emailTextField;
@@ -46,7 +48,7 @@ public class CreateNewUserPage extends BasePage {
 	@FindBy(css=".imj_submitButton")
 	private WebElement saveButton;
 	
-	public CreateNewUserPage(WebDriver driver) {
+	public NewUserPage(WebDriver driver) {
 		super(driver);
 		
 		PageFactory.initElements(driver, this);

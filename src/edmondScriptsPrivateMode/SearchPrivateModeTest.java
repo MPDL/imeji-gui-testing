@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import spot.BaseSelenium;
 import spot.pages.AdministrationPage;
 import spot.pages.LoginPage;
-import spot.pages.SearchQueryPage;
+import spot.pages.SearchResultsPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.HomePage;
@@ -97,7 +97,7 @@ public class SearchPrivateModeTest extends BaseSelenium {
 	}
 	
 	private void searchFor(String searchQueryKeyWord) {
-		SearchQueryPage searchQueryPage = startPage.getSearchComponent().searchFor(searchQueryKeyWord);
+		SearchResultsPage searchQueryPage = startPage.getSearchComponent().searchFor(searchQueryKeyWord);
 		String searchQueryDisplayText = searchQueryPage.getSearchQueryDisplayText();
 		Assert.assertEquals(searchQueryDisplayText, searchQueryKeyWord);
 		

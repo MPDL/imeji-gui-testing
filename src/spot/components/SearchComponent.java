@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import spot.CategoryType;
 import spot.pages.AdvancedSearchPage;
 import spot.pages.BrowseItemsPage;
-import spot.pages.SearchQueryPage;
+import spot.pages.SearchResultsPage;
 
 public class SearchComponent {
 
@@ -45,17 +45,17 @@ public class SearchComponent {
 		return PageFactory.initElements(driver, BrowseItemsPage.class);
 	}
 	
-	public SearchQueryPage searchFor(String searchQuery) {
+	public SearchResultsPage searchFor(String searchQuery) {
 		
 		quickSearchTextField.clear();
 		quickSearchTextField.sendKeys(searchQuery);
 		
 		goToQuickSearchingButton.click();
 		
-		return PageFactory.initElements(driver, SearchQueryPage.class);
+		return PageFactory.initElements(driver, SearchResultsPage.class);
 	}	
 	
-	public SearchQueryPage searchByCategory(String searchQuery, CategoryType category) {
+	public SearchResultsPage searchByCategory(String searchQuery, CategoryType category) {
 		quickSearchTextField.clear();
 		quickSearchTextField.sendKeys(searchQuery);
 		
@@ -75,7 +75,7 @@ public class SearchComponent {
 				break;
 		}
 		
-		return PageFactory.initElements(driver, SearchQueryPage.class);
+		return PageFactory.initElements(driver, SearchResultsPage.class);
 	}
 	
 }

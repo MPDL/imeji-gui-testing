@@ -7,6 +7,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import spot.pages.admin.NewUserGroupPage;
+import spot.pages.admin.NewUserPage;
+import spot.pages.admin.UserGroupsOverviewPage;
+import spot.pages.admin.UserProfilePage;
+import spot.pages.admin.UsersOverviewPage;
+
 public class AdministrationPage extends BasePage {
 
 	@FindBy(css=".imj_listBody>div:nth-of-type(1) li:nth-of-type(1)>a")
@@ -34,7 +40,7 @@ public class AdministrationPage extends BasePage {
 		
 		createNewUser.click();
 		
-		CreateNewUserPage createNewUserPage = new CreateNewUserPage(driver);
+		NewUserPage createNewUserPage = new NewUserPage(driver);
 		
 		return createNewUserPage.createNewUser(newUserName);
 	}
@@ -43,32 +49,32 @@ public class AdministrationPage extends BasePage {
 		
 		createNewUser.click();
 		
-		CreateNewUserPage createNewUserPage = new CreateNewUserPage(driver);
+		NewUserPage createNewUserPage = new NewUserPage(driver);
 		
 		return createNewUserPage.createdNewRestrictedUser(newUserName);
 	}
 	
-	public AllUsersOverViewPage viewAllUsers() {
+	public UsersOverviewPage viewAllUsers() {
 		
 		viewAllUsers.click();
 		
-		return PageFactory.initElements(driver, AllUsersOverViewPage.class);
+		return PageFactory.initElements(driver, UsersOverviewPage.class);
 	}
 
-	public AllUserGroupsOverViewPage createNewUserGroup(String newUserGroupName) {
+	public UserGroupsOverviewPage createNewUserGroup(String newUserGroupName) {
 		
 		createNewUserGroup.click();
 		
-		CreateNewUserGroupPage createNewUserGroupPage = new CreateNewUserGroupPage(driver);
+		NewUserGroupPage createNewUserGroupPage = new NewUserGroupPage(driver);
 		
 		return createNewUserGroupPage.createNewUserGroup(newUserGroupName);
 	}
 	
-	public AllUserGroupsOverViewPage viewAllUserGroups() {
+	public UserGroupsOverviewPage viewAllUserGroups() {
 		
 		viewAllUserGroups.click();
 		
-		return PageFactory.initElements(driver, AllUserGroupsOverViewPage.class);
+		return PageFactory.initElements(driver, UserGroupsOverviewPage.class);
 	}
 	
 	public ConfigurationEditPage enablePrivateMode() {

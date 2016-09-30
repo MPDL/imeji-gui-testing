@@ -1,4 +1,4 @@
-package spot.pages;
+package spot.pages.admin;
 
 import java.util.List;
 
@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import spot.pages.BasePage;
 
 public class UserGroupPage extends BasePage {
 
@@ -23,7 +25,7 @@ public class UserGroupPage extends BasePage {
 
 	public UserGroupPage addNewUser(String userEmail) {
 		addUserButton.click();
-		AllUsersOverViewPage allUsersOverViewPage = PageFactory.initElements(driver, AllUsersOverViewPage.class);
+		UsersOverviewPage allUsersOverViewPage = PageFactory.initElements(driver, UsersOverviewPage.class);
 		allUsersOverViewPage.addUserToUserGroup(userEmail);
 			
 		// this page is refreshed; init elements once again

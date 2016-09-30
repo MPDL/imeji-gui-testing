@@ -11,7 +11,7 @@ import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 
 public class CreateCollectionWithMissingCollectionNameTest extends BaseSelenium {
 
@@ -27,7 +27,7 @@ public class CreateCollectionWithMissingCollectionNameTest extends BaseSelenium 
 
 	@Test
 	public void createCollectionWithMissingTitleTest() {
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 
 		String collectionDescription = "Some collection description";
 

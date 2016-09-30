@@ -49,16 +49,16 @@ public class HomePage extends BasePage {
 		logoutButton.click();
 	}
 
-	public CreateNewCollectionPage goToCreateNewCollectionPage() {
+	public NewCollectionPage goToCreateNewCollectionPage() {
 		newActionComponent.clickCreateNewCollection();
 		
-		return PageFactory.initElements(driver, CreateNewCollectionPage.class);
+		return PageFactory.initElements(driver, NewCollectionPage.class);
 	}
 	
-	public CreateNewAlbumPage goToCreateNewAlbumPage() {
+	public NewAlbumPage goToCreateNewAlbumPage() {
 		newActionComponent.clickCreateNewAlbum();
 		
-		return PageFactory.initElements(driver, CreateNewAlbumPage.class);
+		return PageFactory.initElements(driver, NewAlbumPage.class);
 	}
 	
 	public String getLoggedInUserFullName() {

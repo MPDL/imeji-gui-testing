@@ -12,7 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-public class CreateIndividualMetaDataProfilePage extends BasePage {
+public class NewMetadataProfilePage extends BasePage {
 
 	@FindBy (xpath=".//*[@id='mdProfileType']")
 	private List<WebElement> list;
@@ -31,7 +31,7 @@ public class CreateIndividualMetaDataProfilePage extends BasePage {
 	@FindBy(xpath=".//*[@id='profileForm']/div/div[2]/div[2]/input[2]")
 	private WebElement saveButton;
 	
-	public CreateIndividualMetaDataProfilePage(WebDriver driver) {
+	public NewMetadataProfilePage(WebDriver driver) {
 		super(driver);
 		
 		PageFactory.initElements(driver, this);

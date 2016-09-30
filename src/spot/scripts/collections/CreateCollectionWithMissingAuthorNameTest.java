@@ -12,7 +12,7 @@ import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 
 public class CreateCollectionWithMissingAuthorNameTest extends BaseSelenium {
   
@@ -33,7 +33,7 @@ public class CreateCollectionWithMissingAuthorNameTest extends BaseSelenium {
 
 	@Test
 	public void createCollectionWithMissingTitleTest() {
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 
 		String collectionTitle = "Collection without an author's name";
 		String collectionDescription = "Some collection description";

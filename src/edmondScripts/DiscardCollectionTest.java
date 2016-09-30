@@ -15,7 +15,7 @@ import spot.pages.DiscardedCollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
@@ -45,7 +45,7 @@ public class DiscardCollectionTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	private void createAndReleaseCollection() throws AWTException {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 
 		String collectionDescription = "This collection is doomed to be discarded. For testing purposes.";
 

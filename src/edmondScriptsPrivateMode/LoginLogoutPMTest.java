@@ -13,7 +13,7 @@ import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.HomePage;
 
-public class LoginLogoutPrivateModeTest extends BaseSelenium {
+public class LoginLogoutPMTest extends BaseSelenium {
 
 	private LoginPage loginPage;
 	private HomePage homePage;

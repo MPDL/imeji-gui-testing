@@ -24,8 +24,8 @@ import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewAlbumPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewAlbumPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
@@ -63,7 +63,7 @@ public class DiscardAlbumTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	public void createAndPublishAlbum() throws AWTException {
-		CreateNewAlbumPage createNewAlbumPage = homePage.goToCreateNewAlbumPage();
+		NewAlbumPage createNewAlbumPage = homePage.goToCreateNewAlbumPage();
 		
 		albumTitle = "Published album to be discarded: " + TimeStamp.getTimeStamp();
 		albumDescription = "For testing purposes";
@@ -91,7 +91,7 @@ public class DiscardAlbumTest extends BaseSelenium {
 	
 	private void createAndReleaseCollection(String collectionTitle) throws AWTException {
 		homePage = collectionPage.goToHomePage(homePage);
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 
 		String collectionDescription = "This collection is for testing purposes.";
 

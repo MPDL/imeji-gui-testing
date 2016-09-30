@@ -1,4 +1,4 @@
-package spot.pages;
+package spot.pages.admin;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import spot.pages.BasePage;
+import spot.pages.EditUserProfilePage;
 
 public class UserProfilePage extends BasePage {
 

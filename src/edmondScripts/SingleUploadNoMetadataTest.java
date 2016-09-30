@@ -10,7 +10,7 @@ import spot.pages.DetailedItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
@@ -26,9 +26,9 @@ import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium {
+public class SingleUploadNoMetadataTest extends BaseSelenium {
 
-	private static final Logger LOG4J = LogManager.getLogger(DataUploadWithoutMetaDataProfileTest.class.getName());
+	private static final Logger LOG4J = LogManager.getLogger(SingleUploadNoMetadataTest.class.getName());
 	
 	private LoginPage loginPage;
 	private HomePage homePage;
@@ -52,7 +52,7 @@ public class DataUploadWithoutMetaDataProfileTest extends BaseSelenium {
 	@Test(priority = 1)
 	public void createCollectionWithoutMetaDataProfileTest() {
 		
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		
 		String collectionDescription = "This collection has no meta data profile. It is not being published.";
 

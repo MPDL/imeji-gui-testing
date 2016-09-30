@@ -17,7 +17,7 @@ import spot.pages.CollectionsPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
@@ -45,7 +45,7 @@ public class DeleteCollectionTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	public void createCollection() {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 
 		String collectionDescription = "This collection is doomed to be deleted. For testing purposes.";
 

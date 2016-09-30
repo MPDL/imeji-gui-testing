@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import spot.pages.AlbumEntryPage;
 import spot.pages.BasePage;
 
-public class CreateNewAlbumPage extends BasePage {
+public class NewAlbumPage extends BasePage {
 
 	@FindBy(css="#editContainer\\:mediaContainerForm\\:inputTitleText")
 	private WebElement titleTextField;
@@ -19,7 +19,7 @@ public class CreateNewAlbumPage extends BasePage {
 	@FindBy(css=".imj_submitButton")
 	private WebElement saveButton;
 	
-	public CreateNewAlbumPage(WebDriver driver) {
+	public NewAlbumPage(WebDriver driver) {
 		super(driver);
 		
 		PageFactory.initElements(driver, this);

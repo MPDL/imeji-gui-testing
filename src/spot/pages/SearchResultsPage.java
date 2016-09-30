@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SearchQueryPage extends BasePage {
+public class SearchResultsPage extends BasePage {
 
 	@FindBy(xpath="html/body/div[1]/div[4]/div[1]")
 	private WebElement searchQueryDisplay;
@@ -19,7 +19,7 @@ public class SearchQueryPage extends BasePage {
 	@FindBy(id = "j_idt346:filterInfoPanel")
 	private WebElement filterInfoPanel;
 	
-	public SearchQueryPage(WebDriver driver) {
+	public SearchResultsPage(WebDriver driver) {
 		super(driver);
 		
 		PageFactory.initElements(driver, this);

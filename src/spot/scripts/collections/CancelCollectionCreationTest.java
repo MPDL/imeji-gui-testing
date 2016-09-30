@@ -10,7 +10,7 @@ import spot.BaseSelenium;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 
 public class CancelCollectionCreationTest extends BaseSelenium {
 
@@ -33,7 +33,7 @@ public class CancelCollectionCreationTest extends BaseSelenium {
 	public void cancelCollectionCreationTest() {
 		String previousPageUrl = driver.getCurrentUrl();
 		
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 		createNewCollectionPage.cancelCollectionCreation();
 		
 		String currentUrl = driver.getCurrentUrl();

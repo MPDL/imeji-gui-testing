@@ -19,18 +19,18 @@ import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
-public class UserPublishedItemsWithMetaDataProfilePrivateModeTest extends BaseSelenium {
-	
+public class PublishedItemsNoMetadataPMTest extends BaseSelenium {
+  
 	private HomePage homePage;
 	private CollectionEntryPage collectionEntryPage;
 	private MultipleUploadPage multipleUploadPage;
 	
+	private String collectionTitle = "Collection in private mode without metadata profile: " + TimeStamp.getTimeStamp();
 	private HashMap<String, String> files;
-	private String collectionTitle = "Collection in private mode with metadata profile: " + TimeStamp.getTimeStamp();
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -43,7 +43,8 @@ public class UserPublishedItemsWithMetaDataProfilePrivateModeTest extends BaseSe
 	
 	private void switchOnPrivateMode(boolean switchOnPrivateMode) {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
-		AdminHomePage adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName), getPropertyAttribute(spotAdminPassWord));
+		AdminHomePage adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName), 
+				getPropertyAttribute(spotAdminPassWord));
 		
 		AdministrationPage adminPage = adminHomePage.goToAdminPage();
 		if (switchOnPrivateMode)
@@ -57,11 +58,11 @@ public class UserPublishedItemsWithMetaDataProfilePrivateModeTest extends BaseSe
 	
 	private void prepareFiles() {
 		files = new HashMap<String, String>();
-		files.put("SampleSWCFile.swc", getFilepath("SampleSWCFile.swc"));
-		files.put("SampleXLSXFile.xlsx", getFilepath("SampleXLSXFile.xlsx"));
+		files.put("SampleJPGFile2.jpg", getFilepath("SampleJPGFile2.jpg"));
+		files.put("SamplePDFFile.pdf", getFilepath("SamplePDFFile.pdf"));
 	}
 	
-	private void logInAsRegisteredUser() {
+	public void logInAsRegisteredUser() {
 		navigateToStartPage();
 		
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
@@ -70,11 +71,11 @@ public class UserPublishedItemsWithMetaDataProfilePrivateModeTest extends BaseSe
 	
 	@Test(priority = 1)
 	public void createCollectionWithoutMetadataProfile() {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		
-		String collectionDescription = "Collection in private mode with metadata profile for testing purposes.";
+		String collectionDescription = "Non-published collection in private mode without metadata profile for testing purposes.";
 		
-		collectionEntryPage = createNewCollectionPage.createCollectionWithStandardMetaDataProfile(collectionTitle,
+		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
 				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
 				getPropertyAttribute(ruOrganizationName));
 		

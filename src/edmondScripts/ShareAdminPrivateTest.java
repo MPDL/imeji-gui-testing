@@ -10,11 +10,11 @@ import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.SharePage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
-public class ShareAdminRightsTest extends BaseSelenium {
+public class ShareAdminPrivateTest extends BaseSelenium {
 
 	private HomePage homePage;
 	private CollectionEntryPage collectionEntryPage;
@@ -32,7 +32,7 @@ public class ShareAdminRightsTest extends BaseSelenium {
 		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName),
 				getPropertyAttribute(spotRUPassWord));
 		
-		CreateNewCollectionPage newCollection = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage newCollection = homePage.goToCreateNewCollectionPage();
 		collectionEntryPage = newCollection.createCollectionWithStandardMetaDataProfile(collectionTitle, "",
 				getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName), getPropertyAttribute(ruOrganizationName));
 	}

@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import spot.pages.admin.UserProfilePage;
+
 public class EditUserProfilePage extends BasePage {
 
 	@FindBy(css="#userForm\\:userInfos>div:nth-of-type(2) input")	

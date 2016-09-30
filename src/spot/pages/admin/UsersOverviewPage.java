@@ -1,4 +1,4 @@
-package spot.pages;
+package spot.pages.admin;
 
 import java.util.List;
 
@@ -8,11 +8,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class AllUsersOverViewPage extends BasePage {
+import spot.pages.BasePage;
+
+public class UsersOverviewPage extends BasePage {
 
 	private List<WebElement> userList;
 	
-	public AllUsersOverViewPage(WebDriver driver) {
+	public UsersOverviewPage(WebDriver driver) {
 		super(driver);
 		
 		PageFactory.initElements(driver, this);

@@ -7,17 +7,17 @@ import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
 import spot.pages.AdministrationPage;
-import spot.pages.AllUserGroupsOverViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
-import spot.pages.UserGroupPage;
 import spot.pages.admin.AdminHomePage;
+import spot.pages.admin.UserGroupPage;
+import spot.pages.admin.UserGroupsOverviewPage;
 import spot.util.TimeStamp;
 
-public class AddingNewUserToUserGroupTest extends BaseSelenium {
+public class UserGroupTest extends BaseSelenium {
 	
 	private AdminHomePage adminHomePage;
-	private AllUserGroupsOverViewPage allUserGroupsOverViewPage;
+	private UserGroupsOverviewPage allUserGroupsOverViewPage;
 	
 	private String newUserGroupName;
 	

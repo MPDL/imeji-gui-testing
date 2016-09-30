@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.components.ActionComponent;
 import spot.components.ActionComponent.ActionType;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 
 public class CollectionEntryPage extends BasePage {
 
@@ -70,6 +70,12 @@ public class CollectionEntryPage extends BasePage {
 		getActionComponent().doAction(ActionType.DELETE);
 		
 		return PageFactory.initElements(driver, CollectionsPage.class);
+	}
+	
+	public CollectionEntryPage publishCollection() {
+		getActionComponent().doAction(ActionType.PUBLISH);
+		
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
 	public EditCollectionPage editInformation() {

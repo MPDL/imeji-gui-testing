@@ -1,4 +1,4 @@
-package spot.scripts;
+package spot.scripts.admin;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -8,12 +8,12 @@ import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
 import spot.pages.AdministrationPage;
-import spot.pages.AllUsersOverViewPage;
 import spot.pages.EditUserProfilePage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
-import spot.pages.UserProfilePage;
 import spot.pages.admin.AdminHomePage;
+import spot.pages.admin.UserProfilePage;
+import spot.pages.admin.UsersOverviewPage;
 
 public class EditUserProfileTest extends BaseSelenium {
 
@@ -21,7 +21,7 @@ public class EditUserProfileTest extends BaseSelenium {
 	private AdministrationPage adminPage;
 	
 	private String newUserName = "edmond-test@mpdl.mpg.de";
-	private AllUsersOverViewPage allUsersOverViewPage;
+	private UsersOverviewPage allUsersOverViewPage;
 	
 	@BeforeClass
 	public void beforeClass() {

@@ -6,20 +6,16 @@ import org.testng.annotations.*;
 
 import spot.BaseSelenium;
 import spot.pages.AdministrationPage;
-import spot.pages.AllUsersOverViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.HomePage;
+import spot.pages.admin.UsersOverviewPage;
 
 public class UserPolicyManagementTest extends BaseSelenium {
 
 	private AdminHomePage adminHomePage;
 	private String emailOfNewUser;
 
-	/**
-	 * To carry out admin rights requires login as admin.
-	 */
 	@BeforeClass
 	public void setup() {
 		super.setup();
@@ -50,7 +46,7 @@ public class UserPolicyManagementTest extends BaseSelenium {
 	
 	@Test(priority = 2)
 	public void deleteTestUserTest() {
-		AllUsersOverViewPage allUsersOverViewPage = adminHomePage.goToAdminPage().viewAllUsers();
+		UsersOverviewPage allUsersOverViewPage = adminHomePage.goToAdminPage().viewAllUsers();
 		allUsersOverViewPage.deleteUserByEmail(emailOfNewUser);
 		allUsersOverViewPage = allUsersOverViewPage.goToAdminPage().viewAllUsers();
 		

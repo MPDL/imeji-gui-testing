@@ -15,7 +15,7 @@ import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.HomePage;
 
-public class DownloadFileRUPrivateModeTest extends BaseSelenium {
+public class DownloadFileRUPMTest extends BaseSelenium {
 
 	private HomePage homePage;
 	private DetailedItemViewPage detailedItemViewPage;

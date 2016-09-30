@@ -18,7 +18,7 @@ import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
@@ -44,7 +44,7 @@ public class UserCollectionWithoutMDPTest extends BaseSelenium {
 
 	@Test(priority = 1)
 	public void createCollectionWithoutMetaDataProfileTest() {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		
 		String collectionDescription = "This collection has no meta data profile. It is not being published.";
 

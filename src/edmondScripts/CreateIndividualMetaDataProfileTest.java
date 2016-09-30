@@ -8,13 +8,13 @@ import org.testng.annotations.*;
 
 import spot.BaseSelenium;
 import spot.pages.CollectionEntryPage;
-import spot.pages.CreateIndividualMetaDataProfilePage;
+import spot.pages.NewMetadataProfilePage;
 import spot.pages.KindOfMetaDataProfilePage;
 import spot.pages.LoginPage;
 import spot.pages.MetaDataOverViewPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 
 public class CreateIndividualMetaDataProfileTest extends BaseSelenium {
 
@@ -47,7 +47,7 @@ public class CreateIndividualMetaDataProfileTest extends BaseSelenium {
 	@Test
 	public void createIndividualMetaDataProfileTest() {
 		KindOfMetaDataProfilePage kindOfMetaDataProfilePage = collectionEntryPage.addMetaDataProfile();
-		CreateIndividualMetaDataProfilePage createIndividualMetaDataProfilePage = kindOfMetaDataProfilePage.selectNewIndividualMetaDataProfile();
+		NewMetadataProfilePage createIndividualMetaDataProfilePage = kindOfMetaDataProfilePage.selectNewIndividualMetaDataProfile();
 		//hello
 		// 8 metadata fields are needed; one already exists, create seven more
 		Map<String, String> metaDataTypes = new HashMap<String, String>();
@@ -67,7 +67,7 @@ public class CreateIndividualMetaDataProfileTest extends BaseSelenium {
 	}
 	
 	private void createCollection(String collectionTitle) {
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 
 		String collectionDescription = "This is a test description for a new collection with a new individual meta data profile.";
 

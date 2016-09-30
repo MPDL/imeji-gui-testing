@@ -6,7 +6,7 @@ import org.testng.annotations.*;
 import spot.BaseSelenium;
 import spot.CategoryType;
 import spot.pages.AdvancedSearchPage;
-import spot.pages.SearchQueryPage;
+import spot.pages.SearchResultsPage;
 import spot.pages.StartPage;
 
 public class SearchTest extends BaseSelenium {
@@ -27,7 +27,7 @@ public class SearchTest extends BaseSelenium {
 	@Test
 	public void inexistentItemTest() {
 		String searchQuery = "awobsafh";		
-		SearchQueryPage searchQueryPage = startPage.getSearchComponent().searchFor(searchQuery);
+		SearchResultsPage searchQueryPage = startPage.getSearchComponent().searchFor(searchQuery);
 		String searchQueryDisplayText = searchQueryPage.getSearchQueryDisplayText();
 		Assert.assertEquals(searchQueryDisplayText, searchQuery);
 		
@@ -68,7 +68,7 @@ public class SearchTest extends BaseSelenium {
 	}
 	
 	private void search(String searchQuery) {
-		SearchQueryPage searchQueryPage = startPage.getSearchComponent().searchFor(searchQuery);
+		SearchResultsPage searchQueryPage = startPage.getSearchComponent().searchFor(searchQuery);
 		String searchQueryDisplayText = searchQueryPage.getSearchQueryDisplayText();
 		Assert.assertEquals(searchQueryDisplayText, searchQuery);
 		
@@ -77,7 +77,7 @@ public class SearchTest extends BaseSelenium {
 	}
 	
 	private void search(String searchQuery, CategoryType category) {
-		SearchQueryPage searchQueryPage = startPage.getSearchComponent().searchByCategory(searchQuery, category);
+		SearchResultsPage searchQueryPage = startPage.getSearchComponent().searchByCategory(searchQuery, category);
 		String searchQueryDisplayText = searchQueryPage.getSearchQueryDisplayText();
 		Assert.assertEquals(searchQueryDisplayText, searchQuery);
 		

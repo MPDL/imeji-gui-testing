@@ -1,4 +1,4 @@
-package edmondScriptsPrivateMode;
+package edmondScripts;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,32 +8,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
-import spot.pages.AdministrationPage;
-import spot.pages.LoginPage;
 import spot.pages.StartPage;
-import spot.pages.admin.AdminHomePage;
 
-public class EnableDarkModeTest extends BaseSelenium {
+public class ChangeColourSchemeTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClass() {
 		super.setup();
 		navigateToStartPage();
-		switchToPrivateMode(true);
-	}
-	
-	private void switchToPrivateMode(boolean switchOnPrivateMode) {
-		LoginPage loginPage = new StartPage(driver).openLoginForm();
-		AdminHomePage adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName), getPropertyAttribute(spotAdminPassWord));
-		
-		AdministrationPage adminPage = adminHomePage.goToAdminPage();
-		if (switchOnPrivateMode)
-			adminPage.enablePrivateMode();
-		else
-			adminPage.disablePrivateMode();
-		
-		adminHomePage = (AdminHomePage) adminPage.goToHomePage(adminHomePage);
-		adminHomePage.logout();
 	}
 	
 	@Test
@@ -51,6 +33,5 @@ public class EnableDarkModeTest extends BaseSelenium {
 	@AfterClass
 	public void afterClass() {
 		new StartPage(driver).enableLightMode();
-		switchToPrivateMode(false);
 	}
 }

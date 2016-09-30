@@ -11,7 +11,7 @@ import spot.components.MessageComponent.MessageType;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 
 public class SaveEmptyCollectionCreationFormTest extends BaseSelenium {
   
@@ -35,7 +35,7 @@ public class SaveEmptyCollectionCreationFormTest extends BaseSelenium {
 
 	@Test
 	public void createCollectionWithMissingTitleTest() {
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 		createNewCollectionPage.submitEmptyForm();
 		
 		MessageType messageType = createNewCollectionPage.getMessageComponent().getMessageTypeOfPageMessageArea();

@@ -18,14 +18,14 @@ import spot.pages.DetailedItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.DefaultMetaDataProfile;
 import spot.util.TimeStamp;
 
-public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
+public class SingleUploadStandardMetadataTest extends BaseSelenium {
 
-	private static final Logger LOG4J = LogManager.getLogger(DataUploadWithStandardMetaDataProfileTest.class.getName());
+	private static final Logger LOG4J = LogManager.getLogger(SingleUploadStandardMetadataTest.class.getName());
 	
 	private LoginPage loginPage;
 	private HomePage homePage;
@@ -52,7 +52,7 @@ public class DataUploadWithStandardMetaDataProfileTest extends BaseSelenium {
 
 	@Test(priority=1)
 	public void createCollectionWithMetaDataProfileTest() {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 
 		String collectionDescription = "This collection has a meta data profile. It is not being published.";
 

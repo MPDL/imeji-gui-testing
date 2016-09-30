@@ -10,7 +10,7 @@ import spot.BaseSelenium;
 import spot.pages.AlbumEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewAlbumPage;
+import spot.pages.notAdmin.NewAlbumPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
@@ -36,7 +36,7 @@ public class AddPrivateItemToPrivateAlbumTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	public void createPrivateAlbum() {
-		CreateNewAlbumPage createNewAlbumPage = homePage.goToCreateNewAlbumPage();
+		NewAlbumPage createNewAlbumPage = homePage.goToCreateNewAlbumPage();
 		AlbumEntryPage albumEntryPage = createNewAlbumPage.createAlbum(albumTitle, albumDescription);
 		
 		String siteContentHeadline = albumEntryPage.getSiteContentHeadline();

@@ -7,17 +7,17 @@ import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
 import spot.pages.AdministrationPage;
-import spot.pages.AllUserGroupsOverViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
+import spot.pages.admin.UserGroupsOverviewPage;
 import spot.util.TimeStamp;
 
 public class DeleteUserGroupTest extends BaseSelenium {
 
 	AdminHomePage adminHomePage;
 	AdministrationPage adminPage;
-	AllUserGroupsOverViewPage allUserGroupsOverViewPage;
+	UserGroupsOverviewPage allUserGroupsOverViewPage;
 	
 	private String newUserGroupName;
 	

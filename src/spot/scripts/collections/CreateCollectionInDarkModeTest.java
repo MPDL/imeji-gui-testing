@@ -7,7 +7,7 @@ import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
@@ -37,7 +37,7 @@ public class CreateCollectionInDarkModeTest extends BaseSelenium {
 	@Test(priority = 1)
 	public void createCollectionInDarkModeTest() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		
 		String collectionDescription = "Testing functionality of dark mode";
 		

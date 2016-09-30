@@ -17,13 +17,14 @@ import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
+import spot.pages.SharePage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
 
-public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSelenium {
+public class PublishedCollectionNoMetadataTest extends BaseSelenium {
 
 	private LoginPage loginPage;
 	private HomePage homePage;
@@ -32,7 +33,7 @@ public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSeleni
 	private HashMap<String, String> files;
 	private MultipleUploadPage multipleUploadPage;
 
-	public final String collectionTitle = "Published test collection without meta data profile: "
+	public final String collectionTitle = "Published shared collection without meta data profile: "
 			+ TimeStamp.getTimeStamp();	
 	
 	@BeforeClass
@@ -51,7 +52,7 @@ public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSeleni
 
 	@Test(priority = 1)
 	public void createCollectionWithoutMetaDataProfileTest() {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		
 		String collectionDescription = "This collection has no meta data profile. It is being published.";
 
@@ -104,7 +105,40 @@ public class ProvidePublicWithItemsWithoutMetaDataProfileTest extends BaseSeleni
 		Assert.assertFalse(isMetaDataProfileDefined, "This collection should not have a metadata profile.");
 	}
 	
-
+	@Test (priority = 5)
+	public void user1SharesAdminRights() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
+		SharePage sharePage = collectionEntryPage.goToSharePage();
+		sharePage.share(false, getPropertyAttribute(restrUserName), false, false, false, false, false, false, true);
+		
+		collectionEntryPage = new StartPage(driver).goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
+		
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		homePage.logout();
+	}
+	
+	@Test (priority = 6)
+	public void user2AdminCollection() {
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		homePage = loginPage.loginRestricted(getPropertyAttribute(restrUserName),
+				getPropertyAttribute(restrPassWord));
+		
+		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
+	}
+	
+	@Test (priority = 7)
+	public void user2ChecksGrants() {
+		SharePage sharePage = collectionEntryPage.goToSharePage();
+		
+		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrUserName));
+		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
+		
+		boolean grantIsCorrect = sharePage.checkGrantSelections(getPropertyAttribute(restrUserName), true,
+				true, true, true, true, true, true);
+		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
+	}
+	
 	@AfterClass
 	public void afterClass() {
 		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);

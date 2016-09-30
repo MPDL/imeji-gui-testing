@@ -91,6 +91,7 @@ public class CollectionContentPage extends BasePage {
 	
 	public void publish() {
 		actionComponent.doAction(ActionType.PUBLISH);
+		//PageFactory.initElements(driver, this);
 	}
 	
 	public KindOfSharePage share() {

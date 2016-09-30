@@ -10,31 +10,21 @@
 			
 			<class name="spot.scripts.admin.UserPolicyManagementTest" />
 			
-			<class name="edmondScripts.DeleteUserGroupTest" />
-
-			<class name="edmondScripts.DeleteCollectionTest" />
-			
-			<class name="edmondScripts.DeleteAlbumTest" />
-			
-			<class name="edmondScripts.DiscardCollectionTest" />
-			
-			<class name="edmondScripts.DiscardAlbumTest" />
-			
 			<class name="spot.scripts.BrowseItemsDefaultThumbnailTest" />
 			
 			<class name="edmondScripts.EnablePrivateModeTest" />
 			
-			<class name="edmondScriptsPrivateMode.UserPublishedItemsWithoutMetaDataProfilePrivateModeTest" />
+			<class name="edmondScriptsPrivateMode.PublishedItemsNoMetadataPMTest" />
 			
-			<class name="edmondScriptsPrivateMode.UserPublishedItemsWithMetaDataProfilePrivateModeTest" />
+			<class name="edmondScriptsPrivateMode.PublishedItemsWithMetadataPMTest" />
 			
-			<class name="edmondScriptsPrivateMode.DownloadFileRUPrivateModeTest" />
+			<class name="edmondScriptsPrivateMode.DownloadFileRUPMTest" />
 			
 			<class name="edmondScriptsPrivateMode.UserWithdrawsPublishedCollection" />
 			
-			<class name="edmondScriptsPrivateMode.CreateMetaDataProfilePublishedPrivateModeTest" />
+			<class name="edmondScriptsPrivateMode.CreateMetadataProfilePublishedPMTest" />
 			
-			<class name="edmondScriptsPrivateMode.UserPublishesAlbumPrivateMode" />
+			<class name="edmondScriptsPrivateMode.UserPublishesAlbumPM" />
 			
 			<class name="edmondScripts.UserCollectionWithoutMDPTest" />
 			
@@ -42,39 +32,35 @@
 			
 			<class name="edmondScripts.UserCollectionWithStandardMDPTest" />
 			
-			<class name="edmondScripts.DataUploadWithoutMetaDataProfileTest" />
+			<class name="edmondScripts.SingleUploadNoMetadataTest" />
 			
-			<class name="edmondScripts.DataUploadWithStandardMetaDataProfileTest" />
+			<class name="edmondScripts.SingleUploadStandardMetadataTest" />
 			
-			<class name="edmondScripts.CreateMetaDataProfileUnpublishedTest" />
+			<class name="edmondScripts.CreateMetadataProfileUnpublishedTest" />
 			
-			<class name="edmondScripts.CreateMetaDataProfilePublishedTest" />
+			<class name="edmondScripts.CreateMetadataProfilePublishedTest" />
 			
-			<class name="edmondScriptsPrivateMode.CreateMetaDataProfileUnpublishedPrivateModeTest" />
+			<class name="edmondScriptsPrivateMode.CreateMetadataProfileUnpublishedPMTest" />
 			
 			<class name="edmondScriptsPrivateMode.UserCollectionWithStandardMDPPrivateMode" />
 			
 			<class name="edmondScripts.UserDeletesPrivateCollectionTest" />
 			
-			<class name="edmondScriptsPrivateMode.UserDeletesPrivateCollectionPrivateModeTest" />
+			<class name="edmondScriptsPrivateMode.UserDeletesPrivateCollectionPMTest" />
 			
-			<class name="edmondScripts.DownloadFileRUTest" />
-			
-			<class name="edmondScriptsPrivateMode.EnableDarkModeTest" />
+			<class name="edmondScripts.ChangeColourSchemeTest" />
 			
 			<class name="spot.scripts.collections.CreateCollectionInDarkModeTest" />
 			
 			<class name="edmondScripts.DownloadFileTest" />
 			
-			<class name="spot.scripts.EditUserProfileTest" />
-			
-			<class name="edmondScripts.AddingNewUserToUserGroupTest" />
+			<class name="spot.scripts.admin.EditUserProfileTest" />
 			
 			<class name="edmondScripts.AddPrivateItemToPrivateAlbumTest" />
 			
 			<class name="edmondScriptsPrivateMode.SearchPrivateModeTest" />
 			
-			<class name="edmondScriptsPrivateMode.LoginLogoutPrivateModeTest" />
+			<class name="edmondScriptsPrivateMode.LoginLogoutPMTest" />
 			
 			<class name="edmondScriptsPrivateMode.LimitedAccessForNRUPrivateMode" />
 			

@@ -14,18 +14,18 @@ import spot.BaseSelenium;
 import spot.pages.AdministrationPage;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
-import spot.pages.CreateIndividualMetaDataProfilePage;
+import spot.pages.NewMetadataProfilePage;
 import spot.pages.KindOfMetaDataProfilePage;
 import spot.pages.LoginPage;
 import spot.pages.MetaDataOverViewPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
-public class CreateMetaDataProfilePublishedPrivateModeTest extends BaseSelenium {
+public class CreateMetadataProfilePublishedPMTest extends BaseSelenium {
 	
 	private LoginPage loginPage;
 	private HomePage homePage;
@@ -64,7 +64,7 @@ public class CreateMetaDataProfilePublishedPrivateModeTest extends BaseSelenium 
 	
 	@Test(priority = 1)
 	public void createCollection() {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 
 		String collectionDescription = "A new metadata for this collection will be created by the user.";
 
@@ -100,7 +100,7 @@ public class CreateMetaDataProfilePublishedPrivateModeTest extends BaseSelenium 
 		collectionEntryPage = collectionContentPage.viewCollectionInformation();
 		
 		KindOfMetaDataProfilePage kindOfMetaDataProfilePage = collectionEntryPage.addMetaDataProfile();
-		CreateIndividualMetaDataProfilePage createIndividualMetaDataProfilePage = kindOfMetaDataProfilePage.selectNewIndividualMetaDataProfile();
+		NewMetadataProfilePage createIndividualMetaDataProfilePage = kindOfMetaDataProfilePage.selectNewIndividualMetaDataProfile();
 		
 		// 8 metadata fields are needed; one already exists, create seven more
 		Map<String, String> metaDataTypes = new HashMap<String, String>();

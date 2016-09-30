@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import spot.pages.BasePage;
 import spot.pages.CollectionEntryPage;
 
-public class CreateNewCollectionPage extends BasePage {
+public class NewCollectionPage extends BasePage {
 
 	/** error occurred while filling in 'create new collection' form */
 	private boolean errorOccurred;
@@ -75,7 +75,7 @@ public class CreateNewCollectionPage extends BasePage {
 	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:j_idt247:0:j_idt276")
 	private WebElement addOrganizationButton;
 	
-	public CreateNewCollectionPage(WebDriver driver) {
+	public NewCollectionPage(WebDriver driver) {
 		super(driver);
 		
 		errorOccurred = false;

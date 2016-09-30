@@ -11,7 +11,7 @@ import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.MetaDataOverViewPage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
@@ -37,7 +37,7 @@ public class MetadataProfileAsTemplateTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	public void createCollection() {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 
 		String collectionDescription = "This is a test description for a new collection with an existing metadata profile as a template.";
 		

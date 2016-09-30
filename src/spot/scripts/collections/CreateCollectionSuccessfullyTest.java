@@ -9,7 +9,7 @@ import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 
 /**
  * Creating Collection only possible when logged in.
@@ -54,7 +54,7 @@ public class CreateCollectionSuccessfullyTest extends BaseSelenium {
 	@Test (groups="createCollectionSuccessfully")
 	public void createCollectionFromStartPageTest() {
 
-		CreateNewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 		
 		String collectionTitle = "Testsammlung Montag";
 		String collectionDescription = "Das ist eine Testbeschreibung f�r eine neue Sammlung.";

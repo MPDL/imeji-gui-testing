@@ -8,15 +8,15 @@ import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
 import spot.pages.AdministrationPage;
-import spot.pages.AllUsersOverViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
+import spot.pages.admin.UsersOverviewPage;
 
 public class AllUsersOverviewTest extends BaseSelenium {
 
 	private AdminHomePage adminHomePage;
-	private AllUsersOverViewPage allUsersOverViewPage;
+	private UsersOverviewPage allUsersOverViewPage;
 	
 	@BeforeClass
 	public void setup() {

@@ -10,17 +10,17 @@ import org.testng.annotations.*;
 import spot.BaseSelenium;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
-import spot.pages.CreateIndividualMetaDataProfilePage;
+import spot.pages.NewMetadataProfilePage;
 import spot.pages.KindOfMetaDataProfilePage;
 import spot.pages.LoginPage;
 import spot.pages.MetaDataOverViewPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
-public class CreateMetaDataProfilePublishedTest extends BaseSelenium {
+public class CreateMetadataProfilePublishedTest extends BaseSelenium {
 
 	private LoginPage loginPage;
 	private HomePage homePage;
@@ -43,7 +43,7 @@ public class CreateMetaDataProfilePublishedTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	public void createCollection() {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 
 		String collectionDescription = "This is a test description for a new collection with a new individual meta data profile.";
 
@@ -60,7 +60,7 @@ public class CreateMetaDataProfilePublishedTest extends BaseSelenium {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		KindOfMetaDataProfilePage kindOfMetaDataProfilePage = collectionEntryPage.addMetaDataProfile();
-		CreateIndividualMetaDataProfilePage createIndividualMetaDataProfilePage = kindOfMetaDataProfilePage.selectNewIndividualMetaDataProfile();
+		NewMetadataProfilePage createIndividualMetaDataProfilePage = kindOfMetaDataProfilePage.selectNewIndividualMetaDataProfile();
 		
 		// 8 metadata fields are needed; one already exists, create seven more
 		Map<String, String> metaDataTypes = new HashMap<String, String>();

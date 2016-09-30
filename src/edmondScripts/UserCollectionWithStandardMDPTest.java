@@ -18,7 +18,7 @@ import spot.pages.EditCollectionPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
@@ -52,7 +52,7 @@ public class UserCollectionWithStandardMDPTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	public void createCollectionStandardMDP() {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		
 		String collectionDescription = "For testing purposes";
 		

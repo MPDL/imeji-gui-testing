@@ -11,15 +11,15 @@ import org.testng.annotations.Test;
 import spot.BaseSelenium;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
-import spot.pages.CreateIndividualMetaDataProfilePage;
+import spot.pages.NewMetadataProfilePage;
 import spot.pages.KindOfMetaDataProfilePage;
 import spot.pages.LoginPage;
 import spot.pages.MetaDataOverViewPage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 
-public class CreateMetaDataProfileUnpublishedTest extends BaseSelenium {
+public class CreateMetadataProfileUnpublishedTest extends BaseSelenium {
 
 	private HomePage homePage;
 	private CollectionEntryPage collectionEntryPage;
@@ -49,7 +49,7 @@ public class CreateMetaDataProfileUnpublishedTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	private void createUnpublishedCollection() {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle, 
 						collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
 						getPropertyAttribute(ruOrganizationName));
@@ -61,7 +61,7 @@ public class CreateMetaDataProfileUnpublishedTest extends BaseSelenium {
 	@Test(priority = 2)
 	public void createNewMetadataProfileTest() {
 		KindOfMetaDataProfilePage kindOfMetaDataProfilePage = collectionEntryPage.addMetaDataProfile();
-		CreateIndividualMetaDataProfilePage createIndividualMetaDataProfilePage = kindOfMetaDataProfilePage.selectNewIndividualMetaDataProfile();
+		NewMetadataProfilePage createIndividualMetaDataProfilePage = kindOfMetaDataProfilePage.selectNewIndividualMetaDataProfile();
 		
 		// 8 metadata fields are needed; one already exists, create seven more
 		Map<String, String> metaDataTypes = new HashMap<String, String>();

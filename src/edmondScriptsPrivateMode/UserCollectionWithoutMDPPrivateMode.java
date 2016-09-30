@@ -11,7 +11,7 @@ import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
@@ -73,7 +73,7 @@ public class UserCollectionWithoutMDPPrivateMode extends BaseSelenium {
 	
 	@Test(priority = 1)
 	public void createCollectionTest() {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle, 
 				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
 				getPropertyAttribute(ruOrganizationName));

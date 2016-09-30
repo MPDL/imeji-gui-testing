@@ -19,11 +19,11 @@ import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
-import spot.pages.notAdmin.CreateNewCollectionPage;
+import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
-public class ProvidePublicWithItemsWithMetaDataProfileTest extends BaseSelenium {
+public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 
 	private LoginPage loginPage;
 	private HomePage homePage;
@@ -49,7 +49,7 @@ public class ProvidePublicWithItemsWithMetaDataProfileTest extends BaseSelenium 
 
 	@Test(priority = 1)
 	public void createCollectionWithMetaDataProfileTest() {
-		CreateNewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
+		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		
 		String collectionDescription = "This collection has a default meta data profile. It is being published.";
 

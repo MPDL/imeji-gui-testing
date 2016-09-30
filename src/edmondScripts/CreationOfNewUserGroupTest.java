@@ -7,10 +7,10 @@ import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
 import spot.pages.AdministrationPage;
-import spot.pages.AllUserGroupsOverViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
+import spot.pages.admin.UserGroupsOverviewPage;
 import spot.util.TimeStamp;
 
 import org.openqa.selenium.support.PageFactory;
@@ -20,7 +20,7 @@ public class CreationOfNewUserGroupTest extends BaseSelenium {
 	private AdminHomePage adminHomePage;
 	private AdministrationPage adminPage;
 	
-	private AllUserGroupsOverViewPage allUserGroupsOverViewPage;
+	private UserGroupsOverviewPage allUserGroupsOverViewPage;
 	
 	private String newUserGroupName;
 	
@@ -51,7 +51,7 @@ public class CreationOfNewUserGroupTest extends BaseSelenium {
 	@AfterClass
 	public void afterClass() {
 		
-		allUserGroupsOverViewPage = PageFactory.initElements(driver, AllUserGroupsOverViewPage.class);
+		allUserGroupsOverViewPage = PageFactory.initElements(driver, UserGroupsOverviewPage.class);
 		allUserGroupsOverViewPage.deleteUserGroupByName(newUserGroupName);
 		
 		adminHomePage.logout();
