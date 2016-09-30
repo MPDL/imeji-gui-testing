@@ -7,8 +7,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import spot.CategoryType;
+import spot.components.ShareComponent;
+
 public class DetailedItemViewPage extends BasePage {
 
+	private ShareComponent shareComponent;
 
 	@FindBy(id="j_idt451:txtUrl")
 	private WebElement fileName;
@@ -91,5 +95,9 @@ public class DetailedItemViewPage extends BasePage {
 			wait.until(ExpectedConditions.visibilityOf(fileResolution));
 			return false;
 		}
+	}
+	
+	public KindOfSharePage shareItem() {
+		return shareComponent.share(CategoryType.ITEM);
 	}
 }

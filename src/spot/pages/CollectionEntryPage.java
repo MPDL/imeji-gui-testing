@@ -1,19 +1,20 @@
 package spot.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import spot.CategoryType;
 import spot.components.ActionComponent;
 import spot.components.ActionComponent.ActionType;
-import spot.pages.notAdmin.NewCollectionPage;
+import spot.components.ShareComponent;
 
 public class CollectionEntryPage extends BasePage {
 
 	private ActionComponent actionComponent;
+	private ShareComponent shareComponent;
 	
 	@FindBy(css=".imj_contentMenu>ul>li:nth-of-type(4)")
 	private WebElement uploadContentButton;
@@ -26,12 +27,6 @@ public class CollectionEntryPage extends BasePage {
 	
 	@FindBy(id = "action:actionMenuEditCollection")
 	private WebElement editInfoOption;
-	
-	@FindBy(id = "sharingMenu")
-	private WebElement shareButton;
-	
-	@FindBy(id = "action:actionMenuShareCollection")
-	private WebElement shareOption;
 	
 	@FindBy(className = "imj_statusHeaderArea")
 	private WebElement status;
@@ -86,11 +81,7 @@ public class CollectionEntryPage extends BasePage {
 		return PageFactory.initElements(driver, EditCollectionPage.class);
 	}
 	
-	public SharePage goToSharePage() {
-		shareButton.click();
-		wait.until(ExpectedConditions.visibilityOf(shareOption));
-		shareOption.click();
-		
-		return PageFactory.initElements(driver, SharePage.class);
+	public KindOfSharePage goToSharePage() {
+		return shareComponent.share(CategoryType.COLLECTION);
 	}
 }

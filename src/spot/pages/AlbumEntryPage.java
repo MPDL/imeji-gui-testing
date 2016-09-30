@@ -3,12 +3,15 @@ package spot.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import spot.CategoryType;
 import spot.components.ActionComponent;
 import spot.components.ActionComponent.ActionType;
+import spot.components.ShareComponent;
 
 public class AlbumEntryPage extends BasePage {
 
 	private ActionComponent actionComponent;
+	private ShareComponent shareComponent;
 	
 	public AlbumEntryPage(WebDriver driver) {
 		super(driver);
@@ -37,6 +40,10 @@ public class AlbumEntryPage extends BasePage {
 	public DiscardedAlbumEntryPage discardAlbum() {
 		getActionComponent().doAction(ActionType.DISCARD);
 		
-		return PageFactory.initElements(driver,  DiscardedAlbumEntryPage.class);
+		return PageFactory.initElements(driver, DiscardedAlbumEntryPage.class);
+	}
+	
+	public KindOfSharePage shareAlbum() {
+		return shareComponent.share(CategoryType.ALBUM);
 	}
 }

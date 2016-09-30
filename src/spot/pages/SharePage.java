@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,31 +17,31 @@ public class SharePage extends BasePage {
 	private WebElement emailTextField;
 	
 	// checkboxes for the various grants
-	@FindBy(css="#share\\:selectedGrants input[value='READ']")
+	@FindBy(css = "input[value='READ']")
 	private WebElement readGrantCheckBox;
 	
-	@FindBy(css="#share\\:selectedGrants input[value='CREATE']")
+	@FindBy(css = "input[value='CREATE']")
 	private WebElement createItemsGrantCheckBox;
 	
-	@FindBy(css="#share\\:selectedGrants input[value='EDIT_ITEM']")
+	@FindBy(css = "input[value='EDIT_ITEM']")
 	private WebElement editItemsGrantCheckBox;
 	
-	@FindBy(css="#share\\:selectedGrants input[value='DELETE_ITEM']")
+	@FindBy(css = "input[value='DELETE_ITEM']")
 	private WebElement deleteItemsGrantCheckBox;
 	
-	@FindBy(css="#share\\:selectedGrants input[value='EDIT']")
-	private WebElement editCollectionInformationGrantCheckBox;
+	@FindBy(css = "input[value='EDIT']")
+	private WebElement editInformationGrantCheckBox;
 	
-	@FindBy(css="#share\\:selectedGrants input[value='EDIT_PROFILE']")
+	@FindBy(css = "input[value='EDIT_PROFILE']")
 	private WebElement editProfileGrantCheckBox;
 	
-	@FindBy(css="#share\\:selectedGrants input[value='ADMIN']")
+	@FindBy(css = "input[value='ADMIN']")
 	private WebElement administrateGrantCheckBox;
 	
-	@FindBy(css="#share\\:selSendEmail")
+	@FindBy(css = "#share\\:selSendEmail")
 	private WebElement sendMailCheckBox;
 	
-	@FindBy(css=".imj_shareEmailInput .imj_submitButton")
+	@FindBy(name="share:j_idt182")
 	private WebElement shareButton;	
 	
 	public SharePage(WebDriver driver) {
@@ -51,31 +50,63 @@ public class SharePage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void share(boolean sendMail, String email, boolean read, boolean createItems, boolean editItems, boolean deleteItems, boolean editCollectionInformation, boolean editProfile, boolean administrate) {
+	/**
+	 *  Share method for collections
+	 */
+	public SharePage share(boolean sendMail, String email, boolean read, boolean createItems, boolean editItems, boolean deleteItems, boolean editCollectionInformation, boolean editProfile, boolean administrate) {
 		emailTextField.sendKeys(email);
 		
 		// check whether email shall be sent to the person who the album is shared with
 		checkSendMail(sendMail);
 		
-		// check grants as defined by params
+		// check grants as defined by parameters
 		if (administrate) {
-			// if administrate=true, then every checkbox is selected automatically
+			// if administrate is true, each checkbox is automatically selected
 			checkGrantIfNecessary(administrate, administrateGrantCheckBox);
 		} else {
 			checkGrantIfNecessary(read, readGrantCheckBox);
 			checkGrantIfNecessary(createItems, createItemsGrantCheckBox);
 			checkGrantIfNecessary(editItems, editItemsGrantCheckBox);
 			checkGrantIfNecessary(deleteItems, deleteItemsGrantCheckBox);
-			checkGrantIfNecessary(editCollectionInformation, editCollectionInformationGrantCheckBox);
+			checkGrantIfNecessary(editCollectionInformation, editInformationGrantCheckBox);
 			checkGrantIfNecessary(editProfile, editProfileGrantCheckBox);
 			checkGrantIfNecessary(administrate, administrateGrantCheckBox);
 		}
 			
-		try {
-			shareButton.click();
-		} catch (StaleElementReferenceException e) {
-			retryingFindClick(By.cssSelector(".imj_shareEmailInput .imj_submitButton"));	
+		shareButton.click();
+		
+		return PageFactory.initElements(driver, SharePage.class);
+	}
+	
+	/**
+	 * Share method for items
+	 */
+	public SharePage share(String email, boolean read) {
+		emailTextField.sendKeys(email);
+		checkGrantIfNecessary(read, readGrantCheckBox);
+		
+		shareButton.click();
+		return PageFactory.initElements(driver, SharePage.class);
+	}
+	
+	/**
+	 * Share method for albums
+	 */
+	public SharePage share(String email, boolean read, boolean createItems, boolean editAlbumInformation, boolean administrate) {
+		emailTextField.sendKeys(email);
+		
+		if (administrate) {
+			// if administrate is true, each checkbox is automatically selected
+			checkGrantIfNecessary(administrate, administrateGrantCheckBox);
+		} else {
+			checkGrantIfNecessary(read, readGrantCheckBox);
+			checkGrantIfNecessary(createItems, createItemsGrantCheckBox);
+			checkGrantIfNecessary(editAlbumInformation, editInformationGrantCheckBox);
+			checkGrantIfNecessary(administrate, administrateGrantCheckBox);
 		}
+		
+		shareButton.click();
+		return PageFactory.initElements(driver, SharePage.class);
 	}
 
 	private void checkGrantIfNecessary(boolean grantedTo, WebElement checkBox) {
@@ -117,17 +148,7 @@ public class SharePage extends BasePage {
 	public boolean checkGrantSelections(String wantedSharedPersonName, boolean read, boolean createItems, boolean editItems, boolean deleteItems,
 			boolean editCollectionInformation, boolean editProfile, boolean administrate) {
 
-		List<WebElement> sharedPersons = driver.findElements(By.cssSelector("#history>tbody>tr"));
-		
-		WebElement wantedSharedPerson = null;
-		
-		for (WebElement sharedPerson : sharedPersons) {
-			String sharedPersonName = sharedPerson.findElement(By.cssSelector("td:nth-of-type(1)")).getText();
-			if (sharedPersonName.equals(wantedSharedPersonName)) {
-				wantedSharedPerson = sharedPerson;
-				break;
-			}
-		}
+		WebElement wantedSharedPerson = findWantedPerson(wantedSharedPersonName);
 		
 		boolean allGrantsCorrect = true;
 		List<WebElement> wantedSharedPersonCheckBoxes = wantedSharedPerson.findElements(By.cssSelector("td:nth-of-type(2) td>input"));
@@ -166,6 +187,25 @@ public class SharePage extends BasePage {
 			} 
 		}
 		return allGrantsCorrect;
+	}
+	
+	public boolean checkGrantSelections(String wantedSharedPersonName, boolean read) {
+		WebElement wantedSharedPerson = findWantedPerson(wantedSharedPersonName);
+		WebElement readGrant = wantedSharedPerson.findElement(By.tagName("input"));
+		
+		return checkCorrectnessOfGrant(true, readGrant);
+	}
+	
+	private WebElement findWantedPerson(String wantedSharedPersonName) {
+		List<WebElement> sharedPersons = driver.findElements(By.cssSelector("#history>tbody>tr"));
+		
+		for (WebElement sharedPerson : sharedPersons) {
+			String sharedPersonName = sharedPerson.findElement(By.cssSelector("td:nth-of-type(1)")).getText();
+			if (sharedPersonName.equals(wantedSharedPersonName)) {
+				return sharedPerson;
+			}
+		}
+		return null;
 	}
 
 	private boolean checkCorrectnessOfGrant(boolean grantedTo, WebElement grantCheckBox) {

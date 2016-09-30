@@ -102,6 +102,20 @@
 			
 			<class name="edmondScriptsPrivateMode.RestrictedUploadAttemptPMTest" />
 			
+			<class name="spot.scripts.collections.CreatePrivateCollectionTest" />
+			
+			<class name="edmondScripts.ShareAdminPrivateTest" />
+			
+			<class name="edmondScripts.ShareReadPrivateTest" />
+			
+			<class name="edmondScripts.SharePrivateItemTest" />
+			
+			<class name="edmondScripts.DeleteCollectionTest" />
+			
+			<class name="edmondScripts.PublishedCollectionNoMetadataTest" />
+			
+			<class name="edmondScripts.DiscardCollectionTest" />
+			
 		</classes>
 	</test>
 </suite>
