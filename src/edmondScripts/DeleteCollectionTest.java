@@ -17,7 +17,7 @@ public class DeleteCollectionTest extends BaseSelenium {
 	private HomePage homePage;
 	private CollectionEntryPage collectionEntryPage;
 	
-	private String collectionTitle = getPropertyAttribute(privateCollectionKey);
+	private String collectionTitle;
 
 	@BeforeClass
 	public void beforeClass() throws AWTException {
@@ -33,6 +33,7 @@ public class DeleteCollectionTest extends BaseSelenium {
 	
 	@Test
 	public void deleteCollectionTest() {
+		collectionTitle = getPropertyAttribute(privateCollectionKey);
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		collectionEntryPage.deleteCollection();

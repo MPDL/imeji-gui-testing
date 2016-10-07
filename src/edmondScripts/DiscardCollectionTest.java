@@ -16,7 +16,7 @@ import spot.pages.notAdmin.HomePage;
 
 public class DiscardCollectionTest extends BaseSelenium {
  	
-	private String collectionTitle = getPropertyAttribute("sharedReleasedCollection");
+	private String collectionTitle;
 	
 	private HomePage homePage;
 	private CollectionEntryPage collectionEntryPage;
@@ -34,6 +34,7 @@ public class DiscardCollectionTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	public void discardCollectionTest() {
+		collectionTitle = getPropertyAttribute(releasedCollectionKey);
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		discardedCollectionEntryPage = collectionEntryPage.discardCollection();

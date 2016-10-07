@@ -17,10 +17,11 @@ public class ShareReleasedCollectionTest extends BaseSelenium {
 	private HomePage homePage;
 	private CollectionEntryPage collectionEntryPage;
 
-	public final String collectionTitle = getPropertyAttribute(releasedCollectionKey);	
+	public String collectionTitle;	
 	
 	@Test (priority = 1)
 	public void user1SharesAdminRights() {
+		collectionTitle = getPropertyAttribute(releasedCollectionKey);
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		KindOfSharePage shareTransitionPage = collectionEntryPage.goToSharePage();

@@ -19,7 +19,7 @@ import org.openqa.selenium.support.ui.Select;
  * @author kocar
  *
  */
-public class CollectiveEditOfDefaultMetaDataPage extends BasePage {
+public class CollectiveEditOfDefaultMetadataPage extends BasePage {
 
 	public enum CitationStyles {
 		APA, AJP, JUS
@@ -85,7 +85,7 @@ public class CollectiveEditOfDefaultMetaDataPage extends BasePage {
 	@FindBy(css = ".imj_listFooter .imj_submitPanel input:nth-of-type(5)")
 	private WebElement saveAndReturnToViewButton;
 
-	public CollectiveEditOfDefaultMetaDataPage(WebDriver driver) {
+	public CollectiveEditOfDefaultMetadataPage(WebDriver driver) {
 		super(driver);
 
 		metaDataIdentifiers = new HashMap<MetaDataIdentifier, String>();

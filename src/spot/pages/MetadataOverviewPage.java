@@ -7,14 +7,18 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class MetaDataOverViewPage extends BasePage {
+public class MetadataOverviewPage extends BasePage {
 
 	@FindBy(id = "editMenu")
 	public WebElement editMenu;
 	
-	public MetaDataOverViewPage(WebDriver driver) {
+	@FindBy(id = "actionMenu")
+	public WebElement actionMenu;
+	
+	public MetadataOverviewPage(WebDriver driver) {
 		super(driver);
 	}
 
@@ -33,5 +37,12 @@ public class MetaDataOverViewPage extends BasePage {
 		catch (TimeoutException exc) {
 			return false;
 		}
+	}
+	
+	public MetadataTransitionPage changeMetadata() {
+		actionMenu.click();
+		actionMenu.findElement(By.cssSelector(".imj_menuBody li:nth-of-type(2)>a")).click();
+		
+		return PageFactory.initElements(driver, MetadataTransitionPage.class);
 	}
 }

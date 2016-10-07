@@ -166,9 +166,9 @@ public class CollectionContentPage extends BasePage {
 		}
 	}
 	
-	public MetaDataOverViewPage openMetaDataProfile() {
+	public MetadataOverviewPage openMetaDataProfile() {
 		if (isMetaDataProfileDefined())
-			return PageFactory.initElements(driver, MetaDataOverViewPage.class);
+			return PageFactory.initElements(driver, MetadataOverviewPage.class);
 		return null;
 	}
 	

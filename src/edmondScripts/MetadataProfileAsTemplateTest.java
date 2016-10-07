@@ -9,7 +9,7 @@ import spot.BaseSelenium;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
-import spot.pages.MetaDataOverViewPage;
+import spot.pages.MetadataOverviewPage;
 import spot.pages.StartPage;
 import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
@@ -61,7 +61,7 @@ public class MetadataProfileAsTemplateTest extends BaseSelenium {
 	@Test(priority = 3)
 	public void canEditMetadataProfile() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
-		MetaDataOverViewPage metaDataOverViewPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).openMetaDataProfile();
+		MetadataOverviewPage metaDataOverViewPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).openMetaDataProfile();
 		boolean profileCanBeModified = metaDataOverViewPage.profileCanBeModified();
 		Assert.assertTrue(profileCanBeModified);
 	}

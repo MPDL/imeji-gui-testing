@@ -18,7 +18,7 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 	private CollectionEntryPage collectionEntryPage;
 	private SharePage sharePage;
 	
-	private String collectionTitle = getPropertyAttribute(privateCollectionKey);
+	private String collectionTitle;
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -27,6 +27,7 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	public void user1SharesAdminRights() {
+		collectionTitle = getPropertyAttribute(privateCollectionKey);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		
 		KindOfSharePage shareTransitionPage = collectionEntryPage.goToSharePage();

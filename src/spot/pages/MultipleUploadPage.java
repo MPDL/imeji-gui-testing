@@ -100,9 +100,9 @@ public class MultipleUploadPage extends BasePage {
 		return actionComponent;
 	}
 	
-	public CollectiveEditOfDefaultMetaDataPage editUploadedImages() {
+	public CollectiveEditOfDefaultMetadataPage editUploadedImages() {
 		editUploadedImagesButton.click();
 		
-		return PageFactory.initElements(driver, CollectiveEditOfDefaultMetaDataPage.class);
+		return PageFactory.initElements(driver, CollectiveEditOfDefaultMetadataPage.class);
 	}
 }

@@ -49,10 +49,10 @@ public class CollectionEntryPage extends BasePage {
 		return PageFactory.initElements(driver, MultipleUploadPage.class);
 	}
 
-	public KindOfMetaDataProfilePage addMetaDataProfile() {
+	public MetadataTransitionPage addMetaDataProfile() {
 		addMetaDataProfileButton.click();
 		
-		return PageFactory.initElements(driver, KindOfMetaDataProfilePage.class);
+		return PageFactory.initElements(driver, MetadataTransitionPage.class);
 	}
 	
 	public DiscardedCollectionEntryPage discardCollection() {

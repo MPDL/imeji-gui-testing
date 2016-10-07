@@ -23,7 +23,7 @@ public class SharePrivateItemTest extends BaseSelenium {
 	private SharePage sharePage;
 	private DetailedItemViewPage itemViewPage;
 	
-	private String collectionTitle = getPropertyAttribute(privateCollectionKey);
+	private String collectionTitle;
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -32,6 +32,7 @@ public class SharePrivateItemTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	public void user1Uploadsitem() {
+		collectionTitle = getPropertyAttribute(privateCollectionKey);
 		SingleUploadPage singleUploadPage = homePage.goToSingleUploadPage();
 		try {
 			singleUploadPage.upload(getFilepath("SampleJPGFile.jpg"), collectionTitle);

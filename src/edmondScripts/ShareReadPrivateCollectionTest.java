@@ -17,10 +17,11 @@ public class ShareReadPrivateCollectionTest extends BaseSelenium {
 	private CollectionEntryPage collectionEntryPage;
 	private SharePage sharePage;
 	
-	private String collectionTitle = getPropertyAttribute(privateCollectionKey);
+	private String collectionTitle;
 	
 	@Test(priority = 1)
 	public void user1SharesReadRights() {
+		collectionTitle = getPropertyAttribute(privateCollectionKey);
 		login(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 		shareRights(true);
 	}
