@@ -19,7 +19,7 @@ import spot.util.TimeStamp;
 public class ChangeMetadataTest extends BaseSelenium {
 
 	private String newMetadataTitle = "Own test profile";
-	private String collectionTitle = "Colllection with referenced metadata profile: " + TimeStamp.getTimeStamp();
+	private String collectionTitle = "Collection with referenced metadata profile: " + TimeStamp.getTimeStamp();
 	private String collectionDescription = "Metadata profile to be changed";
 	
 	private HomePage homePage;

@@ -122,9 +122,15 @@
 			
 			<class name="edmondScripts.DiscardCollectionTest" />
 			
-			<class name="edmondScripts.SharePrivateAlbumReadTest" />
+			<class name="edmondScripts.SharePrivateAlbumReadAdminTest" />
 			
 			<class name="edmondScripts.ShareReleasedAlbumAdminTest" />
+			
+			<class name="edmondScripts.ChangeMetadataTest" />
+			
+			<class name="edmondScripts.DefaultMDPTemplateTest" />
+			
+			<class name="edmondScripts.CollectionOtherMDPTest" />
 			
 		</classes>
 	</test>

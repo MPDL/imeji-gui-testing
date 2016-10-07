@@ -18,6 +18,8 @@
 			
 			<class name="edmondScriptsPrivateMode.PublishedItemsWithMetadataPMTest" />
 			
+			<class name="edmondScripts.PublishedCollectionStandardMetadataTest" />
+			
 			<class name="edmondScriptsPrivateMode.DownloadFileRUPMTest" />
 			
 			<class name="edmondScriptsPrivateMode.UserWithdrawsPublishedCollection" />
@@ -104,17 +106,31 @@
 			
 			<class name="spot.scripts.collections.CreatePrivateCollectionTest" />
 			
-			<class name="edmondScripts.ShareAdminPrivateTest" />
-			
-			<class name="edmondScripts.ShareReadPrivateTest" />
+			<class name="edmondScripts.ShareAdminPrivateCollectionTest" />
 			
 			<class name="edmondScripts.SharePrivateItemTest" />
+			
+			<class name="edmondScripts.ShareReadPrivateCollectionTest" />
 			
 			<class name="edmondScripts.DeleteCollectionTest" />
 			
 			<class name="edmondScripts.PublishedCollectionNoMetadataTest" />
 			
+			<class name="edmondScripts.ShareReleasedItemTest" />
+			
+			<class name="edmondScripts.ShareReleasedCollectionTest" />
+			
 			<class name="edmondScripts.DiscardCollectionTest" />
+			
+			<class name="edmondScripts.SharePrivateAlbumReadAdminTest" />
+			
+			<class name="edmondScripts.ShareReleasedAlbumAdminTest" />
+			
+			<class name="edmondScripts.ChangeMetadataTest" />
+			
+			<class name="edmondScripts.DefaultMDPTemplateTest" />
+			
+			<class name="edmondScripts.CollectionOtherMDPTest" />
 			
 		</classes>
 	</test>

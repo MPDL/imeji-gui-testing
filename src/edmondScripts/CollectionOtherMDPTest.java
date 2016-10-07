@@ -16,9 +16,9 @@ import spot.pages.notAdmin.HomePage;
 import spot.pages.notAdmin.NewCollectionPage;
 import spot.util.TimeStamp;
 
-public class CollectionOtherMDP extends BaseSelenium {
+public class CollectionOtherMDPTest extends BaseSelenium {
 	
-	private String collectionTitle = "Colelction with individual MDP as reference/template: " + TimeStamp.getTimeStamp();
+	private String collectionTitle = "Collection with individual MDP as reference/template: " + TimeStamp.getTimeStamp();
 	private String metadataIdentifier = "Elefanten Daten Profil";
 	
 	private HomePage homePage;

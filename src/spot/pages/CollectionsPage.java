@@ -52,12 +52,6 @@ public class CollectionsPage extends BasePage {
 		
 		if (largestCollection != null) {
 			WebElement collectionLink = largestCollection.findElement(By.tagName("img"));
-			//List<WebElement> findElements = collectionActionWE.findElements(By.tagName("li"));
-			
-			//WebElement showContentTag = findElements.get(1);
-			
-			//WebElement showContentLink = showContentTag.findElement(By.tagName("a"));
-			
 			collectionLink.click();
 		}
 		
@@ -87,8 +81,7 @@ public class CollectionsPage extends BasePage {
 					largestCollection = collection;
 				}
 			} catch (NumberFormatException nfe) {
-				// no valid number
-				// do nothing
+				// no valid number, do nothing
 			}
 		}
 		
