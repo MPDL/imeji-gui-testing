@@ -14,7 +14,7 @@ public class DetailedItemViewPage extends BasePage {
 
 	private ShareComponent shareComponent;
 
-	@FindBy(id="j_idt451:txtUrl")
+	@FindBy(id="editItem:txtUrl")
 	private WebElement fileName;
 	
 	@FindBy(id="picWebResolutionInternalDigilib")
@@ -23,7 +23,7 @@ public class DetailedItemViewPage extends BasePage {
 	@FindBy(css="#actionsMenuArea .fa-download")
 	private WebElement downloadMenu;
 	
-	@FindBy(css="#j_idt451 .imj_metadataSet:nth-of-type(2) .imj_metadataValue")
+	@FindBy(css="#editItem .imj_metadataSet:nth-of-type(3) .imj_metadataValue a")
 	private WebElement collectionName;
 	
 	@FindBy(css="#actionsMenuArea>div a[target='_blank']")

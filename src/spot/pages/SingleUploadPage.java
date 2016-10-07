@@ -34,7 +34,7 @@ public class SingleUploadPage extends BasePage {
 	@FindBy(id="singleUpload:metadata:2:editMd:inputPerson:inputFamilyNameText1")
 	private WebElement metaDataAuthorFamilyNameTextField;
 	
-	@FindBy(id="singleUpload:metadata:2:editMd:inputPerson:j_idt488:0:inputOrgaName")
+	@FindBy(xpath="//input[contains(@id, 'inputOrgaName')]")
 	private WebElement metaDataOrganizationTextField;
 	
 	@FindBy(id="singleUpload:metadata:3:editMd:inputPublicationURI")

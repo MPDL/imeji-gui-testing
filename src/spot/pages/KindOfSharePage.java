@@ -7,10 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 
 public class KindOfSharePage extends BasePage {
 
-	@FindBy(css=".imj_shareForm #shareButtons input[value='Share with a user']")
+	@FindBy(id="share:userShare")
 	private WebElement shareWithAUserButton;
 	
-	@FindBy(css=".imj_shareForm #shareButtons a")
+	@FindBy(id="share:userGroupShare")
 	private WebElement shareWithAUserGroup;
 	
 	public KindOfSharePage(WebDriver driver) {

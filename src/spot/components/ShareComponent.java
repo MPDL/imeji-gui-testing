@@ -38,10 +38,13 @@ public class ShareComponent extends BasePage {
 		switch(category) {
 			case COLLECTION:
 				shareCollection.click();
+				break;
 			case ALBUM:
 				shareAlbum.click();
+				break;
 			case ITEM:
 				shareItem.click();
+				break;
 		}
 		
 		return PageFactory.initElements(driver, KindOfSharePage.class);

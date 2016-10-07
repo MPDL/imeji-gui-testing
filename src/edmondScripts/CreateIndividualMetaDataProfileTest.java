@@ -51,10 +51,8 @@ public class CreateIndividualMetaDataProfileTest extends BaseSelenium {
 		
 		// 8 metadata fields are needed; one already exists, create seven more
 		Map<String, String> metadataTypes = setLabels();
-		Map<String, String[]> predefinedValues = setPredefinedValues();
-		Map<String, String> vocabularies = setVocabularies();
 		
-		MetadataOverviewPage metaDataOverViewPage = createIndividualMetaDataProfilePage.editProfile(metadataTypes, predefinedValues, vocabularies);
+		MetadataOverviewPage metaDataOverViewPage = createIndividualMetaDataProfilePage.editProfile(metadataTypes);
 		
 		int numberOfAvailableMetaDataFields = metaDataOverViewPage.getNumberOfAvailableMetaDataFields();
 		Assert.assertTrue(numberOfAvailableMetaDataFields - 1 == metadataTypes.size(), "One or more of the required meta data fields are missing.");
@@ -71,29 +69,6 @@ public class CreateIndividualMetaDataProfileTest extends BaseSelenium {
 		metadataTypes.put("Publication", "This is a publication metadata field");
 		
 		return metadataTypes;
-	}
-	
-	private Map<String, String[]> setPredefinedValues() {
-		Map<String, String[]> predefinedValues = new HashMap<String, String[]>();
-		String[] text = {"yes", "no"};
-		predefinedValues.put("Text", text);
-		String[] numbers = {"12", "1.2"};
-		predefinedValues.put("Number", numbers);
-		String[] dates = {"2016/09/30", "2016/10/01", "2016/10/02"};
-		predefinedValues.put("Date", dates);
-		
-		return predefinedValues;
-	}
-	
-	private Map<String, String> setVocabularies() {
-		Map<String, String> vocabularies = new HashMap<String, String>();
-		//vocabularies.put("Text", "CoNE Authors");
-		vocabularies.put("Person", "CoNE Authors");
-		vocabularies.put("Geolocation", "Google Geo API (Beta)");
-		vocabularies.put("License", "Creative Commons licenses (CC)");
-		vocabularies.put("Link", "CoNE Authors");
-		
-		return vocabularies;
 	}
 	
 	private void createCollection(String collectionTitle) {

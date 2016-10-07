@@ -41,6 +41,14 @@ public class NewMetadataProfilePage extends BasePage {
 		return PageFactory.initElements(driver, MetadataOverviewPage.class);
 	}
 	
+	public MetadataOverviewPage editProfile(Map<String, String> profileTypeMap) {
+		editFirstBlock();
+		createMetaDataBlocks(profileTypeMap);
+		
+		saveButton.click();
+		return PageFactory.initElements(driver, MetadataOverviewPage.class);
+	}
+	
 	private void editFirstBlock() {
 		// first metadata block type is "Text" by default
 		WebElement firstMetadataText = firstMetadataField.findElement(By.id("profileForm:profile:0:labels:0:inputLabel"));
@@ -62,6 +70,17 @@ public class NewMetadataProfilePage extends BasePage {
 			else
 				createBlockVocabulary(blockType, label, index, vocabulary.get(blockType));
 			index++;
+		}
+	}
+	
+	private void createMetaDataBlocks(Map<String, String> profileTypeMap) {
+		int index = 1;
+		
+		for (Map.Entry<String, String> entry : profileTypeMap.entrySet()) {
+			String blockType = entry.getKey();
+			String label = entry.getValue();
+			WebElement profile = driver.findElement(By.id("profileForm:profile:" + index + ":metadata"));
+			fillInLabel(profile, label, index);
 		}
 	}
 	
@@ -100,7 +119,6 @@ public class NewMetadataProfilePage extends BasePage {
 		String labelBoxID = "profileForm:profile:" + metadataIndex + ":labels:0:inputLabel";
 		WebElement labelBox = profile.findElement(By.id(labelBoxID));
 		labelBox.sendKeys(label);
-		chooseVocabulary(profile, "CoNE DDC Subjects", 0);
 	}
 	
 	/**

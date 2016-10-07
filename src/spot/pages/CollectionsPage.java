@@ -3,6 +3,7 @@ package spot.pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -93,7 +94,7 @@ public class CollectionsPage extends BasePage {
 	}
 
 	public CollectionContentPage openSomePublishedCollection() {
-		WebElement stateDropdown = driver.findElement(By.id("j_idt346:j_idt366:txtFilter"));
+		WebElement stateDropdown = driver.findElement(By.className("fa-lock"));
 		stateDropdown.click();
 		stateComponent.filter(StateOptions.ONLY_PUBLISHED);
 		

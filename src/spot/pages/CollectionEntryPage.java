@@ -35,6 +35,7 @@ public class CollectionEntryPage extends BasePage {
 		super(driver);
 		
 		actionComponent = new ActionComponent(driver);
+		shareComponent = new ShareComponent(driver);
 		
 		PageFactory.initElements(driver, this);
 	}

@@ -22,7 +22,7 @@ public class SharePrivateAlbumReadAdminTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	public void user1CreateAlbum() {
-		login(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
+		login(spotRUUserName, spotRUPassWord);
 		NewAlbumPage newAlbum = homePage.goToCreateNewAlbumPage();
 		albumEntryPage = newAlbum.createAlbum(albumTitle, "");
 	}
@@ -30,7 +30,7 @@ public class SharePrivateAlbumReadAdminTest extends BaseSelenium {
 	@Test(priority = 2)
 	public void user1ShareRead() {
 		shareRights(true, false);
-		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrUserName));
+		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName));
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
 		boolean grantIsCorrect = sharePage.checkGrantSelections(getPropertyAttribute(restrUserName), true, false, false, false, false, false, false);
@@ -41,17 +41,17 @@ public class SharePrivateAlbumReadAdminTest extends BaseSelenium {
 	
 	@Test(priority = 3)
 	public void user2ReadsAlbum() {
-		login(getPropertyAttribute(restrUserName), getPropertyAttribute(restrPassWord));
+		login(restrUserName, restrPassWord);
 		albumEntryPage = homePage.goToAlbumPage().openAlbumByTitle(albumTitle);
 		logout();
 	}
 	
 	@Test(priority = 4)
 	public void user1ShareAdmin() {
-		login(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
+		login(spotRUUserName, spotRUPassWord);
 		shareRights(false, true);
 		
-		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrUserName));
+		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName));
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
 		boolean grantIsCorrect = sharePage.checkGrantSelections(getPropertyAttribute(restrUserName), true, true, true, true, true, true, true);
@@ -62,7 +62,7 @@ public class SharePrivateAlbumReadAdminTest extends BaseSelenium {
 	
 	@Test(priority = 5)
 	public void user2DeletesAlbum() {
-		login(getPropertyAttribute(restrUserName), getPropertyAttribute(restrPassWord));
+		login(restrUserName, restrPassWord);
 		albumEntryPage = homePage.goToAlbumPage().openAlbumByTitle(albumTitle);
 		albumEntryPage.deleteAlbum();
 		logout();

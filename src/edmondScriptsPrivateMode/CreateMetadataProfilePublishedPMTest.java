@@ -94,6 +94,8 @@ public class CreateMetadataProfilePublishedPMTest extends BaseSelenium {
 	
 	@Test(priority = 4)
 	public void createNewMetadataProfileTest() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		MetadataTransitionPage kindOfMetaDataProfilePage = collectionEntryPage.addMetaDataProfile();
 		NewMetadataProfilePage createIndividualMetaDataProfilePage = kindOfMetaDataProfilePage.selectNewIndividualMetaDataProfile();
 		

@@ -22,7 +22,7 @@ public class ShareReleasedAlbumAdminTest extends BaseSelenium {
 	
 	@Test(priority = 1)
 	public void user1ReleaseAlbum() {
-		login(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
+		login(spotRUUserName, spotRUPassWord);
 		NewAlbumPage newAlbum = homePage.goToCreateNewAlbumPage();
 		albumEntryPage = newAlbum.createAlbum(albumTitle, "");
 		albumEntryPage = albumEntryPage.publish();
@@ -30,10 +30,10 @@ public class ShareReleasedAlbumAdminTest extends BaseSelenium {
 	
 	@Test(priority = 2)
 	public void user1ShareAdmin() {
-		login(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
+		login(spotRUUserName, spotRUPassWord);
 		shareRights(false, true);
 		
-		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrUserName));
+		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName));
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
 		boolean grantIsCorrect = sharePage.checkGrantSelections(getPropertyAttribute(restrUserName), true, true, true, true, true, true, true);
@@ -44,7 +44,7 @@ public class ShareReleasedAlbumAdminTest extends BaseSelenium {
 	
 	@Test(priority = 3)
 	public void user2DiscardsAlbum() {
-		login(getPropertyAttribute(restrUserName), getPropertyAttribute(restrPassWord));
+		login(restrUserName, restrPassWord);
 		albumEntryPage = homePage.goToAlbumPage().openAlbumByTitle(albumTitle);
 		albumEntryPage.deleteAlbum();
 		logout();

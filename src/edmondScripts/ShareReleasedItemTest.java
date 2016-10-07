@@ -51,7 +51,7 @@ public class ShareReleasedItemTest extends BaseSelenium {
 	
 	@Test(priority = 3)
 	public void user2ChecksSharePage() {
-		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrUserName));
+		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName));
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
 		boolean grantIsCorrect = sharePage.checkGrantSelections(getPropertyAttribute(restrUserName), true);
@@ -62,7 +62,7 @@ public class ShareReleasedItemTest extends BaseSelenium {
 	
 	@Test(priority = 4)
 	public void user2ReadsItem() {
-		login(getPropertyAttribute(restrUserName), getPropertyAttribute(restrPassWord));
+		login(restrUserName, restrPassWord);
 		itemViewPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).downloadFirstItemInList();
 		boolean pageDisplayed = itemViewPage.isDetailedItemViewPageDisplayed();
 		Assert.assertTrue(pageDisplayed, "User cannot view item.");
@@ -72,7 +72,7 @@ public class ShareReleasedItemTest extends BaseSelenium {
 	
 	@Test(priority = 5)
 	public void user1RevokesGrant() {
-		login(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
+		login(spotRUUserName, spotRUPassWord);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		
 		sharePage = collectionEntryPage.goToSharePage().shareWithAUser();

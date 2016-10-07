@@ -13,10 +13,10 @@ public class ConfigurationAppearancePanel extends BasePage {
 	@FindBy(xpath = "/html/body/div[1]/div[5]/div[2]/div/div/form/div[2]/div[1]")
 	private WebElement appearancePanelReveal;
 	
-	@FindBy(id = "configForm:j_idt379:1")
+	@FindBy(id = "configForm:j_idt383:1")
 	private WebElement defaultViewThumbnailRadioButton;
 	
-	@FindBy(name = "configForm:j_idt375")
+	@FindBy(name = "configForm:j_idt379")
 	private WebElement saveAppearanceButton;
 	
 	public ConfigurationAppearancePanel(WebDriver driver) {

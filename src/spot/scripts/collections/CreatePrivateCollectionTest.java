@@ -25,7 +25,7 @@ public class CreatePrivateCollectionTest extends BaseSelenium {
 	public void beforeClass() {
 		super.setup();
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
-		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute("spotRUUserName"), getPropertyAttribute("spotRUPassword"));
+		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 	}
 
 	@Test

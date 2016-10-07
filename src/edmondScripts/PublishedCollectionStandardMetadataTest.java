@@ -16,6 +16,7 @@ import spot.BaseSelenium;
 import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
+import spot.pages.DiscardedCollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
@@ -98,7 +99,7 @@ public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 	public void defaultMetaDataProfileTest() {
 		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean isMetaDataProfileDefined = createdCollection.isMetaDataProfileDefined();
-		Assert.assertFalse(isMetaDataProfileDefined, "This collection should have a metadata profile.");
+		Assert.assertTrue(isMetaDataProfileDefined, "This collection should have a metadata profile.");
 		
 		createdCollection.openMetaDataProfile();
 		String metaDataProfileTitle = driver.findElement(By.tagName("h3")).getText();
@@ -106,11 +107,16 @@ public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 		Assert.assertTrue(metaDataProfileIsDefault, "This collection should have a default metadata profile.");
 	}
 	
+	@Test (priority = 5)
+	public void discardCollection() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
+		collectionEntryPage.discardCollection();
+	}
+	
 	@AfterClass
 	public void afterClass() {
-		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		createdCollection.discardCollection();
-		
+		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.logout();
 	}
 }

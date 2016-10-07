@@ -148,11 +148,10 @@ public class CollectionContentPage extends BasePage {
 		return getItemListSize();
 	}
 	
-	public CollectionsPage discardCollection() {
-		
+	public DiscardedCollectionEntryPage discardCollection() {
 		actionComponent.doAction(ActionType.DISCARD);
 		
-		return PageFactory.initElements(driver,  CollectionsPage.class);
+		return PageFactory.initElements(driver, DiscardedCollectionEntryPage.class);
 	}
 	
 	public boolean isMetaDataProfileDefined() {

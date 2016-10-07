@@ -28,6 +28,7 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 	@Test(priority = 1)
 	public void user1SharesAdminRights() {
 		collectionTitle = getPropertyAttribute(privateCollectionKey);
+		login(spotRUUserName, spotRUPassWord);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		
 		KindOfSharePage shareTransitionPage = collectionEntryPage.goToSharePage();
@@ -37,7 +38,7 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 	
 	@Test(priority = 2)
 	public void checkSharePage() {
-		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrUserName));
+		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName));
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
 		boolean grantIsCorrect = sharePage.checkGrantSelections(getPropertyAttribute(restrUserName), true, true, true, true, true, true, true);
@@ -48,7 +49,7 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 	
 	@Test(priority = 3)
 	public void user2AdminCollection() {
-		login(getPropertyAttribute(restrUserName), getPropertyAttribute(restrPassWord));
+		login(restrUserName, restrPassWord);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		
 		collectionEntryPage.addMetaDataProfile();
@@ -63,7 +64,7 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 	
 	@Test(priority = 4)
 	public void user1RevokeGrant() {
-		login(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
+		login(spotRUUserName, spotRUPassWord);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		
 		sharePage = collectionEntryPage.goToSharePage().shareWithAUser();

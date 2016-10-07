@@ -36,7 +36,7 @@ public class ShareReleasedCollectionTest extends BaseSelenium {
 		KindOfSharePage shareTransitionPage = collectionEntryPage.goToSharePage();
 		SharePage sharePage = shareTransitionPage.shareWithAUser();
 		
-		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrUserName));
+		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName));
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
 		boolean grantIsCorrect = sharePage.checkGrantSelections(getPropertyAttribute(restrUserName), true,

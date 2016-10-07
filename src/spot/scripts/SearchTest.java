@@ -26,7 +26,7 @@ public class SearchTest extends BaseSelenium {
 
 	@Test
 	public void inexistentItemTest() {
-		String searchQuery = "awobsafh";		
+		String searchQuery = "awobsafhtui5we5t57zuo77izufh";		
 		SearchResultsPage searchQueryPage = startPage.getSearchComponent().searchFor(searchQuery);
 		String searchQueryDisplayText = searchQueryPage.getSearchQueryDisplayText();
 		Assert.assertEquals(searchQueryDisplayText, searchQuery);

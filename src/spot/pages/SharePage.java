@@ -130,7 +130,7 @@ public class SharePage extends BasePage {
 
 	public boolean checkPresenceOfSharedPersonInList(String sharedPersonName) {
 	
-		List<WebElement> sharedPersons = driver.findElements(By.cssSelector("table#history>tbody>tr>td:nth-of-type(1)"));
+		List<WebElement> sharedPersons = driver.findElements(By.className("imj_rightsTableUser"));
 		
 		boolean personFound = false;
 		

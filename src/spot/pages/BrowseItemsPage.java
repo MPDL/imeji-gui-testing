@@ -10,11 +10,13 @@ import org.openqa.selenium.support.PageFactory;
 public class BrowseItemsPage extends BasePage {
 
 	private List<WebElement> allItems;
+	List<WebElement> imageList;
 	
 	public BrowseItemsPage(WebDriver driver) {
 		super(driver);
 		
 		allItems = driver.findElements(By.className("imj_optionLabel"));
+		imageList = driver.findElements(By.tagName("img"));
 		
 		PageFactory.initElements(driver, this);
 	}
@@ -26,5 +28,9 @@ public class BrowseItemsPage extends BasePage {
 				return true;
 		}
 		return false;
+	}
+	
+	public int imageCount() {
+		return imageList.size();
 	}
 }

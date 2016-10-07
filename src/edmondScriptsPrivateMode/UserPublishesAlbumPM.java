@@ -110,12 +110,7 @@ public class UserPublishesAlbumPM extends BaseSelenium {
 		homePage = new StartPage(driver).goToHomePage(adminHomePage);
 		collectionsPage = homePage.goToCollectionPage();
 		
-		CollectionContentPage releasedCollectionContentPage = collectionsPage.openSomePublishedCollection();
-		if (releasedCollectionContentPage == null) {
-			createCollection();
-			releasedCollectionContentPage = homePage.goToCollectionPage().openSomePublishedCollection();
-		}
-		
+		CollectionContentPage releasedCollectionContentPage = collectionsPage.getPageOfLargestCollection();
 		releasedCollectionContentPage.addFirstItemToAlbum();
 		
 	}
@@ -124,29 +119,6 @@ public class UserPublishesAlbumPM extends BaseSelenium {
 	public void publishAlbum() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.openActiveAlbumEntryPage().publish();
-	}
-	
-	private void createCollection() throws AWTException {
-		homePage = collectionsPage.goToHomePage(homePage);
-		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
-
-		String collectionDescription = "This collection is for testing purposes.";
-
-		CollectionEntryPage collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
-				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
-				getPropertyAttribute(ruOrganizationName));
-		
-		multipleUploadPage = collectionEntryPage.uploadContent();
-		
-		Map<String, String> files = new HashMap<String, String>();
-		files.put("SampleJPGFile.jpg", getFilepath("SampleJPGFile.jpg"));
-		
-		for (Map.Entry<String, String> file : files.entrySet()) {
-			multipleUploadPage.addFile(file.getValue());
-		}
-
-		multipleUploadPage.startUpload();
-		multipleUploadPage.publishCollection();
 	}
 	
 	@Test(priority = 4)

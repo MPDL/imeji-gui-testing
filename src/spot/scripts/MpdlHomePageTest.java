@@ -30,9 +30,15 @@ public class MpdlHomePageTest extends BaseSelenium {
 		}
 
 		String currentURL = getCurrentURL();
-		String mpdlHomePageUrl = "https://www.mpdl.mpg.de/en/";
+		String mpdlHomePageENUrl = "https://www.mpdl.mpg.de/en/";
+		String mpdlHomePageDEUrl = "https://www.mpdl.mpg.de/";
 
-		Assert.assertEquals(currentURL, mpdlHomePageUrl);
+		try {
+			Assert.assertEquals(currentURL, mpdlHomePageDEUrl);
+		}
+		catch (AssertionError exc) {
+			Assert.assertEquals(currentURL, mpdlHomePageENUrl);
+		}
 
 		// close MPDL window; switch to start page
 		driver.close();

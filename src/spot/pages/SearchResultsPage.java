@@ -16,7 +16,7 @@ public class SearchResultsPage extends BasePage {
 	@FindBy(xpath = "/html/body/div[1]/div[5]/div[1]/div[2]/form/div[1]")
 	private WebElement resultCount;
 	
-	@FindBy(id = "j_idt346:filterInfoPanel")
+	@FindBy(xpath = "//div[contains(@id, 'filterInfoPanel')]")
 	private WebElement filterInfoPanel;
 	
 	public SearchResultsPage(WebDriver driver) {

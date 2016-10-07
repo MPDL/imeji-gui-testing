@@ -154,6 +154,7 @@ public class ActionComponent extends BasePage {
 				actionButton.click();
 				discardButton.click();
 				
+				discardCommentTextArea = driver.findElement(By.tagName("textarea"));
 				discardCommentTextArea.sendKeys("Discarding due to test automation purposes_ case 1");
 
 				wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#withdrawMenuItemDialog .imj_submitButton")));
