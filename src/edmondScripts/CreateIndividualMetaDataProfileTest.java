@@ -52,7 +52,8 @@ public class CreateIndividualMetaDataProfileTest extends BaseSelenium {
 		// 8 metadata fields are needed; one already exists, create seven more
 		Map<String, String> metadataTypes = setLabels();
 		
-		MetadataOverviewPage metaDataOverViewPage = createIndividualMetaDataProfilePage.editProfile(metadataTypes);
+		MetadataTransitionPage metadataTransition = createIndividualMetaDataProfilePage.editProfile(metadataTypes);
+		MetadataOverviewPage metaDataOverViewPage = metadataTransition.goToCollectionPage().openCollectionByTitle(collectionTitle).openMetaDataProfile();
 		
 		int numberOfAvailableMetaDataFields = metaDataOverViewPage.getNumberOfAvailableMetaDataFields();
 		Assert.assertTrue(numberOfAvailableMetaDataFields - 1 == metadataTypes.size(), "One or more of the required meta data fields are missing.");

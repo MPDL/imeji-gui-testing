@@ -65,10 +65,12 @@ public class CreateMetadataProfilePublishedTest extends BaseSelenium {
 		Map<String, String[]> predefinedValues = setPredefinedValues();
 		Map<String, String> vocabularies = setVocabularies();
 		
-		MetadataOverviewPage metaDataOverViewPage = createIndividualMetaDataProfilePage.editProfile(metadataTypes, predefinedValues, vocabularies);
+		MetadataTransitionPage metaDataTransitionPage = createIndividualMetaDataProfilePage.editProfile(metadataTypes, predefinedValues, vocabularies);
+		CollectionContentPage collectionContent = metaDataTransitionPage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		MetadataOverviewPage metadataOverviewPage = collectionContent.openMetaDataProfile();
 		
-		int numberOfAvailableMetaDataFields = metaDataOverViewPage.getNumberOfAvailableMetaDataFields();
-		Assert.assertTrue(numberOfAvailableMetaDataFields - 1 == metadataTypes.size(), "One or more of the required meta data fields are missing.");
+		int numberOfAvailableMetadataFields = metadataOverviewPage.getNumberOfAvailableMetaDataFields();
+		Assert.assertTrue(numberOfAvailableMetadataFields - 1 == metadataTypes.size(), "One or more of the required meta data fields are missing.");
 	}
 	
 	private Map<String, String> setLabels() {

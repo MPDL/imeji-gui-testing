@@ -96,15 +96,16 @@ public class CreateMetadataProfilePublishedPMTest extends BaseSelenium {
 	public void createNewMetadataProfileTest() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
-		MetadataTransitionPage kindOfMetaDataProfilePage = collectionEntryPage.addMetaDataProfile();
-		NewMetadataProfilePage createIndividualMetaDataProfilePage = kindOfMetaDataProfilePage.selectNewIndividualMetaDataProfile();
+		MetadataTransitionPage metadataTransition = collectionEntryPage.addMetaDataProfile();
+		NewMetadataProfilePage createIndividualMetaDataProfilePage = metadataTransition.selectNewIndividualMetaDataProfile();
 		
 		// 8 metadata fields are needed; one already exists, create seven more
 		Map<String, String> metadataTypes = setLabels();
 		Map<String, String[]> predefinedValues = setPredefinedValues();
 		Map<String, String> vocabularies = setVocabularies();
 		
-		MetadataOverviewPage metaDataOverViewPage = createIndividualMetaDataProfilePage.editProfile(metadataTypes, predefinedValues, vocabularies);
+		metadataTransition = createIndividualMetaDataProfilePage.editProfile(metadataTypes, predefinedValues, vocabularies);
+		MetadataOverviewPage metaDataOverViewPage = metadataTransition.goToCollectionPage().openCollectionByTitle(collectionTitle).openMetaDataProfile();
 		
 		int numberOfAvailableMetaDataFields = metaDataOverViewPage.getNumberOfAvailableMetaDataFields();
 		Assert.assertTrue(numberOfAvailableMetaDataFields - 1 == metadataTypes.size(), "One or more of the required meta data fields are missing.");

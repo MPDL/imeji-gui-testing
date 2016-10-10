@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 
 public class NewMetadataProfilePage extends BasePage {
@@ -33,20 +35,20 @@ public class NewMetadataProfilePage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public MetadataOverviewPage editProfile(Map<String, String> profileTypeMap, Map<String, String[]> predefinedValues, Map<String, String> vocabulary) {
+	public MetadataTransitionPage editProfile(Map<String, String> profileTypeMap, Map<String, String[]> predefinedValues, Map<String, String> vocabulary) {
 		editFirstBlock();
 		createMetaDataBlocks(profileTypeMap, predefinedValues, vocabulary);
 		
 		saveButton.click();
-		return PageFactory.initElements(driver, MetadataOverviewPage.class);
+		return PageFactory.initElements(driver, MetadataTransitionPage.class);
 	}
 	
-	public MetadataOverviewPage editProfile(Map<String, String> profileTypeMap) {
+	public MetadataTransitionPage editProfile(Map<String, String> profileTypeMap) {
 		editFirstBlock();
 		createMetaDataBlocks(profileTypeMap);
 		
 		saveButton.click();
-		return PageFactory.initElements(driver, MetadataOverviewPage.class);
+		return PageFactory.initElements(driver, MetadataTransitionPage.class);
 	}
 	
 	private void editFirstBlock() {
@@ -55,7 +57,7 @@ public class NewMetadataProfilePage extends BasePage {
 		firstMetadataText.sendKeys("A text field");
 		// fill in predefined values
 		String[] values = {"yes", "no"};
-		fillInAllowedValues(firstMetadataText, values, 0);
+		fillInAllowedValues(values, 0);
 	}
 
 	private void createMetaDataBlocks(Map<String, String> profileTypeMap, Map<String, String[]> predefinedValues, Map<String, String> vocabulary) {
@@ -64,11 +66,13 @@ public class NewMetadataProfilePage extends BasePage {
 		for (Map.Entry<String, String> entry : profileTypeMap.entrySet()) {
 			String blockType = entry.getKey();
 			String label = entry.getValue();
-			boolean allowedValues = predefinedValues.containsKey(blockType);
-			if (allowedValues)
+			if (predefinedValues.containsKey(blockType))
 				createBlockAllowedValues(blockType, label, index, predefinedValues.get(blockType));
 			else
-				createBlockVocabulary(blockType, label, index, vocabulary.get(blockType));
+				if (vocabulary.containsKey(blockType))
+					createBlockVocabulary(blockType, label, index, vocabulary.get(blockType));
+				else
+					createBlock(blockType, label, index);
 			index++;
 		}
 	}
@@ -79,29 +83,28 @@ public class NewMetadataProfilePage extends BasePage {
 		for (Map.Entry<String, String> entry : profileTypeMap.entrySet()) {
 			String blockType = entry.getKey();
 			String label = entry.getValue();
-			WebElement profile = driver.findElement(By.id("profileForm:profile:" + index + ":metadata"));
-			fillInLabel(profile, label, index);
+			createBlock(blockType, label, index);
+			index++;
 		}
 	}
 	
-	private void createBlockAllowedValues(String type, String label, int metadataIndex, String[] predefinedValues) {
-		addNewMetadataBlock.click();
+	private void createBlock(String type, String label, int metadataIndex) {
+		driver.findElement(By.id("profileForm:profile:" + (metadataIndex - 1) + ":j_idt329")).click();
 		// text is always the default type
 		WebElement profile = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":metadata"));
 		
 		selectBlockType(profile, type);
 		fillInLabel(profile, label, metadataIndex);
-		fillInAllowedValues(profile, predefinedValues, metadataIndex);
+	}
+	
+	private void createBlockAllowedValues(String type, String label, int metadataIndex, String[] predefinedValues) {
+		createBlock(type, label, metadataIndex);
+		fillInAllowedValues(predefinedValues, metadataIndex);
 	}
 	
 	private void createBlockVocabulary(String type, String label, int metadataIndex, String vocabulary) {
-		addNewMetadataBlock.click();
-		// text is always the default type
-		WebElement profile = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":metadata"));
-		
-		selectBlockType(profile, type);
-		fillInLabel(profile, label, metadataIndex);
-		chooseVocabulary(profile, vocabulary, metadataIndex);
+		createBlock(type, label, metadataIndex);
+		chooseVocabulary(vocabulary, metadataIndex);
 	}
 	
 	// TODO
@@ -111,7 +114,13 @@ public class NewMetadataProfilePage extends BasePage {
 	
 	private void selectBlockType(WebElement profile, String type) {
 		WebElement metadataDropdown = profile.findElement(By.id("mdProfileType"));
+		metadataDropdown.click();
 		Select metadata = new Select(metadataDropdown);
+		wait.until(new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return metadata.getOptions().size() == 8;
+			}
+		});
 		metadata.selectByVisibleText(type);
 	}
 	
@@ -123,25 +132,28 @@ public class NewMetadataProfilePage extends BasePage {
 	
 	/**
 	 * @param metadataIndex: position of current metadata block, starting from 0
+	 * @param predefinedValues: array of possible values for this metadata block
 	 */
-	private void fillInAllowedValues(WebElement profile, String[] predefinedValues, int metadataIndex) {
-		//String addValuesID = "profileForm:profile:" + metadataIndex + ":j_idt369";
-		String addValuesID = ".imj_metadataSetGroup .fa-plus-square-o";
-		profile.findElement(By.cssSelector(addValuesID)).click();
+	private void fillInAllowedValues(String[] predefinedValues, int metadataIndex) {
+		// TODO don't rely on generated IDs
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		String profileNr = "profileForm:profile:" + metadataIndex + ":";
+		jse.executeScript("document.getElementById('" + profileNr + "j_idt366').click();");
 		int valuesCount = predefinedValues.length;
 		for (int currentValue = 0; currentValue < valuesCount; currentValue++) {
-			String valueID = "profileForm:profile:" + metadataIndex + ":constraints:" + currentValue + ":j_idt373";
-			profile.findElement(By.id(valueID)).sendKeys(predefinedValues[currentValue]);
-			String newValueID = "profileForm:profile:" + metadataIndex + ":constraints:" + currentValue + ":j_idt375";
-			if (currentValue != valuesCount - 1)
-				profile.findElement(By.id(newValueID)).click();
+			WebElement valueBox = driver.findElement(By.name(profileNr + "constraints:" + currentValue + ":j_idt370"));
+			valueBox.sendKeys(predefinedValues[currentValue]);
+			if (currentValue != valuesCount - 1) {
+				jse.executeScript("document.getElementById('" + profileNr + "constraints:" + currentValue + ":j_idt372').click();");
+			}
 		}
 	}
 	
-	private void chooseVocabulary(WebElement profile, String vocabulary, int metadataIndex) {
-		String vocabularyID = "profileForm:profile:" + metadataIndex + ":j_idt358";
-		profile.findElement(By.id(vocabularyID)).click();
-		WebElement dropdown = profile.findElement(By.id("profileForm:profile:" + metadataIndex + ":selectVocabulary"));
+	private void chooseVocabulary(String vocabulary, int metadataIndex) {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		String profileNr = "profileForm:profile:" + metadataIndex + ":";
+		jse.executeScript("document.getElementById('" + profileNr + "j_idt355').click();");
+		WebElement dropdown = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":selectVocabulary"));
 		Select select = new Select(dropdown);
 		select.selectByVisibleText(vocabulary);
 	}

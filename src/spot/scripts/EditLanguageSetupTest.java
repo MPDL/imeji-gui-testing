@@ -6,14 +6,18 @@ import org.testng.annotations.*;
 import spot.BaseSelenium;
 import spot.pages.StartPage;
 
+/**
+ * Currently irrelevant to QA Edmond instance
+ *
+ */
 public class EditLanguageSetupTest extends BaseSelenium {
 
 	private StartPage startPage;
 	
-	private String englishSetup;
-	private String germanSetup;
-	private String spanishSetup;
-	private String japaneseSetup;
+	private String englishSetup = "";
+	private String germanSetup = "";
+	private String spanishSetup = "";
+	private String japaneseSetup = "";
 
 	@BeforeClass
 	public void beforeClass() {
@@ -24,7 +28,6 @@ public class EditLanguageSetupTest extends BaseSelenium {
 
 	@Test (priority = 1)
 	public void changeLanguageSetupToEnglishTest() {
-		
 		startPage.selectLanguage(englishSetup);
 		
 		Assert.assertEquals(startPage.getCurrentLanguageSetup(), englishSetup);
