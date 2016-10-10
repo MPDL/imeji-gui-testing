@@ -33,9 +33,10 @@ public class ShareReleasedItemTest extends BaseSelenium {
 	@Test(priority = 1)
 	public void user1Uploadsitem() {
 		collectionTitle = getPropertyAttribute(releasedCollectionKey);
+		login(spotRUUserName, spotRUPassWord);
 		SingleUploadPage singleUploadPage = homePage.goToSingleUploadPage();
 		try {
-			singleUploadPage.upload(getFilepath("SamplePDFFile.pdf"), collectionTitle);
+			itemViewPage = singleUploadPage.upload(getFilepath("SampleTIFFile.tif"), collectionTitle);
 		}
 		catch (AWTException exc) {}
 		
@@ -50,11 +51,13 @@ public class ShareReleasedItemTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 3)
-	public void user2ChecksSharePage() {
-		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName));
+	public void user1ChecksSharePage() {
+		String userFullName = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
+		
+		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
-		boolean grantIsCorrect = sharePage.checkGrantSelections(getPropertyAttribute(restrUserName), true);
+		boolean grantIsCorrect = sharePage.checkGrantSelections(userFullName, true);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
 		
 		logout();

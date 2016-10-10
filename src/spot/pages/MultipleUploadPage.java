@@ -89,7 +89,7 @@ public class MultipleUploadPage extends BasePage {
 		KindOfSharePage kindOfSharePage = (KindOfSharePage)actionComponent.doAction(ActionType.SHARE);
 		
 		SharePage sharePage = kindOfSharePage.shareWithAUser();
-		sharePage.share(true, emailUser, true, true, true, false, false, false, false);
+		sharePage.share(false, true, emailUser, true, true, true, false, false, false, false);
 	}
 	
 	public void publishCollection() {

@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
-import spot.pages.CollectionEntryPage;
 import spot.pages.DetailedItemViewPage;
 import spot.pages.KindOfSharePage;
 import spot.pages.LoginPage;
@@ -19,11 +18,12 @@ import spot.pages.notAdmin.HomePage;
 public class SharePrivateItemTest extends BaseSelenium {
 
 	private HomePage homePage;
-	private CollectionEntryPage collectionEntryPage;
+	//private CollectionEntryPage collectionEntryPage;
 	private SharePage sharePage;
 	private DetailedItemViewPage itemViewPage;
 	
 	private String collectionTitle;
+	private String itemTitle = "SampleJPGFile.jpg";
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -33,9 +33,10 @@ public class SharePrivateItemTest extends BaseSelenium {
 	@Test(priority = 1)
 	public void user1Uploadsitem() {
 		collectionTitle = getPropertyAttribute(privateCollectionKey);
+		login(spotRUUserName, spotRUPassWord);
 		SingleUploadPage singleUploadPage = homePage.goToSingleUploadPage();
 		try {
-			singleUploadPage.upload(getFilepath("SampleJPGFile.jpg"), collectionTitle);
+			itemViewPage = singleUploadPage.upload(getFilepath(itemTitle), collectionTitle);
 		}
 		catch (AWTException exc) {}
 		
@@ -50,11 +51,12 @@ public class SharePrivateItemTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 3)
-	public void user2ChecksSharePage() {
-		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName));
+	public void user1ChecksSharePage() {
+		String userFullName = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
+		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
-		boolean grantIsCorrect = sharePage.checkGrantSelections(getPropertyAttribute(restrUserName), true);
+		boolean grantIsCorrect = sharePage.checkGrantSelections(userFullName, true);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
 		
 		logout();
@@ -63,7 +65,7 @@ public class SharePrivateItemTest extends BaseSelenium {
 	@Test(priority = 4)
 	public void user2ReadsItem() {
 		login(restrUserName, restrPassWord);
-		itemViewPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).downloadFirstItemInList();
+		itemViewPage = homePage.navigateToItemPage().openItemByTitle(itemTitle);
 		boolean pageDisplayed = itemViewPage.isDetailedItemViewPageDisplayed();
 		Assert.assertTrue(pageDisplayed, "User cannot view item.");
 		
@@ -73,9 +75,8 @@ public class SharePrivateItemTest extends BaseSelenium {
 	@Test(priority = 5)
 	public void user1RevokesGrant() {
 		login(spotRUUserName, spotRUPassWord);
-		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		
-		sharePage = collectionEntryPage.goToSharePage().shareWithAUser();
+		sharePage = homePage.navigateToItemPage().openItemByTitle(itemTitle).shareItem().shareWithAUser();
 		sharePage.share(getPropertyAttribute(restrUserName), false);
 		
 		logout();

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -52,8 +53,10 @@ public class SharePage extends BasePage {
 
 	/**
 	 *  Share method for collections
+	 * @param released TODO
+	 * @param released - true: checkbox editProfile exists, false: no editProfile checkBox
 	 */
-	public SharePage share(boolean sendMail, String email, boolean read, boolean createItems, boolean editItems, boolean deleteItems, boolean editCollectionInformation, boolean editProfile, boolean administrate) {
+	public SharePage share(boolean released, boolean sendMail, String email, boolean read, boolean createItems, boolean editItems, boolean deleteItems, boolean editCollectionInformation, boolean editProfile, boolean administrate) {
 		emailTextField.sendKeys(email);
 		
 		// check whether email shall be sent to the person who the album is shared with
@@ -63,13 +66,19 @@ public class SharePage extends BasePage {
 		if (administrate) {
 			// if administrate is true, each checkbox is automatically selected
 			checkGrantIfNecessary(administrate, administrateGrantCheckBox);
-		} else {
+		} 
+		else if (!read) {
+			// if read is false, each checkbox is automatically deselected
+			checkGrantIfNecessary(read, readGrantCheckBox);
+		}
+		else {
 			checkGrantIfNecessary(read, readGrantCheckBox);
 			checkGrantIfNecessary(createItems, createItemsGrantCheckBox);
 			checkGrantIfNecessary(editItems, editItemsGrantCheckBox);
 			checkGrantIfNecessary(deleteItems, deleteItemsGrantCheckBox);
 			checkGrantIfNecessary(editCollectionInformation, editInformationGrantCheckBox);
-			checkGrantIfNecessary(editProfile, editProfileGrantCheckBox);
+			if (released)
+				checkGrantIfNecessary(editProfile, editProfileGrantCheckBox);
 			checkGrantIfNecessary(administrate, administrateGrantCheckBox);
 		}
 			
@@ -98,7 +107,12 @@ public class SharePage extends BasePage {
 		if (administrate) {
 			// if administrate is true, each checkbox is automatically selected
 			checkGrantIfNecessary(administrate, administrateGrantCheckBox);
-		} else {
+		} 
+		else if (!read) {
+			// if read is false, each checkbox is automatically deselected
+			checkGrantIfNecessary(read, readGrantCheckBox);
+		}
+		else {
 			checkGrantIfNecessary(read, readGrantCheckBox);
 			checkGrantIfNecessary(createItems, createItemsGrantCheckBox);
 			checkGrantIfNecessary(editAlbumInformation, editInformationGrantCheckBox);
@@ -113,7 +127,8 @@ public class SharePage extends BasePage {
 		if (grantedTo) {
 			if (!checkBox.isSelected())
 				checkBox.click();
-		} else { 
+		} 
+		else { 
 			if (checkBox.isSelected())
 				checkBox.click();
 		}
@@ -145,8 +160,13 @@ public class SharePage extends BasePage {
 		return personFound;
 	}
 
-	public boolean checkGrantSelections(String wantedSharedPersonName, boolean read, boolean createItems, boolean editItems, boolean deleteItems,
-			boolean editCollectionInformation, boolean editProfile, boolean administrate) {
+	/**
+	 * @param released TODO
+	 * @param wantedSharedPersonName - user's name in the form [surname, first]
+	 * @return allGrantsCorrect - user permissions are exactly as specified in method signature
+	 */
+	public boolean checkGrantSelections(boolean released, String wantedSharedPersonName, boolean read, boolean createItems, boolean editItems,
+			boolean deleteItems, boolean editCollectionInformation, boolean editProfile, boolean administrate) {
 
 		WebElement wantedSharedPerson = findWantedPerson(wantedSharedPersonName);
 		
@@ -174,8 +194,13 @@ public class SharePage extends BasePage {
 			checkBoxes.put(wantedSharedPersonCheckBoxes.get(2), editItems);
 			checkBoxes.put(wantedSharedPersonCheckBoxes.get(3), deleteItems);
 			checkBoxes.put(wantedSharedPersonCheckBoxes.get(4), editCollectionInformation);
-			checkBoxes.put(wantedSharedPersonCheckBoxes.get(5), editProfile);
-			checkBoxes.put(wantedSharedPersonCheckBoxes.get(6), administrate);
+			if (released) {
+				checkBoxes.put(wantedSharedPersonCheckBoxes.get(5), editProfile);
+				checkBoxes.put(wantedSharedPersonCheckBoxes.get(6), administrate);
+			}
+			else {
+				checkBoxes.put(wantedSharedPersonCheckBoxes.get(5), administrate);
+			}
 							
 			Iterator iterator = checkBoxes.entrySet().iterator();
 			
@@ -189,6 +214,9 @@ public class SharePage extends BasePage {
 		return allGrantsCorrect;
 	}
 	
+	/**
+	 * @param wantedSharedPersonName - user's name in the form [surname, first]
+	 */
 	public boolean checkGrantSelections(String wantedSharedPersonName, boolean read) {
 		WebElement wantedSharedPerson = findWantedPerson(wantedSharedPersonName);
 		WebElement readGrant = wantedSharedPerson.findElement(By.tagName("input"));
@@ -205,7 +233,8 @@ public class SharePage extends BasePage {
 				return sharedPerson;
 			}
 		}
-		return null;
+
+		throw new NoSuchElementException("The wanted person's name was not found in the share page.");
 	}
 
 	private boolean checkCorrectnessOfGrant(boolean grantedTo, WebElement grantCheckBox) {

@@ -20,15 +20,15 @@ public class UserPolicyManagementTest extends BaseSelenium {
 	public void setup() {
 		super.setup();
 		navigateToStartPage();
-		loginAsAdmin();
-		createNewUser();
 	}
 	
+	@Test(priority = 1)
 	private void loginAsAdmin() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
 	}
 	
+	@Test(priority = 2)
 	private void createNewUser() {
 		emailOfNewUser = getPropertyAttribute("tuSpotUserName");
 		
@@ -37,14 +37,7 @@ public class UserPolicyManagementTest extends BaseSelenium {
 		adminHomePage = (AdminHomePage) administrationPage.goToHomePage(adminHomePage);
 	}
 	
-	/*@Test(priority = 1)
-	public void userCanCreateCollections() {
-		adminHomePage.logout();
-		LoginPage loginPage = new StartPage(driver).openLoginForm();
-		HomePage homePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
-	}*/
-	
-	@Test(priority = 2)
+	@Test(priority = 3)
 	public void deleteTestUserTest() {
 		UsersOverviewPage allUsersOverViewPage = adminHomePage.goToAdminPage().viewAllUsers();
 		allUsersOverViewPage.deleteUserByEmail(emailOfNewUser);

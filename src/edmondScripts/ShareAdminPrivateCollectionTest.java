@@ -19,6 +19,7 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 	private SharePage sharePage;
 	
 	private String collectionTitle;
+	private String userFullName;
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -33,15 +34,16 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 		
 		KindOfSharePage shareTransitionPage = collectionEntryPage.goToSharePage();
 		sharePage = shareTransitionPage.shareWithAUser();
-		sharePage = sharePage.share(false, getPropertyAttribute(restrUserName), false, false, false, false, false, false, true);
+		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUserName), false, false, false, false, false, false, true);
 	}
 	
 	@Test(priority = 2)
 	public void checkSharePage() {
-		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName));
+		userFullName = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
+		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
-		boolean grantIsCorrect = sharePage.checkGrantSelections(getPropertyAttribute(restrUserName), true, true, true, true, true, true, true);
+		boolean grantIsCorrect = sharePage.checkGrantSelections(false, userFullName, true, true, true, true, true, true, true);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
 		
 		logout();
@@ -68,7 +70,7 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		
 		sharePage = collectionEntryPage.goToSharePage().shareWithAUser();
-		sharePage.share(false, getPropertyAttribute(restrUserName), false, false, false, false, false, false, false);
+		sharePage.share(false, false, getPropertyAttribute(restrUserName), false, false, false, false, false, false, false);
 		
 		logout();
 	}

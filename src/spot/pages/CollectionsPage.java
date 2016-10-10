@@ -60,9 +60,7 @@ public class CollectionsPage extends BasePage {
 	}
 	
 	/**
-	 * Get the largest collection (measured by its number of items). 
-	 * Attention: The largest collection on the actual page number. 
-	 * @return
+	 * @return The largest collection on the current page (measured by its number of items).
 	 */
 	private WebElement getLargestCollection() {
 		
@@ -103,6 +101,9 @@ public class CollectionsPage extends BasePage {
 		return PageFactory.initElements(driver, CollectionContentPage.class);
 	}
 
+	/**
+	 * @throws NoSuchElementException if no collection's name matches collectionTitle
+	 */
 	public CollectionContentPage openCollectionByTitle(String collectionTitle) {
 		
 		WebElement collectionInQuestion = null;
@@ -122,6 +123,9 @@ public class CollectionsPage extends BasePage {
 				collectionInQuestion = collection;
 			}
 		}
+		
+		if (collectionInQuestion == null)
+			throw new NoSuchElementException("Collection with this title was not found.");
 					
 		//collectionInQuestion.findElement(By.cssSelector(".imj_itemActionArea li:nth-of-type(2) a")).click();
 		collectionInQuestion.findElement(By.className("imj_itemHeadline")).click();
@@ -129,6 +133,9 @@ public class CollectionsPage extends BasePage {
 		return PageFactory.initElements(driver, CollectionContentPage.class);
 	}
 	
+	/**
+	 * @throws NoSuchElementException if no collection on the page is published
+	 */
 	public CollectionContentPage openSomeNotPublishedCollection() {
 		
 		checkCollectionList();
@@ -166,6 +173,9 @@ public class CollectionsPage extends BasePage {
 				}
 			} 
 		}
+		
+		if (someNotPublishedCollection == null)
+			throw new NoSuchElementException("No published collection was found on this page.");
 		
 		// open start page of the selected collection
 		someNotPublishedCollection.findElement(By.tagName("img")).click();

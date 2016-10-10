@@ -3,6 +3,7 @@ package spot.pages.admin;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -20,6 +21,9 @@ public class UsersOverviewPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
+	/**
+	 * @throws NoSuchElementException if no email match is found
+	 */
 	public void deleteUserByEmail(String email) {
 		
 		WebElement toBeDeletedUser = findUserByEmail(email);
@@ -35,6 +39,9 @@ public class UsersOverviewPage extends BasePage {
 				break;
 			}
 		}
+		
+		if (deleteButton == null)
+			throw new NoSuchElementException("No user email matches were found.");
 
 		deleteButton.click();
 		
@@ -81,6 +88,9 @@ public class UsersOverviewPage extends BasePage {
 		return email;
 	}
 
+	/**
+	 * @throws NoSuchElementException if no user name matches userName
+	 */
 	public UserProfilePage viewDetails(String userName) {
 		WebElement userInQuestion = findUserByEmail(userName);
 		
@@ -96,6 +106,9 @@ public class UsersOverviewPage extends BasePage {
 			}
 		}
 		
+		if (viewProfileButton == null)
+			throw new NoSuchElementException("No user matches the given username.");
+			
 		viewProfileButton.click();
 		
 		return PageFactory.initElements(driver, UserProfilePage.class);

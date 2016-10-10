@@ -47,7 +47,7 @@ public class ContactSupportTest extends BaseSelenium {
 	}
 	
 	@Test
-	public void contactEdmondsupportFromStartPage() {
+	public void contactEdmondSupportFromStartPage() {
 		String edmondSupportMailAddress = new StartPage(driver).contactEdmondSupport();
 		
 		Assert.assertEquals(edmondSupportMailAddress, edmondSupportEmail, "Support mail address can't be accessed.");		

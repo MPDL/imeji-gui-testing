@@ -32,7 +32,6 @@ public class CreateMetadataProfileUnpublishedTest extends BaseSelenium {
 	@BeforeClass
 	public void beforeClass() {
 		prepareFiles();
-		logInAsRegisteredUser();
 	}
 	
 	private void prepareFiles() {
@@ -41,14 +40,16 @@ public class CreateMetadataProfileUnpublishedTest extends BaseSelenium {
 		files.put("SampleWordFile.docx", getFilepath("SampleWordFile.docx"));
 	}
 	
-	private void logInAsRegisteredUser() {
+	
+	@Test(priority = 1)
+	public void logInAsRegisteredUser() {
 		navigateToStartPage();
 		
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 	}
 	
-	@Test(priority = 1)
+	@Test(priority = 2)
 	private void createUnpublishedCollection() {
 		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle, 
@@ -59,15 +60,13 @@ public class CreateMetadataProfileUnpublishedTest extends BaseSelenium {
 		Assert.assertTrue(siteContentHeadline.equals(collectionTitle), "Collection title not correct");
 	}
 	
-	@Test(priority = 2)
+	@Test(priority = 3)
 	public void createNewMetadataProfileTest() {
 		MetadataTransitionPage metadataTransition = collectionEntryPage.addMetaDataProfile();
 		NewMetadataProfilePage createIndividualMetaDataProfilePage = metadataTransition.selectNewIndividualMetaDataProfile();
 		
 		// 8 metadata fields are needed; one already exists, create seven more
 		Map<String, String> metadataTypes = setLabels();
-		Map<String, String[]> predefinedValues = setPredefinedValues();
-		Map<String, String> vocabularies = setVocabularies();
 		
 		metadataTransition = createIndividualMetaDataProfilePage.editProfile(metadataTypes);
 		MetadataOverviewPage metaDataOverViewPage = metadataTransition.goToCollectionPage().openCollectionByTitle(collectionTitle).openMetaDataProfile();
@@ -89,29 +88,7 @@ public class CreateMetadataProfileUnpublishedTest extends BaseSelenium {
 		return metadataTypes;
 	}
 	
-	private Map<String, String[]> setPredefinedValues() {
-		Map<String, String[]> predefinedValues = new HashMap<String, String[]>();
-		String[] text = {"yes", "no"};
-		predefinedValues.put("Text", text);
-		String[] numbers = {"12", "1.2"};
-		predefinedValues.put("Number", numbers);
-		String[] dates = {"2016/09/30", "2016/10/01", "2016/10/02"};
-		predefinedValues.put("Date", dates);
-		
-		return predefinedValues;
-	}
-	
-	private Map<String, String> setVocabularies() {
-		Map<String, String> vocabularies = new HashMap<String, String>();
-		vocabularies.put("Person", "CoNE Authors");
-		vocabularies.put("Geolocation", "Google Geo API (Beta)");
-		vocabularies.put("License", "Creative Commons licenses (CC)");
-		vocabularies.put("Link", "CoNE Authors");
-		
-		return vocabularies;
-	}
-	
-	@Test(priority = 3)
+	@Test(priority = 4)
 	public void deleteCollection() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		CollectionContentPage collectionContentPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);

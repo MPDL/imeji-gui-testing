@@ -32,7 +32,7 @@ public class CreateCollectionWithMissingAuthorNameTest extends BaseSelenium {
 	}
 
 	@Test
-	public void createCollectionWithMissingTitleTest() {
+	public void createCollectionWithMissingAuthorTest() {
 		NewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 
 		String collectionTitle = "Collection without an author's name";

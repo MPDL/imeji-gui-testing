@@ -29,8 +29,7 @@ public class LoginLogoutTest extends BaseSelenium {
 	private LoginPage loginPage;
 
 	@BeforeMethod
-	public void beforeMethod() {
-		System.out.println("BeforeMethod");		
+	public void beforeMethod() {	
 		loginPage = new StartPage(driver).openLoginForm();
 	}
 	
@@ -73,8 +72,6 @@ public class LoginLogoutTest extends BaseSelenium {
 	@AfterMethod
 	public void logout(Method method) {
 		String methodName = method.getName();
-		
-		System.out.println("AfterMethod");
 		
 		// since logout doesn't apply for testLogInWithInvalidCredentials
 		if (!methodName.equals("testLogInWithInvalidCredentials")) {

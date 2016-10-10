@@ -34,7 +34,7 @@ public class SaveEmptyCollectionCreationFormTest extends BaseSelenium {
 	}
 
 	@Test
-	public void createCollectionWithMissingTitleTest() {
+	public void submitEmptyForm() {
 		NewCollectionPage createNewCollectionPage = adminHomePage.goToCreateNewCollectionPage();
 		createNewCollectionPage.submitEmptyForm();
 		

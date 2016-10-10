@@ -1,8 +1,6 @@
 package edmondScriptsPrivateMode;
 
 import java.awt.AWTException;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
@@ -15,15 +13,12 @@ import spot.pages.AdministrationPage;
 import spot.pages.AlbumEntryPage;
 import spot.pages.AlbumPage;
 import spot.pages.CollectionContentPage;
-import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
 import spot.pages.ConfigurationEditPage;
 import spot.pages.LoginPage;
-import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.NewAlbumPage;
-import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
@@ -36,9 +31,7 @@ public class UserPublishesAlbumPM extends BaseSelenium {
 	private AlbumPage albumPage;
 	private AlbumEntryPage albumEntryPage;
 	private CollectionsPage collectionsPage;
-	private MultipleUploadPage multipleUploadPage;
 	
-	private final String collectionTitle = "Collection which items will be added to album: " + TimeStamp.getTimeStamp();
 	private final String albumTitle = "Test album in private mode: " + TimeStamp.getTimeStamp();
 	
 	@BeforeClass

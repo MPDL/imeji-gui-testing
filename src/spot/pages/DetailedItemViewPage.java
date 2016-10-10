@@ -47,6 +47,8 @@ public class DetailedItemViewPage extends BasePage {
 	public DetailedItemViewPage(WebDriver driver) {
 		super(driver);
 		
+		shareComponent = new ShareComponent(driver);
+		
 		PageFactory.initElements(driver, this);
 	}
 	

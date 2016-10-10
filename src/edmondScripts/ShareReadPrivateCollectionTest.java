@@ -28,10 +28,11 @@ public class ShareReadPrivateCollectionTest extends BaseSelenium {
 	
 	@Test(priority = 2)
 	public void checkSharePage() {
-		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName));
+		String userFullName = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
+		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
-		boolean grantIsCorrect = sharePage.checkGrantSelections(getPropertyAttribute(restrUserName), true, false, false, false, false, false, false);
+		boolean grantIsCorrect = sharePage.checkGrantSelections(false, userFullName, true, false, false, false, false, false, false);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
 		
 		logout();
@@ -61,7 +62,7 @@ public class ShareReadPrivateCollectionTest extends BaseSelenium {
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		KindOfSharePage shareTransitionPage = collectionEntryPage.goToSharePage();
 		sharePage = shareTransitionPage.shareWithAUser();
-		sharePage = sharePage.share(false, getPropertyAttribute(restrUserName), read, false, false, false, false, false, false);
+		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUserName), read, false, false, false, false, false, false);
 	}
 	
 	private void logout() {

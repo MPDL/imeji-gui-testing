@@ -45,7 +45,7 @@ public class ChangeMetadataTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 2)
-	public void canEditStandardProfile() {
+	public void cannotEditStandardProfile() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		metaDataOverViewPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).openMetaDataProfile();
 		boolean profileCanBeModified = metaDataOverViewPage.profileCanBeModified();

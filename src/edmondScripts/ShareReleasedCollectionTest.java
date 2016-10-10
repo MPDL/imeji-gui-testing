@@ -22,11 +22,14 @@ public class ShareReleasedCollectionTest extends BaseSelenium {
 	@Test (priority = 1)
 	public void user1SharesAdminRights() {
 		collectionTitle = getPropertyAttribute(releasedCollectionKey);
-		homePage = new StartPage(driver).goToHomePage(homePage);
+		
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
+		
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		KindOfSharePage shareTransitionPage = collectionEntryPage.goToSharePage();
 		SharePage sharePage = shareTransitionPage.shareWithAUser();
-		sharePage.share(false, getPropertyAttribute(restrUserName), false, false, false, false, false, false, true);
+		sharePage.share(true, false, getPropertyAttribute(restrUserName), false, false, false, false, false, false, true);
 		
 		collectionEntryPage = new StartPage(driver).goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 	}
@@ -36,11 +39,13 @@ public class ShareReleasedCollectionTest extends BaseSelenium {
 		KindOfSharePage shareTransitionPage = collectionEntryPage.goToSharePage();
 		SharePage sharePage = shareTransitionPage.shareWithAUser();
 		
-		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName));
+		String userFullName = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
+		
+		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
-		boolean grantIsCorrect = sharePage.checkGrantSelections(getPropertyAttribute(restrUserName), true,
-				true, true, true, true, true, true);
+		boolean grantIsCorrect = sharePage.checkGrantSelections(false, userFullName,
+				true, true, true, true, true, true, true);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
 		
 		homePage = new StartPage(driver).goToHomePage(homePage);
