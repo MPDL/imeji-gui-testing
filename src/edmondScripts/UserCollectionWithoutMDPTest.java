@@ -40,6 +40,8 @@ public class UserCollectionWithoutMDPTest extends BaseSelenium {
 		files = new HashMap<String, String>();
 		files.put("SamplePDFFile.pdf", getFilepath("SamplePDFFile.pdf"));	
 		files.put("SampleWordFile.docx", getFilepath("SampleWordFile.docx"));
+		
+		getProperties().put(collectionPMKey, collectionTitle);
 	}
 
 	@Test(priority = 1)

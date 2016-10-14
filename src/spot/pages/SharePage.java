@@ -175,7 +175,7 @@ public class SharePage extends BasePage {
 		
 		if (administrate) {
 			
-			// since grant for administration is given, all the other grants are given to
+			// since grant for administration is given, all the other grants are given too
 			Iterator<WebElement> iterator = wantedSharedPersonCheckBoxes.iterator();
 			
 			while (iterator.hasNext() && allGrantsCorrect) {

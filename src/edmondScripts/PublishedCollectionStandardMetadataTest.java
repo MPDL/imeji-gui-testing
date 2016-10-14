@@ -69,7 +69,6 @@ public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 
 	@Test (priority = 2)
 	public void uploadFilesTest() throws AWTException {
-
 		multipleUploadPage = collectionEntryPage.uploadContent();
 		
 		for (Map.Entry<String, String> file : files.entrySet()) {
@@ -87,7 +86,6 @@ public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 
 	@Test (priority = 3)
 	public void publishCollectionTest() {
-		
 		multipleUploadPage.publishCollection();
 		
 		String actualInfoMessage = multipleUploadPage.getMessageComponent().getInfoMessage();

@@ -73,6 +73,7 @@ public class NewMetadataProfilePage extends BasePage {
 					createBlockVocabulary(blockType, label, index, vocabulary.get(blockType));
 				else
 					createBlock(blockType, label, index);
+					
 			index++;
 		}
 	}
@@ -88,15 +89,6 @@ public class NewMetadataProfilePage extends BasePage {
 		}
 	}
 	
-	private void createBlock(String type, String label, int metadataIndex) {
-		driver.findElement(By.id("profileForm:profile:" + (metadataIndex - 1) + ":j_idt329")).click();
-		// text is always the default type
-		WebElement profile = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":metadata"));
-		
-		selectBlockType(profile, type);
-		fillInLabel(profile, label, metadataIndex);
-	}
-	
 	private void createBlockAllowedValues(String type, String label, int metadataIndex, String[] predefinedValues) {
 		createBlock(type, label, metadataIndex);
 		fillInAllowedValues(predefinedValues, metadataIndex);
@@ -107,9 +99,33 @@ public class NewMetadataProfilePage extends BasePage {
 		chooseVocabulary(vocabulary, metadataIndex);
 	}
 	
-	// TODO
-	public void addChildBlock(WebElement profile) {
-		profile.findElement(By.className("imj_submitButton")).click();
+	private void createBlock(String type, String label, int metadataIndex) {
+		WebElement profile;
+		
+		if (label.contains("child")) {
+			profile = createChildBlock(type, label, metadataIndex);
+		}
+		else {
+			profile = createUsualBlock(type, label, metadataIndex);
+		}
+		
+		selectBlockType(profile, type);
+		fillInLabel(profile, label, metadataIndex);
+	}
+	
+	private WebElement createUsualBlock(String type, String label, int metadataIndex) {
+		driver.findElement(By.id("profileForm:profile:" + (metadataIndex - 1) + ":j_idt329")).click();
+		// text is always the default type
+		WebElement profile = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":metadata"));
+		return profile;
+	}
+	
+	private WebElement createChildBlock(String type, String label, int metadataIndex) {
+		WebElement parentProfile = driver.findElement(By.id("profileForm:profile:" + (metadataIndex - 1) + ":metadata"));
+		parentProfile.findElement(By.id("profileForm:profile:" + (metadataIndex - 1) + ":addChildMetadata")).click();
+		
+		WebElement childProfile = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":metadata"));
+		return childProfile;
 	}
 	
 	private void selectBlockType(WebElement profile, String type) {

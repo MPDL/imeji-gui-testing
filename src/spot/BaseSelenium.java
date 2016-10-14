@@ -46,6 +46,7 @@ public abstract class BaseSelenium {
 	
 	protected final String privateCollectionKey = "sharedPrivateCollection";
 	protected final String releasedCollectionKey = "sharedReleasedCollection";
+	protected final String collectionPMKey = "sharedCollectionPM";
 	
 	public Properties getProperties() {				
 		Properties properties = SeleniumTestSuite.getProperties();

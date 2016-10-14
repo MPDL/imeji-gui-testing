@@ -42,6 +42,7 @@ public class UserCollectionWithoutMDPPrivateMode extends BaseSelenium {
 		switchOnPrivateMode(true);
 		prepareFiles();
 		logInAsRegisteredUser();
+		getProperties().put(collectionPMKey, collectionTitle);
 	}
 	
 	private void switchOnPrivateMode(boolean switchOnPrivateMode) {
@@ -113,13 +114,6 @@ public class UserCollectionWithoutMDPPrivateMode extends BaseSelenium {
 		boolean isMetaDataProfileDefined = createdCollection.isMetaDataProfileDefined();
 		Assert.assertFalse(isMetaDataProfileDefined, "This collection should not have a metadata profile.");
 		collectionEntryPage = createdCollection.viewCollectionInformation();
-	}
-	
-	@Test(priority = 4)
-	public void deleteCollection() {
-		homePage = new StartPage(driver).goToHomePage(homePage);
-		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
-		collectionEntryPage.deleteCollection();
 	}
 	
 	@AfterClass

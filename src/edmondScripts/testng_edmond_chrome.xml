@@ -4,9 +4,13 @@
 
 	<test name="Edmond test cases in Chrome">
 		<classes>
+			<!-- Setup test cases. Must be always run! -->
+		
 			<class name="spot.SeleniumTestSuite" />
 			
 			<class name="spot.BaseSelenium" />
+			
+			<!-- End of setup test cases. -->
 			
 			<class name="spot.scripts.admin.UserPolicyManagementTest" />
 			
@@ -30,8 +34,6 @@
 			
 			<class name="edmondScripts.UserCollectionWithoutMDPTest" />
 			
-			<class name="edmondScriptsPrivateMode.UserCollectionWithoutMDPPrivateMode" />
-			
 			<class name="edmondScripts.UserCollectionWithStandardMDPTest" />
 			
 			<class name="edmondScripts.SingleUploadNoMetadataTest" />
@@ -42,13 +44,13 @@
 			
 			<class name="edmondScripts.CreateMetadataProfilePublishedTest" />
 			
+			<class name="edmondScripts.HierarchicalMDPTest" />
+			
 			<class name="edmondScriptsPrivateMode.CreateMetadataProfileUnpublishedPMTest" />
 			
 			<class name="edmondScriptsPrivateMode.UserCollectionWithStandardMDPPrivateMode" />
 			
 			<class name="edmondScripts.UserDeletesPrivateCollectionTest" />
-			
-			<class name="edmondScriptsPrivateMode.UserDeletesPrivateCollectionPMTest" />
 			
 			<class name="edmondScripts.ChangeColourSchemeTest" />
 			
@@ -104,6 +106,14 @@
 			
 			<class name="edmondScriptsPrivateMode.RestrictedUploadAttemptPMTest" />
 			
+			<class name="edmondScripts.ChangeMetadataTest" />
+			
+			<class name="edmondScripts.DefaultMDPTemplateTest" />
+			
+			<class name="edmondScripts.CollectionOtherMDPTest" />
+			
+			<!-- Share use cases -->
+			
 			<class name="spot.scripts.collections.CreatePrivateCollectionTest" />
 			
 			<class name="edmondScripts.ShareAdminPrivateCollectionTest" />
@@ -126,12 +136,19 @@
 			
 			<class name="edmondScripts.ShareReleasedAlbumAdminTest" />
 			
-			<class name="edmondScripts.ChangeMetadataTest" />
+			<!-- Share use cases in private mode -->
+
+			<class name="edmondScriptsPrivateMode.UserCollectionWithoutMDPPrivateMode" />
 			
-			<class name="edmondScripts.DefaultMDPTemplateTest" />
+			<class name="edmondScriptsPrivateMode.ShareAdminCollectionPM" />
 			
-			<class name="edmondScripts.CollectionOtherMDPTest" />
+			<class name="edmondScriptsPrivateMode.SharePrivateItemPM" />
 			
+			<class name="edmondScriptsPrivateMode.ShareReadCollectionPM" />
+						
+			<class name="edmondScriptsPrivateMode.UserDeletesPrivateCollectionPMTest" />
+			
+			<class name="edmondScriptsPrivateMode.SharePrivateAlbumPM" />
 		</classes>
 	</test>
 </suite>
