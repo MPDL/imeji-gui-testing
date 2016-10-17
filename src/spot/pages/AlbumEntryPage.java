@@ -1,6 +1,10 @@
 package spot.pages;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import spot.CategoryType;
@@ -17,6 +21,7 @@ public class AlbumEntryPage extends BasePage {
 		super(driver);
 		
 		actionComponent = new ActionComponent(driver);
+		shareComponent = new ShareComponent(driver);
 		
 		PageFactory.initElements(driver, this);
 	}
@@ -38,12 +43,17 @@ public class AlbumEntryPage extends BasePage {
 	}
 	
 	public DiscardedAlbumEntryPage discardAlbum() {
-		getActionComponent().doAction(ActionType.DISCARD);
+		actionComponent.doAction(ActionType.DISCARD);
 		
 		return PageFactory.initElements(driver, DiscardedAlbumEntryPage.class);
 	}
 	
 	public KindOfSharePage shareAlbum() {
 		return shareComponent.share(CategoryType.ALBUM);
+	}
+	
+	public int getItemCount() {
+		List<WebElement> items = driver.findElements(By.className("imj_tileItem"));
+		return items.size();
 	}
 }

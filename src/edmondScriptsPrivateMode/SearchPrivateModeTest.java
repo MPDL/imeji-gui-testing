@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
+import spot.CategoryType;
 import spot.pages.AdministrationPage;
 import spot.pages.LoginPage;
 import spot.pages.SearchResultsPage;
@@ -55,7 +56,21 @@ public class SearchPrivateModeTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 2)
-	public void searchPrivateModeAsRU() {
+	public void searchPrivateModeRUItem() {
+		searchPrivateModeAsRU("jellyfish", CategoryType.ITEM);
+	}
+	
+	@Test(priority = 2)
+	public void searchPrivateModeRUCollection() {
+		searchPrivateModeAsRU("jellyfish", CategoryType.COLLECTION);
+	}
+	
+	@Test(priority = 2)
+	public void searchPrivateModeRUAlbum() {
+		searchPrivateModeAsRU("jellyfish", CategoryType.ALBUM);
+	}
+	
+	private void searchPrivateModeAsRU(String searchQuery, CategoryType category) {
 		startPage = new StartPage(driver);
 		LoginPage loginPage = startPage.openLoginForm();
 		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), 
@@ -63,7 +78,7 @@ public class SearchPrivateModeTest extends BaseSelenium {
 		
 		boolean ruAccessSearchField = true;
 		try {
-			searchFor("jellyfish");
+			searchFor(searchQuery, category);
 		}
 		catch (NoSuchElementException exc) {
 			ruAccessSearchField = false;
@@ -76,7 +91,21 @@ public class SearchPrivateModeTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 3)
-	public void searchPrivateModeAsAdmin() {
+	public void searchPrivateModeAdminItem() {
+		searchPrivateModeAsAdmin("jellyfish", CategoryType.ITEM);
+	}
+	
+	@Test(priority = 3)
+	public void searchPrivateModeAdminCollection() {
+		searchPrivateModeAsAdmin("jellyfish", CategoryType.COLLECTION);
+	}
+	
+	@Test(priority = 3)
+	public void searchPrivateModeAdminAlbum() {
+		searchPrivateModeAsAdmin("jellyfish", CategoryType.ALBUM);
+	}
+	
+	private void searchPrivateModeAsAdmin(String searchQuery, CategoryType category) {
 		startPage = new StartPage(driver);
 		LoginPage loginPage = startPage.openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName), 
@@ -84,7 +113,7 @@ public class SearchPrivateModeTest extends BaseSelenium {
 		
 		boolean adminAccessSearchField = true;
 		try {
-			searchFor("jellyfish");
+			searchFor(searchQuery, category);
 		}
 		catch (NoSuchElementException exc) {
 			adminAccessSearchField = false;
@@ -96,8 +125,52 @@ public class SearchPrivateModeTest extends BaseSelenium {
 		adminHomePage.logout();
 	}
 	
+	@Test(priority = 4)
+	public void searchPrivateModeRestrictedItem() {
+		searchPrivateModeRestricted("jellyfish", CategoryType.ITEM);
+	}
+	
+	@Test(priority = 4)
+	public void searchPrivateModeRestrictedCollection() {
+		searchPrivateModeRestricted("jellyfish", CategoryType.COLLECTION);
+	}
+	
+	@Test(priority = 4)
+	public void searchPrivateModeRestrictedAlbum() {
+		searchPrivateModeRestricted("jellyfish", CategoryType.ALBUM);
+	}
+	
+	private void searchPrivateModeRestricted(String searchQuery, CategoryType category) {
+		startPage = new StartPage(driver);
+		LoginPage loginPage = startPage.openLoginForm();
+		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(restrUserName), 
+				getPropertyAttribute(restrPassWord));
+		
+		boolean ruAccessSearchField = true;
+		try {
+			searchFor(searchQuery, category);
+		}
+		catch (NoSuchElementException exc) {
+			ruAccessSearchField = false;
+		}
+		
+		Assert.assertTrue(ruAccessSearchField, "Restricted user should be able to search in private mode.");
+		
+		homePage = startPage.goToHomePage(homePage);
+		homePage.logout();
+	}
+	
 	private void searchFor(String searchQueryKeyWord) {
 		SearchResultsPage searchQueryPage = startPage.getSearchComponent().searchFor(searchQueryKeyWord);
+		String searchQueryDisplayText = searchQueryPage.getSearchQueryDisplayText();
+		Assert.assertEquals(searchQueryDisplayText, searchQueryKeyWord);
+		
+		navigateToStartPage();
+		startPage = new StartPage(driver);
+	}
+	
+	private void searchFor(String searchQueryKeyWord, CategoryType category) {
+		SearchResultsPage searchQueryPage = startPage.getSearchComponent().searchByCategory(searchQueryKeyWord, category);
 		String searchQueryDisplayText = searchQueryPage.getSearchQueryDisplayText();
 		Assert.assertEquals(searchQueryDisplayText, searchQueryKeyWord);
 		

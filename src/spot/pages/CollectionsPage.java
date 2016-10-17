@@ -101,10 +101,29 @@ public class CollectionsPage extends BasePage {
 		return PageFactory.initElements(driver, CollectionContentPage.class);
 	}
 
+	
+	public CollectionContentPage openCollectionByTitle(String collectionTitle) {
+		WebElement collectionInQuestion = findCollectionByTitle(collectionTitle);		
+		collectionInQuestion.findElement(By.className("imj_itemHeadline")).click();
+		
+		return PageFactory.initElements(driver, CollectionContentPage.class);
+	}
+	
+	public void expandCollapseDescription(String collectionTitle) {
+		WebElement collectionInQuestion = findCollectionByTitle(collectionTitle);
+		try {
+			collectionInQuestion.findElement(By.cssSelector(".imj_containerDescExpand")).click();
+			collectionInQuestion.findElement(By.cssSelector(".imj_collapse")).click();
+		}
+		catch (NoSuchElementException exc) {
+			throw new NoSuchElementException("Description is not long enough.");
+		}
+	}
+	
 	/**
 	 * @throws NoSuchElementException if no collection's name matches collectionTitle
 	 */
-	public CollectionContentPage openCollectionByTitle(String collectionTitle) {
+	private WebElement findCollectionByTitle(String collectionTitle) {
 		
 		WebElement collectionInQuestion = null;
 		
@@ -126,11 +145,8 @@ public class CollectionsPage extends BasePage {
 		
 		if (collectionInQuestion == null)
 			throw new NoSuchElementException("Collection with this title was not found.");
-					
-		//collectionInQuestion.findElement(By.cssSelector(".imj_itemActionArea li:nth-of-type(2) a")).click();
-		collectionInQuestion.findElement(By.className("imj_itemHeadline")).click();
 		
-		return PageFactory.initElements(driver, CollectionContentPage.class);
+		return collectionInQuestion;
 	}
 	
 	/**

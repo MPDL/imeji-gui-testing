@@ -3,6 +3,7 @@ package edmondScriptsPrivateMode;
 import java.awt.AWTException;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -30,7 +31,7 @@ public class SharePrivateItemPM extends BaseSelenium {
 	@BeforeClass
 	public void beforeClass() {
 		super.setup();
-		switchOnPrivateMode(false);
+		switchOnPrivateMode(true);
 	}
 	
 	private void switchOnPrivateMode(boolean switchOnPrivateMode) {
@@ -63,6 +64,7 @@ public class SharePrivateItemPM extends BaseSelenium {
 	@Test(priority = 2)
 	public void user1SharesItem() {
 		login(spotRUUserName, spotRUPassWord);
+		itemViewPage = homePage.navigateToItemPage().openItemByTitle(itemTitle);
 		KindOfSharePage shareTransitionPage = itemViewPage.shareItem();
 		sharePage = shareTransitionPage.shareWithAUser();
 		sharePage = sharePage.share(getPropertyAttribute(restrUserName), true);
@@ -72,6 +74,7 @@ public class SharePrivateItemPM extends BaseSelenium {
 	public void user1ChecksSharePage() {
 		login(spotRUUserName, spotRUPassWord);
 		String userFullName = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
+		sharePage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).share().shareWithAUser();
 		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
@@ -82,8 +85,13 @@ public class SharePrivateItemPM extends BaseSelenium {
 	@Test(priority = 4)
 	public void user2ReadsItem() {
 		login(restrUserName, restrPassWord);
+		
 		itemViewPage = homePage.navigateToItemPage().openItemByTitle(itemTitle);
 		boolean pageDisplayed = itemViewPage.isDetailedItemViewPageDisplayed();
+		
+		boolean shareIconVisible = itemViewPage.shareIconVisible();
+		Assert.assertTrue(shareIconVisible, "Share icon is not visible.");
+		
 		Assert.assertTrue(pageDisplayed, "User cannot view item.");
 	}
 	
@@ -93,8 +101,11 @@ public class SharePrivateItemPM extends BaseSelenium {
 		
 		sharePage = homePage.navigateToItemPage().openItemByTitle(itemTitle).shareItem().shareWithAUser();
 		sharePage.share(getPropertyAttribute(restrUserName), false);
-		
-		switchOnPrivateMode(true);
+	}
+	
+	@AfterClass
+	public void afterClass() {
+		switchOnPrivateMode(false);
 	}
 	
 	private void login(String username, String password) {

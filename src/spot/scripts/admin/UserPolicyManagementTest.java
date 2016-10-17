@@ -5,10 +5,12 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import spot.BaseSelenium;
+import spot.components.MessageComponent.MessageType;
 import spot.pages.AdministrationPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
+import spot.pages.admin.UserProfilePage;
 import spot.pages.admin.UsersOverviewPage;
 
 public class UserPolicyManagementTest extends BaseSelenium {
@@ -23,9 +25,31 @@ public class UserPolicyManagementTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 1)
-	private void loginAsAdmin() {
+	public void loginAsAdmin() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
+	}
+	
+	@Test(priority = 2)
+	public void repeatedEmail() {
+		AdministrationPage administrationPage = adminHomePage.goToAdminPage();
+		UserProfilePage createUserPage = administrationPage.createNewUser(restrUserName);
+		
+		MessageType messageType = createUserPage.getMessageComponent().getMessageTypeOfPageMessageArea();
+		Assert.assertEquals(messageType, MessageType.ERROR, "No error message appeared after registration with repeated e-mail.");
+		
+		adminHomePage = (AdminHomePage) createUserPage.goToHomePage(adminHomePage);
+	}
+	
+	@Test(priority = 2)
+	public void missingEmail() {
+		AdministrationPage administrationPage = adminHomePage.goToAdminPage();
+		UserProfilePage createUserPage = administrationPage.createNewUser("");
+		
+		MessageType messageType = createUserPage.getMessageComponent().getMessageTypeOfPageMessageArea();
+		Assert.assertEquals(messageType, MessageType.ERROR, "No error message appeared after registration with missing e-mail.");
+		
+		adminHomePage = (AdminHomePage) createUserPage.goToHomePage(adminHomePage);
 	}
 	
 	@Test(priority = 2)

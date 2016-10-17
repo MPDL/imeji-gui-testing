@@ -45,7 +45,8 @@ public class UserDeletesPrivateCollectionPMTest extends BaseSelenium {
 	@Test
 	public void deletePrivateCollection() {
 		collectionTitle = getPropertyAttribute(collectionPMKey);
-		homePage = new StartPage(driver).goToHomePage(homePage);
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(spotRUUserName), getPropertyAttribute(spotRUPassWord));
 		CollectionsPage collectionsPage = homePage.goToCollectionPage();
 		CollectionContentPage collectionContentPage = collectionsPage.openCollectionByTitle(collectionTitle);
 		collectionsPage = collectionContentPage.viewCollectionInformation().deleteCollection();

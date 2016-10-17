@@ -101,13 +101,23 @@ public class UserCollectionWithStandardMDPTest extends BaseSelenium {
 		
 		editCollection.addInformation("Test collection");
 		editCollection.addLogo(getFilepath("SampleTIFFile.tif"));
+		editCollection.addAuthor("Restricted", "MPDL");
+		
 		CollectionEntryPage collectionEntryPage = editCollection.submitChanges();
 		
 		MessageType messageType = collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea();
-		Assert.assertEquals(messageType, MessageType.INFO, "Colelction was not successfully changed.");
+		Assert.assertEquals(messageType, MessageType.INFO, "Collection was not successfully changed.");
 	}
 	
 	@Test(priority = 5)
+	public void viewCollectionEntryPage() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		CollectionEntryPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
+		boolean infoDisplayed = createdCollection.descriptionMetadataDisplayed();
+		Assert.assertTrue(infoDisplayed, "Logo is not displayed");
+	}
+	
+	@Test(priority = 6)
 	public void deleteCollection() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();

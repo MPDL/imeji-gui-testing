@@ -3,6 +3,7 @@ package spot.pages.admin;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,20 +24,21 @@ public class UserGroupsOverviewPage extends BasePage {
 	}
 
 	public UserGroupsOverviewPage deleteUserGroupByName(String userGroupName) {
+		if (!isNewUserGroupPresent(userGroupName))
+			throw new NoSuchElementException("User group with this title does not exist.");
 		
-		if (isNewUserGroupPresent(userGroupName)) {
-			WebElement toBeDeletedUserGroup = findUserGroupByName(userGroupName);
-			WebElement deleteButton = toBeDeletedUserGroup.findElement(By.cssSelector(".imj_adminEditPanel>.imj_cancelButton"));
-			deleteButton.click();
+		
+		WebElement toBeDeletedUserGroup = findUserGroupByName(userGroupName);
+		WebElement deleteButton = toBeDeletedUserGroup.findElement(By.cssSelector(".imj_adminEditPanel>.imj_cancelButton"));
+		deleteButton.click();
 			
-			wait.until(ExpectedConditions.visibilityOf(toBeDeletedUserGroup));
+		wait.until(ExpectedConditions.visibilityOf(toBeDeletedUserGroup));
 			
-			// TODO delete currently dependent on number in code
-			WebElement confirmDelete = toBeDeletedUserGroup.findElement(By.cssSelector("div[id^=deleteUserGroup] .imj_submitPanel form .imj_submitButton"));
+		// TODO delete currently dependent on number in code
+		WebElement confirmDelete = toBeDeletedUserGroup.findElement(By.cssSelector("div[id^=deleteUserGroup] .imj_submitPanel form .imj_submitButton"));
 
-			wait.until(ExpectedConditions.visibilityOf(confirmDelete));
-			confirmDelete.click();
-		}
+		wait.until(ExpectedConditions.visibilityOf(confirmDelete));
+		confirmDelete.click();
 		
 		return PageFactory.initElements(driver, UserGroupsOverviewPage.class);
 	}

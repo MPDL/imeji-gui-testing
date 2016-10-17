@@ -23,11 +23,10 @@ public class BrowseItemsPage extends BasePage {
 	}
 	
 	public boolean isItemPresent(String itemTitle) {
-		for(WebElement item : allItems) {
+		for (WebElement item : allItems) {
 			WebElement titleElement = item.findElement(By.className("imj_optionLabel"));
 			String currentItemTitle = titleElement.getAttribute("title");
 			if (currentItemTitle.equals(itemTitle)) {
-				item.findElement(By.tagName("img")).click();
 				return true;
 			}
 		}

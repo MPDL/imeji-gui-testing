@@ -13,6 +13,9 @@ public class KindOfSharePage extends BasePage {
 	@FindBy(id="share:userGroupShare")
 	private WebElement shareWithAUserGroup;
 	
+	@FindBy(className = "imj_backPanel")
+	private WebElement backLink;
+	
 	public KindOfSharePage(WebDriver driver) {
 		super(driver);
 		
@@ -23,6 +26,11 @@ public class KindOfSharePage extends BasePage {
 		shareWithAUserButton.click();
 		
 		return PageFactory.initElements(driver, SharePage.class);
+	}
+	
+	public CollectionEntryPage goBackToCollection() {
+		backLink.click();
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
 }

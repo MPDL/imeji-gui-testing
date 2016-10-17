@@ -4,6 +4,7 @@ import java.awt.AWTException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -69,7 +70,6 @@ public class SingleUploadPage extends BasePage {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;		
 						
 		jse.executeScript("arguments[0].style.visibility = 'visible';", singleUploadForm);
-		//jse.executeScript("arguments[0].style.visibility = 'visible';", inputTag);
 		jse.executeScript("arguments[0].style.display = 'block';", singleUploadForm);
 		jse.executeScript("arguments[0].style.opacity = '1';", singleUploadForm);
 		jse.executeScript("arguments[0].style.height = '1px';", singleUploadForm);
@@ -80,6 +80,8 @@ public class SingleUploadPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("singleUpload:collections")));
 		Select selectDropBox = new Select(selectCollectionToUploadDropBox);
 		selectDropBox.selectByVisibleText(collectionTitle);
+		
+		fillLicense();
 				
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("singleUpload:submitBottom")));
 		saveButton.click();
@@ -108,6 +110,7 @@ public class SingleUploadPage extends BasePage {
 		selectDropBox.selectByVisibleText(collectionTitle);
 		
 		fillMetaData();
+		fillLicense();
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#singleUpload\\:submitBottom")));
 		saveButton.click();
@@ -144,6 +147,18 @@ public class SingleUploadPage extends BasePage {
 		metaDataGeolocNameTextField.sendKeys(defaultMetaDataProfile.getGeolocName());
 		metaDataGeolocLatitudeField.sendKeys(defaultMetaDataProfile.getLatitude());
 		metaDataGeolocLongitudeField.sendKeys(defaultMetaDataProfile.getLongitude());
+	}
+	
+	/**
+	 * Released collections require licenses for all items. Chooses CC BY 4.0 as default.
+	 */
+	private void fillLicense() {
+		try {
+			WebElement licenseDropbox = driver.findElement(By.id("singleUpload:licenseEditorContainer")).findElement(By.tagName("select"));
+			Select licenseSelect = new Select(licenseDropbox);
+			licenseSelect.selectByValue("CC_BY");
+		}
+		catch (NoSuchElementException exc) {}
 	}
 	
 }

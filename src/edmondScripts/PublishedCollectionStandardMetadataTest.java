@@ -17,6 +17,7 @@ import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
 import spot.pages.DiscardedCollectionEntryPage;
+import spot.pages.EditCollectionPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
 import spot.pages.StartPage;
@@ -103,6 +104,24 @@ public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 		String metaDataProfileTitle = driver.findElement(By.tagName("h3")).getText();
 		boolean metaDataProfileIsDefault = metaDataProfileTitle.contains("default profile");
 		Assert.assertTrue(metaDataProfileIsDefault, "This collection should have a default metadata profile.");
+	}
+	
+	@Test(priority = 5)
+	public void addExternalReference() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		EditCollectionPage editCollection = createdCollection.viewCollectionInformation().editInformation();
+		
+		String label = "Test collection";
+		editCollection.addInformation(label);
+		CollectionEntryPage collectionEntryPage = editCollection.submitChanges();
+		
+		MessageType messageType = collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea();
+		Assert.assertEquals(messageType, MessageType.INFO, "Collection was not successfully changed.");
+		
+		boolean labelDisplayed = collectionEntryPage.labelDisplayed(label);
+		Assert.assertTrue(labelDisplayed, "Label is not displayed.");
+		
 	}
 	
 	@Test (priority = 5)

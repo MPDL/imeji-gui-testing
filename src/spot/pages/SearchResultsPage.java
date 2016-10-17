@@ -17,7 +17,7 @@ public class SearchResultsPage extends BasePage {
 	private WebElement resultCount;
 	
 	@FindBy(xpath = "//div[contains(@id, 'filterInfoPanel')]")
-	private WebElement filterInfoPanel;
+	private WebElement filterInfoPanel; 
 	
 	public SearchResultsPage(WebDriver driver) {
 		super(driver);
@@ -34,9 +34,13 @@ public class SearchResultsPage extends BasePage {
 		return Integer.parseInt(numResults);
 	}
 	
-	public int getResultCountCategory() {
+	public int getResultCountCollection() {
 		String numResults = filterInfoPanel.getText().split(" ")[0];
 		return Integer.parseInt(numResults);
+	}
+	
+	public int getResultCountAlbum() {
+		return getResultCountCollection();
 	}
 
 }

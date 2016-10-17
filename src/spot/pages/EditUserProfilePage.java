@@ -19,6 +19,9 @@ public class EditUserProfilePage extends BasePage {
 	@FindBy(css="#userForm .imj_submitButton")
 	private WebElement saveButton;
 	
+	@FindBy(id = "grantForm:createcollectioncheck")
+	private WebElement collectionCheckBox;
+	
 	public EditUserProfilePage(WebDriver driver) {
 		super(driver);
 		
@@ -30,6 +33,14 @@ public class EditUserProfilePage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOf(userFamilyNameTextField));
 		userFamilyNameTextField.clear();
 		userFamilyNameTextField.sendKeys(newFamilyName);
+		save();
+		
+		return PageFactory.initElements(driver, UserProfilePage.class);
+	}
+	
+	public UserProfilePage removeCollectionRights() {
+		if (collectionCheckBox.isSelected())
+			collectionCheckBox.click();
 		save();
 		
 		return PageFactory.initElements(driver, UserProfilePage.class);

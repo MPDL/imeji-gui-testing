@@ -15,6 +15,7 @@ import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.HomePage;
 import spot.pages.notAdmin.NewAlbumPage;
+import spot.util.TimeStamp;
 
 public class SharePrivateAlbumPM extends BaseSelenium {
 	
@@ -22,7 +23,7 @@ public class SharePrivateAlbumPM extends BaseSelenium {
 	private AlbumEntryPage albumEntryPage;
 	private SharePage sharePage;
 	
-	private String albumTitle = "Shared private album";
+	private String albumTitle = "Shared private album: " + TimeStamp.getTimeStamp();
 	private String userFullName;
 	
 	@BeforeClass

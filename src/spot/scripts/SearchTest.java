@@ -36,6 +36,28 @@ public class SearchTest extends BaseSelenium {
 	}
 	
 	@Test
+	public void inexistentCollectionTest() {
+		String searchQuery = "aseirh47382whsuiofidfbhuoidhfid";
+		SearchResultsPage searchQueryPage = startPage.getSearchComponent().searchByCategory(searchQuery, CategoryType.COLLECTION);
+		String searchQueryDisplayText = searchQueryPage.getSearchQueryDisplayText();
+		Assert.assertEquals(searchQueryDisplayText, searchQuery);
+		
+		int numResults = searchQueryPage.getResultCountCollection();
+		Assert.assertEquals(numResults, 0, "Non-matching results were displayed.");
+	}
+	
+	@Test
+	public void inexistentAlbumTest() {
+		String searchQuery = "ajaz89w4z583wrfehigfd8ifjidj";
+		SearchResultsPage searchQueryPage = startPage.getSearchComponent().searchByCategory(searchQuery, CategoryType.ALBUM);
+		String searchQueryDisplayText = searchQueryPage.getSearchQueryDisplayText();
+		Assert.assertEquals(searchQueryDisplayText, searchQuery);
+		
+		int numResults = searchQueryPage.getResultCountAlbum();
+		Assert.assertEquals(numResults, 0, "Non-matching results were displayed.");
+	}
+	
+	@Test
 	public void asteriskWildcard() {
 		search("IMG_*");
 	}
@@ -81,7 +103,7 @@ public class SearchTest extends BaseSelenium {
 		String searchQueryDisplayText = searchQueryPage.getSearchQueryDisplayText();
 		Assert.assertEquals(searchQueryDisplayText, searchQuery);
 		
-		int numResults = searchQueryPage.getResultCountCategory();
+		int numResults = searchQueryPage.getResultCountCollection();
 		Assert.assertTrue(numResults > 0, "Items were not found.");
 	}
 }

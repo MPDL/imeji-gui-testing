@@ -8,6 +8,15 @@ import org.openqa.selenium.support.PageFactory;
 
 public class EditCollectionPage extends BasePage {
 
+	@FindBy(id = "editContainer:mediaContainerForm:persons:0:j_idt161")
+	private WebElement addAuthorButton;
+	
+	@FindBy(id = "editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText")
+	private WebElement author2FamilyName;
+	
+	@FindBy(id = "editContainer:mediaContainerForm:persons:1:collectionAuthor:j_idt194:0:inputOrgaName")
+	private WebElement organisation2Name;
+	
 	@FindBy(id = "editContainer:mediaContainerForm:additionalInfos")
 	private WebElement additionalInfo;
 	
@@ -43,6 +52,12 @@ public class EditCollectionPage extends BasePage {
 	public void addLogo(String filepath) {
 		WebElement input = logoContainer.findElement(By.tagName("input"));
 		input.sendKeys(filepath);
+	}
+	
+	public void addAuthor(String familyName, String organisation) {
+		addAuthorButton.click();
+		author2FamilyName.sendKeys(familyName);
+		organisation2Name.sendKeys(organisation);
 	}
 	
 	public CollectionEntryPage submitChanges() {

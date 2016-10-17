@@ -76,9 +76,7 @@ public class UserCollectionWithoutMDPTest extends BaseSelenium {
 		multipleUploadPage.startUpload();
 		
 		boolean isVerificationSuccessfull = multipleUploadPage.verifyUploadedFiles(fileNames);
-		
 		Assert.assertTrue(isVerificationSuccessfull, "The list of uploaded files is probably incomplete.");
-		
 	}
 	
 	@Test(priority = 3)

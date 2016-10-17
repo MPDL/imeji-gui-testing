@@ -18,8 +18,11 @@ public class UserGroupTest extends BaseSelenium {
 	
 	private AdminHomePage adminHomePage;
 	private UserGroupsOverviewPage allUserGroupsOverViewPage;
+	private UserGroupPage userGroupPage;
 	
-	private String newUserGroupName;
+	private String nameNewGroup;
+	private String newTitle;
+	private String userEmail;
 	
 	@BeforeClass
 	public void beforeClass() {	
@@ -33,36 +36,59 @@ public class UserGroupTest extends BaseSelenium {
 	public void createNewUserGroup() {
 		AdministrationPage adminPage = adminHomePage.goToAdminPage();
 		
-		newUserGroupName = "Test Group: " + TimeStamp.getTimeStamp();
+		nameNewGroup = "Test Group: " + TimeStamp.getTimeStamp();
 		
-		allUserGroupsOverViewPage = adminPage.createNewUserGroup(newUserGroupName);
+		allUserGroupsOverViewPage = adminPage.createNewUserGroup(nameNewGroup);
 	}
 	
 	@Test(priority = 2)
 	public void addNewUserToUserGroupTest() {
-		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
-		allUserGroupsOverViewPage = adminHomePage.goToAdminPage().viewAllUserGroups();
+		userEmail = getPropertyAttribute(spotRUUserName);
 		
-		String userEmail = getPropertyAttribute(spotRUUserName);
-		
-		UserGroupPage userGroupPage = allUserGroupsOverViewPage.viewUserGroupDetails(newUserGroupName);
+		openGroupPage();
 		userGroupPage = userGroupPage.addNewUser(userEmail);
 		
-		boolean isNewlyAddedUserPresent = userGroupPage.isNewlyAddedUserPresent(userEmail);
+		boolean isNewlyAddedUserPresent = userGroupPage.isUserPresent(userEmail);
 		Assert.assertTrue(isNewlyAddedUserPresent, "User '" + userEmail + "' couldn't be added.");
 	}
 	
 	@Test(priority = 3)
+	public void deleteUserFromGroup() {
+		openGroupPage();
+		userGroupPage.deleteUser(userEmail);
+		
+		boolean isNewlyAddedUserPresent = userGroupPage.isUserPresent(userEmail);
+		Assert.assertFalse(isNewlyAddedUserPresent, "User '" + userEmail + "' was not deleted.");
+	}
+	
+	@Test(priority = 4)
+	public void editUserGroupTitle() {
+		openGroupPage();
+		
+		newTitle = "New title of user group";
+		userGroupPage = userGroupPage.changeTitle(newTitle);
+		String actualTitle = userGroupPage.getUserGroupTitle();
+		Assert.assertEquals(newTitle, actualTitle, "Title was not successfully changed.");
+		
+	}
+	
+	@Test(priority = 5)
 	public void deleteUserGroup() {
 		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
 		allUserGroupsOverViewPage = adminHomePage.goToAdminPage().viewAllUserGroups();
-		allUserGroupsOverViewPage.deleteUserGroupByName(newUserGroupName);
+		allUserGroupsOverViewPage.deleteUserGroupByName(newTitle);
 	}
 	
 	@AfterClass
 	public void afterClass() {
 		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
 		adminHomePage.logout();
+	}
+	
+	private void openGroupPage() {
+		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
+		allUserGroupsOverViewPage = adminHomePage.goToAdminPage().viewAllUserGroups();
+		userGroupPage = allUserGroupsOverViewPage.viewUserGroupDetails(nameNewGroup);
 	}
 	
 }

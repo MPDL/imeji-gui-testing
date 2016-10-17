@@ -1,5 +1,9 @@
 package spot.pages;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +34,12 @@ public class CollectionEntryPage extends BasePage {
 	
 	@FindBy(className = "imj_statusHeaderArea")
 	private WebElement status;
+	
+	@FindBy(id = "description")
+	private WebElement description;
+	
+	@FindBy(id = "metadata")
+	private WebElement metadata;
 	
 	public CollectionEntryPage(WebDriver driver) {
 		super(driver);
@@ -84,5 +94,28 @@ public class CollectionEntryPage extends BasePage {
 	
 	public KindOfSharePage goToSharePage() {
 		return shareComponent.share(CategoryType.COLLECTION);
+	}
+	
+	public boolean shareIconVisible() {
+		try {
+			driver.findElement(By.cssSelector(".fa-users.fa-size-3"));
+			return true;
+		}
+		catch (NoSuchElementException exc) {
+			return false;
+		}
+	}
+	
+	public boolean descriptionMetadataDisplayed() {
+		return description.isDisplayed() && metadata.isDisplayed();
+	}
+	
+	public boolean labelDisplayed(String label) {
+		List<WebElement> allSets = driver.findElements(By.className("imj_infodataSet"));
+		for (WebElement set : allSets) {
+			if (set.getText().contains("Label"))
+				return set.getText().contains(label);
+		}
+		return false;
 	}
 }

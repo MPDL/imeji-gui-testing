@@ -91,7 +91,6 @@ public class CollectionContentPage extends BasePage {
 	
 	public void publish() {
 		actionComponent.doAction(ActionType.PUBLISH);
-		//PageFactory.initElements(driver, this);
 	}
 	
 	public KindOfSharePage share() {
@@ -136,12 +135,8 @@ public class CollectionContentPage extends BasePage {
 			item.findElement(By.cssSelector("span>input")).click();
 		}
 
-		try {
-			selectedItemCount.click();
-		} catch (NoSuchElementException e) {
-			retryingFindClick(By.cssSelector("#selPanel\\:preListForm\\:lblSelectedSize"));
-		}
-		
+		wait.until(ExpectedConditions.visibilityOf(selectedItemCount));
+		selectedItemCount.click();
 		wait.until(ExpectedConditions.visibilityOf(addToActiveAlbumButton));
 		addToActiveAlbumButton.click();
 		

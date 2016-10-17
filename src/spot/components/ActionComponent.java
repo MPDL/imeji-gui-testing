@@ -24,7 +24,7 @@ public class ActionComponent extends BasePage {
 	@FindBy(xpath="/html/body/div[1]/div[4]/div[2]/div[5]/div[1]/span[2]")
 	private WebElement actionButton_2;
 	
-	@FindBy(css=".fa-share")
+	@FindBy(css="#sharingMenu .fa-users")
 	private WebElement shareMenueLabel;
 	
 	@FindBy(css="#action\\:actionMenuShareCollection")

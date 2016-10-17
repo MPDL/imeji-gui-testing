@@ -3,6 +3,7 @@ package edmondScripts;
 import java.awt.AWTException;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -24,6 +25,7 @@ public class ShareReleasedItemTest extends BaseSelenium {
 	private DetailedItemViewPage itemViewPage;
 	
 	private String collectionTitle;
+	private String itemTitle = "SampleTIFFile.tif";
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -36,7 +38,7 @@ public class ShareReleasedItemTest extends BaseSelenium {
 		login(spotRUUserName, spotRUPassWord);
 		SingleUploadPage singleUploadPage = homePage.goToSingleUploadPage();
 		try {
-			itemViewPage = singleUploadPage.upload(getFilepath("SampleTIFFile.tif"), collectionTitle);
+			itemViewPage = singleUploadPage.upload(getFilepath(itemTitle), collectionTitle);
 		}
 		catch (AWTException exc) {}
 		
@@ -45,6 +47,8 @@ public class ShareReleasedItemTest extends BaseSelenium {
 	
 	@Test(priority = 2)
 	public void user1SharesItem() {
+		login(spotRUUserName, spotRUPassWord);
+		itemViewPage = homePage.navigateToItemPage().openItemByTitle(itemTitle);
 		KindOfSharePage shareTransitionPage = itemViewPage.shareItem();
 		sharePage = shareTransitionPage.shareWithAUser();
 		sharePage = sharePage.share(getPropertyAttribute(restrUserName), true);
@@ -52,25 +56,27 @@ public class ShareReleasedItemTest extends BaseSelenium {
 	
 	@Test(priority = 3)
 	public void user1ChecksSharePage() {
+		login(spotRUUserName, spotRUPassWord);
 		String userFullName = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
+		sharePage = homePage.navigateToItemPage().openItemByTitle(itemTitle).shareItem().shareWithAUser();
 		
 		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
 		boolean grantIsCorrect = sharePage.checkGrantSelections(userFullName, true);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
-		
-		logout();
 	}
 	
 	@Test(priority = 4)
 	public void user2ReadsItem() {
 		login(restrUserName, restrPassWord);
 		itemViewPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).downloadFirstItemInList();
+		
 		boolean pageDisplayed = itemViewPage.isDetailedItemViewPageDisplayed();
 		Assert.assertTrue(pageDisplayed, "User cannot view item.");
 		
-		logout();
+		boolean shareIconVisible = itemViewPage.shareIconVisible();
+		Assert.assertTrue(shareIconVisible, "Share icon is not visible.");
 	}
 	
 	@Test(priority = 5)
@@ -80,8 +86,6 @@ public class ShareReleasedItemTest extends BaseSelenium {
 		
 		sharePage = collectionEntryPage.goToSharePage().shareWithAUser();
 		sharePage.share(getPropertyAttribute(restrUserName), false);
-		
-		logout();
 	}
 	
 	private void login(String username, String password) {
@@ -90,6 +94,7 @@ public class ShareReleasedItemTest extends BaseSelenium {
 				getPropertyAttribute(password));
 	}
 	
+	@AfterMethod
 	private void logout() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.logout();

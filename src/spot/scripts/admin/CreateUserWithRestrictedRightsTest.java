@@ -47,7 +47,6 @@ public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
 	
 	@AfterClass
 	public void afterClass() {
-		
 		allUsersOverViewPage.deleteUserByEmail(newUserName);
 		
 		adminHomePage.logout();

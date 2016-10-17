@@ -15,10 +15,8 @@ import spot.BaseSelenium;
 import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
-import spot.pages.KindOfSharePage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
-import spot.pages.SharePage;
 import spot.pages.StartPage;
 import spot.pages.notAdmin.NewCollectionPage;
 import spot.pages.notAdmin.HomePage;
@@ -54,7 +52,9 @@ public class PublishedCollectionNoMetadataTest extends BaseSelenium {
 	public void createCollectionWithoutMetaDataProfileTest() {
 		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		
-		String collectionDescription = "This collection has no meta data profile. It is being published.";
+		String collectionDescription = "This collection has no meta data profile. It is being published. ";
+		for (int i = 0; i < 100; i++)
+			collectionDescription += "It has a very long description text. ";
 
 		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
 				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
@@ -69,11 +69,17 @@ public class PublishedCollectionNoMetadataTest extends BaseSelenium {
 		
 		getProperties().put(releasedCollectionKey, collectionTitle);
 	}
+	
+	@Test(priority = 2)
+	public void extensionTest() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		homePage.goToCollectionPage().expandCollapseDescription(collectionTitle);
+	}
 
-	@Test (priority = 2)
+	@Test(priority = 3)
 	public void uploadFilesTest() throws AWTException {
-
-		multipleUploadPage = collectionEntryPage.uploadContent();
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		multipleUploadPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation().uploadContent();
 		
 		for (Map.Entry<String, String> file : files.entrySet()) {
 			multipleUploadPage.addFile(file.getValue());
@@ -88,7 +94,7 @@ public class PublishedCollectionNoMetadataTest extends BaseSelenium {
 		Assert.assertTrue(isVerificationSuccessfull, "The list of uploaded files is probably incomplete.");
 	}
 
-	@Test (priority = 3)
+	@Test (priority = 4)
 	public void publishCollectionTest() {
 		multipleUploadPage.publishCollection();
 
@@ -98,15 +104,23 @@ public class PublishedCollectionNoMetadataTest extends BaseSelenium {
 				"Something went wrong with the release of the collection.");
 	}
 	
-	@Test (priority = 4)
+	@Test (priority = 5)
 	public void noMetaDataProfileTest() {
 		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean isMetaDataProfileDefined = createdCollection.isMetaDataProfileDefined();
 		Assert.assertFalse(isMetaDataProfileDefined, "This collection should not have a metadata profile.");
 	}
 	
+	@Test (priority = 6)
+	public void discardCollection() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
+		collectionEntryPage.discardCollection();
+	}
+	
 	@AfterClass
 	public void afterClass() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.logout();
 	}
 }

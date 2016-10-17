@@ -1,6 +1,7 @@
 package edmondScriptsPrivateMode;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -52,13 +53,14 @@ public class ShareAdminCollectionPM extends BaseSelenium {
 		
 		KindOfSharePage shareTransitionPage = collectionEntryPage.goToSharePage();
 		sharePage = shareTransitionPage.shareWithAUser();
-		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUserName), false, false, false, false, false, false, true);
+		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUserName), true, false, false, false, false, false, true);
 	}
 	
 	@Test(priority = 2)
 	public void checkSharePage() {
 		login(spotRUUserName, spotRUPassWord);
 		userFullName = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
+		sharePage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).share().shareWithAUser();
 		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
@@ -70,6 +72,9 @@ public class ShareAdminCollectionPM extends BaseSelenium {
 	public void user2AdminCollection() {
 		login(restrUserName, restrPassWord);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
+		
+		boolean shareIconVisible = collectionEntryPage.shareIconVisible();
+		Assert.assertTrue(shareIconVisible, "Share icon is not visible.");
 		
 		collectionEntryPage.addMetaDataProfile();
 		navigateDriverBack();
@@ -84,9 +89,15 @@ public class ShareAdminCollectionPM extends BaseSelenium {
 		login(spotRUUserName, spotRUPassWord);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		
+		boolean shareIconVisible = collectionEntryPage.shareIconVisible();
+		Assert.assertTrue(shareIconVisible, "Share icon is not visible.");
+		
 		sharePage = collectionEntryPage.goToSharePage().shareWithAUser();
 		sharePage.share(false, false, getPropertyAttribute(restrUserName), false, false, false, false, false, false, false);
-		
+	}
+	
+	@AfterClass
+	public void afterClass() {
 		switchOnPrivateMode(false);
 	}
 	

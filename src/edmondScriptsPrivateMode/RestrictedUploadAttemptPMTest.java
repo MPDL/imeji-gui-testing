@@ -48,8 +48,12 @@ public class RestrictedUploadAttemptPMTest extends BaseSelenium {
 	public void goToUploadPage() {
 		homePage.goToSingleUploadPage();
 		MessageComponent messageComponent = homePage.getMessageComponent();
+		
+		boolean messageDisplayed = messageComponent.messageDisplayed();
+		Assert.assertTrue(messageDisplayed, "No message was displayed.");
+		
 		MessageType messageType = messageComponent.getMessageTypeOfPageMessageArea();
-		Assert.assertEquals(messageType, MessageType.INFO, "No message was displayed.");
+		Assert.assertEquals(messageType, MessageType.INFO, "No information message was displayed.");
 	}
 	
 	@AfterClass

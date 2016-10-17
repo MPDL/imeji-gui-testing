@@ -1,6 +1,7 @@
 package edmondScripts;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -39,14 +40,14 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 	
 	@Test(priority = 2)
 	public void checkSharePage() {
+		login(spotRUUserName, spotRUPassWord);
 		userFullName = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
+		sharePage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).share().shareWithAUser();
 		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
 		boolean grantIsCorrect = sharePage.checkGrantSelections(false, userFullName, true, true, true, true, true, true, true);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
-		
-		logout();
 	}
 	
 	@Test(priority = 3)
@@ -54,14 +55,15 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 		login(restrUserName, restrPassWord);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		
+		boolean shareIconVisible = collectionEntryPage.shareIconVisible();
+		Assert.assertTrue(shareIconVisible, "Share icon is not visible.");
+		
 		collectionEntryPage.addMetaDataProfile();
 		navigateDriverBack();
 		collectionEntryPage.editInformation();
 		navigateDriverBack();
 		collectionEntryPage.uploadContent();
 		navigateDriverBack();
-		
-		logout();
 	}
 	
 	@Test(priority = 4)
@@ -69,10 +71,11 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 		login(spotRUUserName, spotRUPassWord);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		
+		boolean shareIconVisible = collectionEntryPage.shareIconVisible();
+		Assert.assertTrue(shareIconVisible, "Share icon is not visible.");
+		
 		sharePage = collectionEntryPage.goToSharePage().shareWithAUser();
 		sharePage.share(false, false, getPropertyAttribute(restrUserName), false, false, false, false, false, false, false);
-		
-		logout();
 	}
 	
 	private void login(String username, String password) {
@@ -81,6 +84,7 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 				getPropertyAttribute(password));
 	}
 	
+	@AfterMethod
 	private void logout() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.logout();

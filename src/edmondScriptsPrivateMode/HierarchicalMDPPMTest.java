@@ -1,4 +1,4 @@
-package edmondScripts;
+package edmondScriptsPrivateMode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
+import spot.pages.AdministrationPage;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
@@ -16,11 +17,12 @@ import spot.pages.MetadataOverviewPage;
 import spot.pages.MetadataTransitionPage;
 import spot.pages.NewMetadataProfilePage;
 import spot.pages.StartPage;
+import spot.pages.admin.AdminHomePage;
 import spot.pages.notAdmin.HomePage;
 import spot.pages.notAdmin.NewCollectionPage;
 import spot.util.TimeStamp;
 
-public class HierarchicalMDPTest extends BaseSelenium {
+public class HierarchicalMDPPMTest extends BaseSelenium {
 
 	private HomePage homePage;
 	private CollectionEntryPage collectionEntryPage;
@@ -32,6 +34,21 @@ public class HierarchicalMDPTest extends BaseSelenium {
 	@BeforeClass
 	public void beforeClass() {
 		prepareFiles();
+		switchToPrivateMode(true);
+	}
+	
+	private void switchToPrivateMode(boolean shouldPrivateModeBeOn) {
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		AdminHomePage adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName),
+				getPropertyAttribute(spotAdminPassWord));
+		AdministrationPage adminPage = adminHomePage.goToAdminPage();
+		
+		if (shouldPrivateModeBeOn)
+			adminPage.enablePrivateMode();
+		else
+			adminPage.disablePrivateMode();
+		
+		adminHomePage.logout();
 	}
 	
 	private void prepareFiles() {
@@ -99,5 +116,6 @@ public class HierarchicalMDPTest extends BaseSelenium {
 	public void afterClass() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.logout();
+		switchToPrivateMode(false);
 	}
 }

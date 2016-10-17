@@ -60,6 +60,9 @@ public abstract class BasePage {
 	@FindBy (css="#poweredBy a")
 	private WebElement disclaimer;	
 	
+	@FindBy (css="#poweredBy a:nth-of-type(2)")
+	private WebElement termsOfUse;
+	
 	@FindBy(css=".fa-star")
 	private WebElement activeAlbumMenueLabel;
 	
@@ -138,6 +141,10 @@ public abstract class BasePage {
 	
 	public void lookUpDisclaimer() {
 		disclaimer.click();
+	}
+	
+	public void lookUpTermsOfUse() {
+		termsOfUse.click();
 	}
 	
 	public void lookUpMpdlHomePage() {

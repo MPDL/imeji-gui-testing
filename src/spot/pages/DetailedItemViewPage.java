@@ -1,5 +1,9 @@
 package spot.pages;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -101,5 +105,10 @@ public class DetailedItemViewPage extends BasePage {
 	
 	public KindOfSharePage shareItem() {
 		return shareComponent.share(CategoryType.ITEM);
+	}
+	
+	public boolean shareIconVisible() {
+		List<WebElement> shareIcons = driver.findElements(By.className("fa-users"));
+		return shareIcons.size() > 1;
 	}
 }

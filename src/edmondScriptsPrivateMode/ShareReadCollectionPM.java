@@ -1,6 +1,7 @@
 package edmondScriptsPrivateMode;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -54,6 +55,7 @@ public class ShareReadCollectionPM extends BaseSelenium {
 	public void checkSharePage() {
 		login(spotRUUserName, spotRUPassWord);
 		String userFullName = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
+		sharePage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).share().shareWithAUser();
 		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
@@ -65,12 +67,19 @@ public class ShareReadCollectionPM extends BaseSelenium {
 	public void user2ReadCollection() {
 		login(restrUserName, restrPassWord);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
+		
+		boolean shareIconVisible = collectionEntryPage.shareIconVisible();
+		Assert.assertTrue(shareIconVisible, "Share icon is not visible.");
 	}
 	
 	@Test(priority = 4)
 	public void user1RevokeGrant() {
 		login(spotRUUserName, spotRUPassWord);
 		shareRights(false);
+	}
+	
+	@AfterClass
+	public void afterClass() {
 		switchOnPrivateMode(false);
 	}
 	

@@ -1,6 +1,7 @@
 package edmondScripts;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
@@ -28,28 +29,29 @@ public class ShareReadPrivateCollectionTest extends BaseSelenium {
 	
 	@Test(priority = 2)
 	public void checkSharePage() {
+		login(spotRUUserName, spotRUPassWord);
 		String userFullName = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
+		sharePage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).share().shareWithAUser();
 		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
 		boolean grantIsCorrect = sharePage.checkGrantSelections(false, userFullName, true, false, false, false, false, false, false);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
-		
-		logout();
 	}
 	
 	@Test(priority = 3)
 	public void user2ReadCollection() {
 		login(restrUserName, restrPassWord);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
-		logout();
+		
+		boolean shareIconVisible = collectionEntryPage.shareIconVisible();
+		Assert.assertTrue(shareIconVisible, "Share icon is not visible.");
 	}
 	
 	@Test(priority = 4)
 	public void user1RevokeGrant() {
 		login(spotRUUserName, spotRUPassWord);
 		shareRights(false);
-		logout();
 	}
 	
 	private void login(String username, String password) {
@@ -65,6 +67,7 @@ public class ShareReadPrivateCollectionTest extends BaseSelenium {
 		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUserName), read, false, false, false, false, false, false);
 	}
 	
+	@AfterMethod
 	private void logout() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.logout();

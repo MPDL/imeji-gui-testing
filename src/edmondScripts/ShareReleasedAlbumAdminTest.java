@@ -1,6 +1,8 @@
 package edmondScripts;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
@@ -11,6 +13,7 @@ import spot.pages.SharePage;
 import spot.pages.StartPage;
 import spot.pages.notAdmin.HomePage;
 import spot.pages.notAdmin.NewAlbumPage;
+import spot.util.TimeStamp;
 
 public class ShareReleasedAlbumAdminTest extends BaseSelenium {
 
@@ -18,14 +21,20 @@ public class ShareReleasedAlbumAdminTest extends BaseSelenium {
 	private AlbumEntryPage albumEntryPage;
 	private SharePage sharePage;
 	
-	private String albumTitle = "Shared private album";
+	private String albumTitle = "Shared released album: " + TimeStamp.getTimeStamp();
+	
+	@BeforeClass
+	public void beforeClass() {
+		super.setup();
+	}
 	
 	@Test(priority = 1)
 	public void user1ReleaseAlbum() {
 		login(spotRUUserName, spotRUPassWord);
 		NewAlbumPage newAlbum = homePage.goToCreateNewAlbumPage();
 		albumEntryPage = newAlbum.createAlbum(albumTitle, "");
-		albumEntryPage = albumEntryPage.publish();
+		albumEntryPage.goToCollectionPage().openSomePublishedCollection().addFirstItemToAlbum();
+		albumEntryPage = new StartPage(driver).openActiveAlbumEntryPage().publish();
 	}
 	
 	@Test(priority = 2)
@@ -40,16 +49,13 @@ public class ShareReleasedAlbumAdminTest extends BaseSelenium {
 		
 		boolean grantIsCorrect = sharePage.checkGrantSelections(false, userFullName, true, true, true, true, true, true, true);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
-		
-		logout();
 	}
 	
 	@Test(priority = 3)
 	public void user2DiscardsAlbum() {
 		login(restrUserName, restrPassWord);
 		albumEntryPage = homePage.goToAlbumPage().openAlbumByTitle(albumTitle);
-		albumEntryPage.deleteAlbum();
-		logout();
+		albumEntryPage.discardAlbum();
 	}
 	
 	private void login(String username, String password) {
@@ -63,8 +69,10 @@ public class ShareReleasedAlbumAdminTest extends BaseSelenium {
 		KindOfSharePage shareTransitionPage = albumEntryPage.shareAlbum();
 		sharePage = shareTransitionPage.shareWithAUser();
 		sharePage = sharePage.share(getPropertyAttribute(restrUserName), read, false, false, administrate);
+		sharePage = sharePage.goToAlbumPage().openAlbumByTitle(albumTitle).shareAlbum().shareWithAUser();
 	}
 	
+	@AfterMethod
 	private void logout() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.logout();

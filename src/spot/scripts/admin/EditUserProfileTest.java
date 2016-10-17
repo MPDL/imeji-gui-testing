@@ -59,6 +59,30 @@ public class EditUserProfileTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 3)
+	public void removeCollectionRightsTest() {
+		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetails(newUserName);
+		userProfilePage = userProfilePage.editProfile().removeCollectionRights();
+		
+		/*String actualInfoMessage = userProfilePage.getMessageComponent().getInfoMessage();
+		String expectedInfoMessage = "Password changed successfully";
+		Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Edit Profile Test: Password couldn't be changed.");*/
+	}
+	
+	@Test(priority = 4)
+	public void giveAdminRights() {
+		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetails(newUserName);
+		userProfilePage = userProfilePage.giveAdminRights();
+		Assert.assertTrue(userProfilePage.isAdmin(), "User is not given administrator rights.");
+	}
+	
+	@Test(priority = 5)
+	public void withdrawAdminRights() {
+		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetails(newUserName);
+		userProfilePage = userProfilePage.withdrawAdminRights();
+		Assert.assertTrue(userProfilePage.isAdmin(), "User should not have administrator rights.");
+	}
+	
+	@Test(priority = 6)
 	public void deleteUser() {
 		allUsersOverViewPage.deleteUserByEmail(newUserName);
 	}

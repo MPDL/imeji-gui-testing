@@ -60,6 +60,9 @@ public class ShareReleasedCollectionTest extends BaseSelenium {
 		
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		
+		boolean shareIconVisible = collectionEntryPage.shareIconVisible();
+		Assert.assertTrue(shareIconVisible, "Share icon is not visible.");
+		
 		collectionEntryPage.addMetaDataProfile();
 		navigateDriverBack();
 		collectionEntryPage.editInformation();

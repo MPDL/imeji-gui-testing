@@ -1,6 +1,7 @@
 package spot.pages.admin;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,6 +27,9 @@ public class UserProfilePage extends BasePage {
 	
 	@FindBy(id="userForm:lnkEditUserdata")
 	private WebElement editProfileButton;
+	
+	@FindBy(id="grantForm:admincheck1")
+	private WebElement adminCheckbox;
 	
 	public UserProfilePage(WebDriver driver) {
 		super(driver);
@@ -85,6 +89,31 @@ public class UserProfilePage extends BasePage {
 		familyName = completeName.substring(0, tmpIndex);
 		
 		return familyName;
+	}
+	
+	public UserProfilePage giveAdminRights() {
+		return switchAdminRights(true);
+	}
+	
+	public UserProfilePage withdrawAdminRights() {
+		return switchAdminRights(false);
+	}
+	
+	public boolean isAdmin() {
+		return adminCheckbox.isSelected();
+	}
+	
+	private UserProfilePage switchAdminRights(boolean administrator) {
+		if (administrator) {
+			if (!adminCheckbox.isSelected())
+				adminCheckbox.click();
+		}
+		else
+			adminCheckbox.clear();
+		wait.until(ExpectedConditions.elementToBeClickable(By.className("imj_submitButton")));
+		driver.findElement(By.className("imj_submitButton")).click();
+		
+		return PageFactory.initElements(driver, UserProfilePage.class);
 	}
 	
 }
