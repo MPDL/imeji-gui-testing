@@ -15,7 +15,7 @@ import spot.pages.notAdmin.NewAlbumPage;
 import spot.pages.notAdmin.HomePage;
 import spot.util.TimeStamp;
 
-public class AddItemToPrivateAlbumTest extends BaseSelenium {
+public class AddItemToAlbumTest extends BaseSelenium {
 
 	private HomePage homePage;
 	
@@ -57,24 +57,45 @@ public class AddItemToPrivateAlbumTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 4)
-	public void addPrivateItemToAlbum() {
+	public void addPrivateItemToPrivateAlbum() {
 		homePage.goToCollectionPage().openSomeNotPublishedCollection().addFirstItemToAlbum();
 		AlbumEntryPage albumEntryPage = new StartPage(driver).openActiveAlbumEntryPage();
 		int itemCount = albumEntryPage.getItemCount();
-		Assert.assertEquals(itemCount, 1, "Private item was not added to album.");
+		Assert.assertEquals(itemCount, 1, "Private item was not added to private album.");
 	}
 	
 	@Test(priority = 5)
-	public void addPublishedItemToAlbum() {
+	public void addPublishedItemToPrivateAlbum() {
 		homePage.goToCollectionPage().openSomePublishedCollection().addFirstItemToAlbum();
 		AlbumEntryPage albumEntryPage = new StartPage(driver).openActiveAlbumEntryPage();
 		int itemCount = albumEntryPage.getItemCount();
-		Assert.assertEquals(itemCount, 2, "Published item was not added to album.");
+		Assert.assertEquals(itemCount, 2, "Published item was not added to private album.");
+	}
+	
+	@Test(priority = 6)
+	public void publishAlbum() {
+		homePage.goToAlbumPage().openAlbumByTitle(albumTitle).publish();
+	}
+	
+	@Test(priority = 7)
+	public void addPrivateItemToPublishedAlbum() {
+		homePage.goToCollectionPage().openSomeNotPublishedCollection().addFirstItemToAlbum();
+		AlbumEntryPage albumEntryPage = new StartPage(driver).openActiveAlbumEntryPage();
+		int itemCount = albumEntryPage.getItemCount();
+		Assert.assertEquals(itemCount, 3, "Private item was not added to published album.");
+	}
+	
+	@Test(priority = 8)
+	public void addPublishedItemToPublishedAlbum() {
+		homePage.goToCollectionPage().openSomePublishedCollection().addFirstItemToAlbum();
+		AlbumEntryPage albumEntryPage = new StartPage(driver).openActiveAlbumEntryPage();
+		int itemCount = albumEntryPage.getItemCount();
+		Assert.assertEquals(itemCount, 4, "Published item was not added to published album.");
 	}
 
-	@Test(priority = 6)
-	public void deleteAlbum() {
-		homePage.openActiveAlbumEntryPage().deleteAlbum();
+	@Test(priority = 9)
+	public void discardAlbum() {
+		homePage.openActiveAlbumEntryPage().discardAlbum();
 	}
 	
 	@AfterClass

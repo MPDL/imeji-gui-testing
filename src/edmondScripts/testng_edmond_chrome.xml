@@ -59,7 +59,7 @@
 			
 			<class name="edmondScripts.CreateAlbumTest" />
 			
-			<class name="edmondScripts.AddItemToPrivateAlbumTest" />
+			<class name="edmondScripts.AddItemToAlbumTest" />
 			
 			<!-- Metadata test cases -->
 			
