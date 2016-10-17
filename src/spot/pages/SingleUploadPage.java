@@ -150,13 +150,13 @@ public class SingleUploadPage extends BasePage {
 	}
 	
 	/**
-	 * Released collections require licenses for all items. Chooses CC BY 4.0 as default.
+	 * Released collections require licenses for all items. Chooses ODbL v1.0 by default.
 	 */
 	private void fillLicense() {
 		try {
 			WebElement licenseDropbox = driver.findElement(By.id("singleUpload:licenseEditorContainer")).findElement(By.tagName("select"));
 			Select licenseSelect = new Select(licenseDropbox);
-			licenseSelect.selectByValue("CC_BY");
+			licenseSelect.selectByValue("ODC_ODbL");
 		}
 		catch (NoSuchElementException exc) {}
 	}
