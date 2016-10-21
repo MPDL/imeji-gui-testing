@@ -29,7 +29,7 @@ public class SeleniumTestSuite {
 	public static final String qaEdmond = "http://qa-edmond.mpdl.mpg.de/imeji/";
 	public static final String qaImeji = "http://qa-imeji.mpdl.mpg.de/";
 	
-	public static final String testEnvironmentURL = "http://qa-edmond.mpdl.mpg.de/imeji/";
+	public static final String TEST_ENV_URL = "http://qa-edmond.mpdl.mpg.de/imeji/";
 
 	private static final Logger log4j = LogManager.getLogger(SeleniumTestSuite.class.getName());
 	
@@ -44,7 +44,7 @@ public class SeleniumTestSuite {
 		setDriver(browserType);
 		loadPropertiesFile();
 		
-		driver.navigate().to(testEnvironmentURL);
+		driver.navigate().to(TEST_ENV_URL);
 		log4j.info("Test environment url loaded.");
 	}
 
