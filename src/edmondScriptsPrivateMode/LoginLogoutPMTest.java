@@ -48,7 +48,7 @@ public class LoginLogoutPMTest extends BaseSelenium {
 	
 	@Test(priority = 2)
 	public void logInWithInvalidCredentials() {
-		loginPage = new StartPage(driver).openLoginForm();
+		//loginPage = new StartPage(driver).openLoginForm();
 		loginPage.loginWithBadCredentials("invalid", "credentials");
 		MessageType messageType = loginPage.getMessageComponent().getMessageTypeOfPageMessageArea();
 		Assert.assertTrue(messageType == MessageType.ERROR, "Login was proceeded with invalid credentials, but no error message appeared on the message area of the page");

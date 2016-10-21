@@ -40,6 +40,9 @@ public class CollectionContentPage extends BasePage {
 	@FindBy(xpath="/html/body/div[1]/div[5]/div[1]/div[2]/form/div[2]/div[2]/ul/li[1]/a")
 	private WebElement addToActiveAlbumButton;
 	
+	@FindBy()
+	private WebElement addToPublishedAlbumButton;
+	
 	private ActionComponent actionComponent;
 	
 	private int totalItemNumber;
@@ -121,7 +124,14 @@ public class CollectionContentPage extends BasePage {
 	}
 
 	public void addFirstItemToAlbum() {
-		WebElement firstItem = getItemList().get(0);
+		addItemToAlbum(0);
+	}
+	
+	/**
+	 *  @param index: first item has index of 0
+	 */
+	public void addItemToAlbum(int index) {
+		WebElement firstItem = getItemList().get(index);
 		firstItem.findElement(By.cssSelector("span>input")).click();
 		
 		wait.until(ExpectedConditions.visibilityOf(selectedItemCount));

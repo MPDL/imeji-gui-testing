@@ -161,6 +161,7 @@ public class SharePage extends BasePage {
 	}
 
 	/**
+	 * Check method for collections
 	 * @param released TODO
 	 * @param wantedSharedPersonName - user's name in the form [surname, first]
 	 * @return allGrantsCorrect - user permissions are exactly as specified in method signature
@@ -215,13 +216,28 @@ public class SharePage extends BasePage {
 	}
 	
 	/**
+	 * Check method for albums
+	 */
+	public boolean checkGrantSelections(String wantedSharedPersonName, boolean read, boolean addItems, boolean editAlbumInformation, boolean administrate) {
+		WebElement wantedSharedPerson = findWantedPerson(wantedSharedPersonName);
+		WebElement readGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:0:role:0"));
+		WebElement addGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:0:role:1"));
+		WebElement editGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:0:role:2"));
+		WebElement administrateGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:0:role:3"));
+		
+		return checkCorrectnessOfGrant(read, readGrant) && checkCorrectnessOfGrant(addItems, addGrant) & checkCorrectnessOfGrant(editAlbumInformation, editGrant)
+				& checkCorrectnessOfGrant(administrate, administrateGrant);
+	}
+	
+	/**
+	 * Check method for items
 	 * @param wantedSharedPersonName - user's name in the form [surname, first]
 	 */
 	public boolean checkGrantSelections(String wantedSharedPersonName, boolean read) {
 		WebElement wantedSharedPerson = findWantedPerson(wantedSharedPersonName);
 		WebElement readGrant = wantedSharedPerson.findElement(By.tagName("input"));
 		
-		return checkCorrectnessOfGrant(true, readGrant);
+		return checkCorrectnessOfGrant(read, readGrant);
 	}
 	
 	private WebElement findWantedPerson(String wantedSharedPersonName) {

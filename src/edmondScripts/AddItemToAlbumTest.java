@@ -74,12 +74,13 @@ public class AddItemToAlbumTest extends BaseSelenium {
 	
 	@Test(priority = 6)
 	public void publishAlbum() {
-		homePage.goToAlbumPage().openAlbumByTitle(albumTitle).publish();
+		AlbumEntryPage albumEntryPage = homePage.goToAlbumPage().openAlbumByTitle(albumTitle).publish();
+		albumEntryPage.goToAlbumPage().makeAlbumActive(albumTitle);
 	}
 	
 	@Test(priority = 7)
 	public void addPrivateItemToPublishedAlbum() {
-		homePage.goToCollectionPage().openSomeNotPublishedCollection().addFirstItemToAlbum();
+		homePage.goToCollectionPage().openSomeNotPublishedCollection().addItemToAlbum(1);
 		AlbumEntryPage albumEntryPage = new StartPage(driver).openActiveAlbumEntryPage();
 		int itemCount = albumEntryPage.getItemCount();
 		Assert.assertEquals(itemCount, 3, "Private item was not added to published album.");
@@ -87,7 +88,7 @@ public class AddItemToAlbumTest extends BaseSelenium {
 	
 	@Test(priority = 8)
 	public void addPublishedItemToPublishedAlbum() {
-		homePage.goToCollectionPage().openSomePublishedCollection().addFirstItemToAlbum();
+		homePage.goToCollectionPage().openSomePublishedCollection().addItemToAlbum(1);
 		AlbumEntryPage albumEntryPage = new StartPage(driver).openActiveAlbumEntryPage();
 		int itemCount = albumEntryPage.getItemCount();
 		Assert.assertEquals(itemCount, 4, "Published item was not added to published album.");

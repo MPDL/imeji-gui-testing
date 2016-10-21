@@ -37,7 +37,6 @@ public class AdministrationPage extends BasePage {
 	}
 
 	public UserProfilePage createNewUser(String newUserName) {
-		
 		createNewUser.click();
 		
 		NewUserPage createNewUserPage = new NewUserPage(driver);
@@ -46,7 +45,6 @@ public class AdministrationPage extends BasePage {
 	}
 	
 	public UserProfilePage createNewRestrictedUser(String newUserName) {
-		
 		createNewUser.click();
 		
 		NewUserPage createNewUserPage = new NewUserPage(driver);
@@ -55,14 +53,12 @@ public class AdministrationPage extends BasePage {
 	}
 	
 	public UsersOverviewPage viewAllUsers() {
-		
 		viewAllUsers.click();
 		
 		return PageFactory.initElements(driver, UsersOverviewPage.class);
 	}
 
 	public UserGroupsOverviewPage createNewUserGroup(String newUserGroupName) {
-		
 		createNewUserGroup.click();
 		
 		NewUserGroupPage createNewUserGroupPage = new NewUserGroupPage(driver);
@@ -71,35 +67,30 @@ public class AdministrationPage extends BasePage {
 	}
 	
 	public UserGroupsOverviewPage viewAllUserGroups() {
-		
 		viewAllUserGroups.click();
 		
 		return PageFactory.initElements(driver, UserGroupsOverviewPage.class);
 	}
 	
 	public ConfigurationEditPage enablePrivateMode() {
-		
 		configurationEdit.click();
 		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
 		return configurationEditPage.enablePrivateMode();
 	}
 	
 	public ConfigurationEditPage disablePrivateMode() {
-		
 		configurationEdit.click();
 		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
 		return configurationEditPage.disablePrivateMode();
 	}
 	
 	public ConfigurationEditPage enableAlbums() {
-		
 		configurationEdit.click();
 		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
 		return configurationEditPage.enableAlbums();
 	}
 	
 	public ConfigurationEditPage disableAlbums() {
-		
 		configurationEdit.click();
 		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
 		return configurationEditPage.disableAlbums();
@@ -109,6 +100,18 @@ public class AdministrationPage extends BasePage {
 		configurationEdit.click();
 		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
 		return configurationEditPage.browseDefaultViewThumbnails();
+	}
+	
+	public ConfigurationEditPage setMaintenanceMessage(String message) {
+		configurationEdit.click();
+		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
+		return configurationEditPage.setMaintenanceMessage(message);
+	}
+	
+	public ConfigurationEditPage setTermsOfUse(String termsOfUse) {
+		configurationEdit.click();
+		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
+		return configurationEditPage.setTermsOfUse(termsOfUse);
 	}
 	
 	public boolean areAllComponentsDisplayed() {

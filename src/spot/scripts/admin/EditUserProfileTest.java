@@ -19,9 +19,9 @@ public class EditUserProfileTest extends BaseSelenium {
 
 	private AdminHomePage adminHomePage;
 	private AdministrationPage adminPage;
+	private UsersOverviewPage allUsersOverViewPage;
 	
 	private String newUserName = "edmond-test@mpdl.mpg.de";
-	private UsersOverviewPage allUsersOverViewPage;
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -79,7 +79,7 @@ public class EditUserProfileTest extends BaseSelenium {
 	public void withdrawAdminRights() {
 		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetails(newUserName);
 		userProfilePage = userProfilePage.withdrawAdminRights();
-		Assert.assertTrue(userProfilePage.isAdmin(), "User should not have administrator rights.");
+		Assert.assertFalse(userProfilePage.isAdmin(), "User should not have administrator rights.");
 	}
 	
 	@Test(priority = 6)

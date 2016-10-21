@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.CategoryType;
 import spot.components.ActionComponent;
@@ -43,7 +44,14 @@ public class AlbumEntryPage extends BasePage {
 	}
 	
 	public DiscardedAlbumEntryPage discardAlbum() {
-		actionComponent.doAction(ActionType.DISCARD);
+		//actionComponent.doAction(ActionType.DISCARD);
+		
+		WebElement actionMenu = driver.findElement(By.id("actionMenu"));
+		actionMenu.click();
+		actionMenu.findElement(By.id("action:actionMenuDiscard")).click();
+		driver.findElement(By.xpath("//*[contains(@id, 'discardForm:discardComment')]")).sendKeys("Discarding for testing purposes.");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@id, 'discardForm:btnDiscardContainer')]")));
+		driver.findElement(By.xpath("//*[contains(@id, 'discardForm:btnDiscardContainer')]")).click();
 		
 		return PageFactory.initElements(driver, DiscardedAlbumEntryPage.class);
 	}

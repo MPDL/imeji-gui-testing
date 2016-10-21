@@ -55,9 +55,7 @@
 			
 			<class name="edmondScripts.UserDeletesPrivateCollectionTest" />
 			
-			<class name="spot.scripts.collections.CreateCollectionInDarkModeTest" />
-			
-			<class name="edmondScripts.CreateAlbumTest" />
+ 			<class name="edmondScripts.CreateAlbumTest" />
 			
 			<class name="edmondScripts.AddItemToAlbumTest" />
 			
@@ -85,7 +83,7 @@
 			
 			<class name="edmondScripts.CollectionOtherMDPTest" />
 			
-			<!-- Miscellanious actions test cases -->
+ 			<!-- Miscellaneous actions test cases -->
 			
 			<class name="edmondScripts.ChangeColourSchemeTest" />
 			
@@ -107,7 +105,7 @@
 			
 			<class name="spot.scripts.SearchSpecialCharactersTest" />
 			
-			<!-- Navigation test cases -->
+ 			<!-- Navigation test cases -->
 			
 			<class name="spot.scripts.CategorySelectionTest" />
 			
@@ -133,7 +131,7 @@
 			
 			<class name="spot.scripts.collections.CreateCollectionWithoutOrgNameTest" />
 			
-			<!-- Share use cases -->
+	 		<!-- Share use cases -->
 			
 			<class name="spot.scripts.collections.CreatePrivateCollectionTest" />
 			
@@ -157,7 +155,7 @@
 			
 			<class name="edmondScripts.ShareReleasedAlbumAdminTest" />
 			
-			<!-- Share use cases in private mode -->
+	 		<!-- Share use cases in private mode -->
 
 			<class name="edmondScriptsPrivateMode.UserCollectionWithoutMDPPrivateMode" />
 			

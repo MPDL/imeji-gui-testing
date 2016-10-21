@@ -1,6 +1,5 @@
 package spot.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,10 +11,10 @@ import spot.pages.notAdmin.HomePage;
 
 public class LoginPage extends BasePage {
 
-	@FindBy(name ="Header:loginForm:j_idt29")
+	@FindBy(css = ".imj_loginFormDisplay input[type='text']")
 	private WebElement userNameTextField;
 	
-	@FindBy(name ="Header:loginForm:j_idt30")
+	@FindBy(css = ".imj_loginFormDisplay input[type='password']")
 	private WebElement passwordTextField;
 		
 	@FindBy(name = "Header:loginForm:lnkLogin2")

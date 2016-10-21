@@ -111,13 +111,6 @@ public class PublishedCollectionNoMetadataTest extends BaseSelenium {
 		Assert.assertFalse(isMetaDataProfileDefined, "This collection should not have a metadata profile.");
 	}
 	
-	@Test (priority = 6)
-	public void discardCollection() {
-		homePage = new StartPage(driver).goToHomePage(homePage);
-		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
-		collectionEntryPage.discardCollection();
-	}
-	
 	@AfterClass
 	public void afterClass() {
 		homePage = new StartPage(driver).goToHomePage(homePage);

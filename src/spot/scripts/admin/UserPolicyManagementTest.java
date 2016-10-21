@@ -27,13 +27,13 @@ public class UserPolicyManagementTest extends BaseSelenium {
 	@Test(priority = 1)
 	public void loginAsAdmin() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
-		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
+		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName), getPropertyAttribute(spotAdminPassWord));
 	}
 	
 	@Test(priority = 2)
 	public void repeatedEmail() {
 		AdministrationPage administrationPage = adminHomePage.goToAdminPage();
-		UserProfilePage createUserPage = administrationPage.createNewUser(restrUserName);
+		UserProfilePage createUserPage = administrationPage.createNewUser(getPropertyAttribute(restrUserName));
 		
 		MessageType messageType = createUserPage.getMessageComponent().getMessageTypeOfPageMessageArea();
 		Assert.assertEquals(messageType, MessageType.ERROR, "No error message appeared after registration with repeated e-mail.");
@@ -41,7 +41,7 @@ public class UserPolicyManagementTest extends BaseSelenium {
 		adminHomePage = (AdminHomePage) createUserPage.goToHomePage(adminHomePage);
 	}
 	
-	@Test(priority = 2)
+	@Test(priority = 3)
 	public void missingEmail() {
 		AdministrationPage administrationPage = adminHomePage.goToAdminPage();
 		UserProfilePage createUserPage = administrationPage.createNewUser("");
@@ -52,7 +52,7 @@ public class UserPolicyManagementTest extends BaseSelenium {
 		adminHomePage = (AdminHomePage) createUserPage.goToHomePage(adminHomePage);
 	}
 	
-	@Test(priority = 2)
+	@Test(priority = 4)
 	private void createNewUser() {
 		emailOfNewUser = getPropertyAttribute("tuSpotUserName");
 		
@@ -61,7 +61,7 @@ public class UserPolicyManagementTest extends BaseSelenium {
 		adminHomePage = (AdminHomePage) administrationPage.goToHomePage(adminHomePage);
 	}
 	
-	@Test(priority = 3)
+	@Test(priority = 5)
 	public void deleteTestUserTest() {
 		UsersOverviewPage allUsersOverViewPage = adminHomePage.goToAdminPage().viewAllUsers();
 		allUsersOverViewPage.deleteUserByEmail(emailOfNewUser);

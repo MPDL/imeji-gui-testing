@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -211,7 +212,7 @@ public abstract class BasePage {
                 driver.findElement(by).click();
                 result = true;
                 break;
-            } catch(StaleElementReferenceException | NoSuchElementException e) {
+            } catch(WebDriverException e) {
             }
             attempts++;
         }

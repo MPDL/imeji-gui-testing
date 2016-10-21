@@ -25,6 +25,12 @@ public class ConfigurationGeneralPanel extends BasePage {
 	@FindBy(id = "configForm:j_idt362:1")
 	private WebElement albumsYesRadioButton;
 	
+	@FindBy(name = "configForm:j_idt368")
+	private WebElement maintenanceMessageBox;
+	
+	@FindBy(name = "configForm:j_idt352")
+	private WebElement termsOfUseBox;
+	
 	@FindBy(name = "configForm:j_idt320")
 	private WebElement saveGeneralButton;
 	
@@ -71,6 +77,22 @@ public class ConfigurationGeneralPanel extends BasePage {
 		if (!albumsNoRadioButton.isSelected())
 			albumsNoRadioButton.click();
 		
+		return saveAllChanges();
+	}
+	
+	public ConfigurationEditPage setMaintenanceMessage(String message) {
+		openGeneralPanel();
+		
+		maintenanceMessageBox.clear();
+		maintenanceMessageBox.sendKeys(message);
+		return saveAllChanges();
+	}
+	
+	public ConfigurationEditPage setTermsOfUse(String termsOfUse) {
+		openGeneralPanel();
+		
+		termsOfUseBox.clear();
+		termsOfUseBox.sendKeys(termsOfUse);
 		return saveAllChanges();
 	}
 	

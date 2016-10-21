@@ -39,11 +39,12 @@ public class DisableAlbumsTest extends BaseSelenium {
 	public void RUCannotCreateAlbums() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.goToCreateNewAlbumPage();
-		homePage.logout();
 	}
 	
 	@Test(priority = 4)
 	public void enableAlbums() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		homePage.logout();
 		loginPage = new StartPage(driver).openLoginForm();
 		AdminHomePage adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName),getPropertyAttribute(spotAdminPassWord));
 		adminHomePage.goToAdminPage().enableAlbums();

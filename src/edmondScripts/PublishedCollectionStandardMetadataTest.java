@@ -16,7 +16,6 @@ import spot.BaseSelenium;
 import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
-import spot.pages.DiscardedCollectionEntryPage;
 import spot.pages.EditCollectionPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
@@ -68,7 +67,7 @@ public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 
 	}
 
-	@Test (priority = 2)
+	@Test(priority = 2)
 	public void uploadFilesTest() throws AWTException {
 		multipleUploadPage = collectionEntryPage.uploadContent();
 		
@@ -85,7 +84,7 @@ public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 		Assert.assertTrue(isVerificationSuccessfull, "The list of uploaded files is probably incomplete.");
 	}
 
-	@Test (priority = 3)
+	@Test(priority = 3)
 	public void publishCollectionTest() {
 		multipleUploadPage.publishCollection();
 		
@@ -94,7 +93,7 @@ public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 		Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Something went wrong with the release of the collection.");
 	}
 	
-	@Test (priority = 4)
+	@Test(priority = 4)
 	public void defaultMetaDataProfileTest() {
 		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean isMetaDataProfileDefined = createdCollection.isMetaDataProfileDefined();
@@ -124,7 +123,13 @@ public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 		
 	}
 	
-	@Test (priority = 5)
+	/*@Test(priority = 6)
+	public void discardItem() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		CollectionContentPage collectionContentPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+	}*/
+	
+	@Test(priority = 7)
 	public void discardCollection() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();

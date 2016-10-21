@@ -109,7 +109,7 @@ public class UserProfilePage extends BasePage {
 				adminCheckbox.click();
 		}
 		else
-			adminCheckbox.clear();
+			adminCheckbox.click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.className("imj_submitButton")));
 		driver.findElement(By.className("imj_submitButton")).click();
 		

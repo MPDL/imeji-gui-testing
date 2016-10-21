@@ -35,6 +35,14 @@ public class ConfigurationEditPage extends BasePage {
 		return configurationGeneralPanel.disableAlbums();
 	}
 	
+	public ConfigurationEditPage setMaintenanceMessage(String message) {
+		return configurationGeneralPanel.setMaintenanceMessage(message);
+	}
+	
+	public ConfigurationEditPage setTermsOfUse(String termsOfUse) {
+		return configurationGeneralPanel.setTermsOfUse(termsOfUse);
+	}
+	
 	public ConfigurationEditPage browseDefaultViewThumbnails() {
 		return configurationAppearancePanel.browseDefaultViewThumbnails();
 	}

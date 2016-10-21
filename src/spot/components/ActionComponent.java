@@ -48,7 +48,7 @@ public class ActionComponent extends BasePage {
 	@FindBy(id="withdrawMenuItemDialog")
 	private WebElement withDrawMenuItemDialog;
 	
-	@FindBy(xpath=".//*[@class='imj_confirmationReasonTextarea']/label")
+	@FindBy(xpath=".//*[contains(@id, 'discardForm:discardComment')]")
 	private WebElement discardCommentTextArea;
 	
 	@FindBy(css="#deleteMenuItemDialog .imj_submitButton")	
@@ -103,7 +103,7 @@ public class ActionComponent extends BasePage {
 				case DISCARD:
 				actionButton_2.click();
 				discardButton.click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='imj_confirmationReasonTextarea']/label")));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[contains(id, 'discardForm:discardComment')]")));
 				discardCommentTextArea.sendKeys("Discarding due to test automation purposes _ case 2");
 								
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("withdrawMenuItemDialog")));

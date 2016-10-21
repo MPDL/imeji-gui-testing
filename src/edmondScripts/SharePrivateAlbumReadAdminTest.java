@@ -44,7 +44,7 @@ public class SharePrivateAlbumReadAdminTest extends BaseSelenium {
 		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
-		boolean grantIsCorrect = sharePage.checkGrantSelections(false, userFullName, true, false, false, false, false, false, false);
+		boolean grantIsCorrect = sharePage.checkGrantSelections(userFullName, true, false, false, false);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
 	}
 	
@@ -62,7 +62,7 @@ public class SharePrivateAlbumReadAdminTest extends BaseSelenium {
 		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
-		boolean grantIsCorrect = sharePage.checkGrantSelections(false, userFullName, true, true, true, true, true, true, true);
+		boolean grantIsCorrect = sharePage.checkGrantSelections(userFullName, true, true, true, true);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
 	}
 	
@@ -75,7 +75,7 @@ public class SharePrivateAlbumReadAdminTest extends BaseSelenium {
 		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
-		boolean grantIsCorrect = sharePage.checkGrantSelections(false, userFullName, true, false, false, false, false, false, false);
+		boolean grantIsCorrect = sharePage.checkGrantSelections(userFullName, true, false, false, false);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
 	}
 	

@@ -70,7 +70,7 @@ public class CreateAlbumTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 6)
-	public void deleteAlbum() {
+	public void discardAlbum() {
 		login();
 		albumEntryPage = adminHomePage.goToAlbumPage().openAlbumByTitle(albumTitle);
 		albumEntryPage.discardAlbum();

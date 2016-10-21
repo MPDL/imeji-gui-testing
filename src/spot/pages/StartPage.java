@@ -18,7 +18,7 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class StartPage extends BasePage {
 
-	@FindBy(id ="Header:loginForm")
+	@FindBy(id ="lnkshowLogin")
 	private WebElement openLoginFormButton;
 	
 	@FindBy(xpath =".//*[@id='Header:j_idt38']/a")
@@ -57,7 +57,7 @@ public class StartPage extends BasePage {
 	}
 	
 	/**
-	 * Is the button that opens the login form, present?
+	 * Is the button that opens the login form present?
 	 * @return
 	 */
 	public boolean isOpenLoginFormButtonPresent() {
