@@ -3,7 +3,6 @@ package spot.pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -47,6 +46,12 @@ public class DetailedItemViewPage extends BasePage {
 	
 	@FindBy(css=".imj_metadataWrapper>.imj_metadataWrapper>div:nth-of-type(5)>.imj_metadataValue")
 	private WebElement dateLabel;
+	
+	@FindBy(id = "deleteMenuItemDialog")
+	private WebElement deleteItemDialog;
+	
+	@FindBy(id = "withdrawMenuItemDialog")
+	private WebElement discardItemDialog;
 	
 	public DetailedItemViewPage(WebDriver driver) {
 		super(driver);
@@ -105,6 +110,28 @@ public class DetailedItemViewPage extends BasePage {
 	
 	public KindOfSharePage shareItem() {
 		return shareComponent.share(CategoryType.ITEM);
+	}
+	
+	public CollectionContentPage deleteItem() {
+		WebElement actionMenu = driver.findElement(By.id("actionMenu"));
+		actionMenu.click();
+		actionMenu.findElement(By.id("action:actionMenuDeleteItem")).click();
+		wait.until(ExpectedConditions.visibilityOf(deleteItemDialog));
+		deleteItemDialog.findElement(By.className("imj_submitButton")).click();
+		
+		return PageFactory.initElements(driver, CollectionContentPage.class);
+	}
+	
+	public CollectionContentPage discardItem() {
+		WebElement actionMenu = driver.findElement(By.id("actionMenu"));
+		actionMenu.click();
+		actionMenu.findElement(By.id("action:actionMenuDiscardItem")).click();
+		wait.until(ExpectedConditions.visibilityOf(discardItemDialog));
+		discardItemDialog.findElement(By.className("imj_dialogReasonText")).sendKeys("Discarding for testing purposes.");
+		wait.until(ExpectedConditions.elementToBeClickable(By.className("imj_submitButton")));
+		discardItemDialog.findElement(By.className("imj_submitButton")).click();
+		
+		return PageFactory.initElements(driver, CollectionContentPage.class);
 	}
 	
 	public boolean shareIconVisible() {

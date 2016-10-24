@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import spot.components.ActionComponent;
 import spot.components.ActionComponent.ActionType;
@@ -42,6 +43,12 @@ public class CollectionContentPage extends BasePage {
 	
 	@FindBy()
 	private WebElement addToPublishedAlbumButton;
+	
+	@FindBy(id = "dialogDeleteAll")
+	private WebElement deleteAllDialog;
+	
+	@FindBy(css = "#actionsMenuArea .imj_overlayMenu:nth-of-type(2) li:nth-of-type(2) a")
+	private WebElement metadataRDF;
 	
 	private ActionComponent actionComponent;
 	
@@ -81,7 +88,6 @@ public class CollectionContentPage extends BasePage {
 	}
 	
 	public int getItemListSize() {
-		
 		List<WebElement> mediaList = getItemList();
 		return mediaList.size();		
 	}
@@ -110,7 +116,7 @@ public class CollectionContentPage extends BasePage {
 			
 			WebElement item = itemList.get(i);
 									
-			WebElement itemThumbNail = item.findElement(By.className("browseContent:pictureList:"+i+":itemSelectForm:lnkPicDetailBrowse"));
+			WebElement itemThumbNail = item.findElement(By.className("browseContent:pictureList:" + i + ":itemSelectForm:lnkPicDetailBrowse"));
 			itemThumbNail.click();
 			driver.navigate().back();
 		}
@@ -131,8 +137,9 @@ public class CollectionContentPage extends BasePage {
 	 *  @param index: first item has index of 0
 	 */
 	public void addItemToAlbum(int index) {
-		WebElement firstItem = getItemList().get(index);
-		firstItem.findElement(By.cssSelector("span>input")).click();
+		validateIndex(index);
+		WebElement wantedItem = getItemList().get(index);
+		wantedItem.findElement(By.cssSelector("span>input")).click();
 		
 		wait.until(ExpectedConditions.visibilityOf(selectedItemCount));
 		selectedItemCount.click();
@@ -151,6 +158,40 @@ public class CollectionContentPage extends BasePage {
 		addToActiveAlbumButton.click();
 		
 		return getItemListSize();
+	}
+	
+	public CollectionContentPage deleteItem(int index) {
+		DetailedItemViewPage itemView = openItem(index);
+		return itemView.deleteItem();
+	}
+	
+	public CollectionContentPage discardItem(int index) {
+		DetailedItemViewPage itemView = openItem(index);
+		return itemView.discardItem();
+	}
+	
+	public CollectionContentPage deleteAllItems() {
+		WebElement actionMenu = driver.findElement(By.id("actionMenu"));
+		actionMenu.click();
+		actionMenu.findElement(By.cssSelector("li:nth-of-type(3)")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dialogDeleteAll")));
+		deleteAllDialog.findElement(By.className("imj_submitButton")).click();
+		
+		return PageFactory.initElements(driver, CollectionContentPage.class);
+	}
+	
+	public DetailedItemViewPage openItem(int index) {
+		validateIndex(index);
+		WebElement item = getItemList().get(0).findElement(By.tagName("img"));
+		item.click();
+		
+		return PageFactory.initElements(driver, DetailedItemViewPage.class);
+	}
+	
+	private void validateIndex(int index) {
+		int itemCount = getItemListSize();
+		if (index > itemCount)
+			throw new IllegalArgumentException("No item with index " + index + ". Total count: " + itemCount);
 	}
 	
 	public DiscardedCollectionEntryPage discardCollection() {
@@ -179,6 +220,11 @@ public class CollectionContentPage extends BasePage {
 	public CollectionEntryPage viewCollectionInformation() {
 		aboutLink.click();
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	public boolean downloadItemMetadata() {
+		driver.findElement(By.cssSelector("#actionsMenuArea .imj_overlayMenu:nth-of-type(2)")).click();
+		return metadataRDF.isDisplayed() && metadataRDF.isEnabled();
 	}
 
 }

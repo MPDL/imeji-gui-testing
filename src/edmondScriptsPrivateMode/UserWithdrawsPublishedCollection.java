@@ -96,24 +96,25 @@ public class UserWithdrawsPublishedCollection extends BaseSelenium {
 		CollectionEntryPage collectionEntryPage = collectionContentPage.viewCollectionInformation();
 		CollectionsPage collectionsPage = collectionEntryPage.deleteCollection();
 		
-		boolean collectionHasBeenWithdrawn = false;
+		boolean collectionHasBeenWithdrawn;
 		
 		try {
 			collectionsPage.openCollectionByTitle(collectionTitle);
-		}
-		catch (NoSuchElementException | NullPointerException exc) {
 			collectionHasBeenWithdrawn = true;
 		}
-		Assert.assertTrue(collectionHasBeenWithdrawn);
+		catch (NoSuchElementException | NullPointerException exc) {
+			collectionHasBeenWithdrawn = false;
+		}
+		Assert.assertFalse(collectionHasBeenWithdrawn);
 	}
 	
 	@Test(priority = 5)
-	public void userCannotViewWithdrawnItems() {
+	public void userCanViewWithdrawnItems() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		BrowseItemsPage browseItemsPage = homePage.navigateToItemPage();
 		for (String fileName : files.keySet()) {
 			boolean itemIsPresent = browseItemsPage.isItemPresent(fileName);
-			Assert.assertFalse(itemIsPresent, "Published file is not displayed on item page.");
+			Assert.assertTrue(itemIsPresent, "Published file should be displayed on item page.");
 		}
 	}
 	

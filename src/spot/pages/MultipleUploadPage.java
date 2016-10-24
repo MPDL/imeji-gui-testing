@@ -29,6 +29,15 @@ public class MultipleUploadPage extends BasePage {
 	@FindBy(name="lnkSelectEdit")
 	private WebElement editUploadedImagesButton;
 	
+	@FindBy(xpath="//input[contains(@id, 'selUniqueNames')]")
+	private WebElement uniquenessCheckBox;
+	
+	@FindBy(xpath="//input[contains(@id, 'selUploadFile')]")
+	private WebElement overwriteCheckBox;
+	
+	@FindBy(xpath="//input[contains(@id, 'selUploadThumb')]")
+	private WebElement previewCheckBox;
+	
 	private ActionComponent actionComponent;
 	
 	public MultipleUploadPage(WebDriver driver) {
@@ -40,7 +49,6 @@ public class MultipleUploadPage extends BasePage {
 	}
 
 	public void addFile(String filePath) throws AWTException {
-
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String js = "arguments[0].style.visibility = 'visible';";
 	    jse.executeScript(js, driver.findElement(By.xpath("/html/body/div[1]/div[5]/div[1]/div/div[1]/div/div[1]/div/div[2]/input")));
@@ -50,9 +58,37 @@ public class MultipleUploadPage extends BasePage {
 		
 	}
 	
+	public void checkUniqueness(boolean check) {
+		checkbox(uniquenessCheckBox, check);
+	}
+	
+	public void overwriteFile(boolean overwrite) {
+		checkbox(overwriteCheckBox, overwrite);
+	}
+	
+	public void uploadPreview(boolean preview) {
+		checkbox(previewCheckBox, preview);
+	}
+	
+	private void checkbox(WebElement checkbox, boolean check) {
+		if (check) {
+			if (!checkbox.isSelected())
+				checkbox.click();
+		}
+		else {
+			if (checkbox.isSelected())
+				checkbox.click();
+		}
+	}
+	
 	public void startUpload() {
 		startUploadButton.click();	
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("imj_fileSuccessMessageArea")));
+	}
+	
+	public void startFailedUpload() {
+		startUploadButton.click();	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("imj_fileErrorMessageArea")));
 	}
 	
 	public boolean verifyUploadedFiles(List<String> fileNames) {

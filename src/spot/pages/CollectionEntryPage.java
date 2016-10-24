@@ -26,6 +26,9 @@ public class CollectionEntryPage extends BasePage {
 	@FindBy(css="#metadata>a")
 	private WebElement addMetaDataProfileButton;	
 	
+	@FindBy(id = "actionMenu")
+	private WebElement actionMenu;
+	
 	@FindBy(id = "editMenu")
 	private WebElement editButton;
 	
@@ -79,7 +82,10 @@ public class CollectionEntryPage extends BasePage {
 	}
 	
 	public CollectionEntryPage publishCollection() {
-		getActionComponent().doAction(ActionType.PUBLISH);
+		actionMenu.click();
+		driver.findElement(By.id("action:actionMenuRelease")).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("releaseMenuItemDialog")));
+		driver.findElement(By.className("imj_submitButton")).click();
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}

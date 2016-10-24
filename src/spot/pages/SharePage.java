@@ -45,6 +45,12 @@ public class SharePage extends BasePage {
 	@FindBy(name="share:j_idt182")
 	private WebElement shareButton;	
 	
+	@FindBy(id = "share:unknownEmails")
+	private WebElement unknownEmailPanel;
+	
+	@FindBy(css = "#share\\:unknownEmails form")
+	private WebElement emailList;
+	
 	public SharePage(WebDriver driver) {
 		super(driver);
 		
@@ -266,5 +272,18 @@ public class SharePage extends BasePage {
 		}
 
 		return isGrantCorrect;
+	}
+	
+	public boolean inviteButtonEnabled() {
+		WebElement inviteButton = unknownEmailPanel.findElement(By.className("imj_submitButton"));
+		return inviteButton.isDisplayed() && inviteButton.isEnabled();
+	}
+	
+	public List<WebElement> getExternalEmails() {
+		return emailList.findElements(By.tagName("li"));
+	}
+	
+	public boolean messageDisplayed() {
+		return unknownEmailPanel.isDisplayed();
 	}
 }

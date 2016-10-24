@@ -15,11 +15,11 @@
 			
 			<!-- Admin configuration test cases -->
 			
+			<class name="edmondScripts.EnablePrivateModeTest" />
+			
 			<class name="spot.scripts.admin.UserPolicyManagementTest" />
 			
 			<class name="spot.scripts.BrowseItemsDefaultThumbnailTest" />
-			
-			<class name="edmondScripts.EnablePrivateModeTest" />
 			
 			<class name="edmondScripts.UserGroupTest" />
 			
@@ -58,6 +58,8 @@
  			<class name="edmondScripts.CreateAlbumTest" />
 			
 			<class name="edmondScripts.AddItemToAlbumTest" />
+			
+			<class name="edmondScripts.ItemUploadTest" />
 			
 			<!-- Metadata test cases -->
 			
@@ -154,6 +156,8 @@
 			<class name="edmondScripts.SharePrivateAlbumReadAdminTest" />
 			
 			<class name="edmondScripts.ShareReleasedAlbumAdminTest" />
+			
+			<class name="edmondScripts.ShareExternalUser" />
 			
 	 		<!-- Share use cases in private mode -->
 
