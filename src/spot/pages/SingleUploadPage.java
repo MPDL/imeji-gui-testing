@@ -54,6 +54,9 @@ public class SingleUploadPage extends BasePage {
 	@FindBy(id="singleUpload:metadata:5:editMd:inputLongitude")
 	private WebElement metaDataGeolocLongitudeField;
 	
+	@FindBy(id = "singleUpload:licenseEditorContainer")
+	private WebElement licenseDropdown;
+	
 	@FindBy(id="uploader")
 	private WebElement inputFileTagContainer;
 	
@@ -155,7 +158,8 @@ public class SingleUploadPage extends BasePage {
 	 */
 	private void fillLicense() {
 		try {
-			WebElement licenseDropbox = driver.findElement(By.id("singleUpload:licenseEditorContainer")).findElement(By.tagName("select"));
+			PageFactory.initElements(driver, this);
+			WebElement licenseDropbox = licenseDropdown.findElement(By.tagName("select"));
 			Select licenseSelect = new Select(licenseDropbox);
 			licenseSelect.selectByValue("ODC_ODbL");
 		}

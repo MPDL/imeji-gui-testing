@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -81,9 +82,19 @@ public class MultipleUploadPage extends BasePage {
 		}
 	}
 	
-	public void startUpload() {
-		startUploadButton.click();	
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("imj_fileSuccessMessageArea")));
+	/**
+	 * @return true if message indicating success appears, false otherwise
+	 */
+	public boolean startUpload() {
+		try {
+			startUploadButton.click();	
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("imj_fileSuccessMessageArea")));
+			return true;
+		}
+		catch (TimeoutException exc) {
+			return false;
+		}
+		
 	}
 	
 	public void startFailedUpload() {

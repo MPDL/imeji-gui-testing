@@ -103,7 +103,7 @@ public class ActionComponent extends BasePage {
 				case DISCARD:
 				actionButton_2.click();
 				discardButton.click();
-				discardCommentTextArea = driver.findElement(By.xpath(".//*[contains(id, 'discardForm:discardComment')]"));
+				discardCommentTextArea = driver.findElement(By.xpath(".//*[contains(@id, 'discardForm:discardComment')]"));
 				discardCommentTextArea.sendKeys("Discarding due to test automation purposes _ case 2");
 								
 				withDrawMenuItemDialog = driver.findElement(By.id("withdrawMenuItemDialog"));
@@ -154,7 +154,7 @@ public class ActionComponent extends BasePage {
 				actionButton.click();
 				discardButton.click();
 				
-				discardCommentTextArea = driver.findElement(By.tagName("textarea"));
+				discardCommentTextArea = driver.findElement(By.xpath(".//*[contains(@id, 'discardForm:discardComment')]"));
 				discardCommentTextArea.sendKeys("Discarding due to test automation purposes_ case 1");
 
 				wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#withdrawMenuItemDialog .imj_submitButton")));

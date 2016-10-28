@@ -128,8 +128,9 @@ public class DetailedItemViewPage extends BasePage {
 		actionMenu.findElement(By.id("action:actionMenuDiscardItem")).click();
 		wait.until(ExpectedConditions.visibilityOf(discardItemDialog));
 		discardItemDialog.findElement(By.className("imj_dialogReasonText")).sendKeys("Discarding for testing purposes.");
-		wait.until(ExpectedConditions.elementToBeClickable(By.className("imj_submitButton")));
-		discardItemDialog.findElement(By.className("imj_submitButton")).click();
+		discardItemDialog = driver.findElement(By.id("withdrawMenuItemDialog"));
+		WebElement confirmDiscard = discardItemDialog.findElement(By.xpath("//input[contains(@id, 'btnDiscardContainer')]"));
+		confirmDiscard.click();
 		
 		return PageFactory.initElements(driver, CollectionContentPage.class);
 	}

@@ -149,13 +149,15 @@ public class ItemUploadTest extends BaseSelenium {
 		collectionContent = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		previousItemCount = collectionContent.getItemListSize();
 		
+		MultipleUploadPage multipleUpload = collectionContent.viewCollectionInformation().uploadContent();
+		multipleUpload.checkUniqueness(true);
+		
 		try {
-			MultipleUploadPage multipleUpload = collectionContent.viewCollectionInformation().uploadContent();
-			multipleUpload.checkUniqueness(true);
 			multipleUpload.addFile(files.get("SampleWordFile.docx"));
-			multipleUpload.startFailedUpload();
 		}
 		catch (AWTException exc) {}
+		
+		multipleUpload.startFailedUpload();
 		
 		refreshHomePage();
 		collectionContent = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -167,14 +169,16 @@ public class ItemUploadTest extends BaseSelenium {
 	public void repeatUploadWithoutCheck() {
 		collectionContent = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		previousItemCount = collectionContent.getItemListSize();
+		MultipleUploadPage multipleUpload = collectionContent.viewCollectionInformation().uploadContent();
+		multipleUpload.checkUniqueness(false);
 		
-		try {
-			MultipleUploadPage multipleUpload = collectionContent.viewCollectionInformation().uploadContent();
-			multipleUpload.checkUniqueness(false);
+		try {	
 			multipleUpload.addFile(files.get("SampleWordFile.docx"));
-			multipleUpload.startUpload();
 		}
 		catch (AWTException exc) {}
+		
+		boolean uploadSuccessful = multipleUpload.startUpload();
+		Assert.assertTrue(uploadSuccessful, "Upload was not successful.");
 		
 		refreshHomePage();
 		collectionContent = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -187,13 +191,16 @@ public class ItemUploadTest extends BaseSelenium {
 		collectionContent = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		previousItemCount = collectionContent.getItemListSize();
 		
+		MultipleUploadPage multipleUpload = collectionContent.viewCollectionInformation().uploadContent();
+		multipleUpload.overwriteFile(true);
+		
 		try {
-			MultipleUploadPage multipleUpload = collectionContent.viewCollectionInformation().uploadContent();
-			multipleUpload.overwriteFile(true);
 			multipleUpload.addFile(files.get("SamplePDFFile.pdf"));
-			multipleUpload.startUpload();
 		}
 		catch (AWTException exc) {}
+		
+		boolean uploadSuccessful = multipleUpload.startUpload();
+		Assert.assertTrue(uploadSuccessful, "Upload was not successful.");
 		
 		refreshHomePage();
 		collectionContent = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -206,13 +213,16 @@ public class ItemUploadTest extends BaseSelenium {
 		collectionContent = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		previousItemCount = collectionContent.getItemListSize();
 		
+		MultipleUploadPage multipleUpload = collectionContent.viewCollectionInformation().uploadContent();
+		multipleUpload.uploadPreview(true);
+		
 		try {
-			MultipleUploadPage multipleUpload = collectionContent.viewCollectionInformation().uploadContent();
-			multipleUpload.uploadPreview(true);
 			multipleUpload.addFile(files.get("SampleJPGFile.jpg"));
-			multipleUpload.startUpload();
 		}
 		catch (AWTException exc) {}
+		
+		boolean uploadSuccessful = multipleUpload.startUpload();
+		Assert.assertTrue(uploadSuccessful, "Upload was not successful.");
 		
 		refreshHomePage();
 		collectionContent = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
