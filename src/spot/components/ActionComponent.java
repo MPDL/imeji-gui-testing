@@ -10,8 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
 import spot.pages.CollectionContentPage;
-import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
+import spot.pages.DiscardedCollectionEntryPage;
 import spot.pages.KindOfSharePage;
 
 public class ActionComponent extends BasePage {
@@ -93,9 +93,7 @@ public class ActionComponent extends BasePage {
 				publishButton.click();
 				
 				try {
-					
-					releaseMenuItemDialog.findElement(By.className("imj_submitButton")).click();;
-					
+					releaseMenuItemDialog.findElement(By.className("imj_submitButton")).click();
 				} catch(NoSuchElementException e) {}
 				
 				break;
@@ -103,6 +101,7 @@ public class ActionComponent extends BasePage {
 				case DISCARD:
 				actionButton_2.click();
 				discardButton.click();
+				
 				discardCommentTextArea = driver.findElement(By.xpath(".//*[contains(@id, 'discardForm:discardComment')]"));
 				discardCommentTextArea.sendKeys("Discarding due to test automation purposes _ case 2");
 								
@@ -156,13 +155,13 @@ public class ActionComponent extends BasePage {
 				
 				discardCommentTextArea = driver.findElement(By.xpath(".//*[contains(@id, 'discardForm:discardComment')]"));
 				discardCommentTextArea.sendKeys("Discarding due to test automation purposes_ case 1");
-
-				wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#withdrawMenuItemDialog .imj_submitButton")));
 				
-				WebElement confirmDiscardButton = driver.findElement(By.cssSelector("#withdrawMenuItemDialog .imj_submitButton"));
-				confirmDiscardButton.click();
+				withDrawMenuItemDialog = driver.findElement(By.id("withdrawMenuItemDialog"));
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@id, 'btnDiscardContainer')]")));
+				WebElement confirmDiscard = withDrawMenuItemDialog.findElement(By.xpath(".//input[contains(@id, 'btnDiscardContainer')]"));
+				confirmDiscard.click();
 				
-				returnPage = new CollectionEntryPage(driver);
+				returnPage = PageFactory.initElements(driver, DiscardedCollectionEntryPage.class);
 				break;
 			}
 		}

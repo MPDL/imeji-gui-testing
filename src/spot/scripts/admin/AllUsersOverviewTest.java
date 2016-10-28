@@ -1,6 +1,5 @@
 package spot.scripts.admin;
 
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -41,7 +40,7 @@ public class AllUsersOverviewTest extends BaseSelenium {
 	@AfterClass
 	public void logout() {
 		adminHomePage = (AdminHomePage) allUsersOverViewPage.goToHomePage(adminHomePage);
-		logout(PageFactory.initElements(driver, AdminHomePage.class));
+		adminHomePage.logout();
 	}
 	
 	

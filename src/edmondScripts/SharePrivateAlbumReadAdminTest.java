@@ -1,5 +1,8 @@
 package edmondScripts;
 
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -7,6 +10,8 @@ import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
 import spot.pages.AlbumEntryPage;
+import spot.pages.CollectionContentPage;
+import spot.pages.DetailedItemViewPage;
 import spot.pages.KindOfSharePage;
 import spot.pages.LoginPage;
 import spot.pages.SharePage;
@@ -90,6 +95,24 @@ public class SharePrivateAlbumReadAdminTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 7)
+	public void shareAlbumReadExternal() {
+		String externalEmail = "nonexistentuser@mpdl.mpg.de";
+		login(spotRUUserName, spotRUPassWord);
+		
+		albumEntryPage = homePage.goToAlbumPage().openAlbumByTitle(albumTitle);
+		sharePage = albumEntryPage.shareAlbum().shareWithAUser();
+		sharePage.share(externalEmail, true, false, false, false);
+		
+		Assert.assertTrue(sharePage.messageDisplayed(), "No message on the external emails was displayed.");
+		
+		Assert.assertTrue(sharePage.inviteButtonEnabled(), "External user cannot be invited to register.");
+		
+		List<WebElement> emails = sharePage.getExternalEmails();
+		String userEmail = emails.get(0).getText().trim();
+		Assert.assertEquals(externalEmail, userEmail, "User email " + userEmail + " is not in list.");
+	}
+	
+	@Test(priority = 8)
 	public void deleteAlbum() {
 		login(spotRUUserName, spotRUPassWord);
 		albumEntryPage = homePage.goToAlbumPage().openAlbumByTitle(albumTitle);
