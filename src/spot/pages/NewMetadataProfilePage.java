@@ -114,7 +114,7 @@ public class NewMetadataProfilePage extends BasePage {
 	}
 	
 	private WebElement createUsualBlock(String type, String label, int metadataIndex) {
-		driver.findElement(By.id("profileForm:profile:" + (metadataIndex - 1) + ":j_idt329")).click();
+		driver.findElement(By.id("profileForm:profile:" + (metadataIndex - 1) + ":j_idt320")).click();
 		// text is always the default type
 		WebElement profile = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":metadata"));
 		return profile;
@@ -134,7 +134,7 @@ public class NewMetadataProfilePage extends BasePage {
 		Select metadata = new Select(metadataDropdown);
 		wait.until(new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
-				return metadata.getOptions().size() == 8;
+				return metadata.getOptions().size() == 7;
 			}
 		});
 		metadata.selectByVisibleText(type);
@@ -154,13 +154,13 @@ public class NewMetadataProfilePage extends BasePage {
 		// TODO don't rely on generated IDs
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		String profileNr = "profileForm:profile:" + metadataIndex + ":";
-		jse.executeScript("document.getElementById('" + profileNr + "j_idt366').click();");
+		jse.executeScript("document.getElementById('" + profileNr + "j_idt357').click();");
 		int valuesCount = predefinedValues.length;
 		for (int currentValue = 0; currentValue < valuesCount; currentValue++) {
-			WebElement valueBox = driver.findElement(By.name(profileNr + "constraints:" + currentValue + ":j_idt370"));
+			WebElement valueBox = driver.findElement(By.name(profileNr + "constraints:" + currentValue + ":j_idt361"));
 			valueBox.sendKeys(predefinedValues[currentValue]);
 			if (currentValue != valuesCount - 1) {
-				jse.executeScript("document.getElementById('" + profileNr + "constraints:" + currentValue + ":j_idt372').click();");
+				jse.executeScript("document.getElementById('" + profileNr + "constraints:" + currentValue + ":j_idt363').click();");
 			}
 		}
 	}
@@ -168,7 +168,7 @@ public class NewMetadataProfilePage extends BasePage {
 	private void chooseVocabulary(String vocabulary, int metadataIndex) {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		String profileNr = "profileForm:profile:" + metadataIndex + ":";
-		jse.executeScript("document.getElementById('" + profileNr + "j_idt355').click();");
+		jse.executeScript("document.getElementById('" + profileNr + "j_idt346').click();");
 		WebElement dropdown = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":selectVocabulary"));
 		Select select = new Select(dropdown);
 		select.selectByVisibleText(vocabulary);

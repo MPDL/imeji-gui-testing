@@ -9,10 +9,10 @@ import spot.pages.BasePage;
 
 public class EditUserGroupPage extends BasePage {
 
-	@FindBy(name = "userForm:j_idt334")
+	@FindBy(css = "#userForm .imj_admindataEdit")
 	private WebElement titleBox;
 	
-	@FindBy(name = "userForm:j_idt338")
+	@FindBy(css = "#userForm .imj_userGlobalInformation .imj_submitButton")
 	private WebElement saveButton;
 	
 	public EditUserGroupPage(WebDriver driver) {

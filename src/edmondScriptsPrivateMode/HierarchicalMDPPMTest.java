@@ -98,7 +98,7 @@ public class HierarchicalMDPPMTest extends BaseSelenium {
 		metadataTypes.put("Number", "This is a child number metadata field");
 		metadataTypes.put("Date", "This is a child date meta datafield");
 		metadataTypes.put("Geolocation", "This is a geolocation metadata field");
-		metadataTypes.put("License", "This is a child license metadata field");
+		//metadataTypes.put("License", "This is a child license metadata field");
 		metadataTypes.put("Link", "This is a link metadata field");
 		metadataTypes.put("Publication", "This is a publication metadata field");
 		

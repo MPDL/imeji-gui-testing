@@ -79,7 +79,7 @@ public class CreateMetadataProfilePublishedTest extends BaseSelenium {
 		metadataTypes.put("Number", "This is a number metadata field");
 		metadataTypes.put("Date", "This is a date meta datafield");
 		metadataTypes.put("Geolocation", "This is a geolocation metadata field");
-		metadataTypes.put("License", "This is a license metadata field");
+		//metadataTypes.put("License", "This is a license metadata field");
 		metadataTypes.put("Link", "This is a link metadata field");
 		metadataTypes.put("Publication", "This is a publication metadata field");
 		
@@ -102,7 +102,7 @@ public class CreateMetadataProfilePublishedTest extends BaseSelenium {
 		Map<String, String> vocabularies = new HashMap<String, String>();
 		vocabularies.put("Person", "CoNE Authors");
 		vocabularies.put("Geolocation", "Google Geo API (Beta)");
-		vocabularies.put("License", "Creative Commons licenses (CC)");
+		//vocabularies.put("License", "Creative Commons licenses (CC)");
 		vocabularies.put("Link", "CoNE Authors");
 		
 		return vocabularies;

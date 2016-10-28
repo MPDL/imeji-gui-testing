@@ -52,12 +52,12 @@ public class PublishedCollectionNoMetadataTest extends BaseSelenium {
 	public void createCollectionWithoutMetaDataProfileTest() {
 		NewCollectionPage createNewCollectionPage = homePage.goToCreateNewCollectionPage();
 		
-		String collectionDescription = "This collection has no meta data profile. It is being published. ";
+		StringBuilder collectionDescription = new StringBuilder("This collection has no meta data profile. It is being published. ");
 		for (int i = 0; i < 100; i++)
-			collectionDescription += "It has a very long description text. ";
+			collectionDescription.append("It has a very long description text. ");
 
 		collectionEntryPage = createNewCollectionPage.createCollectionWithoutStandardMetaDataProfile(collectionTitle,
-				collectionDescription, getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
+				collectionDescription.toString(), getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName),
 				getPropertyAttribute(ruOrganizationName));
 		
 		Assert.assertTrue(

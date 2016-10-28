@@ -24,7 +24,7 @@ public class DisableAlbumsTest extends BaseSelenium {
 	public void disableAlbums() {
 		loginPage = new StartPage(driver).openLoginForm();
 		AdminHomePage adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName),getPropertyAttribute(spotAdminPassWord));
-		adminHomePage.goToAdminPage().disableAlbums();
+		adminHomePage = (AdminHomePage) adminHomePage.goToAdminPage().disableAlbums().goToHomePage(adminHomePage);
 		adminHomePage.logout();
 	}
 	
@@ -47,7 +47,7 @@ public class DisableAlbumsTest extends BaseSelenium {
 		homePage.logout();
 		loginPage = new StartPage(driver).openLoginForm();
 		AdminHomePage adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(spotAdminUserName),getPropertyAttribute(spotAdminPassWord));
-		adminHomePage.goToAdminPage().enableAlbums();
+		adminHomePage = (AdminHomePage) adminHomePage.goToAdminPage().enableAlbums().goToHomePage(adminHomePage);
 		adminHomePage.logout();
 	}
 }

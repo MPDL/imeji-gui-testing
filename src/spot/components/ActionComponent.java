@@ -103,11 +103,11 @@ public class ActionComponent extends BasePage {
 				case DISCARD:
 				actionButton_2.click();
 				discardButton.click();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[contains(id, 'discardForm:discardComment')]")));
+				discardCommentTextArea = driver.findElement(By.xpath(".//*[contains(id, 'discardForm:discardComment')]"));
 				discardCommentTextArea.sendKeys("Discarding due to test automation purposes _ case 2");
 								
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("withdrawMenuItemDialog")));
-				WebElement confirmDiscard = withDrawMenuItemDialog.findElement(By.id("j_idt402:discardForm:btnDiscardContainer"));
+				withDrawMenuItemDialog = driver.findElement(By.id("withdrawMenuItemDialog"));
+				WebElement confirmDiscard = withDrawMenuItemDialog.findElement(By.xpath("//input[contains(@id, 'btnDiscardContainer')]"));
 				confirmDiscard.click();
 				break;
 			}

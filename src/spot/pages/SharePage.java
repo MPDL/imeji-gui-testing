@@ -78,14 +78,14 @@ public class SharePage extends BasePage {
 			checkGrantIfNecessary(read, readGrantCheckBox);
 		}
 		else {
-			checkGrantIfNecessary(read, readGrantCheckBox);
+			//checkGrantIfNecessary(read, readGrantCheckBox);
 			checkGrantIfNecessary(createItems, createItemsGrantCheckBox);
 			checkGrantIfNecessary(editItems, editItemsGrantCheckBox);
 			checkGrantIfNecessary(deleteItems, deleteItemsGrantCheckBox);
 			checkGrantIfNecessary(editCollectionInformation, editInformationGrantCheckBox);
 			if (released)
 				checkGrantIfNecessary(editProfile, editProfileGrantCheckBox);
-			checkGrantIfNecessary(administrate, administrateGrantCheckBox);
+			//checkGrantIfNecessary(administrate, administrateGrantCheckBox);
 		}
 			
 		shareButton.click();
@@ -119,10 +119,10 @@ public class SharePage extends BasePage {
 			checkGrantIfNecessary(read, readGrantCheckBox);
 		}
 		else {
-			checkGrantIfNecessary(read, readGrantCheckBox);
+			//checkGrantIfNecessary(read, readGrantCheckBox);
 			checkGrantIfNecessary(createItems, createItemsGrantCheckBox);
 			checkGrantIfNecessary(editAlbumInformation, editInformationGrantCheckBox);
-			checkGrantIfNecessary(administrate, administrateGrantCheckBox);
+			//checkGrantIfNecessary(administrate, administrateGrantCheckBox);
 		}
 		
 		shareButton.click();
@@ -226,10 +226,10 @@ public class SharePage extends BasePage {
 	 */
 	public boolean checkGrantSelections(String wantedSharedPersonName, boolean read, boolean addItems, boolean editAlbumInformation, boolean administrate) {
 		WebElement wantedSharedPerson = findWantedPerson(wantedSharedPersonName);
-		WebElement readGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:0:role:0"));
-		WebElement addGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:0:role:1"));
-		WebElement editGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:0:role:2"));
-		WebElement administrateGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:0:role:3"));
+		WebElement readGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:1:role:0"));
+		WebElement addGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:1:role:1"));
+		WebElement editGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:1:role:2"));
+		WebElement administrateGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:1:role:3"));
 		
 		return checkCorrectnessOfGrant(read, readGrant) && checkCorrectnessOfGrant(addItems, addGrant) & checkCorrectnessOfGrant(editAlbumInformation, editGrant)
 				& checkCorrectnessOfGrant(administrate, administrateGrant);
