@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -15,6 +16,9 @@ import spot.components.ShareComponent;
 
 public class AlbumEntryPage extends BasePage {
 
+	@FindBy(id = "editMenu")
+	private WebElement editMenu;
+	
 	private ActionComponent actionComponent;
 	private ShareComponent shareComponent;
 	
@@ -35,6 +39,13 @@ public class AlbumEntryPage extends BasePage {
 		actionComponent.doAction(ActionType.PUBLISH);
 		
 		return PageFactory.initElements(driver, AlbumEntryPage.class);
+	}
+	
+	public EditAlbumPage editAlbumInformation() {
+		editMenu.click();
+		editMenu.findElement(By.id("action:actionMenuEditAlbum")).click();
+		
+		return PageFactory.initElements(driver, EditAlbumPage.class);
 	}
 	
 	public AlbumPage deleteAlbum() {

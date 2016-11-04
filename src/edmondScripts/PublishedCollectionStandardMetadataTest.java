@@ -106,13 +106,46 @@ public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 5)
+	public void addExternalReferenceWithoutLabel() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		EditCollectionPage editCollection = createdCollection.viewCollectionInformation().editInformation();
+		
+		editCollection.addInformation("", "http://imeji.org/");
+		CollectionEntryPage collectionEntryPage = editCollection.submitChanges();
+		MessageType messageType = collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea();
+		Assert.assertEquals(messageType, MessageType.ERROR, "Error message was not displayed.");
+	}
+	
+	@Test(priority = 6)
+	public void addExternalReferenceWithoutLink() {
+		homePage = new StartPage(driver).goToHomePage(homePage);
+		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		EditCollectionPage editCollection = createdCollection.viewCollectionInformation().editInformation();
+		
+		String label = "Label without link";
+		editCollection.addInformation(label, "");
+		CollectionEntryPage collectionEntryPage = editCollection.submitChanges();
+		
+		MessageType messageType = collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea();
+		Assert.assertEquals(messageType, MessageType.INFO, "Collection was not successfully changed.");
+		
+		boolean labelDisplayed = collectionEntryPage.labelDisplayed(label);
+		Assert.assertTrue(labelDisplayed, "Label is not displayed.");
+	}
+	
+	@Test(priority = 7)
 	public void addExternalReference() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = createdCollection.viewCollectionInformation().editInformation();
 		
 		String label = "Test collection";
-		editCollection.addInformation(label);
+		editCollection.removeLabel();
+		CollectionEntryPage collectionEntry = editCollection.submitChanges();
+		
+		editCollection = collectionEntry.editInformation();
+		editCollection.addInformation(label, "http://imeji.org/");
 		CollectionEntryPage collectionEntryPage = editCollection.submitChanges();
 		
 		MessageType messageType = collectionEntryPage.getMessageComponent().getMessageTypeOfPageMessageArea();
@@ -123,13 +156,7 @@ public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 		
 	}
 	
-	/*@Test(priority = 6)
-	public void discardItem() {
-		homePage = new StartPage(driver).goToHomePage(homePage);
-		CollectionContentPage collectionContentPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-	}*/
-	
-	@Test(priority = 7)
+	@Test(priority = 8)
 	public void discardCollection() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();

@@ -53,6 +53,9 @@ public class DetailedItemViewPage extends BasePage {
 	@FindBy(id = "withdrawMenuItemDialog")
 	private WebElement discardItemDialog;
 	
+	@FindBy(css = ".imj_contentSubMenuItem:nth-of-type(6)")
+	private WebElement activeAlbumButton;
+	
 	public DetailedItemViewPage(WebDriver driver) {
 		super(driver);
 		
@@ -133,6 +136,13 @@ public class DetailedItemViewPage extends BasePage {
 		confirmDiscard.click();
 		
 		return PageFactory.initElements(driver, CollectionContentPage.class);
+	}
+	
+	public DetailedItemViewPage addToActiveAlbum() {
+		activeAlbumButton.click();
+		driver.findElement(By.xpath("//a[contains(@id, 'lnkPicFullResolution')]")).click();
+		
+		return PageFactory.initElements(driver, DetailedItemViewPage.class);
 	}
 	
 	public boolean shareIconVisible() {

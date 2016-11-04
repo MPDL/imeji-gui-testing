@@ -182,7 +182,7 @@ public class CollectionContentPage extends BasePage {
 	
 	public DetailedItemViewPage openItem(int index) {
 		validateIndex(index);
-		WebElement item = getItemList().get(0).findElement(By.tagName("img"));
+		WebElement item = getItemList().get(index).findElement(By.tagName("img"));
 		item.click();
 		
 		return PageFactory.initElements(driver, DetailedItemViewPage.class);

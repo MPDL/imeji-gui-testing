@@ -99,7 +99,7 @@ public class UserCollectionWithStandardMDPTest extends BaseSelenium {
 		CollectionContentPage createdCollection = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = createdCollection.viewCollectionInformation().editInformation();
 		
-		editCollection.addInformation("Test collection");
+		editCollection.addInformation("Test collection", "http://imeji.org/");
 		editCollection.addLogo(getFilepath("SampleTIFFile.tif"));
 		editCollection.addAuthor("Restricted", "MPDL");
 		

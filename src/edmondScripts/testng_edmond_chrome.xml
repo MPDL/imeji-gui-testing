@@ -159,6 +159,8 @@
 			
 			<class name="edmondScripts.ShareExternalUser" />
 			
+			<class name="edmondScripts.SharedFileToAlbumTest" />
+			
 	 		<!-- Share use cases in private mode -->
 
 			<class name="edmondScriptsPrivateMode.UserCollectionWithoutMDPPrivateMode" />

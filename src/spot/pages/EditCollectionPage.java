@@ -20,6 +20,9 @@ public class EditCollectionPage extends BasePage {
 	@FindBy(id = "editContainer:mediaContainerForm:additionalInfos")
 	private WebElement additionalInfo;
 	
+	@FindBy(id = "editContainer:mediaContainerForm:list:0:j_idt233")
+	private WebElement removeInfo;
+	
 	@FindBy(id = "editContainer:mediaContainerForm:list:0:inputInfoLabel")
 	private WebElement infoLabelBox;
 	
@@ -41,12 +44,16 @@ public class EditCollectionPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void addInformation(String label) {
+	public void addInformation(String label, String link) {
 		additionalInfo.findElement(By.className("fa-plus-square-o")).click();
 		
 		infoLabelBox.sendKeys(label);
 		infoTextBox.sendKeys("This is a test collection.");
-		infoUrlBox.sendKeys("http://imeji.org/");
+		infoUrlBox.sendKeys(link);
+	}
+	
+	public void removeLabel() {
+		removeInfo.click();
 	}
 	
 	public void addLogo(String filepath) {
