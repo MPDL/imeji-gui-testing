@@ -2,6 +2,7 @@ package edmondScripts;
 
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
@@ -47,12 +48,15 @@ public class ShareReleasedCollectionTest extends BaseSelenium {
 		boolean grantIsCorrect = sharePage.checkGrantSelections(false, userFullName,
 				true, true, true, true, true, true, true);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
-		
+	}
+	
+	@Test (priority = 3)
+	public void user1Logout() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.logout();
 	}
 	
-	@Test (priority = 3)
+	@Test (priority = 4)
 	public void user2AdminCollection() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homePage = loginPage.loginRestricted(getPropertyAttribute(restrUserName),
@@ -69,7 +73,10 @@ public class ShareReleasedCollectionTest extends BaseSelenium {
 		navigateDriverBack();
 		collectionEntryPage.uploadContent();
 		navigateDriverBack();
-		
+	}
+	
+	@AfterClass
+	public void logout() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		homePage.logout();
 	}

@@ -1,19 +1,27 @@
 package spot;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.seleniumhq.jetty9.server.Response.OutputType;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
 import spot.pages.HelpPage;
 import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.notAdmin.HomePage;
+import spot.util.TimeStamp;
 
 /**
  * WebDriver used by all test classes is set in this class. 
@@ -158,6 +166,18 @@ public abstract class BaseSelenium {
 		if (driver instanceof ChromeDriver)
 			filepath = filepath.substring(1, filepath.length());
 		return filepath;
+	}
+	
+	@AfterMethod
+	public void failureScreenshot(ITestResult result) {
+		if (result.getStatus() == ITestResult.FAILURE) {
+			try {
+				String screenshotPath = "./target/screenshot" + result.getName() + ".jpg";
+				File screenshot = ((TakesScreenshot) driver).getScreenshotAs(org.openqa.selenium.OutputType.FILE);
+				FileUtils.copyFile(screenshot, new File(screenshotPath));
+			}
+			catch (IOException exc) {}
+		}
 	}
 	
 }
