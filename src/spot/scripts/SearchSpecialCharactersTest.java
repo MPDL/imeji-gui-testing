@@ -26,27 +26,27 @@ private StartPage startPage;
 
 	@Test
 	public void searchAUmlaut() {
-		search("*ä*");
+		search("*Ã¤*");
 	}
 	
 	@Test
 	public void searchOUmlaut() {
-		search("*ö*");
+		search("*Ã¶*");
 	}
 	
 	@Test
 	public void searchUUmlaut() {
-		search("*ü*");
+		search("*Ã¼*");
 	}
 	
 	@Test
 	public void searchEszett() {
-		search("*ß*");
+		search("*ÃŸ*");
 	}
 	
 	@Test
 	public void searchNTilde() {
-		search("*ñ*");
+		search("*Ã±*");
 	}
 	
 	private void search(String searchQuery) {

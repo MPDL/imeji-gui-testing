@@ -138,10 +138,6 @@ public class SingleUploadPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOf(metaDataOrganizationTextField));
 		metaDataOrganizationTextField.sendKeys(defaultMetaDataProfile.getOrganization());
 		
-		//setting publication link
-		wait.until(ExpectedConditions.visibilityOf(metaDataPublicationTextField));
-		metaDataPublicationTextField.sendKeys(defaultMetaDataProfile.getPublicationLink());
-		
 		//setting date
 		wait.until(ExpectedConditions.visibilityOf(metaDataDateTextField));
 		metaDataDateTextField.sendKeys(defaultMetaDataProfile.getDate());
@@ -151,6 +147,10 @@ public class SingleUploadPage extends BasePage {
 		metaDataGeolocNameTextField.sendKeys(defaultMetaDataProfile.getGeolocName());
 		metaDataGeolocLatitudeField.sendKeys(defaultMetaDataProfile.getLatitude());
 		metaDataGeolocLongitudeField.sendKeys(defaultMetaDataProfile.getLongitude());
+		
+		//setting publication link
+		wait.until(ExpectedConditions.visibilityOf(metaDataPublicationTextField));
+		metaDataPublicationTextField.sendKeys(defaultMetaDataProfile.getPublicationLink());
 	}
 	
 	/**
