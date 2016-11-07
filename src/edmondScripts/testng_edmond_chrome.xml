@@ -23,6 +23,8 @@
 			
 			<class name="edmondScripts.UserGroupTest" />
 			
+			<class name="edmondScripts.UserGroupGrantTest" />
+			
 			<class name="spot.scripts.admin.EditUserProfileTest" />
 			
 			<class name="edmondScripts.DisableAlbumsTest" />

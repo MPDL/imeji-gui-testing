@@ -17,7 +17,7 @@ import spot.util.TimeStamp;
 public class UserGroupTest extends BaseSelenium {
 	
 	private AdminHomePage adminHomePage;
-	private UserGroupsOverviewPage allUserGroupsOverViewPage;
+	private UserGroupsOverviewPage userGroupsOverview;
 	private UserGroupPage userGroupPage;
 	
 	private String nameNewGroup;
@@ -38,7 +38,7 @@ public class UserGroupTest extends BaseSelenium {
 		
 		nameNewGroup = "Test Group: " + TimeStamp.getTimeStamp();
 		
-		allUserGroupsOverViewPage = adminPage.createNewUserGroup(nameNewGroup);
+		userGroupsOverview = adminPage.createNewUserGroup(nameNewGroup);
 	}
 	
 	@Test(priority = 2)
@@ -75,8 +75,8 @@ public class UserGroupTest extends BaseSelenium {
 	@Test(priority = 5)
 	public void deleteUserGroup() {
 		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
-		allUserGroupsOverViewPage = adminHomePage.goToAdminPage().viewAllUserGroups();
-		allUserGroupsOverViewPage.deleteUserGroupByName(newTitle);
+		userGroupsOverview = adminHomePage.goToAdminPage().viewAllUserGroups();
+		userGroupsOverview.deleteUserGroupByName(newTitle);
 	}
 	
 	@AfterClass
@@ -87,8 +87,8 @@ public class UserGroupTest extends BaseSelenium {
 	
 	private void openGroupPage() {
 		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
-		allUserGroupsOverViewPage = adminHomePage.goToAdminPage().viewAllUserGroups();
-		userGroupPage = allUserGroupsOverViewPage.viewUserGroupDetails(nameNewGroup);
+		userGroupsOverview = adminHomePage.goToAdminPage().viewAllUserGroups();
+		userGroupPage = userGroupsOverview.viewUserGroupDetails(nameNewGroup);
 	}
 	
 }

@@ -15,165 +15,167 @@
 			
 			<!-- Admin configuration test cases -->
 			
-<!-- 			<class name="edmondScripts.EnablePrivateModeTest" /> -->
+			<class name="edmondScripts.EnablePrivateModeTest" />
 			
-<!-- 			<class name="spot.scripts.admin.UserPolicyManagementTest" /> -->
+			<class name="spot.scripts.admin.UserPolicyManagementTest" />
 			
-<!-- 			<class name="spot.scripts.BrowseItemsDefaultThumbnailTest" /> -->
+			<class name="spot.scripts.BrowseItemsDefaultThumbnailTest" />
 			
-<!-- 			<class name="edmondScripts.UserGroupTest" /> -->
+			<class name="edmondScripts.UserGroupTest" />
+
+			<class name="edmondScripts.UserGroupGrantTest" />
 			
-<!-- 			<class name="spot.scripts.admin.EditUserProfileTest" /> -->
+			<class name="spot.scripts.admin.EditUserProfileTest" />
 			
-<!-- 			<class name="edmondScripts.DisableAlbumsTest" /> -->
+			<class name="edmondScripts.DisableAlbumsTest" />
 			
-<!-- 			<class name="spot.scripts.admin.EnterUserManagementTest" /> -->
+			<class name="spot.scripts.admin.EnterUserManagementTest" />
 			
-<!-- 			<class name="spot.scripts.admin.AllUsersOverviewTest" /> -->
+			<class name="spot.scripts.admin.AllUsersOverviewTest" />
 			
  			<!-- Upload and publication test cases -->
 			
-<!-- 			<class name="edmondScriptsPrivateMode.PublishedItemsNoMetadataPMTest" /> -->
+			<class name="edmondScriptsPrivateMode.PublishedItemsNoMetadataPMTest" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.PublishedItemsWithMetadataPMTest" /> -->
+			<class name="edmondScriptsPrivateMode.PublishedItemsWithMetadataPMTest" />
 			
-<!-- 			<class name="edmondScripts.PublishedCollectionStandardMetadataTest" /> -->
+			<class name="edmondScripts.PublishedCollectionStandardMetadataTest" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.UserWithdrawsPublishedCollection" /> -->
+			<class name="edmondScriptsPrivateMode.UserWithdrawsPublishedCollection" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.UserPublishesAlbumPM" /> -->
+			<class name="edmondScriptsPrivateMode.UserPublishesAlbumPM" />
 			
-<!-- 			<class name="edmondScripts.UserCollectionWithoutMDPTest" /> -->
+			<class name="edmondScripts.UserCollectionWithoutMDPTest" />
 			
-<!-- 			<class name="edmondScripts.UserCollectionWithStandardMDPTest" /> -->
+			<class name="edmondScripts.UserCollectionWithStandardMDPTest" />
 			
-<!-- 			<class name="edmondScripts.SingleUploadNoMetadataTest" /> -->
+			<class name="edmondScripts.SingleUploadNoMetadataTest" />
 			
-<!-- 			<class name="edmondScripts.SingleUploadStandardMetadataTest" /> -->
+			<class name="edmondScripts.SingleUploadStandardMetadataTest" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.UserCollectionWithStandardMDPPrivateMode" /> -->
+			<class name="edmondScriptsPrivateMode.UserCollectionWithStandardMDPPrivateMode" />
 			
-<!-- 			<class name="edmondScripts.UserDeletesPrivateCollectionTest" /> -->
+			<class name="edmondScripts.UserDeletesPrivateCollectionTest" />
 			
-<!--  			<class name="edmondScripts.CreateAlbumTest" /> -->
+ 			<class name="edmondScripts.CreateAlbumTest" />
 			
-<!-- 			<class name="edmondScripts.AddItemToAlbumTest" /> -->
+			<class name="edmondScripts.AddItemToAlbumTest" />
 			
-<!-- 			<class name="edmondScripts.ItemUploadTest" /> -->
+			<class name="edmondScripts.ItemUploadTest" />
 			
  			<!-- Metadata test cases -->
 			
-<!-- 			<class name="edmondScripts.CreateMetadataProfileUnpublishedTest" /> -->
+			<class name="edmondScripts.CreateMetadataProfileUnpublishedTest" />
 			
-<!-- 			<class name="edmondScripts.CreateMetadataProfilePublishedTest" /> -->
+			<class name="edmondScripts.CreateMetadataProfilePublishedTest" />
 			
-<!-- 			<class name="edmondScripts.HierarchicalMDPTest" /> -->
+			<class name="edmondScripts.HierarchicalMDPTest" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.CreateMetadataProfileUnpublishedPMTest" /> -->
+			<class name="edmondScriptsPrivateMode.CreateMetadataProfileUnpublishedPMTest" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.CreateMetadataProfilePublishedPMTest" /> -->
+			<class name="edmondScriptsPrivateMode.CreateMetadataProfilePublishedPMTest" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.HierarchicalMDPPMTest" /> -->
+			<class name="edmondScriptsPrivateMode.HierarchicalMDPPMTest" />
 			
-<!-- 			<class name="edmondScripts.SelectMetadataProfileReferenceTest" /> -->
+			<class name="edmondScripts.SelectMetadataProfileReferenceTest" />
 			
-<!-- 			<class name="edmondScripts.MetadataProfileAsTemplateTest" /> -->
+			<class name="edmondScripts.MetadataProfileAsTemplateTest" />
 			
-<!-- 			<class name="edmondScripts.ChangeMetadataTest" /> -->
+			<class name="edmondScripts.ChangeMetadataTest" />
 			
-<!-- 			<class name="edmondScripts.DefaultMDPTemplateTest" /> -->
+			<class name="edmondScripts.DefaultMDPTemplateTest" />
 			
-<!-- 			<class name="edmondScripts.CollectionOtherMDPTest" /> -->
+			<class name="edmondScripts.CollectionOtherMDPTest" />
 			
 			<!--  Miscellaneous actions test cases -->
 			
-<!-- 			<class name="edmondScripts.ChangeColourSchemeTest" /> -->
+			<class name="edmondScripts.ChangeColourSchemeTest" />
 			
-<!-- 			<class name="edmondScripts.DownloadFileTest" /> -->
+			<class name="edmondScripts.DownloadFileTest" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.DownloadFileRUPMTest" /> -->
+			<class name="edmondScriptsPrivateMode.DownloadFileRUPMTest" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.LimitedAccessForNRUPrivateMode" /> -->
+			<class name="edmondScriptsPrivateMode.LimitedAccessForNRUPrivateMode" />
 			
-<!-- 			<class name="edmondScripts.RestrictedUploadAttemptTest" /> -->
+			<class name="edmondScripts.RestrictedUploadAttemptTest" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.RestrictedUploadAttemptPMTest" /> -->
+			<class name="edmondScriptsPrivateMode.RestrictedUploadAttemptPMTest" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.SearchPrivateModeTest" /> -->
+			<class name="edmondScriptsPrivateMode.SearchPrivateModeTest" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.LoginLogoutPMTest" /> -->
+			<class name="edmondScriptsPrivateMode.LoginLogoutPMTest" />
 			
-<!-- 			<class name="spot.scripts.SearchTest" /> -->
+			<class name="spot.scripts.SearchTest" />
 			
-<!-- 			<class name="spot.scripts.SearchSpecialCharactersTest" /> -->
+			<class name="spot.scripts.SearchSpecialCharactersTest" />
 			
 			<!--  Navigation test cases -->
 			
-<!-- 			<class name="spot.scripts.CategorySelectionTest" /> -->
+			<class name="spot.scripts.CategorySelectionTest" />
 			
-<!-- 			<class name="spot.scripts.ContactSupportTest" /> -->
+			<class name="spot.scripts.ContactSupportTest" />
 			
-<!-- 			<class name="spot.scripts.DisclaimerTest" /> -->
+			<class name="spot.scripts.DisclaimerTest" />
 			
-<!-- 			<class name="spot.scripts.TermsOfUseTest" /> -->
+			<class name="spot.scripts.TermsOfUseTest" />
 			
-<!-- 			<class name="spot.scripts.HelpTest" /> -->
+			<class name="spot.scripts.HelpTest" />
 			
-<!-- 			<class name="spot.scripts.ImejiHomePageTest" /> -->
+			<class name="spot.scripts.ImejiHomePageTest" />
 			
-<!-- 			<class name="spot.scripts.MpdlHomePageTest" /> -->
+			<class name="spot.scripts.MpdlHomePageTest" />
 			
-<!-- 			<class name="spot.scripts.collections.SaveEmptyCollectionCreationFormTest" /> -->
+			<class name="spot.scripts.collections.SaveEmptyCollectionCreationFormTest" />
 			
-<!-- 			<class name="spot.scripts.collections.CancelCollectionCreationTest" /> -->
+			<class name="spot.scripts.collections.CancelCollectionCreationTest" />
 			
-<!-- 			<class name="spot.scripts.collections.CreateCollectionWithMissingAuthorNameTest" /> -->
+			<class name="spot.scripts.collections.CreateCollectionWithMissingAuthorNameTest" />
 			
-<!-- 			<class name="spot.scripts.collections.CreateCollectionWithMissingCollectionNameTest" /> -->
+			<class name="spot.scripts.collections.CreateCollectionWithMissingCollectionNameTest" />
 			
-<!-- 			<class name="spot.scripts.collections.CreateCollectionWithoutOrgNameTest" /> -->
+			<class name="spot.scripts.collections.CreateCollectionWithoutOrgNameTest" />
 			
 			<!-- Share use cases -->
 			
-<!-- 			<class name="spot.scripts.collections.CreatePrivateCollectionTest" /> -->
+			<class name="spot.scripts.collections.CreatePrivateCollectionTest" />
 			
-<!-- 			<class name="edmondScripts.ShareAdminPrivateCollectionTest" /> -->
+			<class name="edmondScripts.ShareAdminPrivateCollectionTest" />
 			
-<!-- 			<class name="edmondScripts.SharePrivateItemTest" /> -->
+			<class name="edmondScripts.SharePrivateItemTest" />
 			
-<!-- 			<class name="edmondScripts.ShareReadPrivateCollectionTest" /> -->
+			<class name="edmondScripts.ShareReadPrivateCollectionTest" />
 			
-<!-- 			<class name="edmondScripts.DeleteCollectionTest" /> -->
+			<class name="edmondScripts.DeleteCollectionTest" />
 			
-<!-- 			<class name="edmondScripts.PublishedCollectionNoMetadataTest" /> -->
+			<class name="edmondScripts.PublishedCollectionNoMetadataTest" />
 			
-<!-- 			<class name="edmondScripts.ShareReleasedItemTest" /> -->
+			<class name="edmondScripts.ShareReleasedItemTest" />
 			
-<!-- 			<class name="edmondScripts.ShareReleasedCollectionTest" /> -->
+			<class name="edmondScripts.ShareReleasedCollectionTest" />
 			
-<!-- 			<class name="edmondScripts.DiscardCollectionTest" /> -->
+			<class name="edmondScripts.DiscardCollectionTest" />
 			
-<!-- 			<class name="edmondScripts.SharePrivateAlbumReadAdminTest" /> -->
+			<class name="edmondScripts.SharePrivateAlbumReadAdminTest" />
 			
-<!-- 			<class name="edmondScripts.ShareReleasedAlbumAdminTest" /> -->
+			<class name="edmondScripts.ShareReleasedAlbumAdminTest" />
 			
-<!-- 			<class name="edmondScripts.ShareExternalUser" /> -->
+			<class name="edmondScripts.ShareExternalUser" />
 			
 			<class name="edmondScripts.SharedFileToAlbumTest" />
 			
 	 		<!-- Share use cases in private mode -->
 
-<!-- 			<class name="edmondScriptsPrivateMode.UserCollectionWithoutMDPPrivateMode" /> -->
+			<class name="edmondScriptsPrivateMode.UserCollectionWithoutMDPPrivateMode" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.ShareAdminCollectionPM" /> -->
+			<class name="edmondScriptsPrivateMode.ShareAdminCollectionPM" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.SharePrivateItemPM" /> -->
+			<class name="edmondScriptsPrivateMode.SharePrivateItemPM" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.ShareReadCollectionPM" /> -->
+			<class name="edmondScriptsPrivateMode.ShareReadCollectionPM" />
 						
-<!-- 			<class name="edmondScriptsPrivateMode.UserDeletesPrivateCollectionPMTest" /> -->
+			<class name="edmondScriptsPrivateMode.UserDeletesPrivateCollectionPMTest" />
 			
-<!-- 			<class name="edmondScriptsPrivateMode.SharePrivateAlbumPM" /> -->
+			<class name="edmondScriptsPrivateMode.SharePrivateAlbumPM" />
 			
 		</classes>
 	</test>

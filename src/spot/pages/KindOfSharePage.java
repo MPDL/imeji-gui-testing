@@ -28,6 +28,12 @@ public class KindOfSharePage extends BasePage {
 		return PageFactory.initElements(driver, SharePage.class);
 	}
 	
+	public SharePage shareWithUserGroup() {
+		shareWithAUserGroup.click();
+		
+		return PageFactory.initElements(driver, SharePage.class);
+	}
+	
 	public CollectionEntryPage goBackToCollection() {
 		backLink.click();
 		return PageFactory.initElements(driver, CollectionEntryPage.class);

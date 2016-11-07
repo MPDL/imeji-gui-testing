@@ -8,9 +8,11 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SharePage extends BasePage {
 
@@ -42,7 +44,7 @@ public class SharePage extends BasePage {
 	@FindBy(css = "#share\\:selSendEmail")
 	private WebElement sendMailCheckBox;
 	
-	@FindBy(name="share:j_idt182")
+	@FindBy(css="#share .imj_submitButton")
 	private WebElement shareButton;	
 	
 	@FindBy(id = "share:unknownEmails")
@@ -50,6 +52,9 @@ public class SharePage extends BasePage {
 	
 	@FindBy(css = "#share\\:unknownEmails form")
 	private WebElement emailList;
+	
+	@FindBy(id = "shareGroup")
+	private WebElement groupPanel;
 	
 	public SharePage(WebDriver driver) {
 		super(driver);
@@ -59,38 +64,12 @@ public class SharePage extends BasePage {
 
 	/**
 	 *  Share method for collections
-	 * @param released TODO
-	 * @param released - true: checkbox editProfile exists, false: no editProfile checkBox
+	 *  @param if released == true, editProfile checkbox can be interacted with
 	 */
 	public SharePage share(boolean released, boolean sendMail, String email, boolean read, boolean createItems, boolean editItems, boolean deleteItems, boolean editCollectionInformation, boolean editProfile, boolean administrate) {
 		emailTextField.sendKeys(email);
 		
-		// check whether email shall be sent to the person who the album is shared with
-		checkSendMail(sendMail);
-		
-		// check grants as defined by parameters
-		if (administrate) {
-			// if administrate is true, each checkbox is automatically selected
-			checkGrantIfNecessary(administrate, administrateGrantCheckBox);
-		} 
-		else if (!read) {
-			// if read is false, each checkbox is automatically deselected
-			checkGrantIfNecessary(read, readGrantCheckBox);
-		}
-		else {
-			//checkGrantIfNecessary(read, readGrantCheckBox);
-			checkGrantIfNecessary(createItems, createItemsGrantCheckBox);
-			checkGrantIfNecessary(editItems, editItemsGrantCheckBox);
-			checkGrantIfNecessary(deleteItems, deleteItemsGrantCheckBox);
-			checkGrantIfNecessary(editCollectionInformation, editInformationGrantCheckBox);
-			if (released)
-				checkGrantIfNecessary(editProfile, editProfileGrantCheckBox);
-			//checkGrantIfNecessary(administrate, administrateGrantCheckBox);
-		}
-			
-		shareButton.click();
-		
-		return PageFactory.initElements(driver, SharePage.class);
+		return checkCollectionGrants(released, sendMail, read, createItems, editItems, deleteItems, editCollectionInformation, editProfile, administrate);
 	}
 	
 	/**
@@ -119,16 +98,71 @@ public class SharePage extends BasePage {
 			checkGrantIfNecessary(read, readGrantCheckBox);
 		}
 		else {
-			//checkGrantIfNecessary(read, readGrantCheckBox);
 			checkGrantIfNecessary(createItems, createItemsGrantCheckBox);
 			checkGrantIfNecessary(editAlbumInformation, editInformationGrantCheckBox);
-			//checkGrantIfNecessary(administrate, administrateGrantCheckBox);
 		}
 		
 		shareButton.click();
 		return PageFactory.initElements(driver, SharePage.class);
 	}
+	
+	/**
+	 * Share method for user groups
+	 */
+	public SharePage shareWithGroup(String groupName, boolean released, boolean sendMail, boolean read, boolean createItems, boolean editItems, boolean deleteItems, boolean editCollectionInformation, boolean editProfile, boolean administrate) {
+		selectGroup(groupName);
+		
+		return checkCollectionGrants(released, sendMail, read, createItems, editItems, deleteItems, editCollectionInformation, editProfile, administrate);
+		
+	}
+	
+	private void selectGroup(String groupName) {
+		List<WebElement> userGroups = groupPanel.findElements(By.tagName("tr"));
+		for (WebElement group : userGroups) {
+			String currentName = group.findElement(By.tagName("h2")).getText();
+			if (currentName.equals(groupName)) {
+				group.findElement(By.className("imj_editButton")).click();
+				break;
+			}
+		}
+	}
 
+	private SharePage checkCollectionGrants(boolean released, boolean sendMail, boolean read, boolean createItems, boolean editItems, boolean deleteItems, boolean editCollectionInformation, boolean editProfile, boolean administrate) {
+		// check whether email shall be sent to the person who the album is shared with
+		checkSendMail(sendMail);
+		
+		// check grants as defined by parameters
+		if (administrate) {
+			// if administrate is true, each checkbox is automatically selected
+			checkGrantIfNecessary(administrate, administrateGrantCheckBox);
+		} 
+		else if (!read) {
+			// if read is false, each checkbox is automatically deselected
+			checkGrantIfNecessary(read, readGrantCheckBox);
+		}
+		else {
+			checkGrantIfNecessary(createItems, createItemsGrantCheckBox);
+			checkGrantIfNecessary(editItems, editItemsGrantCheckBox);
+			checkGrantIfNecessary(deleteItems, deleteItemsGrantCheckBox);
+			checkGrantIfNecessary(editCollectionInformation, editInformationGrantCheckBox);
+			if (released)
+				checkGrantIfNecessary(editProfile, editProfileGrantCheckBox);
+		}
+		
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		/*jse.executeScript("arguments[0].style.visibility = 'visible';", shareButton);
+		jse.executeScript("arguments[0].style.display = 'block';", shareButton);
+		jse.executeScript("arguments[0].style.opacity = '1';", shareButton);
+		jse.executeScript("arguments[0].style.height = '1px';", shareButton);
+		jse.executeScript("arguments[0].style.width = '1px';", shareButton);
+		jse.executeScript("arguments[0].click();", shareButton);*/
+		jse.executeScript("arguments[0].click();", shareButton);
+		
+		//shareButton.click();
+			
+		return PageFactory.initElements(driver, SharePage.class);
+	}
+	
 	private void checkGrantIfNecessary(boolean grantedTo, WebElement checkBox) {
 		if (grantedTo) {
 			if (!checkBox.isSelected())
@@ -257,6 +291,18 @@ public class SharePage extends BasePage {
 		}
 
 		throw new NoSuchElementException("The wanted person's name was not found in the share page.");
+	}
+	
+	public boolean revokeDisplayed(String personName) {
+		WebElement grantedUser = findWantedPerson(personName);
+		
+		try {
+			grantedUser.findElement(By.className("fa-trash"));
+			return true;
+		}
+		catch (NoSuchElementException exc) {
+			return false;
+		}
 	}
 
 	private boolean checkCorrectnessOfGrant(boolean grantedTo, WebElement grantCheckBox) {
