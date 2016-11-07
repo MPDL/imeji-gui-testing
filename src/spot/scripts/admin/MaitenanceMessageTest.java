@@ -33,7 +33,10 @@ public class MaitenanceMessageTest extends BaseSelenium {
 	@Test(priority = 2)
 	public void createMaintenanceMessage() {
 		adminPage.setMaintenanceMessage(message);
-		// TODO go to start page and check if message appears
+		adminPage.goToHomePage(adminHomePage).logout();
+		
+		navigateToStartPage();
+		// check maintenance message
 	}
 	
 	@AfterClass
