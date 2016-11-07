@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import spot.BaseSelenium;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
+import spot.pages.EditMetadataPage;
 import spot.pages.MetadataTransitionPage;
 import spot.pages.LoginPage;
 import spot.pages.MetadataOverviewPage;
@@ -65,6 +66,18 @@ public class ChangeMetadataTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 5)
+	public void editMetadataBlock() {
+		String typeValue = "http://imeji.org/terms/metadata#conePerson";
+		String type = "Person";
+		EditMetadataPage editMetadata = metaDataOverViewPage.editMetadata();
+		editMetadata.changeBlockType(0, typeValue);
+		MetadataOverviewPage metadataOverview = editMetadata.saveChanges();
+		
+		boolean containsType = metadataOverview.containsType(type);
+		Assert.assertTrue(containsType, "Type was not changed");
+	}
+	
+	@Test(priority = 6)
 	public void deleteCollection() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		CollectionContentPage collectionContentPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);

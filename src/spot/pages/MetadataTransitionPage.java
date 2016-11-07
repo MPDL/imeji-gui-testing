@@ -43,7 +43,7 @@ public class MetadataTransitionPage extends BasePage {
 	private void chooseProfile(String profileName) {
 		selectMetaDataProfileButton.click();
 		
-		WebElement metadataDropdown = driver.findElement(By.id("j_idt146:j_idt148:profileTemplates"));
+		WebElement metadataDropdown = driver.findElement(By.xpath("//select[contains(@id, 'profileTemplate')]"));
 		Select metadataSelect = new Select(metadataDropdown);
 		metadataSelect.selectByVisibleText(profileName);
 	}

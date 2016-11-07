@@ -28,6 +28,19 @@ public class MetadataOverviewPage extends BasePage {
 		return metaDataProfileItems.size();
 	}
 	
+	public boolean containsType(String wantedType) {
+		List<WebElement> metadataBlocks = driver.findElements(By.className("imj_metadataProfileItem"));
+		
+		for (WebElement block : metadataBlocks) {
+			String description = block.findElement(By.className(".imj_metadataValue")).getText();
+			String type = description.split(" ")[0];
+			if (type.equals(wantedType))
+				return true;
+		}
+		
+		return false;
+	}
+	
 	public boolean profileCanBeModified() {
 		editMenu.click();
 		try {
@@ -37,6 +50,13 @@ public class MetadataOverviewPage extends BasePage {
 		catch (TimeoutException exc) {
 			return false;
 		}
+	}
+	
+	public EditMetadataPage editMetadata() {
+		editMenu.click();
+		driver.findElement(By.id("action:lnkSelectEdit3")).click();
+		
+		return PageFactory.initElements(driver, EditMetadataPage.class);
 	}
 	
 	public MetadataTransitionPage changeMetadata() {
