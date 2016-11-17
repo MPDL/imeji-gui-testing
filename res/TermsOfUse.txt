@@ -1,0 +1,5 @@
+<h2 class="imj_sectionHeadline">General</h2>
+
+	<p>
+	Questions about the Terms of Use should be sent to: <a href="mailto:edmond@mpdl.mpg.de" target="_blank">edmond@mpdl.mpg.de</a>.
+	</p>

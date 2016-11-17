@@ -24,7 +24,7 @@ public class NewUserPage extends BasePage {
 	@FindBy(id="userForm:userPerson:inputIdentifier")
 	private WebElement identifier;
 	
-	@FindBy(css="div.imj_organisation>div:nth-of-type(1)>div.imj_admindataValue>div.imj_admindataValueEntry>input")
+	@FindBy(xpath="//input[contains(@id, 'inputOrgaName')]")
 	private WebElement organizationNameTextField;
 	
 	@FindBy(css="div.imj_organisation>div:nth-of-type(2)>div.imj_admindataValue>div.imj_admindataValueEntry>textarea")

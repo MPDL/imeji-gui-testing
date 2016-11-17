@@ -29,6 +29,8 @@
 			
 			<class name="edmondScripts.DisableAlbumsTest" />
 			
+			<class name="spot.scripts.admin.CreateTermsOfUseTest" />
+			
 			<class name="spot.scripts.admin.EnterUserManagementTest" />
 			
 			<class name="spot.scripts.admin.AllUsersOverviewTest" />
@@ -70,8 +72,6 @@
 			<class name="edmondScripts.CreateMetadataProfilePublishedTest" />
 			
 			<class name="edmondScripts.HierarchicalMDPTest" />
-			
-			<class name="edmondScriptsPrivateMode.CreateMetadataProfileUnpublishedPMTest" />
 			
 			<class name="edmondScriptsPrivateMode.CreateMetadataProfilePublishedPMTest" />
 			

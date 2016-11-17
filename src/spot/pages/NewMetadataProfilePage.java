@@ -114,7 +114,7 @@ public class NewMetadataProfilePage extends BasePage {
 	}
 	
 	private WebElement createUsualBlock(String type, String label, int metadataIndex) {
-		driver.findElement(By.id("profileForm:profile:" + (metadataIndex - 1) + ":j_idt320")).click();
+		driver.findElement(By.id("profileForm:profile:" + (metadataIndex - 1) + ":metadata")).findElement(By.className("imj_itemHeader")).findElement(By.className("fa-plus-square-o")).click();
 		// text is always the default type
 		WebElement profile = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":metadata"));
 		return profile;
@@ -151,25 +151,29 @@ public class NewMetadataProfilePage extends BasePage {
 	 * @param predefinedValues: array of possible values for this metadata block
 	 */
 	private void fillInAllowedValues(String[] predefinedValues, int metadataIndex) {
-		// TODO don't rely on generated IDs
+		WebElement vocabularyConstraintsArea = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":vocabularyAndConstraintsArea"));
+		WebElement addAllowedValues = vocabularyConstraintsArea.findElement(By.cssSelector(".imj_metadataSet:nth-of-type(2)>.imj_metadataValue>a"));
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", addAllowedValues);
 		String profileNr = "profileForm:profile:" + metadataIndex + ":";
-		jse.executeScript("document.getElementById('" + profileNr + "j_idt357').click();");
 		int valuesCount = predefinedValues.length;
 		for (int currentValue = 0; currentValue < valuesCount; currentValue++) {
-			WebElement valueBox = driver.findElement(By.name(profileNr + "constraints:" + currentValue + ":j_idt361"));
+			WebElement valueBox = driver.findElement(By.xpath("//input[contains(@name, '" + profileNr + "constraints:" + currentValue + "')]"));
 			valueBox.sendKeys(predefinedValues[currentValue]);
 			if (currentValue != valuesCount - 1) {
-				jse.executeScript("document.getElementById('" + profileNr + "constraints:" + currentValue + ":j_idt363').click();");
+				WebElement addValue = driver.findElement(By.cssSelector("#profileForm\\:profile\\:" + metadataIndex + "\\:vocabularyAndConstraintsArea .imj_metadataValue .imj_metadataSet:nth-of-type(" + (currentValue + 1) + ") .imj_inlineButtonGroup a"));
+				jse.executeScript("arguments[0].click();", addValue);
 			}
 		}
 	}
 	
 	private void chooseVocabulary(String vocabulary, int metadataIndex) {
+		WebElement vocabularyConstraintsArea = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":vocabularyAndConstraintsArea"));
+		WebElement addVocabulary = vocabularyConstraintsArea.findElement(By.cssSelector(".imj_metadataSet>.imj_metadataValue a"));
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", addVocabulary);
 		String profileNr = "profileForm:profile:" + metadataIndex + ":";
-		jse.executeScript("document.getElementById('" + profileNr + "j_idt346').click();");
-		WebElement dropdown = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":selectVocabulary"));
+		WebElement dropdown = driver.findElement(By.id(profileNr + "selectVocabulary"));
 		Select select = new Select(dropdown);
 		select.selectByVisibleText(vocabulary);
 	}

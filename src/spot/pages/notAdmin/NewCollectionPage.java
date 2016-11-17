@@ -1,6 +1,7 @@
 package spot.pages.notAdmin;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -56,14 +57,17 @@ public class NewCollectionPage extends BasePage {
 	@FindBy(css="table>tbody>tr>td:nth-of-type(2)>input:nth-of-type(1)")
 	private WebElement selectExistingMetaDataProfileRadioBox;
 	
-	@FindBy(css=".imj_descriptionArea select")
+	//@FindBy(css=".imj_descriptionArea select")
+	@FindBy(xpath = "//select[contains(@id, 'editContainer:mediaContainerForm:') and contains(@id, ':profileTemplates')]")
 	private WebElement profileTemplatesDropBoxWebElement;
 	
 	private Select profileTemplatesDropBox;
 	
-	private final String defaultProfileIdentifier = "default profile";
+	//private final String defaultProfileIdentifier = "default profile";
+	private final String defaultProfileIdentifier = "Default Metadata Profile";
 	
-	@FindBy(css=".imj_submitButton")
+	//@FindBy(css=".imj_submitButton")
+	@FindBy(id="editContainer:mediaContainerForm:btn_saveCollection")
 	private WebElement saveButton;
 	
 	@FindBy(css=".imj_cancelButton")
@@ -167,7 +171,8 @@ public class NewCollectionPage extends BasePage {
 			
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_descriptionArea select")));		
 		
-		profileTemplatesDropBox = new Select(profileTemplatesDropBoxWebElement);		
+		profileTemplatesDropBox = new Select(profileTemplatesDropBoxWebElement);
+		profileTemplatesDropBoxWebElement.click();
 		profileTemplatesDropBox.selectByVisibleText(profileIdentifier);		
 	}
 
@@ -202,7 +207,8 @@ public class NewCollectionPage extends BasePage {
 	}
 	
 	private void submitForm() {
-		saveButton.click();
+		//saveButton.click();
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", saveButton);
 	}
 
 	private void setTitle(String title) {
@@ -277,7 +283,9 @@ public class NewCollectionPage extends BasePage {
 	}
 	
 	private void checkNewMetaDataFromTemplate() {
-		driver.findElement(By.id("editContainer:mediaContainerForm:j_idt247:j_idt249:copyProfile")).click();
+		WebElement templateCheckbox = driver.findElement(By.xpath("//input[contains(@id, 'editContainer:mediaContainerForm:') and contains(@id, ':copyProfile')]"));
+		if (!templateCheckbox.isSelected())
+			((JavascriptExecutor)driver).executeScript("arguments[0].click();", templateCheckbox);
 	}
 
 	public void addAuthor() {

@@ -65,19 +65,27 @@ public class ChangeMetadataTest extends BaseSelenium {
 		Assert.assertTrue(profileCanBeModified);
 	}
 	
-	@Test(priority = 5)
+	/*@Test(priority = 5)
 	public void editMetadataBlock() {
-		String typeValue = "http://imeji.org/terms/metadata#conePerson";
 		String type = "Person";
+		String typeValue = "http://imeji.org/terms/metadata#conePerson";
 		EditMetadataPage editMetadata = metaDataOverViewPage.editMetadata();
-		editMetadata.changeBlockType(0, typeValue);
+		editMetadata.changeBlockType(0, type);
 		MetadataOverviewPage metadataOverview = editMetadata.saveChanges();
 		
-		boolean containsType = metadataOverview.containsType(type);
+		boolean containsType = metadataOverview.containsType(typeValue);
 		Assert.assertTrue(containsType, "Type was not changed");
 	}
 	
 	@Test(priority = 6)
+	public void changeProfileBack() {
+		String type = "Text";
+		EditMetadataPage editMetadata = metaDataOverViewPage.editMetadata();
+		editMetadata.changeBlockType(0, type);
+		editMetadata.saveChanges();
+	}*/
+	
+	@Test(priority = 7)
 	public void deleteCollection() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		CollectionContentPage collectionContentPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle);

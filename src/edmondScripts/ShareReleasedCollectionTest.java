@@ -1,6 +1,5 @@
 package edmondScripts;
 
-
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
@@ -30,7 +29,7 @@ public class ShareReleasedCollectionTest extends BaseSelenium {
 		collectionEntryPage = homePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		KindOfSharePage shareTransitionPage = collectionEntryPage.goToSharePage();
 		SharePage sharePage = shareTransitionPage.shareWithAUser();
-		sharePage.share(true, false, getPropertyAttribute(restrUserName), false, false, false, false, false, false, true);
+		sharePage.share(true, false, getPropertyAttribute(restrUserName), true, true, true, true, true, true, true);
 		
 		collectionEntryPage = new StartPage(driver).goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 	}

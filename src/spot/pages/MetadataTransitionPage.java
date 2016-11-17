@@ -34,7 +34,7 @@ public class MetadataTransitionPage extends BasePage {
 	
 	public MetadataOverviewPage selectExistingMetadataTemplate(String profileName) {
 		chooseProfile(profileName);
-		driver.findElement(By.id("j_idt146:j_idt148:copyProfile")).click();
+		driver.findElement(By.xpath("//input[contains(@id, ':copyProfile')]")).click();
 		driver.findElement(By.className("imj_submitButton")).click();
 		
 		return PageFactory.initElements(driver, MetadataOverviewPage.class);

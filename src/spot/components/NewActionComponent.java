@@ -1,5 +1,6 @@
 package spot.components;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,7 +32,10 @@ public class NewActionComponent {
 	
 	public void clickCreateNewAlbum() {
 		newButton.click();
-		newAlbumDropBoxEntry.click();
+		if (newAlbumDropBoxEntry.getText().contains("album") )
+			newAlbumDropBoxEntry.click();
+		else
+			throw new NoSuchElementException("Album cannot be created: albums are probably disabled.");
 	}
 	
 	public WebElement getNewButton() {

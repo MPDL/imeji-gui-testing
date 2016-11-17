@@ -53,7 +53,7 @@ public class ShareAdminCollectionPM extends BaseSelenium {
 		
 		KindOfSharePage shareTransitionPage = collectionEntryPage.goToSharePage();
 		sharePage = shareTransitionPage.shareWithAUser();
-		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUserName), true, false, false, false, false, false, true);
+		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUserName), true, true, true, true, true, true, true);
 	}
 	
 	@Test(priority = 2)

@@ -22,18 +22,20 @@
 			<class name="spot.scripts.BrowseItemsDefaultThumbnailTest" />
 			
 			<class name="edmondScripts.UserGroupTest" />
-			
+
 			<class name="edmondScripts.UserGroupGrantTest" />
 			
 			<class name="spot.scripts.admin.EditUserProfileTest" />
 			
 			<class name="edmondScripts.DisableAlbumsTest" />
 			
+			<class name="spot.scripts.admin.CreateTermsOfUseTest" />
+			
 			<class name="spot.scripts.admin.EnterUserManagementTest" />
 			
 			<class name="spot.scripts.admin.AllUsersOverviewTest" />
 			
-			<!-- Upload and publication test cases -->
+ 			<!-- Upload and publication test cases -->
 			
 			<class name="edmondScriptsPrivateMode.PublishedItemsNoMetadataPMTest" />
 			
@@ -63,15 +65,13 @@
 			
 			<class name="edmondScripts.ItemUploadTest" />
 			
-			<!-- Metadata test cases -->
+ 			<!-- Metadata test cases -->
 			
 			<class name="edmondScripts.CreateMetadataProfileUnpublishedTest" />
 			
 			<class name="edmondScripts.CreateMetadataProfilePublishedTest" />
 			
 			<class name="edmondScripts.HierarchicalMDPTest" />
-			
-			<class name="edmondScriptsPrivateMode.CreateMetadataProfileUnpublishedPMTest" />
 			
 			<class name="edmondScriptsPrivateMode.CreateMetadataProfilePublishedPMTest" />
 			
@@ -87,7 +87,7 @@
 			
 			<class name="edmondScripts.CollectionOtherMDPTest" />
 			
- 			<!-- Miscellaneous actions test cases -->
+			<!--  Miscellaneous actions test cases -->
 			
 			<class name="edmondScripts.ChangeColourSchemeTest" />
 			
@@ -109,7 +109,7 @@
 			
 			<class name="spot.scripts.SearchSpecialCharactersTest" />
 			
- 			<!-- Navigation test cases -->
+			<!--  Navigation test cases -->
 			
 			<class name="spot.scripts.CategorySelectionTest" />
 			
@@ -135,7 +135,7 @@
 			
 			<class name="spot.scripts.collections.CreateCollectionWithoutOrgNameTest" />
 			
-	 		<!-- Share use cases -->
+			<!-- Share use cases -->
 			
 			<class name="spot.scripts.collections.CreatePrivateCollectionTest" />
 			

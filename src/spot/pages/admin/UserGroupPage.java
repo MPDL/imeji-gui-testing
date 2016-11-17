@@ -71,6 +71,17 @@ public class UserGroupPage extends BasePage {
 		return editUserGroup.editTitle(newTitle);
 	}
 	
+	public boolean hasGrant(String grantName) {
+		List<WebElement> userGroupGrants = driver.findElements(By.cssSelector(".imj_admindataValueEntry span"));
+		
+		for (WebElement userGrant : userGroupGrants) {
+			if (userGrant.getText().contains(grantName))
+				return true;
+		}
+		
+		return false;
+	}
+	
 	public String getUserGroupTitle() {
 		return driver.findElement(By.tagName("h2")).getText();
 	}

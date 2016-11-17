@@ -32,9 +32,8 @@ public class MetadataOverviewPage extends BasePage {
 		List<WebElement> metadataBlocks = driver.findElements(By.className("imj_metadataProfileItem"));
 		
 		for (WebElement block : metadataBlocks) {
-			String description = block.findElement(By.className(".imj_metadataValue")).getText();
-			String type = description.split(" ")[0];
-			if (type.equals(wantedType))
+			String description = block.findElement(By.cssSelector(".imj_metadataSet:nth-of-type(2)>.imj_metadataValue")).getText();
+			if (description.equals(wantedType))
 				return true;
 		}
 		

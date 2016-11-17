@@ -104,7 +104,7 @@ public class CollectionEntryPage extends BasePage {
 	
 	public boolean shareIconVisible() {
 		try {
-			driver.findElement(By.cssSelector(".fa-users.fa-size-3"));
+			driver.findElement(By.cssSelector(".imj_statusHeaderArea .fa-users"));
 			return true;
 		}
 		catch (NoSuchElementException exc) {
@@ -119,8 +119,8 @@ public class CollectionEntryPage extends BasePage {
 	public boolean labelDisplayed(String label) {
 		List<WebElement> allSets = driver.findElements(By.className("imj_infodataSet"));
 		for (WebElement set : allSets) {
-			if (set.getText().contains("Label"))
-				return set.getText().contains(label);
+			if (set.getText().contains(label))
+				return true;
 		}
 		return false;
 	}

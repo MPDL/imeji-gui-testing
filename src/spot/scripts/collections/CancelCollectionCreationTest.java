@@ -37,7 +37,7 @@ public class CancelCollectionCreationTest extends BaseSelenium {
 		createNewCollectionPage.cancelCollectionCreation();
 		
 		String currentUrl = driver.getCurrentUrl();
-		Assert.assertEquals(currentUrl, previousPageUrl, "Browser doesn't go to previous page after cancelling collection.");
+		Assert.assertTrue(currentUrl.contains(previousPageUrl), "Browser doesn't go to previous page after cancelling collection.");
 	}
 	
 	@AfterClass

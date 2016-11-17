@@ -207,13 +207,13 @@ public abstract class BasePage {
 	public boolean retryingFindClick(By by) {
         boolean result = false;
         int attempts = 0;
-        while(attempts < 2) {
+        while(attempts < 20) {
             try {
                 driver.findElement(by).click();
                 result = true;
                 break;
-            } catch(WebDriverException e) {
-            }
+            } 
+            catch(WebDriverException e) {}
             attempts++;
         }
         return result;
@@ -227,8 +227,8 @@ public abstract class BasePage {
                 driver.findElement(by).isDisplayed();
                 result = true;
                 break;
-            } catch(StaleElementReferenceException | NoSuchElementException e) {
-            }
+            } 
+            catch(StaleElementReferenceException | NoSuchElementException e) {}
             attempts++;
         }
         return result;

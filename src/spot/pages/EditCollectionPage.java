@@ -5,22 +5,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class EditCollectionPage extends BasePage {
 
-	@FindBy(id = "editContainer:mediaContainerForm:persons:0:j_idt161")
+	@FindBy(xpath = "//a[contains(@id, 'editContainer:mediaContainerForm:persons:0') and contains(@class, 'fa-plus-square-o')]")
 	private WebElement addAuthorButton;
 	
-	@FindBy(id = "editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText")
+	@FindBy(id = "editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText1")
 	private WebElement author2FamilyName;
 	
-	@FindBy(id = "editContainer:mediaContainerForm:persons:1:collectionAuthor:j_idt194:0:inputOrgaName")
+	@FindBy(xpath = "//input[contains(@id, 'editContainer:mediaContainerForm:persons:1:collectionAuthor') and contains(@id, 'inputOrgaName1')]")
 	private WebElement organisation2Name;
 	
 	@FindBy(id = "editContainer:mediaContainerForm:additionalInfos")
 	private WebElement additionalInfo;
 	
-	@FindBy(id = "editContainer:mediaContainerForm:list:0:j_idt233")
+	@FindBy(css = "#editContainer\\:mediaContainerForm\\:additionalInfos .fa-minus-square-o")
 	private WebElement removeInfo;
 	
 	@FindBy(id = "editContainer:mediaContainerForm:list:0:inputInfoLabel")
@@ -54,6 +55,7 @@ public class EditCollectionPage extends BasePage {
 	
 	public void removeLabel() {
 		removeInfo.click();
+		wait.until(ExpectedConditions.elementToBeClickable(saveButton));
 	}
 	
 	public void addLogo(String filepath) {

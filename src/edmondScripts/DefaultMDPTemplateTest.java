@@ -18,7 +18,8 @@ import spot.util.TimeStamp;
 public class DefaultMDPTemplateTest extends BaseSelenium {
 
 	private String collectionTitle = "Collection with default MDP as template: " + TimeStamp.getTimeStamp();
-	private String metadataIdentifier = "default profile";
+	//private String metadataIdentifier = "default profile";
+	private String metadataIdentifier = "Default Metadata Profile";
 	
 	private HomePage homePage;
 	

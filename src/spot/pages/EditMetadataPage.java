@@ -1,6 +1,7 @@
 package spot.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,14 +21,14 @@ public class EditMetadataPage extends BasePage {
 	public void changeBlockType(int index, String newType) {
 		WebElement block = getBlockByIndex(index);
 		WebElement typeDropdown = block.findElement(By.id("mdProfileType"));
-		typeDropdown.click();
 		
 		Select typeSelect = new Select(typeDropdown);
-		typeSelect.selectByValue(newType);
+		typeDropdown.click();
+		typeSelect.selectByVisibleText(newType);
 	}
 	
 	public MetadataOverviewPage saveChanges() {
-		retryingFindClick(By.xpath("/html/body/div[1]/div[5]/div[1]/form/div/div[2]/div[2]/input[2]"));
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", saveButton);
 		
 		return PageFactory.initElements(driver, MetadataOverviewPage.class);
 	}

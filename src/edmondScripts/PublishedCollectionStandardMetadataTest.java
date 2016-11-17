@@ -29,12 +29,12 @@ public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 	private LoginPage loginPage;
 	private HomePage homePage;
 	private CollectionEntryPage collectionEntryPage;
-	
 	private HashMap<String, String> files;
 	private MultipleUploadPage multipleUploadPage;
 
-	public final String collectionTitle = "Published test collection with default meta data profile: "
-			+ TimeStamp.getTimeStamp();
+	public final String collectionTitle = "Published test collection with default meta data profile: " + TimeStamp.getTimeStamp();
+	// private final String defaultProfileIdentifier = "default profile";
+	private final String defaultProfileIdentifier = "Default Metadata Profile";
 
 	@BeforeClass
 	public void beforeClass() {
@@ -101,7 +101,7 @@ public class PublishedCollectionStandardMetadataTest extends BaseSelenium {
 		
 		createdCollection.openMetaDataProfile();
 		String metaDataProfileTitle = driver.findElement(By.tagName("h3")).getText();
-		boolean metaDataProfileIsDefault = metaDataProfileTitle.contains("default profile");
+		boolean metaDataProfileIsDefault = metaDataProfileTitle.contains(defaultProfileIdentifier);
 		Assert.assertTrue(metaDataProfileIsDefault, "This collection should have a default metadata profile.");
 	}
 	

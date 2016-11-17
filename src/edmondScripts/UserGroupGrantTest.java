@@ -1,5 +1,6 @@
 package edmondScripts;
 
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -13,6 +14,7 @@ import spot.pages.LoginPage;
 import spot.pages.SharePage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomePage;
+import spot.pages.admin.UserGroupPage;
 import spot.pages.notAdmin.NewCollectionPage;
 import spot.util.TimeStamp;
 
@@ -47,7 +49,7 @@ public class UserGroupGrantTest extends BaseSelenium {
 	@Test(priority = 3)
 	public void shareCollection() {
 		CollectionEntryPage collectionEntry = adminHomePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
-		collectionEntry.goToSharePage().shareWithUserGroup().shareWithGroup(groupName, false, false, true, true, true, true, true, true, true);
+		collectionEntry.goToSharePage().shareWithUserGroup().shareWithGroup(groupName, false, false, true, true, true, true, true, false, false);
 	}
 	
 	@Test(priority = 4)
@@ -55,7 +57,7 @@ public class UserGroupGrantTest extends BaseSelenium {
 		CollectionEntryPage collectionEntry = adminHomePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		SharePage sharePage = collectionEntry.goToSharePage().shareWithUserGroup();
 		
-		boolean grantsCorrect = sharePage.checkGrantSelections(false, groupName, true, true, true, true, true, true, true);
+		boolean grantsCorrect = sharePage.checkGrantSelections(false, groupName, true, true, true, true, true, false, false);
 		Assert.assertTrue(grantsCorrect, "Share grants are not correct.");
 		
 		boolean canRevoke = sharePage.revokeDisplayed(groupName);
@@ -63,12 +65,20 @@ public class UserGroupGrantTest extends BaseSelenium {
 	}
 	
 	@Test(priority = 5)
+	public void checkGrantGroupPage() {
+		UserGroupPage userGroup = adminHomePage.goToAdminPage().viewAllUserGroups().viewUserGroupDetails(groupName);
+		
+		boolean hasGrant = userGroup.hasGrant(collectionTitle);
+		Assert.assertTrue(hasGrant, "No grants are displayed on user group page.");
+	}
+	
+	@Test(priority = 6)
 	public void deleteCollection() {
 		CollectionEntryPage collectionEntry = adminHomePage.goToCollectionPage().openCollectionByTitle(collectionTitle).viewCollectionInformation();
 		collectionEntry.deleteCollection();
 	}
 	
-	@Test(priority = 6)
+	@Test(priority = 7)
 	public void deleteUserGroup() {
 		AdministrationPage adminPage = adminHomePage.goToAdminPage();
 		adminPage.viewAllUserGroups().deleteUserGroupByName(groupName);

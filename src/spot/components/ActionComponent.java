@@ -1,6 +1,7 @@
 package spot.components;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -159,7 +160,7 @@ public class ActionComponent extends BasePage {
 				withDrawMenuItemDialog = driver.findElement(By.id("withdrawMenuItemDialog"));
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@id, 'btnDiscardContainer')]")));
 				WebElement confirmDiscard = withDrawMenuItemDialog.findElement(By.xpath(".//input[contains(@id, 'btnDiscardContainer')]"));
-				confirmDiscard.click();
+				((JavascriptExecutor)driver).executeScript("arguments[0].click();", confirmDiscard);
 				
 				returnPage = PageFactory.initElements(driver, DiscardedCollectionEntryPage.class);
 				break;

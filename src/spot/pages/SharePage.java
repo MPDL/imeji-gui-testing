@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -44,7 +45,7 @@ public class SharePage extends BasePage {
 	@FindBy(css = "#share\\:selSendEmail")
 	private WebElement sendMailCheckBox;
 	
-	@FindBy(css="#share .imj_submitButton")
+	@FindBy(css = "input[value='Share']")
 	private WebElement shareButton;	
 	
 	@FindBy(id = "share:unknownEmails")
@@ -149,28 +150,28 @@ public class SharePage extends BasePage {
 				checkGrantIfNecessary(editProfile, editProfileGrantCheckBox);
 		}
 		
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		/*jse.executeScript("arguments[0].style.visibility = 'visible';", shareButton);
-		jse.executeScript("arguments[0].style.display = 'block';", shareButton);
-		jse.executeScript("arguments[0].style.opacity = '1';", shareButton);
-		jse.executeScript("arguments[0].style.height = '1px';", shareButton);
-		jse.executeScript("arguments[0].style.width = '1px';", shareButton);
-		jse.executeScript("arguments[0].click();", shareButton);*/
-		jse.executeScript("arguments[0].click();", shareButton);
-		
+		wait.until(ExpectedConditions.elementSelectionStateToBe(By.cssSelector("input[value='EDIT']"), editCollectionInformation));
+		wait.until(ExpectedConditions.visibilityOf(shareButton));
+		((JavascriptExecutor)driver).executeScript("arguments[0].click();", shareButton);
 		//shareButton.click();
 			
 		return PageFactory.initElements(driver, SharePage.class);
 	}
 	
 	private void checkGrantIfNecessary(boolean grantedTo, WebElement checkBox) {
-		if (grantedTo) {
-			if (!checkBox.isSelected())
-				checkBox.click();
-		} 
-		else { 
-			if (checkBox.isSelected())
-				checkBox.click();
+		try {
+			if (grantedTo) {
+				if (!checkBox.isSelected())
+					checkBox.click();
+			} 
+			else { 
+				if (checkBox.isSelected())
+					checkBox.click();
+			}
+		}
+		catch (StaleElementReferenceException exc) {
+			PageFactory.initElements(driver, this);
+			checkGrantIfNecessary(grantedTo, checkBox);
 		}
 	}
 

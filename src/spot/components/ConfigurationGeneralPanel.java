@@ -25,10 +25,10 @@ public class ConfigurationGeneralPanel extends BasePage {
 	@FindBy(css = ".imj_admindataSet:nth-of-type(10) table td:nth-of-type(2) input")
 	private WebElement albumsYesRadioButton;
 	
-	@FindBy(css = "textarea:nth-of-type(2)")
+	@FindBy(css = ".imj_adminPanel .imj_admindataSet:nth-of-type(11) textarea")
 	private WebElement maintenanceMessageBox;
 	
-	@FindBy(css = "textarea")
+	@FindBy(css = ".imj_adminPanel .imj_admindataSet:nth-of-type(8) textarea")
 	private WebElement termsOfUseBox;
 	
 	@FindBy(css = ".imj_content .imj_submitButton")

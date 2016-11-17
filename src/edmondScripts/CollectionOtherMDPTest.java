@@ -19,7 +19,7 @@ import spot.util.TimeStamp;
 public class CollectionOtherMDPTest extends BaseSelenium {
 	
 	private String collectionTitle = "Collection with individual MDP as reference/template: " + TimeStamp.getTimeStamp();
-	private String metadataIdentifier = "Elefanten Daten Profil";
+	private String metadataIdentifier = "Sammlung lila (Metadata profile)";
 	
 	private HomePage homePage;
 	
