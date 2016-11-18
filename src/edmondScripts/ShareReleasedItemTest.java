@@ -74,9 +74,6 @@ public class ShareReleasedItemTest extends BaseSelenium {
 		
 		boolean pageDisplayed = itemViewPage.isDetailedItemViewPageDisplayed();
 		Assert.assertTrue(pageDisplayed, "User cannot view item.");
-		
-		boolean shareIconVisible = itemViewPage.shareIconVisible();
-		Assert.assertTrue(shareIconVisible, "Share icon is not visible.");
 	}
 	
 	@Test(priority = 5)

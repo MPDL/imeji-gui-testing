@@ -12,10 +12,10 @@ public class EditCollectionPage extends BasePage {
 	@FindBy(xpath = "//a[contains(@id, 'editContainer:mediaContainerForm:persons:0') and contains(@class, 'fa-plus-square-o')]")
 	private WebElement addAuthorButton;
 	
-	@FindBy(id = "editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText1")
+	@FindBy(id = "editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText")
 	private WebElement author2FamilyName;
 	
-	@FindBy(xpath = "//input[contains(@id, 'editContainer:mediaContainerForm:persons:1:collectionAuthor') and contains(@id, 'inputOrgaName1')]")
+	@FindBy(xpath = "//input[contains(@id, 'editContainer:mediaContainerForm:persons:1:collectionAuthor') and contains(@id, 'inputOrgaName')]")
 	private WebElement organisation2Name;
 	
 	@FindBy(id = "editContainer:mediaContainerForm:additionalInfos")

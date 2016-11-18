@@ -12,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import spot.util.DefaultMetaDataProfile;
 
@@ -32,7 +33,7 @@ public class SingleUploadPage extends BasePage {
 	@FindBy(id="singleUpload:metadata:2:editMd:inputPerson:inputIdentifier1")
 	private WebElement metaDataIDTextField;
 	
-	@FindBy(id="singleUpload:metadata:2:editMd:inputPerson:inputFamilyNameText1")
+	@FindBy(id="singleUpload:metadata:1:editMd:inputPerson:inputFamilyNameText1")
 	private WebElement metaDataAuthorFamilyNameTextField;
 	
 	@FindBy(xpath="//input[contains(@id, 'inputOrgaName')]")
@@ -41,16 +42,16 @@ public class SingleUploadPage extends BasePage {
 	@FindBy(id="singleUpload:metadata:3:editMd:inputPublicationURI")
 	private WebElement metaDataPublicationTextField;
 	
-	@FindBy(id="singleUpload:metadata:4:editMd:inputDate")
+	@FindBy(id="singleUpload:metadata:2:editMd:inputDate")
 	private WebElement metaDataDateTextField;
 	
-	@FindBy(id="singleUpload:metadata:5:editMd:inputLocationName")
+	@FindBy(id="singleUpload:metadata:3:editMd:inputLocationName")
 	private WebElement metaDataGeolocNameTextField;
 	
-	@FindBy(id="singleUpload:metadata:5:editMd:inputLatitude")
+	@FindBy(id="singleUpload:metadata:3:editMd:inputLatitude")
 	private WebElement metaDataGeolocLatitudeField;
 	
-	@FindBy(id="singleUpload:metadata:5:editMd:inputLongitude")
+	@FindBy(id="singleUpload:metadata:3:editMd:inputLongitude")
 	private WebElement metaDataGeolocLongitudeField;
 	
 	@FindBy(id = "singleUpload:licenseEditorContainer")
@@ -80,7 +81,7 @@ public class SingleUploadPage extends BasePage {
 		uploadButton = singleUploadForm.findElement(By.tagName("input"));
 		uploadButton.sendKeys(pathToFile);		
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("singleUpload:collections")));
+		new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(By.id("singleUpload:collections")));
 		Select selectDropBox = new Select(selectCollectionToUploadDropBox);
 		selectDropBox.selectByVisibleText(collectionTitle);
 		
@@ -148,8 +149,8 @@ public class SingleUploadPage extends BasePage {
 		metaDataGeolocLongitudeField.sendKeys(defaultMetaDataProfile.getLongitude());
 		
 		//setting publication link
-		wait.until(ExpectedConditions.visibilityOf(metaDataPublicationTextField));
-		metaDataPublicationTextField.sendKeys(defaultMetaDataProfile.getPublicationLink());
+		//wait.until(ExpectedConditions.visibilityOf(metaDataPublicationTextField));
+		//metaDataPublicationTextField.sendKeys(defaultMetaDataProfile.getPublicationLink());
 	}
 	
 	/**

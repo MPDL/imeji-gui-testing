@@ -153,7 +153,7 @@ public class ItemUploadTest extends BaseSelenium {
 		multipleUpload.checkUniqueness(true);
 		
 		try {
-			multipleUpload.addFile(files.get("SampleWordFile.docx"));
+			multipleUpload.addFile(getFilepath("SampleJPGFile.jpg"));
 		}
 		catch (AWTException exc) {}
 		
@@ -173,7 +173,7 @@ public class ItemUploadTest extends BaseSelenium {
 		multipleUpload.checkUniqueness(false);
 		
 		try {	
-			multipleUpload.addFile(files.get("SampleWordFile.docx"));
+			multipleUpload.addFile(getFilepath("SampleJPGFile.jpg"));
 		}
 		catch (AWTException exc) {}
 		
@@ -195,7 +195,7 @@ public class ItemUploadTest extends BaseSelenium {
 		multipleUpload.overwriteFile(true);
 		
 		try {
-			multipleUpload.addFile(files.get("SamplePDFFile.pdf"));
+			multipleUpload.addFile(getFilepath("SamplePDFFile.pdf"));
 		}
 		catch (AWTException exc) {}
 		

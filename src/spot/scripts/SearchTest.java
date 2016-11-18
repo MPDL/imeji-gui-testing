@@ -59,27 +59,27 @@ public class SearchTest extends BaseSelenium {
 	
 	@Test
 	public void asteriskWildcard() {
-		search("IMG_*");
+		search("Sample*");
 	}
 	
 	@Test
 	public void questionWildcard() {
-		search("IMG_????");
+		search("Sample???File.jpg");
 	}
 	
 	@Test
 	public void searchItem() {
-		search("test");
+		search("File");
 	}
 	
 	@Test
 	public void searchCollection() {
-		search("test", CategoryType.COLLECTION);
+		search("published", CategoryType.COLLECTION);
 	}
 	
 	@Test
 	public void searchAlbum() {
-		search("test", CategoryType.ALBUM);
+		search("album", CategoryType.ALBUM);
 	}
 
 	@Test

@@ -104,7 +104,8 @@ public class CollectionsPage extends BasePage {
 	
 	public CollectionContentPage openCollectionByTitle(String collectionTitle) {
 		WebElement collectionInQuestion = findCollectionByTitle(collectionTitle);		
-		collectionInQuestion.findElement(By.className("imj_itemHeadline")).click();
+		//collectionInQuestion.findElement(By.className("imj_itemHeadline")).click();
+		collectionInQuestion.findElement(By.tagName("a")).click();
 		
 		return PageFactory.initElements(driver, CollectionContentPage.class);
 	}
@@ -153,6 +154,15 @@ public class CollectionsPage extends BasePage {
 	 * @throws NoSuchElementException if no collection on the page is published
 	 */
 	public CollectionContentPage openSomeNotPublishedCollection() {
+		WebElement stateDropdown = driver.findElement(By.className("fa-lock"));
+		stateDropdown.click();
+		stateComponent.filter(StateOptions.ONLY_PRIVATE);
+		
+		CollectionsPage collectionsPage = PageFactory.initElements(driver, CollectionsPage.class);
+		collectionsPage.getPageOfLargestCollection();
+		return PageFactory.initElements(driver, CollectionContentPage.class);
+	}
+	/**public CollectionContentPage openSomeNotPublishedCollection() {
 		
 		checkCollectionList();
 		
@@ -197,7 +207,7 @@ public class CollectionsPage extends BasePage {
 		someNotPublishedCollection.findElement(By.tagName("img")).click();
 		
 		return PageFactory.initElements(driver, CollectionContentPage.class);
-	}
+	}**/
 
 	private void checkCollectionList() {		
 		

@@ -71,7 +71,7 @@ public abstract class BasePage {
 	private WebElement viewActiveAlbumButton;
 	
 	/* @imejiHomePageLink & @mpdlHomePage only for Imeji */
-	@FindBy(css=".imj_poweredby_software_image")
+	@FindBy(css=".imj_poweredby_software_image a")
 	protected WebElement imejiHomePageLink;
 	
 	@FindBy(css=".imj_poweredby_institution")

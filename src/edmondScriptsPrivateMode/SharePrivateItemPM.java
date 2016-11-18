@@ -89,9 +89,6 @@ public class SharePrivateItemPM extends BaseSelenium {
 		itemViewPage = homePage.navigateToItemPage().openItemByTitle(itemTitle);
 		boolean pageDisplayed = itemViewPage.isDetailedItemViewPageDisplayed();
 		
-		boolean shareIconVisible = itemViewPage.shareIconVisible();
-		Assert.assertTrue(shareIconVisible, "Share icon is not visible.");
-		
 		Assert.assertTrue(pageDisplayed, "User cannot view item.");
 	}
 	
