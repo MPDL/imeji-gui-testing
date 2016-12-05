@@ -8,10 +8,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.BaseSelenium;
+import spot.pages.AlbumEntryPage;
+import spot.pages.AlbumPage;
 import spot.pages.CollectionContentPage;
 import spot.pages.CollectionEntryPage;
 import spot.pages.LoginPage;
 import spot.pages.MultipleUploadPage;
+import spot.pages.SharePage;
 import spot.pages.StartPage;
 import spot.pages.notAdmin.HomePage;
 import spot.pages.notAdmin.NewCollectionPage;
@@ -90,11 +93,11 @@ public class SharedFileToAlbumTest extends BaseSelenium {
 	@Test(priority = 7)
 	public void publicSharedPublicAlbum() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
-		homePage.goToAlbumPage().openActiveAlbumEntryPage().publish();
-		new StartPage(driver).goToAlbumPage().makeAlbumActive(albumTitle);
+		AlbumEntryPage albumEntry = homePage.goToAlbumPage().openActiveAlbumEntryPage().publish();
+		homePage = albumEntry.goToAlbumPage().makeAlbumActive(albumTitle).goToHomePage(homePage);
 		
-		new StartPage(driver).navigateToItemPage().openItemByTitle(itemTitle[2]).shareItem().shareWithAUser().share(getPropertyAttribute(restrUserName), true);
-		new StartPage(driver).navigateToItemPage().openItemByTitle(itemTitle[2]).addToActiveAlbum();
+		SharePage sharePage = homePage.navigateToItemPage().openItemByTitle(itemTitle[2]).shareItem().shareWithAUser().share(getPropertyAttribute(restrUserName), true);
+		sharePage.navigateToItemPage().openItemByTitle(itemTitle[2]).addToActiveAlbum();
 		
 		int albumItemCount = new StartPage(driver).openActiveAlbumEntryPage().getItemCount();
 		Assert.assertEquals(albumItemCount, 3, "Public shared item was not added to public album.");

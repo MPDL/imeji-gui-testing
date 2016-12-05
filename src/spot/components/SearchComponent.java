@@ -65,10 +65,10 @@ public class SearchComponent {
 				categoryMenu.findElement(By.id("simpleSearchForItems")).click();
 				break;
 			case ALBUM:
-				categoryMenu.findElement(By.id("simpleSearchForCollections")).click();
+				categoryMenu.findElement(By.id("simpleSearchForAlbums")).click();
 				break;
 			case COLLECTION:
-				categoryMenu.findElement(By.id("simpleSearchForAlbums")).click();
+				categoryMenu.findElement(By.id("simpleSearchForCollections")).click();
 				break;
 			default:
 				categoryMenu.findElement(By.id("simpleSearchForItems")).click();

@@ -29,8 +29,9 @@
 				<version>2.19.1</version>
 				<configuration>
 					<suiteXmlFiles>
+<!-- 						<suiteXmlFile>res/testng_essential.xml</suiteXmlFile> -->
 						<suiteXmlFile>src/edmondScripts/testng_edmond_firefox.xml</suiteXmlFile>
-						<!-- <suiteXmlFile>src/edmondScripts/testng_edmond_chrome.xml</suiteXmlFile> -->
+<!-- 						<suiteXmlFile>src/edmondScripts/testng_edmond_chrome.xml</suiteXmlFile> -->
 						<!-- !!! -->
 						<!-- Add other suite xml files HERE if needed -->
 						<!-- <suiteXmlFile></suiteXmlFile> -->

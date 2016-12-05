@@ -21,6 +21,8 @@ public class PublishAlbumTest extends BaseSelenium {
 	private AdminHomePage adminHomePage;
 	private AlbumEntryPage albumEntryPage;
 	
+	private String albumTitle = "Published album: " +	TimeStamp.getTimeStamp(); 
+	
 	@BeforeClass
 	public void beforeClass() {
 		super.setup();
@@ -36,11 +38,10 @@ public class PublishAlbumTest extends BaseSelenium {
 		navigateToStartPage();
 	}
 	
-	@Test (priority=1)
+	@Test(priority = 1)
 	public void createAlbum() {
 		NewAlbumPage createNewAlbumPage = adminHomePage.goToCreateNewAlbumPage();		
 		
-		String albumTitle = "Test Album " +	TimeStamp.getTimeStamp(); 
 		String albumDescription = "This album is created for testing purposes.";
 		
 		albumEntryPage = createNewAlbumPage.createAlbum(albumTitle, albumDescription);
@@ -51,7 +52,7 @@ public class PublishAlbumTest extends BaseSelenium {
 		Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Album probably couldn't be created.");
 	}
 
-	@Test (priority=2)
+	@Test(priority = 2)
 	public void addPublishedFilesToAlbum() {
 		CollectionsPage collectionPage = adminHomePage.goToCollectionPage();
 		
@@ -63,7 +64,7 @@ public class PublishAlbumTest extends BaseSelenium {
 		Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Items probably couldn't be added to active album.");
 	}
 	
-	@Test (priority=3)
+	@Test(priority = 3)
 	public void addNotYetPublishedFilesToAlbum() {
 		CollectionsPage collectionPage = adminHomePage.goToCollectionPage();
 		
@@ -75,7 +76,7 @@ public class PublishAlbumTest extends BaseSelenium {
 		Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Item probably couldn't be added to active album.");
 	}
 	
-	@Test (priority=4)
+	@Test(priority = 4)
 	public void publishAlbumTest() {
 		 AlbumEntryPage activeAlbumEntryPage = adminHomePage.openActiveAlbumEntryPage();
 		 activeAlbumEntryPage.publish();
@@ -85,9 +86,15 @@ public class PublishAlbumTest extends BaseSelenium {
 		 Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Something went wrong with the release of the album.");
 	}
 	
+	@Test(priority = 5)
+	public void discardAlbum() {
+		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
+		adminHomePage.goToAlbumPage().openAlbumByTitle(albumTitle).discardAlbum();
+	}
+	
 	@AfterClass
 	public void afterClass() {
-		
+		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
 		adminHomePage.logout();
 	}
 }

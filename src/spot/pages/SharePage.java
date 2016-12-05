@@ -223,7 +223,7 @@ public class SharePage extends BasePage {
 			while (iterator.hasNext() && allGrantsCorrect) {
 				
 				WebElement grantCheckBox = iterator.next();
-				if (!grantCheckBox.isSelected())
+				if (!grantCheckBox.isSelected() && grantCheckBox.isEnabled())
 					allGrantsCorrect = false;
 			}
 						

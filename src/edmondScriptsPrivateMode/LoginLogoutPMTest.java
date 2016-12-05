@@ -64,7 +64,7 @@ public class LoginLogoutPMTest extends BaseSelenium {
 		
 		String expectedUserFullName = getPropertyAttribute(ruFamilyName) + getPropertyAttribute(ruGivenName);
 		String actualUserFullName = homePage.getLoggedInUserFullName();
-		Assert.assertEquals(actualUserFullName.trim(), expectedUserFullName.trim(), "Names do not match.");
+		Assert.assertEquals(actualUserFullName.trim().toLowerCase(), expectedUserFullName.trim().toLowerCase(), "Names do not match.");
 	}
 	
 	@Test(priority = 4)
@@ -85,7 +85,7 @@ public class LoginLogoutPMTest extends BaseSelenium {
 		
 		String expectedUserFullName = getPropertyAttribute(adminFamilyName) + ", " + getPropertyAttribute(adminGivenName);
 		String actualUserFullName = adminHomePage.getLoggedInUserFullName();
-		Assert.assertEquals(actualUserFullName, expectedUserFullName, "Names do not match.");
+		Assert.assertEquals(actualUserFullName.toLowerCase(), expectedUserFullName.toLowerCase(), "Names do not match.");
 	}
 	
 	@Test(priority = 6)

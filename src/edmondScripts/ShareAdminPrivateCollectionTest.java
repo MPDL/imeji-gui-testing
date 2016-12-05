@@ -46,7 +46,7 @@ public class ShareAdminPrivateCollectionTest extends BaseSelenium {
 		boolean nameInShareList = sharePage.checkPresenceOfSharedPersonInList(userFullName);
 		Assert.assertTrue(nameInShareList, "User 2 is not in share list.");
 		
-		boolean grantIsCorrect = sharePage.checkGrantSelections(false, userFullName, true, true, true, true, true, true, true);
+		boolean grantIsCorrect = sharePage.checkGrantSelections(false, userFullName, true, true, true, true, true, false, true);
 		Assert.assertTrue(grantIsCorrect, "Grant is not correct.");
 	}
 	

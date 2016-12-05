@@ -152,7 +152,7 @@ public class CollectionContentPage extends BasePage {
 			item.findElement(By.cssSelector("span>input")).click();
 		}
 
-		wait.until(ExpectedConditions.visibilityOf(selectedItemCount));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("selPanel:preListForm:lblSelectedSize")));
 		selectedItemCount.click();
 		wait.until(ExpectedConditions.visibilityOf(addToActiveAlbumButton));
 		addToActiveAlbumButton.click();

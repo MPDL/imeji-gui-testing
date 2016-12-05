@@ -64,7 +64,7 @@ public class SearchTest extends BaseSelenium {
 	
 	@Test
 	public void questionWildcard() {
-		search("Sample???File.jpg");
+		search("Sample???File.pdf");
 	}
 	
 	@Test
@@ -74,12 +74,12 @@ public class SearchTest extends BaseSelenium {
 	
 	@Test
 	public void searchCollection() {
-		search("published", CategoryType.COLLECTION);
+		search("collection", CategoryType.COLLECTION);
 	}
 	
 	@Test
 	public void searchAlbum() {
-		search("album", CategoryType.ALBUM);
+		search("Album 2", CategoryType.ALBUM);
 	}
 
 	@Test

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="Essential Imeji test cases" verbose="1" preserve-order="true">
+	<parameter name="browserType" value="firefox" />
+
+	<test name="Edmond smoke testing in Firefox">
+		<classes>
+		
+			<class name="spot.SeleniumTestSuite" />
+			
+			<class name="spot.BaseSelenium" />
+			
+			<class name="edmondScripts.EnablePrivateModeTest" />
+			
+			<class name="edmondScripts.UserGroupTest" />
+			
+			<class name="spot.scripts.admin.UserPolicyManagementTest" />
+			
+			<class name="edmondScriptsPrivateMode.PublishedItemsNoMetadataPMTest" />
+			
+			<class name="edmondScripts.SingleUploadStandardMetadataTest" />
+			
+			<class name="edmondScriptsPrivateMode.UserCollectionWithStandardMDPPrivateMode" />
+			
+ 			<class name="edmondScripts.PublishAlbumTest" />
+ 			
+			<class name="edmondScripts.SelectMetadataProfileReferenceTest" />
+			
+			<class name="edmondScripts.MetadataProfileAsTemplateTest" />
+			
+			<class name="edmondScriptsPrivateMode.LoginLogoutPMTest" />
+			
+			<class name="spot.scripts.collections.CreatePrivateCollectionTest" />
+			
+			<class name="edmondScripts.ShareAdminPrivateCollectionTest" />
+			
+			<class name="edmondScripts.SharePrivateItemTest" />
+			
+			<class name="edmondScripts.DeleteCollectionTest" />
+			
+			<class name="edmondScripts.PublishedCollectionNoMetadataTest" />
+			
+			<class name="edmondScripts.ShareReleasedItemTest" />
+			
+			<class name="edmondScripts.ShareReleasedCollectionTest" />
+			
+			<class name="edmondScripts.DiscardCollectionTest" />
+			
+			<class name="edmondScripts.SharePrivateAlbumReadAdminTest" />
+			
+			<class name="edmondScripts.ShareReleasedAlbumAdminTest" />
+
+			<class name="edmondScriptsPrivateMode.UserCollectionWithoutMDPPrivateMode" />
+			
+			<class name="edmondScriptsPrivateMode.ShareAdminCollectionPM" />
+			
+			<class name="edmondScriptsPrivateMode.SharePrivateItemPM" />
+						
+			<class name="edmondScriptsPrivateMode.UserDeletesPrivateCollectionPMTest" />
+			
+			<class name="edmondScriptsPrivateMode.SharePrivateAlbumPM" />
+			
+		</classes>
+	</test>
+</suite>

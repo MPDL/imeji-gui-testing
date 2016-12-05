@@ -35,7 +35,7 @@
 			
 			<class name="spot.scripts.admin.AllUsersOverviewTest" />
 			
- 			<!-- Upload and publication test cases -->
+			<!-- Upload and publication test cases -->
 			
 			<class name="edmondScriptsPrivateMode.PublishedItemsNoMetadataPMTest" />
 			
@@ -65,7 +65,7 @@
 			
 			<class name="edmondScripts.ItemUploadTest" />
 			
- 			<!-- Metadata test cases -->
+			<!-- Metadata test cases -->
 			
 			<class name="edmondScripts.CreateMetadataProfileUnpublishedTest" />
 			
@@ -163,7 +163,7 @@
 			
 			<class name="edmondScripts.SharedFileToAlbumTest" />
 			
-	 		<!-- Share use cases in private mode -->
+			<!-- Share use cases in private mode -->
 
 			<class name="edmondScriptsPrivateMode.UserCollectionWithoutMDPPrivateMode" />
 			
