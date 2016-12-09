@@ -7,13 +7,13 @@ import org.openqa.selenium.support.PageFactory;
 
 public class SearchResultsPage extends BasePage {
 
-	@FindBy(xpath="html/body/div[1]/div[4]/div[1]")
+	@FindBy(className="imj_searchQueryText")
 	private WebElement searchQueryDisplay;
 	
 	@FindBy(id="quickSearchString")
 	private WebElement searchQueryKeyWord;
 	
-	@FindBy(xpath = "/html/body/div[1]/div[5]/div[1]/div[2]/form/div[1]")
+	@FindBy(xpath = "/html/body/div[1]/div[1]/div[6]/div/div[2]/form/div[1]")
 	private WebElement resultCount;
 	
 	@FindBy(xpath = "//div[contains(@id, 'filterInfoPanel')]")

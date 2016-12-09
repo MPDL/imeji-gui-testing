@@ -1,6 +1,7 @@
 package spot.pages;
 
 import java.awt.AWTException;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -81,7 +82,7 @@ public class SingleUploadPage extends BasePage {
 		uploadButton = singleUploadForm.findElement(By.tagName("input"));
 		uploadButton.sendKeys(pathToFile);		
 		
-		new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(By.id("singleUpload:collections")));
+		wait.withTimeout(3, TimeUnit.SECONDS).until(ExpectedConditions.visibilityOfElementLocated(By.id("singleUpload:collections")));
 		Select selectDropBox = new Select(selectCollectionToUploadDropBox);
 		selectDropBox.selectByVisibleText(collectionTitle);
 		
@@ -159,11 +160,11 @@ public class SingleUploadPage extends BasePage {
 	private void fillLicense() {
 		try {
 			PageFactory.initElements(driver, this);
-			WebElement licenseDropbox = licenseDropdown.findElement(By.tagName("select"));
+			WebElement licenseDropbox = wait.withTimeout(3, TimeUnit.SECONDS).until(ExpectedConditions.presenceOfNestedElementLocatedBy(licenseDropdown, By.tagName("select")));
 			Select licenseSelect = new Select(licenseDropbox);
 			licenseSelect.selectByValue("ODC_ODbL");
 		}
-		catch (NoSuchElementException exc) {}
+		catch (TimeoutException exc) {}
 	}
 	
 }

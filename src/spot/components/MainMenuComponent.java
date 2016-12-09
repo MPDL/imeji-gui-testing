@@ -17,7 +17,7 @@ public class MainMenuComponent {
 
 	private WebDriver driver;
 	
-	@FindBy (name="Header:mainMenu:lnkHome")
+	@FindBy (name="Header:lnkStartPage")
 	private WebElement startButton;
 	
 	@FindBy (name = "Header:mainMenu:lnkAlbums")

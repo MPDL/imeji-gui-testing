@@ -69,7 +69,7 @@ public class DownloadFileTest extends BaseSelenium {
 		
 		boolean isDownloadPossible = openItem();
 		adminHomePage.logout();
-		Assert.assertTrue(isDownloadPossible, "Registered user cannot download item. Reason: Download Button probably not displayed/enabled");
+		Assert.assertTrue(isDownloadPossible, "Admin cannot download item. Reason: Download Button probably not displayed/enabled");
 	}
 	
 }

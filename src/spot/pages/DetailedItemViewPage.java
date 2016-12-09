@@ -3,6 +3,7 @@ package spot.pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -104,9 +105,8 @@ public class DetailedItemViewPage extends BasePage {
 
 	public boolean isDetailedItemViewPageDisplayed() {
 		try {
-			return collectionName.isDisplayed();
-		} catch (TimeoutException te) {
-			wait.until(ExpectedConditions.visibilityOf(fileResolution));
+			return collectionName.isDisplayed() && fileResolution.isDisplayed();
+		} catch (NoSuchElementException exc) {
 			return false;
 		}
 	}
@@ -132,8 +132,8 @@ public class DetailedItemViewPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOf(discardItemDialog));
 		discardItemDialog.findElement(By.className("imj_dialogReasonText")).sendKeys("Discarding for testing purposes.");
 		discardItemDialog = driver.findElement(By.id("withdrawMenuItemDialog"));
-		WebElement confirmDiscard = discardItemDialog.findElement(By.xpath("//input[contains(@id, 'btnDiscardContainer')]"));
-		confirmDiscard.click();
+		//WebElement confirmDiscard = discardItemDialog.findElement(By.xpath("//input[contains(@id, 'btnDiscardContainer')]"));
+		retryingFindClick(By.xpath("//input[contains(@id, 'btnDiscardContainer')]"));
 		
 		return PageFactory.initElements(driver, CollectionContentPage.class);
 	}

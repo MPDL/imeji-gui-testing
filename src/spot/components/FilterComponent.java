@@ -20,13 +20,13 @@ public class FilterComponent extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(xpath = "/html/body/div[1]/div[6]/div[1]/div[2]/div[3]/div[2]/ul/li[1]/a")
+	@FindBy(xpath = "/html/body/div[1]/div[1]/div[5]/div/div[2]/div[3]/div[2]/ul/li[1]/a")
 	private WebElement mineFilter;
 	
-	@FindBy(xpath = "/html/body/div[1]/div[6]/div[1]/div[2]/div[3]/div[2]/ul/li[2]/a")
+	@FindBy(xpath = "/html/body/div[1]/div[1]/div[5]/div/div[2]/div[3]/div[2]/ul/li[2]/a")
 	private WebElement sharedWithMeFilter;
 	
-	@FindBy(xpath = "/html/body/div[1]/div[6]/div[1]/div[2]/div[3]/div[2]/ul/li[3]/a")
+	@FindBy(xpath = "/html/body/div[1]/div[1]/div[5]/div/div[2]/div[3]/div[2]/ul/li[3]/a")
 	private WebElement mineOrSharedFilter;
 	
 	public void filter(FilterOptions filter) {

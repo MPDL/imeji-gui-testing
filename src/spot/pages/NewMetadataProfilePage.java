@@ -152,7 +152,7 @@ public class NewMetadataProfilePage extends BasePage {
 	 */
 	private void fillInAllowedValues(String[] predefinedValues, int metadataIndex) {
 		WebElement vocabularyConstraintsArea = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":vocabularyAndConstraintsArea"));
-		WebElement addAllowedValues = vocabularyConstraintsArea.findElement(By.cssSelector(".imj_metadataSet:nth-of-type(2)>.imj_metadataValue>a"));
+		WebElement addAllowedValues = retryingNestedElement(vocabularyConstraintsArea, By.cssSelector(".imj_metadataSet:nth-of-type(2)>.imj_metadataValue>a"));
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", addAllowedValues);
 		String profileNr = "profileForm:profile:" + metadataIndex + ":";
@@ -169,7 +169,7 @@ public class NewMetadataProfilePage extends BasePage {
 	
 	private void chooseVocabulary(String vocabulary, int metadataIndex) {
 		WebElement vocabularyConstraintsArea = driver.findElement(By.id("profileForm:profile:" + metadataIndex + ":vocabularyAndConstraintsArea"));
-		WebElement addVocabulary = vocabularyConstraintsArea.findElement(By.cssSelector(".imj_metadataSet>.imj_metadataValue a"));
+		WebElement addVocabulary = retryingNestedElement(vocabularyConstraintsArea, By.cssSelector(".imj_metadataSet>.imj_metadataValue a"));
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", addVocabulary);
 		String profileNr = "profileForm:profile:" + metadataIndex + ":";

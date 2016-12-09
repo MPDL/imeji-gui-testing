@@ -52,10 +52,10 @@ public class MultipleUploadPage extends BasePage {
 	public void addFile(String filePath) throws AWTException {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String js = "arguments[0].style.visibility = 'visible';";
-	    jse.executeScript(js, driver.findElement(By.xpath("/html/body/div[1]/div[5]/div[1]/div/div[1]/div/div[1]/div/div[2]/input")));
-	    driver.findElement(By.xpath("/html/body/div[1]/div[5]/div[1]/div/div[1]/div/div[1]/div/div[2]/input")).sendKeys(filePath);
+	    jse.executeScript(js, driver.findElement(By.xpath(/*"/html/body/div[1]/div[5]/div[1]/div/div[1]/div/div[1]/div/div[2]/input"*/"/html/body/div[1]/div[1]/div[5]/div/div/div[1]/div/div[1]/div/div[2]/input")));
+	    driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[5]/div/div/div[1]/div/div[1]/div/div[2]/input")).sendKeys(filePath);
 	    String jsa = "arguments[0].style.visibility = 'hidden';";
-	    jse.executeScript(jsa, driver.findElement(By.xpath("/html/body/div[1]/div[5]/div[1]/div/div[1]/div/div[1]/div/div[2]/input")));
+	    jse.executeScript(jsa, driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[5]/div/div/div[1]/div/div[1]/div/div[2]/input")));
 		
 	}
 	

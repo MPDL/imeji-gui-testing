@@ -67,9 +67,9 @@ public class UserDeletesPrivateCollectionTest extends BaseSelenium {
 		
 		multipleUploadPage.startUpload();
 		
-		boolean isVerificationSuccessfull = multipleUploadPage.verifyUploadedFiles(fileNames);
+		boolean isVerificationSuccessful = multipleUploadPage.verifyUploadedFiles(fileNames);
 		
-		Assert.assertTrue(isVerificationSuccessfull, "The list of uploaded files is probably incomplete.");
+		Assert.assertTrue(isVerificationSuccessful, "The list of uploaded files is probably incomplete.");
 	}
 	
 	@Test(priority = 3)

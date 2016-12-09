@@ -94,7 +94,8 @@ public class SharedFileToAlbumTest extends BaseSelenium {
 	public void publicSharedPublicAlbum() {
 		homePage = new StartPage(driver).goToHomePage(homePage);
 		AlbumEntryPage albumEntry = homePage.goToAlbumPage().openActiveAlbumEntryPage().publish();
-		homePage = albumEntry.goToAlbumPage().makeAlbumActive(albumTitle).goToHomePage(homePage);
+		AlbumPage albumPage = albumEntry.goToAlbumPage().makeAlbumActive(albumTitle);
+		homePage = albumPage.goToHomePage(homePage);
 		
 		SharePage sharePage = homePage.navigateToItemPage().openItemByTitle(itemTitle[2]).shareItem().shareWithAUser().share(getPropertyAttribute(restrUserName), true);
 		sharePage.navigateToItemPage().openItemByTitle(itemTitle[2]).addToActiveAlbum();

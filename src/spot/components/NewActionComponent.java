@@ -10,7 +10,7 @@ public class NewActionComponent {
 
 	private WebDriver driver;
 	
-	@FindBy(xpath="/html/body/div[1]/div[4]/div/div[1]/div[1]/span[2]")
+	@FindBy(xpath="/html/body/div[1]/div[1]/div[4]/div/div[1]/div[1]/span[2]")
 	private WebElement newButton;
 	
 	@FindBy(css=".imj_overlayMenuList>li:nth-of-type(1)>a")

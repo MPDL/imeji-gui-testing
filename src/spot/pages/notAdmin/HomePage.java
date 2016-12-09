@@ -24,10 +24,10 @@ public class HomePage extends BasePage {
 	@FindBy(xpath = ".//*[@id='Header:loginForm:lnkLogout']")
 	private WebElement logoutButton;
 
-	@FindBy(xpath = "html/body/div[1]/div[2]/div/div[2]/ul/li[1]/a")
+	@FindBy(xpath = "/html/body/div[1]/div[1]/div[4]/div/div[1]/div[2]/ul/li[1]/a")
 	private WebElement createNewCollectionButton;
 
-	@FindBy(xpath = "html/body/div[1]/div[2]/div/div[2]/ul/li[2]/a")
+	@FindBy(xpath = "/html/body/div[1]/div[1]/div[4]/div/div[1]/div[2]/ul/li[2]/a")
 	private WebElement createNewAlbumButton;
 	
 	private NewActionComponent newActionComponent;

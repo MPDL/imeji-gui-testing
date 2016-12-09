@@ -24,6 +24,8 @@
 			<class name="edmondScripts.UserGroupTest" />
 
 			<class name="edmondScripts.UserGroupGrantTest" />
+
+			<class name="spot.scripts.admin.CreateUserWithRestrictedRightsTest" />
 			
 			<class name="spot.scripts.admin.EditUserProfileTest" />
 			
@@ -88,8 +90,6 @@
 			<class name="edmondScripts.CollectionOtherMDPTest" />
 			
 			<!--  Miscellaneous actions test cases -->
-			
-			<class name="edmondScripts.ChangeColourSchemeTest" />
 			
 			<class name="edmondScripts.DownloadFileTest" />
 			

@@ -1,5 +1,6 @@
 package edmondScripts;
 
+import org.openqa.selenium.StaleElementReferenceException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -32,7 +33,16 @@ public class AddItemToAlbumTest extends BaseSelenium {
 	
 	@BeforeMethod
 	public void goToHomePage() {
-		homePage = new StartPage(driver).goToHomePage(homePage);
+		int attempts = 0;
+		while (attempts < 10) {
+			try {
+				homePage = new StartPage(driver).goToHomePage(homePage);
+				break;
+			}
+			catch(StaleElementReferenceException exc) {}
+			attempts++;
+		}
+		
 	}
 	
 	@Test(priority = 1)

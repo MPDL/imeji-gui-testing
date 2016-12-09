@@ -12,7 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.seleniumhq.jetty9.server.Response.OutputType;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -21,7 +20,6 @@ import spot.pages.HelpPage;
 import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.notAdmin.HomePage;
-import spot.util.TimeStamp;
 
 /**
  * WebDriver used by all test classes is set in this class. 
@@ -100,12 +98,7 @@ public abstract class BaseSelenium {
 
 	public boolean isElementDisplayed(WebElement webElement) {
 		
-		boolean isDisplayed = true;
-		
-		if (!webElement.isDisplayed())
-			isDisplayed = false;
-		
-		return isDisplayed;
+		return webElement.isDisplayed();
 	}
 	
 	private void configureDriver() {

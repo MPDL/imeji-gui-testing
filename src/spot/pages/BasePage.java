@@ -3,10 +3,12 @@ package spot.pages;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -14,6 +16,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import spot.components.MainMenuComponent;
@@ -196,6 +199,10 @@ public abstract class BasePage {
 		return messageComponent;
 	}
 	
+	public MainMenuComponent getMainMenuComponent() {
+		return mainMenuComponent;
+	}
+	
 	public void enableDarkMode() {
 		userPreferenceComponent.enableDarkMode();
 	}
@@ -234,8 +241,46 @@ public abstract class BasePage {
         return result;
 	}
 	
+	public WebElement retryingElement(By by) {
+		int attempts = 0;
+        while(attempts < 10) {
+            try {
+                return driver.findElement(by);
+            } 
+            catch(StaleElementReferenceException | NoSuchElementException e) {}
+            attempts++;
+        }
+        throw new StaleElementReferenceException("Stale element");
+	}
+	
+	public WebElement retryingNestedElement(WebElement parent, By by) {
+		/*int attempts = 0;
+        while(attempts < 10) {
+            try {*/
+            	wait.until(ExpectedConditions.not(ExpectedConditions.stalenessOf(parent)));
+                return parent.findElement(by);
+            /*} 
+            catch(StaleElementReferenceException | NoSuchElementException e) {}
+            attempts++;
+        }
+        throw new StaleElementReferenceException("Stale element");*/
+	}
+	
 	public String getPageTitle() {
 		return driver.getTitle();
+	}
+
+	/**
+	 * reduce delay while looking for elements that do not exist
+	 */
+	public boolean isElementPresent(By locator) {
+		try {
+			wait.withTimeout(3, TimeUnit.SECONDS).until(ExpectedConditions.presenceOfElementLocated(locator));
+			return true;
+		}
+		catch (TimeoutException exc) {
+			return false;
+		}
 	}
 	
 }

@@ -11,6 +11,7 @@ import spot.pages.admin.AdminHomePage;
 
 import org.testng.annotations.BeforeMethod;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class EnablePrivateModeTest extends BaseSelenium {

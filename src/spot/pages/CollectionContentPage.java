@@ -38,7 +38,7 @@ public class CollectionContentPage extends BasePage {
 	@FindBy(id="selPanel:preListForm:lblSelectedSize")
 	private WebElement selectedItemCount;
 	
-	@FindBy(xpath="/html/body/div[1]/div[5]/div[1]/div[2]/form/div[2]/div[2]/ul/li[1]/a")
+	@FindBy(xpath="/html/body/div[1]/div[1]/div[5]/div/div[2]/form/div[2]/div[2]/ul/li[1]/a")
 	private WebElement addToActiveAlbumButton;
 	
 	@FindBy()

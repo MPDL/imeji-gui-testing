@@ -34,21 +34,24 @@ public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
 		newUserName = "edmond-test@mpdl.mpg.de";
 	}
 
-	@Test
+	@Test(priority = 1)
 	public void createUserTest() {
 		UserProfilePage userProfilePage = adminPage.createNewRestrictedUser(newUserName);
 		allUsersOverViewPage = userProfilePage.goToAdminPage().viewAllUsers();
-		
-		String actualMessage = allUsersOverViewPage.getMessageComponent().getInfoMessage();	
-		String expectedMessage = "User created successfully.";
-		Assert.assertEquals(actualMessage, expectedMessage, "User most probably couldn't be created");
-		allUsersOverViewPage.goToHomePage(adminHomePage).logout();
+		boolean isUserPresent = allUsersOverViewPage.isEmailInUserList(newUserName);
+		Assert.assertTrue(isUserPresent, "Email of new restricted user is not in user list.");
+	}
+	
+	@Test(priority = 2)
+	public void deleteRestrictedUser() {
+		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
+		allUsersOverViewPage = adminHomePage.goToAdminPage().viewAllUsers();
+		allUsersOverViewPage.deleteUserByEmail(newUserName);
 	}
 	
 	@AfterClass
 	public void afterClass() {
-		allUsersOverViewPage.deleteUserByEmail(newUserName);
-		
+		adminHomePage = (AdminHomePage) new StartPage(driver).goToHomePage(adminHomePage);
 		adminHomePage.logout();
 	}
 

@@ -71,14 +71,14 @@ public class AlbumPage extends BasePage {
 	
 	public AlbumPage makeAlbumActive(String albumTitle) {
 		WebElement albumInQuestion = findAlbum(albumTitle);
-		albumInQuestion.findElement(By.xpath("//input[contains(@id, 'btnActivate')]")).click();
+		retryingNestedElement(albumInQuestion, By.xpath("//input[contains(@id, 'btnActivate')]")).click();
 		
 		return PageFactory.initElements(driver, AlbumPage.class);
 	}
 	
 	public AlbumPage makeAlbumInactive(String albumTitle) {
 		WebElement albumInQuestion = findAlbum(albumTitle);
-		albumInQuestion.findElement(By.xpath("//input[contains(@id, 'btnDeactivate')]")).click();
+		retryingNestedElement(albumInQuestion, By.xpath("//input[contains(@id, 'btnDeactivate')]")).click();
 		
 		return PageFactory.initElements(driver, AlbumPage.class);
 	}

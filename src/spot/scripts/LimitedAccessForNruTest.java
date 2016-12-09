@@ -13,7 +13,6 @@ public class LimitedAccessForNruTest extends BaseSelenium {
 	public void beforeClass() {
 		super.setup();
 		navigateToStartPage();
-		// TODO make sure that no login took place
 	}
 
 	@Test

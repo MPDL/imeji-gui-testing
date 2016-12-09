@@ -10,7 +10,7 @@ import spot.pages.ConfigurationEditPage;
 
 public class ConfigurationAppearancePanel extends BasePage {
 
-	@FindBy(xpath = "/html/body/div[1]/div[5]/div[2]/div/div/form/div[2]/div[1]")
+	@FindBy(xpath = "/html/body/div[1]/div[1]/div[5]/div[2]/div/div/form/div[2]/div[1]/h2")
 	private WebElement appearancePanelReveal;
 	
 	@FindBy(xpath = "//input[@value='THUMBNAIL']")
