@@ -243,27 +243,26 @@ public abstract class BasePage {
 	
 	public WebElement retryingElement(By by) {
 		int attempts = 0;
-        while(attempts < 10) {
+        while(attempts < 100) {
             try {
                 return driver.findElement(by);
             } 
             catch(StaleElementReferenceException | NoSuchElementException e) {}
             attempts++;
         }
-        throw new StaleElementReferenceException("Stale element");
+        throw new StaleElementReferenceException("Stale element persists after 100 attempts");
 	}
 	
 	public WebElement retryingNestedElement(WebElement parent, By by) {
-		/*int attempts = 0;
-        while(attempts < 10) {
-            try {*/
-            	wait.until(ExpectedConditions.not(ExpectedConditions.stalenessOf(parent)));
+		int attempts = 0;
+        while(attempts < 100) {
+            try {
                 return parent.findElement(by);
-            /*} 
+            } 
             catch(StaleElementReferenceException | NoSuchElementException e) {}
             attempts++;
         }
-        throw new StaleElementReferenceException("Stale element");*/
+        throw new StaleElementReferenceException("Stale element persists after 100 attempts");
 	}
 	
 	public String getPageTitle() {
