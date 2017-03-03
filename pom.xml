@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>SpotGUITesting</groupId>
-	<artifactId>SpotGUITesting</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>ImejiGUITesting</groupId>
+	<artifactId>ImejiGUITesting</artifactId>
+	<version>4.0.1-SNAPSHOT</version>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
@@ -30,8 +30,10 @@
 				<configuration>
 					<suiteXmlFiles>
 <!-- 						<suiteXmlFile>res/testng_essential.xml</suiteXmlFile> -->
-						<suiteXmlFile>src/edmondScripts/testng_edmond_firefox.xml</suiteXmlFile>
-<!-- 						<suiteXmlFile>src/edmondScripts/testng_edmond_chrome.xml</suiteXmlFile> -->
+						<suiteXmlFile>res/testng_edmond_firefox.xml</suiteXmlFile>
+
+<!-- Chrome test set put on hold until enabled by integration with Jenkins -->
+<!-- 						<suiteXmlFile>res/testng_edmond_chrome.xml</suiteXmlFile> -->
 						<!-- !!! -->
 						<!-- Add other suite xml files HERE if needed -->
 						<!-- <suiteXmlFile></suiteXmlFile> -->

@@ -14,7 +14,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.components.ActionComponent;
-import spot.components.ActionComponent.ActionType;
 
 public class MultipleUploadPage extends BasePage {
 
@@ -103,7 +102,7 @@ public class MultipleUploadPage extends BasePage {
 	}
 	
 	public boolean verifyUploadedFiles(List<String> fileNames) {
-		boolean successfullVerification = true;
+		boolean successfulVerification = true;
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("imj_fileSuccessMessageArea")));
 		
@@ -112,7 +111,7 @@ public class MultipleUploadPage extends BasePage {
 		List<WebElement> uploadedFiles = uploadFileList.findElements(By.className("imj_messageInfo"));
 		
 		if (uploadedFiles.size() != fileNames.size()) {
-			successfullVerification = false;
+			successfulVerification = false;
 		} else {
 		
 			List<String> listedFilesNames = new ArrayList<String>();
@@ -123,33 +122,20 @@ public class MultipleUploadPage extends BasePage {
 			
 			for (String fileName : fileNames) {
 				if (!listedFilesNames.contains(fileName)) {
-					successfullVerification = false;
+					successfulVerification = false;
 					break;
 				}				
 			}
 		}
 		
-		return successfullVerification;
-	}
-
-	public void shareCollectionWithUser(String emailUser) {
-		KindOfSharePage kindOfSharePage = (KindOfSharePage)actionComponent.doAction(ActionType.SHARE);
-		
-		SharePage sharePage = kindOfSharePage.shareWithAUser();
-		sharePage.share(false, true, emailUser, true, true, true, false, false, false, false);
+		return successfulVerification;
 	}
 	
 	public void publishCollection() {
-		actionComponent.doAction(ActionType.PUBLISH);
+		actionComponent.releaseCollection();
 	}
 	
 	public ActionComponent getActionComponent() {
 		return actionComponent;
-	}
-	
-	public CollectiveEditOfDefaultMetadataPage editUploadedImages() {
-		editUploadedImagesButton.click();
-		
-		return PageFactory.initElements(driver, CollectiveEditOfDefaultMetadataPage.class);
 	}
 }

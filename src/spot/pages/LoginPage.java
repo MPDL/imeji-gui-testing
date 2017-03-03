@@ -6,8 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.HomePage;
+import spot.pages.admin.AdminHomepage;
+import spot.pages.registered.Homepage;
 
 public class LoginPage extends BasePage {
 
@@ -34,16 +34,16 @@ public class LoginPage extends BasePage {
 	    return PageFactory.initElements(driver, expectedPage);
 	}
 
-	public AdminHomePage loginAsAdmin(String user, String pw){
-	    return login(user, pw, AdminHomePage.class);
+	public AdminHomepage loginAsAdmin(String user, String pw){
+	    return login(user, pw, AdminHomepage.class);
 	}
 
-	public HomePage loginAsNotAdmin(String user, String pw){
-	    return login(user, pw, HomePage.class);
+	public Homepage loginAsNotAdmin(String user, String pw){
+	    return login(user, pw, Homepage.class);
 	}
 	
-	public HomePage loginRestricted(String user, String pw){
-	    return login(user, pw, HomePage.class);
+	public Homepage loginRestricted(String user, String pw){
+	    return login(user, pw, Homepage.class);
 	}
 
 	public LoginPage loginWithBadCredentials(String user, String pw){

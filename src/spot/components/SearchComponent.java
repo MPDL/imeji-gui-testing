@@ -6,10 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import spot.CategoryType;
 import spot.pages.AdvancedSearchPage;
 import spot.pages.BrowseItemsPage;
 import spot.pages.SearchResultsPage;
+import test.base.CategoryType;
 
 public class SearchComponent {
 

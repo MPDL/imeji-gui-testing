@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="Basic" verbose="1" preserve-order="true">
+	<parameter name="browserType" value="firefox" />
+
+	<test name="Basic Edmond with one author">
+		<classes>
+			<!-- Setup test cases. Must always run! -->
+		
+			<class name="test.base.SeleniumTestSuite" />
+			
+			<class name="test.base.BaseSelenium" />
+			
+			<!-- End of setup test cases. -->
+			
+<!-- 			<class name="test.setup.BasicOneAuthorSetup"></class> -->
+			
+			<class name="test.scripts.registered.CreatePrivateCollectionTest"></class>
+			
+		</classes>
+	</test>
+</suite>

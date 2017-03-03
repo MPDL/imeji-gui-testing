@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="Edmond test suite" verbose="1" preserve-order="true">
+	<parameter name="browserType" value="chrome" />
+
+	<test name="Edmond test cases in Chrome">
+		<classes>
+		
+			<!-- Setup test cases. Must always run! -->
+		
+			<class name="test.base.SeleniumTestSuite" />
+			
+			<class name="test.base.BaseSelenium" />
+			
+			<!-- End of setup test cases. -->
+			
+		</classes>
+	</test>
+</suite>

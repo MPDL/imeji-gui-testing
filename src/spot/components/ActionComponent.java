@@ -10,50 +10,38 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
-import spot.pages.CollectionContentPage;
+import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
 import spot.pages.DiscardedCollectionEntryPage;
+import spot.pages.EditLicensePage;
 import spot.pages.KindOfSharePage;
+import spot.pages.registered.EditItemsPage;
 
 public class ActionComponent extends BasePage {
 
-	public enum ActionType {SHARE, DELETE, PUBLISH, DISCARD};
+	@FindBy(id = "actionCollectionMore")
+	private WebElement menu;
 	
-	@FindBy(css="#actionMenu .imj_headerEntry")
-	private WebElement actionButton;
+	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li a")
+	private WebElement editItems;
 	
-	@FindBy(xpath="/html/body/div[1]/div[4]/div[2]/div[5]/div[1]/span[2]")
-	private WebElement actionButton_2;
+	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li:nth-of-type(2) a")
+	private WebElement editLicenses;
 	
-	@FindBy(css="#sharingMenu .fa-users")
-	private WebElement shareMenueLabel;
+	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li:nth-of-type(3) a")
+	private WebElement releaseCollection;
 	
-	@FindBy(css="#action\\:actionMenuShareCollection")
-	private WebElement shareButton;
+	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li:nth-of-type(4) a")
+	private WebElement deleteCollection;
 	
-	@FindBy(id="action:actionMenuRelease")
-	private WebElement publishButton;
+	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li:nth-of-type(3) a")
+	private WebElement discardCollection;
 	
-	@FindBy(id="releaseMenuItemDialog")
-	private WebElement releaseMenuItemDialog;
+	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li:nth-of-type(4) a")
+	private WebElement addDOI;
 	
-	@FindBy(id="action:actionMenuDelete")
-	private WebElement deleteButton;
-	
-	@FindBy(id="action:actionMenuDelete")
-	private WebElement deleteButton2;
-	
-	@FindBy(id="action:actionMenuDiscard")
-	private WebElement discardButton;
-	
-	@FindBy(id="withdrawMenuItemDialog")
-	private WebElement withDrawMenuItemDialog;
-	
-	@FindBy(xpath=".//*[contains(@id, 'discardForm:discardComment')]")
-	private WebElement discardCommentTextArea;
-	
-	@FindBy(css="#deleteMenuItemDialog .imj_submitButton")	
-	private WebElement confirmDeletionButton;
+	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li:nth-of-type(5) a")
+	private WebElement downloadAllItems;
 	
 	public ActionComponent (WebDriver driver) {
 		super(driver);
@@ -61,114 +49,62 @@ public class ActionComponent extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public BasePage doAction(ActionType actionType){
-		BasePage returnPage = null;
+	public EditItemsPage editAllItems() {
+		openMenu();
+		editItems.click();
+		return PageFactory.initElements(driver, EditItemsPage.class);
+	}
+	
+	public EditLicensePage editAllLicenses() {
+		openMenu();
+		editLicenses.click();
+		return PageFactory.initElements(driver, EditLicensePage.class);
+	}
+	
+	public CollectionEntryPage releaseCollection() {
+		openMenu();
+		releaseCollection.click();
+		retryingFindClick(By.className("imj_submitButton"));
 		
-		boolean isActionButtonDisplayed = false;
-		try{
-			retryingFindClick(By.cssSelector("#actionMenu .imj_headerEntry"));
-			isActionButtonDisplayed = actionButton.isDisplayed();
-		} catch (NoSuchElementException nse) {
-			
-			
-			switch(actionType) {
-			
-				case DELETE: 
-				actionButton_2.click();		
-				deleteButton2.click();
-				confirmDeletionButton.click();
-				returnPage = new CollectionsPage(driver);
-				break;
-				
-				case SHARE: 
-					
-				shareMenueLabel.click();
-				shareButton.click();
-				returnPage = new KindOfSharePage(driver);
-				break;
-				
-				case PUBLISH:
-				actionButton_2.click();
-				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("html/body/div[1]/div[3]/div[3]/div[2]/ul/li[2]/a")));
-				retryingFindClick(By.xpath("html/body/div[1]/div[3]/div[3]/div[2]/ul/li[2]/a"));
-				publishButton.click();
-				
-				try {
-					releaseMenuItemDialog.findElement(By.className("imj_submitButton")).click();
-				} catch(NoSuchElementException e) {}
-				
-				break;
-				
-				case DISCARD:
-				actionButton_2.click();
-				discardButton.click();
-				
-				discardCommentTextArea = driver.findElement(By.xpath(".//*[contains(@id, 'discardForm:discardComment')]"));
-				discardCommentTextArea.sendKeys("Discarding due to test automation purposes _ case 2");
-								
-				withDrawMenuItemDialog = driver.findElement(By.id("withdrawMenuItemDialog"));
-				WebElement confirmDiscard = withDrawMenuItemDialog.findElement(By.xpath("//input[contains(@id, 'btnDiscardContainer')]"));
-				confirmDiscard.click();
-				break;
-			}
-		}
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	public CollectionsPage deleteCollection() {
+		openMenu();
+		deleteCollection.click();
+		return PageFactory.initElements(driver, CollectionsPage.class);
+	}
+	
+	public DiscardedCollectionEntryPage discardCollection() {
+		openMenu();
+		discardCollection.click();
 		
-		if (isActionButtonDisplayed) {
-			
-			
-			switch(actionType) {
-				
-				case DELETE: 
-				actionButton.click();		
-				deleteButton.click();
-				confirmDeletionButton.click();
-				returnPage = new CollectionsPage(driver);
-				break;
-				
-				case SHARE: 
-				
-				try {
-				shareMenueLabel.click();
-				} catch (NoSuchElementException e) {
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".fa-share")));
-					shareMenueLabel.click();
-				}
-				shareButton.click();
-				returnPage = new KindOfSharePage(driver);
-				break;
-				
-				case PUBLISH:
-				actionButton.click();
-				publishButton.click();
-
-				try {
-					wait.until(ExpectedConditions.visibilityOf(releaseMenuItemDialog));
-					
-					releaseMenuItemDialog.findElement(By.className("imj_submitButton")).click();;
-					
-				} catch(NoSuchElementException e) {}
-				returnPage = new CollectionContentPage(driver);
-				break;
-				
-				case DISCARD:
-				actionButton.click();
-				discardButton.click();
-				
-				discardCommentTextArea = driver.findElement(By.xpath(".//*[contains(@id, 'discardForm:discardComment')]"));
-				discardCommentTextArea.sendKeys("Discarding due to test automation purposes_ case 1");
-				
-				withDrawMenuItemDialog = driver.findElement(By.id("withdrawMenuItemDialog"));
-				wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@id, 'btnDiscardContainer')]")));
-				WebElement confirmDiscard = withDrawMenuItemDialog.findElement(By.xpath(".//input[contains(@id, 'btnDiscardContainer')]"));
-				((JavascriptExecutor)driver).executeScript("arguments[0].click();", confirmDiscard);
-				
-				returnPage = PageFactory.initElements(driver, DiscardedCollectionEntryPage.class);
-				break;
-			}
-		}
+		WebElement discardBox = driver.findElement(By.className("imj_dialogReasonText"));
+		discardBox.sendKeys("Discarding for testing purposes.");
 		
+		retryingFindClick(By.xpath("//input[contains(@id, 'discardForm:btnDiscardContainer')]"));
+		return PageFactory.initElements(driver, DiscardedCollectionEntryPage.class);
+	}
+	
+	public CollectionEntryPage setDOI(String doi) {
+		openMenu();
+		addDOI.click();
 		
-		return returnPage;
+		WebElement doiBox = driver.findElement(By.xpath("//input[contains(@id, 'discardForm:discardComment')]"));
+		doiBox.clear();
+		doiBox.sendKeys(doi);
+		
+		retryingFindClick(By.xpath("//input[@value='Save']"));
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	public boolean canDownloadItems() {
+		openMenu();
+		return downloadAllItems.isDisplayed() && downloadAllItems.isEnabled();
+	}
+	
+	private void openMenu() {
+		menu.click();
 	}
 	
 }

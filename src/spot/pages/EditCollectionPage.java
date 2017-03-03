@@ -9,6 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class EditCollectionPage extends BasePage {
 
+	@FindBy(id = "editContainer:mediaContainerForm:inputTitleText")
+	private WebElement titleBox;
+	
 	@FindBy(xpath = "//a[contains(@id, 'editContainer:mediaContainerForm:persons:0') and contains(@class, 'fa-plus-square-o')]")
 	private WebElement addAuthorButton;
 	
@@ -45,6 +48,17 @@ public class EditCollectionPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
+	public void editTitle(String newTitle) {
+		titleBox.clear();
+		titleBox.sendKeys(newTitle);
+	}
+	
+	public void addAuthor(String familyName, String organisation) {
+		addAuthorButton.click();
+		author2FamilyName.sendKeys(familyName);
+		organisation2Name.sendKeys(organisation);
+	}
+	
 	public void addInformation(String label, String link) {
 		additionalInfo.findElement(By.className("fa-plus-square-o")).click();
 		
@@ -61,12 +75,6 @@ public class EditCollectionPage extends BasePage {
 	public void addLogo(String filepath) {
 		WebElement input = logoContainer.findElement(By.tagName("input"));
 		input.sendKeys(filepath);
-	}
-	
-	public void addAuthor(String familyName, String organisation) {
-		addAuthorButton.click();
-		author2FamilyName.sendKeys(familyName);
-		organisation2Name.sendKeys(organisation);
 	}
 	
 	public CollectionEntryPage submitChanges() {

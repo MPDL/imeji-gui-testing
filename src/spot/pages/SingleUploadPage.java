@@ -70,7 +70,7 @@ public class SingleUploadPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public DetailedItemViewPage upload(String pathToFile, String collectionTitle) throws AWTException, TimeoutException {	
+	public ItemViewPage upload(String pathToFile, String collectionTitle) throws AWTException, TimeoutException {	
 
 		JavascriptExecutor jse = (JavascriptExecutor)driver;		
 						
@@ -91,14 +91,14 @@ public class SingleUploadPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("singleUpload:submitBottom")));
 		saveButton.click();
 		
-		return PageFactory.initElements(driver, DetailedItemViewPage.class);
+		return PageFactory.initElements(driver, ItemViewPage.class);
 	}
 	
 	public void jqClick(String selector, JavascriptExecutor driver, String path) {
 	    driver.executeScript("$('" + selector + "').sendKeys('" + path + "')");
 	}
 	
-	public DetailedItemViewPage uploadAndFillMetaData(String filePath, String collectionTitle) throws AWTException, TimeoutException {
+	public ItemViewPage uploadAndFillMetaData(String filePath, String collectionTitle) throws AWTException, TimeoutException {
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;		
 		
@@ -120,7 +120,7 @@ public class SingleUploadPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#singleUpload\\:submitBottom")));
 		saveButton.click();
 		
-		return PageFactory.initElements(driver, DetailedItemViewPage.class);
+		return PageFactory.initElements(driver, ItemViewPage.class);
 	}
 
 	private void fillMetaData() {

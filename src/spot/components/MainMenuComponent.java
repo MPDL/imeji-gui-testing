@@ -6,12 +6,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import spot.pages.AdministrationPage;
-import spot.pages.AlbumPage;
 import spot.pages.CollectionsPage;
 import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
-import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.HomePage;
+import spot.pages.admin.AdminHomepage;
+import spot.pages.registered.Homepage;
 
 public class MainMenuComponent {
 
@@ -40,9 +39,7 @@ public class MainMenuComponent {
 	
 	public <T> T navigateTo(Class<T> expectedPage) {
 	
-		if (expectedPage == AlbumPage.class)
-			albumsButton.click();
-		else if (expectedPage == CollectionsPage.class)
+		if (expectedPage == CollectionsPage.class)
 			collectionsButton.click();
 		else if (expectedPage == StartPage.class)
 			startButton.click();
@@ -50,7 +47,7 @@ public class MainMenuComponent {
 			singleUploadButton.click();
 		else if (expectedPage == AdministrationPage.class)
 			adminButton.click();
-		else if (expectedPage == HomePage.class || expectedPage == AdminHomePage.class)
+		else if (expectedPage == Homepage.class || expectedPage == AdminHomepage.class)
 			startButton.click();
 		
 		return PageFactory.initElements(driver, expectedPage);

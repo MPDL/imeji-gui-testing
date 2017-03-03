@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import spot.pages.notAdmin.HomePage;
+import spot.pages.registered.Homepage;
 
 public class RegistrationPage extends BasePage {
 
@@ -65,10 +65,10 @@ public class RegistrationPage extends BasePage {
 		submitRegistrationButton.click();
 	}
 	
-	public HomePage activateAccount(String spotPassword) {
+	public Homepage activateAccount(String spotPassword) {
 		passwordTextfield.sendKeys(spotPassword);
 		completeRegistrationButton.click();
 		
-		return PageFactory.initElements(driver, HomePage.class);
+		return PageFactory.initElements(driver, Homepage.class);
 	}
 }

@@ -41,13 +41,13 @@ public class BrowseItemsPage extends BasePage {
 	/**
 	 * @throws NoSuchElementException if no item title on the page matches itemTitle
 	 */
-	public DetailedItemViewPage openItemByTitle(String itemTitle) {
+	public ItemViewPage openItemByTitle(String itemTitle) {
 		for(WebElement item : allItems) {
 			WebElement titleElement = item.findElement(By.className("imj_optionLabel"));
 			String currentItemTitle = titleElement.getAttribute("title");
 			if (currentItemTitle.equals(itemTitle)) {
 				item.findElement(By.tagName("img")).click();
-				return PageFactory.initElements(driver, DetailedItemViewPage.class);
+				return PageFactory.initElements(driver, ItemViewPage.class);
 			}
 		}
 		throw new NoSuchElementException("No item with this name was found.");

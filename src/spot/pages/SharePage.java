@@ -73,35 +73,18 @@ public class SharePage extends BasePage {
 		return checkCollectionGrants(released, sendMail, read, createItems, editItems, deleteItems, editCollectionInformation, editProfile, administrate);
 	}
 	
+	public SharePage share(boolean released, boolean sendMail, String email, boolean read, boolean editItems, boolean administrate) {
+		emailTextField.sendKeys(email);
+		
+		return checkCollectionGrants(released, sendMail, read, editItems, administrate);
+	}
+	
 	/**
 	 * Share method for items
 	 */
 	public SharePage share(String email, boolean read) {
 		emailTextField.sendKeys(email);
-		checkGrantIfNecessary(read, readGrantCheckBox);
-		
-		shareButton.click();
-		return PageFactory.initElements(driver, SharePage.class);
-	}
-	
-	/**
-	 * Share method for albums
-	 */
-	public SharePage share(String email, boolean read, boolean createItems, boolean editAlbumInformation, boolean administrate) {
-		emailTextField.sendKeys(email);
-		
-		if (administrate) {
-			// if administrate is true, each checkbox is automatically selected
-			checkGrantIfNecessary(administrate, administrateGrantCheckBox);
-		} 
-		else if (!read) {
-			// if read is false, each checkbox is automatically deselected
-			checkGrantIfNecessary(read, readGrantCheckBox);
-		}
-		else {
-			checkGrantIfNecessary(createItems, createItemsGrantCheckBox);
-			checkGrantIfNecessary(editAlbumInformation, editInformationGrantCheckBox);
-		}
+		setGrant(read, readGrantCheckBox);
 		
 		shareButton.click();
 		return PageFactory.initElements(driver, SharePage.class);
@@ -135,19 +118,19 @@ public class SharePage extends BasePage {
 		// check grants as defined by parameters
 		if (administrate) {
 			// if administrate is true, each checkbox is automatically selected
-			checkGrantIfNecessary(administrate, administrateGrantCheckBox);
+			setGrant(administrate, administrateGrantCheckBox);
 		} 
 		else if (!read) {
 			// if read is false, each checkbox is automatically deselected
-			checkGrantIfNecessary(read, readGrantCheckBox);
+			setGrant(read, readGrantCheckBox);
 		}
 		else {
-			checkGrantIfNecessary(createItems, createItemsGrantCheckBox);
-			checkGrantIfNecessary(editItems, editItemsGrantCheckBox);
-			checkGrantIfNecessary(deleteItems, deleteItemsGrantCheckBox);
-			checkGrantIfNecessary(editCollectionInformation, editInformationGrantCheckBox);
+			setGrant(createItems, createItemsGrantCheckBox);
+			setGrant(editItems, editItemsGrantCheckBox);
+			setGrant(deleteItems, deleteItemsGrantCheckBox);
+			setGrant(editCollectionInformation, editInformationGrantCheckBox);
 			if (released)
-				checkGrantIfNecessary(editProfile, editProfileGrantCheckBox);
+				setGrant(editProfile, editProfileGrantCheckBox);
 		}
 		
 		wait.until(ExpectedConditions.elementSelectionStateToBe(By.cssSelector("input[value='EDIT']"), editCollectionInformation));
@@ -158,20 +141,35 @@ public class SharePage extends BasePage {
 		return PageFactory.initElements(driver, SharePage.class);
 	}
 	
-	private void checkGrantIfNecessary(boolean grantedTo, WebElement checkBox) {
+	private SharePage checkCollectionGrants(boolean released, boolean sendMail, boolean read, boolean editItems, boolean administrate) {
+		if (administrate) {
+			setGrant(administrate, administrateGrantCheckBox);
+		} 
+		else if (read) {
+			setGrant(read, readGrantCheckBox);
+		}
+		else {
+			setGrant(editItems, editItemsGrantCheckBox);
+		}
+		
+		shareButton.click();
+		return PageFactory.initElements(driver, SharePage.class);
+	}
+	
+	private void setGrant(boolean grantedTo, WebElement radioButton) {
 		try {
 			if (grantedTo) {
-				if (!checkBox.isSelected())
-					checkBox.click();
+				if (!radioButton.isSelected())
+					radioButton.click();
 			} 
 			else { 
-				if (checkBox.isSelected())
-					checkBox.click();
+				if (radioButton.isSelected())
+					radioButton.click();
 			}
 		}
 		catch (StaleElementReferenceException exc) {
 			PageFactory.initElements(driver, this);
-			checkGrantIfNecessary(grantedTo, checkBox);
+			setGrant(grantedTo, radioButton);
 		}
 	}
 
@@ -188,17 +186,13 @@ public class SharePage extends BasePage {
 	
 		List<WebElement> sharedPersons = driver.findElements(By.className("imj_rightsTableUser"));
 		
-		boolean personFound = false;
-		
 		for (WebElement sharedPerson : sharedPersons) {
 			String spName = sharedPerson.getText();
 			if (spName.equals(sharedPersonName)) {
-				personFound = true;
-				break;
+				return true;
 			}
 		}
-		
-		return personFound;
+		return false;
 	}
 
 	/**
@@ -207,67 +201,22 @@ public class SharePage extends BasePage {
 	 * @param wantedSharedPersonName - user's name in the form [surname, first]
 	 * @return allGrantsCorrect - user permissions are exactly as specified in method signature
 	 */
-	public boolean checkGrantSelections(boolean released, String wantedSharedPersonName, boolean read, boolean createItems, boolean editItems,
-			boolean deleteItems, boolean editCollectionInformation, boolean editProfile, boolean administrate) {
+	public boolean checkGrantSelections(boolean released, String wantedSharedPersonName, boolean read, boolean editItems, boolean administrate) {
 
 		WebElement wantedSharedPerson = findWantedPerson(wantedSharedPersonName);
 		
-		boolean allGrantsCorrect = true;
-		List<WebElement> wantedSharedPersonCheckBoxes = wantedSharedPerson.findElements(By.cssSelector("td:nth-of-type(2) td>input"));
+		WebElement readRadioButton = wantedSharedPerson.findElement(By.xpath("//input[@value='READ']"));
+		WebElement editRadioButton = wantedSharedPerson.findElement(By.xpath("//input[@value='EDIT']"));
+		WebElement adminRadioButton = wantedSharedPerson.findElement(By.xpath("//input[@value='ADMIN']"));
 		
-		if (administrate) {
-			
-			// since grant for administration is given, all the other grants are given too
-			Iterator<WebElement> iterator = wantedSharedPersonCheckBoxes.iterator();
-			
-			while (iterator.hasNext() && allGrantsCorrect) {
-				
-				WebElement grantCheckBox = iterator.next();
-				if (!grantCheckBox.isSelected() && grantCheckBox.isEnabled())
-					allGrantsCorrect = false;
-			}
-						
-		} else {			
-			
-			// order as in html dom: read, create items, edit items, delete items, edit collection info, edit profile, administrate
-			Map<WebElement, Boolean> checkBoxes = new HashMap<WebElement, Boolean>();
-			checkBoxes.put(wantedSharedPersonCheckBoxes.get(0), read);
-			checkBoxes.put(wantedSharedPersonCheckBoxes.get(1), createItems);
-			checkBoxes.put(wantedSharedPersonCheckBoxes.get(2), editItems);
-			checkBoxes.put(wantedSharedPersonCheckBoxes.get(3), deleteItems);
-			checkBoxes.put(wantedSharedPersonCheckBoxes.get(4), editCollectionInformation);
-			if (released) {
-				checkBoxes.put(wantedSharedPersonCheckBoxes.get(5), editProfile);
-				checkBoxes.put(wantedSharedPersonCheckBoxes.get(6), administrate);
-			}
-			else {
-				checkBoxes.put(wantedSharedPersonCheckBoxes.get(5), administrate);
-			}
-							
-			Iterator iterator = checkBoxes.entrySet().iterator();
-			
-			while (iterator.hasNext() && allGrantsCorrect) {
-	
-				Map.Entry<WebElement, Boolean> checkBox = (Map.Entry<WebElement, Boolean>) iterator.next();
-				
-				allGrantsCorrect = checkCorrectnessOfGrant(checkBox.getValue(), checkBox.getKey());
-			} 
-		}
-		return allGrantsCorrect;
-	}
-	
-	/**
-	 * Check method for albums
-	 */
-	public boolean checkGrantSelections(String wantedSharedPersonName, boolean read, boolean addItems, boolean editAlbumInformation, boolean administrate) {
-		WebElement wantedSharedPerson = findWantedPerson(wantedSharedPersonName);
-		WebElement readGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:1:role:0"));
-		WebElement addGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:1:role:1"));
-		WebElement editGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:1:role:2"));
-		WebElement administrateGrant = wantedSharedPerson.findElement(By.id("share:shareList:grantListForm:list:1:role:3"));
+		if (read)
+			return readRadioButton.isSelected();
+		if (editItems)
+			return editRadioButton.isSelected();
+		if (administrate)
+			return adminRadioButton.isSelected();
 		
-		return checkCorrectnessOfGrant(read, readGrant) && checkCorrectnessOfGrant(addItems, addGrant) & checkCorrectnessOfGrant(editAlbumInformation, editGrant)
-				& checkCorrectnessOfGrant(administrate, administrateGrant);
+		throw new IllegalArgumentException("Exactly one option should be set to true.");
 	}
 	
 	/**
@@ -319,6 +268,13 @@ public class SharePage extends BasePage {
 		}
 
 		return isGrantCorrect;
+	}
+	
+	public KindOfSharePage invite() {
+		WebElement inviteButton = unknownEmailPanel.findElement(By.className("imj_submitButton"));
+		inviteButton.click();
+		
+		return PageFactory.initElements(driver, KindOfSharePage.class);
 	}
 	
 	public boolean inviteButtonEnabled() {

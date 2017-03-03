@@ -22,7 +22,7 @@ public class MessageComponent {
 	private WebElement pageMessageArea;
 
 	public enum MessageType {
-		ERROR, INFO
+		ERROR, INFO, NONE
 	};
 
 	public MessageComponent(WebDriver driver) {

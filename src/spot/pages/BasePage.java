@@ -21,11 +21,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import spot.components.MainMenuComponent;
 import spot.components.MessageComponent;
-import spot.components.NewActionComponent;
+import spot.components.MessageComponent.MessageType;
 import spot.components.SearchComponent;
 import spot.components.UserPreferenceComponent;
-import spot.pages.admin.AdminHomePage;
-import spot.pages.notAdmin.HomePage;
+import spot.pages.admin.AdminHomepage;
+import spot.pages.registered.Homepage;
 
 /**
  * This class is abstract.
@@ -45,9 +45,6 @@ public abstract class BasePage {
 	
 	/** success or failure of user actions are reflected in the message area of the current page, e.g. login failed due to bad credentials */
 	private MessageComponent messageComponent;
-	
-	/** class for creating new collections, albums etc. */
-	private NewActionComponent newComponent;
 	
 	/** class for searching activities */
 	private SearchComponent searchComponent;
@@ -89,7 +86,6 @@ public abstract class BasePage {
 		this.driver = driver;
 		this.messageComponent = new MessageComponent(driver);
 		this.mainMenuComponent = new MainMenuComponent(driver);
-		this.newComponent = new NewActionComponent(driver);
 		this.searchComponent = new SearchComponent(driver);
 		this.userPreferenceComponent = new UserPreferenceComponent(driver);
 		
@@ -108,17 +104,12 @@ public abstract class BasePage {
 		return mainMenuComponent.navigateTo(SingleUploadPage.class);
 	}
 	
-	public HomePage goToHomePage(HomePage homePage) {
-		if (homePage instanceof AdminHomePage)
-			return mainMenuComponent.navigateTo(AdminHomePage.class);
-		else if (homePage instanceof HomePage)
-			return mainMenuComponent.navigateTo(HomePage.class);
+	public Homepage goToHomepage(Homepage homePage) {
+		if (homePage instanceof AdminHomepage)
+			return mainMenuComponent.navigateTo(AdminHomepage.class);
+		else if (homePage instanceof Homepage)
+			return mainMenuComponent.navigateTo(Homepage.class);
 		return null;
-	}
-	
-	public AlbumPage goToAlbumPage() {
-				
-		return mainMenuComponent.navigateTo(AlbumPage.class);
 	}
 	
 	public CollectionsPage goToCollectionPage() {
@@ -129,12 +120,6 @@ public abstract class BasePage {
 	public AdministrationPage goToAdminPage() {
 		
 		return mainMenuComponent.navigateTo(AdministrationPage.class);
-	}
-	
-	public AlbumEntryPage openActiveAlbumEntryPage() {
-		activeAlbumMenueLabel.click();
-		viewActiveAlbumButton.click();
-		return PageFactory.initElements(driver, AlbumEntryPage.class);
 	}
 	
 	public HelpPage goToHelpPage() {
@@ -199,16 +184,18 @@ public abstract class BasePage {
 		return messageComponent;
 	}
 	
+	public MessageType getPageMessageType() {
+		try {
+			MessageType messageType = messageComponent.getMessageTypeOfPageMessageArea();
+			return messageType;
+		}
+		catch (NoSuchElementException exc) {
+			return MessageType.NONE;
+		}
+	}
+	
 	public MainMenuComponent getMainMenuComponent() {
 		return mainMenuComponent;
-	}
-	
-	public void enableDarkMode() {
-		userPreferenceComponent.enableDarkMode();
-	}
-	
-	public void enableLightMode() {
-		userPreferenceComponent.enableLightMode();
 	}
 
 	public boolean retryingFindClick(By by) {

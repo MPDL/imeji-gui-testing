@@ -50,23 +50,8 @@ public class UserPreferenceComponent {
 	}
 
 	public String getCurrentLanguage() {
-		
 		String text = currentLanguageComboEntry.getText();		
 		return text;
-	}
-	
-	public void enableDarkMode() {
-		WebElement theme = driver.findElement(By.id("themeDefault"));
-		String themeHref = theme.getAttribute("href");
-		if (!themeHref.contains("dark.css"))
-			colorPreference.click();
-	}
-	
-	public void enableLightMode() {
-		WebElement theme = driver.findElement(By.id("themeDefault"));
-		String themeHref = theme.getAttribute("href");
-		if (!themeHref.equals("bright.css"))
-			colorPreference.click();
 	}
 	
 	

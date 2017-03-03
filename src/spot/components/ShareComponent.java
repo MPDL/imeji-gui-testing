@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import spot.CategoryType;
 import spot.pages.BasePage;
 import spot.pages.KindOfSharePage;
+import test.base.CategoryType;
 
 public class ShareComponent extends BasePage {
 

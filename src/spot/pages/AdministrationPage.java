@@ -27,7 +27,7 @@ public class AdministrationPage extends BasePage {
 	@FindBy(css=".imj_listBody>div:nth-of-type(1) li:nth-of-type(3)>a")
 	private WebElement viewAllUserGroups;
 	
-	@FindBy(css=".imj_listBody>div:nth-of-type(2) li:nth-of-type(1)>a")
+	@FindBy(css=".imj_administrationTiledList .imj_config a")
 	private WebElement configurationEdit;
 	
 	public AdministrationPage(WebDriver driver) {
@@ -72,46 +72,58 @@ public class AdministrationPage extends BasePage {
 		return PageFactory.initElements(driver, UserGroupsOverviewPage.class);
 	}
 	
-	public ConfigurationEditPage enablePrivateMode() {
+	public ConfigurationPage enablePrivateMode() {
 		configurationEdit.click();
-		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
+		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
 		return configurationEditPage.enablePrivateMode();
 	}
 	
-	public ConfigurationEditPage disablePrivateMode() {
+	public ConfigurationPage disablePrivateMode() {
 		configurationEdit.click();
-		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
+		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
 		return configurationEditPage.disablePrivateMode();
 	}
 	
-	public ConfigurationEditPage enableAlbums() {
+	public ConfigurationPage browseDefaultViewThumbnails() {
 		configurationEdit.click();
-		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
-		return configurationEditPage.enableAlbums();
-	}
-	
-	public ConfigurationEditPage disableAlbums() {
-		configurationEdit.click();
-		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
-		return configurationEditPage.disableAlbums();
-	}
-	
-	public ConfigurationEditPage browseDefaultViewThumbnails() {
-		configurationEdit.click();
-		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
+		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
 		return configurationEditPage.browseDefaultViewThumbnails();
 	}
 	
-	public ConfigurationEditPage setMaintenanceMessage(String message) {
+	public ConfigurationPage setMaintenanceMessage(String message) {
 		configurationEdit.click();
-		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
+		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
 		return configurationEditPage.setMaintenanceMessage(message);
 	}
 	
-	public ConfigurationEditPage setTermsOfUse(String termsOfUse) {
+	public ConfigurationPage setTermsOfUse(String termsOfUse) {
 		configurationEdit.click();
-		ConfigurationEditPage configurationEditPage = new ConfigurationEditPage(driver);
+		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
 		return configurationEditPage.setTermsOfUse(termsOfUse);
+	}
+	
+	public ConfigurationPage setLicense(String license) {
+		configurationEdit.click();
+		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
+		return configurationEditPage.setLicense(license);
+	}
+	
+	public ConfigurationPage setAutosuggestionMP() {
+		configurationEdit.click();
+		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
+		return configurationEditPage.setAutosuggestionMP();
+	}
+	
+	public ConfigurationPage enableRegistration(boolean usersCanRegister) {
+		configurationEdit.click();
+		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
+		return configurationEditPage.enableRegistration();
+	}
+	
+	public ConfigurationPage restrictRegistrationDomains(String domains) {
+		configurationEdit.click();
+		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
+		return configurationEditPage.restrictRegistrationDomains(domains);
 	}
 	
 	public boolean areAllComponentsDisplayed() {

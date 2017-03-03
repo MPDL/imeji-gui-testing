@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -43,12 +42,7 @@ public class CollectionsPage extends BasePage {
 		return collectionList.get(0);
 	}
 	
-	public void goToDetailedViewOfRandomCollection() {
-		WebElement goToDetailedViewButton = getFirstCollectionInList().findElement(By.name("j_idt256:j_idt333:list:0:j_idt337:lnkViewMetadataDetail"));
-	}
-	
-	public CollectionContentPage getPageOfLargestCollection() {
-	
+	public CollectionEntryPage getPageOfLargestCollection() {
 		WebElement largestCollection = getLargestCollection();
 		
 		if (largestCollection != null) {
@@ -56,7 +50,7 @@ public class CollectionsPage extends BasePage {
 			collectionLink.click();
 		}
 		
-		return PageFactory.initElements(driver, CollectionContentPage.class);
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
 	/**
@@ -91,23 +85,23 @@ public class CollectionsPage extends BasePage {
 		return sortingComponent;
 	}
 
-	public CollectionContentPage openSomePublishedCollection() {
+	public CollectionEntryPage openSomePublishedCollection() {
 		WebElement stateDropdown = driver.findElement(By.className("fa-lock"));
 		stateDropdown.click();
 		stateComponent.filter(StateOptions.ONLY_PUBLISHED);
 		
 		CollectionsPage collectionsPage = PageFactory.initElements(driver, CollectionsPage.class);
 		collectionsPage.getPageOfLargestCollection();
-		return PageFactory.initElements(driver, CollectionContentPage.class);
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
 	
-	public CollectionContentPage openCollectionByTitle(String collectionTitle) {
+	public CollectionEntryPage openCollectionByTitle(String collectionTitle) {
 		WebElement collectionInQuestion = findCollectionByTitle(collectionTitle);		
 		//collectionInQuestion.findElement(By.className("imj_itemHeadline")).click();
 		collectionInQuestion.findElement(By.tagName("a")).click();
 		
-		return PageFactory.initElements(driver, CollectionContentPage.class);
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
 	public void expandCollapseDescription(String collectionTitle) {
@@ -153,73 +147,14 @@ public class CollectionsPage extends BasePage {
 	/**
 	 * @throws NoSuchElementException if no collection on the page is published
 	 */
-	public CollectionContentPage openSomeNotPublishedCollection() {
+	public CollectionEntryPage openSomeNotPublishedCollection() {
 		WebElement stateDropdown = driver.findElement(By.className("fa-lock"));
 		stateDropdown.click();
 		stateComponent.filter(StateOptions.ONLY_PRIVATE);
 		
 		CollectionsPage collectionsPage = PageFactory.initElements(driver, CollectionsPage.class);
 		collectionsPage.getPageOfLargestCollection();
-		return PageFactory.initElements(driver, CollectionContentPage.class);
-	}
-	/**public CollectionContentPage openSomeNotPublishedCollection() {
-		
-		checkCollectionList();
-		
-		WebElement someNotPublishedCollection = null;
-		
-		// any need for finding again? since page could have been refreshed due to checkCollectionList()
-		try {
-			collectionList.get(0).findElement(By.className("imj_statusArea"));		
-		} catch (StaleElementReferenceException e) {
-			collectionList = driver.findElements(By.className("imj_bibliographicListItem"));	
-		}
-				
-		
-		for (WebElement collection : collectionList) {
-			
-			WebElement status = collection.findElement(By.className("imj_statusArea"));
-			
-			if (status.findElements(By.xpath(".//*")).size()>0) {
-				// it also needs to have files, at least one; does it?
-				WebElement collItemCount= collection.findElement(By.cssSelector(".imj_itemCount"));
-				String[] split = collItemCount.getText().split("\\s+");
-				
-				try {
-					String itemCountString = split[0];
-					int itemCount = Integer.parseInt(itemCountString);
-				
-					if (itemCount>0) {
-						someNotPublishedCollection = collection;				
-						break;				
-					}
-				} catch (NumberFormatException nfe) {
-					// no valid number
-					// do nothing
-				}
-			} 
-		}
-		
-		if (someNotPublishedCollection == null)
-			throw new NoSuchElementException("No published collection was found on this page.");
-		
-		// open start page of the selected collection
-		someNotPublishedCollection.findElement(By.tagName("img")).click();
-		
-		return PageFactory.initElements(driver, CollectionContentPage.class);
-	}**/
-
-	private void checkCollectionList() {		
-		
-		if (collectionList.size() == 0) {
-			showAllCollectionsButton.click();
-		} else if (collectionList.size() == 1) {
-			WebElement emptyList = collectionList.get(0);
-			String emptyListInnerHTML = emptyList.getText();
-			if (emptyListInnerHTML.equals("No results found")) {
-				showAllCollectionsButton.click();
-			}
-		}
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
 	public void deleteCollections() {
