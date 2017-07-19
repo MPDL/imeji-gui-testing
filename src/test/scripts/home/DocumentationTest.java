@@ -1,0 +1,110 @@
+package test.scripts.home;
+
+import java.util.Set;
+
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+
+import spot.pages.HelpPage;
+import spot.pages.LoginPage;
+import spot.pages.StartPage;
+import spot.pages.admin.AdminHomepage;
+import spot.pages.registered.Homepage;
+import test.base.BaseSelenium;
+
+public class DocumentationTest extends BaseSelenium {
+	
+	private String windowHandleHelpPage;
+	private String windowHandleStartPage;
+	
+	@Test (priority = 1)
+	public void openDocumentationNRUPublic() {
+		String url = openDocumentation();
+		closeDocumentation();
+		Assert.assertEquals(url, "https://github.com/imeji-community/imeji/", "Documentation URLs don't match.");
+	}
+	
+	@Test (priority = 2)
+	public void openDocumentationRUPublic() {
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		Homepage homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
+		String url = openDocumentation();
+		closeDocumentation();
+		homePage.logout();
+		Assert.assertEquals(url, "https://github.com/imeji-community/imeji/", "Documentation URLs don't match.");
+	}
+  
+	@Test (priority = 3)
+	public void openDocumentationNRUPrivate() {
+		switchPrivateMode(true);
+		String url = openDocumentation();
+		closeDocumentation();
+		Assert.assertEquals(url, "https://github.com/imeji-community/imeji/", "Documentation URLs don't match.");
+	}
+	
+	@Test (priority = 4)
+	public void openDocumentationRUPrivate() {
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		Homepage homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
+		String url = openDocumentation();
+		closeDocumentation();
+		homePage.logout();
+		Assert.assertEquals(url, "https://github.com/imeji-community/imeji/", "Documentation URLs don't match.");
+	}
+	
+	@AfterClass
+	public void afterClass() {
+		switchPrivateMode(false);
+	}
+
+	private String openDocumentation() {
+		windowHandleStartPage = driver.getWindowHandle();
+
+		HelpPage helpPage = new StartPage(driver).goToHelpPage();
+		
+		Set<String> windowHandles = driver.getWindowHandles();
+		windowHandles.remove(windowHandleStartPage);
+		String helpHandle = windowHandles.iterator().next();
+		driver.switchTo().window(helpHandle);
+		
+		windowHandleHelpPage = driver.getWindowHandle();
+
+		Set<String> windowHandlesBeforeDocumentation = driver.getWindowHandles();
+
+		helpPage.lookUpImejiHomePage();
+
+		Set<String> windowHandlesAfterDocumentation = driver.getWindowHandles();
+		windowHandlesAfterDocumentation.removeAll(windowHandlesBeforeDocumentation);
+
+		for (String winHandle : windowHandlesAfterDocumentation) {
+			driver.switchTo().window(winHandle);
+		}
+
+		String currentUrl = driver.getCurrentUrl();
+		
+		return currentUrl;
+	}
+
+	private void closeDocumentation() {
+		if (driver.getWindowHandles().size() > 1) {
+			// close imeji window; switch to help page
+			driver.close();
+			driver.switchTo().window(windowHandleHelpPage);
+	
+			// close help window; switch to start page
+			driver.close();
+			driver.switchTo().window(windowHandleStartPage);
+		}
+	}
+	
+	private void switchPrivateMode(boolean privateMode) {
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		AdminHomepage adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
+		if (privateMode)
+			adminHomepage.goToAdminPage().enablePrivateMode();
+		else 
+			adminHomepage.goToAdminPage().disablePrivateMode();
+		adminHomepage.logout();
+	}
+}

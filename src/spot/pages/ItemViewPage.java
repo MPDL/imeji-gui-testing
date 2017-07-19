@@ -3,9 +3,11 @@ package spot.pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -47,7 +49,10 @@ public class ItemViewPage extends BasePage {
 	@FindBy(css=".imj_metadataWrapper>.imj_metadataWrapper>div:nth-of-type(5)>.imj_metadataValue")
 	private WebElement dateLabel;
 	
-	@FindBy(css = "#actionsMenuArea form a:nth-of-type(2)")
+	@FindBy(css="#actionsMenuArea>form>a")
+	private WebElement editButton;
+	
+	@FindBy(css = "#actionsMenuArea>a:nth-of-type(2)")
 	private WebElement deleteLink;
 	
 	@FindBy(id = "deleteItem")
@@ -89,6 +94,11 @@ public class ItemViewPage extends BasePage {
 		return downloadMenu.isDisplayed() && downloadMenu.isEnabled();
 	}	
 	
+	public void download() {
+		downloadMenu.click();
+		new Actions(driver).sendKeys(Keys.ENTER);
+	}
+	
 	public String getTitleLabel() {
 		return titleLabel.getText();
 	}
@@ -115,6 +125,12 @@ public class ItemViewPage extends BasePage {
 		} catch (NoSuchElementException exc) {
 			return false;
 		}
+	}
+	
+	public EditItemPage editItem() {
+		editButton.click();
+		
+		return PageFactory.initElements(driver, EditItemPage.class);
 	}
 	
 	public KindOfSharePage shareItem() {
@@ -162,14 +178,36 @@ public class ItemViewPage extends BasePage {
 		return false;
 	}
 	
+	/**
+	 * @param license - select option value
+	 */
+	public ItemViewPage addLicense(String license) {
+		EditItemPage editItem = editItem();
+		return editItem.selectLicense(license);
+	}
+	
 	public boolean licensePresent(String link) {
 		try {
-			driver.findElement(By.xpath("//a[href='" + link + "']"));
-			return true;
+			WebElement license = getValue("License").findElement(By.tagName("a"));
+			return license.getAttribute("href").equals(link);
 		}
 		catch (NoSuchElementException exc) {
 			return false;
 		}
+	}
+	
+	public WebElement getValue(String label) {
+		List<WebElement> sets = driver.findElements(By.className("imj_metadataSet"));
+		for (WebElement set : sets) {
+			try {
+				WebElement currentLabel = set.findElement(By.className("imj_metadataLabel"));
+				if (label.equals(currentLabel.getText()))
+					return set.findElement(By.className("imj_metadataValue"));
+			}
+			catch (NoSuchElementException exc) {}
+		}
+		
+		throw new NoSuchElementException("Label is not present.");
 	}
 	
 	public CollectionEntryPage goToCollectionEntry() {

@@ -42,11 +42,14 @@ public class NewCollectionPage extends BasePage {
 	@FindBy(css=".imj_cancelButton")
 	private WebElement cancelButton;
 	
-	@FindBy(name="editContainer:mediaContainerForm:persons:0:j_idt214")
+	@FindBy(css="h4>.imj_inlineButtonGroup>a")
 	private WebElement addAuthorButton;
 	
-	@FindBy(name="editContainer:mediaContainerForm:persons:0:collectionAuthor:j_idt247:0:j_idt276")
+	@FindBy(xpath="//a[contains(@id, 'editContainer:mediaContainerForm:persons:0:collectionAuthor:')]")
 	private WebElement addOrganizationButton;
+	
+	@FindBy(id="editContainer:mediaContainerForm:notificationCheckBox")
+	private WebElement emailOnDownload;
 	
 	public NewCollectionPage(WebDriver driver) {
 		super(driver);
@@ -75,6 +78,84 @@ public class NewCollectionPage extends BasePage {
 
 	public CollectionEntryPage createCollection(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
 		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
+		
+		submitForm();
+		
+		if (errorOccurred)
+			return null;
+		
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	public CollectionEntryPage createCollectionWithNotification(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
+		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
+		if (!emailOnDownload.isSelected())
+			emailOnDownload.click();
+		
+		submitForm();
+		
+		if (errorOccurred)
+			return null;
+		
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	public CollectionEntryPage createCollection3Authors(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
+		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
+		addAuthor();
+		WebElement author2Name = driver.findElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
+		author2Name.sendKeys("Thesecond");
+		WebElement author2Org = driver.findElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
+		author2Org.sendKeys("MPDL");
+		addAuthor();
+		WebElement author3Name = retryingElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
+		wait.until(ExpectedConditions.visibilityOf(author3Name));
+		author3Name.sendKeys("Thethird");
+		WebElement author3Org = retryingElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
+		wait.until(ExpectedConditions.visibilityOf(author3Org));
+		author3Org.sendKeys("Max Planck Society");
+		
+		submitForm();
+		
+		if (errorOccurred)
+			return null;
+		
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	public CollectionEntryPage createCollection3AuthorsNotification(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
+		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
+		
+		addAuthor();
+		WebElement author2Name = driver.findElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
+		author2Name.sendKeys("AuthorTwo");
+		WebElement author2Org = driver.findElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
+		author2Org.sendKeys(orgName);
+		
+		addAuthor();
+		WebElement author3Name = retryingElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
+		wait.until(ExpectedConditions.visibilityOf(author3Name));
+		author3Name.sendKeys("AuthorThree");
+		WebElement author3Org = retryingElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
+		wait.until(ExpectedConditions.visibilityOf(author3Org));
+		author3Org.sendKeys(orgName);
+		
+		if (!emailOnDownload.isSelected())
+			emailOnDownload.click();
+		
+		submitForm();
+		
+		if (errorOccurred)
+			return null;
+		
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	public CollectionEntryPage createCollection1Author2OUs(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
+		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
+		addOrganization();
+		WebElement org2 = driver.findElement(By.xpath("//input[contains(@name, '1:inputOrgaName1')]"));
+		org2.sendKeys("MPDL");
 		
 		submitForm();
 		

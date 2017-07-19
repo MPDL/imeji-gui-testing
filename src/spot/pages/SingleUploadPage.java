@@ -167,4 +167,11 @@ public class SingleUploadPage extends BasePage {
 		catch (TimeoutException exc) {}
 	}
 	
+	public boolean loginAreaDisplayed() {
+		return retryingFinding(By.className("loginArea"));
+	}
+	
+	public boolean uploadAreaDisplayed() {
+		return retryingFinding(By.id("editContainer:mediaContainerForm"));
+	}
 }

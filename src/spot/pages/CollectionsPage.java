@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import spot.components.StateComponent;
 import spot.components.StateComponent.StateOptions;
+import spot.pages.registered.NewCollectionPage;
 import spot.components.SortingComponent;
 
 public class CollectionsPage extends BasePage {
@@ -18,8 +19,10 @@ public class CollectionsPage extends BasePage {
 	private List<WebElement> collectionList;
 	
 	private SortingComponent sortingComponent;
-	
 	private StateComponent stateComponent;
+	
+	@FindBy(css=".imj_menuButton .fa-plus")
+	private WebElement newCollectionButton;
 	
 	@FindBy(css="#ajaxWrapper>div:nth-of-type(2)>form>a")
 	private WebElement showAllCollectionsButton;
@@ -28,7 +31,6 @@ public class CollectionsPage extends BasePage {
 		super(driver);
 		
 		collectionList = driver.findElements(By.className("imj_bibliographicListItem"));
-		
 		stateComponent = new StateComponent(driver);
 		
 		PageFactory.initElements(driver, this);
@@ -84,6 +86,12 @@ public class CollectionsPage extends BasePage {
 	public SortingComponent getSortingComponent() {
 		return sortingComponent;
 	}
+	
+	public NewCollectionPage createCollection() {
+		newCollectionButton.click();
+
+		return PageFactory.initElements(driver, NewCollectionPage.class);
+	}
 
 	public CollectionEntryPage openSomePublishedCollection() {
 		WebElement stateDropdown = driver.findElement(By.className("fa-lock"));
@@ -112,6 +120,16 @@ public class CollectionsPage extends BasePage {
 		}
 		catch (NoSuchElementException exc) {
 			throw new NoSuchElementException("Description is not long enough.");
+		}
+	}
+	
+	public boolean collectionPresent(String collectionTitle) {
+		try {
+			findCollectionByTitle(collectionTitle);
+			return true;
+		}
+		catch (NoSuchElementException exc) {
+			return false;
 		}
 	}
 	
@@ -163,6 +181,10 @@ public class CollectionsPage extends BasePage {
 		}
 	}
 
-
+	public CollectionsPage filterDiscarded() {
+		stateComponent.filter(StateOptions.ONLY_DISCARDED);
+		
+		return PageFactory.initElements(driver, CollectionsPage.class);
+	}
 
 }

@@ -14,7 +14,7 @@ import spot.pages.BasePage;
 
 public class UserGroupsOverviewPage extends BasePage {
 
-	@FindBy(css=".imj_admindataSet")
+	@FindBy(css=".imj_setupConfig>.imj_itemContent")
 	private List<WebElement> userGroupList;
 	
 	public UserGroupsOverviewPage(WebDriver driver) {
@@ -44,36 +44,34 @@ public class UserGroupsOverviewPage extends BasePage {
 	}
 	
 	private WebElement findUserGroupByName(String userGroupNameInQuestion) {
-		WebElement userGroupInQuestion = null;
-		
 		for (WebElement userGroup : userGroupList) {
-			WebElement userGroupIdentification = userGroup.findElement(By.className("imj_headline"));
+			WebElement userGroupIdentification = userGroup.findElement(By.className("imj_admindataLabel"));
 			String userGroupName  = userGroupIdentification.getText();
 			
 			if (userGroupName.equals(userGroupNameInQuestion)) {
-				userGroupInQuestion = userGroup;
-				break;
+				return userGroup;
 			}
 		}
-		return userGroupInQuestion;
+
+		throw new NoSuchElementException("User group " + userGroupNameInQuestion + " is not present.");
 	}
 
 	public boolean isNewUserGroupPresent(String newUserGroupName) {
-		boolean isNewUserGroupPresent = false;
-		
-		if (findUserGroupByName(newUserGroupName) != null) {
-			isNewUserGroupPresent = true;
+		try {
+			findUserGroupByName(newUserGroupName);
+			return true;
 		}
-		
-		return isNewUserGroupPresent;
+		catch (NoSuchElementException exc) {
+			return false;
+		}
 	}
 
-	public boolean isNewUserGroupListenOnTopOfList(String newUserGroupNameInQuestion) {
+	public boolean isNewUserGroupOnTop(String newUserGroupNameInQuestion) {
 		boolean isNewUserGroupOnTopOfList = false;
 		
 		WebElement userGroupOnTopOfList = userGroupList.get(0);
 		
-		WebElement userGroupIdentification = userGroupOnTopOfList.findElement(By.cssSelector("h2"));
+		WebElement userGroupIdentification = userGroupOnTopOfList.findElement(By.className("imj_admindataLabel"));
 		String userGroupName  = userGroupIdentification.getText();
 		
 		if (userGroupName.equals(newUserGroupNameInQuestion)) {
@@ -86,7 +84,7 @@ public class UserGroupsOverviewPage extends BasePage {
 	public UserGroupPage viewUserGroupDetails(String userGroupNameInQuestion) {
 		WebElement userGroupInQuestion = findUserGroupByName(userGroupNameInQuestion);
 		
-		WebElement viewButton = userGroupInQuestion.findElement(By.cssSelector(".imj_adminEditPanel>.imj_editButton"));
+		WebElement viewButton = userGroupInQuestion.findElement(By.cssSelector(".imj_admindataValue>.imj_menuButton:nth-of-type(1)"));
 		viewButton.click();
 		
 		return PageFactory.initElements(driver, UserGroupPage.class);

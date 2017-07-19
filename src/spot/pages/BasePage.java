@@ -96,6 +96,10 @@ public abstract class BasePage {
 		return siteContentHeadline.getText();
 	}
 	
+	public boolean browseAccessible() {
+		return searchComponent.browseAccessible();
+	}
+	
 	public BrowseItemsPage navigateToItemPage() {
 		return searchComponent.callBrowseSection();
 	}
@@ -104,10 +108,10 @@ public abstract class BasePage {
 		return mainMenuComponent.navigateTo(SingleUploadPage.class);
 	}
 	
-	public Homepage goToHomepage(Homepage homePage) {
-		if (homePage instanceof AdminHomepage)
+	public Homepage goToHomepage(Homepage homepage) {
+		if (homepage instanceof AdminHomepage)
 			return mainMenuComponent.navigateTo(AdminHomepage.class);
-		else if (homePage instanceof Homepage)
+		else if (homepage instanceof Homepage)
 			return mainMenuComponent.navigateTo(Homepage.class);
 		return null;
 	}
@@ -196,6 +200,14 @@ public abstract class BasePage {
 	
 	public MainMenuComponent getMainMenuComponent() {
 		return mainMenuComponent;
+	}
+	
+	public boolean advancedSearchAccessible() {
+		return searchComponent.advancedSearchAccessible();
+	}
+	
+	public AdvancedSearchPage goToAdvancedSearch() {
+		return searchComponent.navigateToAdvancedSearchPage();
 	}
 
 	public boolean retryingFindClick(By by) {

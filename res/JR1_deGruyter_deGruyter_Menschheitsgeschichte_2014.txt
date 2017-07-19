@@ -1,0 +1,156 @@
+﻿Journal Report 1 (R4)	Number of Successful Full-Text Article Requests by Month and Journal	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""
+"Max Planck Institute for the Science of Human History "	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""
+""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""
+Period covered by Report:	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""
+2014-01-01 to 2014-12-31	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""
+Date run:	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""
+2015-06-12	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""
+Journal	Publisher	Platform	Journal DOI	Proprietary Identifier	Print ISSN	Online ISSN	Reporting Period Total	Reporting Period HTML	Reporting Period PDF	Jan-2014	Feb-2014	Mar-2014	Apr-2014	May-2014	Jun-2014	Jul-2014	Aug-2014	Sep-2014	Oct-2014	Nov-2014	Dec-2014
+Total for all journals	""	De Gruyter Online	""	""	""	""	12	1	11	0	0	1	3	0	0	2	1	2	1	0	2
+ABI Technik (abitech)	De Gruyter	De Gruyter Online	""	abitech	0720-6763	2191-4664	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Advanced Optics Technologies (aot)	De Gruyter	De Gruyter Online	""	aot	2192-8576	2192-8584	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Advances in Calculus of Variations (acv)	De Gruyter	De Gruyter Online	""	acv	1864-8258	1864-8266	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Advances in Geometry (advg)	De Gruyter	De Gruyter Online	""	advg	1615-715X	1615-7168	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Advances in Nonlinear Analysis (anona)	De Gruyter	De Gruyter Online	""	anona	2191-9496	2191-950X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Advances in Pure and Applied Mathematics (apam)	De Gruyter	De Gruyter Online	""	apam	1867-1152	1869-6090	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Angermion (ang)	De Gruyter	De Gruyter Online	""	ang	1438-2091	1868-9426	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Anglia (angl)	De Gruyter	De Gruyter Online	""	angl	0340-5222	1865-8938	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Antike und Abendland (anti)	De Gruyter	De Gruyter Online	""	anti	0003-5696	1613-0421	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Arbitrium (arbi)	De Gruyter	De Gruyter Online	""	arbi	0723-2977	1865-8849	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Arcadia (arca)	De Gruyter	De Gruyter Online	""	arca	0003-7982	1613-0642	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Archiv für Geschichte der Philosophie (agph)	De Gruyter	De Gruyter Online	""	agph	0003-9101	1613-0650	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Archiv für Papyrusforschung und verwandte Gebiete (apf)	De Gruyter	De Gruyter Online	""	apf	0066-6459	1867-1551	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Archiv für Religionsgeschichte (afgs)	De Gruyter	De Gruyter Online	""	afgs	1436-3038	1868-8888	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Aschkenas (asch)	De Gruyter	De Gruyter Online	""	asch	1016-4987	1865-9438	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+at - Automatisierungstechnik (auto)	De Gruyter	De Gruyter Online	""	auto	0178-2312	""	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Beiträge zur Geschichte der deutschen Sprache und Literatur (bgsl)	De Gruyter	De Gruyter Online	""	bgsl	0005-8076	1865-9373	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Bibliothek Forschung und Praxis (bfup)	De Gruyter	De Gruyter Online	""	bfup	0341-4183	1865-7648	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Bibliotheksdienst (bd)	De Gruyter	De Gruyter Online	""	bd	""	""	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Biological Chemistry (bchm)	De Gruyter	De Gruyter Online	""	bchm	1431-6730	1437-4315	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Biomedizinische Technik / Biomedical Engineering (bmte)	De Gruyter	De Gruyter Online	""	bmte	0013-5585	1862-278X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Biomolecular Concepts (bmc)	De Gruyter	De Gruyter Online	""	bmc	1868-5021	1868-503X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Botanica Marina (botm)	De Gruyter	De Gruyter Online	""	botm	0006-8055	1437-4323	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Byzantinische Zeitschrift (byzs)	De Gruyter	De Gruyter Online	""	byzs	0007-7704	1868-9027	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Clinical Chemistry and Laboratory Medicine (CCLM) (cclm)	De Gruyter	De Gruyter Online	""	cclm	1434-6621	1437-4331	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Cognitive Linguistics (cogl)	De Gruyter	De Gruyter Online	""	cogl	0936-5907	1613-3641	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Communications (comm)	De Gruyter	De Gruyter Online	""	comm	0341-2059	1613-4087	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Computer Law Review International (cri)	De Gruyter	De Gruyter Online	""	cri	""	""	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Computer und Recht (cr)	De Gruyter	De Gruyter Online	""	cr	""	""	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Corpus Linguistics and Linguistic Theory (cllt)	De Gruyter	De Gruyter Online	""	cllt	1613-7027	1613-7035	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Der Islam (islm)	De Gruyter	De Gruyter Online	""	islm	0021-1818	1613-0928	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+"Deutsche Zeitschrift für Wirtschafts - und
+Insolvenzrecht (dwir)"	De Gruyter	De Gruyter Online	""	dwir	1439-1589	1612-7056	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Dialectologia et Geolinguistica (dig)	De Gruyter	De Gruyter Online	""	dig	0942-4040	1867-0903	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Discrete Mathematics and Applications (dma)	De Gruyter	De Gruyter Online	""	dma	0924-9265	1569-3929	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Drug Metabolism and Drug Interactions (dmdi)	De Gruyter	De Gruyter Online	""	dmdi	0792-5077	2191-0162	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Economic Quality Control (eqc)	De Gruyter	De Gruyter Online	""	eqc	0940-5151	1869-6147	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Editio (edit)	De Gruyter	De Gruyter Online	""	edit	0931-3079	1865-9446	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Etruscan Studies (etst)	De Gruyter	De Gruyter Online	""	etst	1080-1960	2163-8217	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+European Company and Financial Law Review (ecfr)	De Gruyter	De Gruyter Online	""	ecfr	1613-2548	1613-2556	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+European Journal of Nanomedicine (ejnm)	De Gruyter	De Gruyter Online	""	ejnm	1662-5986	1662-596X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+European Review of Contract Law (ercl)	De Gruyter	De Gruyter Online	""	ercl	1614-9920	1614-9939	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+European Tort Law Yearbook (etly)	De Gruyter	De Gruyter Online	""	etly	2190-7773	2190-7781	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Fabula (fabl)	De Gruyter	De Gruyter Online	""	fabl	0014-6242	1316-0464	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Folia Linguistica (flin)	De Gruyter	De Gruyter Online	""	flin	0165-4004	1614-7308	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Forum Mathematicum (form)	De Gruyter	De Gruyter Online	""	form	0933-7741	1435-5337	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Frühmittelalterliche Studien (fmst)	De Gruyter	De Gruyter Online	""	fmst	0071-9706	1613-0812	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Georgian Mathematical Journal (gmj)	De Gruyter	De Gruyter Online	""	gmj	1072-947X	1572-9176	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Germanistik (germ)	De Gruyter	De Gruyter Online	""	germ	0016-8912	1865-9187	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Green (green)	De Gruyter	De Gruyter Online	""	green	1869-876X	1869-8778	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Green Processing and Synthesis (gps)	De Gruyter	De Gruyter Online	""	gps	2191-9542	2191-9550	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Historische Anthropologie (ha)	De Gruyter	De Gruyter Online	""	ha	""	""	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Historische Zeitschrift (hzhz)	De Gruyter	De Gruyter Online	""	hzhz	0018-2613	""	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Holzforschung (hfsg)	De Gruyter	De Gruyter Online	""	hfsg	0018-3830	1437-434X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Hormone Molecular Biology and Clinical Investigation (hmbci)	De Gruyter	De Gruyter Online	""	hmbci	1868-1883	1868-1891	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Humor (humr)	De Gruyter	De Gruyter Online	""	humr	0933-1719	1613-3722	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Iberoromania (iber)	De Gruyter	De Gruyter Online	""	iber	0019-0993	1865-9039	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Indogermanische Forschungen (indo)	De Gruyter	De Gruyter Online	""	indo	0019-7262	1613-0405	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Information - Wissenschaft & Praxis (iwp)	De Gruyter	De Gruyter Online	""	iwp	1434-4653	1619-4292	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Intercultural Pragmatics (iprg)	De Gruyter	De Gruyter Online	""	iprg	1612-295X	1613-365X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+International African Bibliography (iabi)	De Gruyter	De Gruyter Online	""	iabi	0020-5877	""	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+International Journal of Nonlinear Sciences and Numerical Simulation (ijnsns)	De Gruyter	De Gruyter Online	""	ijnsns	1565-1339	2191-0294	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+International Journal of the Sociology of Language (ijsl)	De Gruyter	De Gruyter Online	""	ijsl	0165-2516	1613-3668	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+International Review of Applied Linguistics in Language Teaching (iral)	De Gruyter	De Gruyter Online	""	iral	0019-042X	1613-4141	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Internationales Archiv für Sozialgeschichte der deutschen Literatur (iasl)	De Gruyter	De Gruyter Online	""	iasl	0340-4528	1865-9128	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Issues in Legal Scholarship (ils)	De Gruyter	De Gruyter Online	""	ils	""	1539-8323	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Jahrbuch der Göttinger Akademie der Wissenschaften (jga)	De Gruyter	De Gruyter Online	""	jga	0373-9767	1868-9191	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Jahrbuch der Juristischen Zeitgeschichte (jjzg-b)	De Gruyter	De Gruyter Online	""	jjzg-b	1869-6899	1869-6902	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Jahrbuch für Germanistische Sprachgeschichte (jbgsg)	De Gruyter	De Gruyter Online	""	jbgsg	1869-7038	1869-7046	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Jahrbuch für Wissenschaft und Ethik (jfwe)	De Gruyter	De Gruyter Online	""	jfwe	1430-9017	1613-1142	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal der Juristischen Zeitgeschichte (jjzg)	De Gruyter	De Gruyter Online	""	jjzg	1863-9984	1868-8810	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+"Journal for the History of Modern Theology
+Zeitschrift für Neuere Theologiegeschichte (znth)"	De Gruyter	De Gruyter Online	""	znth	0943-7592	1612-9776	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal für die reine und angewandte Mathematik (crll)	De Gruyter	De Gruyter Online	""	crll	0075-4102	1435-5345	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of African Languages and Linguistics (jall)	De Gruyter	De Gruyter Online	""	jall	0167-6164	1613-3811	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Applied Analysis (jaa)	De Gruyter	De Gruyter Online	""	jaa	1425-6908	1869-6082	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Applied Geodesy (jag)	De Gruyter	De Gruyter Online	""	jag	1862-9016	1862-9024	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Basic & Clinical Physiology & Pharmacology (jbcpp)	De Gruyter	De Gruyter Online	""	jbcpp	0792-6885	2191-0286	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of European Tort Law (jetl)	De Gruyter	De Gruyter Online	""	jetl	1868-9612	1868-9620	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Group Theory (jgth)	De Gruyter	De Gruyter Online	""	jgth	1433-5883	1435-4446	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Intelligent Systems (jisys)	De Gruyter	De Gruyter Online	""	jisys	0334-1860	2191-026X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Inverse and III-posed Problems (jiip)	De Gruyter	De Gruyter Online	""	jiip	0928-0219	1569-3945	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Literary Semantics (jlse)	De Gruyter	De Gruyter Online	""	jlse	0341-7638	1613-3838	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Literary Theory (jlt)	De Gruyter	De Gruyter Online	""	jlt	1862-5290	1862-8990	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Mathematical Cryptology (jmc)	De Gruyter	De Gruyter Online	""	jmc	1862-2976	1862-2984	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Non-Equilibrium Thermodynamics (jnet)	De Gruyter	De Gruyter Online	""	jnet	0340-0204	1437-4358	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Numerical Mathematics (jnma)	De Gruyter	De Gruyter Online	""	jnma	1570-2820	1569-3953	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Optical Communications (joc)	De Gruyter	De Gruyter Online	""	joc	0173-4911	2191-6322	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Perinatal Medicine (jpme)	De Gruyter	De Gruyter Online	""	jpme	0300-5577	1619-3997	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Journal of Politeness Research (jplr)	De Gruyter	De Gruyter Online	""	jplr	1612-5681	1613-4877	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+JURA - Juristische Ausbildung (jura)	De Gruyter	De Gruyter Online	""	jura	0170-1452	""	1	0	1	0	0	0	1	0	0	0	0	0	0	0	0
+Juristische Rundschau (juru)	De Gruyter	De Gruyter Online	""	juru	0022-6920	1612-7064	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Kadmos (kadm)	De Gruyter	De Gruyter Online	""	kadm	0022-7498	1613-0723	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Kant Yearbook (kantyb)	De Gruyter	De Gruyter Online	""	kantyb	1868-4599	1868-4602	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Kant-Studien (kant)	De Gruyter	De Gruyter Online	""	kant	0022-8877	1613-1134	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Kierkegaard Studies Yearbook (kier)	De Gruyter	De Gruyter Online	""	kier	1430-5372	1612-9792	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Laboratoriumsmedizin (labm)	De Gruyter	De Gruyter Online	""	labm	0342-3026	1439-0477	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Laboratory Phonology (labphon)	De Gruyter	De Gruyter Online	""	labphon	1868-6346	1868-6354	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Lebende Sprachen (les)	De Gruyter	De Gruyter Online	""	les	0023-9909	1868-0267	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Libri. International Journal of Libraries and Information Services (libr)	De Gruyter	De Gruyter Online	""	libr	0024-2667	1865-8423	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Linguistic Typology (lity)	De Gruyter	De Gruyter Online	""	lity	1430-0532	1613-415X	1	0	1	0	0	0	0	0	0	0	0	1	0	0	0
+Linguistics (ling)	De Gruyter	De Gruyter Online	""	ling	0024-3949	1613-396X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Mammalia (mamm)	De Gruyter	De Gruyter Online	""	mamm	0025-1461	1864-1547	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Monatsschrift für Deutsches Recht (mdtr)	De Gruyter	De Gruyter Online	""	mdtr	""	""	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Monte Carlo Methods and Applications (mcma)	De Gruyter	De Gruyter Online	""	mcma	0929-9629	1569-3961	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Multilingua (mult)	De Gruyter	De Gruyter Online	""	mult	0167-8507	1613-3684	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Nachrichten aus der Chemie (nachrchem)	De Gruyter	De Gruyter Online	""	nachrchem	1439-9598	1868-0054	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Nanophotonics (nanoph)	De Gruyter	De Gruyter Online	""	nanoph	2192-8606	2192-8614	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Nanotechnology Reviews (ntrev)	De Gruyter	De Gruyter Online	""	ntrev	2191-9089	2191-9097	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Neue Zeitschrift für Systematische Theologie und Religionsphilosphie (nzst)	De Gruyter	De Gruyter Online	""	nzst	0028-3517	1612-9520	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Nietzsche-Studien (niet)	De Gruyter	De Gruyter Online	""	niet	0342-1422	1613-0790	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Photonics & Lasers in Medicine (plm)	De Gruyter	De Gruyter Online	""	plm	2193-0635	2193-0643	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+PIK - Praxis der Informationsverarbeitung und Kommunikation (piko)	De Gruyter	De Gruyter Online	""	piko	0930-5157	1865-8342	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Praehistorische Zeitschrift (prhz)	De Gruyter	De Gruyter Online	""	prhz	0079-4848	1613-0804	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Probus (prbs)	De Gruyter	De Gruyter Online	""	prbs	0921-4771	1613-4079	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Quellen und Forschungen aus italienischen Archiven und Bibliotheken (qfiab)	De Gruyter	De Gruyter Online	""	qfiab	0079-9068	1865-8865	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Random Operators and Stochastic Equations (rose)	De Gruyter	De Gruyter Online	""	rose	0926-6364	1569-397X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Restaurator. International Journal for the Preservation of Library and Archival Material. (rest)	De Gruyter	De Gruyter Online	""	rest	0034-5806	1865-8431	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Review of Law & Economics (rle)	De Gruyter	De Gruyter Online	""	rle	""	1555-5879	1	1	0	0	0	0	0	0	0	0	0	0	0	0	1
+Reviews in Analytical Chemistry (revac)	De Gruyter	De Gruyter Online	""	revac	0793-0135	2191-0189	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Reviews in Chemical Engineering (revce)	De Gruyter	De Gruyter Online	""	revce	0167-8299	2191-0235	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Reviews in Inorganic Chemistry (revic)	De Gruyter	De Gruyter Online	""	revic	0193-4929	2191-0277	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Reviews in the Neurosciences (revneuro)	De Gruyter	De Gruyter Online	""	revneuro	0334-1763	1607-8470	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Romanische Bibliographie (romb)	De Gruyter	De Gruyter Online	""	romb	0080-388X	1865-9055	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Romanistisches Jahrbuch (roma)	De Gruyter	De Gruyter Online	""	roma	0080-3898	1613-0413	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Russian Journal of Numerical Analysis and Mathematical Modelling (rnam)	De Gruyter	De Gruyter Online	""	rnam	0927-6467	1569-3988	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+SATS (sats)	De Gruyter	De Gruyter Online	""	sats	1600-1974	1869-7577	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Semiotica (semi)	De Gruyter	De Gruyter Online	""	semi	0037-1998	1613-3692	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Studies in Nonlinear Dynamics & Econometrics (snde)	De Gruyter	De Gruyter Online	""	snde	""	1558-3708	1	0	1	0	0	0	0	0	0	1	0	0	0	0	0
+Text & Talk (text)	De Gruyter	De Gruyter Online	""	text	1860-7330	1860-7349	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+The African Book Publishing Record (abpr)	De Gruyter	De Gruyter Online	""	abpr	0306-0322	1865-8717	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+The B.E. Journal of Economic Analysis & Policy (bejeap)	De Gruyter	De Gruyter Online	""	bejeap	""	1555-0494	7	0	7	0	0	1	2	0	0	1	0	1	1	0	1
+The Linguistic Review (tlir)	De Gruyter	De Gruyter Online	""	tlir	0167-6318	1613-3676	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Theoretical Linguistics (thli)	De Gruyter	De Gruyter Online	""	thli	0301-4428	1613-4060	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Trends in Classics (tcs)	De Gruyter	De Gruyter Online	""	tcs	1866-7473	1866-7481	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Wittgenstein-Studien (wgst)	De Gruyter	De Gruyter Online	""	wgst	1868-7431	1868-7458	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+"Zeitschrift für antikes Christentum 
+Journal of Ancient Christianity (zach)"	De Gruyter	De Gruyter Online	""	zach	0949-9571	1612-961X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Zeitschrift für Assyriologie und vorderasiatische Archäologie (zava)	De Gruyter	De Gruyter Online	""	zava	0084-5299	1613-1150	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Zeitschrift für celtische Philologie (zcph)	De Gruyter	De Gruyter Online	""	zcph	0084-5302	1865-889X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Zeitschrift für die Alttestamentliche Wissenschaft (zatw)	De Gruyter	De Gruyter Online	""	zatw	0044-2526	1613-0103	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Zeitschrift für die gesamte Strafrechtswissenschaft (zstw)	De Gruyter	De Gruyter Online	""	zstw	0084-5310	1612-703X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Zeitschrift für die Neutestamentliche Wissenschaft und die Kunde der älteren Kirche (zntw)	De Gruyter	De Gruyter Online	""	zntw	0044-2615	1613-009X	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Zeitschrift für germanistische Linguistik (zfgl)	De Gruyter	De Gruyter Online	""	zfgl	0301-3294	1613-0626	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Zeitschrift für romanische Philologie (zrph)	De Gruyter	De Gruyter Online	""	zrph	0049-8661	1865-9063	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Zeitschrift für Sprachwissenschaft (zfsw)	De Gruyter	De Gruyter Online	""	zfsw	0721-9067	1613-3706	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Zeitschrift für Unternehmens- und Gesellschaftsrecht (zgre)	De Gruyter	De Gruyter Online	""	zgre	0340-2479	1612-7048	1	0	1	0	0	0	0	0	0	0	1	0	0	0	0

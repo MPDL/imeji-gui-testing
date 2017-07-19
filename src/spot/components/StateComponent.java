@@ -14,13 +14,13 @@ public class StateComponent extends BasePage {
 		ONLY_PRIVATE, ONLY_PUBLISHED, ONLY_DISCARDED
 	};
 	
-	@FindBy (xpath = "/html/body/div[1]/div[1]/div[5]/div/div[2]/div[2]/div[2]/ul/li[1]/a")
+	@FindBy (linkText = "Private")
 	private WebElement onlyPrivateFilter;
 	
-	@FindBy (xpath = "/html/body/div[1]/div[1]/div[5]/div/div[2]/div[2]/div[2]/ul/li[2]/a")
+	@FindBy (linkText = "Published")
 	private WebElement onlyPublishedFilter;
 	
-	@FindBy (xpath = "/html/body/div[1]/div[1]/div[5]/div/div[2]/div[2]/div[2]/ul/li[3]/a")
+	@FindBy (linkText = "Discarded")
 	private WebElement onlyDiscardedFilter;
 
 	public StateComponent (WebDriver driver) {

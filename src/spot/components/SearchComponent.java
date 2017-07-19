@@ -1,18 +1,20 @@
 package spot.components;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import spot.pages.AdvancedSearchPage;
+import spot.pages.BasePage;
 import spot.pages.BrowseItemsPage;
 import spot.pages.SearchResultsPage;
 import test.base.CategoryType;
 
 public class SearchComponent {
-
+	
 	private WebDriver driver;
 	
 	@FindBy(id="quickSearchString")
@@ -28,25 +30,21 @@ public class SearchComponent {
 	private WebElement browseItemsLink;
 	
 	public SearchComponent(WebDriver driver) {
-		
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 	
 	public AdvancedSearchPage navigateToAdvancedSearchPage() {
-		
 		advancedSearchButton.click();		
 		return PageFactory.initElements(driver, AdvancedSearchPage.class);
 	}
 	
 	public BrowseItemsPage callBrowseSection() {
-		
 		browseItemsLink.click();
 		return PageFactory.initElements(driver, BrowseItemsPage.class);
 	}
 	
 	public SearchResultsPage searchFor(String searchQuery) {
-		
 		quickSearchTextField.clear();
 		quickSearchTextField.sendKeys(searchQuery);
 		
@@ -76,6 +74,24 @@ public class SearchComponent {
 		}
 		
 		return PageFactory.initElements(driver, SearchResultsPage.class);
+	}
+	
+	public boolean advancedSearchAccessible() {
+		try {
+			return advancedSearchButton.isDisplayed() && advancedSearchButton.isEnabled();
+		}
+		catch (NoSuchElementException exc) {
+			return false;
+		}
+	}
+	
+	public boolean browseAccessible() {
+		try {
+			return browseItemsLink.isDisplayed() && browseItemsLink.isEnabled();
+		}
+		catch (NoSuchElementException exc) {
+			return false;
+		}
 	}
 	
 }

@@ -52,4 +52,14 @@ public class BrowseItemsPage extends BasePage {
 		}
 		throw new NoSuchElementException("No item with this name was found.");
 	}
+	
+	public boolean isItemAreaDisplayed() {
+		try {
+			driver.findElement(By.id("itemsArea"));
+			return true;
+		}
+		catch (NoSuchElementException exc) {
+			return false;
+		}
+	}
 }

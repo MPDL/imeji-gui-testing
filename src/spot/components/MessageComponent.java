@@ -18,7 +18,7 @@ public class MessageComponent {
 
 	private WebDriver driver;
 
-	@FindBy(xpath = ".//*[@id='imj_pageMessageArea']")
+	@FindBy(id = "imj_pageMessageArea")
 	private WebElement pageMessageArea;
 
 	public enum MessageType {
@@ -48,13 +48,11 @@ public class MessageComponent {
 	 * @return the messageType - either info or error
 	 */
 	public MessageType getMessageTypeOfPageMessageArea() {
-
 		MessageType msgType = MessageType.INFO;
 
-		// Either info or error components, depending on whether action failed
-		// or succeeded
+		// does any class attribute in the message area contain the word "error"?
 		List<WebElement> pageMsgAreaComponents = pageMessageArea
-				.findElements(By.tagName("li"));
+				.findElements(By.tagName("div"));
 
 		for (WebElement we : pageMsgAreaComponents) {
 			String messageType = we.getAttribute("class");
@@ -65,7 +63,7 @@ public class MessageComponent {
 				break;
 			}
 		}
-
+		
 		return msgType;
 	}
 

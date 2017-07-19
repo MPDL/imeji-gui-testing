@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SharePage extends BasePage {
 
-	@FindBy(css="#share\\:emailInput")
+	@FindBy(xpath="//textarea[contains(@id, 'emailInput')]")
 	private WebElement emailTextField;
 	
 	// checkboxes for the various grants
@@ -48,7 +48,7 @@ public class SharePage extends BasePage {
 	@FindBy(css = "input[value='Share']")
 	private WebElement shareButton;	
 	
-	@FindBy(id = "share:unknownEmails")
+	@FindBy(xpath = "//span[contains(@id, 'unknownEmails')]")
 	private WebElement unknownEmailPanel;
 	
 	@FindBy(css = "#share\\:unknownEmails form")
@@ -93,10 +93,10 @@ public class SharePage extends BasePage {
 	/**
 	 * Share method for user groups
 	 */
-	public SharePage shareWithGroup(String groupName, boolean released, boolean sendMail, boolean read, boolean createItems, boolean editItems, boolean deleteItems, boolean editCollectionInformation, boolean editProfile, boolean administrate) {
+	public SharePage shareWithGroup(String groupName, boolean released, boolean sendMail, boolean read, boolean editItems, boolean administrate) {
 		selectGroup(groupName);
 		
-		return checkCollectionGrants(released, sendMail, read, createItems, editItems, deleteItems, editCollectionInformation, editProfile, administrate);
+		return checkCollectionGrants(released, sendMail, read, editItems, administrate);
 		
 	}
 	
@@ -105,7 +105,7 @@ public class SharePage extends BasePage {
 		for (WebElement group : userGroups) {
 			String currentName = group.findElement(By.tagName("h2")).getText();
 			if (currentName.equals(groupName)) {
-				group.findElement(By.className("imj_editButton")).click();
+				group.findElement(By.className("imj_submitButton")).click();
 				break;
 			}
 		}
@@ -141,18 +141,21 @@ public class SharePage extends BasePage {
 		return PageFactory.initElements(driver, SharePage.class);
 	}
 	
-	private SharePage checkCollectionGrants(boolean released, boolean sendMail, boolean read, boolean editItems, boolean administrate) {
+	private SharePage checkCollectionGrants(boolean released, boolean sendMail, boolean read, boolean edit, boolean administrate) {
 		if (administrate) {
 			setGrant(administrate, administrateGrantCheckBox);
 		} 
+		else if (edit) {
+			setGrant(edit, editInformationGrantCheckBox);
+		}
 		else if (read) {
 			setGrant(read, readGrantCheckBox);
 		}
-		else {
-			setGrant(editItems, editItemsGrantCheckBox);
-		}
 		
 		shareButton.click();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {}
 		return PageFactory.initElements(driver, SharePage.class);
 	}
 	

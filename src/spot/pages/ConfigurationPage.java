@@ -60,6 +60,10 @@ public class ConfigurationPage extends BasePage {
 		return appearancePanel.browseDefaultViewThumbnails();
 	}
 	
+	public ConfigurationPage browseDefaultViewList() {
+		return appearancePanel.browseDefaultViewList();
+	}
+	
 	public ConfigurationPage setAutosuggestionMP() {
 		return autosuggestionPanel.setAutosuggestionMaxPlanck();
 	}

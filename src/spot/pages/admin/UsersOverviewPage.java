@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -13,6 +14,7 @@ import spot.pages.BasePage;
 
 public class UsersOverviewPage extends BasePage {
 
+	@FindBy(css="#addUser p")
 	private List<WebElement> userList;
 	
 	public UsersOverviewPage(WebDriver driver) {
@@ -62,21 +64,21 @@ public class UsersOverviewPage extends BasePage {
 	}
 
 	private WebElement findUserByEmail(String emailInQuestion) {
+		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@id, ':userListForm:filterMd')]"));
+		searchBox.sendKeys(emailInQuestion);
+		userList = driver.findElements(By.cssSelector("#addUser p"));
+		return userList.get(1).findElement(By.tagName("a"));
+//		for (WebElement user : userList) {
+//			WebElement userIdentification = user.findElement(By.tagName("a"));
+//			String userNamePlusEmail = userIdentification.getText();
+//			String mail = extractMail(userNamePlusEmail);
+//			
+//			if (mail.equals(emailInQuestion)) {
+//				return user;
+//			}
+//		}
 		
-		userList = driver.findElements(By.className("imj_admindataSet"));
-		WebElement userInQuestion = null;
 		
-		for (WebElement user : userList) {
-			WebElement userIdentification = user.findElement(By.tagName("h2"));
-			String userNamePlusEmail = userIdentification.getText();
-			String mail = extractMail(userNamePlusEmail);
-			
-			if (mail.equals(emailInQuestion)) {
-				userInQuestion = user;
-				break;
-			}
-		}
-		return userInQuestion;
 	}
 
 	private String extractMail(String userNamePlusEmail) {
@@ -116,10 +118,8 @@ public class UsersOverviewPage extends BasePage {
 	
 	public void addUserToUserGroup(String userEmail) {
 		WebElement userInQuestion = findUserByEmail(userEmail);
-		WebElement addToUserGroupButton = userInQuestion.findElement(By.cssSelector("form>a"));
+		WebElement addToUserGroupButton = retryingNestedElement(userInQuestion, By.cssSelector("form>a"));
 		addToUserGroupButton.click();
-		
-		
 	}
 	
 	public int userCount() {

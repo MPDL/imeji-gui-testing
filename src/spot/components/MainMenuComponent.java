@@ -25,7 +25,7 @@ public class MainMenuComponent {
 	@FindBy (id="Header:mainMenu:lnkCollections")
 	private WebElement collectionsButton;
 	
-	@FindBy (name="Header:mainMenu:lnkUpload")
+	@FindBy (id="upload")
 	private WebElement singleUploadButton;
 	
 	@FindBy (name="Header:mainMenu:lnkAdmin")

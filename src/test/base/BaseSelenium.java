@@ -82,7 +82,7 @@ public abstract class BaseSelenium {
 
 	private void setupRegisteredUser() {
 		ruUsername = "tuEmailAddress";
-		ruPassword = "tuEmailPassword";
+		ruPassword = "tuPassword";
 		ruGivenName = "tuGivenName";
 		ruFamilyName = "tuFamilyName";
 		ruOrganizationName = "tuOrganization";

@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HelpPage extends BasePage {
 
-	@FindBy(xpath = ".//*[@id='imj_ajaxWrapper']/h2")
+	@FindBy(xpath = ".//*[@id='imj_ajaxWrapper']/h1")
 	private WebElement helpPageSubtitle;
 
 	public HelpPage(WebDriver driver) {

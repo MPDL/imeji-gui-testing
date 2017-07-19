@@ -1,5 +1,7 @@
 package spot.pages.admin;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,11 +23,11 @@ public class NewUserGroupPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public UserGroupsOverviewPage createNewUserGroup(String newUserGroupName) {
+	public UserGroupPage createNewUserGroup(String newUserGroupName) {
 		newUserGroupNameTextField.sendKeys(newUserGroupName);
 		
-		saveButton.click();
+		((JavascriptExecutor) driver).executeScript("document.querySelector('.imj_metadataValueEntry .imj_submitButton').click();");
 		
-		return PageFactory.initElements(driver, UserGroupsOverviewPage.class);
+		return PageFactory.initElements(driver, UserGroupPage.class);
 	}
 }

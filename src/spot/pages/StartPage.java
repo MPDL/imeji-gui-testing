@@ -21,7 +21,7 @@ public class StartPage extends BasePage {
 	@FindBy(id ="lnkshowLogin")
 	private WebElement openLoginFormButton;
 	
-	@FindBy(xpath =".//*[@id='Header:j_idt38']/a")
+	@FindBy(xpath =".//*[@id='Header:j_idt37']/a")
 	private WebElement registrationButton;
 	
 	@FindBy(css="#columnEN-2 a:nth-of-type(2)")

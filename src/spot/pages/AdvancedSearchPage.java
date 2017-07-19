@@ -11,6 +11,18 @@ public class AdvancedSearchPage extends BasePage {
 	@FindBy(css="#imj_searchQueryMessageArea")
 	private WebElement searchQueryMessageArea;
 	
+	@FindBy(id="advancedSearchForm")
+	private WebElement advancedSearchForm;
+	
+	@FindBy(name="advancedSearchForm:j_idt118")
+	private WebElement advancedSearchBox;
+	
+	@FindBy(name="advancedSearchForm:j_idt120")
+	private WebElement fulltextCheckbox;
+	
+	@FindBy(id="advancedSearchForm:submit")
+	private WebElement submitButton;
+	
 	public AdvancedSearchPage(WebDriver driver) {
 		super(driver);
 		
@@ -18,16 +30,31 @@ public class AdvancedSearchPage extends BasePage {
 	}
 	
 	public boolean doesSearchQueryMessageAreaExist() {
-		
 		try {
 			searchQueryMessageArea.isEnabled();
-		} catch(NoSuchElementException e) {
+			return true;
+		} 
+		catch(NoSuchElementException e) {
 			return false;
 		}
-		
-		return true;
-		
 	}
-
 	
+	public boolean advancedSearchDisplayed() {
+		try {
+			advancedSearchForm.isEnabled();
+			return true;
+		} 
+		catch(NoSuchElementException e) {
+			return false;
+		}
+	}
+	
+	public SearchResultsPage advancedSearch(String term) {
+		advancedSearchBox.sendKeys(term);
+		if (!fulltextCheckbox.isSelected())
+			fulltextCheckbox.click();
+		submitButton.click();
+		
+		return PageFactory.initElements(driver, SearchResultsPage.class);
+	}
 }

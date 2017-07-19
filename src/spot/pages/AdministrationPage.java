@@ -7,8 +7,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import spot.pages.admin.CreateStatementPage;
 import spot.pages.admin.NewUserGroupPage;
 import spot.pages.admin.NewUserPage;
+import spot.pages.admin.UserGroupPage;
 import spot.pages.admin.UserGroupsOverviewPage;
 import spot.pages.admin.UserProfilePage;
 import spot.pages.admin.UsersOverviewPage;
@@ -18,17 +20,20 @@ public class AdministrationPage extends BasePage {
 	@FindBy(css=".imj_listBody>div:nth-of-type(1) li:nth-of-type(1)>a")
 	private WebElement createNewUser;
 	
-	@FindBy(css=".imj_listBody>div:nth-of-type(1) li:nth-of-type(4)>a")
+	@FindBy(css=".imj_listBody>.imj_adminPanel:nth-of-type(2)>.imj_content li>a")
 	private WebElement createNewUserGroup;
 	
 	@FindBy(css=".imj_listBody>div:nth-of-type(1) li:nth-of-type(2)>a")
 	private WebElement viewAllUsers;
 	
-	@FindBy(css=".imj_listBody>div:nth-of-type(1) li:nth-of-type(3)>a")
+	@FindBy(css=".imj_listBody>.imj_adminPanel:nth-of-type(2)>.imj_content li:nth-of-type(2)>a")
 	private WebElement viewAllUserGroups;
 	
 	@FindBy(css=".imj_administrationTiledList .imj_config a")
 	private WebElement configurationEdit;
+	
+	@FindBy(linkText = "http://qa-imeji.mpdl.mpg.de/imeji/createstatement")
+	private WebElement createStatement;
 	
 	public AdministrationPage(WebDriver driver) {
 		super(driver);
@@ -58,7 +63,7 @@ public class AdministrationPage extends BasePage {
 		return PageFactory.initElements(driver, UsersOverviewPage.class);
 	}
 
-	public UserGroupsOverviewPage createNewUserGroup(String newUserGroupName) {
+	public UserGroupPage createNewUserGroup(String newUserGroupName) {
 		createNewUserGroup.click();
 		
 		NewUserGroupPage createNewUserGroupPage = new NewUserGroupPage(driver);
@@ -88,6 +93,12 @@ public class AdministrationPage extends BasePage {
 		configurationEdit.click();
 		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
 		return configurationEditPage.browseDefaultViewThumbnails();
+	}
+	
+	public ConfigurationPage browseDefaultViewList() {
+		configurationEdit.click();
+		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
+		return configurationEditPage.browseDefaultViewList();
 	}
 	
 	public ConfigurationPage setMaintenanceMessage(String message) {
@@ -125,6 +136,12 @@ public class AdministrationPage extends BasePage {
 		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
 		return configurationEditPage.restrictRegistrationDomains(domains);
 	}
+	
+//	public CreateStatementPage defaultStatementNumber(int id) {
+//		createStatement.click();
+//		CreateStatementPage statementsPage = new CreateStatementPage(driver);
+//		return statementsPage.defaultStatementNumber(int id);
+//	}
 	
 	public boolean areAllComponentsDisplayed() {
 		try {

@@ -10,11 +10,14 @@ import spot.pages.ConfigurationPage;
 
 public class ConfigurationAppearancePanel extends BasePage {
 
-	@FindBy(xpath = "/html/body/div[1]/div[1]/div[5]/div[2]/div/div/form/div[2]/div[1]/h2")
+	@FindBy(css = ".imj_adminPanel:nth-of-type(2)")
 	private WebElement appearancePanelReveal;
 	
 	@FindBy(xpath = "//input[@value='THUMBNAIL']")
 	private WebElement defaultViewThumbnailRadioButton;
+	
+	@FindBy(xpath = "//input[@value='LIST']")
+	private WebElement defaultViewListRadioButton;
 	
 	@FindBy(css = ".imj_adminPanel:nth-of-type(2) .imj_submitButton")
 	private WebElement saveAppearanceButton;
@@ -30,6 +33,15 @@ public class ConfigurationAppearancePanel extends BasePage {
 	}
 	
 	public ConfigurationPage browseDefaultViewThumbnails() {
+		openAppearancePanel();
+		
+		if (!defaultViewThumbnailRadioButton.isSelected())
+			defaultViewThumbnailRadioButton.click();
+		
+		return saveAllChanges();
+	}
+	
+	public ConfigurationPage browseDefaultViewList() {
 		openAppearancePanel();
 		
 		if (!defaultViewThumbnailRadioButton.isSelected())

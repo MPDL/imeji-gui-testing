@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import spot.pages.BasePage;
+import spot.pages.CollectionsPage;
 import spot.pages.SingleUploadPage;
 
 /**
@@ -23,9 +24,6 @@ public class Homepage extends BasePage {
 	@FindBy(xpath = ".//*[@id='Header:loginForm:lnkLogout']")
 	private WebElement logoutButton;
 
-	@FindBy(id = "createCollection")
-	private WebElement createNewCollectionButton;
-
 	public Homepage(WebDriver driver) {
 		super(driver);
 		
@@ -42,9 +40,9 @@ public class Homepage extends BasePage {
 	}
 
 	public NewCollectionPage goToCreateNewCollectionPage() {
-		createNewCollectionButton.click();
+		CollectionsPage collections = goToCollectionPage();
 		
-		return PageFactory.initElements(driver, NewCollectionPage.class);
+		return collections.createCollection();
 	}
 	
 	public String getLoggedInUserFullName() {

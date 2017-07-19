@@ -1,5 +1,9 @@
 package spot.pages;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,10 +17,10 @@ public class SearchResultsPage extends BasePage {
 	@FindBy(id="quickSearchString")
 	private WebElement searchQueryKeyWord;
 	
-	@FindBy(xpath = "/html/body/div[1]/div[1]/div[6]/div/div[2]/form/div[1]")
+	@FindBy(id = "selPanel:selectionInfoPanel")
 	private WebElement resultCount;
 	
-	@FindBy(xpath = "//div[contains(@id, 'filterInfoPanel')]")
+	@FindBy(id = "filterInfoPanel")
 	private WebElement filterInfoPanel; 
 	
 	public SearchResultsPage(WebDriver driver) {
@@ -30,13 +34,18 @@ public class SearchResultsPage extends BasePage {
 	}
 	
 	public int getResultCount() {
-		String numResults = resultCount.getText().split(" ")[0];
-		return Integer.parseInt(numResults);
+		List<WebElement> results = driver.findElements(By.xpath("//tr[contains(@class, 'order-table')]"));
+		return results.size();
 	}
 	
 	public int getResultCountCollection() {
-		String numResults = filterInfoPanel.getText().split(" ")[0];
-		return Integer.parseInt(numResults);
+		try {
+			String numResults = filterInfoPanel.getText().split(" ")[0];
+			return Integer.parseInt(numResults);
+		}
+		catch (NoSuchElementException exc) {
+			return 0;
+		}
 	}
 	
 	public int getResultCountAlbum() {

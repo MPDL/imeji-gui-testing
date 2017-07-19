@@ -19,29 +19,35 @@ import spot.pages.registered.EditItemsPage;
 
 public class ActionComponent extends BasePage {
 
-	@FindBy(id = "actionCollectionMore")
-	private WebElement menu;
+	@FindBy(id = "menuItems")
+	private WebElement menuItems;
 	
-	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li a")
+	@FindBy(id = "menuCollection")
+	private WebElement menuCollection;
+	
+	@FindBy(css = ".imj_menuBody ul form li:nth-of-type(1) a")
 	private WebElement editItems;
 	
-	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li:nth-of-type(2) a")
+	@FindBy(css = ".imj_menuBody ul form li:nth-of-type(2) a")
 	private WebElement editLicenses;
 	
-	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li:nth-of-type(3) a")
+	@FindBy(css = "#menuCollection>.imj_menuBody>ul>li:nth-of-type(3)")
 	private WebElement releaseCollection;
 	
-	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li:nth-of-type(4) a")
+	@FindBy(linkText = "Delete")
 	private WebElement deleteCollection;
 	
-	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li:nth-of-type(3) a")
+	@FindBy(css = "#menuCollection>.imj_menuBody>ul>li:nth-of-type(4)>a")
 	private WebElement discardCollection;
 	
-	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li:nth-of-type(4) a")
+	@FindBy(css = "#menuCollection>.imj_menuBody>ul>li:nth-of-type(3)")
 	private WebElement addDOI;
 	
 	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li:nth-of-type(5) a")
 	private WebElement downloadAllItems;
+	
+	@FindBy(css = "#actionsMenuArea .imj_menuButton")
+	private WebElement downloadAllNRU;
 	
 	public ActionComponent (WebDriver driver) {
 		super(driver);
@@ -50,34 +56,36 @@ public class ActionComponent extends BasePage {
 	}
 	
 	public EditItemsPage editAllItems() {
-		openMenu();
+		openMenuItems();
 		editItems.click();
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
 	
 	public EditLicensePage editAllLicenses() {
-		openMenu();
+		openMenuItems();
 		editLicenses.click();
 		return PageFactory.initElements(driver, EditLicensePage.class);
 	}
 	
 	public CollectionEntryPage releaseCollection() {
-		openMenu();
+		openMenuCollection();
 		releaseCollection.click();
-		retryingFindClick(By.className("imj_submitButton"));
-		
+		((JavascriptExecutor) driver).executeScript("document.querySelector('#releaseCollection .imj_submitPanel .imj_submitButton').click();");
+
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
 	public CollectionsPage deleteCollection() {
-		openMenu();
+		openMenuCollection();
 		deleteCollection.click();
+		((JavascriptExecutor) driver).executeScript("document.querySelector('#deleteCollection .imj_submitPanel .imj_submitButton').click();");
+		
 		return PageFactory.initElements(driver, CollectionsPage.class);
 	}
 	
 	public DiscardedCollectionEntryPage discardCollection() {
-		openMenu();
-		discardCollection.click();
+		openMenuCollection();
+		retryingFindClick(By.cssSelector("#menuCollection>.imj_menuBody>ul>li:nth-of-type(4)>a"));
 		
 		WebElement discardBox = driver.findElement(By.className("imj_dialogReasonText"));
 		discardBox.sendKeys("Discarding for testing purposes.");
@@ -86,25 +94,20 @@ public class ActionComponent extends BasePage {
 		return PageFactory.initElements(driver, DiscardedCollectionEntryPage.class);
 	}
 	
-	public CollectionEntryPage setDOI(String doi) {
-		openMenu();
+	public CollectionEntryPage setDOI() {
+		openMenuCollection();
 		addDOI.click();
+		retryingFindClick(By.cssSelector("#getDOIDialog .imj_submitButton"));
 		
-		WebElement doiBox = driver.findElement(By.xpath("//input[contains(@id, 'discardForm:discardComment')]"));
-		doiBox.clear();
-		doiBox.sendKeys(doi);
-		
-		retryingFindClick(By.xpath("//input[@value='Save']"));
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
-	public boolean canDownloadItems() {
-		openMenu();
-		return downloadAllItems.isDisplayed() && downloadAllItems.isEnabled();
+	private void openMenuCollection() {
+		menuCollection.click();
 	}
 	
-	private void openMenu() {
-		menu.click();
+	private void openMenuItems() {
+		menuItems.click();
 	}
 	
 }

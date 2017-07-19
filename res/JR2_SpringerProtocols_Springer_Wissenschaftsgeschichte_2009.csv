@@ -1,0 +1,837 @@
+"Book Report 2 (R1) "," Number of Successful Section Requests by Month and Title "
+"MPI WG"
+Date run:
+"2010-01-06"
+"","Publisher","Platform","ISBN","ISSN","Jan-2009","Feb-2009","Mar-2009","Apr-2009","May-2009","Jun-2009","Jul-2009","Aug-2009","Sep-2009","Oct-2009","Nov-2009","Dec-2009","YTD Total"
+"Total for all books","","","","",1009,1221,1350,1512,9984,9122,968,542,577,2561,733,549,30128
+"Biochemistry 2-D Proteome Analysis Protocols","Humana Press","SpringerProtocols","978-0-89603-524-9","",6,1,3,0,58,4,2,0,0,1,0,1,76
+"Biochemistry Affinity Chromatography: Methods and Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-694-9","",1,5,3,19,1,19,1,0,1,0,0,0,50
+"Biochemistry Alcohol: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-906-2","",2,0,0,0,2,26,0,0,1,2,0,0,33
+"Biochemistry Amino Acid Analysis Protocols","Humana Press","SpringerProtocols","978-0-89603-656-7","",0,1,7,19,20,0,0,3,0,0,0,0,50
+"Biochemistry Antibody Engineering: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-092-2","",1,2,0,0,2,34,1,1,2,2,3,0,48
+"Biochemistry Bioconjugation Protocols: Strategies and Methods","Humana Press","SpringerProtocols","978-1-58829-098-4","",0,1,2,2,3,24,0,1,0,0,0,1,34
+"Biochemistry Bioinformatics Methods in Clinical Research","Humana Press","SpringerProtocols","978-1-60327-193-6","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biochemistry Bioluminescence Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-520-1","",2,3,3,0,26,3,2,4,3,0,0,2,48
+"Biochemistry Bioluminescence: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-320-6","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biochemistry Biopolymer Methods in Tissue Engineering","Humana Press","SpringerProtocols","978-0-89603-967-4","",1,2,0,0,0,19,1,0,1,0,2,0,26
+"Biochemistry Calcium Signaling Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-597-3","",1,0,0,0,24,0,0,1,5,0,1,0,32
+"Biochemistry Capillary Electrophoresis Guidebook: Principles, Operation, and Applications","Humana Press","SpringerProtocols","978-0-89603-315-3","",0,0,0,0,23,0,0,1,0,1,0,0,25
+"Biochemistry Capillary Electrophoresis of Carbohydrates","Humana Press","SpringerProtocols","978-0-89603-826-4","",0,1,1,0,0,17,2,0,0,0,0,0,21
+"Biochemistry Capillary Electrophoresis of Nucleic Acids: Volume I: Introduction to the Capillary Electrophoresis of Nucleic Acids","Humana Press","SpringerProtocols","978-0-89603-779-3","",0,1,0,0,34,0,1,0,0,0,0,0,36
+"Biochemistry Capillary Electrophoresis of Nucleic Acids: Volume II: Practical Applications of Capillary Electrophoresis","Humana Press","SpringerProtocols","978-0-89603-765-6","",1,0,0,0,32,1,0,0,0,2,5,0,41
+"Biochemistry Capillary Electrophoresis of Proteins and Peptides","Humana Press","SpringerProtocols","978-1-58829-017-5","",0,0,0,0,16,0,0,1,0,0,0,0,17
+"Biochemistry Cell-Based Assays for High-Throughput Screening: Methods and Protocols","Humana Press","SpringerProtocols","","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biochemistry Chemogenomics: Methods and Applications","Humana Press","SpringerProtocols","978-1-60761-273-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biochemistry Chiral Separations: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-150-9","",0,0,3,0,2,25,27,0,0,0,0,2,59
+"Biochemistry Clinical Proteomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-837-9","",3,1,0,7,24,0,0,0,1,1,0,0,37
+"Biochemistry Combinatorial Library: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-980-3","",0,0,0,0,24,0,2,1,1,0,0,1,29
+"Biochemistry Cryopreservation and Freeze-Drying Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-377-0","",23,0,0,0,25,0,2,2,0,26,1,0,79
+"Biochemistry Crystallographic Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-259-0","",15,0,1,0,2,15,26,0,0,0,1,1,61
+"Biochemistry Cytochrome P45 Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-519-5","",0,3,0,0,49,1,0,0,0,1,1,0,55
+"Biochemistry Cytochrome P45 Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-441-8","",1,2,0,3,38,0,2,0,0,0,0,0,46
+"Biochemistry Eicosanoid Protocols","Humana Press","SpringerProtocols","978-0-89603-667-3","",0,0,1,1,0,18,0,0,0,0,0,0,20
+"Biochemistry Electron Microscopy: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-573-6","",53,2,2,2,34,3,5,11,2,31,1,0,146
+"Biochemistry Enzymatic Analysis: A Practical Guide","Humana Press","SpringerProtocols","978-0-89603-238-5","",0,0,1,0,1,12,0,0,0,0,0,0,14
+"Biochemistry Epitope Mapping Protocols","Humana Press","SpringerProtocols","978-0-89603-375-7","",1,1,0,0,4,34,0,0,2,0,0,3,45
+"Biochemistry Fluorescent Energy Transfer Nucleic Acid Probes: Designs and Protocols","Humana Press","SpringerProtocols","978-1-58829-380-0","",0,0,0,1,23,0,0,0,3,0,0,0,27
+"Biochemistry Free Radical and Antioxidant Protocols","Humana Press","SpringerProtocols","978-0-89603-472-3","",2,0,0,2,46,0,0,0,0,45,0,0,95
+"Biochemistry Free Radicals and Antioxidant Protocols","Humana Press","SpringerProtocols","978-1-58829-710-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biochemistry Functional Glycomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-453-1","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biochemistry Functional Proteomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-971-0","",3,3,4,7,36,3,1,0,1,5,2,0,65
+"Biochemistry Glycoanalysis Protocols","Humana Press","SpringerProtocols","978-0-89603-355-9","",0,4,1,0,15,0,0,1,0,0,0,0,21
+"Biochemistry Glycobiology Protocols","Humana Press","SpringerProtocols","978-1-58829-553-8","",0,4,0,0,26,3,0,1,0,0,0,0,34
+"Biochemistry Hormone Assays in Biological Fluids","Humana Press","SpringerProtocols","978-1-58829-005-2","",2,0,0,1,0,14,0,0,0,14,0,0,31
+"Biochemistry Ion Channels: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-576-7","",0,6,4,0,16,0,0,2,0,0,0,0,28
+"Biochemistry Lectin Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-396-2","",1,3,0,0,1,49,0,2,0,1,0,0,57
+"Biochemistry Lipase and Phospholipase Protocols","Humana Press","SpringerProtocols","978-0-89603-546-1","",0,0,1,1,30,0,0,0,1,36,0,0,69
+"Biochemistry Lipid Rafts","Humana Press","SpringerProtocols","978-1-58829-729-7","",0,0,3,3,20,0,0,1,0,0,2,1,30
+"Biochemistry Lipid Signaling Protocols","Humana Press","SpringerProtocols","","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biochemistry Liquid Chromatography In Clinical Analysis","Humana Press","SpringerProtocols","978-0-89603-026-8","",0,0,2,0,0,19,0,0,0,0,6,0,27
+"Biochemistry MAP Kinase Signaling Protocols","Humana Press","SpringerProtocols","978-0-89603-998-8","",3,0,0,0,22,0,4,1,0,1,1,1,33
+"Biochemistry Mass Spectrometry Data Analysis in Proteomics","Humana Press","SpringerProtocols","978-1-58829-563-7","",0,2,10,5,20,1,3,2,0,1,1,2,47
+"Biochemistry Medical Biomethods Handbook","Humana Press","SpringerProtocols","978-1-58829-288-9","",4,0,3,3,2,44,1,0,2,1,2,0,62
+"Biochemistry Membrane Trafficking","Humana Press","SpringerProtocols","978-1-58829-925-3","",0,0,0,0,0,0,0,0,1,0,0,0,1
+"Biochemistry Methods in Biological Oxidative Stress","Humana Press","SpringerProtocols","978-0-89603-815-8","",0,3,2,0,0,24,1,0,0,0,0,0,30
+"Biochemistry Methods in Membrane Lipids","Humana Press","SpringerProtocols","978-1-58829-662-7","",6,4,0,5,43,9,5,2,0,2,6,4,86
+"Biochemistry Micro and Nano Technologies in Bioanalysis: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-40-4","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biochemistry Microfluidic Techniques: Reviews and Protocols","Humana Press","SpringerProtocols","978-1-58829-517-0","",1,3,0,1,0,19,0,1,0,0,0,0,25
+"Biochemistry Microwave Techniques and Protocols","Humana Press","SpringerProtocols","978-0-89603-903-2","",0,0,1,0,0,17,1,0,0,0,0,0,19
+"Biochemistry Molecular Biomethods Handbook - 1","Humana Press","SpringerProtocols","978-0-89603-501-0","",2,4,4,2,2,57,2,0,0,0,3,1,77
+"Biochemistry Molecular Biomethods Handbook - 2","Humana Press","SpringerProtocols","978-1-60327-370-1","",10,10,13,9,9,69,2,0,2,0,7,1,132
+"Biochemistry Natural Products Isolation - 1","Humana Press","SpringerProtocols","978-0-89603-362-7","",1,0,1,0,0,15,0,0,1,1,0,0,19
+"Biochemistry Natural Products Isolation - 2","Humana Press","SpringerProtocols","978-1-58829-447-0","",1,2,0,1,0,19,0,0,0,0,0,1,24
+"Biochemistry New Nucleic Acid Techniques","Humana Press","SpringerProtocols","978-0-89603-127-2","",3,2,2,1,44,2,0,0,0,46,1,1,102
+"Biochemistry New and Emerging Proteomic Techniques","Humana Press","SpringerProtocols","978-1-58829-519-4","",0,0,0,1,15,0,0,0,0,0,0,1,17
+"Biochemistry Nitric Oxide Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-470-9","",0,0,2,0,30,0,1,1,0,0,0,0,34
+"Biochemistry Nitric Oxide Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-237-7","",0,0,1,0,18,0,0,0,0,0,0,0,19
+"Biochemistry Nucleic Acids","Humana Press","SpringerProtocols","978-0-89603-064-0","",1,0,3,4,56,3,0,0,0,56,4,17,144
+"Biochemistry Oligonucleotide Synthesis","Humana Press","SpringerProtocols","978-1-58829-233-9","",0,3,0,0,0,26,0,1,0,0,1,1,32
+"Biochemistry Organelle Proteomics","Humana Press","SpringerProtocols","978-1-58829-779-2","",1,1,8,7,30,1,0,1,0,18,1,16,84
+"Biochemistry Oxidants and Antioxidants: Ultrastructure and Molecular Biology Protocols","Humana Press","SpringerProtocols","978-0-89603-851-6","",0,1,0,0,38,0,3,0,0,0,0,0,42
+"Biochemistry Oxidative Stress Biomarkers and Antioxidant Protocols","Humana Press","SpringerProtocols","978-0-89603-850-9","",0,0,0,0,33,0,0,2,0,0,0,0,35
+"Biochemistry Peptidomimetics Protocols","Humana Press","SpringerProtocols","978-0-89603-517-1","",0,0,0,0,0,30,0,0,0,0,0,0,30
+"Biochemistry Phosphodiesterase Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-314-5","",0,0,0,0,23,0,2,1,0,0,0,0,26
+"Biochemistry Phospholipid Signaling Protocols","Humana Press","SpringerProtocols","978-0-89603-491-4","",0,0,3,0,31,0,0,0,0,31,0,0,65
+"Biochemistry Polyamine Protocols","Humana Press","SpringerProtocols","978-0-89603-448-8","",0,1,2,1,0,21,2,0,2,0,0,0,29
+"Biochemistry Protocols for Nucleic Acid Analysis by Nonradioactive Probes - 1","Humana Press","SpringerProtocols","978-0-89603-254-5","",0,0,2,0,39,0,0,1,0,0,1,0,43
+"Biochemistry Protocols for Nucleic Acid Analysis by Nonradioactive Probes - 2","Humana Press","SpringerProtocols","978-1-58829-430-2","",2,0,3,0,19,1,1,1,3,0,2,1,33
+"Biochemistry Protocols for Oligonucleotide Conjugates: Synthesis and Analytical Techniques","Humana Press","SpringerProtocols","978-0-89603-252-1","",0,0,0,0,0,15,0,0,0,0,0,0,15
+"Biochemistry Protocols for Oligonucleotides and Analogs: Synthesis and Properties","Humana Press","SpringerProtocols","978-0-89603-281-1","",0,1,0,0,1,19,1,0,0,1,0,0,23
+"Biochemistry Pulsed-Field Gel Electrophoresis: Protocols, Methods, and Theories","Humana Press","SpringerProtocols","978-0-89603-229-3","",0,0,1,0,36,0,0,0,0,0,0,0,37
+"Biochemistry Quantitative Proteomics by Mass Spectrometry","Humana Press","SpringerProtocols","978-1-58829-571-2","",1,3,0,1,0,15,1,0,0,4,3,2,30
+"Biochemistry RNA Interference, Editing, and Modification: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-242-1","",3,2,1,2,27,1,0,0,0,3,0,0,39
+"Biochemistry Ribozyme Protocols","Humana Press","SpringerProtocols","978-0-89603-389-4","",2,3,0,0,49,0,0,0,0,0,0,0,54
+"Biochemistry Ribozymes and siRNA Protocols","Humana Press","SpringerProtocols","978-1-58829-226-1","",1,2,0,1,50,2,0,0,0,2,0,2,60
+"Biochemistry SUMO Protocols","Humana Press","SpringerProtocols","978-1-934115-80-0","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biochemistry Structural Proteomics: High-Throughput Methods","Humana Press","SpringerProtocols","978-1-58829-809-6","",3,0,3,2,39,4,0,2,2,1,1,7,64
+"Biochemistry Supercritical Fluid Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-571-3","",0,1,0,0,0,33,0,0,0,0,0,0,34
+"Biochemistry The Nucleic Acid Protocols Handbook","Humana Press","SpringerProtocols","978-0-89603-459-4","",2,2,1,3,0,126,1,2,0,4,0,0,141
+"Biochemistry Tissue Engineering","Humana Press","SpringerProtocols","978-1-58829-756-3","",0,2,3,0,1,18,0,0,1,0,3,0,28
+"Biochemistry Tissue Engineering Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-516-4","",1,0,0,3,1,44,2,0,0,0,1,0,52
+"Biochemistry Tissue Proteomics","Humana Press","SpringerProtocols","978-1-58829-679-5","",1,0,0,1,13,2,0,0,0,13,0,0,30
+"Biochemistry Ubiquitin-Proteasome Protocols","Humana Press","SpringerProtocols","978-1-58829-252-0","",0,1,0,2,27,0,0,0,0,0,0,0,30
+"Biochemistry Zebrafish: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-976-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biochemistry mRNA Processing and Metabolism: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-225-4","",0,0,1,0,37,0,0,0,0,0,1,1,40
+"Bioinformatics Bioinformatics Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-732-8","",0,19,0,0,38,0,1,0,0,0,0,0,58
+"Bioinformatics Bioinformatics and Drug Discovery","Humana Press","SpringerProtocols","978-1-58829-346-6","",0,2,0,0,16,1,1,1,0,1,0,2,24
+"Bioinformatics Bioinformatics for DNA Sequence Analysis","Humana Press","SpringerProtocols","978-1-58829-910-9","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Bioinformatics Bioinformatics: Data, Sequence Analysis and Evolution","Humana Press","SpringerProtocols","978-1-58829-707-5","",12,7,5,7,20,1,3,0,3,0,2,1,61
+"Bioinformatics Bioinformatics: Structure, Function and Applications","Humana Press","SpringerProtocols","978-1-60327-428-9","",12,5,1,1,27,0,3,1,1,1,1,0,53
+"Bioinformatics Biomedical Informatics","Humana Press","SpringerProtocols","978-1-934115-63-3","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Bioinformatics Biostatistical Methods","Humana Press","SpringerProtocols","978-0-89603-951-3","",0,0,2,0,12,2,0,3,3,0,0,0,22
+"Bioinformatics Chemoinformatics: Concepts, Methods, and Tools for Drug Discovery","Humana Press","SpringerProtocols","978-1-58829-261-2","",0,0,0,0,21,0,0,0,0,0,0,0,21
+"Bioinformatics Clinical Bioinformatics","Humana Press","SpringerProtocols","978-1-58829-791-4","",2,3,0,0,2,18,0,1,0,0,0,0,26
+"Bioinformatics Computational Systems Biology","Humana Press","SpringerProtocols","978-1-58829-905-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Bioinformatics High Throughput Screening: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-889-9","",1,0,0,0,13,0,0,1,0,1,0,0,16
+"Bioinformatics High Throughput Screening: Methods and Protocols, Second Edition","Humana Press","SpringerProtocols","978-1-60327-257-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Bioinformatics Metabolomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-561-3","",7,0,17,4,25,2,2,3,0,22,0,4,86
+"Bioinformatics Microarrays in Clinical Diagnostics","Humana Press","SpringerProtocols","978-1-58829-394-7","",4,0,0,1,0,15,0,0,1,0,0,0,21
+"Bioinformatics Microchip Capillary Electrophoresis: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-293-3","",2,2,0,0,15,2,0,0,1,0,0,0,22
+"Bioinformatics Molecular Modeling of Proteins","Humana Press","SpringerProtocols","978-1-58829-864-5","",4,0,1,0,23,2,3,5,0,23,3,0,64
+"Bioinformatics Proteome Bioinformatics","Humana Press","SpringerProtocols","978-1-60761-443-2","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biotechnology Affinity Biosensors: Techniques and Protocols","Humana Press","SpringerProtocols","978-0-89603-539-3","",0,16,1,0,0,15,0,0,0,0,0,0,32
+"Biotechnology Animal Cell Biotechnology: Methods and Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-660-3","",1,5,6,1,0,24,2,2,2,5,2,1,51
+"Biotechnology Animal Cell Biotechnology: Methods and Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-547-8","",0,0,2,0,0,23,1,0,0,0,1,0,27
+"Biotechnology Aqueous Two-Phase Systems: Methods and Protocols: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-541-6","",1,1,0,2,3,40,44,0,0,2,0,0,93
+"Biotechnology Biofuels: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-213-1","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biotechnology Bioremediation Protocols","Humana Press","SpringerProtocols","978-0-89603-437-2","",0,1,0,3,0,23,0,0,0,0,0,0,27
+"Biotechnology Bioremediation: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-438-8","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biotechnology Carbohydrate Biotechnology Protocols","Humana Press","SpringerProtocols","978-0-89603-563-8","",0,0,0,0,0,29,1,0,1,0,3,1,35
+"Biotechnology Drug Delivery Systems","Humana Press","SpringerProtocols","978-1-58829-891-1","",1,1,1,0,0,0,3,2,1,0,2,0,11
+"Biotechnology Electroporation Protocols: Preclinical and Clinical Gene Medicine","Humana Press","SpringerProtocols","978-1-58829-877-5","",1,2,1,0,46,0,2,2,2,2,0,0,58
+"Biotechnology High Content Screening: A Powerful Approach to Systems Cell Biology and Drug Discovery","Humana Press","SpringerProtocols","978-1-58829-731-0","",2,0,9,3,34,0,0,0,1,0,0,2,51
+"Biotechnology Immobilization of Enzymes and Cells - 2","Humana Press","SpringerProtocols","978-1-58829-290-2","",0,0,0,3,2,70,0,1,1,0,0,0,77
+"Biotechnology Microchip Methods in Diagnostics","Humana Press","SpringerProtocols","978-1-58829-955-0","",0,0,12,7,13,1,0,0,1,0,0,14,48
+"Biotechnology Microengineering in Biotechnology","Humana Press","SpringerProtocols","978-1-58829-381-7","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Biotechnology Microinjection: Methods and Applications","Humana Press","SpringerProtocols","978-1-58829-884-3","",0,16,3,2,14,0,0,19,2,14,0,0,70
+"Biotechnology Molecular Beacons: Signalling Nucleic Acid Probes, Methods, and Protocols","Humana Press","SpringerProtocols","978-1-58829-700-6","",0,1,0,4,18,0,0,0,0,0,0,0,23
+"Biotechnology NanoBiotechnology Protocols","Humana Press","SpringerProtocols","978-1-58829-276-6","",8,1,1,0,25,0,0,1,0,1,0,0,37
+"Biotechnology Nanostructure Design: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-35-0","",13,0,2,1,1,0,0,2,0,0,1,0,20
+"Biotechnology Phytoremediation: Methods and Reviews","Humana Press","SpringerProtocols","978-1-58829-541-5","",0,0,0,2,1,31,3,0,0,0,0,0,37
+"Biotechnology Pichia Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-429-6","",6,8,10,5,4,0,2,0,2,1,2,2,42
+"Biotechnology Quantum Dots: Applications in Biology","Humana Press","SpringerProtocols","978-1-58829-562-0","",8,0,0,7,19,6,2,2,1,19,0,1,65
+"Biotechnology Yeast Protocols: Methods in Cell and Molecular Biology","Humana Press","SpringerProtocols","978-0-89603-319-1","",7,2,1,23,42,2,4,0,0,2,1,1,85
+"Cancer Research Apoptosis and Cancer: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-457-9","",0,0,0,1,17,0,0,0,2,19,0,0,39
+"Cancer Research Breast Cancer Researh Protocols","Humana Press","SpringerProtocols","978-1-58829-191-2","",0,0,0,0,0,37,0,0,3,0,0,1,41
+"Cancer Research Cancer Cell Culture: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-079-3","",0,5,6,0,2,32,11,2,2,1,5,0,66
+"Cancer Research Cancer Cell Signaling: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-075-5","",0,0,0,0,24,0,4,0,0,0,0,0,28
+"Cancer Research Cancer Cytogenetics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-080-9","",0,0,0,0,18,1,0,0,0,0,0,0,19
+"Cancer Research Cancer Epidemiology","Humana Press","SpringerProtocols","978-1-58829-987-1","",0,0,0,0,26,0,0,0,0,0,0,0,26
+"Cancer Research Cancer Epidemiology: Modifiable Factors","Humana Press","SpringerProtocols","978-1-60327-491-3","",0,1,1,0,23,1,0,0,3,0,0,0,29
+"Cancer Research Cancer Gene Profiling: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-76-3","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cancer Research Cancer Genomics and Proteomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-504-0","",0,2,3,4,24,1,1,0,1,25,0,5,66
+"Cancer Research Cancer Stem Cells: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-938-3","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cancer Research Checkpoint Controls and Cancer: Volume 1: Reviews and Model Systems","Humana Press","SpringerProtocols","978-1-58829-214-8","",0,0,0,0,18,0,0,0,0,0,0,0,18
+"Cancer Research Checkpoint Controls and Cancer: Volume 2: Activation and Regulation Protocols","Humana Press","SpringerProtocols","978-1-58829-500-2","",4,0,0,1,26,3,2,0,0,0,0,0,36
+"Cancer Research Chemosensitivity: Volume 1 In Vitro Assays","Humana Press","SpringerProtocols","978-1-58829-345-9","",1,0,2,1,0,18,0,1,1,1,0,0,25
+"Cancer Research Chemosensitivity: Volume II: In VIVO Models, Imaging, and Molecular Regulators","Humana Press","SpringerProtocols","978-1-58829-586-6","",0,2,0,0,1,26,0,0,0,0,0,0,29
+"Cancer Research Colorectal Cancer: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-767-0","",3,2,0,0,0,25,1,1,0,0,0,0,32
+"Cancer Research Cytotoxic Drug Resistance Mechanisms","Humana Press","SpringerProtocols","978-0-89603-603-1","",0,0,0,0,0,20,0,0,0,0,0,0,20
+"Cancer Research Gene Therapy of Cancer: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-714-4","",1,0,0,0,0,41,0,0,0,0,0,0,42
+"Cancer Research Hepatocellular Carcinoma: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-785-4","",0,0,0,1,0,20,0,0,0,0,0,0,21
+"Cancer Research Inflammation and Cancer: Methods and Protocols: Volume 1: Experimental Models and Practical Approaches","Humana Press","SpringerProtocols","978-1-934115-14-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cancer Research Inflammation and Cancer: Methods and Protocols: Volume 2: Molecular Analysis and Pathways","Humana Press","SpringerProtocols","978-1-60327-529-3","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cancer Research Leukemia: Methods and Protocols","Humana Press","SpringerProtocols","","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cancer Research Lung Cancer: Volume 1: Molecular Pathology Methods and Reviews","Humana Press","SpringerProtocols","978-0-89603-985-8","",0,1,0,0,0,39,0,0,0,0,1,0,41
+"Cancer Research Lung Cancer: Volume 2: Diagnostic and Therapeutic Methods and Reviews","Humana Press","SpringerProtocols","978-0-89603-920-9","",0,1,0,0,0,47,0,2,2,0,1,0,53
+"Cancer Research Lymphoma: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-159-2","",0,0,0,0,0,17,0,0,0,0,0,0,17
+"Cancer Research Melanoma Techniques and Protocols: Molecular Diagnosis, Treatment, and Monitoring","Humana Press","SpringerProtocols","978-0-89603-684-0","",0,0,0,0,2,17,0,0,0,0,0,0,19
+"Cancer Research Metastasis Research Protocols: Volume I: Analysis of Cells and Tissues","Humana Press","SpringerProtocols","978-0-89603-610-9","",1,5,3,1,0,21,1,1,1,0,0,0,34
+"Cancer Research Metastasis Research Protocols: Volume II: Analysis of Cell Behavior In Vitro and In Vivo","Humana Press","SpringerProtocols","978-0-89603-615-4","",1,2,1,1,0,22,7,2,0,3,0,0,39
+"Cancer Research Molecular Analysis of Cancer","Humana Press","SpringerProtocols","978-0-89603-622-2","",0,0,0,0,1,20,0,0,0,0,0,0,21
+"Cancer Research Molecular Diagnosis of Cancer","Humana Press","SpringerProtocols","978-0-89603-341-2","",0,0,0,0,0,16,0,0,0,0,0,0,16
+"Cancer Research Molecular Diagnosis of Cancer: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-160-8","",0,0,3,0,0,28,0,0,0,1,0,0,32
+"Cancer Research Multi-Drug Resistance in Cancer","Humana Press","SpringerProtocols","978-1-60761-415-9","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cancer Research Multiple Myeloma: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-392-3","",2,0,0,0,0,23,0,1,0,0,0,0,26
+"Cancer Research Myeloid Leukemia: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-485-2","",0,0,0,0,0,18,0,0,0,1,0,0,19
+"Cancer Research Novel Anticancer Drug Protocols","Humana Press","SpringerProtocols","978-0-89603-963-6","",3,0,1,1,1,26,0,1,0,1,0,1,35
+"Cancer Research Ovarian Cancer: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-583-6","",0,2,3,0,0,94,1,0,0,0,2,0,102
+"Cancer Research Pancreatic Cancer: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-107-3","",1,0,1,2,0,20,0,0,0,0,0,0,24
+"Cancer Research Prostate Cancer Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-978-0","",0,0,0,0,0,22,0,0,1,0,4,0,27
+"Cancer Research Proteases and Cancer: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-002-1","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cancer Research Recombinant Antibodies for Cancer Therapy: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-918-6","",2,1,0,0,28,0,0,0,0,0,0,0,31
+"Cancer Research Renal Cancer: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-828-8","",0,1,0,0,0,24,0,0,0,0,1,0,26
+"Cancer Research Tumor Biomarker Discovery: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-810-2","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cancer Research Tumor Marker Protocols","Humana Press","SpringerProtocols","978-0-89603-380-1","",0,0,0,0,0,30,0,0,0,0,1,0,31
+"Cancer Research Tumor Necrosis Factor: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-223-0","",0,0,0,0,0,19,0,0,0,2,0,0,21
+"Cancer Research Tumor Suppressor Genes: Volume 1: Pathways and Isolation Strategies","Humana Press","SpringerProtocols","978-0-89603-986-5","",0,0,1,0,33,0,0,0,0,0,0,0,34
+"Cancer Research Tumor Suppressor Genes: Volume 2 Regulation, Function, and Medicinal Applications","Humana Press","SpringerProtocols","978-0-89603-987-2","",0,0,0,0,42,0,2,0,1,0,1,0,46
+"Cancer Research p53 Protocols","Humana Press","SpringerProtocols","978-1-58829-106-6","",2,1,2,0,18,0,2,0,0,0,0,0,25
+"Cell Biology Adhesion Protein Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-417-4","",1,3,2,0,27,0,0,0,0,0,1,0,34
+"Cell Biology Adipose Tissue Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-747-2","",0,2,0,0,0,0,0,0,0,2,0,2,6
+"Cell Biology Advanced Protocols in Oxidative Stress I","Humana Press","SpringerProtocols","978-1-60327-218-6","",1,1,4,0,31,1,0,1,0,1,0,0,40
+"Cell Biology Affinity Chromatography: Methods and Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-659-7","",0,1,24,4,23,1,0,0,3,6,0,0,62
+"Cell Biology Angiogenesis Protocols","Humana Press","SpringerProtocols","978-0-89603-698-7","",2,6,0,2,2,18,1,2,0,0,1,0,34
+"Cell Biology Angiogenesis Protocols: Second Edition","Humana Press","SpringerProtocols","978-1-58829-907-9","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Animal Cell Culture","Humana Press","SpringerProtocols","978-0-89603-150-0","",3,1,1,4,59,3,5,0,3,3,3,3,88
+"Cell Biology Animal Cell Electroporation and Electrofusion Protocols","Humana Press","SpringerProtocols","978-0-89603-304-7","",4,2,1,30,32,0,1,0,0,2,1,3,76
+"Cell Biology Antisense Therapeutics - 1","Humana Press","SpringerProtocols","978-0-89603-305-4","",0,0,0,0,0,14,0,0,0,0,0,0,14
+"Cell Biology Antisense Therapeutics - 2","Humana Press","SpringerProtocols","978-1-58829-205-6","",0,1,0,1,0,16,2,0,0,0,0,0,20
+"Cell Biology Apoptosis Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-873-8","",4,2,0,0,19,1,4,1,0,0,0,5,36
+"Cell Biology Apoptosis: Methods and Protocols, Second Edition","Humana Press","SpringerProtocols","978-1-60327-016-8","",0,0,0,0,0,0,0,0,0,22,1,0,23
+"Cell Biology Autophagosome and Phagosome","Humana Press","SpringerProtocols","978-1-58829-853-9","",0,4,7,4,48,5,0,2,0,26,0,26,122
+"Cell Biology AvidinndashBiotin Interactions: Methods and Applications","Humana Press","SpringerProtocols","978-1-58829-583-5","",1,2,0,2,18,0,0,0,0,1,0,5,29
+"Cell Biology B Cell Protocols","Humana Press","SpringerProtocols","978-1-58829-347-3","",10,5,0,2,21,0,1,0,0,0,4,3,46
+"Cell Biology Basic Cell Culture Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-441-9","",0,0,0,3,39,3,0,1,2,1,1,0,50
+"Cell Biology Basic Cell Culture Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-284-1","",5,7,1,4,27,2,8,1,2,28,3,0,88
+"Cell Biology Biomembrane Protocols: I. Isolation and Analysis","Humana Press","SpringerProtocols","978-0-89603-236-1","",3,3,1,0,28,2,0,1,4,0,0,2,44
+"Cell Biology Biomembrane Protocols: II. Architecture and Function","Humana Press","SpringerProtocols","978-0-89603-250-7","",0,0,2,2,24,0,3,1,0,1,0,0,33
+"Cell Biology Bone Marrow and Stem Cell Transplantation","Humana Press","SpringerProtocols","978-1-58829-595-8","",0,0,0,0,0,15,0,0,0,0,0,0,15
+"Cell Biology Calcium Signaling Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-442-5","",0,8,1,1,22,2,1,1,0,0,1,0,37
+"Cell Biology Capillary Electrophoresis: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-539-2","",0,0,0,1,33,1,0,0,0,0,1,0,36
+"Cell Biology Cell Cycle Checkpoint Control Protocols","Humana Press","SpringerProtocols","978-1-58829-115-8","",7,2,5,0,29,0,0,0,1,2,1,0,47
+"Cell Biology Cell Cycle Control and Dysregulation Protocols: Cyclins, Cyclin-Dependent Kinases, and Other Factors","Humana Press","SpringerProtocols","978-0-89603-949-0","",0,0,1,2,23,1,0,0,0,2,0,0,29
+"Cell Biology Cell Cycle Control: Mechanisms and Protocols","Humana Press","SpringerProtocols","978-1-58829-144-8","",5,0,1,3,27,0,2,3,0,0,0,0,41
+"Cell Biology Cell Fusion: Overviews and Methods","Humana Press","SpringerProtocols","978-1-58829-911-6","",3,3,5,2,28,0,3,0,0,23,4,0,71
+"Cell Biology Cell Migration: Developmental Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-382-4","",1,12,3,4,27,1,8,2,4,3,3,1,69
+"Cell Biology Cell-Cell Interactions: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-523-1","",0,3,1,2,24,1,0,1,0,23,0,0,55
+"Cell Biology Chemotaxis: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-197-4","",0,0,0,0,0,0,0,0,0,6,0,7,13
+"Cell Biology Chromatin Protocols: Second Edition","Humana Press","SpringerProtocols","978-1-58829-873-7","",0,0,0,0,0,0,0,0,1,0,0,0,1
+"Cell Biology Circadian Rhythms: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-417-3","",16,0,5,4,59,7,3,2,3,18,12,3,132
+"Cell Biology Clinical Applications of Capillary Electrophoresis","Humana Press","SpringerProtocols","978-0-89603-639-0","",1,1,0,0,0,22,0,0,0,0,0,0,24
+"Cell Biology Cryopreservation and Freeze-Drying Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-296-5","",9,0,0,0,23,0,0,0,0,0,0,0,32
+"Cell Biology Cytoskeleton Methods and Protocols - 1","Humana Press","SpringerProtocols","978-1-60761-375-6","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Cytoskeleton Methods and Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-771-7","",3,8,4,1,22,1,1,2,1,0,0,0,43
+"Cell Biology DNA Repair Protocols: Eukaryotic Systems","Humana Press","SpringerProtocols","978-0-89603-802-8","",2,1,4,0,52,0,0,0,0,1,0,0,60
+"Cell Biology Dendritic Cell Protocols - 1","Humana Press","SpringerProtocols","978-1-60761-420-3","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Developmental Biology Protocols","Humana Press","SpringerProtocols","978-0-89603-854-7","",3,2,4,1,43,0,0,0,0,2,2,0,57
+"Cell Biology Developmental Biology Protocols: Volume I","Humana Press","SpringerProtocols","978-0-89603-852-3","",1,3,2,0,57,0,1,0,0,2,1,0,67
+"Cell Biology Developmental Biology Protocols: Volume II","Humana Press","SpringerProtocols","978-0-89603-853-0","",3,4,1,0,48,2,4,3,0,2,1,1,69
+"Cell Biology Dictyostelium discoideum Protocols","Humana Press","SpringerProtocols","978-1-58829-623-8","",0,6,0,1,3,0,3,2,4,34,2,0,55
+"Cell Biology Differential Display Methods and Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-489-1","",0,1,1,0,24,0,0,0,0,0,0,0,26
+"Cell Biology Differential Display Methods and Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-338-1","",0,1,0,0,20,0,0,0,0,0,0,0,21
+"Cell Biology Directed Enzyme Evolution: Screening and Selection Methods","Humana Press","SpringerProtocols","978-1-58829-286-5","",0,0,0,16,34,0,0,0,0,1,0,0,51
+"Cell Biology Drosophila: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-817-1","",3,2,1,4,0,3,3,0,8,30,1,1,56
+"Cell Biology Electrochemotherapy, Electrogenetherapy, and Transdermal Drug Delivery: Electrically Mediated Delivery of Molecules to Cells","Humana Press","SpringerProtocols","978-0-89603-606-2","",0,0,0,0,1,39,1,0,0,0,0,0,41
+"Cell Biology Embryonic Stem Cell Protocols: Volume 1: Isolation and Characterization","Humana Press","SpringerProtocols","978-1-58829-498-2","",4,1,0,2,67,3,2,2,0,2,2,1,86
+"Cell Biology Embryonic Stem Cell Protocols: Volume 2: Differentiation Models","Humana Press","SpringerProtocols","978-1-58829-784-6","",6,2,1,0,29,0,0,1,2,33,1,1,76
+"Cell Biology Embryonic Stem Cells: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-881-3","",7,8,0,30,36,0,2,1,1,45,1,0,131
+"Cell Biology Enzymes of Molecular Biology","Humana Press","SpringerProtocols","978-0-89603-322-1","",2,0,0,1,20,1,2,2,0,0,1,0,29
+"Cell Biology Epidermal Cells: Methods and Protocols - 1","Humana Press","SpringerProtocols","978-1-60761-379-4","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Epidermal Cells: Methods and Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-267-4","",1,3,3,3,44,0,17,5,0,46,0,2,124
+"Cell Biology Epidermal Growth Factor: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-421-0","",1,0,0,0,15,1,1,0,0,0,0,0,18
+"Cell Biology Experiments in Molecular Biology","Humana Press","SpringerProtocols","978-0-89603-082-4","",5,1,0,3,0,24,3,1,0,3,0,2,42
+"Cell Biology Extracellular Matrix Protocols","Humana Press","SpringerProtocols","978-0-89603-624-6","",1,5,1,2,30,1,1,1,0,0,0,0,42
+"Cell Biology Extracellular Matrix Protocols: Second Edition","Humana Press","SpringerProtocols","978-1-58829-984-0","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Flow Cytometry Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-354-2","",0,0,3,0,22,1,0,0,0,23,1,0,50
+"Cell Biology GTPase Protocols: The Ras Superfamily","Humana Press","SpringerProtocols","978-0-89603-934-6","",1,4,0,3,22,3,2,0,0,5,0,1,41
+"Cell Biology Genetic Modification of Hematopoietic Stem Cells: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-980-2","",2,4,4,2,36,1,3,0,2,0,6,6,66
+"Cell Biology Germ Cell Protocols: Volume 1: Sperm and Oocyte Analysis","Humana Press","SpringerProtocols","978-1-58829-121-9","",1,0,0,0,21,1,0,0,0,0,0,0,23
+"Cell Biology Germ Cell Protocols: Volume 2: Molecular Embryo Analysis, Live Imaging, Transgenesis, and Cloning","Humana Press","SpringerProtocols","978-1-58829-257-5","",4,0,4,1,26,0,2,1,1,0,0,0,39
+"Cell Biology Germline Stem Cells","Humana Press","SpringerProtocols","978-1-60327-213-1","",2,0,0,0,17,0,0,0,2,21,2,1,45
+"Cell Biology Hedgehog Signaling Protocols","Humana Press","SpringerProtocols","978-1-58829-692-4","",2,3,1,0,20,7,2,1,1,1,1,3,42
+"Cell Biology Hematopoietic Stem Cell Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-868-3","",2,2,2,1,23,0,10,1,0,4,0,0,45
+"Cell Biology Hematopoietic Stem Cell Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-812-7","",1,1,0,0,5,21,0,0,25,2,2,0,57
+"Cell Biology Histology Protocols","Humana Press","SpringerProtocols","978-1-60327-344-2","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Human Cell Culture Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-335-1","",1,2,1,0,1,42,5,0,0,2,0,0,54
+"Cell Biology Human Cell Culture Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-222-3","",5,0,0,1,3,25,3,2,0,3,2,0,44
+"Cell Biology Human Embryogenesis: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-008-3","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Human Embryonic Stem Cell Protocols - 1","Humana Press","SpringerProtocols","978-1-60761-368-8","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Human Embryonic Stem Cell Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-497-5","",1,1,0,0,22,1,0,0,0,1,0,0,26
+"Cell Biology Immobilization of Enzymes and Cells - 1","Humana Press","SpringerProtocols","978-0-89603-386-3","",0,0,2,0,1,39,0,0,0,0,0,0,42
+"Cell Biology In Situ Hybridization Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-686-4","",0,0,1,0,21,0,0,0,0,1,1,0,24
+"Cell Biology In Situ Hybridization Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-402-9","",0,0,0,0,20,1,1,0,0,2,0,0,24
+"Cell Biology In Vitro Mutagenesis Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-332-0","",2,4,2,0,36,3,3,0,2,4,2,5,63
+"Cell Biology Lipidomics: Volume 1: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-321-3","",0,0,0,0,0,0,0,0,0,0,0,1,1
+"Cell Biology Lipidomics: Volume 2: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-324-4","",0,0,0,0,0,0,0,0,0,0,0,1,1
+"Cell Biology Liposome Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-845-5","",0,0,1,0,15,0,0,0,0,1,0,6,23
+"Cell Biology Liposomes: Methods and Protocols, Volume 2: Biological Membrane Models","Humana Press","SpringerProtocols","978-1-60761-446-3","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Matrix Metalloproteinase Protocols","Humana Press","SpringerProtocols","978-0-89603-733-5","",1,0,0,0,35,0,0,1,0,0,5,0,42
+"Cell Biology Meiosis: Volume 1, Molecular and Genetic Methods","Humana Press","SpringerProtocols","978-1-934115-66-4","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Meiosis: Volume 2, Cytological Methods","Humana Press","SpringerProtocols","978-1-60761-102-8","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Membrane Proteomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-309-1","",2,3,5,3,22,0,5,2,2,28,3,3,78
+"Cell Biology Membrane Transporters: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-104-2","",0,2,0,4,19,0,0,10,2,1,0,0,38
+"Cell Biology Mesenchymal Stem Cells: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-771-6","",1,1,0,0,12,0,0,2,0,12,2,1,31
+"Cell Biology Microtubule Protocols","Humana Press","SpringerProtocols","978-1-58829-642-9","",1,1,1,1,3,24,2,1,1,10,0,10,55
+"Cell Biology Mitochondria: Practical Protocols","Humana Press","SpringerProtocols","978-1-58829-667-2","",5,4,2,1,39,4,3,0,1,2,1,1,63
+"Cell Biology Mitochondrial DNA: Methods and Protocols - 2","Humana Press","SpringerProtocols","978-1-934115-60-2","",0,0,0,0,0,0,0,0,0,0,0,1,1
+"Cell Biology Mitosis: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-992-5","",0,0,0,0,0,0,0,0,1,0,0,1,2
+"Cell Biology Molecular Embryology: Methods and Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-431-9","",1,1,5,0,62,2,0,3,3,56,0,0,133
+"Cell Biology Molecular Embryology: Methods and Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-387-0","",3,3,5,1,52,3,0,1,0,1,0,3,72
+"Cell Biology Molecular Epidemiology of Microorganisms: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-998-7","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Molecular Methods in Developmental Biology: Xenopus and Zebrafish","Humana Press","SpringerProtocols","978-0-89603-790-8","",3,3,6,0,21,1,1,1,1,0,2,0,39
+"Cell Biology Neural Cell Transplantation: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-930-7","",0,0,0,0,0,0,0,0,0,1,0,0,1
+"Cell Biology Neural Stem Cells: Methods and Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-846-1","",0,33,2,0,34,0,3,0,3,0,61,1,137
+"Cell Biology Neural Stem Cells: Methods and Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-964-3","",2,2,0,0,32,0,1,1,2,1,0,0,41
+"Cell Biology Nonviral Vectors for Gene Therapy Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-712-0","",2,0,0,0,0,23,0,2,2,0,1,1,31
+"Cell Biology Nuclear Reprogramming: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-379-4","",2,3,0,2,23,1,0,0,0,0,0,0,31
+"Cell Biology Nuclear Transfer Protocols: Cell Reprogramming and Transgenesis","Humana Press","SpringerProtocols","978-1-58829-280-3","",0,0,0,0,24,0,0,0,0,1,0,0,25
+"Cell Biology Nuclease Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-679-6","",0,0,0,0,34,0,0,2,0,1,0,0,37
+"Cell Biology Nucleic Acid and Peptide Aptamers: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-89-3","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology PCR Sequencing Protocols","Humana Press","SpringerProtocols","978-0-89603-344-3","",0,0,0,1,25,0,0,0,0,1,0,0,27
+"Cell Biology Peptidomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-534-7","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Phylogenomics","Humana Press","SpringerProtocols","978-1-58829-764-8","",1,0,0,0,15,0,0,0,0,1,0,0,17
+"Cell Biology Pichia Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-421-1","",0,5,5,2,3,0,2,4,0,0,1,0,22
+"Cell Biology Potassium Channels: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-65-7","",1,1,3,1,23,3,2,0,0,0,1,0,35
+"Cell Biology Protocols for Neural Cell Culture","Humana Press","SpringerProtocols","978-0-89603-902-5","",2,0,3,2,1,28,2,0,1,1,2,2,44
+"Cell Biology Quantitative PCR Protocols","Humana Press","SpringerProtocols","978-0-89603-518-8","",0,0,0,0,0,20,0,0,0,0,0,0,20
+"Cell Biology RNA Isolation and Characterization Protocols","Humana Press","SpringerProtocols","978-0-89603-494-5","",4,2,0,2,33,1,0,1,0,3,0,0,46
+"Cell Biology RNA-Protein Interaction Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-419-7","",8,10,35,6,28,1,0,3,20,3,3,3,120
+"Cell Biology RNA-Protein Interaction Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-568-3","",10,2,9,1,36,4,0,2,1,4,4,1,74
+"Cell Biology Receptor Signal Transduction Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-329-9","",0,1,0,1,25,1,27,0,0,0,1,0,56
+"Cell Biology Redox-Mediated Signal Transduction: Methods and Protocols","Humana Press","SpringerProtocols","","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Riboswitches: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-88-6","",0,0,0,0,0,0,0,0,0,0,0,1,1
+"Cell Biology Signal Transduction Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-298-9","",0,0,0,0,23,0,0,2,1,24,5,0,55
+"Cell Biology Signal Transduction Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-245-2","",0,0,1,0,23,6,1,0,2,2,1,0,36
+"Cell Biology Single Cell Diagnostics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-578-1","",0,0,0,0,1,13,0,0,0,1,0,1,16
+"Cell Biology Species Diagnostics Protocols: PCR and Other Nucleic acid Methods","Humana Press","SpringerProtocols","978-0-89603-323-8","",0,0,0,0,28,0,0,0,0,0,0,0,28
+"Cell Biology Spectroscopic Methods and Analyses: NMR, Mass Spectrometry, and Metalloprotein Techniques","Humana Press","SpringerProtocols","978-0-89603-215-6","",1,0,3,1,18,3,0,0,0,4,4,1,35
+"Cell Biology Stem Cell Assays","Humana Press","SpringerProtocols","978-1-58829-744-0","",3,1,1,1,24,0,0,2,0,26,0,0,58
+"Cell Biology Stem Cells in Regenerative Medicine","Humana Press","SpringerProtocols","978-1-58829-797-6","",5,2,1,2,26,0,2,1,1,31,29,0,100
+"Cell Biology Steroid Receptor Methods: Protocols and Assays","Humana Press","SpringerProtocols","978-0-89603-754-0","",0,0,0,0,26,1,0,2,3,0,0,0,32
+"Cell Biology Stress Response: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-611-6","",0,0,2,1,32,0,0,0,1,0,0,0,36
+"Cell Biology Techniques in Cell Cycle Analysis","Humana Press","SpringerProtocols","978-0-89603-097-8","",3,0,1,0,0,12,0,0,0,0,0,0,16
+"Cell Biology Telomerase Inhibition: Strategies and Protocols","Humana Press","SpringerProtocols","978-1-58829-683-2","",0,0,0,0,16,1,1,0,0,0,2,1,21
+"Cell Biology The Nuclear Receptor Superfamily: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-574-3","",0,0,3,0,15,0,0,1,0,1,1,1,22
+"Cell Biology Topics in Biostatistics","Humana Press","SpringerProtocols","978-1-58829-531-6","",0,8,50,0,23,0,1,0,0,0,23,0,105
+"Cell Biology Transforming Growth Factor-Beta Protocols","Humana Press","SpringerProtocols","978-0-89603-646-8","",0,0,0,13,13,0,0,0,0,0,0,0,26
+"Cell Biology Transmembrane Signaling Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-488-4","",0,1,0,0,26,0,1,2,0,2,1,0,33
+"Cell Biology Transmembrane Signaling Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-546-0","",1,2,5,3,23,3,0,1,0,1,1,0,40
+"Cell Biology Trinucleotide Repeat Protocols","Humana Press","SpringerProtocols","978-1-58829-243-8","",0,0,0,0,24,0,0,0,2,0,0,0,26
+"Cell Biology Two-Dimensional Electrophoresis Protocols","Humana Press","SpringerProtocols","978-1-58829-937-6","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Cell Biology Wnt Signaling","Humana Press","SpringerProtocols","978-1-60327-468-5","",0,0,0,0,0,0,0,0,0,19,0,0,19
+"Cell Biology Xenopus Protocols: Cell Biology and Signal Transduction","Humana Press","SpringerProtocols","978-1-58829-362-6","",1,4,1,0,0,3,0,1,0,1,1,1,13
+"Genetics_Genomics 2D PAGE: Sample Preparation and Fractionation - 2","Humana Press","SpringerProtocols","978-1-58829-722-8","",1,4,45,2,37,10,2,3,2,45,6,5,162
+"Genetics_Genomics Basic DNA and RNA Protocols","Humana Press","SpringerProtocols","978-0-89603-402-0","",2,0,0,0,59,2,0,4,0,61,1,1,130
+"Genetics_Genomics C. elegans: Methods and Applications","Humana Press","SpringerProtocols","978-1-58829-597-2","",2,2,0,19,22,0,3,3,2,24,1,1,79
+"Genetics_Genomics Cardiac Cell and Gene Transfer: Principles, Protocols, and Applications","Humana Press","SpringerProtocols","978-0-89603-994-0","",2,0,0,20,19,0,0,0,0,2,1,1,45
+"Genetics_Genomics Cardiac Gene Expression: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-352-7","",4,2,0,24,26,2,2,0,0,0,2,0,62
+"Genetics_Genomics Cardiovascular Genomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-246-9","",0,0,0,0,0,0,0,0,0,1,0,0,1
+"Genetics_Genomics Chemical Genomics: Reviews and Protocols","Humana Press","SpringerProtocols","978-1-58829-399-2","",0,4,1,3,23,0,0,1,1,1,0,1,35
+"Genetics_Genomics Chromatin Immunoprecipitation Assays: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-413-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Genetics_Genomics Chromosomal Mutagenesis","Humana Press","SpringerProtocols","978-1-58829-899-7","",2,5,1,2,18,2,0,0,2,5,2,0,39
+"Genetics_Genomics Chromosome Analysis Protocols","Humana Press","SpringerProtocols","978-0-89603-289-7","",0,0,0,0,27,2,1,0,1,0,0,0,31
+"Genetics_Genomics Clinical Applications of PCR - 1","Humana Press","SpringerProtocols","978-0-89603-499-0","",1,0,0,0,0,28,0,1,1,2,0,0,33
+"Genetics_Genomics Clinical Applications of PCR - 2","Humana Press","SpringerProtocols","978-1-58829-348-0","",0,0,0,20,15,2,0,1,0,1,0,0,39
+"Genetics_Genomics Comparative Genomics - 1","Humana Press","SpringerProtocols","978-1-58829-693-1","",4,0,1,2,33,0,8,1,2,1,0,0,52
+"Genetics_Genomics Comparative Genomics - 2","Humana Press","SpringerProtocols","978-1-934115-37-4","",0,0,0,1,33,0,2,1,0,1,0,0,38
+"Genetics_Genomics Computer Analysis of Sequence Data: Part I","Humana Press","SpringerProtocols","978-0-89603-246-0","",0,0,0,0,29,0,0,0,0,2,0,0,31
+"Genetics_Genomics Computer Analysis of Sequence Data: Part II","Humana Press","SpringerProtocols","978-0-89603-276-7","",0,0,0,0,31,0,0,0,0,0,0,0,31
+"Genetics_Genomics DNA Arrays: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-822-6","",0,0,0,0,17,0,0,0,0,0,0,0,17
+"Genetics_Genomics DNA Methylation Protocols","Humana Press","SpringerProtocols","978-0-89603-618-5","",1,0,0,1,15,0,0,0,0,0,0,0,17
+"Genetics_Genomics DNA Methylation: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-61-9","",4,5,3,3,31,0,3,1,1,3,7,6,67
+"Genetics_Genomics DNA Microarrays for Biomedical Research: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-69-5","",0,0,0,0,0,0,0,0,0,0,1,0,1
+"Genetics_Genomics DNA Repair Protocols: Mammalian Systems","Humana Press","SpringerProtocols","978-1-58829-513-2","",1,0,0,0,32,0,1,0,0,1,0,0,35
+"Genetics_Genomics DNA Repair Protocols: Prokaryotic Systems","Humana Press","SpringerProtocols","978-0-89603-643-7","",0,0,0,0,16,8,6,0,3,0,2,0,35
+"Genetics_Genomics DNA Sequencing Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-248-4","",0,0,0,0,39,0,0,0,1,1,0,0,41
+"Genetics_Genomics DNA Sequencing Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-716-8","",0,0,0,0,15,0,0,0,0,0,2,1,18
+"Genetics_Genomics DNA Topoisomerase Protocols : Volume II: Enzymology and Drugs","Humana Press","SpringerProtocols","978-0-89603-512-6","",0,0,0,1,30,1,1,0,0,0,0,0,33
+"Genetics_Genomics DNA Topoisomerase Protocols: Volume I: DNA Topology and Enzymes","Humana Press","SpringerProtocols","978-0-89603-444-0","",0,0,0,0,29,0,0,0,0,0,1,1,31
+"Genetics_Genomics DNA Topoisomerases: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-339-8","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Genetics_Genomics DNA Vaccines: Methods and Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-580-5","",0,0,0,0,0,41,0,0,0,0,0,0,41
+"Genetics_Genomics DNA Viruses: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-353-4","",2,0,0,0,30,1,0,0,0,0,2,0,35
+"Genetics_Genomics DNA and RNA Profiling in Human Blood: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-93-0","",6,3,3,1,21,3,3,0,0,0,0,0,40
+"Genetics_Genomics DNA-Protein Interactions: Principles and Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-256-9","",0,1,2,1,0,1,1,0,0,1,1,0,8
+"Genetics_Genomics DNA-Protein Interactions: Principles and Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-625-3","",2,2,5,7,45,5,1,1,1,3,0,3,75
+"Genetics_Genomics DNA-Protein Interactions: Principles and Protocols, Third Edition","Humana Press","SpringerProtocols","978-1-60327-014-4","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Genetics_Genomics Directed Evolution Library Creation: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-285-8","",0,2,3,0,26,0,0,0,0,1,1,1,34
+"Genetics_Genomics Drosophila Cytogenetics Protocols","Humana Press","SpringerProtocols","978-1-58829-050-2","",0,0,2,1,26,27,1,1,1,0,2,0,61
+"Genetics_Genomics Drug-DNA Interaction Protocols","Humana Press","SpringerProtocols","978-0-89603-447-1","",0,0,0,0,18,0,6,0,0,0,0,0,24
+"Genetics_Genomics Environmental Genomics","Humana Press","SpringerProtocols","978-1-58829-777-8","",0,0,0,1,18,0,0,0,0,0,1,0,20
+"Genetics_Genomics Epigenetics Protocols","Humana Press","SpringerProtocols","978-1-58829-336-7","",2,0,2,0,24,0,1,0,1,0,3,2,35
+"Genetics_Genomics Epitope Mapping Protocols: Second Edition","Humana Press","SpringerProtocols","978-1-934115-17-6","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Genetics_Genomics Expressed Sequence Tags (ESTs): Generation and Analysis","Humana Press","SpringerProtocols","","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Genetics_Genomics Forensic DNA Profiling Protocols","Humana Press","SpringerProtocols","978-0-89603-443-3","",0,5,0,1,25,2,0,0,0,25,0,1,59
+"Genetics_Genomics Forensic DNA Typing Protocols","Humana Press","SpringerProtocols","978-1-58829-264-3","",0,1,0,0,19,0,0,0,0,20,0,0,40
+"Genetics_Genomics Functional Genomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-291-9","",2,1,1,1,15,0,0,0,0,1,0,0,21
+"Genetics_Genomics G-Quadruplex DNA: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-950-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Genetics_Genomics Gene Delivery to Mammalian Cells: Volume 1: Nonviral Gene Transfer Techniques","Humana Press","SpringerProtocols","978-1-58829-086-1","",0,10,4,0,24,4,22,1,1,0,0,0,66
+"Genetics_Genomics Gene Delivery to Mammalian Cells: Volume 2: Viral Gene Transfer Techniques","Humana Press","SpringerProtocols","978-1-58829-095-3","",0,0,1,0,40,2,1,0,0,1,2,2,49
+"Genetics_Genomics Gene Expression Profiling: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-220-9","",0,0,0,1,10,0,0,0,0,0,0,0,11
+"Genetics_Genomics Gene Function Analysis","Humana Press","SpringerProtocols","978-1-58829-734-1","",2,0,2,2,21,0,0,0,0,1,0,0,28
+"Genetics_Genomics Gene Isolation and Mapping Protocols","Humana Press","SpringerProtocols","978-0-89603-482-2","",0,0,0,1,19,0,0,0,0,0,0,0,20
+"Genetics_Genomics Gene Knockout Protocols","Humana Press","SpringerProtocols","978-0-89603-572-0","",3,6,0,2,25,0,1,2,0,2,0,0,41
+"Genetics_Genomics Gene Knockout Protocols: Second Edition","Humana Press","SpringerProtocols","978-1-934115-26-8","",0,0,0,0,0,1,0,0,0,0,0,0,1
+"Genetics_Genomics Gene Mapping, Discovery, and Expression: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-575-0","",2,0,4,1,23,0,0,1,0,0,0,0,31
+"Genetics_Genomics Gene Probes: Principles and Protocols","Humana Press","SpringerProtocols","978-0-89603-885-1","",3,0,2,0,23,1,1,2,0,0,1,0,33
+"Genetics_Genomics Gene Targeting Protocols","Humana Press","SpringerProtocols","978-0-89603-360-3","",1,0,0,3,16,0,0,0,0,0,0,0,20
+"Genetics_Genomics Gene Therapy Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-484-6","",0,0,0,0,0,29,1,0,0,0,0,0,30
+"Genetics_Genomics Gene Therapy Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-723-6","",1,0,2,0,1,33,3,0,0,0,0,0,40
+"Genetics_Genomics Gene Therapy Protocols: Design and Characterization of Gene Transfer Vectors","Humana Press","SpringerProtocols","978-1-60327-247-6","",2,0,2,0,32,1,1,1,0,19,0,0,58
+"Genetics_Genomics Gene Therapy Protocols: Production and In Vivo Applications of Gene Transfer Vectors","Humana Press","SpringerProtocols","978-1-58829-903-1","",1,0,0,0,23,4,1,1,0,23,0,0,53
+"Genetics_Genomics Gene Transfer and Expression Protocols","Humana Press","SpringerProtocols","978-0-89603-178-4","",0,0,2,0,38,6,3,1,0,34,1,1,86
+"Genetics_Genomics Generation of cDNA Libraries: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-066-3","",2,5,1,0,28,2,0,5,0,0,0,0,43
+"Genetics_Genomics Genetic Recombination: Reviews and Protocols","Humana Press","SpringerProtocols","978-1-58829-236-0","",0,0,0,0,15,1,0,0,0,0,0,0,16
+"Genetics_Genomics Genomic Imprinting: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-741-0","",0,0,1,1,28,0,0,0,0,1,0,0,31
+"Genetics_Genomics Genomics Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-871-3","",5,1,1,2,33,1,0,3,0,2,3,0,51
+"Genetics_Genomics Genomics Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-774-8","",0,1,1,0,30,0,1,0,0,0,0,0,33
+"Genetics_Genomics Horizontal Gene Transfer: Genomes in Flux","Humana Press","SpringerProtocols","978-1-60327-852-2","",0,0,0,0,0,0,0,0,0,0,0,1,1
+"Genetics_Genomics In Situ Detection of DNA Damage: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-952-0","",1,1,2,0,22,0,1,0,0,0,0,0,27
+"Genetics_Genomics In Situ Hybridization Protocols - 3","Humana Press","SpringerProtocols","978-0-89603-280-4","",0,0,0,1,34,0,0,0,0,2,0,1,38
+"Genetics_Genomics In Vitro Mutagenesis Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-910-0","",2,1,1,4,27,0,0,0,2,1,0,4,42
+"Genetics_Genomics In Vitro Transcription and Translation Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-558-3","",0,3,0,0,13,0,2,3,5,2,0,0,28
+"Genetics_Genomics In Vitro Transcription and Translation Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-288-0","",0,0,4,0,45,0,3,0,0,2,1,2,57
+"Genetics_Genomics Lentivirus Gene Engineering Protocols","Humana Press","SpringerProtocols","978-1-58829-091-5","",1,24,0,3,28,0,0,0,3,0,26,0,85
+"Genetics_Genomics Linkage Disequilibrium and Association Mapping: Analysis and Applications","Humana Press","SpringerProtocols","978-1-58829-669-6","",0,0,0,0,15,0,0,1,0,0,0,0,16
+"Genetics_Genomics Mammalian Artificial Chromosomes: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-096-0","",0,1,0,0,13,0,0,0,0,0,0,0,14
+"Genetics_Genomics MicroRNA Protocols","Humana Press","SpringerProtocols","978-1-58829-581-1","",0,2,1,3,27,4,3,3,0,0,0,2,45
+"Genetics_Genomics Microarray Analysis of the Physical Genome: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-191-2","",0,0,0,0,0,0,0,0,0,0,5,23,28
+"Genetics_Genomics Microarray Data Analysis: Methods and Applications","Humana Press","SpringerProtocols","978-1-58829-540-8","",2,21,3,0,16,0,0,0,0,2,0,16,60
+"Genetics_Genomics Microarrays: Volume 1: Synthesis Methods","Humana Press","SpringerProtocols","978-1-58829-589-7","",1,0,3,1,25,4,0,1,0,22,0,0,57
+"Genetics_Genomics Microarrays: Volume 2: Applications and Data Analysis","Humana Press","SpringerProtocols","978-1-58829-944-4","",3,1,1,0,27,0,3,0,0,30,0,4,69
+"Genetics_Genomics Microbial Gene Essentiality: Protocols and Bioinformatics","Humana Press","SpringerProtocols","978-1-58829-378-7","",0,1,0,1,31,1,1,0,0,0,0,0,35
+"Genetics_Genomics Microchip-Based Assay Systems: Methods and Applications","Humana Press","SpringerProtocols","978-1-58829-588-0","",0,1,1,0,16,0,0,0,0,0,0,0,18
+"Genetics_Genomics Mobile Genetic Elements: Protocols and Genomic Applications","Humana Press","SpringerProtocols","978-1-58829-007-6","",1,0,0,0,15,2,5,0,0,0,0,1,24
+"Genetics_Genomics Molecular Cytogenetics: Protocols and Applications","Humana Press","SpringerProtocols","978-1-58829-006-9","",1,0,0,0,26,1,1,2,0,2,0,0,33
+"Genetics_Genomics Molecular Diagnosis of Genetic Diseases - 2","Humana Press","SpringerProtocols","978-0-89603-932-2","",0,0,0,0,0,20,0,0,0,1,0,0,21
+"Genetics_Genomics PCR Cloning Protocols","Humana Press","SpringerProtocols","978-0-89603-969-8","",2,11,3,4,46,3,1,3,1,48,2,2,126
+"Genetics_Genomics PCR Cloning Protocols: From Molecular Cloning to Genetic Engineering","Humana Press","SpringerProtocols","978-0-89603-483-9","",3,2,0,1,46,3,0,3,1,5,1,3,68
+"Genetics_Genomics PCR Mutation Detection Protocols","Humana Press","SpringerProtocols","978-0-89603-617-8","",2,4,0,0,19,0,0,0,0,2,0,0,27
+"Genetics_Genomics PCR Protocols","Humana Press","SpringerProtocols","978-0-89603-642-0","",4,4,0,1,78,5,2,2,3,73,2,3,177
+"Genetics_Genomics PCR Protocols: Current Methods and Applications","Humana Press","SpringerProtocols","978-0-89603-244-6","",0,3,0,3,34,0,0,0,3,2,3,0,48
+"Genetics_Genomics PCR in Bioanalysis","Humana Press","SpringerProtocols","978-0-89603-497-6","",0,0,0,0,24,0,1,0,0,1,0,0,26
+"Genetics_Genomics PRINS and In Situ PCR Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-395-5","",0,1,0,2,16,0,0,0,0,0,0,0,19
+"Genetics_Genomics PRINS and In Situ PCR Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-549-1","",0,0,0,0,21,0,0,0,0,0,1,0,22
+"Genetics_Genomics Parasite Genomics Protocols","Humana Press","SpringerProtocols","978-1-58829-062-5","",2,0,1,1,24,2,0,1,2,0,0,0,33
+"Genetics_Genomics Peptide Synthesis and Applications","Humana Press","SpringerProtocols","978-1-58829-317-6","",3,0,7,0,15,4,1,1,1,0,0,2,34
+"Genetics_Genomics Post-Transcriptional Gene Regulation","Humana Press","SpringerProtocols","978-1-58829-783-9","",3,1,5,2,25,1,1,0,1,3,21,1,64
+"Genetics_Genomics Protocols for Gene Analysis","Humana Press","SpringerProtocols","978-0-89603-258-3","",1,0,2,1,37,0,3,0,2,0,1,1,48
+"Genetics_Genomics Protocols in Human Molecular Genetics","Humana Press","SpringerProtocols","978-0-89603-205-7","",1,0,0,0,32,0,0,0,1,0,0,0,34
+"Genetics_Genomics Pyrosequencing Protocols","Humana Press","SpringerProtocols","978-1-58829-645-0","",0,0,0,0,14,0,0,0,0,0,0,0,14
+"Genetics_Genomics Quantitative Trait Loci: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-927-8","",0,0,1,0,13,0,0,0,1,1,0,0,16
+"Genetics_Genomics RNA Silencing: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-436-4","",0,0,0,1,20,1,0,0,0,4,2,2,30
+"Genetics_Genomics RNAi: Design and Application","Humana Press","SpringerProtocols","978-1-58829-874-4","",1,3,0,2,19,1,1,0,1,1,1,0,30
+"Genetics_Genomics RT-PCR Protocols","Humana Press","SpringerProtocols","978-0-89603-875-2","",0,35,0,5,28,2,0,0,0,0,0,0,70
+"Genetics_Genomics Rat Genomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-388-6","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Genetics_Genomics Recombinant Gene Expression Protocols","Humana Press","SpringerProtocols","978-0-89603-480-8","",0,3,1,0,37,5,0,2,3,3,1,0,55
+"Genetics_Genomics Recombinant Gene Expression: Reviews and Protocols","Humana Press","SpringerProtocols","978-1-58829-262-9","",2,5,4,2,35,1,4,1,1,3,4,0,62
+"Genetics_Genomics Reporter Genes: A Practical Guide","Humana Press","SpringerProtocols","978-1-58829-739-6","",5,0,3,1,16,0,0,0,1,1,11,0,38
+"Genetics_Genomics Reverse Chemical Genetics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-231-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Genetics_Genomics Sequence Data Analysis Guidebook","Humana Press","SpringerProtocols","978-0-89603-358-0","",0,0,2,3,27,1,0,0,0,0,0,0,33
+"Genetics_Genomics Serial Analysis of Gene Expression (SAGE): Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-676-4","",0,1,0,3,16,1,2,0,0,0,1,1,25
+"Genetics_Genomics Single Nucleotide Polymorphisms: Methods and Protocols - 1","Humana Press","SpringerProtocols","978-1-60327-410-4","",0,0,0,0,0,0,0,0,0,0,2,0,2
+"Genetics_Genomics Single Nucleotide Polymorphisms: Methods and Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-968-1","",0,0,0,0,18,0,0,0,0,0,0,0,18
+"Genetics_Genomics Suicide Gene Therapy: Methods and Reviews","Humana Press","SpringerProtocols","978-0-89603-971-1","",0,0,0,0,0,27,1,0,0,0,0,0,28
+"Genetics_Genomics Telomeres and Telomerase: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-657-4","",1,0,0,0,15,0,0,0,0,1,0,0,17
+"Genetics_Genomics Therapeutic Applications of RNAi: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-294-0","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Genetics_Genomics Transcription Factor Protocols","Humana Press","SpringerProtocols","978-0-89603-573-7","",2,2,1,0,22,6,4,6,1,2,0,1,47
+"Genetics_Genomics Transgenesis Techniques: Principles and Protocols - 1","Humana Press","SpringerProtocols","978-1-60327-018-2","",0,0,0,0,0,0,0,0,1,0,0,0,1
+"Genetics_Genomics Transgenesis Techniques: Principles and Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-245-3","",1,17,0,2,54,1,4,0,0,1,1,2,83
+"Genetics_Genomics Transgenesis Techniques: Principles and Protocols - 3","Humana Press","SpringerProtocols","978-0-89603-696-3","",0,1,0,1,22,1,1,0,1,0,0,2,29
+"Genetics_Genomics Transgenic Mouse: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-915-5","",0,0,1,2,19,4,1,1,0,0,0,1,29
+"Genetics_Genomics Transgenic Wheat, Barley and Oats: Production and Characterization Protocols","Humana Press","SpringerProtocols","978-1-58829-961-1","",1,4,10,1,22,3,1,0,0,0,0,1,43
+"Genetics_Genomics Viral Vectors for Gene Therapy: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-019-9","",0,0,0,0,3,36,5,1,0,0,0,1,46
+"Genetics_Genomics YAC Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-313-9","",0,0,0,0,28,0,1,0,0,0,0,2,31
+"Genetics_Genomics YAC Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-612-2","",0,1,0,0,17,0,3,0,1,18,0,1,41
+"Genetics_Genomics cDNA Library Protocols","Humana Press","SpringerProtocols","978-0-89603-383-2","",1,4,0,1,27,0,0,0,5,4,1,5,48
+"Imaging_Radiology Atomic Force Microscopy: Biomedical Methods and Applications","Humana Press","SpringerProtocols","978-1-58829-094-6","",0,1,0,33,29,0,0,0,0,0,0,0,63
+"Imaging_Radiology Biosensors and Biodetection","Humana Press","SpringerProtocols","978-1-60327-566-8","",0,0,0,2,25,0,0,0,0,1,0,0,28
+"Imaging_Radiology Biosensors and Biodetection: Methods and Protocols: Electrochemical and Mechanical Detectors, Lateral Flow and Ligands for Biosensors","Humana Press","SpringerProtocols","978-1-60327-568-2","",0,1,0,1,25,3,3,0,2,0,0,0,35
+"Imaging_Radiology Cell Imaging Techniques: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-157-8","",1,6,3,3,22,1,0,1,1,1,0,2,41
+"Imaging_Radiology Confocal Microscopy Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-526-3","",2,19,7,0,24,1,1,0,2,0,0,0,56
+"Imaging_Radiology Dynamic Brain Imaging: Multi-Modal Methods and In Vivo Applications","Humana Press","SpringerProtocols","978-1-934115-74-9","",2,2,17,0,15,3,2,0,0,0,0,0,41
+"Imaging_Radiology Electron Microscopy Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-640-6","",20,0,0,0,17,0,1,0,0,0,2,2,42
+"Imaging_Radiology Laser Capture Microdissection: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-260-5","",2,2,0,3,24,3,0,0,0,0,0,0,34
+"Imaging_Radiology Live Cell Imaging: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-403-6","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Imaging_Radiology Magnetic Resonance Imaging: Methods and Biologic Applications","Humana Press","SpringerProtocols","978-1-58829-397-8","",0,3,22,0,3,21,0,0,2,0,3,0,54
+"Imaging_Radiology Microscopy, Optical Spectroscopy, and Macroscopic Techniques","Humana Press","SpringerProtocols","978-0-89603-232-3","",1,0,2,0,35,0,2,5,5,3,0,0,53
+"Immunology Adoptive Immunotherapy: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-406-7","",2,0,0,0,0,31,0,0,0,0,0,0,33
+"Immunology Antibiotic Resistence: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-777-9","",0,0,0,0,1,28,0,0,0,0,0,0,29
+"Immunology Antibody Engineering Protocols","Humana Press","SpringerProtocols","978-0-89603-275-0","",0,0,0,0,31,0,0,1,0,30,0,0,62
+"Immunology Antigen Processing and Presentation Protocols","Humana Press","SpringerProtocols","978-0-89603-745-8","",1,0,0,4,30,0,0,2,1,0,0,0,38
+"Immunology Autoimmunity: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-231-5","",0,1,0,1,0,23,0,0,0,1,0,0,26
+"Immunology Cell Migration in Inflammation and Immunity: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-102-8","",2,2,1,2,22,0,3,1,0,0,0,0,33
+"Immunology Chemokine Protocols","Humana Press","SpringerProtocols","978-0-89603-722-9","",1,4,2,2,36,1,0,3,0,2,0,0,51
+"Immunology Complement Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-654-3","",2,0,0,2,17,0,1,0,0,0,0,0,22
+"Immunology Cytokine Protocols","Humana Press","SpringerProtocols","978-0-89603-948-3","",0,1,0,0,19,1,0,0,0,0,0,0,21
+"Immunology Cytokines and Colony Stimulating Factors: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-035-9","",0,2,0,0,28,0,0,2,0,0,0,0,32
+"Immunology DNA Vaccines: Methods and Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-484-5","",0,0,2,0,0,25,0,0,4,0,1,1,33
+"Immunology Diagnostic and Therapeutic Antibodies","Humana Press","SpringerProtocols","978-0-89603-798-4","",1,1,1,34,1,32,1,0,0,1,0,0,72
+"Immunology ELISA: Theory and Practice","Humana Press","SpringerProtocols","978-0-89603-279-8","",0,1,0,1,10,0,0,0,0,2,0,0,14
+"Immunology Epstein-Barr Virus Protocols","Humana Press","SpringerProtocols","978-0-89603-690-1","",0,0,0,8,44,1,3,0,2,0,0,3,61
+"Immunology Handbook of ELISPOT: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-469-2","",0,0,2,0,20,0,0,0,0,0,0,0,22
+"Immunology Immunochemical Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-493-8","",0,5,0,2,45,0,1,0,0,0,2,0,55
+"Immunology Immunochemical Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-204-0","",10,0,1,2,50,1,0,0,1,57,0,0,122
+"Immunology Immunochemical Protocols: Third Edition","Humana Press","SpringerProtocols","978-1-58829-274-2","",0,2,0,4,21,0,2,0,0,0,0,0,29
+"Immunology Immunocytochemical Methods and Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-463-0","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Immunology Immunocytochemical Methods and Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-285-9","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Immunology Immunocytochemical Methods and Protocols - 3","Humana Press","SpringerProtocols","978-0-89603-813-4","",0,56,0,2,55,0,6,0,0,3,0,0,122
+"Immunology Immunoinformatics: Predicting Immunogenicity In Silico","Humana Press","SpringerProtocols","978-1-58829-699-3","",0,0,4,0,30,0,0,1,1,0,0,2,38
+"Immunology Immunological Tolerance: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-652-8","",2,1,0,10,30,3,0,3,1,0,0,0,50
+"Immunology Immunotoxin Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-775-5","",0,0,1,0,17,0,0,0,0,1,0,0,19
+"Immunology Inflammation Protocols","Humana Press","SpringerProtocols","978-0-89603-970-4","",0,2,0,2,36,1,1,1,0,0,0,0,43
+"Immunology Innate Immunity","Humana Press","SpringerProtocols","978-1-58829-746-4","",1,4,3,8,32,7,1,1,7,2,0,0,66
+"Immunology MHC Protocols","Humana Press","SpringerProtocols","978-0-89603-548-5","",0,0,0,1,18,0,0,0,0,0,0,0,19
+"Immunology Macrophages and Dendritic Cells: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-972-7","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Immunology Mast Cells: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-374-9","",4,8,17,27,36,0,33,0,0,0,0,0,125
+"Immunology Meningococcal Vaccines: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-801-1","",2,2,0,0,1,29,1,1,0,0,0,0,36
+"Immunology Monoclonal Antibodies: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-567-5","",0,0,0,1,19,0,1,0,0,15,0,0,36
+"Immunology Monoclonal Antibody Protocols","Humana Press","SpringerProtocols","978-0-89603-308-5","",0,0,2,0,28,0,0,0,0,29,0,0,59
+"Immunology Natural Killer Cell Protocols: Cellular and Molecular Methods","Humana Press","SpringerProtocols","978-0-89603-683-3","",0,1,0,0,37,0,1,0,0,0,0,0,39
+"Immunology Natural Killer Cell Protocols: Cellular and Molecular Methods - 1","Humana Press","SpringerProtocols","978-1-60761-361-9","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Immunology Neutrophil Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-788-4","",2,1,9,4,39,0,0,4,3,2,0,0,64
+"Immunology New Antibiotic Targets","Humana Press","SpringerProtocols","978-1-58829-915-4","",1,0,0,0,0,20,0,0,1,1,1,0,24
+"Immunology Superantigen Protocols","Humana Press","SpringerProtocols","978-0-89603-984-1","",0,0,0,0,15,0,0,0,0,1,0,0,16
+"Immunology T Cell Protocols: Development and Activation","Humana Press","SpringerProtocols","978-0-89603-810-3","",2,0,0,2,34,0,1,1,6,1,0,0,47
+"Immunology T Cell Protocols: Second Edition","Humana Press","SpringerProtocols","978-1-58829-587-3","",4,6,3,6,13,0,2,2,1,2,1,0,40
+"Immunology Therapeutic Antibodies: Methods and Protocols","Humana Press","SpringerProtocols","","",0,0,0,0,0,0,0,0,0,1,0,0,1
+"Immunology Toll-Like Receptors: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-72-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Immunology Transplantation Immunology: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-544-6","",0,0,0,3,17,0,0,0,0,17,0,0,37
+"Immunology Vaccine Adjuvants: Preparation Methods and Research Protocols","Humana Press","SpringerProtocols","978-0-89603-735-9","",0,7,1,0,0,21,0,0,0,1,2,1,33
+"Immunology Vaccine Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-334-4","",1,0,0,0,3,22,1,0,0,0,0,0,27
+"Immunology Vaccine Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-140-0","",0,0,0,0,0,24,1,0,0,0,0,0,25
+"Infectious Diseases Antifungal Agents: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-277-3","",0,0,0,0,0,15,0,0,0,0,0,0,15
+"Infectious Diseases Antiviral Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-561-4","",0,0,0,1,0,30,2,0,0,0,0,0,33
+"Infectious Diseases Avian Influenza Virus","Humana Press","SpringerProtocols","978-1-58829-939-0","",0,3,0,1,16,0,0,0,0,0,1,1,22
+"Infectious Diseases Bacterial Toxins: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-604-8","",0,2,2,1,21,1,0,0,0,1,1,0,29
+"Infectious Diseases Candida albicans: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-760-0","",0,0,0,0,18,0,0,0,0,0,0,0,18
+"Infectious Diseases E. coli Plasmid Vectors: Methods and Applications","Humana Press","SpringerProtocols","978-1-58829-151-6","",4,32,5,35,38,3,0,4,4,7,9,3,144
+"Infectious Diseases E. coli: Shiga Toxin Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-939-1","",0,0,0,0,0,24,0,0,1,0,0,0,25
+"Infectious Diseases E. coliGene Expression Protocols","Humana Press","SpringerProtocols","978-1-58829-008-3","",0,4,0,5,22,2,0,1,1,1,2,1,39
+"Infectious Diseases HIV Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-369-6","",0,1,0,1,1,43,0,0,1,0,1,0,48
+"Infectious Diseases HIV Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-859-1","",0,5,0,0,35,1,2,2,1,31,0,0,77
+"Infectious Diseases Haemophilus influenzae Protocols","Humana Press","SpringerProtocols","978-0-89603-928-5","",0,0,0,0,1,19,0,0,0,0,0,0,20
+"Infectious Diseases Hepatitis B and D Protocols: Volume 1: Detection, Genotypes, and Characterization","Humana Press","SpringerProtocols","978-1-58829-105-9","",0,0,0,0,0,32,0,0,0,0,0,0,32
+"Infectious Diseases Hepatitis B and D Protocols: Volume 2: Immunology, Model Systems, and Clinical Studies","Humana Press","SpringerProtocols","978-1-58829-108-0","",0,0,0,0,0,36,0,0,0,0,0,0,36
+"Infectious Diseases Hepatitis C Protocols","Humana Press","SpringerProtocols","978-0-89603-521-8","",0,0,1,0,0,59,0,0,0,0,0,0,60
+"Infectious Diseases Hepatitis C: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-970-3","",0,0,0,1,32,0,1,1,1,1,0,0,37
+"Infectious Diseases Herpes Simplex Virus Protocols","Humana Press","SpringerProtocols","978-0-89603-347-4","",0,0,0,0,0,26,1,0,0,0,1,0,28
+"Infectious Diseases Host-Pathogen Interactions: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-886-7","",0,0,6,2,26,0,0,0,0,0,2,0,36
+"Infectious Diseases Human Papillomaviruses: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-373-2","",0,0,0,0,0,33,0,0,0,0,0,0,33
+"Infectious Diseases Human Retrovirus Protocols: Virology and Molecular Biology","Humana Press","SpringerProtocols","978-1-58829-495-1","",0,1,0,0,39,0,1,1,0,0,0,0,42
+"Infectious Diseases Malaria Methods and Protocols: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-823-3","",0,0,2,0,0,62,1,0,0,0,0,0,65
+"Infectious Diseases Meningococcal Disease: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-849-3","",0,1,0,1,1,40,0,0,0,1,0,0,44
+"Infectious Diseases Methicillin-Resistant Staphylococcus aureus (MRSA) Protocols","Humana Press","SpringerProtocols","978-1-58829-655-9","",0,0,0,0,20,0,0,0,0,0,0,0,20
+"Infectious Diseases Molecular Diagnosis of Infectious Diseases - 1","Humana Press","SpringerProtocols","978-0-89603-485-3","",3,3,2,1,0,36,7,0,1,0,1,2,56
+"Infectious Diseases Molecular Diagnosis of Infectious Diseases - 2","Humana Press","SpringerProtocols","978-1-58829-221-6","",0,1,2,3,1,26,2,1,0,0,2,1,39
+"Infectious Diseases Prion Diseases","Humana Press","SpringerProtocols","978-0-89603-342-9","",0,0,0,1,0,18,0,0,0,0,0,0,19
+"Infectious Diseases SARS- and Other Coronaviruses: Laboratory Protocols","Humana Press","SpringerProtocols","","",0,0,0,0,23,0,0,0,0,0,0,0,23
+"Infectious Diseases Salmonella: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-619-1","",0,0,1,0,19,0,0,1,0,0,0,0,21
+"Infectious Diseases Sexually Transmitted Diseases: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-535-5","",0,0,0,0,1,14,0,0,0,0,0,0,15
+"Microbiology Adenovirus Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-551-5","",0,0,0,0,1,25,0,0,0,0,1,0,27
+"Microbiology Adenovirus Methods and Protocols: Volume 1: Adenoviruses, Ad Vectors, Quantitation, and Animal Models","Humana Press","SpringerProtocols","978-1-58829-598-9","",0,0,0,0,0,18,0,1,0,0,0,0,19
+"Microbiology Adenovirus Methods and Protocols: Volume 2: Ad Proteins, RNA Lifecycle, Host Interactions, and Phylogenetics","Humana Press","SpringerProtocols","978-1-58829-901-7","",0,0,2,0,0,27,0,0,1,1,0,0,31
+"Microbiology Allergy Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-896-7","",0,1,2,4,3,30,1,0,0,1,0,0,42
+"Microbiology Antibacterial Peptide Protocols","Humana Press","SpringerProtocols","978-0-89603-408-2","",0,0,0,0,18,18,0,1,0,0,1,1,39
+"Microbiology Antibody Phage Display: Methods and Protocols - 1","Humana Press","SpringerProtocols","978-1-60327-301-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Microbiology Antibody Phage Display: Methods and Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-906-3","",2,2,0,3,39,1,1,0,1,1,1,3,54
+"Microbiology Bacterial Artificial Chromosomes: Volume 1 Library Construction, Physical Mapping, and Sequencing","Humana Press","SpringerProtocols","978-0-89603-988-9","",1,1,0,1,0,26,0,1,1,2,1,1,35
+"Microbiology Bacterial Artificial Chromosomes: Volume 2 Functional Studies","Humana Press","SpringerProtocols","978-0-89603-989-6","",1,5,0,0,0,21,0,0,2,1,1,0,31
+"Microbiology Bacterial Pathogenesis: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-740-2","",0,0,3,3,26,1,0,0,3,1,0,0,37
+"Microbiology Bacteriophages: Methods and Protocols, Volume 1: Isolation, Characterization, and Interactions","Humana Press","SpringerProtocols","978-1-58829-682-5","",1,0,1,3,28,0,0,0,2,0,0,1,36
+"Microbiology Bacteriophages: Methods and Protocols, Volume 2 Molecular and Applied Aspects","Humana Press","SpringerProtocols","978-1-60327-564-4","",2,3,1,1,22,10,0,0,0,0,0,0,39
+"Microbiology Baculovirus Expression Protocols","Humana Press","SpringerProtocols","978-0-89603-272-9","",1,0,30,0,23,0,0,0,0,0,8,1,63
+"Microbiology Baculovirus and Insect Cell Expression Protocols","Humana Press","SpringerProtocols","978-1-58829-537-8","",0,1,4,9,26,2,2,1,3,3,12,2,65
+"Microbiology Celiac Disease: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-650-5","",1,0,0,0,0,17,0,0,0,0,0,0,18
+"Microbiology Chromatin Protocols","Humana Press","SpringerProtocols","978-0-89603-665-9","",4,2,6,1,1,36,0,1,3,5,1,0,60
+"Microbiology Cytomegalovirus Protocols","Humana Press","SpringerProtocols","978-0-89603-749-6","",0,0,0,0,0,10,0,0,0,0,0,0,10
+"Microbiology Dendritic Cell Protocols","Humana Press","SpringerProtocols","978-0-89603-584-3","",6,0,0,4,8,42,4,0,0,1,0,0,65
+"Microbiology Diagnostic Bacteriology Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-297-2","",0,0,0,0,25,0,2,0,0,0,1,0,28
+"Microbiology Diagnostic Bacteriology Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-594-1","",0,1,3,1,1,16,0,1,0,0,0,0,23
+"Microbiology Diagnostic Virology Protocols","Humana Press","SpringerProtocols","978-0-89603-479-2","",0,0,0,0,0,26,0,0,0,0,0,0,26
+"Microbiology Electroporation Protocols for Microorganisms","Humana Press","SpringerProtocols","978-0-89603-310-8","",2,5,6,2,0,37,4,1,1,5,0,0,63
+"Microbiology Environmental Microbiology: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-116-5","",2,2,41,0,4,42,0,4,0,1,1,0,97
+"Microbiology Environmental Monitoring of Bacteria","Humana Press","SpringerProtocols","978-0-89603-566-9","",0,1,0,2,7,21,0,0,0,0,6,0,37
+"Microbiology Food Microbiology Protocols","Humana Press","SpringerProtocols","978-0-89603-867-7","",1,0,0,0,2,45,0,0,0,0,1,2,51
+"Microbiology Food-Borne Pathogens: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-465-4","",0,0,0,0,4,21,0,1,1,0,0,1,28
+"Microbiology Genomics, Proteomics, and Clinical Bacteriology: Methods and Reviews","Humana Press","SpringerProtocols","978-1-58829-218-6","",1,0,0,2,7,17,0,4,0,3,0,0,34
+"Microbiology Glycovirology Protocols","Humana Press","SpringerProtocols","978-1-58829-590-3","",0,0,0,0,14,0,0,0,0,0,0,0,14
+"Microbiology Helicobacter pylori Protocols","Humana Press","SpringerProtocols","978-0-89603-381-8","",0,0,0,0,0,24,0,0,2,0,9,0,35
+"Microbiology Interferon Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-418-0","",1,0,0,1,0,16,0,0,0,0,0,0,18
+"Microbiology Interleukin Protocols","Humana Press","SpringerProtocols","978-0-89603-738-0","",0,1,1,1,0,38,2,0,1,0,0,0,44
+"Microbiology Microbial Enzymes and Biotransformations","Humana Press","SpringerProtocols","978-1-58829-253-7","",0,2,18,10,0,18,0,1,1,0,1,0,51
+"Microbiology Microbial Processes and Products","Humana Press","SpringerProtocols","978-1-58829-548-4","",0,0,28,1,0,28,0,0,0,1,0,0,58
+"Microbiology Mitochondrial DNA: Methods and Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-972-8","",0,0,0,1,26,2,2,0,1,0,0,0,32
+"Microbiology Molecular Bacteriology: Protocols and Clinical Applications","Humana Press","SpringerProtocols","978-0-89603-498-3","",0,0,0,0,0,38,0,1,0,2,0,0,41
+"Microbiology Mycobacteria Protocols","Humana Press","SpringerProtocols","978-0-89603-471-6","",0,1,9,16,67,33,0,0,0,1,1,1,129
+"Microbiology Mycobacterium tuberculosis Protocols","Humana Press","SpringerProtocols","978-0-89603-776-2","",0,1,0,8,1,24,0,1,0,0,0,0,35
+"Microbiology Mycoplasma Protocols","Humana Press","SpringerProtocols","978-0-89603-525-6","",2,0,0,0,34,23,0,0,0,35,0,0,94
+"Microbiology PCR Detection of Microbial Pathogens","Humana Press","SpringerProtocols","978-1-58829-049-6","",0,0,0,0,0,22,0,1,0,26,0,1,50
+"Microbiology Pesticide Protocols","Humana Press","SpringerProtocols","978-1-58829-410-4","",0,0,0,0,0,35,0,0,0,0,0,0,35
+"Microbiology Practical Molecular Virology: Viral Vectors for Gene Expression","Humana Press","SpringerProtocols","978-0-89603-191-3","",0,1,1,0,28,1,1,0,0,0,0,0,32
+"Microbiology Protocols in Molecular Parasitology","Humana Press","SpringerProtocols","978-0-89603-239-2","",0,3,3,1,35,0,0,0,0,1,1,1,45
+"Microbiology Public Health Microbiology: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-117-2","",0,0,0,1,3,53,0,1,1,0,3,0,62
+"Microbiology Rotaviruses: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-736-6","",0,0,0,0,0,13,0,0,0,0,0,0,13
+"Microbiology SV4 Protocols","Humana Press","SpringerProtocols","978-0-89603-653-6","",0,0,0,0,23,1,0,0,0,0,0,0,24
+"Microbiology The ELISA Guidebook","Humana Press","SpringerProtocols","978-1-60327-253-7","",0,0,0,1,21,1,0,0,0,0,3,2,28
+"Microbiology The Elisa Guidebook","Humana Press","SpringerProtocols","978-0-89603-950-6","",0,9,7,0,11,0,0,0,0,0,0,0,27
+"Microbiology Therapeutic Applications of Ribozymes","Humana Press","SpringerProtocols","978-0-89603-477-8","",0,0,0,2,0,29,0,1,0,0,0,0,32
+"Microbiology Vaccinia Virus and Poxvirology: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-229-2","",0,0,0,0,0,23,0,1,0,0,0,0,24
+"Microbiology Yeast Protocol","Humana Press","SpringerProtocols","978-1-58829-437-1","",37,5,5,18,0,36,8,2,2,7,1,1,122
+"Molecular Medicine Adipose Tissue Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-916-1","",1,4,1,0,25,2,0,0,0,1,0,2,36
+"Molecular Medicine Aging Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-582-9","",0,1,1,0,0,26,0,0,0,0,0,0,28
+"Molecular Medicine Alzheimerrsquos Disease: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-737-3","",1,0,0,2,0,27,0,0,1,0,0,0,31
+"Molecular Medicine Angiotensin Protocols","Humana Press","SpringerProtocols","978-0-89603-763-2","",0,0,0,1,0,34,1,5,0,1,0,0,42
+"Molecular Medicine Anticoagulants, Antiplatelets, and Thrombolytics","Humana Press","SpringerProtocols","978-1-58829-083-0","",0,0,1,17,0,17,0,0,0,0,0,0,35
+"Molecular Medicine Arthritis Research: Methods and Protocols Volume 1","Humana Press","SpringerProtocols","978-1-58829-344-2","",0,3,0,2,1,28,1,2,0,0,0,1,38
+"Molecular Medicine Arthritis Research: Methods and Protocols Volume 2","Humana Press","SpringerProtocols","978-1-58829-918-5","",1,0,1,0,2,28,1,2,2,0,0,0,37
+"Molecular Medicine Asthma: Mechanisms and Protocols","Humana Press","SpringerProtocols","978-0-89603-626-0","",1,6,0,1,0,30,0,0,0,0,1,0,39
+"Molecular Medicine Atherosclerosis: Experimental Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-751-9","",0,1,0,2,1,22,0,0,0,1,0,0,27
+"Molecular Medicine Auditory and Vestibular Research: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-62-6","",1,2,0,4,27,4,2,4,3,0,3,0,50
+"Molecular Medicine Biological Aging: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-658-0","",1,0,2,1,31,2,1,1,1,0,2,0,42
+"Molecular Medicine Bone Research Protocols","Humana Press","SpringerProtocols","978-1-58829-044-1","",15,1,0,1,1,30,0,5,0,0,0,0,53
+"Molecular Medicine Cardiovascular Disease: Methods and Protocols Volume 1: Genetics","Humana Press","SpringerProtocols","978-1-58829-572-9","",0,0,0,16,0,15,0,0,0,0,0,0,31
+"Molecular Medicine Cardiovascular Disease: Methods and Protocols Volume 2: Molecular Medicine","Humana Press","SpringerProtocols","978-1-58829-892-8","",1,4,0,25,1,24,2,0,1,1,0,0,59
+"Molecular Medicine Cardiovascular Proteomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-535-4","",0,0,0,32,33,1,0,1,2,34,0,0,103
+"Molecular Medicine Cartilage and Osteoarthritis: Volume 1: Cellular and Molecular Tools","Humana Press","SpringerProtocols","978-1-58829-247-6","",0,0,0,0,0,22,0,0,1,0,0,0,23
+"Molecular Medicine Cartilage and Osteoarthritis: Volume 2: Structure and In Vivo Analysis","Humana Press","SpringerProtocols","978-1-58829-505-7","",0,0,1,0,0,17,1,0,0,0,0,0,19
+"Molecular Medicine Clinical Epidemiology: Practice and Methods","Humana Press","SpringerProtocols","","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Molecular Medicine Congenital Heart Disease: Molecular Diagnostics","Humana Press","SpringerProtocols","978-1-58829-375-6","",0,0,0,18,0,16,0,0,0,0,0,0,34
+"Molecular Medicine Cystic Fibrosis Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-897-4","",6,0,2,0,3,40,0,0,0,1,0,0,52
+"Molecular Medicine Developmental Hematopoiesis: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-296-4","",1,0,2,0,0,29,0,0,0,2,10,4,48
+"Molecular Medicine Diabetes Mellitus: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-148-6","",2,0,2,0,1,19,2,0,2,0,0,0,28
+"Molecular Medicine Epithelial Cell Culture Protocols","Humana Press","SpringerProtocols","978-0-89603-893-6","",0,0,2,0,34,5,3,1,4,35,1,0,85
+"Molecular Medicine Fibrosis Research: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-479-1","",2,6,0,0,1,26,2,0,1,0,0,1,39
+"Molecular Medicine Hematologic Malignancies: Methods and Techniques","Humana Press","SpringerProtocols","978-0-89603-543-0","",0,0,0,0,0,16,0,0,1,0,0,0,17
+"Molecular Medicine Hemoglobin Disorders: Molecular Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-962-9","",0,0,0,0,0,16,0,0,0,0,0,0,16
+"Molecular Medicine Hemostasis and Thrombosis Protocols","Humana Press","SpringerProtocols","978-0-89603-419-8","",0,0,0,4,4,35,0,0,0,0,0,0,43
+"Molecular Medicine Hepatocyte Transplantation: Methods and Protocols","Humana Press","SpringerProtocols","","",0,0,0,2,17,0,1,1,0,0,0,0,21
+"Molecular Medicine Human Airway Inflammation: Sampling Techniques and Analytical Protocols","Humana Press","SpringerProtocols","978-0-89603-923-0","",0,1,6,0,0,33,1,1,0,1,0,0,43
+"Molecular Medicine Hypertension: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-323-7","",0,0,0,1,0,32,2,0,0,0,0,0,35
+"Molecular Medicine Kidney Research: Experimental Protocols","Humana Press","SpringerProtocols","978-1-58829-945-1","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Molecular Medicine Molecular Cardiology: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-363-3","",4,0,0,22,0,24,0,0,0,0,1,0,51
+"Molecular Medicine Molecular Diagnosis of Genetic Diseases - 1","Humana Press","SpringerProtocols","978-0-89603-346-7","",1,0,0,0,0,20,0,0,0,0,0,0,21
+"Molecular Medicine Molecular Endocrinology: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-377-0","",0,0,0,0,0,0,0,0,0,0,0,1,1
+"Molecular Medicine Molecular Motors: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-665-8","",1,0,0,0,18,1,0,0,0,16,0,0,36
+"Molecular Medicine Molecular Pathology Protocols","Humana Press","SpringerProtocols","978-0-89603-681-9","",0,0,0,1,0,35,0,0,0,0,2,0,38
+"Molecular Medicine Molecular Pathology of the Prions","Humana Press","SpringerProtocols","978-0-89603-924-7","",0,0,0,0,0,14,0,0,0,0,0,0,14
+"Molecular Medicine Muscular Dystrophy: Methods Protocols","Humana Press","SpringerProtocols","978-0-89603-695-6","",0,0,0,0,0,25,0,0,0,0,0,0,25
+"Molecular Medicine Osteoporosis: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-828-7","",4,2,0,1,25,3,1,1,3,4,2,0,46
+"Molecular Medicine Pain Research: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-103-5","",1,8,1,2,0,21,1,2,0,0,0,0,36
+"Molecular Medicine Parkinsonrsquos Disease: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-761-8","",0,2,2,0,0,21,0,0,0,0,0,0,25
+"Molecular Medicine Pediatric Hematology: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-043-4","",0,0,0,0,0,15,0,0,0,0,0,0,15
+"Molecular Medicine Placenta and Trophoblast: Methods and Protocols Volume 1","Humana Press","SpringerProtocols","978-1-58829-404-3","",0,0,1,0,0,32,1,1,1,0,2,3,41
+"Molecular Medicine Placenta and Trophoblast: Methods and Protocols Volume 2","Humana Press","SpringerProtocols","978-1-58829-608-5","",0,1,1,0,0,30,5,0,0,0,0,0,37
+"Molecular Medicine Platelets and Megakaryocytes: Volume 1: Functional Assays","Humana Press","SpringerProtocols","978-1-58829-101-1","",0,0,0,3,28,0,0,0,0,0,0,0,31
+"Molecular Medicine Platelets and Megakaryocytes: Volume 2: Perspectives and Techniques","Humana Press","SpringerProtocols","978-1-58829-011-3","",0,0,0,1,30,0,1,1,0,0,1,0,34
+"Molecular Medicine Prenatal Diagnosis","Humana Press","SpringerProtocols","978-1-58829-803-4","",0,0,1,0,26,0,0,0,0,0,0,0,27
+"Molecular Medicine Renal Disease: Techniques and Protocols","Humana Press","SpringerProtocols","978-1-58829-134-9","",4,1,0,0,0,32,0,0,0,1,0,1,39
+"Molecular Medicine Retinoid Protocols","Humana Press","SpringerProtocols","978-0-89603-438-9","",0,0,2,2,24,0,0,1,0,0,0,0,29
+"Molecular Medicine Septic Shock Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-730-4","",1,2,1,0,0,18,0,0,0,3,0,0,25
+"Molecular Medicine Thyroid Hormone Receptors: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-995-7","",0,0,0,0,11,0,0,0,0,0,0,0,11
+"Molecular Medicine Type 2 Diabetes: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-15-2","",0,0,0,0,0,0,0,0,1,0,0,0,1
+"Molecular Medicine Vascular Biology Protocols","Humana Press","SpringerProtocols","978-1-58829-574-3","",3,1,0,1,1,24,0,0,0,8,0,0,38
+"Molecular Medicine Vascular Disease: Molecular Biology and Gene Therapy Protocols","Humana Press","SpringerProtocols","978-0-89603-731-1","",1,2,0,0,4,35,1,1,0,1,0,0,45
+"Molecular Medicine Vision Research Protocols","Humana Press","SpringerProtocols","978-0-89603-837-0","",1,1,1,0,2,15,1,0,0,0,0,0,21
+"Molecular Medicine Wound Healing: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-999-5","",0,5,0,0,3,34,7,0,0,1,1,0,51
+"Neuroscience Adrenergic Receptor Protocols","Humana Press","SpringerProtocols","978-0-89603-602-4","",0,0,5,0,0,36,1,0,0,0,0,1,43
+"Neuroscience Amines and Their Metabolites","Humana Press","SpringerProtocols","978-0-89603-076-3","",0,1,0,0,0,11,0,0,0,0,0,0,12
+"Neuroscience Amino Acids","Humana Press","SpringerProtocols","978-0-89603-077-0","",0,0,1,0,0,10,1,0,0,1,0,0,13
+"Neuroscience Analysis of Psychiatric Drugs","Humana Press","SpringerProtocols","978-0-89603-121-0","",0,0,0,0,0,12,0,0,1,0,1,0,14
+"Neuroscience Animal Models in Psychiatry, I","Humana Press","SpringerProtocols","978-0-89603-198-2","",0,0,0,1,0,10,0,1,1,0,0,0,13
+"Neuroscience Animal Models in Psychiatry, II","Humana Press","SpringerProtocols","978-0-89603-177-7","",1,0,0,0,0,11,0,0,3,0,0,0,15
+"Neuroscience Animal Models of Drug Addiction","Humana Press","SpringerProtocols","978-0-89603-217-0","",2,0,0,0,0,11,0,0,0,0,0,0,13
+"Neuroscience Animal Models of Epilepsy: Methods and Innovations","Humana Press","SpringerProtocols","978-1-60327-262-9","",0,0,0,0,0,0,0,1,0,0,0,0,1
+"Neuroscience Animal Models of Neurological Disease, I: Neurodegenerative Diseases","Humana Press","SpringerProtocols","978-0-89603-208-8","",0,0,0,0,0,9,0,0,0,0,0,0,9
+"Neuroscience Animal Models of Neurological Disease, II: Metabolic Encephalopathies and the Epilepsies","Humana Press","SpringerProtocols","978-0-89603-211-8","",0,0,0,0,0,11,0,0,0,0,0,0,11
+"Neuroscience Apoptosis Techniques and Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-451-8","",0,1,0,0,0,14,0,0,0,0,1,0,16
+"Neuroscience Apoptosis Techniques and Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-012-0","",0,0,0,0,0,11,0,0,0,0,0,0,11
+"Neuroscience Calcium Measurement Methods","Humana Press","SpringerProtocols","978-1-60761-475-3","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Neuroscience Calpain Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-632-1","",0,1,0,2,0,36,0,0,0,0,0,0,39
+"Neuroscience Carbohydrates and Energy Metabolism","Humana Press","SpringerProtocols","978-0-89603-143-2","",2,1,0,0,3,9,0,0,1,1,2,1,20
+"Neuroscience Cell Neurobiology Techniques","Humana Press","SpringerProtocols","978-0-89603-510-2","",1,1,0,0,1,11,0,0,0,0,2,0,16
+"Neuroscience Drug Delivery to the Central Nervous System","Humana Press","SpringerProtocols","978-1-60761-528-6","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Neuroscience Drugs as Tools in Neurotransmitter Research","Humana Press","SpringerProtocols","978-0-89603-122-7","",0,0,0,0,0,11,0,1,0,0,0,0,12
+"Neuroscience G Protein Methods and Protocols: Role of G Proteins in Psychiatric and Neurologica1 Disorders","Humana Press","SpringerProtocols","978-0-89603-490-7","",0,0,0,0,0,16,0,0,2,0,0,0,18
+"Neuroscience General Neurochemical Techniques","Humana Press","SpringerProtocols","978-0-89603-075-6","",4,1,0,0,1,15,1,0,2,1,2,0,27
+"Neuroscience Imaging and Correlative Physicochemical Techniques","Humana Press","SpringerProtocols","978-0-89603-116-6","",0,0,1,0,0,10,0,0,0,0,0,0,11
+"Neuroscience In Vitro Neurochemical Techniques","Humana Press","SpringerProtocols","978-0-89603-509-6","",1,2,3,0,1,12,0,0,1,0,0,0,20
+"Neuroscience In Vivo Neuromethods","Humana Press","SpringerProtocols","978-0-89603-511-9","",0,0,0,0,1,9,0,1,0,0,0,0,11
+"Neuroscience Intracellular Messengers","Humana Press","SpringerProtocols","978-0-89603-207-1","",1,0,0,0,2,14,0,0,2,0,0,0,19
+"Neuroscience Lipids and Related Compounds","Humana Press","SpringerProtocols","978-0-89603-124-1","",4,0,3,0,0,10,0,0,0,0,0,0,17
+"Neuroscience Molecular Neurobiological Techniques","Humana Press","SpringerProtocols","978-0-89603-140-1","",0,0,1,1,1,10,0,1,0,0,0,1,15
+"Neuroscience Mood and Anxiety Related Phenotypes in Mice: Characterization Using Behavioral Tests","Humana Press","SpringerProtocols","978-1-60761-302-2","",0,0,0,0,0,0,0,0,0,0,0,1,1
+"Neuroscience NMDA Receptor Protocols","Humana Press","SpringerProtocols","978-0-89603-713-7","",1,2,0,1,0,15,1,0,0,0,0,0,20
+"Neuroscience Neural Transplantation Methods","Humana Press","SpringerProtocols","978-0-89603-793-9","",1,0,0,0,0,23,0,0,0,0,0,0,24
+"Neuroscience Neurodegeneration Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-612-3","",0,10,1,0,0,25,0,0,0,0,0,1,37
+"Neuroscience Neurogenetics: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-990-2","",0,0,0,0,0,34,0,0,0,0,0,0,34
+"Neuroscience Neuroinformatics","Humana Press","SpringerProtocols","978-1-58829-720-4","",8,2,0,1,4,23,1,0,0,0,1,0,40
+"Neuroscience Neuropeptide Techniques","Humana Press","SpringerProtocols","978-1-58829-468-5","",0,0,0,1,4,11,3,0,0,0,0,0,19
+"Neuroscience Neuropeptide Y Protocols","Humana Press","SpringerProtocols","978-0-89603-662-8","",0,0,0,0,0,18,0,0,0,0,0,0,18
+"Neuroscience Neurophysiological Techniques: Applications to Neural Systems","Humana Press","SpringerProtocols","978-0-89603-185-2","",1,0,0,0,0,5,0,0,0,1,0,1,8
+"Neuroscience Neurophysiological Techniques: Basic Methods and Concepts","Humana Press","SpringerProtocols","978-0-89603-160-9","",0,0,1,0,1,6,0,0,0,0,1,0,9
+"Neuroscience Neuroprotection Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-666-5","",1,0,0,1,3,15,2,0,1,1,2,1,27
+"Neuroscience Neuropsychology","Humana Press","SpringerProtocols","978-0-89603-133-3","",0,0,0,0,0,11,0,0,0,0,0,0,11
+"Neuroscience Neurotransmitter Enzymes","Humana Press","SpringerProtocols","978-0-89603-079-4","",1,0,1,0,0,17,0,0,0,0,1,0,20
+"Neuroscience Neurotransmitter Methods","Humana Press","SpringerProtocols","978-0-89603-394-8","",1,0,0,0,1,20,0,0,2,0,5,0,29
+"Neuroscience Neurotrophic Factors","Humana Press","SpringerProtocols","978-0-89603-249-1","",0,0,0,0,0,12,0,0,0,0,0,0,12
+"Neuroscience Neurotrophin Protocols","Humana Press","SpringerProtocols","978-0-89603-699-4","",0,0,0,1,0,20,1,0,0,0,0,2,24
+"Neuroscience Patch-Clamp Analysis: Advanced Techniques - 1","Humana Press","SpringerProtocols","978-1-58829-705-1","",0,2,10,0,0,21,1,0,0,1,1,0,36
+"Neuroscience Patch-Clamp Analysis: Advanced Techniques - 2","Humana Press","SpringerProtocols","978-1-58829-013-7","",0,0,3,0,0,27,0,0,1,1,0,0,32
+"Neuroscience Patch-Clamp Applications and Protocols","Humana Press","SpringerProtocols","978-0-89603-311-5","",1,2,10,0,0,14,0,0,1,0,0,1,29
+"Neuroscience Patch-Clamp Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-698-6","",2,2,3,1,1,19,2,2,0,1,0,0,33
+"Neuroscience Peptides","Humana Press","SpringerProtocols","978-0-89603-105-0","",0,0,0,0,0,12,0,0,0,0,1,1,14
+"Neuroscience Practical Cell Culture Techniques","Humana Press","SpringerProtocols","978-0-89603-214-9","",0,2,0,0,7,11,0,0,1,1,0,0,22
+"Neuroscience Protocols in Molecular Neurobiology","Humana Press","SpringerProtocols","978-0-89603-199-9","",0,1,0,0,0,15,2,1,0,0,0,0,19
+"Neuroscience Psychiatric Genetics: Methods and Reviews","Humana Press","SpringerProtocols","978-1-58829-037-3","",0,0,0,0,0,11,0,0,0,0,0,0,11
+"Neuroscience Psychopharmacology","Humana Press","SpringerProtocols","978-0-89603-129-6","",0,0,0,0,0,14,0,0,0,0,0,0,14
+"Neuroscience Receptor Binding","Humana Press","SpringerProtocols","978-0-89603-078-7","",0,0,0,0,0,15,0,3,2,0,1,0,21
+"Neuroscience Receptor Binding Techniques - 1","Humana Press","SpringerProtocols","978-1-58829-420-3","",0,0,0,0,2,11,0,2,0,0,0,0,15
+"Neuroscience Receptor Signal Transduction Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-495-2","",0,0,0,0,0,20,0,0,0,0,5,0,25
+"Neuroscience Regulatory Protein Modification: Techniques and Protocols","Humana Press","SpringerProtocols","978-0-89603-415-0","",0,1,2,1,0,10,0,0,1,1,1,1,18
+"Neuroscience Stroke Genomics: Methods and Reviews","Humana Press","SpringerProtocols","978-1-58829-333-6","",0,0,0,0,0,15,0,0,0,0,0,0,15
+"Neuroscience The Blood-Brain Barrier: Biology and Research Protocols","Humana Press","SpringerProtocols","978-1-58829-073-1","",1,1,0,0,5,37,2,0,0,1,0,0,47
+"Neuroscience The Neuronal Microenvironment","Humana Press","SpringerProtocols","978-0-89603-115-9","",0,0,0,0,0,15,0,1,0,0,0,0,16
+"Neuroscience Transgenic Xenopus: Microinjection Methods and Developmental Neurobiology","Humana Press","SpringerProtocols","978-0-89603-457-0","",0,0,0,0,0,4,0,0,0,0,0,0,4
+"Neuroscience Transgenic and Mutant Tools to Model Brain Disorders","Humana Press","SpringerProtocols","978-1-60761-473-9","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Neuroscience Voltammetric Methods in Brain Systems","Humana Press","SpringerProtocols","978-0-89603-312-2","",0,0,0,0,0,9,0,0,0,0,0,0,9
+"Neuroscience fMRI Techniques and Protocols","Humana Press","SpringerProtocols","978-1-60327-918-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Pharmacology_Toxicology Apoptosis Methods in Pharmacology and Toxicology: Approaches to Measurement and Quantification","Humana Press","SpringerProtocols","978-0-89603-890-5","",0,0,0,0,1,8,0,0,0,0,0,0,9
+"Pharmacology_Toxicology Biomarker Methods in Drug Discovery and Development","Humana Press","SpringerProtocols","978-1-934115-23-7","",1,0,2,1,1,16,1,2,3,0,0,2,29
+"Pharmacology_Toxicology Cardiac Drug Development Guide","Humana Press","SpringerProtocols","978-1-58829-097-7","",0,0,1,0,0,20,0,0,0,0,0,0,21
+"Pharmacology_Toxicology Cytokines in Human Health: Immunotoxicology, Pathology, and Therapeutic Applications","Humana Press","SpringerProtocols","978-1-58829-467-8","",1,0,1,0,0,19,0,0,0,0,0,0,21
+"Pharmacology_Toxicology Drug Metabolism and Transport: Molecular Methods and Mechanisms","Humana Press","SpringerProtocols","978-1-58829-324-4","",0,1,0,0,0,14,0,0,0,0,0,0,15
+"Pharmacology_Toxicology Drug Targeting: Strategies, Principles, and Applications","Humana Press","SpringerProtocols","978-0-89603-531-7","",0,1,0,0,0,15,0,0,0,0,0,0,16
+"Pharmacology_Toxicology Drug-DNA Interaction Protocols - 1","Humana Press","SpringerProtocols","978-1-60327-417-3","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Pharmacology_Toxicology Drugs of Abuse: Neurological Reviews and Protocols","Humana Press","SpringerProtocols","978-1-58829-057-1","",0,4,0,0,1,35,0,0,0,0,1,0,41
+"Pharmacology_Toxicology Essential Concepts in Toxicogenomics","Humana Press","SpringerProtocols","978-1-58829-638-2","",0,0,0,0,13,1,0,0,0,0,1,0,15
+"Pharmacology_Toxicology G Protein-Coupled Receptors in Drug Discovery","Humana Press","SpringerProtocols","978-1-60327-316-9","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Pharmacology_Toxicology Immunotoxicity Testing: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-400-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Pharmacology_Toxicology In Vitro Neurotoxicology: Principles and Challenges","Humana Press","SpringerProtocols","978-1-58829-047-2","",0,1,0,0,0,12,0,0,0,0,0,0,13
+"Pharmacology_Toxicology In Vitro Toxicity Testing Protocols","Humana Press","SpringerProtocols","978-0-89603-282-8","",1,1,0,0,35,1,1,0,1,2,2,0,44
+"Pharmacology_Toxicology Macromolecular Drug Delivery: Methods and Protocols","Humana Press","SpringerProtocols","","",0,4,1,2,17,2,2,2,0,3,0,0,33
+"Pharmacology_Toxicology Marijuana and Cannabinoid Research: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-350-3","",0,0,0,0,0,17,0,0,2,0,0,0,19
+"Pharmacology_Toxicology Metal Carcinogenesis Testing: Principles and in Vitro Methods","Humana Press","SpringerProtocols","978-0-89603-017-6","",0,0,0,0,0,8,0,0,0,0,0,0,8
+"Pharmacology_Toxicology Molecular Toxicology Protocols","Humana Press","SpringerProtocols","978-1-58829-084-7","",1,1,0,0,37,0,0,0,0,1,1,1,42
+"Pharmacology_Toxicology Mouse Models for Drug Discovery: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-057-1","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Pharmacology_Toxicology Mycotoxin Protocols","Humana Press","SpringerProtocols","978-0-89603-623-9","",0,0,0,0,19,0,0,0,0,0,0,0,19
+"Pharmacology_Toxicology Opioid Research: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-059-5","",0,0,1,0,0,21,0,0,0,0,1,1,24
+"Pharmacology_Toxicology Optimization in Drug Discovery: In Vitro Methods","Humana Press","SpringerProtocols","978-1-58829-332-9","",0,0,0,1,0,28,1,3,1,0,1,0,35
+"Pharmacology_Toxicology Pharmacogenomics and Personalized Medicine","Humana Press","SpringerProtocols","978-1-934115-04-6","",0,0,0,0,1,21,0,0,0,0,0,0,22
+"Pharmacology_Toxicology Pharmacogenomics in Drug Discovery and Development: From Bench to Bedside","Humana Press","SpringerProtocols","978-1-58829-887-4","",0,0,0,1,17,0,0,0,0,0,0,0,18
+"Pharmacology_Toxicology Pharmacogenomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-440-1","",0,1,0,1,14,0,0,0,0,0,0,0,16
+"Pharmacology_Toxicology Protocols for In Vitro Cultures and Secondary Metabolite Analysis of Aromatic and Medicinal Plants","Humana Press","SpringerProtocols","978-1-60327-286-5","",0,0,0,0,0,0,0,0,1,0,0,0,1
+"Pharmacology_Toxicology Receptor Binding Techniques - 2","Humana Press","SpringerProtocols","978-0-89603-530-0","",0,0,0,0,14,0,0,0,0,0,0,0,14
+"Pharmacology_Toxicology Target Discovery and Validation Reviews and Protocols: Volume 1, Emerging Strategies for Targets and Biomarker Discovery","Humana Press","SpringerProtocols","978-1-58829-656-6","",0,1,0,0,17,1,0,0,0,2,1,0,22
+"Pharmacology_Toxicology Target Discovery and Validation Reviews and Protocols: Volume 2: Emerging Molecular Targets and Treatment Options","Humana Press","SpringerProtocols","978-1-58829-890-4","",0,0,0,0,17,0,1,0,0,1,1,0,20
+"Plant Sciences Agrobacterium Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-302-3","",2,3,1,3,0,1,0,1,1,2,0,0,14
+"Plant Sciences Agrobacterium Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-536-1","",3,1,2,42,2,3,2,0,1,0,2,1,59
+"Plant Sciences Agrobacterium Protocols Volume 2","Humana Press","SpringerProtocols","978-1-58829-843-0","",1,0,0,43,0,0,0,0,1,1,0,0,46
+"Plant Sciences Arabidopsis Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-391-7","",1,1,8,0,0,1,1,4,0,3,1,1,21
+"Plant Sciences Arabidopsis Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-395-4","",4,8,11,12,7,3,3,5,1,10,2,4,70
+"Plant Sciences Biopesticides: Use and Delivery","Humana Press","SpringerProtocols","978-0-89603-515-7","",0,0,0,0,0,31,0,0,0,0,0,0,31
+"Plant Sciences Heme, Chlorophyll, and Bilins: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-111-0","",3,0,0,0,1,15,8,0,0,0,0,0,27
+"Plant Sciences Photosynthesis Research Protocols","Humana Press","SpringerProtocols","978-1-58829-232-2","",1,3,2,3,1,0,2,3,2,1,2,3,23
+"Plant Sciences Plant Bioinformatics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-653-5","",2,0,0,27,0,1,1,4,0,0,1,2,38
+"Plant Sciences Plant Cell Culture Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-549-2","",1,0,39,0,0,0,1,0,2,0,2,1,46
+"Plant Sciences Plant Cell Culture Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-547-7","",1,4,3,1,3,0,0,0,0,3,0,0,15
+"Plant Sciences Plant Cell Electroporation and Electrofusion Protocols","Humana Press","SpringerProtocols","978-0-89603-328-3","",0,3,0,0,0,0,0,0,0,0,1,0,4
+"Plant Sciences Plant Cell and Tissue Culture","Humana Press","SpringerProtocols","978-0-89603-161-6","",1,0,0,4,1,1,0,0,1,0,0,0,8
+"Plant Sciences Plant Embryogenesis","Humana Press","SpringerProtocols","978-1-58829-931-4","",0,2,0,1,1,0,2,3,0,0,1,0,10
+"Plant Sciences Plant Functional Genomics","Humana Press","SpringerProtocols","978-1-58829-145-5","",0,3,0,0,0,0,1,4,1,1,0,0,10
+"Plant Sciences Plant Gene Transfer and Expression Protocols","Humana Press","SpringerProtocols","978-0-89603-321-4","",0,10,4,4,0,4,2,0,0,1,0,0,25
+"Plant Sciences Plant Genomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-997-0","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Plant Sciences Plant Hormone Protocols","Humana Press","SpringerProtocols","978-0-89603-577-5","",0,4,1,0,0,0,0,0,0,0,0,1,6
+"Plant Sciences Plant Hormones: Methods and Protocols","Humana Press","SpringerProtocols","","",0,1,1,3,0,0,0,0,0,0,0,0,5
+"Plant Sciences Plant MicroRNAs: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-004-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Plant Sciences Plant Pathology: Techniques and Protocols","Humana Press","SpringerProtocols","978-1-58829-799-0","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Plant Sciences Plant Proteomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-635-1","",2,12,8,37,4,4,8,5,3,2,0,1,86
+"Plant Sciences Plant Secondary Metabolites","Humana Press","SpringerProtocols","978-1-58829-993-2","",0,5,24,0,0,2,2,0,1,4,0,1,39
+"Plant Sciences Plant Signal Transduction: Methods and Protocols","Humana Press","SpringerProtocols","","",0,5,3,6,1,5,3,7,2,3,0,0,35
+"Plant Sciences Plant Systems Biology","Humana Press","SpringerProtocols","978-1-60327-562-0","",0,0,0,0,0,0,0,0,1,3,0,0,4
+"Plant Sciences Plant Virology Protocols: From Viral Sequence to Protein Function","Humana Press","SpringerProtocols","978-1-58829-827-0","",1,1,3,4,3,4,0,5,0,4,0,0,25
+"Plant Sciences Plant Virology Protocols: From Virus Isolation to Transgenic Resistance","Humana Press","SpringerProtocols","978-0-89603-385-6","",0,1,4,0,0,0,2,0,3,0,0,0,10
+"Plant Sciences Plant-Pathogen Interactions: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-448-7","",3,1,3,0,0,0,1,1,0,2,2,0,13
+"Plant Sciences Recombinant Proteins From Plants: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-978-9","",0,0,1,6,1,0,2,4,0,0,1,0,15
+"Plant Sciences Recombinant Proteins from Plants: Production and Isolation of Clinically Useful Compounds","Humana Press","SpringerProtocols","978-0-89603-390-0","",0,2,1,1,0,20,1,0,0,1,2,0,28
+"Plant Sciences Transgenic Maize: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-49-7","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Plant Sciences Transgenic Plants: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-263-6","",15,1,2,4,5,5,3,3,0,0,1,1,40
+"Protein Science 2D PAGE: Sample Preparation and Fractionation - 1","Humana Press","SpringerProtocols","978-1-60327-209-4","",2,2,7,1,25,0,2,1,0,31,1,2,74
+"Protein Science Adhesion Protein Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-533-0","",1,2,2,0,0,15,0,1,0,18,5,0,44
+"Protein Science Amyloid Proteins: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-337-4","",9,1,1,0,5,28,1,0,0,0,0,0,45
+"Protein Science Basic Protein and Peptide Protocols","Humana Press","SpringerProtocols","978-0-89603-268-2","",1,3,0,1,2,49,3,0,0,0,1,0,60
+"Protein Science Calcium-Binding Protein Protocols: Volume 1: Reviews and Case Studies","Humana Press","SpringerProtocols","978-0-89603-688-8","",0,1,0,0,0,22,1,3,0,0,1,1,29
+"Protein Science Calcium-Binding Protein Protocols: Volume 2: Methods and Techniques","Humana Press","SpringerProtocols","978-0-89603-689-5","",3,2,2,0,1,30,4,3,4,0,0,0,49
+"Protein Science Chaperonin Protocols","Humana Press","SpringerProtocols","978-0-89603-739-7","",0,0,1,0,1,22,1,1,0,1,0,0,27
+"Protein Science Characterization of Proteins","Humana Press","SpringerProtocols","978-0-89603-109-8","",0,0,0,0,2,20,0,2,1,0,0,0,25
+"Protein Science Combinatorial Peptide Library Protocols","Humana Press","SpringerProtocols","978-0-89603-392-4","",0,0,0,1,1,27,0,0,0,0,0,0,29
+"Protein Science Connexin Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-658-1","",1,0,0,0,0,27,0,0,0,1,0,0,29
+"Protein Science Downstream Processing of Proteins: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-564-5","",0,1,0,0,0,16,0,0,7,0,0,0,24
+"Protein Science Enzyme and Microbial Biosensors: Techniques and Protocols","Humana Press","SpringerProtocols","978-0-89603-410-5","",0,0,0,0,0,19,1,0,0,0,0,0,20
+"Protein Science Enzymes in Nonaqueous Solvents: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-929-2","",0,0,0,0,1,50,0,1,1,0,2,0,55
+"Protein Science Exocytosis and Endocytosis","Humana Press","SpringerProtocols","978-1-58829-865-2","",1,13,1,2,8,31,1,1,32,1,4,3,98
+"Protein Science Flavoprotein Protocols","Humana Press","SpringerProtocols","978-0-89603-734-2","",0,1,3,0,1,17,1,0,0,0,0,0,23
+"Protein Science Flow Cytometry Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-234-6","",0,3,0,8,0,25,0,2,1,0,1,2,42
+"Protein Science G Protein Signaling: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-137-0","",0,0,0,0,0,22,0,0,0,0,1,3,26
+"Protein Science Glycomics: Methods and Protocols","Humana Press","SpringerProtocols","","",0,0,0,0,0,0,5,1,2,0,0,0,8
+"Protein Science Glycoprotein Analysis in Biomedicine","Humana Press","SpringerProtocols","978-0-89603-226-2","",0,2,0,0,0,45,0,0,0,0,0,0,47
+"Protein Science Glycoprotein Methods and Protocols: The Mucins","Humana Press","SpringerProtocols","978-0-89603-720-5","",0,15,0,0,2,42,0,0,0,0,0,0,59
+"Protein Science Green Fluorescent Protein: Applications and Protocols","Humana Press","SpringerProtocols","978-0-89603-905-6","",2,0,1,1,2,29,2,0,0,0,0,0,37
+"Protein Science HPLC of Peptides and Proteins: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-977-3","",0,4,1,28,0,27,1,3,0,2,9,2,77
+"Protein Science High Throughput Protein Expression and Purification","Humana Press","SpringerProtocols","978-1-58829-879-9","",20,6,30,8,3,25,2,2,4,6,1,3,110
+"Protein Science Integrin Protocols","Humana Press","SpringerProtocols","978-0-89603-569-0","",0,2,1,1,1,18,0,2,0,18,0,0,43
+"Protein Science Ion Channel Localization: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-833-2","",0,1,0,0,0,26,0,0,0,0,1,1,29
+"Protein Science Kinesin Protocols","Humana Press","SpringerProtocols","978-0-89603-766-3","",0,0,1,4,0,20,1,0,0,1,0,0,27
+"Protein Science Lipoprotein Protocols","Humana Press","SpringerProtocols","978-0-89603-420-4","",4,0,2,7,1,17,3,0,0,0,4,4,42
+"Protein Science Macromolecular Crystallography Protocols: Volume 1, Preparation and Crystallization of Macromolecules","Humana Press","SpringerProtocols","978-1-58829-292-6","",14,0,2,20,3,13,6,0,0,0,0,0,58
+"Protein Science Macromolecular Crystallography Protocols: Volume 2: Structure Determination","Humana Press","SpringerProtocols","978-1-58829-902-4","",23,0,2,0,4,17,28,1,2,1,6,9,93
+"Protein Science Mass Spectrometry of Proteins and Peptides: Mass Spectrometry of Proteins and Peptides","Humana Press","SpringerProtocols","978-0-89603-609-3","",0,2,2,1,2,29,2,2,0,0,1,0,41
+"Protein Science Mass Spectrometry of Proteins and Peptides: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-48-0","",0,0,26,10,0,35,1,0,2,8,8,2,92
+"Protein Science Membrane Protein Protocols: Expression, Purification, and Characterization","Humana Press","SpringerProtocols","978-1-58829-124-0","",1,0,1,0,1,23,0,3,0,2,0,0,31
+"Protein Science Methods of Protein Microcharacterization: A Practical Handbook","Humana Press","SpringerProtocols","978-0-89603-090-9","",0,1,3,0,0,16,0,0,0,0,1,0,21
+"Protein Science New Protein Techniques","Humana Press","SpringerProtocols","978-0-89603-126-5","",0,0,0,0,1,40,0,0,1,38,1,0,81
+"Protein Science Peptide Analysis Protocols","Humana Press","SpringerProtocols","978-0-89603-274-3","",0,0,0,0,0,17,0,0,0,0,0,0,17
+"Protein Science Peptide Characterization and Application Protocols","Humana Press","SpringerProtocols","978-1-58829-550-7","",1,1,0,0,2,17,0,1,0,1,3,0,26
+"Protein Science Peptide Microarrays: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-393-0","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Protein Science Peptide Nucleic Asids: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-976-6","",0,0,0,0,0,21,0,1,1,0,0,0,23
+"Protein Science Peptide Research Protocols: Endothelin","Humana Press","SpringerProtocols","978-0-89603-993-3","",0,0,0,0,0,16,0,0,0,0,0,0,16
+"Protein Science Peptide Synthesis Protocols","Humana Press","SpringerProtocols","978-0-89603-273-6","",11,4,4,13,31,13,1,1,27,0,2,0,107
+"Protein Science Peptide-Based Drug Design","Humana Press","SpringerProtocols","978-1-58829-990-1","",1,2,4,0,0,16,0,4,1,1,2,2,33
+"Protein Science Phospho-Proteomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60327-833-1","",0,0,42,9,2,23,10,3,14,24,2,6,135
+"Protein Science Post-translational Modifi cations of Proteins: Tools for Functional Proteomics","Humana Press","SpringerProtocols","978-1-58829-719-8","",1,5,3,0,34,0,2,0,0,5,2,1,53
+"Protein Science Posttranslational Modifications of Proteins: Tools for Functional Proteomics","Humana Press","SpringerProtocols","978-0-89603-678-9","",0,1,0,0,1,21,0,0,0,0,0,0,23
+"Protein Science Practical Protein Chromatography","Humana Press","SpringerProtocols","978-0-89603-213-2","",0,0,0,0,0,20,2,3,2,1,0,1,29
+"Protein Science Prion Protein Protocols","Humana Press","SpringerProtocols","978-1-58829-897-3","",0,0,0,0,1,18,0,0,0,0,1,0,20
+"Protein Science Protein Arrays: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-255-1","",0,0,0,0,1,23,0,0,1,1,0,1,27
+"Protein Science Protein Biotechnology: Isolation, Characterization, and Stabilization","Humana Press","SpringerProtocols","978-0-89603-230-9","",0,3,2,0,1,16,5,1,1,0,1,0,30
+"Protein Science Protein Blotting and Detection: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-73-2","",0,0,0,0,0,0,0,0,0,0,1,0,1
+"Protein Science Protein Design: Methods and Applications","Humana Press","SpringerProtocols","978-1-58829-585-9","",0,0,0,0,2,14,0,0,1,13,0,0,30
+"Protein Science Protein Engineering Protocols","Humana Press","SpringerProtocols","978-1-58829-072-4","",0,0,1,0,2,16,0,0,1,16,0,0,36
+"Protein Science Protein Folding Protocols","Humana Press","SpringerProtocols","978-1-58829-622-1","",1,1,0,4,0,17,0,1,0,17,1,1,43
+"Protein Science Protein Kinase C Protocols","Humana Press","SpringerProtocols","978-1-58829-068-7","",1,0,3,5,4,44,1,2,3,1,2,1,67
+"Protein Science Protein Kinase Protocols","Humana Press","SpringerProtocols","978-0-89603-700-7","",0,1,0,0,3,23,4,1,1,1,0,1,35
+"Protein Science Protein Lipidation Protocols","Humana Press","SpringerProtocols","978-0-89603-534-8","",0,0,0,0,0,17,0,0,0,0,1,0,18
+"Protein Science Protein Misfolding and Disease: Principles and Protocols","Humana Press","SpringerProtocols","978-1-58829-065-6","",0,2,1,0,4,25,3,1,1,1,2,1,41
+"Protein Science Protein NMR Techniques - 1","Humana Press","SpringerProtocols","978-0-89603-309-2","",0,1,2,3,2,16,0,0,0,10,3,6,43
+"Protein Science Protein NMR Techniques - 2","Humana Press","SpringerProtocols","978-1-58829-246-9","",1,0,1,9,1,21,1,2,5,0,3,3,47
+"Protein Science Protein Nanotechnology: Protocols, Instrumentation, and Applications","Humana Press","SpringerProtocols","978-1-58829-310-7","",2,0,0,3,4,20,0,0,0,0,1,0,30
+"Protein Science Protein Networks and Pathway Analysis","Humana Press","SpringerProtocols","978-1-60761-174-5","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Protein Science Protein Phosphatase Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-468-6","",0,0,0,0,1,25,0,0,0,0,0,10,36
+"Protein Science Protein Phosphatase Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-711-2","",0,1,0,0,0,28,1,0,0,0,6,4,40
+"Protein Science Protein Purification Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-336-8","",0,3,5,1,2,37,1,1,0,2,1,0,53
+"Protein Science Protein Purification Protocols - 2","Humana Press","SpringerProtocols","978-1-58829-067-0","",1,8,5,46,2,46,48,1,13,7,2,4,183
+"Protein Science Protein Sequencing Protocols - 1","Humana Press","SpringerProtocols","978-0-89603-353-5","",1,3,5,1,0,31,0,0,0,3,1,0,45
+"Protein Science Protein Sequencing Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-975-9","",1,3,2,7,0,34,3,2,0,2,2,0,56
+"Protein Science Protein Stability and Folding: Theory and Practice","Humana Press","SpringerProtocols","978-0-89603-301-6","",8,0,1,0,8,18,1,5,3,1,0,0,45
+"Protein Science Protein Structure Prediction","Humana Press","SpringerProtocols","978-1-58829-752-5","",0,0,0,1,13,0,0,1,0,0,0,0,15
+"Protein Science Protein Structure Prediction: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-637-6","",1,0,0,0,1,19,0,6,0,0,0,0,27
+"Protein Science Protein Structure, Stability, and Folding","Humana Press","SpringerProtocols","978-0-89603-682-6","",0,6,0,1,0,10,10,6,0,5,1,0,39
+"Protein Science Protein Structure, Stability, and Interactions","Humana Press","SpringerProtocols","978-1-58829-954-3","",0,0,0,0,0,0,15,5,9,7,9,0,45
+"Protein Science Protein Synthesis: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-397-9","",0,2,2,3,1,29,0,0,0,3,3,3,46
+"Protein Science Protein Targeting Protocols - 1","Humana Press","SpringerProtocols","978-1-58829-702-0","",3,1,0,0,0,61,6,1,2,31,2,1,108
+"Protein Science Protein Targeting Protocols - 2","Humana Press","SpringerProtocols","978-0-89603-487-7","",5,3,0,0,1,23,4,3,2,1,1,1,44
+"Protein Science Protein and Peptide Analysis by Mass Spectrometry","Humana Press","SpringerProtocols","978-0-89603-345-0","",0,0,0,0,2,23,0,1,0,0,0,1,27
+"Protein Science Protein-Ligand Interactions: Methods and Applications","Humana Press","SpringerProtocols","978-1-58829-372-5","",3,3,1,2,6,25,1,9,3,2,0,0,55
+"Protein Science Protein-Protein Interactions: Methods and Applications","Humana Press","SpringerProtocols","978-1-58829-120-2","",10,4,3,7,10,38,7,10,5,4,2,15,115
+"Protein Science Proteins","Humana Press","SpringerProtocols","978-0-89603-062-6","",0,2,4,4,54,0,19,5,3,47,3,16,157
+"Protein Science Proteoglycan Protocols","Humana Press","SpringerProtocols","978-0-89603-759-5","",0,1,1,0,0,53,0,0,0,0,0,0,55
+"Protein Science Proteomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-60761-156-1","",0,0,0,0,0,0,0,0,0,0,1,1,2
+"Protein Science Recombinant Protein Protocols: Detection and Isolation","Humana Press","SpringerProtocols","978-0-89603-481-5","",0,0,1,0,0,25,1,1,3,2,0,1,34
+"Protein Science The Protein Protocols Handbook - 1","Humana Press","SpringerProtocols","978-0-89603-338-2","",4,5,8,4,6,158,4,1,2,2,3,3,200
+"Protein Science The Protein Protocols Handbook - 2","Humana Press","SpringerProtocols","978-0-89603-940-7","",1,7,5,2,4,167,5,1,1,5,4,2,204
+"Protein Science The Proteomics Protocols Handbook","Humana Press","SpringerProtocols","978-1-58829-343-5","",3,3,11,4,2,74,0,2,3,3,2,1,108
+"Protein Science Therapeutic Proteins: Methods and Protocols","Humana Press","SpringerProtocols","978-1-58829-390-9","",0,1,2,2,2,35,3,0,1,0,0,0,46
+"Protein Science Two-Hybrid Systems: Methods and Protocols","Humana Press","SpringerProtocols","978-0-89603-832-5","",3,0,2,1,0,20,0,0,0,1,0,2,29
+"Protein Science Viral Applications of Green Fluorescent Protein: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-87-9","",0,0,0,0,0,0,0,0,0,0,0,0,0
+"Protein Science Wnt Signaling: Pathway Methods and Mammalian Models","Humana Press","SpringerProtocols","978-1-58829-912-3","",0,0,25,1,3,29,6,0,0,24,0,1,89
+"Protein Science Yeast Functional Genomics and Proteomics: Methods and Protocols","Humana Press","SpringerProtocols","978-1-934115-71-8","",0,0,0,0,0,0,0,0,0,0,0,0,0

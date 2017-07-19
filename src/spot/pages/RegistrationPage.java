@@ -9,19 +9,22 @@ import spot.pages.registered.Homepage;
 
 public class RegistrationPage extends BasePage {
 
-	@FindBy(xpath =".//*[@id='userForm']/div[1]/div[2]/div/input")
+	@FindBy(css = ".imj_metadataSet:nth-of-type(1)>input")
 	private WebElement emailTextField;
 	
-	@FindBy(xpath =".//*[@id='userForm:userPersonRegister:inputFamilyNameText1']")
+	@FindBy(id = "userForm:userPersonRegister:inputFamilyNameText1")
 	private WebElement familyNameTextField;
 	
-	@FindBy(xpath =".//*[@id='userForm:userPersonRegister:inputGiveNameText1']")
+	@FindBy(id = "userForm:userPersonRegister:inputGiveNameText")
 	private WebElement givenNameTextField;
 	
-	@FindBy(xpath =".//*[@id='userForm:userPersonRegister:j_idt145:0:inputOrgaName']")
+	@FindBy(xpath = "//input[contains(@id, 'inputOrgaName')]")
 	private WebElement organizationTextField;
 	
-	@FindBy(xpath =".//*[@id='userForm:j_idt179']")
+	@FindBy(id = "userForm:accept_terms")
+	private WebElement termsCheckbox;
+	
+	@FindBy(css =".imj_submitButton")
 	private WebElement submitRegistrationButton;
 	
 	@FindBy(xpath =".//*[@id='j_idt198:inputPasswd']")
@@ -41,6 +44,7 @@ public class RegistrationPage extends BasePage {
 		enterFamilyName(familyName);
 		enterGivenName(givenName);
 		enterOrganization(organization);
+		acceptTerms();
 		
 		submitRegistration();
 	}
@@ -59,6 +63,11 @@ public class RegistrationPage extends BasePage {
 	
 	private void enterOrganization(String organization) {
 		organizationTextField.sendKeys(organization);
+	}
+	
+	private void acceptTerms() {
+		if (!termsCheckbox.isSelected())
+			termsCheckbox.click();
 	}
 	
 	private void submitRegistration() {

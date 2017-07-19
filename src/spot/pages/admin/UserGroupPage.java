@@ -13,13 +13,13 @@ import spot.pages.BasePage;
 
 public class UserGroupPage extends BasePage {
 
-	@FindBy(css=".imj_admindataSetEdit .imj_submitButton")
+	@FindBy(css=".fa-plus")
 	private WebElement addUserButton;
 	
-	@FindBy(css=".imj_userGrantList")
-	private List<WebElement> alreadyAddedUsers;
+	@FindBy(css="#j_idt130")
+	private WebElement alreadyAddedUsers;
 	
-	@FindBy(id="userForm:lnkEditUserdata")
+	@FindBy(id="groupForm:btnEditUserdata")
 	private WebElement editButton;
 	
 	public UserGroupPage(WebDriver driver) {
@@ -40,28 +40,20 @@ public class UserGroupPage extends BasePage {
 	}
 
 	public boolean isUserPresent(String userEmail) {
-		boolean isUserPresent = false;
+		String allUsers = alreadyAddedUsers.getText();
 		
-		for (WebElement alreadyAddedUser : alreadyAddedUsers) {
-			String userNamePlusEmail = alreadyAddedUser.getText();
-			if (userNamePlusEmail.contains(userEmail)) {
-				isUserPresent = true;
-				break;
-			}
-		}
-		
-		return isUserPresent;
+		return allUsers.contains(userEmail);
 	}
 	
-	public UserGroupPage deleteUser(String userEmail) {
-		for (WebElement user : alreadyAddedUsers) {
-			if (user.getText().contains(userEmail)) {
-				user.findElement(By.className("imj_cancelButton")).click();
-				return PageFactory.initElements(driver, UserGroupPage.class);
-			}
-		}
+	/**
+	 * TODO: make delete method by user email
+	 */
+	public UserGroupPage deleteUser(int index) {
+		List<WebElement> userDeleteButtons = driver.findElements(By.cssSelector(".fa-times a"));
+		userDeleteButtons.get(index).click();
 		
-		throw new NoSuchElementException("User with this email was not found");
+		PageFactory.initElements(driver, this);
+		return this;
 	}
 	
 	public UserGroupPage changeTitle(String newTitle) {
@@ -83,7 +75,8 @@ public class UserGroupPage extends BasePage {
 	}
 	
 	public String getUserGroupTitle() {
-		return driver.findElement(By.tagName("h2")).getText();
+		String headline = driver.findElement(By.tagName("h1")).getText();
+		return headline.substring("User Group ".length());
 	}
 
 	

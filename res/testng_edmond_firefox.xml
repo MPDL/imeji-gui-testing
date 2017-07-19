@@ -13,8 +13,76 @@
 			<!-- End of setup test cases. -->
 			
 <!-- 			<class name="test.setup.BasicOneAuthorSetup"></class> -->
+
+			<!-- Basic Edmond -->
 			
-			<class name="test.scripts.registered.CreatePrivateCollectionTest"></class>
+<!-- 			<class name="test.scripts.basicEdmond.OneAuthorLogo"></class> -->
+
+<!-- 			<class name="test.scripts.basicEdmond.OneAuthorTwoOUs"></class> -->
+			
+<!-- 			<class name="test.scripts.basicEdmond.DefaultDelete"></class> -->
+			
+<!-- 			<class name="test.scripts.basicEdmond.ThreeAuthors"></class> -->
+
+<!-- 			<class name="test.scripts.basicEdmond.ThreeAuthorsDeleteAuthor"></class> -->
+				
+<!-- 			<class name="test.scripts.basicEdmond.ThreeAuthorsExternalReference"></class> -->
+
+<!-- 			<class name="test.scripts.basicEdmond.OneAuthorNotification"></class> -->
+
+<!-- 			<class name="test.scripts.basicEdmond.ThreeAuthorsNotification"></class> -->
+			
+			<!-- End of Basic Edmond -->
+			
+			<!-- Basic Outbox -->
+			
+<!-- 			<class name="test.scripts.basicOutbox.AdminSharesWithUser"></class> -->
+			
+<!-- 			<class name="test.scripts.basicOutbox.AdminSharesWithUserGroup"></class> -->
+			
+			<!-- End of Basic Outbox -->
+			
+			<!-- Cesar -->
+			
+<!-- 			<class name="test.scripts.cesar.CesarDefault"></class> -->
+			
+<!-- 			<class name="test.scripts.cesar.ThreeAuthorsNotification"></class> -->
+			
+			<!-- End of Cesar -->
+			
+			<!-- Gluons -->
+			
+<!-- 			<class name="test.scripts.gluons.Default"></class> -->
+			
+<!-- 			<class name="test.scripts.gluons.DefaultExternalInvitation"></class> -->
+			
+<!-- 			<class name="test.scripts.gluons.DefaultNotification"></class> -->
+			
+			<!-- End of Gluons -->
+
+			<!-- Basic Home -->
+
+<!--  			<class name="test.scripts.home.AdvancedSearchPageTest"></class> -->
+
+<!-- 			<class name="test.scripts.home.ContactSupportFromHelpPageTest"></class> -->
+
+<!-- 			<class name="test.scripts.home.DisclaimerTest"></class> -->
+
+<!-- 			<class name="test.scripts.home.DocumentationTest"></class> -->
+
+<!-- 			<class name="test.scripts.home.HelpTest"></class> -->
+
+<!-- 			<class name="test.scripts.home.ImejiFromHelpTest"></class> -->
+
+<!-- 			<class name="test.scripts.home.ImejiFromStartTest"></class> -->
+
+<!-- 			<class name="test.scripts.home.LimitedNRUAccessTest"></class> -->
+
+<!-- 			<class name="test.scripts.home.TermsOfUseTest"></class> -->
+
+<!-- 			<class name="test.scripts.home.UploadPageTest"></class> -->
+
+			<!--  End of Basic Home -->
 			
 		</classes>
 	</test>

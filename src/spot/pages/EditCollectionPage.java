@@ -1,5 +1,8 @@
 package spot.pages;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +15,15 @@ public class EditCollectionPage extends BasePage {
 	@FindBy(id = "editContainer:mediaContainerForm:inputTitleText")
 	private WebElement titleBox;
 	
+	@FindBy(id = "editContainer:mediaContainerForm:inputDescription")
+	private WebElement descriptionBox;
+	
+	@FindBy(id = "editContainer:mediaContainerForm:persons:0:collectionAuthor:inputFamilyNameText")
+	private WebElement familyNameBox;
+	
+	@FindBy(id = "editContainer:mediaContainerForm:persons:0:collectionAuthor:inputGiveNameText")
+	private WebElement givenNameBox;
+	
 	@FindBy(xpath = "//a[contains(@id, 'editContainer:mediaContainerForm:persons:0') and contains(@class, 'fa-plus-square-o')]")
 	private WebElement addAuthorButton;
 	
@@ -23,6 +35,9 @@ public class EditCollectionPage extends BasePage {
 	
 	@FindBy(id = "editContainer:mediaContainerForm:additionalInfos")
 	private WebElement additionalInfo;
+	
+	@FindBy(xpath = "//a[contains(@id, 'editContainer:mediaContainerForm:persons:1') and contains(@class, 'fa-minus-square-o')]")
+	private WebElement removeAuthor;
 	
 	@FindBy(css = "#editContainer\\:mediaContainerForm\\:additionalInfos .fa-minus-square-o")
 	private WebElement removeInfo;
@@ -39,7 +54,10 @@ public class EditCollectionPage extends BasePage {
 	@FindBy(id = "container")
 	private WebElement logoContainer;
 	
-	@FindBy(css=".imj_submitButton")
+	@FindBy(id = "editContainer:mediaContainerForm:notificationCheckBox")
+	private WebElement notificationBox;
+	
+	@FindBy(id="editContainer:mediaContainerForm:btn_saveCollection")
 	private WebElement saveButton;
 	
 	public EditCollectionPage(WebDriver driver) {
@@ -51,6 +69,18 @@ public class EditCollectionPage extends BasePage {
 	public void editTitle(String newTitle) {
 		titleBox.clear();
 		titleBox.sendKeys(newTitle);
+	}
+	
+	public void editDescription(String newDescription) {
+		descriptionBox.clear();
+		descriptionBox.sendKeys(newDescription);
+	}
+	
+	public void editAuthor(String newFamilyName, String newGivenName) {
+		familyNameBox.clear();
+		familyNameBox.sendKeys(newFamilyName);
+		givenNameBox.clear();
+		givenNameBox.sendKeys(newGivenName);
 	}
 	
 	public void addAuthor(String familyName, String organisation) {
@@ -67,6 +97,12 @@ public class EditCollectionPage extends BasePage {
 		infoUrlBox.sendKeys(link);
 	}
 	
+	public void removeAuthor() {
+		removeAuthor.click();
+		wait.until(ExpectedConditions.elementToBeClickable(saveButton));
+		submitChanges();
+	}
+	
 	public void removeLabel() {
 		removeInfo.click();
 		wait.until(ExpectedConditions.elementToBeClickable(saveButton));
@@ -81,5 +117,20 @@ public class EditCollectionPage extends BasePage {
 		saveButton.click();
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	public List<String> getOrganisations() {
+		List<String> ous = new LinkedList<>();
+		List<WebElement> ouBoxes = driver.findElements(By.xpath("//input[contains(@id, 'inputOrgaName1')]"));
+		for (WebElement box : ouBoxes) {
+			ous.add(box.getAttribute("value"));
+		}
+		
+		return ous;
+	}
+	
+	public void enableNotifications() {
+		if (!notificationBox.isSelected())
+			notificationBox.click();
 	}
 }

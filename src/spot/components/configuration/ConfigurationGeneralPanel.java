@@ -12,7 +12,7 @@ import spot.pages.ConfigurationPage;
 public class ConfigurationGeneralPanel extends BasePage {
 	
 	//@FindBy(xpath = "/html/body/div[1]/div[5]/div[2]/div/div/form/div[1]/div[1]")
-	@FindBy(css = "#configForm .imj_adminPanel h2")
+	@FindBy(css = ".imj_adminPanel:nth-of-type(1)")
 	private WebElement generalPanelReveal;
 	
 	@FindBy(css = "#configForm table td input")

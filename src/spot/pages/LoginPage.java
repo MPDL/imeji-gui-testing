@@ -11,13 +11,13 @@ import spot.pages.registered.Homepage;
 
 public class LoginPage extends BasePage {
 
-	@FindBy(css = ".imj_loginFormDisplay input[type='text']")
+	@FindBy(xpath = "//input[contains(@id, 'inputEmail')]")
 	private WebElement userNameTextField;
 	
-	@FindBy(css = ".imj_loginFormDisplay input[type='password']")
+	@FindBy(xpath = "//input[contains(@id, 'inputPassword')]")
 	private WebElement passwordTextField;
 		
-	@FindBy(name = "Header:loginForm:lnkLogin2")
+	@FindBy(xpath = "//input[contains(@id, 'lnkLogin')]")
 	private WebElement submitLoginInfoButton;
 	
 	public LoginPage(WebDriver driver) {

@@ -4,15 +4,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
 
 public class EditUserGroupPage extends BasePage {
 
-	@FindBy(css = "#userForm .imj_admindataEdit")
+	@FindBy(css = ".imj_metadataSetEdit>input")
 	private WebElement titleBox;
 	
-	@FindBy(css = "#userForm .imj_userGlobalInformation .imj_submitButton")
+	@FindBy(css = ".imj_submitButton")
 	private WebElement saveButton;
 	
 	public EditUserGroupPage(WebDriver driver) {
@@ -22,6 +23,7 @@ public class EditUserGroupPage extends BasePage {
 	}
 	
 	public UserGroupPage editTitle(String newTitle) {
+		wait.until(ExpectedConditions.visibilityOf(titleBox));
 		titleBox.clear();
 		titleBox.sendKeys(newTitle);
 		saveButton.click();
