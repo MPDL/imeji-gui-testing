@@ -18,10 +18,10 @@ import spot.pages.SingleUploadPage;
  */
 public class Homepage extends BasePage {
 
-	@FindBy(xpath = ".//*[@id='Header:txtAccountUserName']")
+	@FindBy(id = "Header:txtAccountUserName")
 	private WebElement goToUserProfileButton;
 
-	@FindBy(xpath = ".//*[@id='Header:loginForm:lnkLogout']")
+	@FindBy(id = "Header:lnkLogout")
 	private WebElement logoutButton;
 
 	public Homepage(WebDriver driver) {

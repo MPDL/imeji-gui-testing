@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -50,6 +52,9 @@ public class EditCollectionPage extends BasePage {
 	
 	@FindBy(id = "editContainer:mediaContainerForm:list:0:inputInfoUrl")
 	private WebElement infoUrlBox;
+	
+	@FindBy(id = "pickfiles")
+	private WebElement logoButton;
 	
 	@FindBy(id = "container")
 	private WebElement logoContainer;
@@ -109,7 +114,29 @@ public class EditCollectionPage extends BasePage {
 	}
 	
 	public void addLogo(String filepath) {
-		WebElement input = logoContainer.findElement(By.tagName("input"));
+		WebElement divWrapper = logoContainer.findElement(By.className("moxie-shim-html5"));
+		WebElement input = divWrapper.findElement(By.tagName("input"));
+		
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		
+		jse.executeScript("arguments[0].style.visibility = 'visible';", divWrapper);
+		jse.executeScript("arguments[0].style.width = 50;", divWrapper);
+		jse.executeScript("arguments[0].style.height = 50;", divWrapper);
+		jse.executeScript("arguments[0].style.opacity = 1;", divWrapper);
+		jse.executeScript("arguments[0].style.display = 'block';", divWrapper);
+		jse.executeScript("arguments[0].style.top = 50;", divWrapper);
+		jse.executeScript("arguments[0].style.left = 50;", divWrapper);
+		jse.executeScript("arguments[0].style.zIndex = 2;", divWrapper);
+		
+		jse.executeScript("arguments[0].style.visibility = 'visible';", input);
+		jse.executeScript("arguments[0].style.width = 50;", input);
+		jse.executeScript("arguments[0].style.height = 50;", input);
+		jse.executeScript("arguments[0].style.opacity = 1;", input);
+		jse.executeScript("arguments[0].style.display = 'block';", input);
+		jse.executeScript("arguments[0].style.top = 50;", input);
+		jse.executeScript("arguments[0].style.left = 50;", input);
+		jse.executeScript("arguments[0].style.zIndex = 3;", input);
+		
 		input.sendKeys(filepath);
 	}
 	

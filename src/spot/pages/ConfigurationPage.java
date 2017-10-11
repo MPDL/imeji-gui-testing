@@ -56,12 +56,12 @@ public class ConfigurationPage extends BasePage {
 		return generalPanel.setLicense(license);
 	}
 	
-	public ConfigurationPage browseDefaultViewThumbnails() {
-		return appearancePanel.browseDefaultViewThumbnails();
+	public ConfigurationPage enableThumbnailView() {
+		return appearancePanel.enableThumbnailView();
 	}
 	
-	public ConfigurationPage browseDefaultViewList() {
-		return appearancePanel.browseDefaultViewList();
+	public ConfigurationPage enableListView() {
+		return appearancePanel.enableListView();
 	}
 	
 	public ConfigurationPage setAutosuggestionMP() {

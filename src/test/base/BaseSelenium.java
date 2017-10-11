@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.TakesScreenshot;
@@ -170,6 +171,10 @@ public abstract class BaseSelenium {
 				FileUtils.copyFile(screenshot, new File(screenshotPath));
 			}
 			catch (IOException exc) {}
+			System.out.println(result.getName());
+			System.out.println(result.getThrowable().getMessage());
+			System.out.println();
+			navigateToStartPage();
 		}
 	}
 	

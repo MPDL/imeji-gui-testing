@@ -7,7 +7,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionEntryPage;
 import spot.pages.DiscardedCollectionEntryPage;
 import spot.pages.EditCollectionPage;
@@ -40,9 +39,6 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 	public void loginUser1() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
-		
-		MessageType type = homepage.getPageMessageType();
-		Assert.assertEquals(type, MessageType.INFO, "Success message was not displayed.");
 	}
 	
 	@Test(priority = 2)
@@ -50,10 +46,6 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 		NewCollectionPage newCollectionPage = homepage.goToCreateNewCollectionPage();
 		collectionEntry = newCollectionPage.createCollection1Author2OUs(collectionTitle, collectionDescription,
 				null, getPropertyAttribute(ruFamilyName), getPropertyAttribute(ruOrganizationName));
-		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 	}
 	
 	@Test(priority = 3)
@@ -89,10 +81,6 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(key, value);
 		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
-		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
@@ -111,10 +99,6 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueIfEmpty(key, value);
-		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayed = collectionEntry.metadataDisplayed("SampleTXTFile.txt", key, value);
@@ -139,10 +123,6 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueIfEmpty(key, value);
 		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
-		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayed = collectionEntry.metadataDisplayed("SampleXLSXFile.xlsx", key, value);
 		Assert.assertTrue(metadataDisplayed, "New metadata is not displayed on XLSX item page.");
@@ -151,11 +131,7 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 	@Test(priority = 10)
 	public void deleteItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		collectionEntry = collectionEntry.deleteItem(2);
-		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
+		collectionEntry = collectionEntry.deleteItem("SampleXLSXFile.xlsx");
 		
 		boolean itemPresent = collectionEntry.findItem("SampleXLSXFile.xlsx");
 		Assert.assertFalse(itemPresent, "Item was not deleted.");
@@ -184,10 +160,6 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 		KindOfSharePage shareTransition = collectionEntry.share();
 		SharePage sharePage = shareTransition.shareWithAUser();
 		sharePage = sharePage.share(false, false, email, true, false, false);
-		
-		MessageType messageType = sharePage.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
 		
 		shareTransition = sharePage.invite();
 		boolean pendingInvitation = shareTransition.isEmailPendingInvitation(email);
@@ -250,10 +222,6 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.setDOI();
 		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
-		
 		collectionEntry = collectionEntry.openDescription();
 		String actualDOI = collectionEntry.getDOI();
 		Assert.assertNotEquals(actualDOI, "", "DOIs do not match.");
@@ -266,10 +234,6 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 		
 		String itemTitle = itemView.getFileTitle();
 		collectionEntry = itemView.discardItem();
-		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 		
 		boolean itemInList = collectionEntry.findItem(itemTitle);
 		Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
@@ -308,10 +272,6 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 	public void discardCollection() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		DiscardedCollectionEntryPage discardedCollection = collectionEntry.discardCollection();
-		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 		
 		boolean discardedIconDisplayed = discardedCollection.discardedIconDisplayed();
 		Assert.assertTrue(discardedIconDisplayed, "Discard icon is not displayed.");

@@ -6,10 +6,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.components.MessageComponent.MessageType;
-import spot.pages.AdministrationPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
+import spot.pages.admin.AdministrationPage;
 import spot.pages.registered.Homepage;
 import test.base.BaseSelenium;
 

@@ -16,7 +16,7 @@ public class UserGroupPage extends BasePage {
 	@FindBy(css=".fa-plus")
 	private WebElement addUserButton;
 	
-	@FindBy(css="#j_idt130")
+	@FindBy(id="userList")
 	private WebElement alreadyAddedUsers;
 	
 	@FindBy(id="groupForm:btnEditUserdata")
@@ -49,7 +49,7 @@ public class UserGroupPage extends BasePage {
 	 * TODO: make delete method by user email
 	 */
 	public UserGroupPage deleteUser(int index) {
-		List<WebElement> userDeleteButtons = driver.findElements(By.cssSelector(".fa-times a"));
+		List<WebElement> userDeleteButtons = driver.findElements(By.cssSelector("#userList .fa-times"));
 		userDeleteButtons.get(index).click();
 		
 		PageFactory.initElements(driver, this);
@@ -75,7 +75,8 @@ public class UserGroupPage extends BasePage {
 	}
 	
 	public String getUserGroupTitle() {
-		String headline = driver.findElement(By.tagName("h1")).getText();
+		WebElement breadcrumb = driver.findElement(By.tagName("h1"));
+		String headline = breadcrumb.findElement(By.cssSelector("span:nth-of-type(3)")).getText();
 		return headline.substring("User Group ".length());
 	}
 

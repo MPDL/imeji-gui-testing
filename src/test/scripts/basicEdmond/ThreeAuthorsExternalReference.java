@@ -5,7 +5,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
 import spot.pages.DiscardedCollectionEntryPage;
@@ -39,9 +38,6 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 	public void loginUser1() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
-		
-		MessageType type = homepage.getPageMessageType();
-		Assert.assertEquals(type, MessageType.INFO, "Success message was not displayed.");
 	}
 	
 	@Test(priority = 2)
@@ -49,10 +45,6 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		NewCollectionPage newCollectionPage = homepage.goToCreateNewCollectionPage();
 		collectionEntry = newCollectionPage.createCollection3Authors(collectionTitle, collectionDescription,
 				null, getPropertyAttribute(ruFamilyName), getPropertyAttribute(ruOrganizationName));
-		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 	}
 	
 	@Test(priority = 3)
@@ -101,10 +93,6 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(key, value);
 		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
-		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
@@ -123,10 +111,6 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueIfEmpty(key, value);
-		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayed = collectionEntry.metadataDisplayed("SampleTXTFile.txt", key, value);
@@ -150,10 +134,6 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.overwriteAllValues(key, value);
-		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
@@ -187,23 +167,12 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		SharePage sharePage = shareTransition.shareWithAUser();
 		sharePage = sharePage.share(false, false, email, true, false, false);
 		
-		MessageType messageType = sharePage.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
-		
 		shareTransition = sharePage.invite();
 		boolean pendingInvitation = shareTransition.isEmailPendingInvitation(email);
 		Assert.assertTrue(pendingInvitation, "Email of external user is not in 'Pending invitations' list.");
 	}
 	
 	@Test(priority = 13)
-	public void shareIconDisplayed() {
-		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean shareVisible = collectionEntry.shareIconVisible();
-		Assert.assertTrue(shareVisible, "Share icon is not displayed.");
-	}
-	
-	@Test(priority = 14)
 	public void shareReadRU() {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
 		
@@ -221,31 +190,31 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
 	
-	@Test(priority = 15)
+	@Test(priority = 14)
 	public void logout() {
 		homepage = new StartPage(driver).goToHomepage(homepage);
 		homepage.logout();
 	}
 	
-	@Test(priority = 16)
+	@Test(priority = 15)
 	public void loginUser2() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(restrUsername), getPropertyAttribute(restrPassword));
 	}
 	
-	@Test(priority = 17)
+	@Test(priority = 16)
 	public void openCollection() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean shareVisible = collectionEntry.shareIconVisible();
 		Assert.assertTrue(shareVisible, "Share icon is not displayed.");
 	}
 	
-	@Test(priority = 18)
+	@Test(priority = 17)
 	public void logoutUser2() {
 		homepage.logout();
 	}
 	
-	@Test(priority = 19)
+	@Test(priority = 18)
 	public void releaseCollection() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
@@ -253,29 +222,21 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.releaseCollection();
 		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
-		
 		boolean releaseDisplayed = collectionEntry.releasedIconVisible();
 		Assert.assertTrue(releaseDisplayed, "Released icon is not displayed.");
 	}
 	
-	@Test(priority = 20)
+	@Test(priority = 19)
 	public void addCollectionDOI() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.setDOI();
-		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 		
 		collectionEntry = collectionEntry.openDescription();
 		String actualDOI = collectionEntry.getDOI();
 		Assert.assertNotEquals(actualDOI, "", "DOIs do not match.");
 	}
 	
-	@Test(priority = 21)
+	@Test(priority = 20)
 	public void discardItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		ItemViewPage itemView = collectionEntry.openItem(0);
@@ -283,15 +244,11 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		String itemTitle = itemView.getFileTitle();
 		collectionEntry = itemView.discardItem();
 		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
-		
 		boolean itemInList = collectionEntry.findItem(itemTitle);
 		Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
 	}
 	
-	@Test(priority = 22)
+	@Test(priority = 21)
 	public void checkExternalReference() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.openDescription();
@@ -299,7 +256,7 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		Assert.assertTrue(labelDisplayed, "Label is not displayed.");
 	}
 	
-	@Test(priority = 23)
+	@Test(priority = 22)
 	public void downloadItemNRU() {
 		homepage.logout();
 		collectionEntry = new StartPage(driver).goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -308,23 +265,19 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		Assert.assertTrue(downloadItemPossible, "Non-registered user cannot download item.");
 	}
 	
-	@Test(priority = 24)
+	@Test(priority = 23)
 	public void downloadAllNRU() {
 		collectionEntry = new StartPage(driver).goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean downloadAllPossible = collectionEntry.downloadAllPossible();
 		Assert.assertTrue(downloadAllPossible, "Non-registered user cannot download collection's items.");
 	}
 	
-	@Test(priority = 25)
+	@Test(priority = 24)
 	public void discardCollection() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		DiscardedCollectionEntryPage discardedCollection = collectionEntry.discardCollection();
-		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 		
 		boolean discardedIconDisplayed = discardedCollection.discardedIconDisplayed();
 		Assert.assertTrue(discardedIconDisplayed, "Discard icon is not displayed.");

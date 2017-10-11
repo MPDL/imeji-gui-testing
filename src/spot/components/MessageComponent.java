@@ -18,7 +18,7 @@ public class MessageComponent {
 
 	private WebDriver driver;
 
-	@FindBy(id = "imj_pageMessageArea")
+	@FindBy(className = "imj_pageMessageArea")
 	private WebElement pageMessageArea;
 
 	public enum MessageType {

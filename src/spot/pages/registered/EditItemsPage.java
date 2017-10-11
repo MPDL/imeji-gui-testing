@@ -1,8 +1,11 @@
 package spot.pages.registered;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -21,14 +24,14 @@ public class EditItemsPage extends BasePage {
 	@FindBy(css = ".imj_mdInput")
 	private WebElement valueBox;
 	
-	@FindBy(css = "#editBatchForm .imj_metadataSet input:nth-of-type(1)")
+	@FindBy(css = "#editBatchForm .imj_metadataSet:nth-of-type(2) input:nth-of-type(1)")
 	private WebElement addValueAll;
 	
-	@FindBy(css = "#editBatchForm .imj_metadataSet input:nth-of-type(2)")
+	@FindBy(css = "#editBatchForm .imj_metadataSet:nth-of-type(2) input:nth-of-type(2)")
 	private WebElement addValueIfEmpty;
 	
 	//@FindBy(xpath = "//input[@value='Overwrite all values']")
-	@FindBy(css = "#editBatchForm .imj_metadataSet input:nth-of-type(3)")
+	@FindBy(css = "#editBatchForm .imj_metadataSet:nth-of-type(2) input:nth-of-type(3)")
 	private WebElement overwriteAllValues;
 	
 	@FindBy(id = "editBatchForm:select:statementList")
@@ -36,14 +39,21 @@ public class EditItemsPage extends BasePage {
 	
 	public EditItemsPage(WebDriver driver) {
 		super(driver);
-		
 		PageFactory.initElements(driver, this);
 	}
 	
 	public EditItemsPage addValueAll(String key, String value) {
 		addMetadata(key, value);
-		addValueAll.click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:mainMenu:lnkCollections")));
+		try {
+			addValueAll.click();
+		}
+		catch (WebDriverException exc) {
+			//autosuggestions prevent button from being clickable
+			keyBox.sendKeys(Keys.ESCAPE);
+			wait.until(ExpectedConditions.elementToBeClickable(addValueAll));
+			addValueAll.click();
+		}
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:navigation:lnkCollections")));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -51,7 +61,7 @@ public class EditItemsPage extends BasePage {
 	public EditItemsPage addValueIfEmpty(String key, String value) {
 		addMetadata(key, value);
 		addValueIfEmpty.click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:mainMenu:lnkCollections")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:navigation:lnkCollections")));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -59,7 +69,7 @@ public class EditItemsPage extends BasePage {
 	public EditItemsPage overwriteAllValues(String key, String value) {
 		addMetadata(key, value);
 		overwriteAllValues.click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:mainMenu:lnkCollections")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:navigation:lnkCollections")));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -68,7 +78,7 @@ public class EditItemsPage extends BasePage {
 		metadataButton.click();
 		keyBox.sendKeys(key);
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 		} 
 		catch (InterruptedException e) {}
 		
@@ -78,8 +88,39 @@ public class EditItemsPage extends BasePage {
 		
 		WebElement valueBox1 = retryingElement(By.cssSelector(".imj_mdInput"));
 		valueBox1.sendKeys(value);
+		
 		addValueAll.click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:mainMenu:lnkCollections")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:navigation:lnkCollections")));
+		
+		return PageFactory.initElements(driver, EditItemsPage.class);
+	}
+	
+	public EditItemsPage addOwnMetadataAll(String key, String value, final List<String> predefinedValues) {
+		metadataButton.click();
+		keyBox.sendKeys(key);
+		try {
+			Thread.sleep(5000);
+		} 
+		catch (InterruptedException e) {}
+		
+		driver.findElement(By.cssSelector("#editBatchForm\\:select\\:statementList .selectMdButton")).click();
+		WebElement confirm = retryingElement(By.id("editBatchForm:select:dialog:btnCreateStatement"));
+		confirm.click();
+		
+		WebElement valueBox1 = retryingElement(By.cssSelector(".imj_mdInput"));
+		valueBox1.sendKeys(value);
+		
+		int predefinedCount = predefinedValues.size();
+		for (int i = 0; i < predefinedCount; i++) {
+			driver.findElement(By.className("fa-plus-square-o")).click();
+			
+			By xpathNewInput = By.xpath("//input[contains(@id, '" + i + ":inputPredefined')]");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(xpathNewInput));
+			driver.findElement(xpathNewInput).sendKeys(predefinedValues.get(i));
+		}
+		
+		addValueAll.click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:navigation:lnkCollections")));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -94,7 +135,7 @@ public class EditItemsPage extends BasePage {
 		metadataButton.click();
 		keyBox.sendKeys(key);
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 		} 
 		catch (InterruptedException e) {}
 		driver.findElement(By.cssSelector("#editBatchForm\\:select\\:statementList a")).click();

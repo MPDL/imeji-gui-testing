@@ -2,11 +2,11 @@ package test.scripts.edmondScripts;
 
 import org.testng.annotations.Test;
 
-import spot.pages.AdministrationPage;
 import spot.pages.ConfigurationPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
+import spot.pages.admin.AdministrationPage;
 import test.base.BaseSelenium;
 
 import org.testng.annotations.BeforeMethod;

@@ -16,8 +16,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.google.common.base.Function;
 
 import spot.components.MainMenuComponent;
 import spot.components.MessageComponent;
@@ -25,6 +28,7 @@ import spot.components.MessageComponent.MessageType;
 import spot.components.SearchComponent;
 import spot.components.UserPreferenceComponent;
 import spot.pages.admin.AdminHomepage;
+import spot.pages.admin.AdministrationPage;
 import spot.pages.registered.Homepage;
 
 /**
@@ -117,12 +121,10 @@ public abstract class BasePage {
 	}
 	
 	public CollectionsPage goToCollectionPage() {
-		
 		return mainMenuComponent.navigateTo(CollectionsPage.class);
 	}
 	
 	public AdministrationPage goToAdminPage() {
-		
 		return mainMenuComponent.navigateTo(AdministrationPage.class);
 	}
 	
@@ -149,12 +151,10 @@ public abstract class BasePage {
 	}
 	
 	public void selectLanguage(String language) {
-		
 		userPreferenceComponent.selectLanguage(language);
 	}
 	
 	public String getCurrentLanguageSetup() {
-		
 		return userPreferenceComponent.getCurrentLanguage();		
 	}	
 	
@@ -204,6 +204,10 @@ public abstract class BasePage {
 	
 	public boolean advancedSearchAccessible() {
 		return searchComponent.advancedSearchAccessible();
+	}
+	
+	public boolean advancedSearchUnaccessible() {
+		return searchComponent.advancedSearchUnaccessible();
 	}
 	
 	public AdvancedSearchPage goToAdvancedSearch() {

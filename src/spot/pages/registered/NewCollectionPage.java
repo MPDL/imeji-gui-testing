@@ -3,6 +3,8 @@ package spot.pages.registered;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import spot.pages.BasePage;
 import spot.pages.CollectionEntryPage;
+import spot.pages.CollectionsPage;
 
 public class NewCollectionPage extends BasePage {
 
@@ -101,54 +104,78 @@ public class NewCollectionPage extends BasePage {
 	}
 	
 	public CollectionEntryPage createCollection3Authors(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
-		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
-		addAuthor();
-		WebElement author2Name = driver.findElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
-		author2Name.sendKeys("Thesecond");
-		WebElement author2Org = driver.findElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
-		author2Org.sendKeys("MPDL");
-		addAuthor();
-		WebElement author3Name = retryingElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
-		wait.until(ExpectedConditions.visibilityOf(author3Name));
-		author3Name.sendKeys("Thethird");
-		WebElement author3Org = retryingElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
-		wait.until(ExpectedConditions.visibilityOf(author3Org));
-		author3Org.sendKeys("Max Planck Society");
-		
-		submitForm();
-		
-		if (errorOccurred)
-			return null;
-		
-		return PageFactory.initElements(driver, CollectionEntryPage.class);
+		try {
+			fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
+			addAuthor();
+			WebElement author2Name = driver.findElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
+			author2Name.sendKeys("Thesecond");
+			WebElement author2Org = driver.findElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
+			author2Org.sendKeys("MPDL");
+			addAuthor();
+			WebElement author3Name = retryingElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(author3Name)));
+			author3Name.sendKeys("Thethird");
+			WebElement author3Org = retryingElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(author3Org)));
+			author3Org.sendKeys("Max Planck Society");
+			
+			submitForm();
+			
+			if (errorOccurred)
+				return null;
+			
+			return PageFactory.initElements(driver, CollectionEntryPage.class);
+		}
+		catch (StaleElementReferenceException exc) {
+			CollectionsPage collectionsPage = this.goToCollectionPage();
+			NewCollectionPage newCollection = collectionsPage.createCollection();
+			return newCollection.createCollection3AuthorsNotification(collectionTitle, collectionDescription, givenName, familyName, orgName);
+		}
 	}
 	
 	public CollectionEntryPage createCollection3AuthorsNotification(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
-		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
-		
-		addAuthor();
-		WebElement author2Name = driver.findElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
-		author2Name.sendKeys("AuthorTwo");
-		WebElement author2Org = driver.findElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
-		author2Org.sendKeys(orgName);
-		
-		addAuthor();
-		WebElement author3Name = retryingElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
-		wait.until(ExpectedConditions.visibilityOf(author3Name));
-		author3Name.sendKeys("AuthorThree");
-		WebElement author3Org = retryingElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
-		wait.until(ExpectedConditions.visibilityOf(author3Org));
-		author3Org.sendKeys(orgName);
-		
-		if (!emailOnDownload.isSelected())
-			emailOnDownload.click();
-		
-		submitForm();
-		
-		if (errorOccurred)
-			return null;
-		
-		return PageFactory.initElements(driver, CollectionEntryPage.class);
+		try {
+			fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
+			
+			addAuthor();
+			WebElement author2Name = driver.findElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
+			author2Name.sendKeys("AuthorTwo");
+			WebElement author2Org = driver.findElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
+			author2Org.sendKeys(orgName);
+			
+			addAuthor();
+			WebElement author3Name = retryingElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
+			
+			try {
+				wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(author3Name)));
+			}
+			catch (TimeoutException exc) {}
+			
+			author3Name.sendKeys("AuthorThree");
+			WebElement author3Org = retryingElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
+			
+			try {
+				wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(author3Org)));
+			}
+			catch (TimeoutException exc) {}
+			
+			author3Org.sendKeys(orgName);
+			
+			if (!emailOnDownload.isSelected())
+				emailOnDownload.click();
+			
+			submitForm();
+			
+			if (errorOccurred)
+				return null;
+			
+			return PageFactory.initElements(driver, CollectionEntryPage.class);
+		}
+		catch (StaleElementReferenceException exc) {
+			CollectionsPage collectionsPage = this.goToCollectionPage();
+			NewCollectionPage newCollection = collectionsPage.createCollection();
+			return newCollection.createCollection3AuthorsNotification(collectionTitle, collectionDescription, givenName, familyName, orgName);
+		}
 	}
 	
 	public CollectionEntryPage createCollection1Author2OUs(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {

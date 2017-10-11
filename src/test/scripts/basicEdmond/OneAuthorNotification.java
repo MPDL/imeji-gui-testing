@@ -38,9 +38,6 @@ public class OneAuthorNotification extends BaseSelenium {
 	public void loginUser1() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
-		
-		MessageType type = homepage.getPageMessageType();
-		Assert.assertEquals(type, MessageType.INFO, "Success message was not displayed.");
 	}
 	
 	@Test(priority = 2)
@@ -48,10 +45,6 @@ public class OneAuthorNotification extends BaseSelenium {
 		NewCollectionPage newCollectionPage = homepage.goToCreateNewCollectionPage();
 		collectionEntry = newCollectionPage.createCollectionWithNotification(collectionTitle, collectionDescription, 
 				getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName), getPropertyAttribute(ruOrganizationName));
-		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 	}
 	
 	@Test(priority = 3)
@@ -265,10 +258,6 @@ public class OneAuthorNotification extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.releaseCollection();
 		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
-		
 		boolean releaseDisplayed = collectionEntry.releasedIconVisible();
 		Assert.assertTrue(releaseDisplayed, "Released icon is not displayed.");
 	}
@@ -288,10 +277,6 @@ public class OneAuthorNotification extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		ItemViewPage itemView = collectionEntry.openItem("SampleTXTFile.txt");
 		collectionEntry = itemView.discardItem();
-		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 		
 		boolean itemInList = collectionEntry.findItem("SampleTXTFile.txt");
 		Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
@@ -339,10 +324,6 @@ public class OneAuthorNotification extends BaseSelenium {
 	public void discardCollection() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		DiscardedCollectionEntryPage discardedCollection = collectionEntry.discardCollection();
-		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 		
 		boolean discardedIconDisplayed = discardedCollection.discardedIconDisplayed();
 		Assert.assertTrue(discardedIconDisplayed, "Discard icon is not displayed.");

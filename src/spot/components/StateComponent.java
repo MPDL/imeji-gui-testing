@@ -14,13 +14,16 @@ public class StateComponent extends BasePage {
 		ONLY_PRIVATE, ONLY_PUBLISHED, ONLY_DISCARDED
 	};
 	
-	@FindBy (linkText = "Private")
+	@FindBy(className = "fa-lock")
+	private WebElement stateMenu;
+	
+	@FindBy(linkText = "Private")
 	private WebElement onlyPrivateFilter;
 	
-	@FindBy (linkText = "Published")
+	@FindBy(linkText = "Published")
 	private WebElement onlyPublishedFilter;
 	
-	@FindBy (linkText = "Discarded")
+	@FindBy(linkText = "Discarded")
 	private WebElement onlyDiscardedFilter;
 
 	public StateComponent (WebDriver driver) {
@@ -30,6 +33,8 @@ public class StateComponent extends BasePage {
 	}
 	
 	public void filter(StateOptions filter) {
+		stateMenu.click();
+		
 		switch (filter) {
 			case ONLY_PRIVATE:
 				wait.until(ExpectedConditions.visibilityOf(onlyPrivateFilter));

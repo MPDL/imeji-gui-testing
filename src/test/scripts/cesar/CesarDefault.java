@@ -2,7 +2,9 @@ package test.scripts.cesar;
 
 import java.util.Random;
 
+import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -46,6 +48,16 @@ public class CesarDefault extends BaseSelenium {
 	}
 	
 	@Test(priority = 2)
+	public void enableThumbnailView() {
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
+		adminHomepage.goToAdminPage().enableThumbnailView();
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
+		
+		boolean thumbnailView = adminHomepage.goToCollectionPage().getPageOfLargestCollection().isElementPresent(By.id("imgFrame"));
+		Assert.assertTrue(thumbnailView, "Collections should be in thumbnail view.");
+	}
+	
+	@Test(priority = 3)
 	public void createDefaultCollection() {
 		NewCollectionPage newCollectionPage = adminHomepage.goToCreateNewCollectionPage();
 		collectionEntry = newCollectionPage.createCollection(collectionTitle, collectionDescription, 
@@ -56,8 +68,9 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 	}
 	
-	@Test(priority = 3)
+	@Test(priority = 4)
 	public void createExternalReference() {
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
 		editCollection.addInformation("Custom information", "https://mpdl.mpg.de/");
@@ -68,7 +81,7 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertTrue(labelDisplayed, "External reference is not displayed.");
 	}
 	
-	@Test(priority = 4)
+	@Test(priority = 5)
 	public void uploadLogo() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
@@ -79,7 +92,7 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertTrue(hasLogo, "Logo is not displayed.");
 	}
 	
-	@Test(priority = 5)
+	@Test(priority = 6)
 	public void editTitle() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
@@ -99,12 +112,12 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertTrue(uploadSuccessful, "Item not among uploads.");
 	}
 	
-	@Test(priority = 6)
+	@Test(priority = 7)
 	public void uploadJPG() {
 		uploadItem("SampleJPGFile.jpg", adminHomepage);
 	}
 	
-	@Test(priority = 7)
+	@Test(priority = 8)
 	public void metadataAllItems() {
 		String key = "Title";
 		String value = "Test collection";
@@ -122,12 +135,12 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
 	}
 	
-	@Test(priority = 8)
+	@Test(priority = 9)
 	public void uploadPDF() {
 		uploadItem("SamplePDFFile.pdf", adminHomepage);
 	}
 	
-	@Test(priority = 9)
+	@Test(priority = 10)
 	public void metadataIfEmpty() {
 		String key = "Title";
 		String value = "New value";
@@ -149,7 +162,7 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertTrue(metadataDisplayed, "Old metadata is not displayed on JPG item page.");
 	}
 	
-	@Test(priority = 10)
+	@Test(priority = 11)
 	public void deleteItem() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.deleteItem("SampleJPGFile.jpg");
@@ -162,12 +175,12 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertFalse(itemPresent, "Item was not deleted.");
 	}
 	
-	@Test(priority = 11)
+	@Test(priority = 12)
 	public void uploadJPG2() {
 		uploadItem("SampleJPGFile2.jpg", adminHomepage);
 	}
 	
-	@Test(priority = 12)
+	@Test(priority = 13)
 	public void shareEditRU() {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
 		
@@ -186,37 +199,37 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
 	
-	@Test(priority = 13)
+	@Test(priority = 14)
 	public void logoutAdmin() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		adminHomepage.logout();
 	}
 	
-	@Test(priority = 14)
+	@Test(priority = 15)
 	public void loginRestrictedUser() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(restrUsername), getPropertyAttribute(restrPassword));
 	}
 	
-	@Test(priority = 15)
+	@Test(priority = 16)
 	public void searchCollection() {
 		SearchResultsPage searchResults = homepage.getSearchComponent().searchByCategory(collectionTitle, CategoryType.COLLECTION);
 		Assert.assertNotEquals(searchResults.getResultCountCollection(), 0, "User cannot find collection " + collectionTitle);
 	}
 	
-	@Test(priority = 16)
+	@Test(priority = 17)
 	public void shareIconDisplayed() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean shareVisible = collectionEntry.shareIconVisible();
 		Assert.assertTrue(shareVisible, "Share icon is not displayed.");
 	}
 	
-	@Test(priority = 17)
+	@Test(priority = 18)
 	public void uploadXLSX() {
 		uploadItem("SampleXLSXFile.xlsx", homepage);
 	}
 	
-	@Test(priority = 18)
+	@Test(priority = 19)
 	public void metadataOverwrite() {
 		String key = "Date";
 		String value = "2017-05-05";
@@ -234,7 +247,7 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on all item pages.");
 	}
 	
-	@Test(priority = 19)
+	@Test(priority = 20)
 	public void metadataAllItemsOwn() {
 		String key = new Random().nextInt(1000) + "";
 		String value = "Collection test";
@@ -252,7 +265,7 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
 	}
 	
-	@Test(priority = 20)
+	@Test(priority = 21)
 	public void downloadItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		ItemViewPage itemView = collectionEntry.openItem("SamplePDFFile.pdf");
@@ -260,7 +273,7 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertTrue(canDownload, "Item cannot be downloaded.");
 	}
 	
-	@Test(priority = 21)
+	@Test(priority = 22)
 	public void downloadSelectedItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry.selectItem("SamplePDFFile.pdf");
@@ -270,26 +283,26 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertTrue(downloadPossible, "Download button is not enabled for selected items.");
 	}
 	
-	@Test(priority = 22)
+	@Test(priority = 23)
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean canDownloadAll = collectionEntry.downloadAllPossible();
 		Assert.assertTrue(canDownloadAll, "'Download All' button is not displayed or enabled.");
 	}
 	
-	@Test(priority = 23)
+	@Test(priority = 24)
 	public void logout() {
 		homepage = new StartPage(driver).goToHomepage(homepage);
 		homepage.logout();
 	}
 	
-	@Test(priority = 24)
+	@Test(priority = 25)
 	public void loginAdmin() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
 	}
 	
-	@Test(priority = 25)
+	@Test(priority = 26)
 	public void deleteCollection() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		CollectionsPage collectionsPage = collectionEntry.deleteCollection();
@@ -298,8 +311,9 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertFalse(collectionPresent, "Collection was not deleted.");
 	}
 	
-	@Test(priority = 26)
+	@AfterClass
 	public void logoutAdmin2() {
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		adminHomepage.logout();
 	}
 	

@@ -114,10 +114,6 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(key, value);
 		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
-		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
@@ -136,10 +132,6 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueIfEmpty(key, value);
-		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayed = collectionEntry.metadataDisplayed("SamplePDFFile.pdf", key, value);

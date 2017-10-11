@@ -29,13 +29,13 @@ public class UserGroupsOverviewPage extends BasePage {
 		
 		
 		WebElement toBeDeletedUserGroup = findUserGroupByName(userGroupName);
-		WebElement deleteButton = toBeDeletedUserGroup.findElement(By.cssSelector(".imj_adminEditPanel>.imj_cancelButton"));
+		WebElement deleteButton = toBeDeletedUserGroup.findElement(By.className("fa-trash"));
 		deleteButton.click();
 			
 		wait.until(ExpectedConditions.visibilityOf(toBeDeletedUserGroup));
 			
 		// TODO delete currently dependent on number in code
-		WebElement confirmDelete = toBeDeletedUserGroup.findElement(By.cssSelector("div[id^=deleteUserGroup] .imj_submitPanel form .imj_submitButton"));
+		WebElement confirmDelete = toBeDeletedUserGroup.findElement(By.cssSelector("#deleteUserGroup0 form .imj_submitPanel .imj_submitButton"));
 
 		wait.until(ExpectedConditions.visibilityOf(confirmDelete));
 		confirmDelete.click();

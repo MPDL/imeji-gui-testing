@@ -54,7 +54,7 @@ public class SharePage extends BasePage {
 	@FindBy(css = "#share\\:unknownEmails form")
 	private WebElement emailList;
 	
-	@FindBy(id = "shareGroup")
+	@FindBy(className = "imj_rightsTable")
 	private WebElement groupPanel;
 	
 	public SharePage(WebDriver driver) {

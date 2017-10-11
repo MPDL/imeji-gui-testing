@@ -42,7 +42,7 @@ public class Default extends BaseSelenium {
 	public void switchPrivateMode() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
-		adminHomepage.goToAdminPage().enablePrivateMode();
+		adminHomepage.goToAdminPage().enablePrivateMode().enableThumbnailView();
 		adminHomepage.logout();
 	}
 	
@@ -120,10 +120,6 @@ public class Default extends BaseSelenium {
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(key, value);
 		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
-		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
@@ -142,10 +138,6 @@ public class Default extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueIfEmpty(key, value);
-		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayed = collectionEntry.metadataDisplayed("SamplePDFFile.pdf", key, value);
@@ -207,7 +199,8 @@ public class Default extends BaseSelenium {
 	
 	@Test(priority = 16)
 	public void searchCollection() {
-		SearchResultsPage searchResults = homepage.getSearchComponent().searchByCategory(collectionTitle, CategoryType.COLLECTION);
+		navigateToStartPage();
+		SearchResultsPage searchResults = homepage.getSearchComponent().searchByCategory("170726", CategoryType.COLLECTION);
 		Assert.assertNotEquals(searchResults.getResultCountCollection(), 0, "User cannot find collection " + collectionTitle);
 	}
 	
@@ -226,7 +219,6 @@ public class Default extends BaseSelenium {
 		editCollection.addAuthor(newAuthor, getPropertyAttribute(ruOrganizationName));
 		collectionEntry = editCollection.submitChanges();
 		String authors = collectionEntry.getAuthor();
-		System.out.println(authors);
 		
 		Assert.assertTrue(authors.contains(newAuthor), "New author is not part of author list.");
 	}
@@ -245,10 +237,6 @@ public class Default extends BaseSelenium {
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.overwriteAllValues(key, value);
 		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
-		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on all item pages.");
@@ -262,10 +250,6 @@ public class Default extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addOwnMetadataAll(key, value);
-		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);

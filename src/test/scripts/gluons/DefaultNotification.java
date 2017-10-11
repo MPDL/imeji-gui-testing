@@ -100,10 +100,6 @@ public class DefaultNotification extends BaseSelenium {
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(key, value);
 		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
-		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
@@ -123,16 +119,12 @@ public class DefaultNotification extends BaseSelenium {
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueIfEmpty(key, value);
 		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
-		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayed = collectionEntry.metadataDisplayed("SamplePDFFile.pdf", key, value);
 		Assert.assertTrue(metadataDisplayed, "New metadata is not displayed on PDF item page.");
 		
 		collectionEntry = new StartPage(driver).goToCollectionPage().openCollectionByTitle(collectionTitle);
-		metadataDisplayed = collectionEntry.metadataDisplayed("SampleJPGFile.jpg", key, "Test collection");
+		metadataDisplayed = collectionEntry.metadataDisplayed("SampleJPGFile.jpg", key, "2017-05-05");
 		Assert.assertTrue(metadataDisplayed, "Old metadata is not displayed on JPG item page.");
 	}
 	
@@ -232,10 +224,6 @@ public class DefaultNotification extends BaseSelenium {
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addOwnMetadataAll(key, value);
 		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
-		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
@@ -248,7 +236,7 @@ public class DefaultNotification extends BaseSelenium {
 	    SimpleTimeLimiter timeLimiter = new SimpleTimeLimiter();
 
 	    String notificationMail = "";
-		int predefinedTimeOutInSeconds = 30;
+		int predefinedTimeOutInSeconds = 10;
 		try {
 			notificationMail = timeLimiter.callWithTimeout(new Callable<String>() {
 				public String call() {
@@ -256,7 +244,8 @@ public class DefaultNotification extends BaseSelenium {
 				}
 			}, predefinedTimeOutInSeconds, TimeUnit.SECONDS, false);
 		} catch (Exception e) {
-			Assert.assertTrue(!notificationMail.equals(""), "Time out after " + predefinedTimeOutInSeconds + " seconds. System didn't send notification mail.");			
+			Assert.assertTrue(!notificationMail.equals(""), "Time out after " + predefinedTimeOutInSeconds + " seconds."
+					+ " System didn't send notification mail. Exception log: " + e.toString());			
 		} 
 			
 		Assert.assertTrue(notificationMail.contains("downloaded"), "Email does not contain information about download.");
@@ -270,20 +259,30 @@ public class DefaultNotification extends BaseSelenium {
 		Assert.assertTrue(canDownload, "Item cannot be downloaded.");
 		
 		itemView.download();
-		emailReceived();
+		try {
+			emailReceived();
+		}
+		catch (AssertionError exc) {
+			emailReceived();
+		}
 	}
 	
 	@Test(priority = 20)
 	public void downloadSelectedItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry.selectItem("SampleXLSXFile.xlsx");
-		collectionEntry.selectItem("SampleTXTFile.txt");
+		collectionEntry.selectItem("SamplePDFFile.pdf");
 		
 		boolean downloadPossible = collectionEntry.downloadSelectedPossible();
 		Assert.assertTrue(downloadPossible, "Download button is not enabled for selected items.");
 		
 		collectionEntry.downloadSelected();
-		emailReceived();
+		try {
+			emailReceived();
+		}
+		catch (AssertionError exc) {
+			emailReceived();
+		}
 	}
 	
 	@Test(priority = 21)
@@ -293,7 +292,12 @@ public class DefaultNotification extends BaseSelenium {
 		Assert.assertTrue(canDownloadAll, "'Download All' button is not displayed or enabled.");
 		
 		collectionEntry.downloadAll();
-		emailReceived();
+		try {
+			emailReceived();
+		}
+		catch (AssertionError exc) {
+			emailReceived();
+		}
 	}
 	
 	@Test(priority = 22)

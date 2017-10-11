@@ -1,4 +1,6 @@
-package spot.pages;
+package spot.pages.admin;
+
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -7,13 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import spot.pages.admin.CreateStatementPage;
-import spot.pages.admin.NewUserGroupPage;
-import spot.pages.admin.NewUserPage;
-import spot.pages.admin.UserGroupPage;
-import spot.pages.admin.UserGroupsOverviewPage;
-import spot.pages.admin.UserProfilePage;
-import spot.pages.admin.UsersOverviewPage;
+import spot.pages.BasePage;
+import spot.pages.ConfigurationPage;
+import test.base.StatementType;
 
 public class AdministrationPage extends BasePage {
 
@@ -29,51 +27,45 @@ public class AdministrationPage extends BasePage {
 	@FindBy(css=".imj_listBody>.imj_adminPanel:nth-of-type(2)>.imj_content li:nth-of-type(2)>a")
 	private WebElement viewAllUserGroups;
 	
-	@FindBy(css=".imj_administrationTiledList .imj_config a")
+	@FindBy(css=".imj_administrationTiledList .imj_userConfig:nth-of-type(5) a")
 	private WebElement configurationEdit;
 	
-	@FindBy(linkText = "http://qa-imeji.mpdl.mpg.de/imeji/createstatement")
+	@FindBy(css = ".imj_listBody>.imj_adminPanel:nth-of-type(3)>.imj_content li:nth-of-type(1)>a")
 	private WebElement createStatement;
+	
+	@FindBy(css = ".imj_listBody>.imj_adminPanel:nth-of-type(3)>.imj_content li:nth-of-type(2)>a")
+	private WebElement browseStatement;
 	
 	public AdministrationPage(WebDriver driver) {
 		super(driver);
-		
 		PageFactory.initElements(driver, this);
 	}
 
 	public UserProfilePage createNewUser(String newUserName) {
 		createNewUser.click();
-		
 		NewUserPage createNewUserPage = new NewUserPage(driver);
-		
 		return createNewUserPage.createNewUser(newUserName);
 	}
 	
 	public UserProfilePage createNewRestrictedUser(String newUserName) {
 		createNewUser.click();
-		
 		NewUserPage createNewUserPage = new NewUserPage(driver);
-		
 		return createNewUserPage.createdNewRestrictedUser(newUserName);
 	}
 	
 	public UsersOverviewPage viewAllUsers() {
 		viewAllUsers.click();
-		
 		return PageFactory.initElements(driver, UsersOverviewPage.class);
 	}
 
 	public UserGroupPage createNewUserGroup(String newUserGroupName) {
 		createNewUserGroup.click();
-		
 		NewUserGroupPage createNewUserGroupPage = new NewUserGroupPage(driver);
-		
 		return createNewUserGroupPage.createNewUserGroup(newUserGroupName);
 	}
 	
 	public UserGroupsOverviewPage viewAllUserGroups() {
 		viewAllUserGroups.click();
-		
 		return PageFactory.initElements(driver, UserGroupsOverviewPage.class);
 	}
 	
@@ -89,16 +81,16 @@ public class AdministrationPage extends BasePage {
 		return configurationEditPage.disablePrivateMode();
 	}
 	
-	public ConfigurationPage browseDefaultViewThumbnails() {
+	public ConfigurationPage enableThumbnailView() {
 		configurationEdit.click();
 		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
-		return configurationEditPage.browseDefaultViewThumbnails();
+		return configurationEditPage.enableThumbnailView();
 	}
 	
-	public ConfigurationPage browseDefaultViewList() {
+	public ConfigurationPage enableListView() {
 		configurationEdit.click();
 		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
-		return configurationEditPage.browseDefaultViewList();
+		return configurationEditPage.enableListView();
 	}
 	
 	public ConfigurationPage setMaintenanceMessage(String message) {
@@ -135,6 +127,24 @@ public class AdministrationPage extends BasePage {
 		configurationEdit.click();
 		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
 		return configurationEditPage.restrictRegistrationDomains(domains);
+	}
+	
+	public BrowseStatementsPage createStatement(String name, StatementType type) {
+		createStatement.click();
+		NewStatementPage newStatementPage = new NewStatementPage(driver);
+		return newStatementPage.createNewStatement(name, type);
+	}
+	
+	public BrowseStatementsPage createStatement(String name, StatementType type, List<String> predefinedValues) {
+		createStatement.click();
+		NewStatementPage newStatementPage = new NewStatementPage(driver);
+		return newStatementPage.createNewStatement(name, type, predefinedValues);
+	}
+	
+	public BrowseStatementsPage deleteStatement(String name) {
+		browseStatement.click();
+		BrowseStatementsPage browseStatementsPage = new BrowseStatementsPage(driver);
+		return browseStatementsPage.deleteStatement(name);
 	}
 	
 //	public CreateStatementPage defaultStatementNumber(int id) {

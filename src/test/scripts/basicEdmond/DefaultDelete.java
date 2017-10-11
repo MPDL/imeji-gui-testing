@@ -1,10 +1,10 @@
 package test.scripts.basicEdmond;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
 import spot.pages.EditCollectionPage;
@@ -33,9 +33,6 @@ public class DefaultDelete extends BaseSelenium {
 	public void loginUser1() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
-		
-		MessageType type = homepage.getPageMessageType();
-		Assert.assertEquals(type, MessageType.INFO, "Success message was not displayed.");
 	}
 	
 	@Test(priority = 2)
@@ -43,10 +40,6 @@ public class DefaultDelete extends BaseSelenium {
 		NewCollectionPage newCollectionPage = homepage.goToCreateNewCollectionPage();
 		collectionEntry = newCollectionPage.createCollection(collectionTitle, collectionDescription, 
 				getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName), getPropertyAttribute(ruOrganizationName));
-		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 	}
 	
 	@Test(priority = 3)
@@ -94,10 +87,6 @@ public class DefaultDelete extends BaseSelenium {
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(key, value);
 		
-		MessageType messageType = editItems.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
-		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
@@ -122,10 +111,6 @@ public class DefaultDelete extends BaseSelenium {
 	public void deleteItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.deleteItem("SamplePDFFile.pdf");
-		
-		MessageType messageType = collectionEntry.getPageMessageType();
-		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
 		
 		boolean itemPresent = collectionEntry.findItem("SamplePDFFile.pdf");
 		Assert.assertFalse(itemPresent, "Item was not deleted.");
@@ -153,8 +138,9 @@ public class DefaultDelete extends BaseSelenium {
 		Assert.assertFalse(collectionPresent, "Collection was not deleted.");
 	}
 	
-	@Test(priority = 13)
-	public void logout() {
+	@AfterClass
+	public void afterClass() {
+		homepage = new StartPage(driver).goToHomepage(homepage);
 		homepage.logout();
 	}
 }

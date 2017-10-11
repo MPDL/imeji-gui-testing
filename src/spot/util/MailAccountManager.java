@@ -57,7 +57,8 @@ private static final Logger log4j = LogManager.getLogger(MailAccountManager.clas
 			}
 		};
 		
-		emailSession = Session.getDefaultInstance(properties, auth);
+		// was previously getDefaultInstance
+		emailSession = Session.getInstance(properties, auth);
 	}
 
 	/**

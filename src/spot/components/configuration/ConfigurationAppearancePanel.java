@@ -32,7 +32,7 @@ public class ConfigurationAppearancePanel extends BasePage {
 		appearancePanelReveal.click();
 	}
 	
-	public ConfigurationPage browseDefaultViewThumbnails() {
+	public ConfigurationPage enableThumbnailView() {
 		openAppearancePanel();
 		
 		if (!defaultViewThumbnailRadioButton.isSelected())
@@ -41,11 +41,11 @@ public class ConfigurationAppearancePanel extends BasePage {
 		return saveAllChanges();
 	}
 	
-	public ConfigurationPage browseDefaultViewList() {
+	public ConfigurationPage enableListView() {
 		openAppearancePanel();
 		
-		if (!defaultViewThumbnailRadioButton.isSelected())
-			defaultViewThumbnailRadioButton.click();
+		if (!defaultViewListRadioButton.isSelected())
+			defaultViewListRadioButton.click();
 		
 		return saveAllChanges();
 	}

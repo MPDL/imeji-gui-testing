@@ -5,30 +5,31 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import spot.pages.AdministrationPage;
+import spot.pages.BrowseItemsPage;
 import spot.pages.CollectionsPage;
 import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
+import spot.pages.admin.AdministrationPage;
 import spot.pages.registered.Homepage;
 
 public class MainMenuComponent {
 
 	private WebDriver driver;
 	
-	@FindBy (name="Header:lnkStartPage")
+	@FindBy (name="Header:navigation:lnkHome")
 	private WebElement startButton;
 	
-	@FindBy (name = "Header:mainMenu:lnkAlbums")
-	private WebElement albumsButton;
-	
-	@FindBy (id="Header:mainMenu:lnkCollections")
+	@FindBy (id="Header:navigation:lnkCollections")
 	private WebElement collectionsButton;
 	
-	@FindBy (id="upload")
+	@FindBy(id = "Header:navigation:lnkItems")
+	private WebElement itemsButton;
+	
+	@FindBy (className="fa-upload")
 	private WebElement singleUploadButton;
 	
-	@FindBy (name="Header:mainMenu:lnkAdmin")
+	@FindBy (name="Header:navigation:lnkAdmin")
 	private WebElement adminButton;
 	
 	public MainMenuComponent(WebDriver driver) {
@@ -38,7 +39,6 @@ public class MainMenuComponent {
 	}
 	
 	public <T> T navigateTo(Class<T> expectedPage) {
-	
 		if (expectedPage == CollectionsPage.class)
 			collectionsButton.click();
 		else if (expectedPage == StartPage.class)
@@ -49,6 +49,8 @@ public class MainMenuComponent {
 			adminButton.click();
 		else if (expectedPage == Homepage.class || expectedPage == AdminHomepage.class)
 			startButton.click();
+		else if (expectedPage == BrowseItemsPage.class)
+			itemsButton.click();
 		
 		return PageFactory.initElements(driver, expectedPage);
 	}

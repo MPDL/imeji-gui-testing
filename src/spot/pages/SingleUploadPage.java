@@ -64,6 +64,12 @@ public class SingleUploadPage extends BasePage {
 	@FindBy(id="container")
 	private WebElement singleUploadForm;
 	
+	@FindBy(id="createCollection")
+	private WebElement createCollectionButton;
+	
+	@FindBy(className="selectMd")
+	private WebElement selectCollectionButton;
+	
 	public SingleUploadPage(WebDriver driver) {
 		super(driver);
 		
@@ -172,6 +178,6 @@ public class SingleUploadPage extends BasePage {
 	}
 	
 	public boolean uploadAreaDisplayed() {
-		return retryingFinding(By.id("editContainer:mediaContainerForm"));
+		return createCollectionButton.isEnabled() && selectCollectionButton.isEnabled();
 	}
 }

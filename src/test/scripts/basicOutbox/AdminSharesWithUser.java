@@ -1,6 +1,8 @@
 package test.scripts.basicOutbox;
 
+import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -40,7 +42,6 @@ public class AdminSharesWithUser extends BaseSelenium {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
 		adminHomepage.goToAdminPage().enablePrivateMode();
-		
 	}
 	
 	@Test(priority = 2)
@@ -52,7 +53,11 @@ public class AdminSharesWithUser extends BaseSelenium {
 	@Test(priority = 3)
 	public void enableListView() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
-		adminHomepage.goToAdminPage().browseDefaultViewList();
+		adminHomepage.goToAdminPage().enableListView();
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
+		
+		boolean thumbnailView = adminHomepage.goToCollectionPage().getPageOfLargestCollection().isElementPresent(By.id("imgFrame"));
+		Assert.assertFalse(thumbnailView, "Collections should be in list view.");
 	}
 	
 	@Test(priority = 4)
@@ -104,6 +109,8 @@ public class AdminSharesWithUser extends BaseSelenium {
 	private void uploadItem(String title) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
+		// to avoid ElementNotVisibleException
+		try { Thread.sleep(2500);} catch (InterruptedException e) {}
 		
 		boolean uploadSuccessful = collectionEntry.findItem(title);
 		Assert.assertTrue(uploadSuccessful, "Item not among uploads.");
@@ -227,5 +234,11 @@ public class AdminSharesWithUser extends BaseSelenium {
 		
 		boolean collectionPresent = collectionsPage.collectionPresent(collectionTitle);
 		Assert.assertFalse(collectionPresent, "Collection was not deleted.");
+	}
+	
+	@AfterClass
+	public void logoutRU() {
+		homepage = new StartPage(driver).goToHomepage(homepage);
+		homepage.logout();
 	}
 }

@@ -2,6 +2,7 @@ package spot.components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,10 +17,11 @@ import spot.pages.DiscardedCollectionEntryPage;
 import spot.pages.EditLicensePage;
 import spot.pages.KindOfSharePage;
 import spot.pages.registered.EditItemsPage;
+import spot.pages.registered.MetadataTablePage;
 
 public class ActionComponent extends BasePage {
 
-	@FindBy(id = "menuItems")
+	@FindBy(css = "#menuItems>.imj_menuHeader")
 	private WebElement menuItems;
 	
 	@FindBy(id = "menuCollection")
@@ -27,6 +29,9 @@ public class ActionComponent extends BasePage {
 	
 	@FindBy(css = ".imj_menuBody ul form li:nth-of-type(1) a")
 	private WebElement editItems;
+	
+	@FindBy(css = "#menuItems .imj_menuBody ul li:nth-of-type(1) a")
+	private WebElement editSelectedItems;
 	
 	@FindBy(css = ".imj_menuBody ul form li:nth-of-type(2) a")
 	private WebElement editLicenses;
@@ -61,6 +66,12 @@ public class ActionComponent extends BasePage {
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
 	
+	public MetadataTablePage editSelectedItems() {
+		openMenuItems();
+		editSelectedItems.click();
+		return PageFactory.initElements(driver, MetadataTablePage.class);
+	}
+	
 	public EditLicensePage editAllLicenses() {
 		openMenuItems();
 		editLicenses.click();
@@ -69,6 +80,7 @@ public class ActionComponent extends BasePage {
 	
 	public CollectionEntryPage releaseCollection() {
 		openMenuCollection();
+		wait.until(ExpectedConditions.visibilityOf(releaseCollection));
 		releaseCollection.click();
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#releaseCollection .imj_submitPanel .imj_submitButton').click();");
 

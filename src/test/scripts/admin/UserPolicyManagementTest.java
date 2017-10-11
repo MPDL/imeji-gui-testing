@@ -5,10 +5,10 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import spot.components.MessageComponent.MessageType;
-import spot.pages.AdministrationPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
+import spot.pages.admin.AdministrationPage;
 import spot.pages.admin.UserProfilePage;
 import spot.pages.admin.UsersOverviewPage;
 import test.base.BaseSelenium;

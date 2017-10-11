@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
@@ -66,8 +67,21 @@ public class UsersOverviewPage extends BasePage {
 	private WebElement findUserByEmail(String emailInQuestion) {
 		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@id, ':userListForm:filterMd')]"));
 		searchBox.sendKeys(emailInQuestion);
-		userList = driver.findElements(By.cssSelector("#addUser p"));
-		return userList.get(1).findElement(By.tagName("a"));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		userList = driver.findElements(By.cssSelector("#addUser p>a"));
+		if (userList.size() == 1)
+			return userList.get(0);
+		for (WebElement currentEmail : userList) {
+			if (currentEmail.getText().contains(emailInQuestion)) {
+				return currentEmail;
+			}
+		}
+		throw new NoSuchElementException("Email " + emailInQuestion + " was not found.");
 //		for (WebElement user : userList) {
 //			WebElement userIdentification = user.findElement(By.tagName("a"));
 //			String userNamePlusEmail = userIdentification.getText();
@@ -117,9 +131,11 @@ public class UsersOverviewPage extends BasePage {
 	}
 	
 	public void addUserToUserGroup(String userEmail) {
+		// sleep() does not help here
 		WebElement userInQuestion = findUserByEmail(userEmail);
-		WebElement addToUserGroupButton = retryingNestedElement(userInQuestion, By.cssSelector("form>a"));
-		addToUserGroupButton.click();
+		userInQuestion.click();
+//		WebElement addToUserGroupButton = retryingNestedElement(userInQuestion, By.cssSelector("form>a"));
+//		addToUserGroupButton.click();
 	}
 	
 	public int userCount() {

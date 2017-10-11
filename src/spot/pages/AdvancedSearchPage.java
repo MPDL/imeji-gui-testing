@@ -14,10 +14,10 @@ public class AdvancedSearchPage extends BasePage {
 	@FindBy(id="advancedSearchForm")
 	private WebElement advancedSearchForm;
 	
-	@FindBy(name="advancedSearchForm:j_idt118")
+	@FindBy(css="#advancedSearchForm>.imj_searchUnit:nth-of-type(1)>.imj_searchDetails:nth-of-type(2)>.imj_searchInput>input")
 	private WebElement advancedSearchBox;
 	
-	@FindBy(name="advancedSearchForm:j_idt120")
+	@FindBy(css="#advancedSearchForm>.imj_searchUnit:nth-of-type(1)>.imj_searchDetails:nth-of-type(2)>input")
 	private WebElement fulltextCheckbox;
 	
 	@FindBy(id="advancedSearchForm:submit")

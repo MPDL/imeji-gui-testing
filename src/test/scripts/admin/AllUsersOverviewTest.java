@@ -5,10 +5,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import spot.pages.AdministrationPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
+import spot.pages.admin.AdministrationPage;
 import spot.pages.admin.UsersOverviewPage;
 import test.base.BaseSelenium;
 
@@ -26,7 +26,7 @@ public class AllUsersOverviewTest extends BaseSelenium {
 	@Test(priority = 1)
 	public void loginAsAdmin() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
-		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
+		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
 	}
 	
 	@Test(priority = 2)

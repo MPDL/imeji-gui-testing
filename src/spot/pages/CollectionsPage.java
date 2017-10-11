@@ -105,8 +105,7 @@ public class CollectionsPage extends BasePage {
 
 	
 	public CollectionEntryPage openCollectionByTitle(String collectionTitle) {
-		WebElement collectionInQuestion = findCollectionByTitle(collectionTitle);		
-		//collectionInQuestion.findElement(By.className("imj_itemHeadline")).click();
+		WebElement collectionInQuestion = findCollectionByTitle(collectionTitle);
 		collectionInQuestion.findElement(By.tagName("a")).click();
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);

@@ -120,6 +120,8 @@ public class AdminSharesWithUserGroup extends BaseSelenium {
 	private void uploadItem(String title) {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
+		// to avoid ElementNotVisibleException
+		try { Thread.sleep(2500);} catch (InterruptedException e) {}
 		
 		boolean uploadSuccessful = collectionEntry.findItem(title);
 		Assert.assertTrue(uploadSuccessful, "Item not among uploads.");
@@ -165,7 +167,7 @@ public class AdminSharesWithUserGroup extends BaseSelenium {
 	@Test(priority = 14)
 	public void advancedSearch() {
 		AdvancedSearchPage advancedSearch = homepage.goToAdvancedSearch();
-		SearchResultsPage searchResults = advancedSearch.advancedSearch("file");
+		SearchResultsPage searchResults = advancedSearch.advancedSearch("*file*");
 		Assert.assertNotEquals(searchResults.getResultCount(), 0, "Registered user cannot find shared content.");
 	}
 	
@@ -191,9 +193,19 @@ public class AdminSharesWithUserGroup extends BaseSelenium {
 		collectionEntry.deleteCollection();
 	}
 	
+	@Test(priority = 18)
+	public void deleteGroup() {
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
+		UserGroupsOverviewPage userGroups = adminHomepage.goToAdminPage().viewAllUserGroups();
+		userGroups = userGroups.deleteUserGroupByName(userGroupName);
+		boolean groupDeleted = !userGroups.isNewUserGroupPresent(userGroupName);
+		Assert.assertTrue(groupDeleted, "Group " + userGroupName + " was not deleted successfully.");
+	}
+	
 	@AfterClass
 	public void disablePrivateMode() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		adminHomepage.goToAdminPage().disablePrivateMode();
+		adminHomepage.logout();
 	}
  }

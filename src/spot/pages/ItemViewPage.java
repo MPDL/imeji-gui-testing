@@ -12,6 +12,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.google.common.base.Predicate;
+
 import spot.components.ShareComponent;
 import test.base.CategoryType;
 
@@ -70,7 +72,7 @@ public class ItemViewPage extends BasePage {
 	@FindBy(css = "#metadata .imj_metadataSet")
 	private List<WebElement> metadata;
 	
-	@FindBy(css = "#paginatorTop .imj_backPanel a")
+	@FindBy(css = ".imj_siteContentHeadline h1 a")
 	private WebElement back;
 	
 	public ItemViewPage(WebDriver driver) {
@@ -169,13 +171,40 @@ public class ItemViewPage extends BasePage {
 	
 	public boolean metadataPresent(String key, String value) {
 		for (WebElement metadataSet : metadata) {
-			String mLabel = metadataSet.findElement(By.className("imj_metadataLabel")).getText();
-			if (mLabel.equals(key)) {
-				String mValue = metadataSet.findElement(By.className("imj_metadataValue")).getText();
-				 return mValue.equals(value);
+			List<WebElement> labels = metadataSet.findElements(By.className("imj_metadataLabel"));
+			if (!labels.isEmpty()) {
+				if (labels.get(0).getText().equals(key)) {
+					String mValue = metadataSet.findElement(By.className("imj_metadataValue")).getText();
+					if (mValue.equals(value))
+						return true;
+				}
 			}
 		}
 		return false;
+	}
+	
+	public boolean metadataPresent(String key) {
+		for (WebElement metadataSet : metadata) {
+			List<WebElement> labels = metadataSet.findElements(By.className("imj_metadataLabel"));
+			if (!labels.isEmpty()) {
+				String mLabel = metadataSet.findElement(By.className("imj_metadataLabel")).getText();
+				if (mLabel.equals(key)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public ItemViewPage deleteMetadata(String key) {
+		ItemViewPage itemView = this;
+		
+		while (metadataPresent(key)) {
+			EditItemPage editItem = itemView.editItem();
+			itemView = editItem.deleteFirstMetadata(key);
+		}
+		
+		return itemView;
 	}
 	
 	/**

@@ -8,8 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import spot.pages.AdvancedSearchPage;
-import spot.pages.BasePage;
 import spot.pages.BrowseItemsPage;
+import spot.pages.LoginPage;
 import spot.pages.SearchResultsPage;
 import test.base.CategoryType;
 
@@ -17,10 +17,10 @@ public class SearchComponent {
 	
 	private WebDriver driver;
 	
-	@FindBy(id="quickSearchString")
+	@FindBy(id="simpleSearchInputText")
 	private WebElement quickSearchTextField;
 	
-	@FindBy(id="Header:lnkAdvancedSearch")
+	@FindBy(id="lnkAdvancedSearch")
 	private WebElement advancedSearchButton;
 	
 	@FindBy(id="btnQuickSearchStart")
@@ -57,7 +57,7 @@ public class SearchComponent {
 		quickSearchTextField.clear();
 		quickSearchTextField.sendKeys(searchQuery);
 		
-		WebElement categoryMenu = driver.findElement(By.className("imj_menuSimpleSearch"));
+		WebElement categoryMenu = driver.findElement(By.className("imj_bodyContextSearch"));
 		switch(category) {
 			case ITEM:
 				categoryMenu.findElement(By.id("simpleSearchForItems")).click();
@@ -66,7 +66,8 @@ public class SearchComponent {
 				categoryMenu.findElement(By.id("simpleSearchForAlbums")).click();
 				break;
 			case COLLECTION:
-				categoryMenu.findElement(By.id("simpleSearchForCollections")).click();
+				//categoryMenu.findElement(By.id("simpleSearchForCollections")).click();
+				driver.navigate().to("http://qa-imeji.mpdl.mpg.de/imeji/collections?q=" + searchQuery);
 				break;
 			default:
 				categoryMenu.findElement(By.id("simpleSearchForItems")).click();
@@ -79,6 +80,17 @@ public class SearchComponent {
 	public boolean advancedSearchAccessible() {
 		try {
 			return advancedSearchButton.isDisplayed() && advancedSearchButton.isEnabled();
+		}
+		catch (NoSuchElementException exc) {
+			return false;
+		}
+	}
+	
+	public boolean advancedSearchUnaccessible() {
+		try {
+			advancedSearchButton.click();
+			LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+			return loginPage.loginFormIsOpen();
 		}
 		catch (NoSuchElementException exc) {
 			return false;
