@@ -36,6 +36,12 @@ public class AdministrationPage extends BasePage {
 	@FindBy(css = ".imj_listBody>.imj_adminPanel:nth-of-type(3)>.imj_content li:nth-of-type(2)>a")
 	private WebElement browseStatement;
 	
+	@FindBy(css = ".imj_listBody>.imj_adminPanel:nth-of-type(4)>.imj_content li:nth-of-type(1)>a")
+	private WebElement createFacet;
+	
+	@FindBy(css = ".imj_listBody>.imj_adminPanel:nth-of-type(4)>.imj_content li:nth-of-type(2)>a")
+	private WebElement browseFacet;
+	
 	public AdministrationPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -145,6 +151,47 @@ public class AdministrationPage extends BasePage {
 		browseStatement.click();
 		BrowseStatementsPage browseStatementsPage = new BrowseStatementsPage(driver);
 		return browseStatementsPage.deleteStatement(name);
+	}
+	
+	public BrowseFacetsPage createSystemFacet(String facetTitle, String type) {
+		createFacet.click();
+		CreateFacetPage createFacet = new CreateFacetPage(driver);
+		return createFacet.createSystemFacet(facetTitle, type);
+	}
+	
+	public BrowseFacetsPage createFacet(String facetTitle, String metadata) {
+		createFacet.click();
+		CreateFacetPage createFacet = new CreateFacetPage(driver);
+		return createFacet.createFacet(facetTitle, metadata);
+	}
+	
+	public CreateFacetPage goToCreateFacetPage() {
+		createFacet.click();
+		return PageFactory.initElements(driver, CreateFacetPage.class);
+	}
+	
+	public BrowseFacetsPage changeSystemFacetSelection(String facetTitle, String newSelection) {
+		browseFacet.click();
+		BrowseFacetsPage browseFacets = new BrowseFacetsPage(driver);
+		return browseFacets.changeSystemFacetSelection(facetTitle, newSelection);
+	}
+	
+	public BrowseFacetsPage changeMetadataFacetSelection(String facetTitle, String newSelection) {
+		browseFacet.click();
+		BrowseFacetsPage browseFacets = new BrowseFacetsPage(driver);
+		return browseFacets.changeMetadataFacetSelection(facetTitle, newSelection);
+	}
+	
+	public BrowseFacetsPage renameFacet(String facetTitle, String newFacetTitle) {
+		browseFacet.click();
+		BrowseFacetsPage browseFacets = new BrowseFacetsPage(driver);
+		return browseFacets.renameFacet(facetTitle, newFacetTitle);
+	}
+	
+	public BrowseFacetsPage deleteFacet(String facetTitle) {
+		browseFacet.click();
+		BrowseFacetsPage browseFacets = new BrowseFacetsPage(driver);
+		return browseFacets.deleteFacet(facetTitle);
 	}
 	
 //	public CreateStatementPage defaultStatementNumber(int id) {

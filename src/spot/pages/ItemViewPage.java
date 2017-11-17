@@ -30,7 +30,7 @@ public class ItemViewPage extends BasePage {
 	@FindBy(css="#actionsMenuArea .fa-download")
 	private WebElement downloadMenu;
 	
-	@FindBy(css="#editItem .imj_metadataSet:nth-of-type(3) .imj_metadataValue a")
+	@FindBy(css=".imj_siteContentHeadline>h1>a")
 	private WebElement collectionName;
 	
 	@FindBy(css="#actionsMenuArea>div a[target='_blank']")
@@ -51,10 +51,13 @@ public class ItemViewPage extends BasePage {
 	@FindBy(css=".imj_metadataWrapper>.imj_metadataWrapper>div:nth-of-type(5)>.imj_metadataValue")
 	private WebElement dateLabel;
 	
+	@FindBy(css=".fa-hand-o-right")
+	private WebElement moveButton;
+	
 	@FindBy(css="#actionsMenuArea>form>a")
 	private WebElement editButton;
 	
-	@FindBy(css = "#actionsMenuArea>a:nth-of-type(2)")
+	@FindBy(css = "#actions .fa-trash")
 	private WebElement deleteLink;
 	
 	@FindBy(id = "deleteItem")
@@ -237,6 +240,40 @@ public class ItemViewPage extends BasePage {
 		}
 		
 		throw new NoSuchElementException("Label is not present.");
+	}
+	
+	public ItemViewPage moveItemToReleasedCollection(String collectionTitle) {
+		moveButton.click();
+		List<WebElement> collectionsList = driver.findElements(By.cssSelector("#actionItem\\:moveItemsComponent\\:moveItemsForm\\:list>p"));
+		int collections = collectionsList.size();
+		for (int i = 1; i <= collections; i++) {
+			String selector = "#actionItem\\:moveItemsComponent\\:moveItemsForm\\:list>p:nth-of-type(" + i + ")>a";
+			WebElement currentCollection = driver.findElement(By.cssSelector(selector));
+			if (currentCollection.getText().equals(collectionTitle)) {
+				currentCollection.click();
+				WebElement moveDialog = driver.findElement(By.id("moveItemsDialog"));
+				moveDialog.findElement(By.className("imj_submitButton")).click();
+				return PageFactory.initElements(driver, ItemViewPage.class);
+			}
+		}
+		
+		throw new NoSuchElementException("Collection " + collectionTitle + " was not found in list.");
+	}
+	
+	public ItemViewPage moveItemToPrivateCollection(String collectionTitle) {
+		moveButton.click();
+		List<WebElement> collectionsList = driver.findElements(By.cssSelector("#actionItem\\:moveItemsComponent\\:moveItemsForm\\:list>p"));
+		int collections = collectionsList.size();
+		for (int i = 1; i <= collections; i++) {
+			String selector = "#actionItem\\:moveItemsComponent\\:moveItemsForm\\:list>p:nth-of-type(" + i + ")>a";
+			WebElement currentCollection = driver.findElement(By.cssSelector(selector));
+			if (currentCollection.getText().equals(collectionTitle)) {
+				currentCollection.click();
+				return PageFactory.initElements(driver, ItemViewPage.class);
+			}
+		}
+		
+		throw new NoSuchElementException("Collection " + collectionTitle + " was not found in list.");
 	}
 	
 	public CollectionEntryPage goToCollectionEntry() {

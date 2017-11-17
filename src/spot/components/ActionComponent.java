@@ -21,19 +21,19 @@ import spot.pages.registered.MetadataTablePage;
 
 public class ActionComponent extends BasePage {
 
-	@FindBy(css = "#menuItems>.imj_menuHeader")
+	@FindBy(css = "#menuCollection>.imj_menuHeader")
 	private WebElement menuItems;
 	
 	@FindBy(id = "menuCollection")
 	private WebElement menuCollection;
 	
-	@FindBy(css = ".imj_menuBody ul form li:nth-of-type(1) a")
+	@FindBy(css = ".imj_menuBody ul li:nth-of-type(1) a")
 	private WebElement editItems;
 	
 	@FindBy(css = "#menuItems .imj_menuBody ul li:nth-of-type(1) a")
 	private WebElement editSelectedItems;
 	
-	@FindBy(css = ".imj_menuBody ul form li:nth-of-type(2) a")
+	@FindBy(css = ".imj_menuBody ul li:nth-of-type(2) a")
 	private WebElement editLicenses;
 	
 	@FindBy(css = "#menuCollection>.imj_menuBody>ul>li:nth-of-type(3)")

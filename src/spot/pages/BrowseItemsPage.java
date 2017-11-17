@@ -6,12 +6,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class BrowseItemsPage extends BasePage {
 
 	private List<WebElement> allItems;
 	List<WebElement> imageList;
+	
+	@FindBy(id = "facetsArea")
+	private WebElement facetsArea;
 	
 	public BrowseItemsPage(WebDriver driver) {
 		super(driver);
@@ -28,6 +32,25 @@ public class BrowseItemsPage extends BasePage {
 			String currentItemTitle = titleElement.getAttribute("title");
 			if (currentItemTitle.equals(itemTitle)) {
 				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean isFacetPresent(String key, String value) {
+		List<WebElement> facets = facetsArea.findElements(By.className("imj_facet"));
+		
+		for (WebElement facet : facets) {
+			String currentKey = facet.findElement(By.className("imj_facetName")).getText();
+			if (currentKey.equals(key)) {
+				List<WebElement> values = facet.findElement(By.className("imj_facetValue")).findElements(By.tagName("a"));
+				for (WebElement currentValue : values) {
+					String currentValueText = currentValue.getText();
+					if (currentValueText.equals(value)) {
+						return true;
+					}
+				}
 			}
 		}
 		

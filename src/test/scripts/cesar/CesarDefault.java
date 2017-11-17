@@ -39,7 +39,10 @@ public class CesarDefault extends BaseSelenium {
 	public void beforeClass() {
 		navigateToStartPage();
 	}
-	
+
+	/**
+	 * IMJ-188
+	 */
 	@Test(priority = 1)
 	public void switchPrivateMode() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
@@ -56,7 +59,10 @@ public class CesarDefault extends BaseSelenium {
 		boolean thumbnailView = adminHomepage.goToCollectionPage().getPageOfLargestCollection().isElementPresent(By.id("imgFrame"));
 		Assert.assertTrue(thumbnailView, "Collections should be in thumbnail view.");
 	}
-	
+
+	/**
+	 * IMJ-83
+	 */
 	@Test(priority = 3)
 	public void createDefaultCollection() {
 		NewCollectionPage newCollectionPage = adminHomepage.goToCreateNewCollectionPage();
@@ -80,7 +86,10 @@ public class CesarDefault extends BaseSelenium {
 		boolean labelDisplayed = collectionEntry.labelDisplayed("Custom information");
 		Assert.assertTrue(labelDisplayed, "External reference is not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-133
+	 */
 	@Test(priority = 5)
 	public void uploadLogo() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -91,7 +100,10 @@ public class CesarDefault extends BaseSelenium {
 		boolean hasLogo = collectionEntry.hasLogo();
 		Assert.assertTrue(hasLogo, "Logo is not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-123
+	 */
 	@Test(priority = 6)
 	public void editTitle() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -111,12 +123,18 @@ public class CesarDefault extends BaseSelenium {
 		boolean uploadSuccessful = collectionEntry.findItem(title);
 		Assert.assertTrue(uploadSuccessful, "Item not among uploads.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 7)
 	public void uploadJPG() {
 		uploadItem("SampleJPGFile.jpg", adminHomepage);
 	}
-	
+
+	/**
+	 * IMJ-279
+	 */
 	@Test(priority = 8)
 	public void metadataAllItems() {
 		String key = "Title";
@@ -134,12 +152,18 @@ public class CesarDefault extends BaseSelenium {
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 9)
 	public void uploadPDF() {
 		uploadItem("SamplePDFFile.pdf", adminHomepage);
 	}
-	
+
+	/**
+	 * IMJ-280
+	 */
 	@Test(priority = 10)
 	public void metadataIfEmpty() {
 		String key = "Title";
@@ -161,7 +185,10 @@ public class CesarDefault extends BaseSelenium {
 		metadataDisplayed = collectionEntry.metadataDisplayed("SampleJPGFile.jpg", key, "Test collection");
 		Assert.assertTrue(metadataDisplayed, "Old metadata is not displayed on JPG item page.");
 	}
-	
+
+	/**
+	 * IMJ-67
+	 */
 	@Test(priority = 11)
 	public void deleteItem() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -174,12 +201,18 @@ public class CesarDefault extends BaseSelenium {
 		boolean itemPresent = collectionEntry.findItem("SampleJPGFile.jpg");
 		Assert.assertFalse(itemPresent, "Item was not deleted.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 12)
 	public void uploadJPG2() {
 		uploadItem("SampleJPGFile2.jpg", adminHomepage);
 	}
-	
+
+	/**
+	 * IMJ-214
+	 */
 	@Test(priority = 13)
 	public void shareEditRU() {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
@@ -204,31 +237,46 @@ public class CesarDefault extends BaseSelenium {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		adminHomepage.logout();
 	}
-	
+
+	/**
+	 * IMJ-22
+	 */
 	@Test(priority = 15)
 	public void loginRestrictedUser() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(restrUsername), getPropertyAttribute(restrPassword));
 	}
-	
+
+	/**
+	 * IMJ-162
+	 */
 	@Test(priority = 16)
 	public void searchCollection() {
 		SearchResultsPage searchResults = homepage.getSearchComponent().searchByCategory(collectionTitle, CategoryType.COLLECTION);
 		Assert.assertNotEquals(searchResults.getResultCountCollection(), 0, "User cannot find collection " + collectionTitle);
 	}
-	
+
+	/**
+	 * IMJ-46
+	 */
 	@Test(priority = 17)
 	public void shareIconDisplayed() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean shareVisible = collectionEntry.shareIconVisible();
 		Assert.assertTrue(shareVisible, "Share icon is not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 18)
 	public void uploadXLSX() {
 		uploadItem("SampleXLSXFile.xlsx", homepage);
 	}
-	
+
+	/**
+	 * IMJ-281
+	 */
 	@Test(priority = 19)
 	public void metadataOverwrite() {
 		String key = "Date";
@@ -264,7 +312,10 @@ public class CesarDefault extends BaseSelenium {
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
 	}
-	
+
+	/**
+	 * IMJ-234
+	 */
 	@Test(priority = 21)
 	public void downloadItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -272,7 +323,10 @@ public class CesarDefault extends BaseSelenium {
 		boolean canDownload = itemView.isDownloadPossible();
 		Assert.assertTrue(canDownload, "Item cannot be downloaded.");
 	}
-	
+
+	/**
+	 * IMJ-236
+	 */
 	@Test(priority = 22)
 	public void downloadSelectedItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -282,26 +336,38 @@ public class CesarDefault extends BaseSelenium {
 		boolean downloadPossible = collectionEntry.downloadSelectedPossible();
 		Assert.assertTrue(downloadPossible, "Download button is not enabled for selected items.");
 	}
-	
+
+	/**
+	 * IMJ-232
+	 */
 	@Test(priority = 23)
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean canDownloadAll = collectionEntry.downloadAllPossible();
 		Assert.assertTrue(canDownloadAll, "'Download All' button is not displayed or enabled.");
 	}
-	
+
+	/**
+	 * IMJ-2
+	 */
 	@Test(priority = 24)
 	public void logout() {
 		homepage = new StartPage(driver).goToHomepage(homepage);
 		homepage.logout();
 	}
-	
+
+	/**
+	 * IMJ-21
+	 */
 	@Test(priority = 25)
 	public void loginAdmin() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
 	}
-	
+
+	/**
+	 * IMJ-96
+	 */
 	@Test(priority = 26)
 	public void deleteCollection() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);

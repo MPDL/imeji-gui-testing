@@ -34,20 +34,29 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 	public void beforeClass() {
 		navigateToStartPage();
 	}
-	
+
+	/**
+	 * IMJ-1
+	 */
 	@Test(priority = 1)
 	public void loginUser1() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 	}
-	
+
+	/**
+	 * IMJ-86
+	 */
 	@Test(priority = 2)
 	public void createCollection3Authors() {
 		NewCollectionPage newCollectionPage = homepage.goToCreateNewCollectionPage();
 		collectionEntry = newCollectionPage.createCollection3Authors(collectionTitle, collectionDescription,
 				null, getPropertyAttribute(ruFamilyName), getPropertyAttribute(ruOrganizationName));
 	}
-	
+
+	/**
+	 * IMJ-123
+	 */
 	@Test(priority = 3)
 	public void editTitle() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -59,7 +68,10 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		String pageTitle = collectionEntry.getTitle();
 		Assert.assertEquals(pageTitle, collectionTitle, "Title was not changed.");
 	}
-	
+
+	/**
+	 * IMJ-243
+	 */
 	@Test(priority = 4)
 	public void deleteAuthor() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -80,12 +92,18 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		boolean uploadSuccessful = collectionEntry.findItem(title);
 		Assert.assertTrue(uploadSuccessful, "Item not among uploads.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 5)
 	public void uploadPDF() {
 		uploadItem("SamplePDFFile.pdf");
 	}
-	
+
+	/**
+	 * IMJ-279
+	 */
 	@Test(priority = 6)
 	public void metadataAllItems() {
 		String key = "Description";
@@ -99,12 +117,18 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 7)
 	public void uploadTXT() {
 		uploadItem("SampleTXTFile.txt");
 	}
-	
+
+	/**
+	 * IMJ-280
+	 */
 	@Test(priority = 8)
 	public void metadataIfEmpty() {
 		String key = "Description";
@@ -122,12 +146,18 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		metadataDisplayed = collectionEntry.metadataDisplayed("SamplePDFFile.pdf", key, "Test collection");
 		Assert.assertTrue(metadataDisplayed, "Old metadata is not displayed on PDF item page.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 9)
 	public void uploadXLSX() {
 		uploadItem("SampleXLSXFile.xlsx");
 	}
-	
+
+	/**
+	 * IMJ-281
+	 */
 	@Test(priority = 10)
 	public void metadataOverwrite() {
 		String key = "Description";
@@ -141,7 +171,10 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on all item pages.");
 	}
-	
+
+	/**
+	 * IMJ-79
+	 */
 	@Test(priority = 11)
 	public void assignPredefinedLicense() {
 		for (int i = 0; i <= 1; i++) {
@@ -155,7 +188,10 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 			Assert.assertTrue(licensePresent, "License does not appear.");
 		}
 	}
-	
+
+	/**
+	 * IMJ-80
+	 */
 	@Test(priority = 12)
 	public void assignLicenseURL() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -167,7 +203,10 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		boolean licensePresent = itemView.licensePresent("https://creativecommons.org/publicdomain/zero/1.0/");
 		Assert.assertTrue(licensePresent, "License does not appear.");
 	}
-	
+
+	/**
+	 * IMJ-204
+	 */
 	@Test(priority = 13)
 	public void shareReadExternal() {
 		String email = "nonexistentuser@mpdl.mpg.de";
@@ -181,7 +220,10 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		boolean pendingInvitation = shareTransition.isEmailPendingInvitation(email);
 		Assert.assertTrue(pendingInvitation, "Email of external user is not in 'Pending invitations' list.");
 	}
-	
+
+	/**
+	 * IMJ-196
+	 */
 	@Test(priority = 14)
 	public void shareReadRU() {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
@@ -199,31 +241,46 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		boolean grantsCorrect = shareTransition.checkGrantSelections(false, user2Name, true, false, false);
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
-	
+
+	/**
+	 * IMJ-2
+	 */
 	@Test(priority = 15)
 	public void logout() {
 		homepage = new StartPage(driver).goToHomepage(homepage);
 		homepage.logout();
 	}
-	
+
+	/**
+	 * IMJ-22
+	 */
 	@Test(priority = 16)
 	public void loginUser2() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(restrUsername), getPropertyAttribute(restrPassword));
 	}
-	
+
+	/**
+	 * IMJ-46
+	 */
 	@Test(priority = 17)
 	public void openCollection() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean shareVisible = collectionEntry.shareIconVisible();
 		Assert.assertTrue(shareVisible, "Share icon is not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-2
+	 */
 	@Test(priority = 18)
 	public void logoutUser2() {
 		homepage.logout();
 	}
-	
+
+	/**
+	 * IMJ-98, IMJ-139, IMJ-45
+	 */
 	@Test(priority = 19)
 	public void releaseCollectionDefaultLicense() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
@@ -235,7 +292,10 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		boolean releaseDisplayed = collectionEntry.releasedIconVisible();
 		Assert.assertTrue(releaseDisplayed, "Released icon is not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-115
+	 */
 	@Test(priority = 20)
 	public void addCollectionDOI() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -245,7 +305,10 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		String actualDOI = collectionEntry.getDOI();
 		Assert.assertNotEquals(actualDOI, "", "DOIs do not match.");
 	}
-	
+
+	/**
+	 * IMJ-69
+	 */
 	@Test(priority = 21)
 	public void discardItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -272,7 +335,10 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		int resultCount = searchResults.getResultCountCollection();
 		Assert.assertTrue(resultCount == 0, "Third author is still found in results.");
 	}
-	
+
+	/**
+	 * IMJ-59
+	 */
 	@Test(priority = 23)
 	public void downloadItemNRU() {
 		homepage.logout();
@@ -281,14 +347,20 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		boolean downloadItemPossible = itemView.isDownloadPossible();
 		Assert.assertTrue(downloadItemPossible, "Non-registered user cannot download item.");
 	}
-	
+
+	/**
+	 * IMJ-233
+	 */
 	@Test(priority = 24)
 	public void downloadAllNRU() {
 		collectionEntry = new StartPage(driver).goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean downloadAllPossible = collectionEntry.downloadAllPossible();
 		Assert.assertTrue(downloadAllPossible, "Non-registered user cannot download collection's items.");
 	}
-	
+
+	/**
+	 * IMJ-97
+	 */
 	@Test(priority = 25)
 	public void discardCollection() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
@@ -302,7 +374,10 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		boolean noItemsDisplayed = discardedCollection.noItemsDisplayed();
 		Assert.assertTrue(noItemsDisplayed, "Items in a discarded collection are displayed.");
 	}
-	
+
+	/**
+	 * IMJ-2
+	 */
 	@AfterClass
 	public void afterClass() {
 		homepage = new StartPage(driver).goToHomepage(homepage);

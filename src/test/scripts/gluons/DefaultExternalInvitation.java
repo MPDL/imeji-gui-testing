@@ -31,7 +31,10 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	public void beforeClass() {
 		navigateToStartPage();
 	}
-	
+
+	/**
+	 * IMJ-188
+	 */
 	@Test(priority = 1)
 	public void switchPrivateMode() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
@@ -39,13 +42,19 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		adminHomepage.goToAdminPage().enablePrivateMode();
 		adminHomepage.logout();
 	}
-	
+
+	/**
+	 * IMJ-19
+	 */
 	@Test(priority = 2)
 	public void loginRU() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 	}
-	
+
+	/**
+	 * IMJ-83
+	 */
 	@Test(priority = 3)
 	public void createDefaultCollection() {
 		NewCollectionPage newCollectionPage = homepage.goToCreateNewCollectionPage();
@@ -68,7 +77,10 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		boolean labelDisplayed = collectionEntry.labelDisplayed("Custom information");
 		Assert.assertTrue(labelDisplayed, "External reference is not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-133
+	 */
 	@Test(priority = 5)
 	public void uploadLogo() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -79,7 +91,10 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		boolean hasLogo = collectionEntry.hasLogo();
 		Assert.assertTrue(hasLogo, "Logo is not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-123
+	 */
 	@Test(priority = 6)
 	public void editTitle() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -99,12 +114,18 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		boolean uploadSuccessful = collectionEntry.findItem(title);
 		Assert.assertTrue(uploadSuccessful, "Item not among uploads.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 7)
 	public void uploadJPG() {
 		uploadItem("SampleJPGFile.jpg");
 	}
-	
+
+	/**
+	 * IMJ-279
+	 */
 	@Test(priority = 8)
 	public void metadataAllItems() {
 		String key = "Title";
@@ -118,12 +139,18 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 9)
 	public void uploadPDF() {
 		uploadItem("SamplePDFFile.pdf");
 	}
-	
+
+	/**
+	 * IMJ-280
+	 */
 	@Test(priority = 10)
 	public void metadataIfEmpty() {
 		String key = "Title";
@@ -141,7 +168,10 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		metadataDisplayed = collectionEntry.metadataDisplayed("SampleJPGFile.jpg", key, "Test collection");
 		Assert.assertTrue(metadataDisplayed, "Old metadata is not displayed on JPG item page.");
 	}
-	
+
+	/**
+	 * IMJ-67
+	 */
 	@Test(priority = 11)
 	public void deleteItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -154,12 +184,18 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		boolean itemPresent = collectionEntry.findItem("SampleJPGFile.jpg");
 		Assert.assertFalse(itemPresent, "Item was not deleted.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 12)
 	public void uploadJPG2() {
 		uploadItem("SampleJPGFile2.jpg");
 	}
-	
+
+	/**
+	 * IMJ-201
+	 */
 	@Test(priority = 13)
 	public void shareAdminExternal() {
 		String email = "nonexistentuser@mpdl.mpg.de";
@@ -173,7 +209,10 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		boolean pendingInvitation = shareTransition.isEmailPendingInvitation(email);
 		Assert.assertTrue(pendingInvitation, "Email of external user is not in 'Pending invitations' list.");
 	}
-	
+
+	/**
+	 * IMJ-2
+	 */
 	@Test(priority = 14)
 	public void logoutRU() {
 		homepage = new StartPage(driver).goToHomepage(homepage);

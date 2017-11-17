@@ -114,8 +114,8 @@ public class EditCollectionPage extends BasePage {
 	}
 	
 	public void addLogo(String filepath) {
-		WebElement divWrapper = logoContainer.findElement(By.className("moxie-shim-html5"));
-		WebElement input = divWrapper.findElement(By.tagName("input"));
+		WebElement divWrapper = logoContainer.findElement(By.id("container"));
+		WebElement input = divWrapper.findElement(By.id("pickfiles"));
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		

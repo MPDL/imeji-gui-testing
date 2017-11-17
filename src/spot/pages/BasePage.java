@@ -277,7 +277,7 @@ public abstract class BasePage {
 	 */
 	public boolean isElementPresent(By locator) {
 		try {
-			wait.withTimeout(3, TimeUnit.SECONDS).until(ExpectedConditions.presenceOfElementLocated(locator));
+			wait.withTimeout(2, TimeUnit.SECONDS).until(ExpectedConditions.presenceOfElementLocated(locator));
 			return true;
 		}
 		catch (TimeoutException exc) {

@@ -36,20 +36,29 @@ public class AdminSharesWithUser extends BaseSelenium {
 	public void beforeClass() {
 		navigateToStartPage();
 	}
-	
+
+	/**
+	 * IMJ-188
+	 */
 	@Test(priority = 1)
 	public void switchPrivateMode() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
 		adminHomepage.goToAdminPage().enablePrivateMode();
 	}
-	
+
+	/**
+	 * IMJ-191
+	 */
 	@Test(priority = 2)
 	public void enableAutoSuggestions() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		adminHomepage.goToAdminPage().setAutosuggestionMP();
 	}
-	
+
+	/**
+	 * IMJ-240
+	 */
 	@Test(priority = 3)
 	public void enableListView() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
@@ -65,13 +74,19 @@ public class AdminSharesWithUser extends BaseSelenium {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		adminHomepage.logout();
 	}
-	
+
+	/**
+	 * IMJ-19
+	 */
 	@Test(priority = 5)
 	public void loginRU() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 	}
-	
+
+	/**
+	 * IMJ-83
+	 */
 	@Test(priority = 6)
 	public void createCollection() {
 		NewCollectionPage newCollection = homepage.goToCreateNewCollectionPage();
@@ -82,7 +97,10 @@ public class AdminSharesWithUser extends BaseSelenium {
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
 		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-133
+	 */
 	@Test(priority = 7)
 	public void uploadLogo() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -93,7 +111,10 @@ public class AdminSharesWithUser extends BaseSelenium {
 		boolean hasLogo = collectionEntry.hasLogo();
 		Assert.assertTrue(hasLogo, "Logo is not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-246
+	 */
 	@Test(priority = 8)
 	public void editDescription() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -115,22 +136,34 @@ public class AdminSharesWithUser extends BaseSelenium {
 		boolean uploadSuccessful = collectionEntry.findItem(title);
 		Assert.assertTrue(uploadSuccessful, "Item not among uploads.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 9)
 	public void uploadTSV() {
 		uploadItem("JR1_MAL_MAL_Wissenschaftsgeschichte_2010-2013.tsv");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 10)
 	public void uploadExcel() {
 		uploadItem("APC_Springer_Psycholinguistik_201609.xlsx");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 11)
 	public void uploadText() {
 		uploadItem("JR1_deGruyter_deGruyter_Menschheitsgeschichte_2014.txt");
 	}
-	
+
+	/**
+	 * IMJ-196
+	 */
 	@Test(priority = 12)
 	public void shareReadRU() {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
@@ -149,25 +182,37 @@ public class AdminSharesWithUser extends BaseSelenium {
 		boolean grantsCorrect = shareTransition.checkGrantSelections(false, user2Name, true, false, false);
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
-	
+
+	/**
+	 * IMJ-46
+	 */
 	@Test(priority = 13)
 	public void openCollection() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean shareVisible = collectionEntry.shareIconVisible();
 		Assert.assertTrue(shareVisible, "Share icon is not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-2
+	 */
 	@Test(priority = 14)
 	public void logout() {
 		homepage.logout();
 	}
-	
+
+	/**
+	 * IMJ-22
+	 */
 	@Test(priority = 15)
 	public void loginUser2() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(restrUsername), getPropertyAttribute(restrPassword));
 	}
-	
+
+	/**
+	 * IMJ-47
+	 */
 	@Test(priority = 16)
 	public void checkShareIcon() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -180,17 +225,26 @@ public class AdminSharesWithUser extends BaseSelenium {
 		SearchResultsPage searchResults = advancedSearch.advancedSearch(term);
 		Assert.assertTrue(searchResults.getResultCount() > 0, "Valid result is not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-183
+	 */
 	@Test(priority = 17)
 	public void searchTSV() {
 		advancedSearch("Antioxidants & Redox Signaling");
 	}
-	
+
+	/**
+	 * IMJ-183
+	 */
 	@Test(priority = 18)
 	public void searchExcel() {
 		advancedSearch("10.3758/s13414-016-1206-4");
 	}
-	
+
+	/**
+	 * IMJ-183
+	 */
 	@Test(priority = 19)
 	public void searchText() {
 		advancedSearch("Botanica Marina (botm)");
@@ -204,17 +258,26 @@ public class AdminSharesWithUser extends BaseSelenium {
 		
 		itemView.download();
 	}
-	
+
+	/**
+	 * IMJ-234
+	 */
 	@Test(priority = 20)
 	public void downloadTSV() {
 		downloadItem("JR1_MAL_MAL_Wissenschaftsgeschichte_2010-2013.tsv");
 	}
-	
+
+	/**
+	 * IMJ-234
+	 */
 	@Test(priority = 21)
 	public void downloadExcel() {
 		downloadItem("APC_Springer_Psycholinguistik_201609.xlsx");
 	}
-	
+
+	/**
+	 * IMJ-234
+	 */
 	@Test(priority = 22)
 	public void downloadText() {
 		downloadItem("JR1_deGruyter_deGruyter_Menschheitsgeschichte_2014.txt");
@@ -224,7 +287,10 @@ public class AdminSharesWithUser extends BaseSelenium {
 	public void logoutRestricted() {
 		homepage.logout();
 	}
-	
+
+	/**
+	 * IMJ-96
+	 */
 	@Test(priority = 24)
 	public void deleteCollection() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
@@ -235,7 +301,10 @@ public class AdminSharesWithUser extends BaseSelenium {
 		boolean collectionPresent = collectionsPage.collectionPresent(collectionTitle);
 		Assert.assertFalse(collectionPresent, "Collection was not deleted.");
 	}
-	
+
+	/**
+	 * IMJ-2
+	 */
 	@AfterClass
 	public void logoutRU() {
 		homepage = new StartPage(driver).goToHomepage(homepage);

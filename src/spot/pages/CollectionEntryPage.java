@@ -13,6 +13,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import spot.components.ActionComponent;
 import test.base.CategoryType;
@@ -37,10 +38,10 @@ public class CollectionEntryPage extends BasePage {
 	@FindBy(id = "actionMenu")
 	private WebElement actionMenu;
 	
-	@FindBy(id = "menuCollection")
+	@FindBy(css = ".fa-pencil")
 	private WebElement editButton;
 	
-	@FindBy(id = "actionCollection:showUploadForm:upload")
+	@FindBy(id = "showUploadForm:upload")
 	private WebElement uploadButton;
 	
 	@FindBy(className = "fa-download")
@@ -49,7 +50,7 @@ public class CollectionEntryPage extends BasePage {
 	@FindBy(css = "#menuCollection>.imj_menuBody>ul>li:nth-of-type(1)")
 	private WebElement editInfoOption;
 	
-	@FindBy(css = ".collectionAboutTitle")
+	@FindBy(css = "#pageTitle h1")
 	private WebElement title;
 	
 	@FindBy(css = ".collectionAboutHidden>.imj_infodataSet:nth-of-type(3)>.imj_infodataValue")
@@ -67,7 +68,7 @@ public class CollectionEntryPage extends BasePage {
 	@FindBy(css = ".imj_infodataSet .imj_infodataValue a")
 	private WebElement doiLink;
 	
-	@FindBy(css=".collectionAbout .fa-caret-down")
+	@FindBy(css=".moreCollection .fa-caret-right")
 	private WebElement aboutLink;
 	
 	@FindBy(css = ".imj_menuButton .fa-pencil")
@@ -84,6 +85,12 @@ public class CollectionEntryPage extends BasePage {
 	
 	@FindBy(id = "dialogDeleteAll")
 	private WebElement deleteAllDialog;
+	
+	@FindBy(id = "facetsArea")
+	private WebElement facetsArea;
+	
+	@FindBy(css = "#imj_rangeSelector>select")
+	private WebElement rangeSelector;
 	
 	private int totalItemNumber;
 	
@@ -121,8 +128,8 @@ public class CollectionEntryPage extends BasePage {
 	
 	public EditCollectionPage editInformation() {
 		editButton.click();
-		wait.until(ExpectedConditions.visibilityOf(editInfoOption));
-		editInfoOption.click();
+//		wait.until(ExpectedConditions.visibilityOf(editInfoOption));
+//		editInfoOption.click();
 		
 		return PageFactory.initElements(driver, EditCollectionPage.class);
 	}
@@ -162,6 +169,10 @@ public class CollectionEntryPage extends BasePage {
 		return false;
 	}
 	
+	public boolean hasThumbnailView() {
+		return isElementPresent(By.id("imgFrame"));
+	}
+	
 	public String getValue(String label) {
 		openDescription();
 		List<WebElement> sets = driver.findElements(By.className("imj_infodataSet"));
@@ -197,13 +208,15 @@ public class CollectionEntryPage extends BasePage {
 	public boolean findItem(String title) {
 		wait.until(ExpectedConditions.elementToBeClickable(aboutLink));
 		List<WebElement> itemList = getItemList();
-		for (WebElement item : itemList) {
-			try {
+		if (thumbnailView()) {
+			for (WebElement item : itemList) {
 				WebElement itemTitleLabel = item.findElement(By.tagName("label"));
 				if (itemTitleLabel.getAttribute("title").equals(title))
 					return true;
 			}
-			catch (NoSuchElementException exc) {
+		}
+		else {
+			for (WebElement item : itemList) {
 				WebElement itemTitleLabel =  item.findElement(By.cssSelector(".order-table tr .imj_colFilename a"));
 				if (itemTitleLabel.getAttribute("title").equals(title))
 					return true;
@@ -216,17 +229,23 @@ public class CollectionEntryPage extends BasePage {
 		//wait.until(ExpectedConditions.elementToBeClickable(aboutLink));
 		List<WebElement> itemList = getItemList();
 		int i = 0;
-		for (WebElement item : itemList) {
-			try {
-				if (item.findElement(By.tagName("label")).getAttribute("title").equals(title))
-					return i;
+		if (thumbnailView()) {
+			for (WebElement item : itemList) {
+				if (item.findElement(By.tagName("label")).getAttribute("title").equals(title)) {
+						return i;
+				}
+				i++;
 			}
-			catch (NoSuchElementException exc) {
-				if (item.findElement(By.cssSelector(".order-table tr .imj_colFilename a")).getAttribute("title").equals(title))
-					return i;
-			}
-			i++;
 		}
+		else {
+			for (WebElement item : itemList) {
+				if (item.findElement(By.cssSelector(".order-table tr .imj_colFilename a")).getAttribute("title").equals(title)) {
+						return i;
+				}
+				i++;
+				}
+				
+			}
 		throw new NoSuchElementException("Item with title " + title + " does not exist.");
 	}
 	
@@ -235,10 +254,9 @@ public class CollectionEntryPage extends BasePage {
 	}
 	
 	public List<WebElement> getItemList() {
-		// assumes thumbnail view is on. will create problems if we want to test if the collection is empty
+		// assumes collection is not empty. will create problems if we want to test if the collection is empty
 		List<WebElement> itemList;
-		if (isElementPresent(By.id("imgFrame"))) {
-			// thumbnail view
+		if (thumbnailView()) {
 			itemList = driver.findElements(By.id("imgFrame"));
 		}
 		else {
@@ -246,6 +264,13 @@ public class CollectionEntryPage extends BasePage {
 			itemList = driver.findElements(By.className("imj_colFilename"));
 		}
 		return itemList;
+	}
+	
+	/*
+	 * Use only for non-empty collections.
+	 */
+	public boolean thumbnailView() {
+		return isElementPresent(By.className("fa-list-alt"));
 	}
 	
 	public CollectionEntryPage releaseCollection() {
@@ -312,7 +337,7 @@ public class CollectionEntryPage extends BasePage {
 	
 	private void validateIndex(int index) {
 		int itemCount = getItemListSize();
-		if (index > itemCount)
+		if (index >= itemCount)
 			throw new IllegalArgumentException("No item with index " + index + ". Total count: " + itemCount);
 	}
 	
@@ -344,6 +369,7 @@ public class CollectionEntryPage extends BasePage {
 		uploadButton.click();
 		UploadWindow upload = new UploadWindow(driver);
 		upload.uploadFile(filepath);
+		wait.until(ExpectedConditions.elementToBeClickable(By.className("imj_openUploadDialog")));
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
@@ -420,6 +446,25 @@ public class CollectionEntryPage extends BasePage {
 		return metadataPresent;
 	}
 	
+	public boolean facetDisplayed(String key, String value) {
+		List<WebElement> facets = facetsArea.findElements(By.className("imj_facet"));
+		
+		for (WebElement facet : facets) {
+			String currentKey = facet.findElement(By.className("imj_facetName")).getText();
+			if (currentKey.equals(key)) {
+				List<WebElement> values = facet.findElement(By.className("imj_facetValue")).findElements(By.tagName("a"));
+				for (WebElement currentValue : values) {
+					String currentValueText = currentValue.getText();
+					if (currentValueText.equals(value)) {
+						return true;
+					}
+				}
+			}
+		}
+		
+		return false;
+	}
+	
 	public boolean checkLicenseAll(String link) {
 		List<WebElement> itemList = getItemList();
 		boolean licensePresent = true;
@@ -434,7 +479,7 @@ public class CollectionEntryPage extends BasePage {
 	}
 	
 	public CollectionEntryPage selectItem(int index) {
-		driver.findElement(By.xpath("//input[contains(@id, '" + index + ":itemSelectForm:pictureCheckbox')]")).click();
+		driver.findElement(By.xpath("//input[contains(@id, ':" + index + ":') and contains(@id, ':pictureCheckbox')]")).click();
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {}
@@ -450,6 +495,55 @@ public class CollectionEntryPage extends BasePage {
 		retryingFindClick(By.cssSelector("#menuItems>.imj_menuBody>ul>li:nth-of-type(4)>a"));
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#deleteSelectedItems .imj_submitPanel .imj_submitButton').click();");
 		
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	public CollectionEntryPage moveSelectedItemsToPrivateCollection(String collectionTitle) {
+		retryingFindClick(By.id("menuItems"));
+		retryingFindClick(By.cssSelector("#menuItems .imj_menuBody ul li:nth-of-type(3) a"));
+		List<WebElement> collectionsList = driver.findElements(By.cssSelector("#actionSelectedItems\\:moveItemsComponent\\:moveItemsForm\\:list>p"));
+		int collections = collectionsList.size();
+		for (int i = 1; i <= collections; i++) {
+			String selector = "#actionSelectedItems\\:moveItemsComponent\\:moveItemsForm\\:list>p:nth-of-type(" + i + ")>a";
+			WebElement currentCollection = driver.findElement(By.cssSelector(selector));
+			if (currentCollection.getText().equals(collectionTitle)) {
+				currentCollection.click();
+				return PageFactory.initElements(driver, CollectionEntryPage.class);
+			}
+		}
+		
+		throw new NoSuchElementException("Collection " + collectionTitle + " was not found in list.");
+	}
+	
+	public CollectionEntryPage moveSelectedItemsToReleasedCollection(String collectionTitle) {
+		retryingFindClick(By.id("menuItems"));
+		retryingFindClick(By.cssSelector("#menuItems .imj_menuBody ul li:nth-of-type(3) a"));
+		List<WebElement> collectionsList = driver.findElements(By.cssSelector("#actionSelectedItems\\:moveItemsComponent\\:moveItemsForm\\:list>p"));
+		int collections = collectionsList.size();
+		for (int i = 1; i <= collections; i++) {
+			String selector = "#actionSelectedItems\\:moveItemsComponent\\:moveItemsForm\\:list>p:nth-of-type(" + i + ")>a";
+			WebElement currentCollection = driver.findElement(By.cssSelector(selector));
+			if (currentCollection.getText().equals(collectionTitle)) {
+				currentCollection.click();
+				WebElement moveDialog = driver.findElement(By.id("moveItemsDialog"));
+				moveDialog.findElement(By.className("imj_submitButton")).click();
+				return PageFactory.initElements(driver, CollectionEntryPage.class);
+			}
+		}
+		
+		throw new NoSuchElementException("Collection " + collectionTitle + " was not found in list.");
+	}
+	
+	/**
+	 * Sets number of items per page to the maximum: useful for tests with big collections
+	 * The maximum varies from browser to browser
+	 */
+	public CollectionEntryPage displayMaximalItems() {
+		Select rangeSelect = new Select(rangeSelector);
+		int optionCount = rangeSelect.getOptions().size();
+		rangeSelect.selectByIndex(optionCount - 1);
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.className("imj_itemsAreaContent")));
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 }

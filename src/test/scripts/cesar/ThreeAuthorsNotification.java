@@ -40,14 +40,20 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 	public void beforeClass() {
 		navigateToStartPage();
 	}
-	
+
+	/**
+	 * IMJ-188
+	 */
 	@Test(priority = 1)
 	public void switchPrivateMode() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
 		adminHomepage.goToAdminPage().enablePrivateMode();
 	}
-	
+
+	/**
+	 * IMJ-239
+	 */
 	@Test(priority = 2)
 	public void createCollection() {
 		NewCollectionPage newCollectionPage = adminHomepage.goToCreateNewCollectionPage();
@@ -58,7 +64,10 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
 		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-133
+	 */
 	@Test(priority = 3)
 	public void uploadLogo() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -69,7 +78,10 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		boolean hasLogo = collectionEntry.hasLogo();
 		Assert.assertTrue(hasLogo, "Logo is not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-246
+	 */
 	@Test(priority = 4)
 	public void editDescription() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -81,7 +93,10 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		String actual = collectionEntry.getDescription();
 		Assert.assertEquals(actual, collectionDescription, "Description was not changed.");
 	}
-	
+
+	/**
+	 * IMJ-244
+	 */
 	@Test(priority = 5)
 	public void editAuthor() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -103,12 +118,18 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		boolean uploadSuccessful = collectionEntry.findItem(title);
 		Assert.assertTrue(uploadSuccessful, "Item not among uploads.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 6)
 	public void uploadPDF() {
 		uploadItem("SamplePDFFile.pdf");
 	}
-	
+
+	/**
+	 * IMJ-279
+	 */
 	@Test(priority = 7)
 	public void metadataAllItems() {
 		String key = "Description";
@@ -122,12 +143,18 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 8)
 	public void uploadTXT() {
 		uploadItem("SampleTXTFile.txt");
 	}
-	
+
+	/**
+	 * IMJ-280
+	 */
 	@Test(priority = 9)
 	public void metadataIfEmpty() {
 		String key = "Description";
@@ -145,12 +172,18 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		metadataDisplayed = collectionEntry.metadataDisplayed("SamplePDFFile.pdf", key, "Test collection");
 		Assert.assertTrue(metadataDisplayed, "Old metadata is not displayed on PDF item page.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 10)
 	public void uploadXLSX() {
 		uploadItem("SampleXLSXFile.xlsx");
 	}
-	
+
+	/**
+	 * IMJ-281
+	 */
 	@Test(priority = 11)
 	public void metadataOverwrite() {
 		String key = "Description";
@@ -164,7 +197,10 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on all item pages.");
 	}
-	
+
+	/**
+	 * IMJ-134
+	 */
 	@Test(priority = 12)
 	public void assignLicense() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -174,7 +210,10 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		boolean licensePresent = collectionEntry.checkLicenseAll("https://creativecommons.org/licenses/by/4.0/");
 		Assert.assertTrue(licensePresent, "License is not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-195
+	 */
 	@Test(priority = 14)
 	public void shareAdminRU() {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
@@ -193,19 +232,28 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		boolean grantsCorrect = shareTransition.checkGrantSelections(false, user2Name, true, true, true);
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
-	
+
+	/**
+	 * IMJ-2
+	 */
 	@Test(priority = 15)
 	public void logout() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		adminHomepage.logout();
 	}
-	
+
+	/**
+	 * IMJ-22
+	 */
 	@Test(priority = 16)
 	public void loginUser2() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(restrUsername), getPropertyAttribute(restrPassword));
 	}
-	
+
+	/**
+	 * IMJ-46
+	 */
 	@Test(priority = 17)
 	public void openCollection() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -233,7 +281,10 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 			
 		Assert.assertTrue(notificationMail.contains("downloaded"), "Email does not contain information about download.");
 	}
-	
+
+	/**
+	 * IMJ-234, IMJ-125
+	 */
 	@Test(priority = 18)
 	public void downloadItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -244,7 +295,10 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		itemView.download();
 		emailReceived();
 	}
-	
+
+	/**
+	 * IMJ-236, IMJ-125
+	 */
 	@Test(priority = 19)
 	public void downloadSelectedItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -257,7 +311,10 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		collectionEntry.downloadSelected();
 		emailReceived();
 	}
-	
+
+	/**
+	 * IMJ-232, IMJ-125
+	 */
 	@Test(priority = 20)
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -267,7 +324,10 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		collectionEntry.downloadAll();
 		emailReceived();
 	}
-	
+
+	/**
+	 * IMJ-96
+	 */
 	@Test(priority = 21)
 	public void deleteCollection() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -276,7 +336,10 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		boolean collectionPresent = collectionsPage.collectionPresent(collectionTitle);
 		Assert.assertFalse(collectionPresent, "Collection was not deleted.");
 	}
-	
+
+	/**
+	 * IMJ-2
+	 */
 	@Test(priority = 22)
 	public void logoutUser2() {
 		homepage.logout();

@@ -40,7 +40,10 @@ public class DefaultNotification extends BaseSelenium {
 	public void beforeClass() {
 		navigateToStartPage();
 	}
-	
+
+	/**
+	 * IMJ-188
+	 */
 	@Test(priority = 1)
 	public void switchPrivateMode() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
@@ -48,13 +51,19 @@ public class DefaultNotification extends BaseSelenium {
 		adminHomepage.goToAdminPage().enablePrivateMode();
 		adminHomepage.logout();
 	}
-	
+
+	/**
+	 * IMJ-19
+	 */
 	@Test(priority = 2)
 	public void loginRU() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 	}
-	
+
+	/**
+	 * IMJ-237
+	 */
 	@Test(priority = 3)
 	public void createDefaultCollection() {
 		NewCollectionPage newCollectionPage = homepage.goToCreateNewCollectionPage();
@@ -65,7 +74,10 @@ public class DefaultNotification extends BaseSelenium {
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
 		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-123
+	 */
 	@Test(priority = 4)
 	public void editTitle() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -85,12 +97,18 @@ public class DefaultNotification extends BaseSelenium {
 		boolean uploadSuccessful = collectionEntry.findItem(title);
 		Assert.assertTrue(uploadSuccessful, "Item not among uploads.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 5)
 	public void uploadJPG() {
 		uploadItem("SampleJPGFile.jpg");
 	}
-	
+
+	/**
+	 * IMJ-279
+	 */
 	@Test(priority = 6)
 	public void metadataAllItems() {
 		String key = "Date";
@@ -104,12 +122,18 @@ public class DefaultNotification extends BaseSelenium {
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 7)
 	public void uploadPDF() {
 		uploadItem("SamplePDFFile.pdf");
 	}
-	
+
+	/**
+	 * IMJ-280
+	 */
 	@Test(priority = 8)
 	public void metadataIfEmpty() {
 		String key = "Date";
@@ -127,7 +151,10 @@ public class DefaultNotification extends BaseSelenium {
 		metadataDisplayed = collectionEntry.metadataDisplayed("SampleJPGFile.jpg", key, "2017-05-05");
 		Assert.assertTrue(metadataDisplayed, "Old metadata is not displayed on JPG item page.");
 	}
-	
+
+	/**
+	 * IMJ-67
+	 */
 	@Test(priority = 9)
 	public void deleteItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -140,7 +167,10 @@ public class DefaultNotification extends BaseSelenium {
 		boolean itemPresent = collectionEntry.findItem("SampleJPGFile.jpg");
 		Assert.assertFalse(itemPresent, "Item was not deleted.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 10)
 	public void uploadJPG2() {
 		uploadItem("SampleJPGFile2.jpg");
@@ -164,26 +194,38 @@ public class DefaultNotification extends BaseSelenium {
 		boolean grantsCorrect = shareTransition.checkGrantSelections(false, user2Name, true, true, true);
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
-	
+
+	/**
+	 * IMJ-2
+	 */
 	@Test(priority = 12)
 	public void logoutRU() {
 		homepage = new StartPage(driver).goToHomepage(homepage);
 		homepage.logout();
 	}
-	
+
+	/**
+	 * IMJ-22
+	 */
 	@Test(priority = 13)
 	public void loginUser2() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(restrUsername), getPropertyAttribute(restrPassword));
 	}
-	
+
+	/**
+	 * IMJ-46
+	 */
 	@Test(priority = 14)
 	public void shareIconDisplayed() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean shareVisible = collectionEntry.shareIconVisible();
 		Assert.assertTrue(shareVisible, "Share icon is not displayed.");
 	}
-	
+
+	/**
+	 * IMJ-247
+	 */
 	@Test(priority = 15)
 	public void addAuthor() {
 		String newAuthor = "Addedauthor";
@@ -195,12 +237,18 @@ public class DefaultNotification extends BaseSelenium {
 		
 		Assert.assertTrue(authors.contains(newAuthor), "New author is not part of author list.");
 	}
-	
+
+	/**
+	 * IMJ-56
+	 */
 	@Test(priority = 16)
 	public void uploadXLSX() {
 		uploadItem("SampleXLSXFile.xlsx");
 	}
-	
+
+	/**
+	 * IMJ-281
+	 */
 	@Test(priority = 17)
 	public void metadataOverwrite() {
 		String key = "Date";
@@ -250,7 +298,10 @@ public class DefaultNotification extends BaseSelenium {
 			
 		Assert.assertTrue(notificationMail.contains("downloaded"), "Email does not contain information about download.");
 	}
-	
+
+	/**
+	 * IMJ-234, IMJ-125
+	 */
 	@Test(priority = 19)
 	public void downloadItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -266,7 +317,10 @@ public class DefaultNotification extends BaseSelenium {
 			emailReceived();
 		}
 	}
-	
+
+	/**
+	 * IMJ-236, IMJ-125
+	 */
 	@Test(priority = 20)
 	public void downloadSelectedItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -284,7 +338,10 @@ public class DefaultNotification extends BaseSelenium {
 			emailReceived();
 		}
 	}
-	
+
+	/**
+	 * IMJ-232, IMJ-125
+	 */
 	@Test(priority = 21)
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -299,19 +356,28 @@ public class DefaultNotification extends BaseSelenium {
 			emailReceived();
 		}
 	}
-	
+
+	/**
+	 * IMJ-2
+	 */
 	@Test(priority = 22)
 	public void logout() {
 		homepage = new StartPage(driver).goToHomepage(homepage);
 		homepage.logout();
 	}
-	
+
+	/**
+	 * IMJ-19
+	 */
 	@Test(priority = 23)
 	public void loginRU2() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 	}
-	
+
+	/**
+	 * IMJ-96
+	 */
 	@Test(priority = 24)
 	public void deleteCollection() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -320,7 +386,10 @@ public class DefaultNotification extends BaseSelenium {
 		boolean collectionPresent = collectionsPage.collectionPresent(collectionTitle);
 		Assert.assertFalse(collectionPresent, "Collection was not deleted.");
 	}
-	
+
+	/**
+	 * IMJ-2
+	 */
 	@Test(priority = 25)
 	public void logoutRU2() {
 		homepage.logout();

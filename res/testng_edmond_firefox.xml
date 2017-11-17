@@ -16,69 +16,69 @@
 			
 			<class name="test.scripts.basicEdmond.OneAuthorLogo"></class>
 
-			<class name="test.scripts.basicEdmond.OneAuthorTwoOUs"></class>
+<!-- 			<class name="test.scripts.basicEdmond.OneAuthorTwoOUs"></class> -->
 			
-			<class name="test.scripts.basicEdmond.DefaultDelete"></class>
+<!-- 			<class name="test.scripts.basicEdmond.DefaultDelete"></class> -->
 			
-			<class name="test.scripts.basicEdmond.ThreeAuthors"></class>
+<!-- 			<class name="test.scripts.basicEdmond.ThreeAuthors"></class> -->
 
-			<class name="test.scripts.basicEdmond.ThreeAuthorsDeleteAuthor"></class>
+<!-- 			<class name="test.scripts.basicEdmond.ThreeAuthorsDeleteAuthor"></class> -->
 				
-			<class name="test.scripts.basicEdmond.ThreeAuthorsExternalReference"></class>
+<!-- 			<class name="test.scripts.basicEdmond.ThreeAuthorsExternalReference"></class> -->
 
-			<class name="test.scripts.basicEdmond.OneAuthorNotification"></class>
+<!-- 			<class name="test.scripts.basicEdmond.OneAuthorNotification"></class> -->
 
-			<class name="test.scripts.basicEdmond.ThreeAuthorsNotification"></class>
+<!-- 			<class name="test.scripts.basicEdmond.ThreeAuthorsNotification"></class> -->
 			
 			<!-- End of Basic Edmond -->
 			
 			<!-- Basic Outbox -->
 			
-			<class name="test.scripts.basicOutbox.AdminSharesWithUser"></class>
+<!-- 			<class name="test.scripts.basicOutbox.AdminSharesWithUser"></class> -->
 			
-			<class name="test.scripts.basicOutbox.AdminSharesWithUserGroup"></class>
+<!-- 			<class name="test.scripts.basicOutbox.AdminSharesWithUserGroup"></class> -->
 			
 			<!-- End of Basic Outbox -->
 			
 			<!-- Cesar -->
 			
-			<class name="test.scripts.cesar.CesarDefault"></class>
+<!-- 			<class name="test.scripts.cesar.CesarDefault"></class> -->
 			
-			<class name="test.scripts.cesar.ThreeAuthorsNotification"></class>
+<!-- 			<class name="test.scripts.cesar.ThreeAuthorsNotification"></class> -->
 			
 			<!-- End of Cesar -->
 			
 			<!-- Gluons -->
 			
-			<class name="test.scripts.gluons.Default"></class>
+<!-- 			<class name="test.scripts.gluons.Default"></class> -->
 			
-			<class name="test.scripts.gluons.DefaultExternalInvitation"></class>
+<!-- 			<class name="test.scripts.gluons.DefaultExternalInvitation"></class> -->
 			
-			<class name="test.scripts.gluons.DefaultNotification"></class>
+<!-- 			<class name="test.scripts.gluons.DefaultNotification"></class> -->
 			
 			<!-- End of Gluons -->
 
 			<!-- Basic Home -->
 
- 			<class name="test.scripts.home.AdvancedSearchPageTest"></class>
+<!--  			<class name="test.scripts.home.AdvancedSearchPageTest"></class> -->
 
-			<class name="test.scripts.home.ContactSupportFromHelpPageTest"></class>
+<!-- 			<class name="test.scripts.home.ContactSupportFromHelpPageTest"></class> -->
 
-			<class name="test.scripts.home.DisclaimerTest"></class>
+<!-- 			<class name="test.scripts.home.DisclaimerTest"></class> -->
 
-			<class name="test.scripts.home.DocumentationTest"></class>
+<!-- 			<class name="test.scripts.home.DocumentationTest"></class> -->
 
-			<class name="test.scripts.home.HelpTest"></class>
+<!-- 			<class name="test.scripts.home.HelpTest"></class> -->
 
-			<class name="test.scripts.home.ImejiFromHelpTest"></class>
+<!-- 			<class name="test.scripts.home.ImejiFromHelpTest"></class> -->
 
-			<class name="test.scripts.home.ImejiFromStartTest"></class>
+<!-- 			<class name="test.scripts.home.ImejiFromStartTest"></class> -->
 
-			<class name="test.scripts.home.LimitedNRUAccessTest"></class>
+<!-- 			<class name="test.scripts.home.LimitedNRUAccessTest"></class> -->
 
-			<class name="test.scripts.home.TermsOfUseTest"></class>
+<!-- 			<class name="test.scripts.home.TermsOfUseTest"></class> -->
 
-			<class name="test.scripts.home.UploadPageTest"></class>
+<!-- 			<class name="test.scripts.home.UploadPageTest"></class> -->
 
 			<!--  End of Basic Home -->
 			
@@ -86,18 +86,41 @@
 	</test>
 	<test name="Statements test" group-by-instances="true">
 		<classes>
+			<!-- Setup test cases. Must always run! -->
 			
+<!-- 			<class name="test.base.SeleniumTestSuite" /> -->
+			
+<!-- 			<class name="test.base.BaseSelenium" /> -->
+			
+			<!-- End of setup test cases. -->
+						
 			<!-- Statements -->
 			
-			<class name="test.scripts.statements.CreateDefaultStatementTest"></class>
+<!-- 			<class name="test.scripts.statements.CreateDefaultStatementTest"></class> -->
 
-			<class name="test.scripts.statements.CreateNewStatementTest"></class>
+<!-- 			<class name="test.scripts.statements.CreateNewStatementTest"></class> -->
 			
-			<class name="test.scripts.statements.CreateDefaultStatementPrivate"></class>
+<!-- 			<class name="test.scripts.statements.CreateDefaultStatementPrivate"></class> -->
 
-			<class name="test.scripts.statements.CreateNewStatementPrivate"></class>
+<!-- 			<class name="test.scripts.statements.CreateNewStatementPrivate"></class> -->
 			
 			<!-- End of Statements -->
+			
+			<!-- Facets -->
+
+<!-- 			<class name="test.scripts.basicEdmond.CreateDefaultFacets"></class> -->
+			
+<!-- 			<class name="test.scripts.basicEdmond.CreateMetadataFacet"></class> -->
+
+<!-- 			<class name="test.scripts.basicEdmond.MoveItems"></class> -->
+			
+<!-- 			<class name="test.scripts.basicOutbox.CreateDefaultFacets"></class> -->
+			
+<!-- 			<class name="test.scripts.basicOutbox.CreateMetadataFacet"></class> -->
+
+<!-- 			<class name="test.scripts.basicOutbox.MoveItems"></class> -->
+			
+			<!-- End of Facets -->
 			
 		</classes>
 	</test>
