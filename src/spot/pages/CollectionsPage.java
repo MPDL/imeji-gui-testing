@@ -21,7 +21,7 @@ public class CollectionsPage extends BasePage {
 	private SortingComponent sortingComponent;
 	private StateComponent stateComponent;
 	
-	@FindBy(css=".imj_menuButton .fa-plus")
+	@FindBy(css="#actions .fa-plus")
 	private WebElement newCollectionButton;
 	
 	@FindBy(css="#ajaxWrapper>div:nth-of-type(2)>form>a")
@@ -40,8 +40,10 @@ public class CollectionsPage extends BasePage {
 		return stateComponent;
 	}
 
-	private WebElement getFirstCollectionInList() {
-		return collectionList.get(0);
+	public CollectionEntryPage openFirstCollection() {
+		collectionList.get(0).click();
+		
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
 	public CollectionEntryPage getPageOfLargestCollection() {

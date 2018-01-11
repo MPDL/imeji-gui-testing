@@ -27,7 +27,7 @@ public class ItemViewPage extends BasePage {
 	@FindBy(id="picWebResolutionInternalDigilib")
 	private WebElement fileResolution;
 	
-	@FindBy(css="#actionsMenuArea .fa-download")
+	@FindBy(css=".fa-download")
 	private WebElement downloadMenu;
 	
 	@FindBy(css=".imj_siteContentHeadline>h1>a")
@@ -54,7 +54,7 @@ public class ItemViewPage extends BasePage {
 	@FindBy(css=".fa-hand-o-right")
 	private WebElement moveButton;
 	
-	@FindBy(css="#actionsMenuArea>form>a")
+	@FindBy(css="#actions>form>a")
 	private WebElement editButton;
 	
 	@FindBy(css = "#actions .fa-trash")
@@ -63,7 +63,7 @@ public class ItemViewPage extends BasePage {
 	@FindBy(id = "deleteItem")
 	private WebElement deleteItemDialog;
 	
-	@FindBy(css = "#actionsMenuArea a:nth-of-type(2)")
+	@FindBy(css = ".fa-ban")
 	private WebElement discardButton;
 	
 	@FindBy(id = "withdrawItem")
@@ -146,6 +146,7 @@ public class ItemViewPage extends BasePage {
 		deleteLink.click();
 		wait.until(ExpectedConditions.visibilityOf(deleteItemDialog));
 		deleteItemDialog.findElement(By.className("imj_submitButton")).click();
+		try { Thread.sleep(2000); } catch (InterruptedException e) { }
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}

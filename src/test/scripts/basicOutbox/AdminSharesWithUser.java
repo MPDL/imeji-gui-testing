@@ -70,6 +70,13 @@ public class AdminSharesWithUser extends BaseSelenium {
 	}
 	
 	@Test(priority = 4)
+	public void forceListView() {
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
+		collectionEntry = adminHomepage.goToCollectionPage().openFirstCollection();
+		collectionEntry = collectionEntry.enableListView();
+	}
+	
+	@Test(priority = 5)
 	public void logoutAdmin() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		adminHomepage.logout();
@@ -78,7 +85,7 @@ public class AdminSharesWithUser extends BaseSelenium {
 	/**
 	 * IMJ-19
 	 */
-	@Test(priority = 5)
+	@Test(priority = 6)
 	public void loginRU() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
@@ -87,7 +94,7 @@ public class AdminSharesWithUser extends BaseSelenium {
 	/**
 	 * IMJ-83
 	 */
-	@Test(priority = 6)
+	@Test(priority = 7)
 	public void createCollection() {
 		NewCollectionPage newCollection = homepage.goToCreateNewCollectionPage();
 		collectionEntry = newCollection.createCollection(collectionTitle, collectionDescription,
@@ -101,7 +108,7 @@ public class AdminSharesWithUser extends BaseSelenium {
 	/**
 	 * IMJ-133
 	 */
-	@Test(priority = 7)
+	@Test(priority = 8)
 	public void uploadLogo() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
@@ -169,17 +176,16 @@ public class AdminSharesWithUser extends BaseSelenium {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		KindOfSharePage shareTransition = collectionEntry.share();
-		SharePage sharePage = shareTransition.shareWithAUser();
+		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUsername), true, false, false);
 		
 		collectionEntry = sharePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		shareTransition = collectionEntry.share();
+		sharePage = collectionEntry.share();
 		
-		boolean user2InSharedList = shareTransition.isSharedPersonInList(user2Name);
+		boolean user2InSharedList = sharePage.isSharedPersonInList(user2Name);
 		Assert.assertTrue(user2InSharedList, "Second user is not present in shared list.");
 		
-		boolean grantsCorrect = shareTransition.checkGrantSelections(false, user2Name, true, false, false);
+		boolean grantsCorrect = sharePage.checkGrantSelections(false, user2Name, true, false, false);
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
 

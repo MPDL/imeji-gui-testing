@@ -114,34 +114,29 @@ public class EditCollectionPage extends BasePage {
 	}
 	
 	public void addLogo(String filepath) {
-		WebElement divWrapper = logoContainer.findElement(By.id("container"));
-		WebElement input = divWrapper.findElement(By.id("pickfiles"));
+		WebElement inputDiv = logoContainer.findElement(By.className("moxie-shim-html5"));
+		WebElement inputFile = inputDiv.findElement(By.tagName("input"));
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		
-		jse.executeScript("arguments[0].style.visibility = 'visible';", divWrapper);
-		jse.executeScript("arguments[0].style.width = 50;", divWrapper);
-		jse.executeScript("arguments[0].style.height = 50;", divWrapper);
-		jse.executeScript("arguments[0].style.opacity = 1;", divWrapper);
-		jse.executeScript("arguments[0].style.display = 'block';", divWrapper);
-		jse.executeScript("arguments[0].style.top = 50;", divWrapper);
-		jse.executeScript("arguments[0].style.left = 50;", divWrapper);
-		jse.executeScript("arguments[0].style.zIndex = 2;", divWrapper);
+		jse.executeScript("arguments[0].style.visibility = 'visible';", inputFile);
+		jse.executeScript("arguments[0].style.width = 50;", inputFile);
+		jse.executeScript("arguments[0].style.height = 50;", inputFile);
+		jse.executeScript("arguments[0].style.opacity = 1;", inputFile);
+		jse.executeScript("arguments[0].style.display = 'block';", inputFile);
+		jse.executeScript("arguments[0].style.top = 50;", inputFile);
+		jse.executeScript("arguments[0].style.left = 50;", inputFile);
+		jse.executeScript("arguments[0].style.zIndex = 3;", inputFile);
+		// important!
+		jse.executeScript("arguments[0].style.position = 'relative';", inputFile);
 		
-		jse.executeScript("arguments[0].style.visibility = 'visible';", input);
-		jse.executeScript("arguments[0].style.width = 50;", input);
-		jse.executeScript("arguments[0].style.height = 50;", input);
-		jse.executeScript("arguments[0].style.opacity = 1;", input);
-		jse.executeScript("arguments[0].style.display = 'block';", input);
-		jse.executeScript("arguments[0].style.top = 50;", input);
-		jse.executeScript("arguments[0].style.left = 50;", input);
-		jse.executeScript("arguments[0].style.zIndex = 3;", input);
-		
-		input.sendKeys(filepath);
+		inputFile.sendKeys(filepath);
 	}
 	
 	public CollectionEntryPage submitChanges() {
 		saveButton.click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("content")));
+		try { Thread.sleep(2500); } catch (InterruptedException e) { }
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}

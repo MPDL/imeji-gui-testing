@@ -59,6 +59,7 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 	 */
 	@Test(priority = 3)
 	public void editDescription() {
+		homepage = new StartPage(driver).goToHomepage(homepage);
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
 		collectionDescription += " edited";
@@ -196,12 +197,11 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 		String email = "nonexistentuser@mpdl.mpg.de";
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		KindOfSharePage shareTransition = collectionEntry.share();
-		SharePage sharePage = shareTransition.shareWithAUser();
+		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, email, true, false, false);
 		
-		shareTransition = sharePage.invite();
-		boolean pendingInvitation = shareTransition.isEmailPendingInvitation(email);
+		sharePage = sharePage.invite();
+		boolean pendingInvitation = sharePage.isEmailPendingInvitation(email);
 		Assert.assertTrue(pendingInvitation, "Email of external user is not in 'Pending invitations' list.");
 	}
 
@@ -212,17 +212,16 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 	public void shareReadRU() {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
 		
-		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		KindOfSharePage shareTransition = collectionEntry.share();
-		SharePage sharePage = shareTransition.shareWithAUser();
+		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle); 
+		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUsername), true, false, false);
 		
-		shareTransition = sharePage.goToCollectionPage().openCollectionByTitle(collectionTitle).share();
+		sharePage = sharePage.goToCollectionPage().openCollectionByTitle(collectionTitle).share();
 		
-		boolean user2InSharedList = shareTransition.isSharedPersonInList(user2Name);
+		boolean user2InSharedList = sharePage.isSharedPersonInList(user2Name);
 		Assert.assertTrue(user2InSharedList, "Second user is not present in shared list.");
 		
-		boolean grantsCorrect = shareTransition.checkGrantSelections(false, user2Name, true, false, false);
+		boolean grantsCorrect = sharePage.checkGrantSelections(false, user2Name, true, false, false);
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
 
@@ -272,6 +271,9 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry.releaseCollection();
+		
+		boolean releaseDisplayed = collectionEntry.releasedIconVisible();
+		Assert.assertTrue(releaseDisplayed, "Released icon is not displayed.");
 	}
 
 	/**
@@ -281,6 +283,7 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 	public void addCollectionDOI() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.setDOI();
+		collectionEntry = collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		
 		collectionEntry = collectionEntry.openDescription();
 		String actualDOI = collectionEntry.getDOI();

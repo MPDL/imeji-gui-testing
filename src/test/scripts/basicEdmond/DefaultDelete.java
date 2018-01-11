@@ -72,6 +72,7 @@ public class DefaultDelete extends BaseSelenium {
 		collectionTitle += " (revised)";
 		editCollection.editTitle(collectionTitle);
 		collectionEntry = editCollection.submitChanges();
+		collectionEntry.goToCollectionPage().openFirstCollection();
 		
 		String pageTitle = collectionEntry.getTitle();
 		Assert.assertEquals(pageTitle, collectionTitle, "Title was not changed.");

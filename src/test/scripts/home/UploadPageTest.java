@@ -16,8 +16,8 @@ public class UploadPageTest extends BaseSelenium {
 	@Test (priority = 1)
 	public void uploadPageNRUPublic() {
 		StartPage startPage = new StartPage(driver);
-		SingleUploadPage singleUpload = startPage.goToSingleUploadPage();
-		Assert.assertTrue(singleUpload.loginAreaDisplayed(), "Login area is not displayed for NRU.");
+		boolean singleUploadDisplayed = startPage.uploadPageAvailable();
+		Assert.assertFalse(singleUploadDisplayed, "Upload page is displayed for NRU.");
 	}
 	
 	@Test (priority = 2)
@@ -36,8 +36,8 @@ public class UploadPageTest extends BaseSelenium {
 		navigateToStartPage();
 		switchPrivateMode(true);
 		StartPage startPage = new StartPage(driver);
-		SingleUploadPage singleUpload = startPage.goToSingleUploadPage();
-		Assert.assertTrue(singleUpload.loginAreaDisplayed(), "Login area is not displayed for NRU.");
+		boolean singleUploadDisplayed = startPage.uploadPageAvailable();
+		Assert.assertFalse(singleUploadDisplayed, "Upload page is displayed for NRU.");
 	}
 	
 	@Test (priority = 4)

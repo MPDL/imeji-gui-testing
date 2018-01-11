@@ -48,11 +48,18 @@ public class Default extends BaseSelenium {
 		adminHomepage.goToAdminPage().enablePrivateMode().enableThumbnailView();
 		adminHomepage.logout();
 	}
+	
+	@Test(priority = 2)
+	public void forceThumbnailView() {
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
+		collectionEntry = adminHomepage.goToCollectionPage().openFirstCollection();
+		collectionEntry = collectionEntry.enableThumbnailView();
+	}
 
 	/**
 	 * IMJ-19
 	 */
-	@Test(priority = 2)
+	@Test(priority = 3)
 	public void loginRU() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
@@ -61,7 +68,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-83
 	 */
-	@Test(priority = 3)
+	@Test(priority = 4)
 	public void createDefaultCollection() {
 		NewCollectionPage newCollectionPage = homepage.goToCreateNewCollectionPage();
 		collectionEntry = newCollectionPage.createCollection(collectionTitle, collectionDescription, 
@@ -72,7 +79,7 @@ public class Default extends BaseSelenium {
 		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 	}
 	
-	@Test(priority = 4)
+	@Test(priority = 5)
 	public void createExternalReference() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
@@ -182,6 +189,7 @@ public class Default extends BaseSelenium {
 	public void deleteItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.deleteItem("SampleJPGFile.jpg");
+		try { Thread.sleep(2000); } catch (InterruptedException e) { }
 		
 		MessageType messageType = collectionEntry.getPageMessageType();
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
@@ -207,17 +215,16 @@ public class Default extends BaseSelenium {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		KindOfSharePage shareTransition = collectionEntry.share();
-		SharePage sharePage = shareTransition.shareWithAUser();
+		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUsername), true, true, true);
 		
 		collectionEntry = sharePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		shareTransition = collectionEntry.share();
+		sharePage = collectionEntry.share();
 		
-		boolean user2InSharedList = shareTransition.isSharedPersonInList(user2Name);
+		boolean user2InSharedList = sharePage.isSharedPersonInList(user2Name);
 		Assert.assertTrue(user2InSharedList, "Second user is not present in shared list.");
 		
-		boolean grantsCorrect = shareTransition.checkGrantSelections(false, user2Name, true, true, true);
+		boolean grantsCorrect = sharePage.checkGrantSelections(false, user2Name, true, true, true);
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
 
@@ -245,7 +252,7 @@ public class Default extends BaseSelenium {
 	@Test(priority = 16)
 	public void searchCollection() {
 		navigateToStartPage();
-		SearchResultsPage searchResults = homepage.getSearchComponent().searchByCategory("170726", CategoryType.COLLECTION);
+		SearchResultsPage searchResults = homepage.getSearchComponent().searchByCategory(collectionTitle, CategoryType.COLLECTION);
 		Assert.assertNotEquals(searchResults.getResultCountCollection(), 0, "User cannot find collection " + collectionTitle);
 	}
 
@@ -327,7 +334,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-236
 	 */
-	@Test(priority = 23)
+	@Test(priority = 24)
 	public void downloadSelectedItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry.selectItem("SamplePDFFile.pdf");
@@ -340,7 +347,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-232
 	 */
-	@Test(priority = 24)
+	@Test(priority = 23)
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean canDownloadAll = collectionEntry.downloadAllPossible();

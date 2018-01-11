@@ -212,12 +212,11 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		String email = "nonexistentuser@mpdl.mpg.de";
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		KindOfSharePage shareTransition = collectionEntry.share();
-		SharePage sharePage = shareTransition.shareWithAUser();
+		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, email, true, false, false);
 		
-		shareTransition = sharePage.invite();
-		boolean pendingInvitation = shareTransition.isEmailPendingInvitation(email);
+		sharePage = sharePage.invite();
+		boolean pendingInvitation = sharePage.isEmailPendingInvitation(email);
 		Assert.assertTrue(pendingInvitation, "Email of external user is not in 'Pending invitations' list.");
 	}
 
@@ -229,16 +228,15 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		KindOfSharePage shareTransition = collectionEntry.share();
-		SharePage sharePage = shareTransition.shareWithAUser();
+		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUsername), true, false, false);
 		
-		shareTransition = sharePage.goToCollectionPage().openCollectionByTitle(collectionTitle).share();
+		sharePage = sharePage.goToCollectionPage().openCollectionByTitle(collectionTitle).share();
 		
-		boolean user2InSharedList = shareTransition.isSharedPersonInList(user2Name);
+		boolean user2InSharedList = sharePage.isSharedPersonInList(user2Name);
 		Assert.assertTrue(user2InSharedList, "Second user is not present in shared list.");
 		
-		boolean grantsCorrect = shareTransition.checkGrantSelections(false, user2Name, true, false, false);
+		boolean grantsCorrect = sharePage.checkGrantSelections(false, user2Name, true, false, false);
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
 

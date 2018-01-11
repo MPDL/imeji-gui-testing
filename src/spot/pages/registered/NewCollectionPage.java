@@ -112,11 +112,12 @@ public class NewCollectionPage extends BasePage {
 			WebElement author2Org = driver.findElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
 			author2Org.sendKeys("MPDL");
 			addAuthor();
+			try { Thread.sleep(2000); } catch (InterruptedException e) { }
 			WebElement author3Name = retryingElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(author3Name)));
+//			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(author3Name)));
 			author3Name.sendKeys("Thethird");
 			WebElement author3Org = retryingElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(author3Org)));
+//			wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(author3Org)));
 			author3Org.sendKeys("Max Planck Society");
 			
 			submitForm();
@@ -129,7 +130,7 @@ public class NewCollectionPage extends BasePage {
 		catch (StaleElementReferenceException exc) {
 			CollectionsPage collectionsPage = this.goToCollectionPage();
 			NewCollectionPage newCollection = collectionsPage.createCollection();
-			return newCollection.createCollection3AuthorsNotification(collectionTitle, collectionDescription, givenName, familyName, orgName);
+			return newCollection.createCollection3Authors(collectionTitle, collectionDescription, givenName, familyName, orgName);
 		}
 	}
 	
@@ -144,20 +145,21 @@ public class NewCollectionPage extends BasePage {
 			author2Org.sendKeys(orgName);
 			
 			addAuthor();
+			try { Thread.sleep(2000); } catch (InterruptedException e) { }
 			WebElement author3Name = retryingElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
 			
-			try {
-				wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(author3Name)));
-			}
-			catch (TimeoutException exc) {}
+//			try {
+//				wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(author3Name)));
+//			}
+//			catch (TimeoutException exc) {}
 			
 			author3Name.sendKeys("AuthorThree");
 			WebElement author3Org = retryingElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
 			
-			try {
-				wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(author3Org)));
-			}
-			catch (TimeoutException exc) {}
+//			try {
+//				wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(author3Org)));
+//			}
+//			catch (TimeoutException exc) {}
 			
 			author3Org.sendKeys(orgName);
 			
@@ -221,6 +223,7 @@ public class NewCollectionPage extends BasePage {
 	private void submitForm() {
 		//saveButton.click();
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", saveButton);
+		try { Thread.sleep(2000); } catch (InterruptedException e) { }
 	}
 
 	private void setTitle(String title) {

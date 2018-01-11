@@ -21,22 +21,22 @@ import spot.pages.registered.MetadataTablePage;
 
 public class ActionComponent extends BasePage {
 
-	@FindBy(css = "#menuCollection>.imj_menuHeader")
+	@FindBy(css = ".dropdown:nth-of-type(2)>a")
 	private WebElement menuItems;
 	
-	@FindBy(id = "menuCollection")
+	@FindBy(className = "fa-folder-o")
 	private WebElement menuCollection;
 	
-	@FindBy(css = ".imj_menuBody ul li:nth-of-type(1) a")
+	@FindBy(css = ".dropdown:nth-of-type(2)>.content>a:nth-of-type(1)")
 	private WebElement editItems;
 	
 	@FindBy(css = "#menuItems .imj_menuBody ul li:nth-of-type(1) a")
 	private WebElement editSelectedItems;
 	
-	@FindBy(css = ".imj_menuBody ul li:nth-of-type(2) a")
+	@FindBy(css = ".dropdown:nth-of-type(2)>.content>a:nth-of-type(2)")
 	private WebElement editLicenses;
 	
-	@FindBy(css = "#menuCollection>.imj_menuBody>ul>li:nth-of-type(3)")
+	@FindBy(css = ".dropdown>.content>a:nth-of-type(3)")
 	private WebElement releaseCollection;
 	
 	@FindBy(linkText = "Delete")
@@ -45,7 +45,7 @@ public class ActionComponent extends BasePage {
 	@FindBy(css = "#menuCollection>.imj_menuBody>ul>li:nth-of-type(4)>a")
 	private WebElement discardCollection;
 	
-	@FindBy(css = "#menuCollection>.imj_menuBody>ul>li:nth-of-type(3)")
+	@FindBy(id = "lnkCreateDOI")
 	private WebElement addDOI;
 	
 	@FindBy(css = "#actionsMenuArea .imj_overlayMenuList li:nth-of-type(5) a")
@@ -97,19 +97,22 @@ public class ActionComponent extends BasePage {
 	
 	public DiscardedCollectionEntryPage discardCollection() {
 		openMenuCollection();
-		retryingFindClick(By.cssSelector("#menuCollection>.imj_menuBody>ul>li:nth-of-type(4)>a"));
+		retryingFindClick(By.cssSelector(".dropdown>.content>a:nth-of-type(4)"));
 		
 		WebElement discardBox = driver.findElement(By.className("imj_dialogReasonText"));
 		discardBox.sendKeys("Discarding for testing purposes.");
+		try { Thread.sleep(2500); } catch (InterruptedException e) { }
 		
-		retryingFindClick(By.xpath("//input[contains(@id, 'discardForm:btnDiscardContainer')]"));
+		((JavascriptExecutor) driver).executeScript("document.querySelector('#withdrawCollection .imj_submitPanel .imj_submitButton').click();");
 		return PageFactory.initElements(driver, DiscardedCollectionEntryPage.class);
 	}
 	
 	public CollectionEntryPage setDOI() {
 		openMenuCollection();
 		addDOI.click();
-		retryingFindClick(By.cssSelector("#getDOIDialog .imj_submitButton"));
+		retryingFindClick(By.cssSelector("#getDOIDialog>form>.imj_submitPanel>.imj_submitButton"));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
+		try { Thread.sleep(2500); } catch (InterruptedException e) { }
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}

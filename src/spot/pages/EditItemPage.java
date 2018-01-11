@@ -81,6 +81,7 @@ public class EditItemPage extends BasePage {
 		licenseLink.sendKeys(link);
 		wait.until(ExpectedConditions.visibilityOf(saveButton));
 		saveButton.click();
+		try { Thread.sleep(2500); } catch (InterruptedException e) { }
 		
 		return PageFactory.initElements(driver, ItemViewPage.class);
 	}

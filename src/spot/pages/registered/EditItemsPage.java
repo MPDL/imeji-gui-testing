@@ -1,9 +1,11 @@
 package spot.pages.registered;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -53,7 +55,7 @@ public class EditItemsPage extends BasePage {
 			wait.until(ExpectedConditions.elementToBeClickable(addValueAll));
 			addValueAll.click();
 		}
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:navigation:lnkCollections")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -61,7 +63,7 @@ public class EditItemsPage extends BasePage {
 	public EditItemsPage addValueIfEmpty(String key, String value) {
 		addMetadata(key, value);
 		addValueIfEmpty.click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:navigation:lnkCollections")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -69,7 +71,7 @@ public class EditItemsPage extends BasePage {
 	public EditItemsPage overwriteAllValues(String key, String value) {
 		addMetadata(key, value);
 		overwriteAllValues.click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:navigation:lnkCollections")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -90,7 +92,7 @@ public class EditItemsPage extends BasePage {
 		valueBox1.sendKeys(value);
 		
 		addValueAll.click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:navigation:lnkCollections")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -120,7 +122,7 @@ public class EditItemsPage extends BasePage {
 		}
 		
 		addValueAll.click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("Header:navigation:lnkCollections")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -138,6 +140,14 @@ public class EditItemsPage extends BasePage {
 			Thread.sleep(5000);
 		} 
 		catch (InterruptedException e) {}
-		driver.findElement(By.cssSelector("#editBatchForm\\:select\\:statementList a")).click();
+		List<WebElement> results = driver.findElements(By.cssSelector("#editBatchForm\\:select\\:statementList>p>a"));
+		for (WebElement result : results) {
+			if (result.getText().equals(key)) {
+				result.click();
+				return;
+			}
+		}
+		
+		throw new NoSuchElementException("Statement " + key + " is not available.");
 	}
 }

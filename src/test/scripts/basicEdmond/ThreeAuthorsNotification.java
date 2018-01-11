@@ -82,9 +82,9 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		EditCollectionPage editCollection = collectionEntry.editInformation();
 		collectionDescription += " (revised)";
 		editCollection.editDescription(collectionDescription);
-		// -----
+		// current bug does not leave notifications enabled
 		editCollection.enableNotifications();
-		// -----
+		
 		collectionEntry = editCollection.submitChanges();
 		
 		String actual = collectionEntry.getDescription();
@@ -216,12 +216,11 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		String email = "nonexistentuser@mpdl.mpg.de";
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		KindOfSharePage shareTransition = collectionEntry.share();
-		SharePage sharePage = shareTransition.shareWithAUser();
+		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, email, true, false, false);
 		
-		shareTransition = sharePage.invite();
-		boolean pendingInvitation = shareTransition.isEmailPendingInvitation(email);
+		sharePage = sharePage.invite();
+		boolean pendingInvitation = sharePage.isEmailPendingInvitation(email);
 		Assert.assertTrue(pendingInvitation, "Email of external user is not in 'Pending invitations' list.");
 	}
 
@@ -233,17 +232,16 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		KindOfSharePage shareTransition = collectionEntry.share();
-		SharePage sharePage = shareTransition.shareWithAUser();
+		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUsername), true, false, false);
 		
 		collectionEntry = sharePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		shareTransition = collectionEntry.share();
+		sharePage = collectionEntry.share();
 		
-		boolean user2InSharedList = shareTransition.isSharedPersonInList(user2Name);
+		boolean user2InSharedList = sharePage.isSharedPersonInList(user2Name);
 		Assert.assertTrue(user2InSharedList, "Second user is not present in shared list.");
 		
-		boolean grantsCorrect = shareTransition.checkGrantSelections(false, user2Name, true, false, false);
+		boolean grantsCorrect = sharePage.checkGrantSelections(false, user2Name, true, false, false);
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
 
@@ -313,7 +311,7 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 	/**
 	 * IMJ-236, IMJ-125
 	 */
-	@Test(priority = 19)
+	@Test(priority = 20)
 	public void downloadSelectedItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry.selectItem("SampleXLSXFile.xlsx");
@@ -329,7 +327,7 @@ public class ThreeAuthorsNotification extends BaseSelenium {
 	/**
 	 * IMJ-232, IMJ-125
 	 */
-	@Test(priority = 20)
+	@Test(priority = 19)
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean canDownloadAll = collectionEntry.downloadAllPossible();

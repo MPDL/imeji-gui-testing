@@ -59,11 +59,18 @@ public class CesarDefault extends BaseSelenium {
 		boolean thumbnailView = adminHomepage.goToCollectionPage().getPageOfLargestCollection().isElementPresent(By.id("imgFrame"));
 		Assert.assertTrue(thumbnailView, "Collections should be in thumbnail view.");
 	}
+	
+	@Test(priority = 3)
+	public void forceThumbnailView() {
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
+		collectionEntry = adminHomepage.goToCollectionPage().openFirstCollection();
+		collectionEntry = collectionEntry.enableThumbnailView();
+	}
 
 	/**
 	 * IMJ-83
 	 */
-	@Test(priority = 3)
+	@Test(priority = 4)
 	public void createDefaultCollection() {
 		NewCollectionPage newCollectionPage = adminHomepage.goToCreateNewCollectionPage();
 		collectionEntry = newCollectionPage.createCollection(collectionTitle, collectionDescription, 
@@ -74,7 +81,7 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
 	}
 	
-	@Test(priority = 4)
+	@Test(priority = 5)
 	public void createExternalReference() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -193,6 +200,7 @@ public class CesarDefault extends BaseSelenium {
 	public void deleteItem() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.deleteItem("SampleJPGFile.jpg");
+		try { Thread.sleep(2000); } catch (InterruptedException e) { }
 		
 		MessageType messageType = collectionEntry.getPageMessageType();
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
@@ -218,17 +226,16 @@ public class CesarDefault extends BaseSelenium {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
 		
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		KindOfSharePage shareTransition = collectionEntry.share();
-		SharePage sharePage = shareTransition.shareWithAUser();
+		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUsername), true, true, false);
 		
 		collectionEntry = sharePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		shareTransition = collectionEntry.share();
+		sharePage = collectionEntry.share();
 		
-		boolean user2InSharedList = shareTransition.isSharedPersonInList(user2Name);
+		boolean user2InSharedList = sharePage.isSharedPersonInList(user2Name);
 		Assert.assertTrue(user2InSharedList, "Second user is not present in shared list.");
 		
-		boolean grantsCorrect = shareTransition.checkGrantSelections(false, user2Name, true, true, false);
+		boolean grantsCorrect = sharePage.checkGrantSelections(false, user2Name, true, true, false);
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
 	

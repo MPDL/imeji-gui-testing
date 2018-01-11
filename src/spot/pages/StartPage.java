@@ -1,5 +1,6 @@
 package spot.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,6 +27,9 @@ public class StartPage extends BasePage {
 	
 	@FindBy(css="#columnEN-2 a:nth-of-type(2)")
 	private WebElement contactEdmondsupportLink;
+	
+	@FindBy(className="fa-upload")
+	private WebElement uploadButton;
 	
 	public StartPage(WebDriver driver) {
 		super(driver);
@@ -54,6 +58,16 @@ public class StartPage extends BasePage {
 		String href = contactEdmondsupportLink.getAttribute("href");		
 
 		return extractMailDestinationAddressFromLink(href);
+	}
+	
+	public SingleUploadPage goToSingleUploadPage() {
+		uploadButton.click();
+		
+		return PageFactory.initElements(driver, SingleUploadPage.class);
+	}
+	
+	public boolean uploadPageAvailable() {
+		return isElementPresent(By.className("fa-upload")) && uploadButton.isDisplayed() && uploadButton.isEnabled() ;
 	}
 	
 	/**

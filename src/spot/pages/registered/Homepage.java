@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import spot.pages.BasePage;
 import spot.pages.CollectionsPage;
 import spot.pages.SingleUploadPage;
+import spot.pages.StartPage;
 
 /**
  * HomePage is the page after successful login for non-admin users. For
@@ -18,10 +19,10 @@ import spot.pages.SingleUploadPage;
  */
 public class Homepage extends BasePage {
 
-	@FindBy(id = "Header:txtAccountUserName")
+	@FindBy(id = "txtAccountUserName")
 	private WebElement goToUserProfileButton;
 
-	@FindBy(id = "Header:lnkLogout")
+	@FindBy(id = "lnkLogout")
 	private WebElement logoutButton;
 
 	public Homepage(WebDriver driver) {
@@ -30,9 +31,9 @@ public class Homepage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public SingleUploadPage goToUploadPage() {
-		
-		return mainMenuComponent.navigateTo(SingleUploadPage.class);
+	public SingleUploadPage goToSingleUploadPage() {
+		StartPage startPage = goToStartPage();
+		return startPage.goToSingleUploadPage();
 	}
 	
 	public void logout() {

@@ -15,6 +15,8 @@ import test.base.BaseSelenium;
 
 public class TermsOfUseTest extends BaseSelenium {
 
+	private static String TERMS_OF_USE = "https://www.mpdl.mpg.de/en/terms-of-service-en.html";
+	
 	private String windowHandleStartPage;
 	private String termsHandle;
 	
@@ -26,36 +28,44 @@ public class TermsOfUseTest extends BaseSelenium {
 
 	@Test (priority = 1)
 	public void openTermsOfUseNRUPublic() {
-		termsOfUseTest();
+		boolean termsOfUseDisplayed = termsOfUseTest();
 		closeTermsOfUse();
+		
+		Assert.assertTrue(termsOfUseDisplayed, "Terms of Use page is not displayed.");
 	}
 	
 	@Test (priority = 2)
 	public void openTermsOfUseRUPublic() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		Homepage homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
-		termsOfUseTest();
+		boolean termsOfUseDisplayed = termsOfUseTest();
 		closeTermsOfUse();
 		homePage.logout();
+		
+		Assert.assertTrue(termsOfUseDisplayed, "Terms of Use page is not displayed to RU in public mode.");
 	}
   
 	@Test (priority = 3)
 	public void openTermsOfUseNRUPrivate() {
 		switchPrivateMode(true);
-		termsOfUseTest();
+		boolean termsOfUseDisplayed = termsOfUseTest();
 		closeTermsOfUse();
+		
+		Assert.assertTrue(termsOfUseDisplayed, "Terms of Use page is not displayed.");
 	}
 	
 	@Test (priority = 4)
 	public void openTermsOfUseRUPrivate() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		Homepage homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
-		termsOfUseTest();
+		boolean termsOfUseDisplayed = termsOfUseTest();
 		closeTermsOfUse();
 		homePage.logout();
+		
+		Assert.assertTrue(termsOfUseDisplayed, "Terms of Use page is not displayed.");
 	}
 	
-	private void termsOfUseTest() {
+	private boolean termsOfUseTest() {
 		windowHandleStartPage = driver.getWindowHandle();
 
 		new StartPage(driver).lookUpTermsOfUse();
@@ -66,7 +76,7 @@ public class TermsOfUseTest extends BaseSelenium {
 		driver.switchTo().window(termsHandle);
 
 		String actualCurrentURL = getCurrentURL();		
-		Assert.assertEquals(actualCurrentURL, "http://qa-imeji.mpdl.mpg.de/imeji/terms_of_use");
+		return actualCurrentURL.equals(TERMS_OF_USE);
 	}
 	
 	private void switchPrivateMode(boolean privateMode) {
@@ -81,7 +91,7 @@ public class TermsOfUseTest extends BaseSelenium {
 	
 	private void closeTermsOfUse() {
 		if (driver.getWindowHandles().size() > 1) {
-			// closing the (disclaimer page) window; since that window's no more required
+			// closing the (terms of use page) window; since that window's no more required
 			driver.switchTo().window(termsHandle);
 			driver.close();
 			

@@ -17,19 +17,19 @@ public class MainMenuComponent {
 
 	private WebDriver driver;
 	
-	@FindBy (name="Header:navigation:lnkHome")
+	@FindBy (id="lnkHome")
 	private WebElement startButton;
 	
-	@FindBy (id="Header:navigation:lnkCollections")
+	@FindBy (id="lnkCollections")
 	private WebElement collectionsButton;
 	
-	@FindBy(id = "Header:navigation:lnkItems")
+	@FindBy(id = "lnkItems")
 	private WebElement itemsButton;
 	
-	@FindBy (className="fa-upload")
-	private WebElement singleUploadButton;
+//	@FindBy (className="fa-upload")
+//	private WebElement singleUploadButton;
 	
-	@FindBy (name="Header:navigation:lnkAdmin")
+	@FindBy (id="lnkAdmin")
 	private WebElement adminButton;
 	
 	public MainMenuComponent(WebDriver driver) {
@@ -43,8 +43,8 @@ public class MainMenuComponent {
 			collectionsButton.click();
 		else if (expectedPage == StartPage.class)
 			startButton.click();
-		else if (expectedPage == SingleUploadPage.class)
-			singleUploadButton.click();
+//		else if (expectedPage == SingleUploadPage.class)
+//			singleUploadButton.click();
 		else if (expectedPage == AdministrationPage.class)
 			adminButton.click();
 		else if (expectedPage == Homepage.class || expectedPage == AdminHomepage.class)

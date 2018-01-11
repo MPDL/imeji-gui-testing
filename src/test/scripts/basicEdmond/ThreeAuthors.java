@@ -13,7 +13,6 @@ import spot.pages.DiscardedCollectionEntryPage;
 import spot.pages.EditCollectionPage;
 import spot.pages.EditLicensePage;
 import spot.pages.ItemViewPage;
-import spot.pages.KindOfSharePage;
 import spot.pages.LoginPage;
 import spot.pages.SharePage;
 import spot.pages.StartPage;
@@ -76,6 +75,7 @@ public class ThreeAuthors extends BaseSelenium {
 		collectionTitle += " (revised)";
 		editCollection.editTitle(collectionTitle);
 		collectionEntry = editCollection.submitChanges();
+		collectionEntry = collectionEntry.goToCollectionPage().openFirstCollection();
 		
 		String pageTitle = collectionEntry.getTitle();
 		Assert.assertEquals(pageTitle, collectionTitle, "Title was not changed.");
@@ -189,12 +189,11 @@ public class ThreeAuthors extends BaseSelenium {
 		String email = "nonexistentuser@mpdl.mpg.de";
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		KindOfSharePage shareTransition = collectionEntry.share();
-		SharePage sharePage = shareTransition.shareWithAUser();
+		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, email, true, false, false);
 		
-		shareTransition = sharePage.invite();
-		boolean pendingInvitation = shareTransition.isEmailPendingInvitation(email);
+		sharePage = sharePage.invite();
+		boolean pendingInvitation = sharePage.isEmailPendingInvitation(email);
 		Assert.assertTrue(pendingInvitation, "Email of external user is not in 'Pending invitations' list.");
 	}
 
@@ -206,16 +205,15 @@ public class ThreeAuthors extends BaseSelenium {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		KindOfSharePage shareTransition = collectionEntry.share();
-		SharePage sharePage = shareTransition.shareWithAUser();
+		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUsername), true, false, false);
 		
-		shareTransition = sharePage.goToCollectionPage().openCollectionByTitle(collectionTitle).share();
+		sharePage = sharePage.goToCollectionPage().openCollectionByTitle(collectionTitle).share();
 		
-		boolean user2InSharedList = shareTransition.isSharedPersonInList(user2Name);
+		boolean user2InSharedList = sharePage.isSharedPersonInList(user2Name);
 		Assert.assertTrue(user2InSharedList, "Second user is not present in shared list.");
 		
-		boolean grantsCorrect = shareTransition.checkGrantSelections(false, user2Name, true, false, false);
+		boolean grantsCorrect = sharePage.checkGrantSelections(false, user2Name, true, false, false);
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
 
@@ -262,7 +260,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-236
 	 */
-	@Test(priority = 17)
+	@Test(priority = 18)
 	public void downloadSelectedItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.selectItem(0);
@@ -275,7 +273,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-232
 	 */
-	@Test(priority = 18)
+	@Test(priority = 17)
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean canDownloadAll = collectionEntry.downloadAllPossible();

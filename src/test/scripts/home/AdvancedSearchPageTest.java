@@ -36,7 +36,7 @@ public class AdvancedSearchPageTest extends BaseSelenium {
 	public void openAdvancedSearchNRUPrivate() {
 		switchPrivateMode(true);
 		StartPage startPage = new StartPage(driver);
-		boolean advancedSearchDisplayed = !startPage.advancedSearchAccessible();
+		boolean advancedSearchDisplayed = startPage.advancedSearchAccessible();
 		Assert.assertFalse(advancedSearchDisplayed, "Advanced search page should not be available to guest in private mode.");
 	}
 	

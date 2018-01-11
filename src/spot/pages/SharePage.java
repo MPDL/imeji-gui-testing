@@ -45,10 +45,10 @@ public class SharePage extends BasePage {
 	@FindBy(css = "#share\\:selSendEmail")
 	private WebElement sendMailCheckBox;
 	
-	@FindBy(css = "input[value='Share']")
+	@FindBy(css = "#shareBtn>input")
 	private WebElement shareButton;	
 	
-	@FindBy(xpath = "//span[contains(@id, 'unknownEmails')]")
+	@FindBy(id = "unknownEmails")
 	private WebElement unknownEmailPanel;
 	
 	@FindBy(css = "#share\\:unknownEmails form")
@@ -56,6 +56,12 @@ public class SharePage extends BasePage {
 	
 	@FindBy(className = "imj_rightsTable")
 	private WebElement groupPanel;
+	
+	@FindBy(css = ".imj_shareRightsOverview:nth-of-type(2) .imj_rightsTableUser")
+	private WebElement pendingInvitations;
+	
+	@FindBy(className = "imj_backPanel")
+	private WebElement backLink;
 	
 	public SharePage(WebDriver driver) {
 		super(driver);
@@ -273,11 +279,11 @@ public class SharePage extends BasePage {
 		return isGrantCorrect;
 	}
 	
-	public KindOfSharePage invite() {
+	public SharePage invite() {
 		WebElement inviteButton = unknownEmailPanel.findElement(By.className("imj_submitButton"));
 		inviteButton.click();
 		
-		return PageFactory.initElements(driver, KindOfSharePage.class);
+		return PageFactory.initElements(driver, SharePage.class);
 	}
 	
 	public boolean inviteButtonEnabled() {
@@ -291,5 +297,26 @@ public class SharePage extends BasePage {
 	
 	public boolean messageDisplayed() {
 		return unknownEmailPanel.isDisplayed();
+	}
+	
+	public boolean isEmailPendingInvitation(String email) {
+		return pendingInvitations.getText().equals(email);
+	}
+	
+	public CollectionEntryPage goBackToCollection() {
+		backLink.click();
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
+	}
+	
+	public boolean isSharedPersonInList(String sharedPersonName) {
+		List<WebElement> sharedPersons = driver.findElements(By.className("imj_rightsTableUser"));
+		
+		for (WebElement sharedPerson : sharedPersons) {
+			String spName = sharedPerson.getText();
+			if (spName.equals(sharedPersonName)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

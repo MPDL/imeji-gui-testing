@@ -59,7 +59,7 @@ public abstract class BasePage {
 	@FindBy(css=".imj_siteContentHeadline>h1")
 	private WebElement siteContentHeadline;
 	
-	@FindBy (css="#Header\\:lnkHelp")
+	@FindBy (css="#lnkHelp")
 	private WebElement helpButton;
 	
 	@FindBy (css="#poweredBy a")
@@ -106,6 +106,10 @@ public abstract class BasePage {
 	
 	public BrowseItemsPage navigateToItemPage() {
 		return searchComponent.callBrowseSection();
+	}
+	
+	public StartPage goToStartPage() {
+		return mainMenuComponent.navigateTo(StartPage.class);
 	}
 	
 	public SingleUploadPage goToSingleUploadPage() {
@@ -215,18 +219,18 @@ public abstract class BasePage {
 	}
 
 	public boolean retryingFindClick(By by) {
-        boolean result = false;
         int attempts = 0;
         while(attempts < 20) {
             try {
                 driver.findElement(by).click();
-                result = true;
-                break;
+                return true;
             } 
-            catch(WebDriverException e) {}
-            attempts++;
+            catch(WebDriverException e) {
+            	attempts++;
+            }
         }
-        return result;
+
+        throw new NoSuchElementException("Element persists after 20 attempts.");
 	}
 	
 	public boolean retryingFinding(By by) {

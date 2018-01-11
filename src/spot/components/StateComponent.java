@@ -14,7 +14,7 @@ public class StateComponent extends BasePage {
 		ONLY_PRIVATE, ONLY_PUBLISHED, ONLY_DISCARDED
 	};
 	
-	@FindBy(className = "fa-lock")
+	@FindBy(className = "fa-cog")
 	private WebElement stateMenu;
 	
 	@FindBy(linkText = "Private")

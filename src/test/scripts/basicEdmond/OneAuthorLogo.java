@@ -11,7 +11,6 @@ import spot.pages.ItemViewPage;
 import spot.pages.DiscardedCollectionEntryPage;
 import spot.pages.EditCollectionPage;
 import spot.pages.EditLicensePage;
-import spot.pages.KindOfSharePage;
 import spot.pages.LoginPage;
 import spot.pages.SharePage;
 import spot.pages.StartPage;
@@ -28,8 +27,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	private AdminHomepage adminHomepage;
 	private CollectionEntryPage collectionEntry;
 	
-	private String collectionTitle = "2017-11-15 07:26:58.961 1 author send note public mode (revised)";
-//	private String collectionTitle = TimeStamp.getTimeStamp() + " 1 author send note public mode";
+	private String collectionTitle = TimeStamp.getTimeStamp() + " 1 author send note public mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
 	
 	@BeforeClass
@@ -37,75 +35,83 @@ public class OneAuthorLogo extends BaseSelenium {
 		navigateToStartPage();
 	}
 	
-//	@Test(priority = 1)
-//	public void disablePrivateMode() {
-//		LoginPage loginPage = new StartPage(driver).openLoginForm();
-//		adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
-//		adminHomepage.goToAdminPage().disablePrivateMode();
-//	}
-//	
-//	@Test(priority = 2)
-//	public void enableThumbnailView() {
-//		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
-//		adminHomepage.goToAdminPage().enableThumbnailView();
-//		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
-//		
-//		boolean thumbnailView = adminHomepage.goToCollectionPage().getPageOfLargestCollection().isElementPresent(By.id("imgFrame"));
-//		Assert.assertTrue(thumbnailView, "Collections should be in thumbnail view.");
-//	}
-//	
-//	@Test(priority = 3)
-//	public void logoutAdmin() {
-//		adminHomepage.logout();
-//	}
-//	
+	@Test(priority = 1)
+	public void disablePrivateMode() {
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
+		adminHomepage.goToAdminPage().disablePrivateMode();
+	}
+	
+	@Test(priority = 2)
+	public void enableThumbnailView() {
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
+		adminHomepage.goToAdminPage().enableThumbnailView();
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
+		
+		boolean thumbnailView = adminHomepage.goToCollectionPage().getPageOfLargestCollection().isElementPresent(By.className(" thumb"));
+		Assert.assertTrue(thumbnailView, "Collections should be in thumbnail view.");
+	}
+	
+	@Test(priority = 3)
+	public void forceThumbnailView() {
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
+		collectionEntry = adminHomepage.goToCollectionPage().openFirstCollection();
+		collectionEntry = collectionEntry.enableThumbnailView();
+	}
+	
+	@Test(priority = 4)
+	public void logoutAdmin() {
+		adminHomepage.logout();
+	}
+	
 	/**
 	 * IMJ-1
 	 */
-	@Test(priority = 4)
+	@Test(priority = 5)
 	public void loginUser1() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 	}
 
-//	/**
-//	 * IMJ-83
-//	 */
-//	@Test(priority = 5)
-//	public void createDefaultCollection() {
-//		NewCollectionPage newCollectionPage = homepage.goToCreateNewCollectionPage();
-//		collectionEntry = newCollectionPage.createCollection(collectionTitle, collectionDescription, 
-//				getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName), getPropertyAttribute(ruOrganizationName));
-//	}
-//
-//	/**
-//	 * IMJ-133
-//	 */
-//	@Test(priority = 6)
-//	public void uploadLogo() {
-//		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-//		EditCollectionPage editCollection = collectionEntry.editInformation();
-//		editCollection.addLogo(getFilepath("SampleJPGFile.jpg"));
-//		collectionEntry = editCollection.submitChanges();
-//		
-//		boolean hasLogo = collectionEntry.hasLogo();
-//		Assert.assertTrue(hasLogo, "Logo is not displayed.");
-//	}
-//
-//	/**
-//	 * IMJ-123
-//	 */
-//	@Test(priority = 7)
-//	public void editTitle() {
-//		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-//		EditCollectionPage editCollection = collectionEntry.editInformation();
-//		collectionTitle += " (revised)";
-//		editCollection.editTitle(collectionTitle);
-//		collectionEntry = editCollection.submitChanges();
-//		
-//		String pageTitle = collectionEntry.getTitle();
-//		Assert.assertEquals(pageTitle, collectionTitle, "Title was not changed.");
-//	}
+	/**
+	 * IMJ-83
+	 */
+	@Test(priority = 6)
+	public void createDefaultCollection() {
+		NewCollectionPage newCollectionPage = homepage.goToCreateNewCollectionPage();
+		collectionEntry = newCollectionPage.createCollection(collectionTitle, collectionDescription, 
+				getPropertyAttribute(ruGivenName), getPropertyAttribute(ruFamilyName), getPropertyAttribute(ruOrganizationName));
+	}
+
+	/**
+	 * IMJ-133
+	 */
+	@Test(priority = 7)
+	public void uploadLogo() {
+		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		EditCollectionPage editCollection = collectionEntry.editInformation();
+		editCollection.addLogo(getFilepath("SampleJPGFile.jpg"));
+		collectionEntry = editCollection.submitChanges();
+		
+		boolean hasLogo = collectionEntry.hasLogo();
+		Assert.assertTrue(hasLogo, "Logo is not displayed.");
+	}
+
+	/**
+	 * IMJ-123
+	 */
+	@Test(priority = 7)
+	public void editTitle() {
+		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		EditCollectionPage editCollection = collectionEntry.editInformation();
+		collectionTitle += " (revised)";
+		editCollection.editTitle(collectionTitle);
+		collectionEntry = editCollection.submitChanges();
+		collectionEntry.goToCollectionPage().openFirstCollection();
+		
+		String pageTitle = collectionEntry.getTitle();
+		Assert.assertEquals(pageTitle, collectionTitle, "Title was not changed.");
+	}
 	
 	private void uploadItem(String title) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -113,16 +119,16 @@ public class OneAuthorLogo extends BaseSelenium {
 		collectionEntry = collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		
 		boolean uploadSuccessful = collectionEntry.findItem(title);
-		Assert.assertTrue(uploadSuccessful, "Item not among uploads.");
+		Assert.assertTrue(uploadSuccessful, "Item " + title + " not among uploads.");
 	}
 
-//	/**
-//	 * IMJ-56
-//	 */
-//	@Test(priority = 8)
-//	public void uploadPDF() {
-//		uploadItem("SamplePDFFile.pdf");
-//	}
+	/**
+	 * IMJ-56
+	 */
+	@Test(priority = 8)
+	public void uploadPDF() {
+		uploadItem("SamplePDFFile.pdf");
+	}
 
 	/**
 	 * IMJ-279
@@ -236,12 +242,12 @@ public class OneAuthorLogo extends BaseSelenium {
 		String email = "nonexistentuser@mpdl.mpg.de";
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		KindOfSharePage shareTransition = collectionEntry.share();
-		SharePage sharePage = shareTransition.shareWithAUser();
+		// no share transition anymore
+		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, email, true, false, false);
 		
-		shareTransition = sharePage.invite();
-		boolean pendingInvitation = shareTransition.isEmailPendingInvitation(email);
+		sharePage = sharePage.invite();
+		boolean pendingInvitation = sharePage.isEmailPendingInvitation(email);
 		Assert.assertTrue(pendingInvitation, "Email of external user is not in 'Pending invitations' list.");
 	}
 
@@ -253,17 +259,16 @@ public class OneAuthorLogo extends BaseSelenium {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		KindOfSharePage shareTransition = collectionEntry.share();
-		SharePage sharePage = shareTransition.shareWithAUser();
+		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, getPropertyAttribute(restrUsername), true, false, false);
 		
 		collectionEntry = sharePage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		shareTransition = collectionEntry.share();
+		sharePage = collectionEntry.share();
 		
-		boolean user2InSharedList = shareTransition.isSharedPersonInList(user2Name);
+		boolean user2InSharedList = sharePage.isSharedPersonInList(user2Name);
 		Assert.assertTrue(user2InSharedList, "Second user is not present in shared list.");
 		
-		boolean grantsCorrect = shareTransition.checkGrantSelections(false, user2Name, true, false, false);
+		boolean grantsCorrect = sharePage.checkGrantSelections(false, user2Name, true, false, false);
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
 
@@ -310,7 +315,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-236
 	 */
-	@Test(priority = 23)
+	@Test(priority = 24)
 	public void downloadSelectedItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry.selectItem("SamplePDFFile.pdf");
@@ -323,7 +328,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-232
 	 */
-	@Test(priority = 24)
+	@Test(priority = 23)
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean canDownloadAll = collectionEntry.downloadAllPossible();
@@ -372,13 +377,17 @@ public class OneAuthorLogo extends BaseSelenium {
 	@Test(priority = 28)
 	public void discardItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		ItemViewPage itemView = collectionEntry.openItem("SampleTXTFile.txt");
-		collectionEntry = itemView.discardItem();
-		
+		collectionEntry = collectionEntry.selectItem("SampleTXTFile.txt");
+		collectionEntry = collectionEntry.discardSelectedItems();
+		// is item immediately removed?
 		boolean itemInList = collectionEntry.findItem("SampleTXTFile.txt");
 		Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
+		collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		
-		// filter discarded, item should be in list
+		itemInList = collectionEntry.findItem("SampleTXTFile.txt");
+		Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
+		
+		// filter discarded items, item should be in list
 	}
 
 	/**
