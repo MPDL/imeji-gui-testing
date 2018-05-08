@@ -1,16 +1,18 @@
-package spot;
+package test.base;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,12 +26,12 @@ public class SeleniumTestSuite {
 	
 	/** properties file with required login information for test user and admin **/
 	private static Properties properties;	
-	public static final String propertiesFileName = "testData.properties";
+	public static final String propertiesFileName = "testData";
 	
 	public static final String qaEdmond = "http://qa-edmond.mpdl.mpg.de/imeji/";
 	public static final String qaImeji = "http://qa-imeji.mpdl.mpg.de/";
 	
-	public static final String TEST_ENV_URL = "http://qa-edmond.mpdl.mpg.de/imeji/";
+	public static final String TEST_ENV_URL = qaImeji;
 
 	private static final Logger log4j = LogManager.getLogger(SeleniumTestSuite.class.getName());
 	
@@ -78,7 +80,7 @@ public class SeleniumTestSuite {
 		switch (browserType) {
 			case "chrome":
 				ChromeOptions options = new ChromeOptions();
-				System.setProperty("webdriver.chrome.driver", "/Users/apetrova/drivers/chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", "/PATH/TO/chromedriver.exe");
 				DesiredCapabilities chrome = DesiredCapabilities.chrome();
 				chrome.setCapability(ChromeOptions.CAPABILITY, options);
 				driver = new ChromeDriver(); 
@@ -91,8 +93,8 @@ public class SeleniumTestSuite {
 						+ " is invalid. Launching default browser instead (Firefox)...");
 				driver = initFirefoxDriver();
 		}
-		driver.manage().window().maximize();
-		log4j.info("Window maximized.");
+		driver.manage().window().setSize(new Dimension(1024, 768));
+		log4j.info("Window maximised.");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
@@ -102,11 +104,37 @@ public class SeleniumTestSuite {
 	 */
 	private WebDriver initFirefoxDriver() {
 		log4j.info("Launching Firefox browser...");
-		WebDriver driver = new FirefoxDriver();
+		System.setProperty("webdriver.gecko.driver", "/" + System.getenv("geckodriver"));
+		FirefoxOptions options = new FirefoxOptions();
+		options.setCapability("marionette", true);
 		
-		return driver;
-	}
+		FirefoxBinary binary = new FirefoxBinary();
+		options.setBinary(binary);
+		FirefoxProfile profile = initFirefoxProfile();
+		options.setProfile(profile);
 
+		return new FirefoxDriver(options);
+	}
+	
+	private FirefoxProfile initFirefoxProfile() {
+		FirefoxProfile profile = new FirefoxProfile();
+		profile.setPreference("browser.download.folderList",2);
+		profile.setPreference("browser.download.manager.showWhenStarting", false);
+		profile.setPreference("browser.download.dir","./target/downloads");
+		profile.setPreference("browser.helperApps.neverAsk.saveToDisk","application/msword, application/csv, application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip, application/x-zip, application/x-zip-compressed, application/download, application/octet-stream");
+		profile.setPreference("browser.download.manager.alertOnEXEOpen", false);
+		profile.setPreference("browser.download.manager.focusWhenStarting", false);  
+		profile.setPreference("browser.download.useDownloadDir", true);
+		profile.setPreference("browser.helperApps.alwaysAsk.force", false);
+		profile.setPreference("browser.download.manager.closeWhenDone", true);
+		profile.setPreference("browser.download.manager.showAlertOnComplete", false);
+		profile.setPreference("browser.download.manager.useWindow", false);
+		profile.setPreference("services.sync.prefs.sync.browser.download.manager.showWhenStarting", false);
+		profile.setPreference("pdfjs.disabled", true);
+		
+		return profile;
+	}
+	
 	@AfterSuite
 	public static void quitDriver() {
 		log4j.info("Quitting driver...");
