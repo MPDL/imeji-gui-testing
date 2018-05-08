@@ -39,6 +39,7 @@ public class UserGroupsOverviewPage extends BasePage {
 
 		wait.until(ExpectedConditions.visibilityOf(confirmDelete));
 		confirmDelete.click();
+		try { Thread.sleep(2000); } catch (InterruptedException e) {}
 		
 		return PageFactory.initElements(driver, UserGroupsOverviewPage.class);
 	}

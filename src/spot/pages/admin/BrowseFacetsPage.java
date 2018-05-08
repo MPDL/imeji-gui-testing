@@ -66,6 +66,7 @@ public class BrowseFacetsPage extends BasePage {
 		WebElement facet = findFacet(facetTitle);
 		facet.findElement(By.linkText("Delete")).click();
 		driver.findElement(By.cssSelector("#deleteFacet0>form>.imj_submitPanel>.imj_submitButton")).click();
+		try { Thread.sleep(2500); } catch(InterruptedException exc) {}
 		
 		return PageFactory.initElements(driver, BrowseFacetsPage.class);
 	}

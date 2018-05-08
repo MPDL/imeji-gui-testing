@@ -31,6 +31,7 @@ public class BrowseStatementsPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfNestedElementsLocatedBy(statement, deleteConfirmationLocator));
 		WebElement deleteConfirmationDialog = statement.findElement(deleteConfirmationLocator);
 		deleteConfirmationDialog.findElement(By.className("imj_submitButton")).click();
+		try { Thread.sleep(2000); } catch(InterruptedException exc) {}
 		
 		return PageFactory.initElements(driver, BrowseStatementsPage.class);
 	}
@@ -48,6 +49,7 @@ public class BrowseStatementsPage extends BasePage {
 	public BrowseStatementsPage makeDefault(String name) {
 		WebElement statement = findStatement(name);
 		statement.findElement(By.className("fa-star-o")).click();
+		try { Thread.sleep(2000); } catch(InterruptedException exc) {}
 		
 		return PageFactory.initElements(driver, BrowseStatementsPage.class);
 	}

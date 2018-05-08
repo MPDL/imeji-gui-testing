@@ -22,7 +22,7 @@ public class MessageComponent {
 	private WebElement pageMessageArea;
 
 	public enum MessageType {
-		ERROR, INFO, NONE
+		ERROR, SUCCESS, NONE
 	};
 
 	public MessageComponent(WebDriver driver) {
@@ -41,30 +41,29 @@ public class MessageComponent {
 	}
 
 	/**
-	 * Used for e.g. Login. Login action results into update of page message
-	 * area in any case (fail/success). Successful login is associated with
-	 * message type messageInfo. Failed login with message type messageError.
+	 * Successful action is associated with message type 'success',
+	 * failed action - with 'error',
+	 * lack of message - with 'none'
+	 * Error messages always take priority
 	 * 
-	 * @return the messageType - either info or error
+	 * @return the message type
 	 */
-	public MessageType getMessageTypeOfPageMessageArea() {
-		MessageType msgType = MessageType.INFO;
-
+	public MessageType getPageMessageType() {
 		// does any class attribute in the message area contain the word "error"?
-		List<WebElement> pageMsgAreaComponents = pageMessageArea
-				.findElements(By.tagName("div"));
+		List<WebElement> pageMsgAreaComponents = pageMessageArea.findElements(By.tagName("div"));
+		boolean isSuccess = false;
 
 		for (WebElement we : pageMsgAreaComponents) {
 			String messageType = we.getAttribute("class");
-			boolean isError = StringUtils.containsIgnoreCase(messageType,
-					MessageType.ERROR.toString());
-			if (isError) {
-				msgType = MessageType.ERROR;
-				break;
+			if (StringUtils.containsIgnoreCase(messageType, MessageType.ERROR.toString())) {
+				return MessageType.ERROR;
+			}
+			if (StringUtils.containsIgnoreCase(messageType, MessageType.SUCCESS.toString())) {
+				isSuccess = true;
 			}
 		}
 		
-		return msgType;
+		return isSuccess ? MessageType.SUCCESS : MessageType.NONE;
 	}
 
 	public String getErrorMessage() {
@@ -83,20 +82,20 @@ public class MessageComponent {
 			return "";
 	}
 
-	public String getInfoMessage() {
-		List<String> infoMessages = new ArrayList<String>();
+	public String getSuccessMessage() {
+		List<String> successMessages = new ArrayList<String>();
 
 		WebDriverWait wait = new WebDriverWait(driver, 50);
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("imj_messageInfo")));
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("imj_messageSuccess")));
 		
-		List<WebElement> errorWebElements = pageMessageArea.findElements(By.className("imj_messageInfo"));
+		List<WebElement> successWebElements = pageMessageArea.findElements(By.className("imj_messageSuccess"));
 
-		for (WebElement we : errorWebElements) {
-			infoMessages.add(we.getText());
+		for (WebElement we : successWebElements) {
+			successMessages.add(we.getText());
 		}
 
-		if (infoMessages.size() > 0)
-			return infoMessages.get(0).trim();
+		if (successMessages.size() > 0)
+			return successMessages.get(0).trim();
 		else
 			return "";
 	}

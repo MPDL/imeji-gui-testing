@@ -10,16 +10,16 @@ import spot.components.MessageComponent.MessageType;
 import spot.pages.AdvancedSearchPage;
 import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
-import spot.pages.EditCollectionPage;
 import spot.pages.ItemViewPage;
-import spot.pages.KindOfSharePage;
 import spot.pages.LoginPage;
 import spot.pages.SearchResultsPage;
-import spot.pages.SharePage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
+import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.Homepage;
+import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.NewCollectionPage;
+import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
@@ -63,10 +63,6 @@ public class AdminSharesWithUser extends BaseSelenium {
 	public void enableListView() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		adminHomepage.goToAdminPage().enableListView();
-		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
-		
-		boolean thumbnailView = adminHomepage.goToCollectionPage().getPageOfLargestCollection().isElementPresent(By.id("imgFrame"));
-		Assert.assertFalse(thumbnailView, "Collections should be in list view.");
 	}
 	
 	@Test(priority = 4)
@@ -102,7 +98,7 @@ public class AdminSharesWithUser extends BaseSelenium {
 		
 		MessageType messageType = collectionEntry.getPageMessageType();
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
+		Assert.assertEquals(messageType, MessageType.SUCCESS, "Success message was not displayed.");
 	}
 
 	/**
@@ -249,9 +245,8 @@ public class AdminSharesWithUser extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-183
+	 * IMJ-183 - TODO will be tested again after milestone 4.2
 	 */
-	@Test(priority = 19)
 	public void searchText() {
 		advancedSearch("Botanica Marina (botm)");
 	}

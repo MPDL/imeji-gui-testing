@@ -32,10 +32,10 @@ public class UserGroupPage extends BasePage {
 		addUserButton.click();
 		UsersOverviewPage allUsersOverViewPage = PageFactory.initElements(driver, UsersOverviewPage.class);
 		allUsersOverViewPage.addUserToUserGroup(userEmail);
+		try { Thread.sleep(1000); } catch (InterruptedException e) {}
 			
 		// this page is refreshed; init elements once again
 		PageFactory.initElements(driver, this);
-		
 		return this;
 	}
 
@@ -46,7 +46,7 @@ public class UserGroupPage extends BasePage {
 	}
 	
 	/**
-	 * TODO: make delete method by user email
+	 * TODO: make delete method by user email: it would be a bit hard, since the user information is not nested in an element
 	 */
 	public UserGroupPage deleteUser(int index) {
 		List<WebElement> userDeleteButtons = driver.findElements(By.cssSelector("#userList .fa-times"));
@@ -58,6 +58,7 @@ public class UserGroupPage extends BasePage {
 	
 	public UserGroupPage changeTitle(String newTitle) {
 		editButton.click();
+		try { Thread.sleep(2000); } catch (InterruptedException e) {}
 		
 		EditUserGroupPage editUserGroup = PageFactory.initElements(driver, EditUserGroupPage.class);
 		return editUserGroup.editTitle(newTitle);
@@ -70,13 +71,12 @@ public class UserGroupPage extends BasePage {
 			if (userGrant.getText().contains(grantName))
 				return true;
 		}
-		
 		return false;
 	}
 	
 	public String getUserGroupTitle() {
 		WebElement breadcrumb = driver.findElement(By.tagName("h1"));
-		String headline = breadcrumb.findElement(By.cssSelector("span:nth-of-type(3)")).getText();
+		String headline = retryingNestedElement(breadcrumb, By.cssSelector("span:nth-of-type(3)")).getText();
 		return headline.substring("User Group ".length());
 	}
 

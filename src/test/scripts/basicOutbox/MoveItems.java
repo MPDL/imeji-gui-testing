@@ -1,6 +1,5 @@
 package test.scripts.basicOutbox;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -56,10 +55,6 @@ public class MoveItems extends BaseSelenium {
 	public void enableListView() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		adminHomepage.goToAdminPage().enableListView();
-		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
-		
-		boolean thumbnailView = adminHomepage.goToCollectionPage().getPageOfLargestCollection().isElementPresent(By.id("imgFrame"));
-		Assert.assertFalse(thumbnailView, "Collections should be in list view.");
 	}
 	
 	@Test(priority = 4)

@@ -35,7 +35,7 @@ public class UserPolicyManagementTest extends BaseSelenium {
 		AdministrationPage administrationPage = adminHomePage.goToAdminPage();
 		UserProfilePage createUserPage = administrationPage.createNewUser(getPropertyAttribute(restrUsername));
 		
-		MessageType messageType = createUserPage.getMessageComponent().getMessageTypeOfPageMessageArea();
+		MessageType messageType = createUserPage.getPageMessageType();
 		Assert.assertEquals(messageType, MessageType.ERROR, "No error message appeared after registration with repeated e-mail.");
 		
 		adminHomePage = (AdminHomepage) createUserPage.goToHomepage(adminHomePage);
@@ -46,7 +46,7 @@ public class UserPolicyManagementTest extends BaseSelenium {
 		AdministrationPage administrationPage = adminHomePage.goToAdminPage();
 		UserProfilePage createUserPage = administrationPage.createNewUser("");
 		
-		MessageType messageType = createUserPage.getMessageComponent().getMessageTypeOfPageMessageArea();
+		MessageType messageType = createUserPage.getPageMessageType();
 		Assert.assertEquals(messageType, MessageType.ERROR, "No error message appeared after registration with missing e-mail.");
 		
 		adminHomePage = (AdminHomepage) createUserPage.goToHomepage(adminHomePage);

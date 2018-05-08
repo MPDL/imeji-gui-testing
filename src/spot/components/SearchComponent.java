@@ -11,22 +11,25 @@ import spot.pages.AdvancedSearchPage;
 import spot.pages.BrowseItemsPage;
 import spot.pages.LoginPage;
 import spot.pages.SearchResultsPage;
-import test.base.CategoryType;
 
 public class SearchComponent {
 	
+	public enum CategoryType {
+		ITEM, COLLECTION
+	}
+
 	private WebDriver driver;
 	
 	@FindBy(id="simpleSearchInputText")
 	private WebElement quickSearchTextField;
 	
-	@FindBy(id="lnkAdvancedSearch")
-	private WebElement advancedSearchButton;
-	
-	@FindBy(id="btnQuickSearchStart")
+	@FindBy(id="btnSimpleSearch")
 	private WebElement goToQuickSearchingButton;
 	
-	@FindBy(id="Header:lnkBrowse")
+	@FindBy(id="lnkAdvancedSearch")
+	private WebElement advancedSearchButton;
+
+	@FindBy(id="lnkItems")
 	private WebElement browseItemsLink;
 	
 	public SearchComponent(WebDriver driver) {
@@ -62,12 +65,9 @@ public class SearchComponent {
 			case ITEM:
 				categoryMenu.findElement(By.id("simpleSearchForItems")).click();
 				break;
-			case ALBUM:
-				categoryMenu.findElement(By.id("simpleSearchForAlbums")).click();
-				break;
 			case COLLECTION:
-				//categoryMenu.findElement(By.id("simpleSearchForCollections")).click();
-				driver.navigate().to("http://qa-imeji.mpdl.mpg.de/imeji/collections?q=" + searchQuery);
+				categoryMenu.findElement(By.id("simpleSearchForCollections")).click();
+				//driver.navigate().to("http://qa-imeji.mpdl.mpg.de/imeji/collections?q=" + searchQuery);
 				break;
 			default:
 				categoryMenu.findElement(By.id("simpleSearchForItems")).click();

@@ -19,16 +19,13 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class StartPage extends BasePage {
 
-	@FindBy(id ="lnkshowLogin")
+	@FindBy(id = "lnkshowLogin")
 	private WebElement openLoginFormButton;
 	
-	@FindBy(xpath =".//*[@id='Header:j_idt37']/a")
+	@FindBy(css = "#headerMenu>div>a:nth-of-type(2)")
 	private WebElement registrationButton;
 	
-	@FindBy(css="#columnEN-2 a:nth-of-type(2)")
-	private WebElement contactEdmondsupportLink;
-	
-	@FindBy(className="fa-upload")
+	@FindBy(className = "fa-upload")
 	private WebElement uploadButton;
 	
 	public StartPage(WebDriver driver) {
@@ -38,11 +35,11 @@ public class StartPage extends BasePage {
 	}	
 	
 	public LoginPage openLoginForm() {
-		
 		try {
 			openLoginFormButton.click();	
-		} catch (NoSuchElementException e) {
-			// the login form is already visible
+		} 
+		catch (NoSuchElementException e) {
+			// a user is already logged in
 			// do nothing
 		}
 		
@@ -54,18 +51,6 @@ public class StartPage extends BasePage {
 		return PageFactory.initElements(driver, RegistrationPage.class);
 	}
 	
-	public String contactEdmondSupport() {
-		String href = contactEdmondsupportLink.getAttribute("href");		
-
-		return extractMailDestinationAddressFromLink(href);
-	}
-	
-	public SingleUploadPage goToSingleUploadPage() {
-		uploadButton.click();
-		
-		return PageFactory.initElements(driver, SingleUploadPage.class);
-	}
-	
 	public boolean uploadPageAvailable() {
 		return isElementPresent(By.className("fa-upload")) && uploadButton.isDisplayed() && uploadButton.isEnabled() ;
 	}
@@ -75,13 +60,12 @@ public class StartPage extends BasePage {
 	 * @return
 	 */
 	public boolean isOpenLoginFormButtonPresent() {
-		
 		try {
 			openLoginFormButton.getTagName();
 			return true;
-		} catch (NoSuchElementException exception) {
+		} 
+		catch (NoSuchElementException exception) {
 			return false;
 		}
-		
 	}
 }

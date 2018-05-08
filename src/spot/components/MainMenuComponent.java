@@ -7,7 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import spot.pages.BrowseItemsPage;
 import spot.pages.CollectionsPage;
-import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
 import spot.pages.admin.AdministrationPage;
@@ -26,9 +25,6 @@ public class MainMenuComponent {
 	@FindBy(id = "lnkItems")
 	private WebElement itemsButton;
 	
-//	@FindBy (className="fa-upload")
-//	private WebElement singleUploadButton;
-	
 	@FindBy (id="lnkAdmin")
 	private WebElement adminButton;
 	
@@ -38,13 +34,12 @@ public class MainMenuComponent {
 		PageFactory.initElements(driver, this);
 	}
 	
+	// TODO: old method, refactor
 	public <T> T navigateTo(Class<T> expectedPage) {
 		if (expectedPage == CollectionsPage.class)
 			collectionsButton.click();
 		else if (expectedPage == StartPage.class)
 			startButton.click();
-//		else if (expectedPage == SingleUploadPage.class)
-//			singleUploadButton.click();
 		else if (expectedPage == AdministrationPage.class)
 			adminButton.click();
 		else if (expectedPage == Homepage.class || expectedPage == AdminHomepage.class)

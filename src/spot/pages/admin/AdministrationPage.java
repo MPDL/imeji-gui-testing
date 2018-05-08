@@ -10,7 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import spot.pages.BasePage;
-import spot.pages.ConfigurationPage;
 import test.base.StatementType;
 
 public class AdministrationPage extends BasePage {
@@ -193,12 +192,6 @@ public class AdministrationPage extends BasePage {
 		BrowseFacetsPage browseFacets = new BrowseFacetsPage(driver);
 		return browseFacets.deleteFacet(facetTitle);
 	}
-	
-//	public CreateStatementPage defaultStatementNumber(int id) {
-//		createStatement.click();
-//		CreateStatementPage statementsPage = new CreateStatementPage(driver);
-//		return statementsPage.defaultStatementNumber(int id);
-//	}
 	
 	public boolean areAllComponentsDisplayed() {
 		try {

@@ -4,11 +4,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import spot.pages.ConfigurationPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
 import spot.pages.admin.AdministrationPage;
+import spot.pages.admin.ConfigurationPage;
 import test.base.BaseSelenium;
 
 public class MaitenanceMessageTest extends BaseSelenium {

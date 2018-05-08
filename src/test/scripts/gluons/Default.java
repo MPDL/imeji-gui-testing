@@ -3,26 +3,27 @@ package test.scripts.gluons;
 import java.util.Random;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.components.MessageComponent.MessageType;
+import spot.components.SearchComponent.CategoryType;
 import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
-import spot.pages.EditCollectionPage;
 import spot.pages.ItemViewPage;
-import spot.pages.KindOfSharePage;
 import spot.pages.LoginPage;
 import spot.pages.SearchResultsPage;
-import spot.pages.SharePage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
+import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.Homepage;
+import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.NewCollectionPage;
+import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
-import test.base.CategoryType;
 
 public class Default extends BaseSelenium {
 
@@ -46,7 +47,6 @@ public class Default extends BaseSelenium {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
 		adminHomepage.goToAdminPage().enablePrivateMode().enableThumbnailView();
-		adminHomepage.logout();
 	}
 	
 	@Test(priority = 2)
@@ -61,6 +61,8 @@ public class Default extends BaseSelenium {
 	 */
 	@Test(priority = 3)
 	public void loginRU() {
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
+		adminHomepage.logout();
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 	}
@@ -76,10 +78,10 @@ public class Default extends BaseSelenium {
 		
 		MessageType messageType = collectionEntry.getPageMessageType();
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
+		Assert.assertEquals(messageType, MessageType.SUCCESS, "Success message was not displayed.");
 	}
 	
-	@Test(priority = 5)
+	@Test(priority = 5, dependsOnMethods = {"createDefaultCollection"})
 	public void createExternalReference() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
@@ -94,7 +96,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-133
 	 */
-	@Test(priority = 5)
+	@Test(priority = 5, dependsOnMethods = {"createDefaultCollection"})
 	public void uploadLogo() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
@@ -108,7 +110,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-123
 	 */
-	@Test(priority = 6)
+	@Test(priority = 6, dependsOnMethods = {"createDefaultCollection"})
 	public void editTitle() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
@@ -131,7 +133,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 7)
+	@Test(priority = 7, dependsOnMethods = {"createDefaultCollection"})
 	public void uploadJPG() {
 		uploadItem("SampleJPGFile.jpg");
 	}
@@ -139,7 +141,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-279
 	 */
-	@Test(priority = 8)
+	@Test(priority = 8, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataAllItems() {
 		String key = "Title";
 		String value = "Test collection";
@@ -156,7 +158,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 9)
+	@Test(priority = 9, dependsOnMethods = {"createDefaultCollection"})
 	public void uploadPDF() {
 		uploadItem("SamplePDFFile.pdf");
 	}
@@ -164,7 +166,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-280
 	 */
-	@Test(priority = 10)
+	@Test(priority = 10, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataIfEmpty() {
 		String key = "Title";
 		String value = "New value";
@@ -185,7 +187,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-67
 	 */
-	@Test(priority = 11)
+	@Test(priority = 11, dependsOnMethods = {"createDefaultCollection"})
 	public void deleteItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.deleteItem("SampleJPGFile.jpg");
@@ -193,7 +195,7 @@ public class Default extends BaseSelenium {
 		
 		MessageType messageType = collectionEntry.getPageMessageType();
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
+		Assert.assertEquals(messageType, MessageType.SUCCESS, "Information message is not displayed.");
 		
 		boolean itemPresent = collectionEntry.findItem("SampleJPGFile.jpg");
 		Assert.assertFalse(itemPresent, "Item was not deleted.");
@@ -202,7 +204,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 12)
+	@Test(priority = 12, dependsOnMethods = {"createDefaultCollection"})
 	public void uploadJPG2() {
 		uploadItem("SampleJPGFile2.jpg");
 	}
@@ -210,7 +212,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-195
 	 */
-	@Test(priority = 13)
+	@Test(priority = 13, dependsOnMethods = {"createDefaultCollection"})
 	public void shareAdminRU() {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
 		
@@ -231,7 +233,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-2
 	 */
-	@Test(priority = 14)
+	@Test(priority = 14, dependsOnMethods = {"createDefaultCollection"})
 	public void logoutRU() {
 		homepage = new StartPage(driver).goToHomepage(homepage);
 		homepage.logout();
@@ -240,7 +242,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-22
 	 */
-	@Test(priority = 15)
+	@Test(priority = 15, dependsOnMethods = {"createDefaultCollection"})
 	public void loginRestrictedUser() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(restrUsername), getPropertyAttribute(restrPassword));
@@ -249,17 +251,17 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-162
 	 */
-	@Test(priority = 16)
+	@Test(priority = 16, dependsOnMethods = {"createDefaultCollection"})
 	public void searchCollection() {
 		navigateToStartPage();
 		SearchResultsPage searchResults = homepage.getSearchComponent().searchByCategory(collectionTitle, CategoryType.COLLECTION);
-		Assert.assertNotEquals(searchResults.getResultCountCollection(), 0, "User cannot find collection " + collectionTitle);
+		Assert.assertNotEquals(searchResults.getResultCount(), 0, "User cannot find collection " + collectionTitle);
 	}
 
 	/**
 	 * IMJ-46
 	 */
-	@Test(priority = 17)
+	@Test(priority = 17, dependsOnMethods = {"createDefaultCollection"})
 	public void shareIconDisplayed() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean shareVisible = collectionEntry.shareIconVisible();
@@ -269,7 +271,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-247
 	 */
-	@Test(priority = 18)
+	@Test(priority = 18, dependsOnMethods = {"createDefaultCollection"})
 	public void addAuthor() {
 		String newAuthor = "Addedauthor";
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -284,7 +286,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 19)
+	@Test(priority = 19, dependsOnMethods = {"createDefaultCollection"})
 	public void uploadXLSX() {
 		uploadItem("SampleXLSXFile.xlsx");
 	}
@@ -292,7 +294,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-281
 	 */
-	@Test(priority = 20)
+	@Test(priority = 20, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataOverwrite() {
 		String key = "Date";
 		String value = "2017-05-05";
@@ -306,7 +308,7 @@ public class Default extends BaseSelenium {
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on all item pages.");
 	}
 	
-	@Test(priority = 21)
+	@Test(priority = 21, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataAllItemsOwn() {
 		String key = new Random().nextInt(1000) + "";
 		String value = "Collection test";
@@ -323,7 +325,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-234
 	 */
-	@Test(priority = 22)
+	@Test(priority = 22, dependsOnMethods = {"createDefaultCollection"})
 	public void downloadItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		ItemViewPage itemView = collectionEntry.openItem("SamplePDFFile.pdf");
@@ -334,7 +336,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-236
 	 */
-	@Test(priority = 24)
+	@Test(priority = 24, dependsOnMethods = {"createDefaultCollection"})
 	public void downloadSelectedItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry.selectItem("SamplePDFFile.pdf");
@@ -347,7 +349,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-232
 	 */
-	@Test(priority = 23)
+	@Test(priority = 23, dependsOnMethods = {"createDefaultCollection"})
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean canDownloadAll = collectionEntry.downloadAllPossible();
@@ -357,7 +359,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-2
 	 */
-	@Test(priority = 25)
+	@Test(priority = 25, dependsOnMethods = {"createDefaultCollection"})
 	public void logout() {
 		homepage = new StartPage(driver).goToHomepage(homepage);
 		homepage.logout();
@@ -366,7 +368,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-19
 	 */
-	@Test(priority = 26)
+	@Test(priority = 26, dependsOnMethods = {"createDefaultCollection"})
 	public void loginRU2() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
@@ -375,7 +377,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-96
 	 */
-	@Test(priority = 27)
+	@Test(priority = 27, dependsOnMethods = {"createDefaultCollection"})
 	public void deleteCollection() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		CollectionsPage collectionsPage = collectionEntry.deleteCollection();
@@ -387,7 +389,7 @@ public class Default extends BaseSelenium {
 	/**
 	 * IMJ-2
 	 */
-	@Test(priority = 28)
+	@AfterClass
 	public void logoutRU2() {
 		homepage.logout();
 	}

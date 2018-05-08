@@ -14,8 +14,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.google.common.base.Predicate;
 
+import spot.components.SearchComponent.CategoryType;
 import spot.components.ShareComponent;
-import test.base.CategoryType;
+import spot.pages.registered.EditItemPage;
+import spot.pages.registered.KindOfSharePage;
 
 public class ItemViewPage extends BasePage {
 

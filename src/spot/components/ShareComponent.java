@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import spot.components.SearchComponent.CategoryType;
 import spot.pages.BasePage;
-import spot.pages.KindOfSharePage;
-import test.base.CategoryType;
+import spot.pages.registered.KindOfSharePage;
 
 public class ShareComponent extends BasePage {
 
@@ -38,9 +38,6 @@ public class ShareComponent extends BasePage {
 		switch(category) {
 			case COLLECTION:
 				shareCollection.click();
-				break;
-			case ALBUM:
-				shareAlbum.click();
 				break;
 			case ITEM:
 				shareItem.click();

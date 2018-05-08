@@ -1,6 +1,5 @@
 package spot.pages.registered;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -56,6 +55,7 @@ public class EditItemsPage extends BasePage {
 			addValueAll.click();
 		}
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
+		wait.until(ExpectedConditions.elementToBeClickable(metadataButton));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -64,6 +64,7 @@ public class EditItemsPage extends BasePage {
 		addMetadata(key, value);
 		addValueIfEmpty.click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
+		try { Thread.sleep(2500); } catch (InterruptedException e) {}
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -72,6 +73,7 @@ public class EditItemsPage extends BasePage {
 		addMetadata(key, value);
 		overwriteAllValues.click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
+		try { Thread.sleep(2500); } catch (InterruptedException e) {}
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -93,6 +95,7 @@ public class EditItemsPage extends BasePage {
 		
 		addValueAll.click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
+		try { Thread.sleep(2500); } catch (InterruptedException e) {}
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -123,6 +126,7 @@ public class EditItemsPage extends BasePage {
 		
 		addValueAll.click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
+		try { Thread.sleep(2500); } catch (InterruptedException e) {}
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -136,10 +140,7 @@ public class EditItemsPage extends BasePage {
 	private void addKey(String key) {
 		metadataButton.click();
 		keyBox.sendKeys(key);
-		try {
-			Thread.sleep(5000);
-		} 
-		catch (InterruptedException e) {}
+		wait.until(ExpectedConditions.textToBePresentInElementValue(keyBox, key));
 		List<WebElement> results = driver.findElements(By.cssSelector("#editBatchForm\\:select\\:statementList>p>a"));
 		for (WebElement result : results) {
 			if (result.getText().equals(key)) {

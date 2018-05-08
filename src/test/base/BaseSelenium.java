@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Set;
-import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.TakesScreenshot;
@@ -12,13 +11,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
 import spot.pages.HelpPage;
-import spot.pages.SingleUploadPage;
 import spot.pages.StartPage;
 import spot.pages.registered.Homepage;
 
@@ -124,12 +121,6 @@ public abstract class BaseSelenium {
 		if (!getCurrentURL().equals(SeleniumTestSuite.TEST_ENV_URL)) {
 			navigateDriverTo(SeleniumTestSuite.TEST_ENV_URL);
 		}
-	}
-	
-	public SingleUploadPage navigateToUploadPage() {		
-		navigateDriverTo("http://qa-imeji.mpdl.mpg.de/imeji/singleupload");
-		
-		return PageFactory.initElements(driver, SingleUploadPage.class);
 	}
 	
 	public HelpPage navigateToHelpPage() {

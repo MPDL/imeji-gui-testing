@@ -7,9 +7,9 @@ import org.testng.annotations.Test;
 
 import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
-import spot.pages.EditCollectionPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
+import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.Homepage;
 import spot.pages.registered.NewCollectionPage;
@@ -141,8 +141,11 @@ public class DefaultDelete extends BaseSelenium {
 	@Test(priority = 10)
 	public void deleteItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		collectionEntry = collectionEntry.deleteItem("SamplePDFFile.pdf");
+		collectionEntry = collectionEntry.selectItem("SamplePDFFile.pdf");
+		// item page has doen't have a 'delete' option anymore
+		collectionEntry = collectionEntry.deleteSelectedItems();
 		
+		collectionEntry = collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean itemPresent = collectionEntry.findItem("SamplePDFFile.pdf");
 		Assert.assertFalse(itemPresent, "Item was not deleted.");
 	}
@@ -157,6 +160,7 @@ public class DefaultDelete extends BaseSelenium {
 		collectionEntry = collectionEntry.selectItem("SampleJPGFile.jpg");
 		collectionEntry = collectionEntry.deleteSelectedItems();
 		
+		collectionEntry = collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean firstItemPresent = collectionEntry.findItem("SampleTXTFile.txt");
 		Assert.assertFalse(firstItemPresent, "First item was not deleted.");
 		boolean secondItemPresent = collectionEntry.findItem("SampleJPGFile.jpg");

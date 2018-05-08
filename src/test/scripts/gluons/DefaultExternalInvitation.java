@@ -1,20 +1,21 @@
 package test.scripts.gluons;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionEntryPage;
-import spot.pages.EditCollectionPage;
-import spot.pages.KindOfSharePage;
 import spot.pages.LoginPage;
-import spot.pages.SharePage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
+import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.Homepage;
+import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.NewCollectionPage;
+import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
@@ -63,10 +64,10 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		
 		MessageType messageType = collectionEntry.getPageMessageType();
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
+		Assert.assertEquals(messageType, MessageType.SUCCESS, "Success message was not displayed.");
 	}
 	
-	@Test(priority = 4)
+	@Test(priority = 4, dependsOnMethods = {"createDefaultCollection"})
 	public void createExternalReference() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
@@ -81,7 +82,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	/**
 	 * IMJ-133
 	 */
-	@Test(priority = 5)
+	@Test(priority = 5, dependsOnMethods = {"createDefaultCollection"})
 	public void uploadLogo() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
@@ -95,7 +96,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	/**
 	 * IMJ-123
 	 */
-	@Test(priority = 6)
+	@Test(priority = 6, dependsOnMethods = {"createDefaultCollection"})
 	public void editTitle() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
@@ -118,7 +119,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 7)
+	@Test(priority = 7, dependsOnMethods = {"createDefaultCollection"})
 	public void uploadJPG() {
 		uploadItem("SampleJPGFile.jpg");
 	}
@@ -126,7 +127,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	/**
 	 * IMJ-279
 	 */
-	@Test(priority = 8)
+	@Test(priority = 8, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataAllItems() {
 		String key = "Title";
 		String value = "Test collection";
@@ -143,7 +144,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 9)
+	@Test(priority = 9, dependsOnMethods = {"createDefaultCollection"})
 	public void uploadPDF() {
 		uploadItem("SamplePDFFile.pdf");
 	}
@@ -151,7 +152,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	/**
 	 * IMJ-280
 	 */
-	@Test(priority = 10)
+	@Test(priority = 10, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataIfEmpty() {
 		String key = "Title";
 		String value = "New value";
@@ -172,14 +173,14 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	/**
 	 * IMJ-67
 	 */
-	@Test(priority = 11)
+	@Test(priority = 11, dependsOnMethods = {"createDefaultCollection"})
 	public void deleteItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.deleteItem("SampleJPGFile.jpg");
 		
 		MessageType messageType = collectionEntry.getPageMessageType();
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Information message is not displayed.");
+		Assert.assertEquals(messageType, MessageType.SUCCESS, "Information message is not displayed.");
 		
 		boolean itemPresent = collectionEntry.findItem("SampleJPGFile.jpg");
 		Assert.assertFalse(itemPresent, "Item was not deleted.");
@@ -188,7 +189,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 12)
+	@Test(priority = 12, dependsOnMethods = {"createDefaultCollection"})
 	public void uploadJPG2() {
 		uploadItem("SampleJPGFile2.jpg");
 	}
@@ -196,7 +197,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	/**
 	 * IMJ-201
 	 */
-	@Test(priority = 13)
+	@Test(priority = 13, dependsOnMethods = {"createDefaultCollection"})
 	public void shareAdminExternal() {
 		String email = "nonexistentuser@mpdl.mpg.de";
 		
@@ -212,7 +213,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	/**
 	 * IMJ-2
 	 */
-	@Test(priority = 14)
+	@AfterClass
 	public void logoutRU() {
 		homepage = new StartPage(driver).goToHomepage(homepage);
 		homepage.logout();

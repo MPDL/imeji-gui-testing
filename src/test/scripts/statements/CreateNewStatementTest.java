@@ -17,13 +17,13 @@ import org.testng.annotations.Test;
 
 import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
-import spot.pages.EditItemPage;
 import spot.pages.ItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
 import spot.pages.admin.AdministrationPage;
 import spot.pages.admin.BrowseStatementsPage;
+import spot.pages.registered.EditItemPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.MetadataTablePage;
 import spot.pages.registered.NewCollectionPage;

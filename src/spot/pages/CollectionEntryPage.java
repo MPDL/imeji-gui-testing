@@ -2,6 +2,7 @@ package spot.pages;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -16,13 +17,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import spot.components.ActionComponent;
-import test.base.CategoryType;
+import spot.components.SearchComponent.CategoryType;
 import spot.components.ShareComponent;
-import spot.components.StateComponent;
 import spot.components.UploadWindow;
-import spot.components.StateComponent.StateOptions;
+import spot.pages.registered.DiscardedCollectionEntryPage;
+import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
+import spot.pages.registered.EditLicensePage;
+import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.MetadataTablePage;
+import spot.pages.registered.SharePage;
 
 public class CollectionEntryPage extends BasePage {
 
@@ -50,7 +54,7 @@ public class CollectionEntryPage extends BasePage {
 	@FindBy(className = "fa-download")
 	private WebElement downloadButton;
 	
-	@FindBy(css = ".dropdown>.content>a:nth-of-type(1)")
+	@FindBy(css = "#colForm>.dropdown>.content>a:nth-of-type(1)")
 	private WebElement editInfoOption;
 	
 	@FindBy(css = "#pageTitle h1")
@@ -80,9 +84,6 @@ public class CollectionEntryPage extends BasePage {
 	@FindBy(css=".imj_tiledMediaList")
 	private WebElement tiledMediaList;
 	
-	@FindBy(css="div.imj_overlayMenu.imj_menuHeader")
-	private WebElement totalItemNumberWebElement;
-	
 	@FindBy(id="selPanel:preListForm:lblSelectedSize")
 	private WebElement selectedItemCount;
 	
@@ -98,7 +99,8 @@ public class CollectionEntryPage extends BasePage {
 	@FindBy(css = ".listActionMenuTitle>.fa-cog")
 	private WebElement displayMenu;
 	
-	private int totalItemNumber;
+	@FindBy(css = ".listActionMenuTitle>span")
+	private WebElement totalItemNumberWebElement;
 	
 	public CollectionEntryPage(WebDriver driver) {
 		super(driver);
@@ -124,12 +126,6 @@ public class CollectionEntryPage extends BasePage {
 	public String getDescription() {
 		openDescription();
 		return description.getText();
-	}
-
-	public MultipleUploadPage uploadContent() {
-		uploadContentButton.click();
-		
-		return PageFactory.initElements(driver, MultipleUploadPage.class);
 	}
 	
 	public EditCollectionPage editInformation() {
@@ -198,19 +194,11 @@ public class CollectionEntryPage extends BasePage {
 		throw new NoSuchElementException("Label is not present.");
 	}
 	
-	public void declareTotalItemNumber() {
+	public int getTotalItemNumber() {
 		waitForInitationPageElements(10);
 		
-		String[] split = totalItemNumberWebElement.getText().split("\\s+");
-		try {
-			totalItemNumber = Integer.parseInt(split[1]);
-		} catch (NumberFormatException nfe) {
-			totalItemNumber = -1;
-		}
-	}
-
-	public int getTotalItemNumber() {
-		return totalItemNumber;
+		String stringCount = StringUtils.substringBefore(totalItemNumberWebElement.getText(), " Item");
+		return Integer.parseInt(stringCount);
 	}
 	
 	public boolean findItem(String title) {
@@ -378,7 +366,9 @@ public class CollectionEntryPage extends BasePage {
 		UploadWindow upload = new UploadWindow(driver);
 		upload.uploadFile(filepath);
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
-		try { Thread.sleep(2500); } catch (InterruptedException e) { e.printStackTrace(); }
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
+		// avoid 'element not clickable' exceptions, lasts about 4 seconds
+		wait.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.className("loaderWrapper"))));
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
@@ -491,7 +481,7 @@ public class CollectionEntryPage extends BasePage {
 	
 	public CollectionEntryPage selectItem(int index) {
 		driver.findElement(By.id("th:f:i:" + index + ":sel")).click();
-		try { Thread.sleep(1000); } catch (InterruptedException e) {}
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("th:f:i:0:sel")));
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
@@ -500,9 +490,10 @@ public class CollectionEntryPage extends BasePage {
 	}
 	
 	public CollectionEntryPage deleteSelectedItems() {
-		driver.findElement(By.cssSelector(".dropdown:nth-of-type(2)"));
-		retryingFindClick(By.cssSelector(".dropdown:nth-of-type(2)>.content>a:nth-of-type(5)"));
+		driver.findElement(By.cssSelector("#selMenu\\:sf>.dropdown")).click();
+		retryingFindClick(By.cssSelector("#selMenu\\:sf>.dropdown>.content>a:nth-of-type(5)"));
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#deleteSelectedItems .imj_submitPanel .imj_submitButton').click();");
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
@@ -510,8 +501,9 @@ public class CollectionEntryPage extends BasePage {
 	public CollectionEntryPage discardSelectedItems() {
 		driver.findElement(By.cssSelector("#selMenu\\:sf>.dropdown")).click();
 		retryingFindClick(By.cssSelector("#selMenu\\:sf>.dropdown>.content>a:nth-of-type(4)"));
-		driver.findElement(By.tagName("textarea")).sendKeys("Discarding for testing purposes.");
+		driver.findElement(By.id("selDialogs:witdrawSel:f:discardComment")).sendKeys("Discarding for testing purposes.");
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#withdrawSelectedItems .imj_submitPanel .imj_submitButton').click();");
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}

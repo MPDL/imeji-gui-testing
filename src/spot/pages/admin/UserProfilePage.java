@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
-import spot.pages.EditUserProfilePage;
 
 public class UserProfilePage extends BasePage {
 
@@ -81,11 +80,9 @@ public class UserProfilePage extends BasePage {
 	}
 	
 	private String extractFamilyName(String completeName) {
-		// completeName looks sth like this: [familyName], [givenName]
+		// completeName looks like this: [familyName], [givenName]
 		String familyName = "";
-		
 		int tmpIndex = completeName.indexOf(',');
-		
 		familyName = completeName.substring(0, tmpIndex);
 		
 		return familyName;
@@ -105,11 +102,13 @@ public class UserProfilePage extends BasePage {
 	
 	private UserProfilePage switchAdminRights(boolean administrator) {
 		if (administrator) {
-			if (!adminCheckbox.isSelected())
+			if (!adminCheckbox.isSelected()) {
 				adminCheckbox.click();
+			}
 		}
-		else
+		else {
 			adminCheckbox.click();
+		}
 		wait.until(ExpectedConditions.elementToBeClickable(By.className("imj_submitButton")));
 		driver.findElement(By.className("imj_submitButton")).click();
 		

@@ -7,8 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import spot.pages.BasePage;
-import spot.pages.EditLicensePage;
 import spot.pages.registered.EditItemsPage;
+import spot.pages.registered.EditLicensePage;
 
 public class OptionsComponent extends BasePage {
 

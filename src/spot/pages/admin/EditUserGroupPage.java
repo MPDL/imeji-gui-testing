@@ -27,6 +27,7 @@ public class EditUserGroupPage extends BasePage {
 		titleBox.clear();
 		titleBox.sendKeys(newTitle);
 		saveButton.click();
+		try { Thread.sleep(2000); } catch (InterruptedException e) {}
 		
 		return PageFactory.initElements(driver, UserGroupPage.class);
 	}

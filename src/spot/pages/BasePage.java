@@ -16,17 +16,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.google.common.base.Function;
 
 import spot.components.MainMenuComponent;
 import spot.components.MessageComponent;
 import spot.components.MessageComponent.MessageType;
 import spot.components.SearchComponent;
-import spot.components.UserPreferenceComponent;
 import spot.pages.admin.AdminHomepage;
 import spot.pages.admin.AdministrationPage;
 import spot.pages.registered.Homepage;
@@ -52,9 +48,6 @@ public abstract class BasePage {
 	
 	/** class for searching activities */
 	private SearchComponent searchComponent;
-	
-	/** editing user preference settings; e.g. language change */
-	private UserPreferenceComponent userPreferenceComponent;	
 
 	@FindBy(css=".imj_siteContentHeadline>h1")
 	private WebElement siteContentHeadline;
@@ -91,7 +84,6 @@ public abstract class BasePage {
 		this.messageComponent = new MessageComponent(driver);
 		this.mainMenuComponent = new MainMenuComponent(driver);
 		this.searchComponent = new SearchComponent(driver);
-		this.userPreferenceComponent = new UserPreferenceComponent(driver);
 		
 		wait = new WebDriverWait(this.driver, 20);
 	}
@@ -105,15 +97,11 @@ public abstract class BasePage {
 	}
 	
 	public BrowseItemsPage navigateToItemPage() {
-		return searchComponent.callBrowseSection();
+		return mainMenuComponent.navigateTo(BrowseItemsPage.class);
 	}
 	
 	public StartPage goToStartPage() {
 		return mainMenuComponent.navigateTo(StartPage.class);
-	}
-	
-	public SingleUploadPage goToSingleUploadPage() {
-		return mainMenuComponent.navigateTo(SingleUploadPage.class);
 	}
 	
 	public Homepage goToHomepage(Homepage homepage) {
@@ -154,14 +142,6 @@ public abstract class BasePage {
 		imejiHomePageLink.click();
 	}
 	
-	public void selectLanguage(String language) {
-		userPreferenceComponent.selectLanguage(language);
-	}
-	
-	public String getCurrentLanguageSetup() {
-		return userPreferenceComponent.getCurrentLanguage();		
-	}	
-	
 	protected String extractMailDestinationAddressFromLink(String href) {
 		String destination = "";
 
@@ -194,7 +174,7 @@ public abstract class BasePage {
 	
 	public MessageType getPageMessageType() {
 		try {
-			MessageType messageType = messageComponent.getMessageTypeOfPageMessageArea();
+			MessageType messageType = messageComponent.getPageMessageType();
 			return messageType;
 		}
 		catch (NoSuchElementException exc) {
@@ -262,7 +242,7 @@ public abstract class BasePage {
 	
 	public WebElement retryingNestedElement(WebElement parent, By by) {
 		int attempts = 0;
-        while(attempts < 100) {
+        while (attempts < 100) {
             try {
                 return parent.findElement(by);
             } 
@@ -281,7 +261,7 @@ public abstract class BasePage {
 	 */
 	public boolean isElementPresent(By locator) {
 		try {
-			wait.withTimeout(2, TimeUnit.SECONDS).until(ExpectedConditions.presenceOfElementLocated(locator));
+			wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 			return true;
 		}
 		catch (TimeoutException exc) {

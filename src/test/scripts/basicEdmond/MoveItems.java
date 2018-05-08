@@ -101,7 +101,7 @@ public class MoveItems extends BaseSelenium {
 		
 		MessageType messageType = collectionEntry.getPageMessageType();
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message was displayed.");
-		Assert.assertEquals(messageType, MessageType.INFO, "Success message was not displayed.");
+		Assert.assertEquals(messageType, MessageType.SUCCESS, "Success message was not displayed.");
 	}
 	
 	/**

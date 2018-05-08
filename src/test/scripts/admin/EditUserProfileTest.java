@@ -6,11 +6,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import spot.pages.EditUserProfilePage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
 import spot.pages.admin.AdministrationPage;
+import spot.pages.admin.EditUserProfilePage;
 import spot.pages.admin.UserProfilePage;
 import spot.pages.admin.UsersOverviewPage;
 import test.base.BaseSelenium;
@@ -53,7 +53,7 @@ public class EditUserProfileTest extends BaseSelenium {
 		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetails(newUserName);
 		userProfilePage.changePassword();
 		
-		String actualInfoMessage = userProfilePage.getMessageComponent().getInfoMessage();
+		String actualInfoMessage = userProfilePage.getMessageComponent().getSuccessMessage();
 		String expectedInfoMessage = "Password changed successfully";
 		Assert.assertEquals(actualInfoMessage, expectedInfoMessage, "Edit Profile Test: Password couldn't be changed.");
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,9 +29,7 @@ public class UsersOverviewPage extends BasePage {
 	 * @throws NoSuchElementException if no email match is found
 	 */
 	public void deleteUserByEmail(String email) {
-		
 		WebElement toBeDeletedUser = findUserByEmail(email);
-		
 		List<WebElement> tmpElementList = toBeDeletedUser.findElements(By.tagName("a"));
 		
 		WebElement deleteButton = null;
@@ -47,32 +46,28 @@ public class UsersOverviewPage extends BasePage {
 			throw new NoSuchElementException("No user email matches were found.");
 
 		deleteButton.click();
-		
 		wait.until(ExpectedConditions.visibilityOf(toBeDeletedUser));
 		
 		WebElement confirmDelete = toBeDeletedUser.findElement(By.cssSelector("div:nth-of-type(2)> div[id^=deleteUser] .imj_submitPanel form .imj_submitButton"));
-
 		wait.until(ExpectedConditions.visibilityOf(confirmDelete));
 		confirmDelete.click();
 	}
 	
 	public boolean isEmailInUserList(String email) {
-		WebElement userInQuestion = findUserByEmail(email);
-		if (userInQuestion == null)
-			return false;
-		else
+		try {
+			findUserByEmail(email);
 			return true;
+		}
+		catch (NoSuchElementException exc) {
+			return false;
+		}
 	}
 
 	private WebElement findUserByEmail(String emailInQuestion) {
 		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@id, ':userListForm:filterMd')]"));
+		searchBox.clear();
 		searchBox.sendKeys(emailInQuestion);
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		try { Thread.sleep(2000); } catch (InterruptedException e) {}
 		userList = driver.findElements(By.cssSelector("#addUser p>a"));
 		if (userList.size() == 1)
 			return userList.get(0);
@@ -82,26 +77,6 @@ public class UsersOverviewPage extends BasePage {
 			}
 		}
 		throw new NoSuchElementException("Email " + emailInQuestion + " was not found.");
-//		for (WebElement user : userList) {
-//			WebElement userIdentification = user.findElement(By.tagName("a"));
-//			String userNamePlusEmail = userIdentification.getText();
-//			String mail = extractMail(userNamePlusEmail);
-//			
-//			if (mail.equals(emailInQuestion)) {
-//				return user;
-//			}
-//		}
-		
-		
-	}
-
-	private String extractMail(String userNamePlusEmail) {
-		// userNamePlusEmail looks sth like this:	familyName, givenName (email@test.de)
-		// aiming to get only email-address
-		userNamePlusEmail = userNamePlusEmail.trim();
-		int tmpIndex = userNamePlusEmail.indexOf('(');
-		String email = userNamePlusEmail.substring(tmpIndex+1, userNamePlusEmail.length()-1);
-		return email;
 	}
 
 	/**
@@ -132,10 +107,14 @@ public class UsersOverviewPage extends BasePage {
 	
 	public void addUserToUserGroup(String userEmail) {
 		// sleep() does not help here
-		WebElement userInQuestion = findUserByEmail(userEmail);
-		userInQuestion.click();
-//		WebElement addToUserGroupButton = retryingNestedElement(userInQuestion, By.cssSelector("form>a"));
-//		addToUserGroupButton.click();
+		try {
+			WebElement userInQuestion = findUserByEmail(userEmail);
+			userInQuestion.click();
+		}
+		catch (StaleElementReferenceException exc) {
+			userList = driver.findElements(By.cssSelector("#addUser p>a"));
+			userList.get(0).click();
+		}
 	}
 	
 	public int userCount() {

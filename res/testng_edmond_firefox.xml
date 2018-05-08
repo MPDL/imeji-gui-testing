@@ -26,9 +26,9 @@
 				
 			<class name="test.scripts.basicEdmond.ThreeAuthorsExternalReference"></class>
 
-			<class name="test.scripts.basicEdmond.OneAuthorNotification"></class>
+			<class name="test.scripts.basicEdmond.MoveItems"></class>
 
-			<class name="test.scripts.basicEdmond.ThreeAuthorsNotification"></class>
+			<class name="test.scripts.basicEdmond.MetadataSelectedItems"></class>
 			
 			<!-- End of Basic Edmond -->
 			
@@ -37,14 +37,14 @@
 			<class name="test.scripts.basicOutbox.AdminSharesWithUser"></class>
 			
 			<class name="test.scripts.basicOutbox.AdminSharesWithUserGroup"></class>
+
+			<class name="test.scripts.basicOutbox.MoveItems"></class>
 			
 			<!-- End of Basic Outbox -->
 			
 			<!-- Cesar -->
 			
 			<class name="test.scripts.cesar.CesarDefault"></class>
-			
-			<class name="test.scripts.cesar.ThreeAuthorsNotification"></class>
 			
 			<!-- End of Cesar -->
 			
@@ -53,8 +53,6 @@
 			<class name="test.scripts.gluons.Default"></class>
 			
 			<class name="test.scripts.gluons.DefaultExternalInvitation"></class>
-			
-			<class name="test.scripts.gluons.DefaultNotification"></class>
 			
 			<!-- End of Gluons -->
 
@@ -78,9 +76,19 @@
 
 			<class name="test.scripts.home.TermsOfUseTest"></class>
 
-			<class name="test.scripts.home.UploadPageTest"></class>
+			<class name="test.scripts.home.SearchTest"></class>
+
+			<class name="test.scripts.home.SearchSpecialCharactersTest"></class>
 
 			<!--  End of Basic Home -->
+			
+			<!-- Basic Collections -->
+
+ 			<class name="test.scripts.collections.CancelCollectionCreationTest"></class>
+
+ 			<class name="test.scripts.collections.CreateCollectionWithMissingInformationTest"></class>
+
+			<!--  End of Basic Collections -->
 			
 		</classes>
 	</test>
@@ -108,17 +116,13 @@
 			
 			<!-- Facets -->
 
-			<class name="test.scripts.basicEdmond.CreateDefaultFacets"></class>
+			<class name="test.scripts.facets.CreateDefaultFacets"></class>
 			
-			<class name="test.scripts.basicEdmond.CreateMetadataFacet"></class>
-
-			<class name="test.scripts.basicEdmond.MoveItems"></class>
+			<class name="test.scripts.facets.CreateMetadataFacet"></class>
 			
-			<class name="test.scripts.basicOutbox.CreateDefaultFacets"></class>
+			<class name="test.scripts.facets.CreateDefaultFacetsPrivate"></class>
 			
-			<class name="test.scripts.basicOutbox.CreateMetadataFacet"></class>
-
-			<class name="test.scripts.basicOutbox.MoveItems"></class>
+			<class name="test.scripts.facets.CreateMetadataFacetPrivate"></class>
 			
 			<!-- End of Facets -->
 			

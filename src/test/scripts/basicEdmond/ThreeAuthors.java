@@ -9,16 +9,16 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.CollectionEntryPage;
-import spot.pages.DiscardedCollectionEntryPage;
-import spot.pages.EditCollectionPage;
-import spot.pages.EditLicensePage;
 import spot.pages.ItemViewPage;
 import spot.pages.LoginPage;
-import spot.pages.SharePage;
 import spot.pages.StartPage;
+import spot.pages.registered.DiscardedCollectionEntryPage;
+import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
+import spot.pages.registered.EditLicensePage;
 import spot.pages.registered.Homepage;
 import spot.pages.registered.NewCollectionPage;
+import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
@@ -68,7 +68,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-123
 	 */
-	@Test(priority = 3)
+	@Test(priority = 3, dependsOnMethods = { "createCollection3Authors" })
 	public void editTitle() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
@@ -92,7 +92,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 4)
+	@Test(priority = 4, dependsOnMethods = { "createCollection3Authors" })
 	public void uploadDOCX() {
 		uploadItem("SampleWordFile.docx");
 	}
@@ -100,7 +100,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-279
 	 */
-	@Test(priority = 5)
+	@Test(priority = 5, dependsOnMethods = { "createCollection3Authors" })
 	public void metadataAllItems() {
 		String key = "Description";
 		String value = "Test collection";
@@ -117,7 +117,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 6)
+	@Test(priority = 6, dependsOnMethods = { "createCollection3Authors" })
 	public void uploadJPG() {
 		uploadItem("SampleJPGFile2.jpg");
 	}
@@ -125,7 +125,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-280
 	 */
-	@Test(priority = 7)
+	@Test(priority = 7, dependsOnMethods = { "createCollection3Authors" })
 	public void metadataIfEmpty() {
 		String key = "Description";
 		String value = "New value";
@@ -146,7 +146,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 8)
+	@Test(priority = 8, dependsOnMethods = { "createCollection3Authors" })
 	public void uploadMP3() {
 		uploadItem("SampleMP3File.mp3");
 	}
@@ -154,7 +154,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-281
 	 */
-	@Test(priority = 9)
+	@Test(priority = 9, dependsOnMethods = { "createCollection3Authors" })
 	public void metadataOverwrite() {
 		String key = "Description";
 		String value = "Overwritten value";
@@ -171,7 +171,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-134
 	 */
-	@Test(priority = 10)
+	@Test(priority = 10, dependsOnMethods = { "createCollection3Authors" })
 	public void assignLicense() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditLicensePage editLicense = collectionEntry.editAllLicenses();
@@ -184,7 +184,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-204
 	 */
-	@Test(priority = 11)
+	@Test(priority = 11, dependsOnMethods = { "createCollection3Authors" })
 	public void shareReadExternal() {
 		String email = "nonexistentuser@mpdl.mpg.de";
 		
@@ -200,7 +200,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-196
 	 */
-	@Test(priority = 12)
+	@Test(priority = 12, dependsOnMethods = { "createCollection3Authors" })
 	public void shareReadRU() {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
 		
@@ -220,7 +220,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-2
 	 */
-	@Test(priority = 13)
+	@Test(priority = 13, dependsOnMethods = { "createCollection3Authors" })
 	public void logout() {
 		homepage = new StartPage(driver).goToHomepage(homepage);
 		homepage.logout();
@@ -229,7 +229,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-22
 	 */
-	@Test(priority = 14)
+	@Test(priority = 14, dependsOnMethods = { "createCollection3Authors" })
 	public void loginUser2() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(restrUsername), getPropertyAttribute(restrPassword));
@@ -238,7 +238,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-46
 	 */
-	@Test(priority = 15)
+	@Test(priority = 15, dependsOnMethods = { "createCollection3Authors" })
 	public void openCollection() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean shareVisible = collectionEntry.shareIconVisible();
@@ -248,7 +248,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-234
 	 */
-	@Test(priority = 16)
+	@Test(priority = 16, dependsOnMethods = { "createCollection3Authors" })
 	public void downloadItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		// open PDF file
@@ -260,7 +260,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-236
 	 */
-	@Test(priority = 18)
+	@Test(priority = 18, dependsOnMethods = { "createCollection3Authors" })
 	public void downloadSelectedItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.selectItem(0);
@@ -273,7 +273,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-232
 	 */
-	@Test(priority = 17)
+	@Test(priority = 17, dependsOnMethods = { "createCollection3Authors" })
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean canDownloadAll = collectionEntry.downloadAllPossible();
@@ -283,7 +283,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-2
 	 */
-	@Test(priority = 19)
+	@Test(priority = 19, dependsOnMethods = { "createCollection3Authors" })
 	public void logoutUser2() {
 		homepage.logout();
 	}
@@ -291,7 +291,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-98, IMJ-139, IMJ-45
 	 */
-	@Test(priority = 20)
+	@Test(priority = 20, dependsOnMethods = { "createCollection3Authors" })
 	public void releaseCollection() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
@@ -306,7 +306,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-115
 	 */
-	@Test(priority = 21)
+	@Test(priority = 21, dependsOnMethods = { "createCollection3Authors" })
 	public void addCollectionDOI() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.setDOI();
@@ -319,21 +319,18 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-69
 	 */
-	@Test(priority = 22)
+	@Test(priority = 22, dependsOnMethods = { "createCollection3Authors" })
 	public void discardItem() {
+		int itemCount = collectionEntry.getTotalItemNumber();
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		ItemViewPage itemView = collectionEntry.openItem(0);
+		collectionEntry = collectionEntry.selectItem(0);
+		collectionEntry = collectionEntry.discardSelectedItems();
+		int newItemCount = collectionEntry.getTotalItemNumber();
 		
-		String itemTitle = itemView.getFileTitle();
-		collectionEntry = itemView.discardItem();
-		
-		boolean itemInList = collectionEntry.findItem(itemTitle);
-		Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
-		
-		// filter discarded, item should be in list
+		Assert.assertEquals(newItemCount, itemCount - 1, "Discarded item should not be in item list.");
 	}
 
-	@Test(priority = 23)
+	@Test(priority = 23, dependsOnMethods = { "createCollection3Authors" })
 	public void checkOUCorrectness() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
@@ -347,7 +344,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-59
 	 */
-	@Test(priority = 24)
+	@Test(priority = 24, dependsOnMethods = { "createCollection3Authors" })
 	public void downloadItemNRU() {
 		homepage.logout();
 		collectionEntry = new StartPage(driver).goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -359,7 +356,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-233
 	 */
-	@Test(priority = 25)
+	@Test(priority = 25, dependsOnMethods = { "createCollection3Authors" })
 	public void downloadAllNRU() {
 		collectionEntry = new StartPage(driver).goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean downloadAllPossible = collectionEntry.downloadAllPossible();
@@ -369,7 +366,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-97
 	 */
-	@Test(priority = 26)
+	@Test(priority = 26, dependsOnMethods = { "createCollection3Authors" })
 	public void discardCollection() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));

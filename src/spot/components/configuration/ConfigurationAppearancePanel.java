@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import spot.pages.BasePage;
-import spot.pages.ConfigurationPage;
+import spot.pages.admin.ConfigurationPage;
 
 public class ConfigurationAppearancePanel extends BasePage {
 

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import spot.pages.BasePage;
-import spot.pages.ConfigurationPage;
+import spot.pages.admin.ConfigurationPage;
 
 public class ConfigurationGeneralPanel extends BasePage {
 	

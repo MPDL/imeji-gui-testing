@@ -13,27 +13,30 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import spot.pages.BasePage;
 import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
-import spot.pages.DiscardedCollectionEntryPage;
-import spot.pages.EditLicensePage;
-import spot.pages.KindOfSharePage;
+import spot.pages.registered.DiscardedCollectionEntryPage;
 import spot.pages.registered.EditItemsPage;
+import spot.pages.registered.EditLicensePage;
+import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.MetadataTablePage;
 
 public class ActionComponent extends BasePage {
 
-	@FindBy(css = ".dropdown:nth-of-type(2)>a")
+	@FindBy(css = "#colForm>.dropdown:nth-of-type(2)")
 	private WebElement menuItems;
 	
 	@FindBy(className = "fa-folder-o")
 	private WebElement menuCollection;
 	
-	@FindBy(css = ".dropdown:nth-of-type(2)>.content>a:nth-of-type(1)")
+	@FindBy(css = "#colForm>.dropdown:nth-of-type(2)>.content>a:nth-of-type(1)")
 	private WebElement editItems;
 	
-	@FindBy(css = "#menuItems .imj_menuBody ul li:nth-of-type(1) a")
+	@FindBy(css = "#selMenu\\:sf>.dropdown")
+	private WebElement selectedMenu;
+	
+	@FindBy(css = "#selMenu\\:sf>.dropdown>.content>a")
 	private WebElement editSelectedItems;
 	
-	@FindBy(css = ".dropdown:nth-of-type(2)>.content>a:nth-of-type(2)")
+	@FindBy(css = "#colForm>.dropdown:nth-of-type(2)>.content>a:nth-of-type(2)")
 	private WebElement editLicenses;
 	
 	@FindBy(css = ".dropdown>.content>a:nth-of-type(3)")
@@ -67,7 +70,7 @@ public class ActionComponent extends BasePage {
 	}
 	
 	public MetadataTablePage editSelectedItems() {
-		openMenuItems();
+		selectedMenu.click();
 		editSelectedItems.click();
 		return PageFactory.initElements(driver, MetadataTablePage.class);
 	}
@@ -97,7 +100,7 @@ public class ActionComponent extends BasePage {
 	
 	public DiscardedCollectionEntryPage discardCollection() {
 		openMenuCollection();
-		retryingFindClick(By.cssSelector(".dropdown>.content>a:nth-of-type(4)"));
+		retryingFindClick(By.cssSelector(".dropdown>.content .fa-ban"));
 		
 		WebElement discardBox = driver.findElement(By.className("imj_dialogReasonText"));
 		discardBox.sendKeys("Discarding for testing purposes.");

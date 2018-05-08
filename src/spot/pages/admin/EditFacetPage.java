@@ -32,6 +32,7 @@ public class EditFacetPage extends BasePage {
 	public BrowseFacetsPage changeSystemFacetSelection(String newSelection) {
 		try {
 			resetButton.click();
+			try { Thread.sleep(2000); } catch (InterruptedException e) {}
 			PageFactory.initElements(driver, this);
 			
 			driver.findElement(By.linkText(newSelection)).click();
