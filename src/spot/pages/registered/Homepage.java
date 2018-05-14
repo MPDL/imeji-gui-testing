@@ -31,6 +31,7 @@ public class Homepage extends BasePage {
 
 	public void logout() {
 		logoutButton.click();
+		this.hideMessages();
 	}
 
 	public NewCollectionPage goToCreateNewCollectionPage() {

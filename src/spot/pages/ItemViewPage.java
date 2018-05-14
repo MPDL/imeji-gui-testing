@@ -247,36 +247,51 @@ public class ItemViewPage extends BasePage {
 	
 	public ItemViewPage moveItemToReleasedCollection(String collectionTitle) {
 		moveButton.click();
-		List<WebElement> collectionsList = driver.findElements(By.cssSelector("#actionItem\\:moveItemsComponent\\:moveItemsForm\\:list>p"));
-		int collections = collectionsList.size();
-		for (int i = 1; i <= collections; i++) {
-			String selector = "#actionItem\\:moveItemsComponent\\:moveItemsForm\\:list>p:nth-of-type(" + i + ")>a";
-			WebElement currentCollection = driver.findElement(By.cssSelector(selector));
-			if (currentCollection.getText().equals(collectionTitle)) {
-				currentCollection.click();
-				WebElement moveDialog = driver.findElement(By.id("moveItemsDialog"));
-				moveDialog.findElement(By.className("imj_submitButton")).click();
-				return PageFactory.initElements(driver, ItemViewPage.class);
-			}
+		try {
+			driver.findElement(By.linkText(collectionTitle)).click();
+			WebElement moveDialog = driver.findElement(By.id("moveItemsDialog"));
+			moveDialog.findElement(By.className("imj_submitButton")).click();
+			
+			return PageFactory.initElements(driver, ItemViewPage.class);
+		}
+		catch (NoSuchElementException exc) {
+			throw new NoSuchElementException("Collection " + collectionTitle + " was not found in list.");
 		}
 		
-		throw new NoSuchElementException("Collection " + collectionTitle + " was not found in list.");
+//		List<WebElement> collectionsList = driver.findElements(By.cssSelector("#actionItem\\:moveItemsComponent\\:moveItemsForm\\:list>p"));
+//		int collections = collectionsList.size();
+//		for (int i = 1; i <= collections; i++) {
+//			String selector = "#actionItem\\:moveItemsComponent\\:moveItemsForm\\:list>p:nth-of-type(" + i + ")>a";
+//			WebElement currentCollection = driver.findElement(By.cssSelector(selector));
+//			if (currentCollection.getText().equals(collectionTitle)) {
+//				currentCollection.click();
+//				WebElement moveDialog = driver.findElement(By.id("moveItemsDialog"));
+//				moveDialog.findElement(By.className("imj_submitButton")).click();
+//				return PageFactory.initElements(driver, ItemViewPage.class);
+//			}
+//		}
 	}
 	
 	public ItemViewPage moveItemToPrivateCollection(String collectionTitle) {
 		moveButton.click();
-		List<WebElement> collectionsList = driver.findElements(By.cssSelector("#actionItem\\:moveItemsComponent\\:moveItemsForm\\:list>p"));
-		int collections = collectionsList.size();
-		for (int i = 1; i <= collections; i++) {
-			String selector = "#actionItem\\:moveItemsComponent\\:moveItemsForm\\:list>p:nth-of-type(" + i + ")>a";
-			WebElement currentCollection = driver.findElement(By.cssSelector(selector));
-			if (currentCollection.getText().equals(collectionTitle)) {
-				currentCollection.click();
-				return PageFactory.initElements(driver, ItemViewPage.class);
-			}
+		try {
+			driver.findElement(By.linkText(collectionTitle)).click();
+			
+			return PageFactory.initElements(driver, ItemViewPage.class);
 		}
-		
-		throw new NoSuchElementException("Collection " + collectionTitle + " was not found in list.");
+		catch (NoSuchElementException exc) {
+			throw new NoSuchElementException("Collection " + collectionTitle + " was not found in list.");
+		}
+//		List<WebElement> collectionsList = driver.findElements(By.cssSelector("#actionItem\\:moveItemsComponent\\:moveItemsForm\\:list>p"));
+//		int collections = collectionsList.size();
+//		for (int i = 1; i <= collections; i++) {
+//			String selector = "#actionItem\\:moveItemsComponent\\:moveItemsForm\\:list>p:nth-of-type(" + i + ")>a";
+//			WebElement currentCollection = driver.findElement(By.cssSelector(selector));
+//			if (currentCollection.getText().equals(collectionTitle)) {
+//				currentCollection.click();
+//				return PageFactory.initElements(driver, ItemViewPage.class);
+//			}
+//		}
 	}
 	
 	public CollectionEntryPage goToCollectionEntry() {

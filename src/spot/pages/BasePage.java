@@ -269,4 +269,11 @@ public abstract class BasePage {
 		}
 	}
 	
+	/**
+	 * makes invisible messages in order to access the components they cover
+	 */
+	public void hideMessages() {
+		messageComponent.hideMessages();
+	}
+	
 }

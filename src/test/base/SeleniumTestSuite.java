@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -85,11 +86,11 @@ public class SeleniumTestSuite {
 				driver = initFirefoxDriver();
 				break;
 			default:
-				log4j.warn("Browser : " + browserType
+				log4j.warn("Browser : " + browserType 
 						+ " is invalid. Launching default browser instead (Firefox)...");
 				driver = initFirefoxDriver();
 		}
-		driver.manage().window().setSize(new Dimension(1024, 768));
+		driver.manage().window().maximize();
 		log4j.info("Window maximised.");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}

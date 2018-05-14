@@ -33,7 +33,7 @@ public class CollectionEntryPage extends BasePage {
 	private ActionComponent actionComponent;
 	private ShareComponent shareComponent;
 	
-	@FindBy(css = "#actionsMenuArea a:nth-of-type(2)")
+	@FindBy(css = ".content a:nth-of-type(2)")
 	private WebElement share;
 	
 	@FindBy(css=".imj_contentMenu>ul>li:nth-of-type(4)")
@@ -45,7 +45,7 @@ public class CollectionEntryPage extends BasePage {
 	@FindBy(className = "fa-files-o")
 	private WebElement selectedItemsMenu;
 	
-	@FindBy(css = ".dropdown")
+	@FindBy(css = "#colForm>.dropdown")
 	private WebElement editButton;
 	
 	@FindBy(id = "colForm:upload")
@@ -129,9 +129,7 @@ public class CollectionEntryPage extends BasePage {
 	}
 	
 	public EditCollectionPage editInformation() {
-		editButton.click();
-		wait.until(ExpectedConditions.visibilityOf(editInfoOption));
-		editInfoOption.click();
+		new Actions(driver).moveToElement(editButton).moveToElement(editInfoOption).click().build().perform();
 		
 		return PageFactory.initElements(driver, EditCollectionPage.class);
 	}
@@ -206,7 +204,7 @@ public class CollectionEntryPage extends BasePage {
 		List<WebElement> itemList = getItemList();
 		if (thumbnailView()) {
 			for (WebElement item : itemList) {
-				WebElement itemTitleLabel = item.findElement(By.tagName("label"));
+				WebElement itemTitleLabel = item.findElement(By.cssSelector("span>label"));
 				if (itemTitleLabel.getText().equals(title))
 					return true;
 			}
@@ -253,7 +251,7 @@ public class CollectionEntryPage extends BasePage {
 		// assumes collection is not empty. will create problems if we want to test if the collection is empty
 		List<WebElement> itemList;
 		if (thumbnailView()) {
-			itemList = driver.findElements(By.className(" thumb"));
+			itemList = driver.findElements(By.className("thumb"));
 		}
 		else {
 			// list view
@@ -277,13 +275,12 @@ public class CollectionEntryPage extends BasePage {
 		return actionComponent.deleteCollection();
 	}
 	
-	public DiscardedCollectionEntryPage discardCollection() {
+	public CollectionsPage discardCollection() {
 		return actionComponent.discardCollection();
 	}
 	
 	public SharePage share() {
-		editButton.click();
-		retryingNestedElement(editButton, By.cssSelector(".content>a:nth-of-type(2)")).click();
+		new Actions(driver).moveToElement(editButton).moveToElement(share).click().build().perform();
 		
 		return PageFactory.initElements(driver, SharePage.class);
 	}
@@ -472,6 +469,7 @@ public class CollectionEntryPage extends BasePage {
 		
 		for (int i = 0; i < itemList.size(); i++) {
 			ItemViewPage itemView = openItem(i);
+			itemView.hideMessages();
 			licensePresent = licensePresent && itemView.licensePresent(link);
 			itemView.goToCollectionEntry();
 		}
@@ -559,7 +557,10 @@ public class CollectionEntryPage extends BasePage {
 	
 	public CollectionEntryPage enableThumbnailView() {
 		displayMenu.click();
-		driver.findElement(By.className("fa-th")).click();
+		List<WebElement> thumbnailViewButtons = driver.findElements(By.xpath("//a[contains(@id, 'switchListView')]"));
+		if (!thumbnailViewButtons.isEmpty()) {
+			thumbnailViewButtons.get(0).click();
+		}
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}

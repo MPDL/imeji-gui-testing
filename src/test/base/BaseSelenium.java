@@ -146,8 +146,10 @@ public abstract class BaseSelenium {
 	public final String getFilepath(String fileName) {
 		fileName = "/" + fileName;
 		String filepath = getClass().getResource(fileName).getPath();
-		if (driver instanceof FirefoxDriver)
-			filepath = "file:" + filepath;
+		if (driver instanceof FirefoxDriver) {
+			// previous version of Selenium required input of the type: 'file:/PATH'
+			filepath = filepath.substring(1, filepath.length()).replace('/', '\\');
+		}
 		if (driver instanceof ChromeDriver)
 			filepath = filepath.substring(1, filepath.length());
 		return filepath;

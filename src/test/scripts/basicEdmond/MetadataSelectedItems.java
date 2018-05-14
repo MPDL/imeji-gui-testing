@@ -4,10 +4,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.CollectionEntryPage;
+import spot.pages.CollectionsPage;
 import spot.pages.ItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
@@ -24,8 +26,7 @@ public class MetadataSelectedItems extends BaseSelenium {
 	private AdminHomepage adminHomepage;
 	private CollectionEntryPage collectionEntry;
 	
-	private String collectionTitle = "2018-03-08 10:13:37.87 metadata of selected items";
-	//private String collectionTitle = TimeStamp.getTimeStamp() + " metadata of selected items";
+	private String collectionTitle = TimeStamp.getTimeStamp() + " metadata of selected items";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
 	String[] items = {"SamplePDFFile.pdf", "SampleCSVFile.csv", "SampleJPGFile.jpg", "SampleJPGFile2.jpg",
 			"SampleTXTFile.txt", "SampleWordFile.docx", "SampleXLSXFile.xlsx"};
@@ -35,7 +36,7 @@ public class MetadataSelectedItems extends BaseSelenium {
 		navigateToStartPage();
 	}
 	
-	/*@Test(priority = 1)
+	@Test(priority = 1)
 	public void disablePrivateMode() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
@@ -58,7 +59,7 @@ public class MetadataSelectedItems extends BaseSelenium {
 	@Test(priority = 4)
 	public void logoutAdmin() {
 		adminHomepage.logout();
-	}*/
+	}
 	
 	@Test(priority = 5)
 	public void loginUser1() {
@@ -66,7 +67,7 @@ public class MetadataSelectedItems extends BaseSelenium {
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 	}
 
-	/*@Test(priority = 6)
+	@Test(priority = 6)
 	public void createDefaultCollection() {
 		NewCollectionPage newCollectionPage = homepage.goToCreateNewCollectionPage();
 		collectionEntry = newCollectionPage.createCollection(collectionTitle, collectionDescription, 
@@ -87,7 +88,7 @@ public class MetadataSelectedItems extends BaseSelenium {
 		for (String item : items) {
 			uploadItem(item);
 		}
-	}*/
+	}
 	
 	private MetadataTablePage goToMetadataTable(String[] items) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -116,7 +117,7 @@ public class MetadataSelectedItems extends BaseSelenium {
 		}
 	}
 	
-	/*@Test(priority = 8, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 8, dependsOnMethods = { "createDefaultCollection" })
 	public void addMetadataSelectedTitle() {
 		String[] titleItems = {items[0], items[1], items[2]};
 		String titleKey = "Title";
@@ -178,9 +179,9 @@ public class MetadataSelectedItems extends BaseSelenium {
 		metadataTable = metadataTable.addColumn(titleKey);
 		metadataTable.editEntry(arguments);
 		validateMetadata(titleItems, titleKey, "MPDL, MPDL (MPDL)");
-	}*/
+	}
 	
-	@Test(priority = 13/*, dependsOnMethods = { "createDefaultCollection" }*/)
+	@Test(priority = 13, dependsOnMethods = { "createDefaultCollection" })
 	public void addMetadataSelectedPersonPreselected() {
 		String[] titleItems = {items[1], items[3], items[5]};
 		String titleKey = "PERSON 31";
@@ -191,6 +192,21 @@ public class MetadataSelectedItems extends BaseSelenium {
 		metadataTable = metadataTable.addColumn(titleKey);
 		metadataTable.editEntry(arguments);
 		validateMetadata(titleItems, titleKey, "MPDL, MPDL (MPDL)");
+	}
+	
+	@Test(priority = 14, dependsOnMethods = { "createDefaultCollection" })
+	public void deleteCollection() {
+		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		CollectionsPage collectionsPage = collectionEntry.deleteCollection();
+		
+		boolean collectionPresent = collectionsPage.collectionPresent(collectionTitle);
+		Assert.assertFalse(collectionPresent, "Collection was not deleted.");
+	}
+
+	@AfterClass
+	public void afterClass() {
+		homepage = new StartPage(driver).goToHomepage(homepage);
+		homepage.logout();
 	}
 	
 }

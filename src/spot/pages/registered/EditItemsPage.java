@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -25,18 +26,14 @@ public class EditItemsPage extends BasePage {
 	@FindBy(css = ".imj_mdInput")
 	private WebElement valueBox;
 	
-	@FindBy(css = "#editBatchForm .imj_metadataSet:nth-of-type(2) input:nth-of-type(1)")
+	@FindBy(xpath = "//input[contains(@value, 'new value')]")
 	private WebElement addValueAll;
 	
-	@FindBy(css = "#editBatchForm .imj_metadataSet:nth-of-type(2) input:nth-of-type(2)")
+	@FindBy(xpath = "//input[contains(@value, 'empty')]")
 	private WebElement addValueIfEmpty;
 	
-	//@FindBy(xpath = "//input[@value='Overwrite all values']")
-	@FindBy(css = "#editBatchForm .imj_metadataSet:nth-of-type(2) input:nth-of-type(3)")
+	@FindBy(xpath = "//input[contains(@value, 'Overwrite')]")
 	private WebElement overwriteAllValues;
-	
-	@FindBy(id = "editBatchForm:select:statementList")
-	private WebElement bestSuggestion;
 	
 	public EditItemsPage(WebDriver driver) {
 		super(driver);
@@ -132,23 +129,28 @@ public class EditItemsPage extends BasePage {
 	}
 	
 	private void addMetadata(String key, String value) {
+		//try { Thread.sleep(5000); } catch (Exception exc) {}
 		addKey(key);
+		//try { Thread.sleep(5000); } catch (Exception exc) {}
 		WebElement valueBox1 = retryingElement(By.cssSelector(".imj_mdInput"));
+		//try { Thread.sleep(5000); } catch (Exception exc) {}
 		valueBox1.sendKeys(value);
 	}
 	
 	private void addKey(String key) {
+		wait.until(ExpectedConditions.visibilityOf(metadataButton));
 		metadataButton.click();
+		keyBox.clear();
 		keyBox.sendKeys(key);
 		wait.until(ExpectedConditions.textToBePresentInElementValue(keyBox, key));
-		List<WebElement> results = driver.findElements(By.cssSelector("#editBatchForm\\:select\\:statementList>p>a"));
-		for (WebElement result : results) {
-			if (result.getText().equals(key)) {
-				result.click();
-				return;
-			}
+		try { Thread.sleep(2000); } catch (Exception exc) {}
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(key)));
+			driver.findElement(By.linkText(key)).click();
+			return;
 		}
-		
-		throw new NoSuchElementException("Statement " + key + " is not available.");
+		catch (TimeoutException exc) {
+			throw new NoSuchElementException("Statement " + key + " is not available.");
+		}
 	}
 }

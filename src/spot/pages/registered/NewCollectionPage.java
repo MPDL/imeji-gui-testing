@@ -85,15 +85,15 @@ public class NewCollectionPage extends BasePage {
 		try {
 			fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
 			addAuthor();
-			WebElement author2Name = driver.findElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
+			WebElement author2Name = driver.findElement(By.id("editContainer:form:persons:1:collectionAuthor:inputFamilyNameText"));
 			author2Name.sendKeys("Thesecond");
-			WebElement author2Org = driver.findElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
+			WebElement author2Org = driver.findElement(By.xpath("//input[contains(@id, 'form:persons:1') and contains(@id, 'inputOrgaName1')]"));
 			author2Org.sendKeys("MPDL");
 			addAuthor();
 			try { Thread.sleep(2000); } catch (InterruptedException e) { }
-			WebElement author3Name = retryingElement(By.id("editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText"));
+			WebElement author3Name = retryingElement(By.id("editContainer:form:persons:1:collectionAuthor:inputFamilyNameText"));
 			author3Name.sendKeys("Thethird");
-			WebElement author3Org = retryingElement(By.xpath("//input[contains(@id, 'mediaContainerForm:persons:1') and contains(@id, 'inputOrgaName1')]"));
+			WebElement author3Org = retryingElement(By.xpath("//input[contains(@id, 'form:persons:1') and contains(@id, 'inputOrgaName1')]"));
 			author3Org.sendKeys("Max Planck Society");
 			
 			submitForm();

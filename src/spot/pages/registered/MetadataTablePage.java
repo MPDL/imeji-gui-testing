@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,19 +39,17 @@ public class MetadataTablePage extends BasePage {
 	}
 	
 	public MetadataTablePage addColumn(String columnName) {
-		addColumn.click();
+		// 'add column' button does not always respond to the click command
+		wait.until(ExpectedConditions.elementToBeClickable(addColumn));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", addColumn);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("selectStatementDialog")));
-		List<WebElement> metadataList = driver.findElement(By.id("selectStatementDialog")).findElements(By.tagName("a"));
-		for (WebElement metadata : metadataList) {
-			if (metadata.getText().equals(columnName)) {
-				metadata.click();
-				// TODO find a more elegant way to prevent stale elements
-				try { Thread.sleep(2000); } catch (InterruptedException e) { }
-				return PageFactory.initElements(driver, MetadataTablePage.class);
-			}
+		try {
+			driver.findElement(By.linkText(columnName)).click();
+			return PageFactory.initElements(driver, MetadataTablePage.class);
 		}
-
-		throw new NoSuchElementException("Metadata '" + columnName + "' does not exist.");
+		catch (NoSuchElementException exc) {
+			throw new NoSuchElementException("Metadata '" + columnName + "' does not exist.");
+		}
 	}
 	
 	public CollectionEntryPage editEntry(final List<String[]> arguments) {

@@ -31,6 +31,7 @@ public class LoginPage extends BasePage {
 		enterUserName(userName);
 		enterPassword(password);
 		clickOnSignIn();
+		this.hideMessages();
 	    return PageFactory.initElements(driver, expectedPage);
 	}
 
