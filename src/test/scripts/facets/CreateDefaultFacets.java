@@ -45,7 +45,7 @@ public class CreateDefaultFacets extends BaseSelenium {
 	@Test(priority = 3)
 	public void enableThumbnailView() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
-		adminHomepage.goToAdminPage().enableListView();
+		adminHomepage.goToAdminPage().enableThumbnailView();
 	}
 	
 	@Test(priority = 4)

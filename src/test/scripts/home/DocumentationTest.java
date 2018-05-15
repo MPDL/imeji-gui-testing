@@ -2,6 +2,9 @@ package test.scripts.home;
 
 import java.util.Set;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
@@ -62,6 +65,7 @@ public class DocumentationTest extends BaseSelenium {
 		windowHandleStartPage = driver.getWindowHandle();
 
 		HelpPage helpPage = new StartPage(driver).goToHelpPage();
+		try { Thread.sleep(1000); } catch (InterruptedException exc) {}
 		
 		Set<String> windowHandles = driver.getWindowHandles();
 		windowHandles.remove(windowHandleStartPage);
@@ -73,6 +77,7 @@ public class DocumentationTest extends BaseSelenium {
 		Set<String> windowHandlesBeforeDocumentation = driver.getWindowHandles();
 
 		helpPage.lookUpImejiHomePage();
+		try { Thread.sleep(1000); } catch (InterruptedException exc) {}
 
 		Set<String> windowHandlesAfterDocumentation = driver.getWindowHandles();
 		windowHandlesAfterDocumentation.removeAll(windowHandlesBeforeDocumentation);
@@ -81,6 +86,8 @@ public class DocumentationTest extends BaseSelenium {
 			driver.switchTo().window(winHandle);
 		}
 
+		// wait for new window to load
+		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.id("readme")));
 		String currentUrl = driver.getCurrentUrl();
 		
 		return currentUrl;

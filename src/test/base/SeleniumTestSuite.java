@@ -92,6 +92,7 @@ public class SeleniumTestSuite {
 		}
 		driver.manage().window().maximize();
 		log4j.info("Window maximised.");
+		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 

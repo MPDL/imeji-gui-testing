@@ -129,11 +129,8 @@ public class EditItemsPage extends BasePage {
 	}
 	
 	private void addMetadata(String key, String value) {
-		//try { Thread.sleep(5000); } catch (Exception exc) {}
 		addKey(key);
-		//try { Thread.sleep(5000); } catch (Exception exc) {}
 		WebElement valueBox1 = retryingElement(By.cssSelector(".imj_mdInput"));
-		//try { Thread.sleep(5000); } catch (Exception exc) {}
 		valueBox1.sendKeys(value);
 	}
 	

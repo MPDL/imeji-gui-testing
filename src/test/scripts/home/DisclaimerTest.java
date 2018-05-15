@@ -57,6 +57,7 @@ public class DisclaimerTest extends BaseSelenium {
 		windowHandleStartPage = driver.getWindowHandle();
 
 		new StartPage(driver).lookUpDisclaimer();
+		try { Thread.sleep(2500); } catch (InterruptedException exc) {}
 
 		Set<String> windowHandles = driver.getWindowHandles();
 		windowHandles.remove(windowHandleStartPage);

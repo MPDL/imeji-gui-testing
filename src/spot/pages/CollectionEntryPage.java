@@ -559,7 +559,7 @@ public class CollectionEntryPage extends BasePage {
 		displayMenu.click();
 		List<WebElement> thumbnailViewButtons = driver.findElements(By.xpath("//a[contains(@id, 'switchListView')]"));
 		if (!thumbnailViewButtons.isEmpty()) {
-			thumbnailViewButtons.get(0).click();
+			new Actions(driver).moveToElement(displayMenu).moveToElement(thumbnailViewButtons.get(0)).click().build().perform();
 		}
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
@@ -567,7 +567,10 @@ public class CollectionEntryPage extends BasePage {
 	
 	public CollectionEntryPage enableListView() {
 		displayMenu.click();
-		driver.findElement(By.className("fa-list-alt")).click();
+		List<WebElement> listViewButtons = driver.findElements(By.xpath("//a[title='detail list']"));
+		if (!listViewButtons.isEmpty()) {
+			new Actions(driver).moveToElement(displayMenu).moveToElement(listViewButtons.get(0)).click().build().perform();
+		}
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}

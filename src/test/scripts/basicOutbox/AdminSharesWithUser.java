@@ -1,6 +1,5 @@
 package test.scripts.basicOutbox;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -17,7 +16,6 @@ import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
 import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.Homepage;
-import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.NewCollectionPage;
 import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;

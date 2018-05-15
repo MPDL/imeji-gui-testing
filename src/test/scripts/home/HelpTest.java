@@ -14,6 +14,8 @@ import test.base.BaseSelenium;
 
 public class HelpTest extends BaseSelenium {
   
+	private Homepage homePage; 
+	
 	@Test (priority = 1)
 	public void openHelpNRUPublic() {
 		openHelpPage();
@@ -22,22 +24,32 @@ public class HelpTest extends BaseSelenium {
 	@Test (priority = 2)
 	public void openHelpRUPublic() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
-		Homepage homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
+		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 		openHelpPage();
+	}
+	
+	@Test (priority = 3)
+	public void logout() {
+		homePage = new StartPage(driver).goToHomepage(homePage);
 		homePage.logout();
 	}
   
-	@Test (priority = 3)
+	@Test (priority = 4)
 	public void openHelpNRUPrivate() {
 		switchPrivateMode(true);
 		openHelpPage();
 	}
 	
-	@Test (priority = 4)
+	@Test (priority = 5)
 	public void openHelpRUPrivate() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
-		Homepage homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
+		homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 		openHelpPage();
+	}
+	
+	@Test (priority = 6)
+	public void logout2() {
+		homePage = new StartPage(driver).goToHomepage(homePage);
 		homePage.logout();
 	}
 	
@@ -51,6 +63,7 @@ public class HelpTest extends BaseSelenium {
 		String windowHandleBeforeHelp = driver.getWindowHandle();
 		  
 		HelpPage helpPage = new StartPage(driver).goToHelpPage();
+		try { Thread.sleep(1000); } catch (InterruptedException exc) {}
 		  
 		Set<String> windowHandles = driver.getWindowHandles();
 		  

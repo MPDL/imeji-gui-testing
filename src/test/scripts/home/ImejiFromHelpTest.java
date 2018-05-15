@@ -2,6 +2,9 @@ package test.scripts.home;
 
 import java.util.Set;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -14,6 +17,7 @@ import test.base.BaseSelenium;
 
 public class ImejiFromHelpTest extends BaseSelenium {
 
+	private String windowHandleImejiPage;
 	private String windowHandleHelpPage;
 	private String windowHandleStartPage;
 	
@@ -61,6 +65,7 @@ public class ImejiFromHelpTest extends BaseSelenium {
 		windowHandleStartPage = driver.getWindowHandle();
 
 		HelpPage helpPage = new StartPage(driver).goToHelpPage();
+		try { Thread.sleep(1000); } catch (InterruptedException exc) {}
 		
 		Set<String> windowHandles = driver.getWindowHandles();
 		windowHandles.remove(windowHandleStartPage);
@@ -72,14 +77,18 @@ public class ImejiFromHelpTest extends BaseSelenium {
 		Set<String> windowHandlesBeforeImejiHomePage = driver.getWindowHandles();
 
 		helpPage.lookUpImejiHomePage();
+		
+		try { Thread.sleep(1000); } catch (InterruptedException exc) {}
 
 		Set<String> windowHandlesAfterImejiHomePage = driver.getWindowHandles();
 		windowHandlesAfterImejiHomePage.removeAll(windowHandlesBeforeImejiHomePage);
 
 		for (String winHandle : windowHandlesAfterImejiHomePage) {
+			windowHandleImejiPage = winHandle;
 			driver.switchTo().window(winHandle);
 		}
 
+		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.id("readme")));
 		String currentUrl = driver.getCurrentUrl();
 		
 		return currentUrl;
@@ -87,6 +96,7 @@ public class ImejiFromHelpTest extends BaseSelenium {
 	
 	private void closeImeji() {
 		// close imeji window; switch to help page
+		driver.switchTo().window(windowHandleImejiPage);
 		driver.close();
 		driver.switchTo().window(windowHandleHelpPage);
 
