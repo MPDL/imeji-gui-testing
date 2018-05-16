@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -98,5 +99,14 @@ public class MessageComponent {
 			return successMessages.get(0).trim();
 		else
 			return "";
+	}
+	
+	public void hideMessages() {
+//		List<WebElement> messages = driver.findElements(By.className("imj_message"));
+//		for (WebElement message : messages) {
+//			((JavascriptExecutor) driver).executeScript("arguments[0].style.display = 'none';", message);
+//		}
+		((JavascriptExecutor) driver).executeScript("arguments[0].style.display = 'none';", pageMessageArea);
+		
 	}
 }

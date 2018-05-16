@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -20,16 +21,19 @@ public class SearchComponent {
 
 	private WebDriver driver;
 	
-	@FindBy(id="simpleSearchInputText")
+	@FindBy(id = "simpleSearchInputText")
 	private WebElement quickSearchTextField;
 	
-	@FindBy(id="btnSimpleSearch")
+	@FindBy(id = "btnSimpleSearch")
 	private WebElement goToQuickSearchingButton;
 	
-	@FindBy(id="lnkAdvancedSearch")
+	@FindBy(id = "simpleSearchForCollections")
+	private WebElement searchCollections;
+	
+	@FindBy(id = "lnkAdvancedSearch")
 	private WebElement advancedSearchButton;
 
-	@FindBy(id="lnkItems")
+	@FindBy(id = "lnkItems")
 	private WebElement browseItemsLink;
 	
 	public SearchComponent(WebDriver driver) {
@@ -66,7 +70,7 @@ public class SearchComponent {
 				categoryMenu.findElement(By.id("simpleSearchForItems")).click();
 				break;
 			case COLLECTION:
-				categoryMenu.findElement(By.id("simpleSearchForCollections")).click();
+				new Actions(driver).moveToElement(categoryMenu).moveToElement(searchCollections).click().build().perform();
 				//driver.navigate().to("http://qa-imeji.mpdl.mpg.de/imeji/collections?q=" + searchQuery);
 				break;
 			default:

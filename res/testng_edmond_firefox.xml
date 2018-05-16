@@ -72,8 +72,6 @@
 
 			<class name="test.scripts.home.ImejiFromStartTest"></class>
 
-			<class name="test.scripts.home.LimitedNRUAccessTest"></class>
-
 			<class name="test.scripts.home.TermsOfUseTest"></class>
 
 			<class name="test.scripts.home.SearchTest"></class>
@@ -81,14 +79,6 @@
 			<class name="test.scripts.home.SearchSpecialCharactersTest"></class>
 
 			<!--  End of Basic Home -->
-			
-			<!-- Basic Collections -->
-
- 			<class name="test.scripts.collections.CancelCollectionCreationTest"></class>
-
- 			<class name="test.scripts.collections.CreateCollectionWithMissingInformationTest"></class>
-
-			<!--  End of Basic Collections -->
 			
 		</classes>
 	</test>

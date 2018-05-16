@@ -61,33 +61,38 @@ public class ContactSupportFromHelpPageTest extends BaseSelenium {
 		homePage.logout();
 	}
 	
+	private void contactSupportTest() {
+		windowHandleBeforeHelp = driver.getWindowHandle();
+		
+		HelpPage helpPage = new StartPage(driver).goToHelpPage();
+		// necessary for test to recognise page
+		try { Thread.sleep(2500); } catch (InterruptedException exc) {}
+		
+		Set<String> windowHandles = driver.getWindowHandles();
+		if (windowHandles.size() > 1) {
+			windowHandles.remove(windowHandleBeforeHelp);
+			helpHandle = windowHandles.iterator().next();
+			driver.switchTo().window(helpHandle);
+		}
+		
+		List<String> supportMailAddresses = helpPage.contactSupport();
+		
+		for (String supportEmail : supportMailAddresses)
+			Assert.assertEquals(supportEmail, imejiSupportEmail, "Support mail address cannot be accessed.");
+	}
+	
 	private void closeHelp() {
-		if (driver.getWindowHandles().size() > 1)
+		if (driver.getWindowHandles().size() > 1) {
 			driver.switchTo().window(helpHandle);
 			driver.close();
 			// switching back to original browser (start page)
 			driver.switchTo().window(windowHandleBeforeHelp);
+		}
 	}
 	
 	@AfterClass
 	public void afterClass() {
 		switchPrivateMode(false);
-	}
-	
-	private void contactSupportTest() {
-		windowHandleBeforeHelp = driver.getWindowHandle();
-		
-		HelpPage helpPage = new StartPage(driver).goToHelpPage();
-		
-		Set<String> windowHandles = driver.getWindowHandles();
-		windowHandles.remove(windowHandleBeforeHelp);
-		helpHandle = windowHandles.iterator().next();
-		driver.switchTo().window(helpHandle);
-		
-		List<String> supportMailAddresses = helpPage.contactSupport();
-		
-		for (String supportEmail : supportMailAddresses)
-			Assert.assertEquals(supportEmail, imejiSupportEmail, "Support mail address can't be accessed.");
 	}
 	
 	private void switchPrivateMode(boolean privateMode) {

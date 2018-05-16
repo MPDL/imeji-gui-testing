@@ -17,43 +17,43 @@ import spot.pages.CollectionEntryPage;
 
 public class EditCollectionPage extends BasePage {
 
-	@FindBy(id = "editContainer:mediaContainerForm:inputTitleText")
+	@FindBy(id = "editContainer:form:inputTitleText")
 	private WebElement titleBox;
 	
-	@FindBy(id = "editContainer:mediaContainerForm:inputDescription")
+	@FindBy(id = "editContainer:form:inputDescription")
 	private WebElement descriptionBox;
 	
-	@FindBy(id = "editContainer:mediaContainerForm:persons:0:collectionAuthor:inputFamilyNameText")
+	@FindBy(id = "editContainer:form:persons:0:collectionAuthor:inputFamilyNameText")
 	private WebElement familyNameBox;
 	
-	@FindBy(id = "editContainer:mediaContainerForm:persons:0:collectionAuthor:inputGiveNameText")
+	@FindBy(id = "editContainer:form:persons:0:collectionAuthor:inputGiveNameText")
 	private WebElement givenNameBox;
 	
-	@FindBy(xpath = "//a[contains(@id, 'editContainer:mediaContainerForm:persons:0') and contains(@class, 'fa-plus-square-o')]")
+	@FindBy(xpath = "//a[contains(@id, 'editContainer:form:persons:0') and contains(@class, 'fa-plus-square-o')]")
 	private WebElement addAuthorButton;
 	
-	@FindBy(id = "editContainer:mediaContainerForm:persons:1:collectionAuthor:inputFamilyNameText")
+	@FindBy(id = "editContainer:form:persons:1:collectionAuthor:inputFamilyNameText")
 	private WebElement author2FamilyName;
 	
-	@FindBy(xpath = "//input[contains(@id, 'editContainer:mediaContainerForm:persons:1:collectionAuthor') and contains(@id, 'inputOrgaName')]")
+	@FindBy(xpath = "//input[contains(@id, 'editContainer:form:persons:1:collectionAuthor') and contains(@id, 'inputOrgaName')]")
 	private WebElement organisation2Name;
 	
-	@FindBy(id = "editContainer:mediaContainerForm:additionalInfos")
+	@FindBy(id = "editContainer:form:additionalInfos")
 	private WebElement additionalInfo;
 	
-	@FindBy(xpath = "//a[contains(@id, 'editContainer:mediaContainerForm:persons:1') and contains(@class, 'fa-minus-square-o')]")
+	@FindBy(xpath = "//a[contains(@id, 'editContainer:form:persons:1') and contains(@class, 'fa-minus-square-o')]")
 	private WebElement removeAuthor;
 	
-	@FindBy(css = "#editContainer\\:mediaContainerForm\\:additionalInfos .fa-minus-square-o")
+	@FindBy(css = "#editContainer\\:form\\:additionalInfos .fa-minus-square-o")
 	private WebElement removeInfo;
 	
-	@FindBy(id = "editContainer:mediaContainerForm:list:0:inputInfoLabel")
+	@FindBy(id = "editContainer:form:list:0:inputInfoLabel")
 	private WebElement infoLabelBox;
 	
-	@FindBy(id = "editContainer:mediaContainerForm:list:0:inputInfoText")
+	@FindBy(id = "editContainer:form:list:0:inputInfoText")
 	private WebElement infoTextBox;
 	
-	@FindBy(id = "editContainer:mediaContainerForm:list:0:inputInfoUrl")
+	@FindBy(id = "editContainer:form:list:0:inputInfoUrl")
 	private WebElement infoUrlBox;
 	
 	@FindBy(id = "pickfiles")
@@ -62,10 +62,7 @@ public class EditCollectionPage extends BasePage {
 	@FindBy(id = "container")
 	private WebElement logoContainer;
 	
-	@FindBy(id = "editContainer:mediaContainerForm:notificationCheckBox")
-	private WebElement notificationBox;
-	
-	@FindBy(id="editContainer:mediaContainerForm:btn_saveCollection")
+	@FindBy(id="editContainer:form:save")
 	private WebElement saveButton;
 	
 	public EditCollectionPage(WebDriver driver) {
@@ -122,6 +119,17 @@ public class EditCollectionPage extends BasePage {
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		
+//		jse.executeScript("arguments[0].style.visibility = 'visible';", inputDiv);
+//		jse.executeScript("arguments[0].style.width = 50;", inputDiv);
+//		jse.executeScript("arguments[0].style.height = 50;", inputDiv);
+//		jse.executeScript("arguments[0].style.opacity = 1;", inputDiv);
+//		jse.executeScript("arguments[0].style.display = 'block';", inputDiv);
+//		jse.executeScript("arguments[0].style.top = 50;", inputDiv);
+//		jse.executeScript("arguments[0].style.left = 50;", inputDiv);
+//		jse.executeScript("arguments[0].style.zIndex = 3;", inputDiv);
+//		// important!
+//		jse.executeScript("arguments[0].style.position = 'relative';", inputDiv);
+		
 		jse.executeScript("arguments[0].style.visibility = 'visible';", inputFile);
 		jse.executeScript("arguments[0].style.width = 50;", inputFile);
 		jse.executeScript("arguments[0].style.height = 50;", inputFile);
@@ -132,8 +140,12 @@ public class EditCollectionPage extends BasePage {
 		jse.executeScript("arguments[0].style.zIndex = 3;", inputFile);
 		// important!
 		jse.executeScript("arguments[0].style.position = 'relative';", inputFile);
+		jse.executeScript("arguments[0].removeAttribute('class');", inputFile);
+		jse.executeScript("arguments[0].setAttribute('ng-show', 'true');", inputFile);
 		
 		inputFile.sendKeys(filepath);
+
+		try {Thread.sleep(2500);} catch (Exception exc) {}
 	}
 	
 	public CollectionEntryPage submitChanges() {
@@ -152,10 +164,5 @@ public class EditCollectionPage extends BasePage {
 		}
 		
 		return ous;
-	}
-	
-	public void enableNotifications() {
-		if (!notificationBox.isSelected())
-			notificationBox.click();
 	}
 }

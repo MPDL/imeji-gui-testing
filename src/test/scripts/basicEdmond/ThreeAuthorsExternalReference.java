@@ -10,12 +10,10 @@ import spot.pages.CollectionsPage;
 import spot.pages.ItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
-import spot.pages.registered.DiscardedCollectionEntryPage;
 import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.EditLicensePage;
 import spot.pages.registered.Homepage;
-import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.NewCollectionPage;
 import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
@@ -28,6 +26,7 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 	
 	private String collectionTitle = TimeStamp.getTimeStamp() + " 3 authors public mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
+	private String extLabel = "Custom information";
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -60,11 +59,11 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 	public void createExternalReference() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
-		editCollection.addInformation("Custom information", "https://mpdl.mpg.de/");
+		editCollection.addInformation(extLabel, "https://mpdl.mpg.de/");
 		collectionEntry = editCollection.submitChanges();
 		
 		collectionEntry = collectionEntry.openDescription();
-		boolean labelDisplayed = collectionEntry.labelDisplayed("Custom information");
+		boolean labelDisplayed = collectionEntry.labelDisplayed(extLabel);
 		Assert.assertTrue(labelDisplayed, "Label is not displayed.");
 	}
 
@@ -312,7 +311,7 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 	public void checkExternalReference() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.openDescription();
-		boolean labelDisplayed = collectionEntry.labelDisplayed("Custom information");
+		boolean labelDisplayed = collectionEntry.labelDisplayed(extLabel);
 		Assert.assertTrue(labelDisplayed, "Label is not displayed.");
 	}
 
@@ -346,15 +345,10 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		DiscardedCollectionEntryPage discardedCollection = collectionEntry.discardCollection();
-		
-		boolean discardedIconDisplayed = discardedCollection.discardedIconDisplayed();
-		Assert.assertTrue(discardedIconDisplayed, "Discard icon is not displayed.");
-		
-		boolean noItemsDisplayed = discardedCollection.noItemsDisplayed();
-		Assert.assertTrue(noItemsDisplayed, "Items in a discarded collection are displayed.");
+		CollectionsPage collections = collectionEntry.discardCollection();
+		collections.hideMessages();
 
-		CollectionsPage collections = collectionEntry.goToCollectionPage().filterDiscarded();
+		collections = collections.filterDiscarded();
 		Assert.assertTrue(collections.collectionPresent(collectionTitle), "Collection is not among discarded collection list.");
 	}
 

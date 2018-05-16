@@ -19,7 +19,6 @@ import spot.pages.admin.AdminHomepage;
 import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.Homepage;
-import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.NewCollectionPage;
 import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
@@ -125,6 +124,7 @@ public class Default extends BaseSelenium {
 	private void uploadItem(String title) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
+		collectionEntry.hideMessages();
 		
 		boolean uploadSuccessful = collectionEntry.findItem(title);
 		Assert.assertTrue(uploadSuccessful, "Item not among uploads.");
@@ -149,6 +149,7 @@ public class Default extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(key, value);
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
@@ -174,6 +175,7 @@ public class Default extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueIfEmpty(key, value);
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayed = collectionEntry.metadataDisplayed("SamplePDFFile.pdf", key, value);
@@ -302,6 +304,7 @@ public class Default extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.overwriteAllValues(key, value);
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
@@ -316,6 +319,7 @@ public class Default extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addOwnMetadataAll(key, value);
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);

@@ -175,6 +175,7 @@ public class AdminSharesWithUserGroup extends BaseSelenium {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.shareWithGroup(userGroupName, false, false, true, false, false);
+		sharePage.hideMessages();
 		
 		boolean grantsCorrect = sharePage.checkGrantSelections(false, userGroupName, true, false, false);
 		Assert.assertTrue(grantsCorrect, "Share grants are not correct.");

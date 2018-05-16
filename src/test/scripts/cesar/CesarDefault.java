@@ -19,7 +19,6 @@ import spot.pages.admin.AdminHomepage;
 import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.Homepage;
-import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.NewCollectionPage;
 import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
@@ -81,11 +80,11 @@ public class CesarDefault extends BaseSelenium {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
-		editCollection.addInformation("Custom SUCCESSrmation", "https://mpdl.mpg.de/");
+		editCollection.addInformation("Custom information", "https://mpdl.mpg.de/");
 		collectionEntry = editCollection.submitChanges();
 		
 		collectionEntry = collectionEntry.openDescription();
-		boolean labelDisplayed = collectionEntry.labelDisplayed("Custom SUCCESSrmation");
+		boolean labelDisplayed = collectionEntry.labelDisplayed("Custom information");
 		Assert.assertTrue(labelDisplayed, "External reference is not displayed.");
 	}
 
@@ -148,7 +147,7 @@ public class CesarDefault extends BaseSelenium {
 		
 		MessageType messageType = editItems.getPageMessageType();
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.SUCCESS, "SUCCESSrmation message is not displayed.");
+		Assert.assertEquals(messageType, MessageType.SUCCESS, "information message is not displayed.");
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
@@ -177,7 +176,7 @@ public class CesarDefault extends BaseSelenium {
 		
 		MessageType messageType = editItems.getPageMessageType();
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.SUCCESS, "SUCCESSrmation message is not displayed.");
+		Assert.assertEquals(messageType, MessageType.SUCCESS, "information message is not displayed.");
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayed = collectionEntry.metadataDisplayed("SamplePDFFile.pdf", key, value);
@@ -199,7 +198,7 @@ public class CesarDefault extends BaseSelenium {
 		
 		MessageType messageType = collectionEntry.getPageMessageType();
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.SUCCESS, "SUCCESSrmation message is not displayed.");
+		Assert.assertEquals(messageType, MessageType.SUCCESS, "information message is not displayed.");
 		
 		boolean itemPresent = collectionEntry.findItem("SampleJPGFile.jpg");
 		Assert.assertFalse(itemPresent, "Item was not deleted.");
@@ -290,7 +289,7 @@ public class CesarDefault extends BaseSelenium {
 		
 		MessageType messageType = editItems.getPageMessageType();
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.SUCCESS, "SUCCESSrmation message is not displayed.");
+		Assert.assertEquals(messageType, MessageType.SUCCESS, "information message is not displayed.");
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
@@ -308,7 +307,7 @@ public class CesarDefault extends BaseSelenium {
 		
 		MessageType messageType = editItems.getPageMessageType();
 		Assert.assertNotEquals(messageType, MessageType.NONE, "No message is displayed.");
-		Assert.assertEquals(messageType, MessageType.SUCCESS, "SUCCESSrmation message is not displayed.");
+		Assert.assertEquals(messageType, MessageType.SUCCESS, "information message is not displayed.");
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);

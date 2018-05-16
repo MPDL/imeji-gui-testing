@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -38,8 +39,6 @@ public class SeleniumTestSuite {
 	@Parameters("browserType")
 	@BeforeSuite
 	public void launchDriver(String browserType) throws MalformedURLException, FileNotFoundException {
-
-		
 		log4j.info("Launching driver...");
 		log4j.info("Browser is " + browserType);
 
@@ -59,14 +58,17 @@ public class SeleniumTestSuite {
 
 		try {	
 			properties.load(input);
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			log4j.error("Properties file with login data couldn't be loaded");
 			e.printStackTrace();
-		} finally {
+		}
+		finally {
         	if(input != null) {
         		try {
         			input.close();
-        		} catch (IOException e) {
+        		}
+        		catch (IOException e) {
         			e.printStackTrace();
         		}
         	}
@@ -75,35 +77,27 @@ public class SeleniumTestSuite {
 
 	/**
 	 * Dependent on the specified browserType, the corresponding browser will be launched.
-	 * 
 	 * @param browserType
 	 */
 	private void setDriver(String browserType) {
 		switch (browserType) {
 			case "chrome":
-				ChromeOptions options = new ChromeOptions();
-				System.setProperty("webdriver.chrome.driver", "/PATH/TO/chromedriver.exe");
-				DesiredCapabilities chrome = DesiredCapabilities.chrome();
-				chrome.setCapability(ChromeOptions.CAPABILITY, options);
-				driver = new ChromeDriver(); 
+				driver = initChromeDriver();
 				break;
 			case "firefox":
 				driver = initFirefoxDriver();
 				break;
 			default:
-				log4j.warn("Browser : " + browserType
+				log4j.warn("Browser : " + browserType 
 						+ " is invalid. Launching default browser instead (Firefox)...");
 				driver = initFirefoxDriver();
 		}
-		driver.manage().window().setSize(new Dimension(1024, 768));
+		driver.manage().window().maximize();
 		log4j.info("Window maximised.");
+		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
-	/**---
-	 * Launching Firefox.
-	 * @return
-	 */
 	private WebDriver initFirefoxDriver() {
 		log4j.info("Launching Firefox browser...");
 		System.out.println("Found system property webdriver.gecko.driver:" + System.getProperty("webdriver.gecko.driver"));
@@ -117,6 +111,14 @@ public class SeleniumTestSuite {
 		options.setProfile(profile);
 
 		return new FirefoxDriver(options);
+	}
+	
+	private WebDriver initChromeDriver() {
+		ChromeOptions options = new ChromeOptions();
+		System.setProperty("webdriver.chrome.driver", "/" + "PATH/TO/chromedriver.exe");
+		DesiredCapabilities chrome = DesiredCapabilities.chrome();
+		chrome.setCapability(ChromeOptions.CAPABILITY, options);
+		return new ChromeDriver(); 
 	}
 	
 	private FirefoxProfile initFirefoxProfile() {

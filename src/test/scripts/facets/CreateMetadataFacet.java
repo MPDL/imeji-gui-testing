@@ -1,7 +1,6 @@
 package test.scripts.facets;
 
 import org.testng.annotations.Test;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -71,6 +70,7 @@ public class CreateMetadataFacet extends BaseSelenium {
 		AdministrationPage adminPage = adminHomepage.goToAdminPage();
 		
 		BrowseStatementsPage allStatements = adminPage.createStatement(statementTitle, statementType);
+		allStatements.hideMessages();
 		allStatements = allStatements.makeDefault(statementTitle);
 		
 		boolean isDefault = allStatements.isDefault(statementTitle);
@@ -125,6 +125,7 @@ public class CreateMetadataFacet extends BaseSelenium {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		AdministrationPage adminPage = adminHomepage.goToAdminPage();
 		BrowseStatementsPage allStatements = adminPage.deleteStatement(statementTitle);
+		allStatements.hideMessages();
 		
 		boolean statementPresent = allStatements.isStatementPresent(statementTitle);
 		Assert.assertFalse(statementPresent, "Statement " + statementTitle + " is still in list.");
@@ -174,6 +175,7 @@ public class CreateMetadataFacet extends BaseSelenium {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(statementText, textValue);
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementText, textValue);
@@ -241,6 +243,7 @@ public class CreateMetadataFacet extends BaseSelenium {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(statementURL, URLValue);
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementURL, URLValue);
@@ -307,6 +310,7 @@ public class CreateMetadataFacet extends BaseSelenium {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(statementPerson, personValue);
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementPerson, personValue);
@@ -374,6 +378,7 @@ public class CreateMetadataFacet extends BaseSelenium {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(statementDate, dateValue);
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementDate, dateValue);
@@ -441,6 +446,7 @@ public class CreateMetadataFacet extends BaseSelenium {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(statementNumber, numberValue);
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementNumber, dateValue);

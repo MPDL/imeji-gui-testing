@@ -371,13 +371,7 @@ public class ThreeAuthors extends BaseSelenium {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		DiscardedCollectionEntryPage discardedCollection = collectionEntry.discardCollection();
-		
-		boolean discardedIconDisplayed = discardedCollection.discardedIconDisplayed();
-		Assert.assertTrue(discardedIconDisplayed, "Discard icon is not displayed.");
-		
-		boolean noItemsDisplayed = discardedCollection.noItemsDisplayed();
-		Assert.assertTrue(noItemsDisplayed, "Items in a discarded collection are displayed.");
+		collectionEntry.discardCollection();
 	}
 
 	/**

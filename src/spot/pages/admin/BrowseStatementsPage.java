@@ -3,6 +3,7 @@ package spot.pages.admin;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,7 +18,7 @@ public class BrowseStatementsPage extends BasePage {
 	@FindBy(className="imj_itemContent")
 	private List<WebElement> statements;
 	
-	private By deleteConfirmationLocator = By.className("imj_modalDialogBox");
+	private By deleteConfirmationLocator = By.id("deleteStatement");
 	//private By deleteConfirmationLocator = By.xpath("//div[contains(@id, 'deleteStatement')]");
 	
 	public BrowseStatementsPage(WebDriver driver) {
@@ -28,10 +29,11 @@ public class BrowseStatementsPage extends BasePage {
 	public BrowseStatementsPage deleteStatement(String name) {
 		WebElement statement = findStatement(name);
 		statement.findElement(By.className("fa-trash")).click();
-		wait.until(ExpectedConditions.visibilityOfNestedElementsLocatedBy(statement, deleteConfirmationLocator));
-		WebElement deleteConfirmationDialog = statement.findElement(deleteConfirmationLocator);
-		deleteConfirmationDialog.findElement(By.className("imj_submitButton")).click();
-		try { Thread.sleep(2000); } catch(InterruptedException exc) {}
+		WebElement deleteButton = driver.findElement(By.cssSelector("#deleteStatement>form>.imj_submitPanel>.imj_submitButton"));
+		deleteButton.sendKeys(Keys.ENTER);
+//		WebElement deleteConfirmationDialog = statement.findElement(deleteConfirmationLocator);
+//		deleteConfirmationDialog.findElement(By.className("imj_submitButton")).click();
+		try { Thread.sleep(2500); } catch(InterruptedException exc) {}
 		
 		return PageFactory.initElements(driver, BrowseStatementsPage.class);
 	}

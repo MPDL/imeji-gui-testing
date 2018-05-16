@@ -10,7 +10,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -106,7 +108,7 @@ public class SharePage extends BasePage {
 	 * Share method for user groups
 	 */
 	public SharePage shareWithGroup(String groupName, boolean released, boolean sendMail, boolean read, boolean editItems, boolean administrate) {
-		shareWithGroup.click();
+		new Actions(driver).moveToElement(shareWithGroup).click().build().perform();;
 		selectGroup(groupName);
 		WebElement shareDialog = driver.findElement(By.id("shareWithGroupDialog"));
 		

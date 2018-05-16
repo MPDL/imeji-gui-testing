@@ -2,6 +2,9 @@ package test.scripts.home;
 
 import java.util.Set;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
@@ -60,6 +63,7 @@ public class ImejiFromStartTest extends BaseSelenium {
 		windowHandleStartPage = driver.getWindowHandle();
 		
 		new StartPage(driver).lookUpImejiHomePage();
+		try { Thread.sleep(1000); } catch (InterruptedException exc) {}
 
 		Set<String> windowHandlesAfterImejiHomePage = driver.getWindowHandles();
 		
@@ -67,6 +71,7 @@ public class ImejiFromStartTest extends BaseSelenium {
 			driver.switchTo().window(winHandle);
 		}
 		
+		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.id("readme")));
 		String currentUrl = driver.getCurrentUrl();
 
 		return currentUrl;

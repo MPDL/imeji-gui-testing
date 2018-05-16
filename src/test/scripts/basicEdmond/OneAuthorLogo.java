@@ -64,8 +64,11 @@ public class OneAuthorLogo extends BaseSelenium {
 	 */
 	@Test(priority = 5)
 	public void loginUser1() {
-		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		StartPage startPage = new StartPage(driver);
+		startPage.hideMessages();
+		LoginPage loginPage = startPage.openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
+		homepage.hideMessages();
 	}
 
 	/**
@@ -95,7 +98,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-123
 	 */
-	@Test(priority = 7, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 8, dependsOnMethods = { "createDefaultCollection" })
 	public void editTitle() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
@@ -120,7 +123,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 8, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 9, dependsOnMethods = { "createDefaultCollection" })
 	public void uploadPDF() {
 		uploadItem("SamplePDFFile.pdf");
 	}
@@ -128,7 +131,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-279
 	 */
-	@Test(priority = 9, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 10, dependsOnMethods = { "createDefaultCollection" })
 	public void metadataAllItems() {
 		String key = "Description";
 		String value = "Test collection";
@@ -138,6 +141,7 @@ public class OneAuthorLogo extends BaseSelenium {
 		editItems = editItems.addValueAll(key, value);
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		collectionEntry.hideMessages();
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
 	}
@@ -145,7 +149,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 10, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 11, dependsOnMethods = { "createDefaultCollection" })
 	public void uploadTXT() {
 		uploadItem("SampleTXTFile.txt");
 	}
@@ -153,7 +157,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-280
 	 */
-	@Test(priority = 11, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 12, dependsOnMethods = { "createDefaultCollection" })
 	public void metadataIfEmpty() {
 		String key = "Description";
 		String value = "New value";
@@ -163,10 +167,12 @@ public class OneAuthorLogo extends BaseSelenium {
 		editItems = editItems.addValueIfEmpty(key, value);
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		collectionEntry.hideMessages();
 		boolean metadataDisplayed = collectionEntry.metadataDisplayed("SampleTXTFile.txt", key, value);
 		Assert.assertTrue(metadataDisplayed, "New metadata is not displayed on TXT item page.");
 		
 		collectionEntry = new StartPage(driver).goToCollectionPage().openCollectionByTitle(collectionTitle);
+		collectionEntry.hideMessages();
 		metadataDisplayed = collectionEntry.metadataDisplayed("SamplePDFFile.pdf", key, "Test collection");
 		Assert.assertTrue(metadataDisplayed, "Old metadata is not displayed on PDF item page.");
 	}
@@ -174,7 +180,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 12, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 13, dependsOnMethods = { "createDefaultCollection" })
 	public void uploadXLSX() {
 		uploadItem("SampleXLSXFile.xlsx");
 	}
@@ -182,7 +188,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-281
 	 */
-	@Test(priority = 13, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 14, dependsOnMethods = { "createDefaultCollection" })
 	public void metadataOverwrite() {
 		String key = "Description";
 		String value = "Overwritten value";
@@ -192,6 +198,7 @@ public class OneAuthorLogo extends BaseSelenium {
 		editItems = editItems.overwriteAllValues(key, value);
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		collectionEntry.hideMessages();
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on all item pages.");
 	}
@@ -199,7 +206,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-67
 	 */
-	@Test(priority = 14, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 15, dependsOnMethods = { "createDefaultCollection" })
 	public void deleteItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.deleteItem("SampleXLSXFile.xlsx");
@@ -211,7 +218,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-56
 	 */
-	@Test(priority = 15, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 16, dependsOnMethods = { "createDefaultCollection" })
 	public void uploadJPG() {
 		uploadItem("SampleJPGFile2.jpg");
 	}
@@ -219,11 +226,12 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-134
 	 */
-	@Test(priority = 16, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 17, dependsOnMethods = { "createDefaultCollection" })
 	public void assignLicense() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditLicensePage editLicense = collectionEntry.editAllLicenses();
 		collectionEntry = editLicense.setLicense("CC_BY");
+		collectionEntry.hideMessages();
 		
 		boolean licensePresent = collectionEntry.checkLicenseAll("https://creativecommons.org/licenses/by/4.0/");
 		Assert.assertTrue(licensePresent, "License is not displayed.");
@@ -232,12 +240,11 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-204
 	 */
-	@Test(priority = 17, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 18, dependsOnMethods = { "createDefaultCollection" })
 	public void shareReadExternal() {
 		String email = "nonexistentuser@mpdl.mpg.de";
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		// no share transition anymore
 		SharePage sharePage = collectionEntry.share();
 		sharePage = sharePage.share(false, false, email, true, false, false);
 		
@@ -249,7 +256,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-196
 	 */
-	@Test(priority = 18, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 19, dependsOnMethods = { "createDefaultCollection" })
 	public void shareReadRU() {
 		String user2Name = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
 		
@@ -270,7 +277,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-2
 	 */
-	@Test(priority = 19, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 20, dependsOnMethods = { "createDefaultCollection" })
 	public void logout() {
 		homepage = new StartPage(driver).goToHomepage(homepage);
 		homepage.logout();
@@ -279,16 +286,18 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-22
 	 */
-	@Test(priority = 20, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 21, dependsOnMethods = { "createDefaultCollection" })
 	public void loginUser2() {
-		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		StartPage startPage = new StartPage(driver);
+		startPage.hideMessages();
+		LoginPage loginPage = startPage.openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(restrUsername), getPropertyAttribute(restrPassword));
 	}
 
 	/**
 	 * IMJ-46
 	 */
-	@Test(priority = 21, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 22, dependsOnMethods = { "createDefaultCollection" })
 	public void openCollection() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean shareVisible = collectionEntry.shareIconVisible();
@@ -298,7 +307,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-234
 	 */
-	@Test(priority = 22, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 23, dependsOnMethods = { "createDefaultCollection" })
 	public void downloadItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		// open PDF file
@@ -323,17 +332,17 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-232
 	 */
-	@Test(priority = 23, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 25, dependsOnMethods = { "createDefaultCollection" })
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean canDownloadAll = collectionEntry.downloadAllPossible();
-		Assert.assertTrue(canDownloadAll, "'Download All' button is not displayed or enabled.");
+		Assert.assertTrue(canDownloadAll, "'Download' button is not displayed or enabled.");
 	}
 
 	/**
 	 * IMJ-2
 	 */
-	@Test(priority = 25, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 26, dependsOnMethods = { "createDefaultCollection" })
 	public void logoutUser2() {
 		homepage.logout();
 	}
@@ -341,7 +350,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-98, IMJ-139, IMJ-45
 	 */
-	@Test(priority = 26, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 27, dependsOnMethods = { "createDefaultCollection" })
 	public void releaseCollection() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
@@ -356,7 +365,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-115
 	 */
-	@Test(priority = 27, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 28, dependsOnMethods = { "createDefaultCollection" })
 	public void addCollectionDOI() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.setDOI();
@@ -369,29 +378,26 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-69
 	 */
-	@Test(priority = 28, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 29, dependsOnMethods = { "createDefaultCollection" })
 	public void discardItem() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.selectItem("SampleTXTFile.txt");
 		collectionEntry = collectionEntry.discardSelectedItems();
-		// is item immediately removed?
+		
+		collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean itemInList = collectionEntry.findItem("SampleTXTFile.txt");
 		Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
-		collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		
-		itemInList = collectionEntry.findItem("SampleTXTFile.txt");
-		Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
-		
-		// filter discarded items, item should be in list
 	}
 
 	/**
 	 * IMJ-59
 	 */
-	@Test(priority = 29, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 30, dependsOnMethods = { "createDefaultCollection" })
 	public void downloadItemNRU() {
 		homepage.logout();
-		collectionEntry = new StartPage(driver).goToCollectionPage().openCollectionByTitle(collectionTitle);
+		StartPage startPage = new StartPage(driver);
+		startPage.hideMessages();
+		collectionEntry = startPage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		ItemViewPage itemView = collectionEntry.openItem("SamplePDFFile.pdf");
 		boolean downloadItemPossible = itemView.isDownloadPossible();
 		Assert.assertTrue(downloadItemPossible, "Non-registered user cannot download item.");
@@ -400,7 +406,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-233
 	 */
-	@Test(priority = 30, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 31, dependsOnMethods = { "createDefaultCollection" })
 	public void downloadAllNRU() {
 		collectionEntry = new StartPage(driver).goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean downloadAllPossible = collectionEntry.downloadAllPossible();
@@ -410,18 +416,13 @@ public class OneAuthorLogo extends BaseSelenium {
 	/**
 	 * IMJ-97
 	 */
-	@Test(priority = 31, dependsOnMethods = { "createDefaultCollection" })
+	@Test(priority = 32, dependsOnMethods = { "createDefaultCollection" })
 	public void discardCollection() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
+		homepage.hideMessages();
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		DiscardedCollectionEntryPage discardedCollection = collectionEntry.discardCollection();
-		
-		boolean discardedIconDisplayed = discardedCollection.discardedIconDisplayed();
-		Assert.assertTrue(discardedIconDisplayed, "Discard icon is not displayed.");
-		
-		boolean noItemsDisplayed = discardedCollection.noItemsDisplayed();
-		Assert.assertTrue(noItemsDisplayed, "Items in a discarded collection are displayed.");
+		collectionEntry.discardCollection();
 	}
 
 	/**

@@ -312,15 +312,10 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.selectItem("SampleTXTFile.txt");
 		collectionEntry = collectionEntry.discardSelectedItems();
-		// is item immediately removed?
+		
+		collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean itemInList = collectionEntry.findItem("SampleTXTFile.txt");
 		Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
-		collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		
-		itemInList = collectionEntry.findItem("SampleTXTFile.txt");
-		Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
-		
-		// filter discarded, item should be in list
 	}
 	
 	@Test(priority = 22, dependsOnMethods = { "createCollection3Authors" })
@@ -366,13 +361,7 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		DiscardedCollectionEntryPage discardedCollection = collectionEntry.discardCollection();
-		
-		boolean discardedIconDisplayed = discardedCollection.discardedIconDisplayed();
-		Assert.assertTrue(discardedIconDisplayed, "Discard icon is not displayed.");
-		
-		boolean noItemsDisplayed = discardedCollection.noItemsDisplayed();
-		Assert.assertTrue(noItemsDisplayed, "Items in a discarded collection are displayed.");
+		collectionEntry.discardCollection();
 	}
 
 	/**

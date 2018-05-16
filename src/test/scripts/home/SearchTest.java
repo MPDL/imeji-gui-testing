@@ -5,8 +5,10 @@ import org.testng.annotations.*;
 
 import spot.components.SearchComponent.CategoryType;
 import spot.pages.AdvancedSearchPage;
+import spot.pages.LoginPage;
 import spot.pages.SearchResultsPage;
 import spot.pages.StartPage;
+import spot.pages.admin.AdminHomepage;
 import test.base.BaseSelenium;
 
 public class SearchTest extends BaseSelenium {
@@ -21,6 +23,7 @@ public class SearchTest extends BaseSelenium {
 	@BeforeClass
 	public void beforeClassTest() {
 		super.setup();
+		switchPrivateMode(false);
 		startPage = new StartPage(driver);
 	}
 
@@ -53,7 +56,7 @@ public class SearchTest extends BaseSelenium {
 	
 	@Test
 	public void questionWildcard() {
-		searchItem("T???r.jpg");
+		searchItem("Des???.jpg");
 	}
 	
 	@Test
@@ -69,8 +72,8 @@ public class SearchTest extends BaseSelenium {
 	@Test
 	public void openAdvancedSearchTest() {
 		AdvancedSearchPage advancedSearchPage = startPage.getSearchComponent().navigateToAdvancedSearchPage();
-		boolean doesSearchQueryMessageAreaExist = advancedSearchPage.doesSearchQueryMessageAreaExist();
-		Assert.assertEquals(doesSearchQueryMessageAreaExist, true);
+		boolean advancedSearchDisplayed = advancedSearchPage.advancedSearchDisplayed();
+		Assert.assertEquals(advancedSearchDisplayed, true);
 	}
 	
 	private void searchItem(String searchQuery) {
@@ -89,5 +92,15 @@ public class SearchTest extends BaseSelenium {
 		
 		int numResults = searchQueryPage.getResultCount();
 		Assert.assertTrue(numResults > 0, "Collections were not found.");
+	}
+	
+	private void switchPrivateMode(boolean privateMode) {
+		LoginPage loginPage = new StartPage(driver).openLoginForm();
+		AdminHomepage adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
+		if (privateMode)
+			adminHomepage.goToAdminPage().enablePrivateMode();
+		else 
+			adminHomepage.goToAdminPage().disablePrivateMode();
+		adminHomepage.logout();
 	}
 }

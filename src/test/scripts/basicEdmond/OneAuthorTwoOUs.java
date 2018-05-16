@@ -11,12 +11,10 @@ import spot.pages.CollectionEntryPage;
 import spot.pages.ItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
-import spot.pages.registered.DiscardedCollectionEntryPage;
 import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.EditLicensePage;
 import spot.pages.registered.Homepage;
-import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.NewCollectionPage;
 import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
@@ -298,12 +296,9 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.selectItem("SampleTXTFile.txt");
 		collectionEntry = collectionEntry.discardSelectedItems();
-		// is item immediately removed?
-		boolean itemInList = collectionEntry.findItem("SampleTXTFile.txt");
-		Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
-		collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		
-		itemInList = collectionEntry.findItem("SampleTXTFile.txt");
+		collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		boolean itemInList = collectionEntry.findItem("SampleTXTFile.txt");
 		Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
 		
 		// filter discarded, item should be in list
@@ -348,13 +343,7 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 	@Test(priority = 26, dependsOnMethods = { "createCollection" })
 	public void discardCollection() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		DiscardedCollectionEntryPage discardedCollection = collectionEntry.discardCollection();
-		
-		boolean discardedIconDisplayed = discardedCollection.discardedIconDisplayed();
-		Assert.assertTrue(discardedIconDisplayed, "Discard icon is not displayed.");
-		
-		boolean noItemsDisplayed = discardedCollection.noItemsDisplayed();
-		Assert.assertTrue(noItemsDisplayed, "Items in a discarded collection are displayed.");
+		collectionEntry.discardCollection();
 	}
 
 	/**
@@ -362,7 +351,9 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 	 */
 	@AfterClass
 	public void afterClass() {
-		homepage = new StartPage(driver).goToHomepage(homepage);
+		StartPage startPage = new StartPage(driver);
+		startPage.hideMessages();
+		homepage = startPage.goToHomepage(homepage);
 		homepage.logout();
 	}
 }

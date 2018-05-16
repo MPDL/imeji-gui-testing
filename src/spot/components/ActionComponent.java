@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -45,7 +46,8 @@ public class ActionComponent extends BasePage {
 	@FindBy(linkText = "Delete")
 	private WebElement deleteCollection;
 	
-	@FindBy(css = "#menuCollection>.imj_menuBody>ul>li:nth-of-type(4)>a")
+	@FindBy(linkText = "Discard")
+//	@FindBy(css = ".dropdown>.content>a:nth-of-type(5)")
 	private WebElement discardCollection;
 	
 	@FindBy(id = "lnkCreateDOI")
@@ -64,27 +66,28 @@ public class ActionComponent extends BasePage {
 	}
 	
 	public EditItemsPage editAllItems() {
-		openMenuItems();
-		editItems.click();
+		new Actions(driver).moveToElement(menuItems).moveToElement(editItems).click().build().perform();
+		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
 	
 	public MetadataTablePage editSelectedItems() {
-		selectedMenu.click();
-		editSelectedItems.click();
+		new Actions(driver).moveToElement(selectedMenu).moveToElement(editSelectedItems).click().build().perform();
+		
 		return PageFactory.initElements(driver, MetadataTablePage.class);
 	}
 	
 	public EditLicensePage editAllLicenses() {
-		openMenuItems();
-		editLicenses.click();
+		new Actions(driver).moveToElement(menuItems).moveToElement(editLicenses).click().build().perform();
+
 		return PageFactory.initElements(driver, EditLicensePage.class);
 	}
 	
 	public CollectionEntryPage releaseCollection() {
-		openMenuCollection();
-		wait.until(ExpectedConditions.visibilityOf(releaseCollection));
-		releaseCollection.click();
+		new Actions(driver).moveToElement(menuCollection).moveToElement(releaseCollection).click().build().perform();
+//		openMenuCollection();
+//		wait.until(ExpectedConditions.visibilityOf(releaseCollection));
+//		releaseCollection.click();
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#releaseCollection .imj_submitPanel .imj_submitButton').click();");
 
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
@@ -98,24 +101,23 @@ public class ActionComponent extends BasePage {
 		return PageFactory.initElements(driver, CollectionsPage.class);
 	}
 	
-	public DiscardedCollectionEntryPage discardCollection() {
-		openMenuCollection();
-		retryingFindClick(By.cssSelector(".dropdown>.content .fa-ban"));
+	public CollectionsPage discardCollection() {
+		new Actions(driver).moveToElement(menuCollection).moveToElement(discardCollection).click().build().perform();
 		
 		WebElement discardBox = driver.findElement(By.className("imj_dialogReasonText"));
 		discardBox.sendKeys("Discarding for testing purposes.");
 		try { Thread.sleep(2500); } catch (InterruptedException e) { }
 		
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#withdrawCollection .imj_submitPanel .imj_submitButton').click();");
-		return PageFactory.initElements(driver, DiscardedCollectionEntryPage.class);
+		return PageFactory.initElements(driver, CollectionsPage.class);
 	}
 	
 	public CollectionEntryPage setDOI() {
-		openMenuCollection();
-		addDOI.click();
+		new Actions(driver).moveToElement(menuCollection).moveToElement(addDOI).click().build().perform();
+		
 		retryingFindClick(By.cssSelector("#getDOIDialog>form>.imj_submitPanel>.imj_submitButton"));
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
-		try { Thread.sleep(2500); } catch (InterruptedException e) { }
+		try { Thread.sleep(5000); } catch (InterruptedException e) { }
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
