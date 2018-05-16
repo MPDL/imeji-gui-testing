@@ -16,3 +16,18 @@ test-output/
 # Test user data
 res/testData.properties
 src/testData.properties
+
+*.pydevproject
+.project
+.metadata
+bin/
+tmp/
+data/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath

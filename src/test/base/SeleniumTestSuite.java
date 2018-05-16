@@ -51,7 +51,9 @@ public class SeleniumTestSuite {
 	}
 
 	private void loadPropertiesFile() throws FileNotFoundException {
-		String propertiesEnvName = "/" + System.getenv(propertiesFileName);
+		//String propertiesEnvName = "/" + System.getenv(propertiesFileName);
+		String propertiesEnvName = System.getProperty("testPropertyFile");
+		System.out.println("Reading properties file from: " + propertiesEnvName);
 		properties = new Properties();
 		FileInputStream input = new FileInputStream(new File(propertiesEnvName));
 
@@ -104,7 +106,8 @@ public class SeleniumTestSuite {
 	 */
 	private WebDriver initFirefoxDriver() {
 		log4j.info("Launching Firefox browser...");
-		System.setProperty("webdriver.gecko.driver", "/" + System.getenv("geckodriver"));
+		System.out.println("Found system property webdriver.gecko.driver:" + System.getProperty("webdriver.gecko.driver"));
+		//System.setProperty("webdriver.gecko.driver", "/" + System.getenv("geckodriver"));
 		FirefoxOptions options = new FirefoxOptions();
 		options.setCapability("marionette", true);
 		
