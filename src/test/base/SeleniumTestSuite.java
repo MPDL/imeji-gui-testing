@@ -7,10 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -50,9 +48,8 @@ public class SeleniumTestSuite {
 	}
 
 	private void loadPropertiesFile() throws FileNotFoundException {
-		//String propertiesEnvName = "/" + System.getenv(propertiesFileName);
-		String propertiesEnvName = System.getProperty("testPropertyFile");
-		System.out.println("Reading properties file from: " + propertiesEnvName);
+		String propertiesEnvName = System.getProperty(propertiesFileName);
+		log4j.info("Reading properties file from: " + propertiesEnvName);
 		properties = new Properties();
 		FileInputStream input = new FileInputStream(new File(propertiesEnvName));
 
@@ -100,13 +97,13 @@ public class SeleniumTestSuite {
 
 	private WebDriver initFirefoxDriver() {
 		log4j.info("Launching Firefox browser...");
-		System.out.println("Found system property webdriver.gecko.driver:" + System.getProperty("webdriver.gecko.driver"));
-		//System.setProperty("webdriver.gecko.driver", "/" + System.getenv("geckodriver"));
+		log4j.info("Found system property webdriver.gecko.driver: " + System.getProperty("webdriver.gecko.driver"));
 		FirefoxOptions options = new FirefoxOptions();
 		options.setCapability("marionette", true);
 		
 		FirefoxBinary binary = new FirefoxBinary();
 		options.setBinary(binary);
+//		options.setHeadless(true);
 		FirefoxProfile profile = initFirefoxProfile();
 		options.setProfile(profile);
 
@@ -115,10 +112,11 @@ public class SeleniumTestSuite {
 	
 	private WebDriver initChromeDriver() {
 		ChromeOptions options = new ChromeOptions();
-		System.setProperty("webdriver.chrome.driver", "/" + "PATH/TO/chromedriver.exe");
-		DesiredCapabilities chrome = DesiredCapabilities.chrome();
-		chrome.setCapability(ChromeOptions.CAPABILITY, options);
-		return new ChromeDriver(); 
+		log4j.info("Found system property webdriver.chrome.driver: " + System.getProperty("webdriver.chrome.driver"));
+		options.setCapability("marionette", true);
+//		options.setHeadless(true);
+		options.addArguments("--window-size=1920,1200");
+		return new ChromeDriver(options);
 	}
 	
 	private FirefoxProfile initFirefoxProfile() {
