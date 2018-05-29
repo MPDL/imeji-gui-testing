@@ -12,8 +12,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.testng.annotations.*;
 
 import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.File;
+import java.io.InputStream;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.util.Properties;
@@ -25,7 +24,7 @@ public class SeleniumTestSuite {
 	
 	/** properties file with required login information for test user and admin **/
 	private static Properties properties;	
-	public static final String propertiesFileName = "testData";
+	public static final String propertiesFileName = "testData.properties";
 	
 	public static final String qaEdmond = "http://qa-edmond.mpdl.mpg.de/imeji/";
 	public static final String qaImeji = "http://qa-imeji.mpdl.mpg.de/";
@@ -48,13 +47,13 @@ public class SeleniumTestSuite {
 	}
 
 	private void loadPropertiesFile() throws FileNotFoundException {
-		String propertiesEnvName = System.getProperty(propertiesFileName);
-		log4j.info("Reading properties file from: " + propertiesEnvName);
+		log4j.info("Reading properties file");
 		properties = new Properties();
-		FileInputStream input = new FileInputStream(new File(propertiesEnvName));
+		InputStream input = this.getClass().getClassLoader().getResourceAsStream(propertiesFileName);
 
 		try {	
 			properties.load(input);
+			log4j.info("Successfully loaded testData.properties");
 		} 
 		catch (IOException e) {
 			log4j.error("Properties file with login data couldn't be loaded");
@@ -111,8 +110,9 @@ public class SeleniumTestSuite {
 	}
 	
 	private WebDriver initChromeDriver() {
-		ChromeOptions options = new ChromeOptions();
+		log4j.info("Launching Chrome browser...");
 		log4j.info("Found system property webdriver.chrome.driver: " + System.getProperty("webdriver.chrome.driver"));
+		ChromeOptions options = new ChromeOptions();		
 		options.setCapability("marionette", true);
 //		options.setHeadless(true);
 		options.addArguments("--window-size=1920,1200");

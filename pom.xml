@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ImejiGUITesting</groupId>
@@ -12,6 +13,7 @@
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
+				<filtering>true</filtering>
 			</resource>
 		</resources>
 		<plugins>
@@ -24,30 +26,79 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>com.github.webdriverextensions</groupId>
+				<artifactId>webdriverextensions-maven-plugin</artifactId>
+				<version>3.1.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>install-drivers</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<drivers>
+						<driver>
+							<name>geckodriver</name>
+							<platform>windows</platform>
+							<bit>64</bit>
+							<version>0.20.1</version>
+						</driver>
+						<driver>
+							<name>geckodriver</name>
+							<platform>linux</platform>
+							<bit>64</bit>
+							<version>0.20.1</version>
+						</driver>
+						<driver>
+							<name>chromedriver</name>
+							<platform>windows</platform>
+							<bit>32</bit>
+							<version>2.38</version>
+						</driver>
+						<driver>
+							<name>chromedriver</name>
+							<platform>linux</platform>
+							<bit>64</bit>
+							<version>2.38</version>
+						</driver>
+					</drivers>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.19.1</version>
 				<configuration>
 					<suiteXmlFiles>
-<!-- 						<suiteXmlFile>res/testng_essential.xml</suiteXmlFile> -->
-						<suiteXmlFile>res/testng_edmond_firefox.xml</suiteXmlFile>
-
-<!-- Chrome test set put on hold until enabled by integration with Jenkins -->
-<!-- 						<suiteXmlFile>res/testng_edmond_chrome.xml</suiteXmlFile> -->
+						<!-- <suiteXmlFile>res/testng_essential.xml</suiteXmlFile> -->
+						<suiteXmlFile>res/testng_edmond_firefox.xml</suiteXmlFile>						
+						<!-- Chrome test set put on hold until enabled by integration with Jenkins -->
+						<!-- <suiteXmlFile>res/testng_edmond_chrome.xml</suiteXmlFile> -->
 						<!-- !!! -->
 						<!-- Add other suite xml files HERE if needed -->
 						<!-- <suiteXmlFile></suiteXmlFile> -->
 					</suiteXmlFiles>
-        			<forkMode>once</forkMode>
+					<forkMode>once</forkMode>
+					<systemPropertyVariables>
+						<webdriver.gecko.driver>${project.basedir}/drivers/${geckodriver.binary.name}</webdriver.gecko.driver>
+						<webdriver.chrome.driver>${project.basedir}/drivers/${chromedriver.binary.name}</webdriver.chrome.driver>
+					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 	<dependencies>
-	
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-firefox-driver</artifactId>
+			<version>3.11.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-chrome-driver</artifactId>
 			<version>3.11.0</version>
 		</dependency>
 
@@ -98,7 +149,12 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>21.0</version>
+			<version>23.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.2</version>
 		</dependency>
 
 		<dependency>
@@ -106,7 +162,7 @@
 			<artifactId>testlink-java-api</artifactId>
 			<version>1.9.14-0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>xml-apis</groupId>
 			<artifactId>xml-apis</artifactId>
@@ -133,5 +189,46 @@
 			<version>1.5.6</version>
 		</dependency>
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>windows_os</id>
+			<activation>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<geckodriver.binary.name>geckodriver-windows-64bit.exe</geckodriver.binary.name>
+				<chromedriver.binary.name>chromedriver-windows-32bit.exe</chromedriver.binary.name>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>unix_os</id>
+			<activation>
+				<os>
+					<family>unix</family>
+				</os>
+			</activation>
+			<properties>
+				<geckodriver.binary.name>geckodriver-linux-64bit</geckodriver.binary.name>
+				<chromedriver.binary.name>chromedriver-linux-64bit</chromedriver.binary.name>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>imeji_gui_testing_passwords</id>
+			<properties>
+				<aSpotPassword>Please define passwords in your settings.xml</aSpotPassword>
+				<tuPassword>Please define passwords in your settings.xml</tuPassword>
+				<reEmailPassword>Please define passwords in your settings.xml</reEmailPassword>
+				<tuSpotPassword>Please define passwords in your settings.xml</tuSpotPassword>
+				<gluonsPassword>Please define passwords in your settings.xml</gluonsPassword>
+				<gluonsPassword2>Please define passwords in your settings.xml</gluonsPassword2>
+				<tuEmailPassword>Please define passwords in your settings.xml</tuEmailPassword>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>
