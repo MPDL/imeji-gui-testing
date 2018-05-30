@@ -9,7 +9,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -146,16 +145,16 @@ public abstract class BaseSelenium {
 		homePage.logout();
 	}
 
+	/**
+	 * Get the path to the given file name.
+	 * @param fileName
+	 * @return the system-independent file path
+	 */
 	public final String getFilepath(String fileName) {
-		fileName = "/" + fileName;
-		String filepath = getClass().getResource(fileName).getPath();
-		if (driver instanceof FirefoxDriver) {
-			// previous version of Selenium required input of the type: 'file:/PATH'
-			filepath = filepath.substring(1, filepath.length()).replace('/', '\\');
-		}
-		if (driver instanceof ChromeDriver)
-			filepath = filepath.substring(1, filepath.length());
-		return filepath;
+		String filePath = this.getClass().getClassLoader().getResource(fileName).getPath();
+		File systemIndependentFile = new File(filePath);
+		String systemIndependentFilePath = systemIndependentFile.getPath();
+		return systemIndependentFilePath;
 	}
 
 	/**
