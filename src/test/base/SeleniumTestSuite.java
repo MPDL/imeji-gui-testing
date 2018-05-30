@@ -26,6 +26,8 @@ public class SeleniumTestSuite {
 	private static Properties properties;	
 	public static final String propertiesFileName = "testData.properties";
 	
+	public static final boolean HEADLESS = true;
+	
 	public static final String qaEdmond = "http://qa-edmond.mpdl.mpg.de/imeji/";
 	public static final String qaImeji = "http://qa-imeji.mpdl.mpg.de/";
 	
@@ -102,7 +104,7 @@ public class SeleniumTestSuite {
 		
 		FirefoxBinary binary = new FirefoxBinary();
 		options.setBinary(binary);
-//		options.setHeadless(true);
+		options.setHeadless(HEADLESS);
 		FirefoxProfile profile = initFirefoxProfile();
 		options.setProfile(profile);
 
@@ -114,7 +116,7 @@ public class SeleniumTestSuite {
 		log4j.info("Found system property webdriver.chrome.driver: " + System.getProperty("webdriver.chrome.driver"));
 		ChromeOptions options = new ChromeOptions();		
 		options.setCapability("marionette", true);
-//		options.setHeadless(true);
+		options.setHeadless(HEADLESS);
 		options.addArguments("--window-size=1920,1200");
 		return new ChromeDriver(options);
 	}
