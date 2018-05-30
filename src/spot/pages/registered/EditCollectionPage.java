@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -116,32 +115,12 @@ public class EditCollectionPage extends BasePage {
 	public void addLogo(String filepath) {
 		WebElement inputDiv = logoContainer.findElement(By.className("moxie-shim-html5"));
 		WebElement inputFile = inputDiv.findElement(By.tagName("input"));
-		
+				
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		
-//		jse.executeScript("arguments[0].style.visibility = 'visible';", inputDiv);
-//		jse.executeScript("arguments[0].style.width = 50;", inputDiv);
-//		jse.executeScript("arguments[0].style.height = 50;", inputDiv);
-//		jse.executeScript("arguments[0].style.opacity = 1;", inputDiv);
-//		jse.executeScript("arguments[0].style.display = 'block';", inputDiv);
-//		jse.executeScript("arguments[0].style.top = 50;", inputDiv);
-//		jse.executeScript("arguments[0].style.left = 50;", inputDiv);
-//		jse.executeScript("arguments[0].style.zIndex = 3;", inputDiv);
-//		// important!
-//		jse.executeScript("arguments[0].style.position = 'relative';", inputDiv);
-		
+		//Set the visibility of the upload element so that the sendKeys() method works
 		jse.executeScript("arguments[0].style.visibility = 'visible';", inputFile);
-		jse.executeScript("arguments[0].style.width = 50;", inputFile);
-		jse.executeScript("arguments[0].style.height = 50;", inputFile);
-		jse.executeScript("arguments[0].style.opacity = 1;", inputFile);
-		jse.executeScript("arguments[0].style.display = 'block';", inputFile);
-		jse.executeScript("arguments[0].style.top = 50;", inputFile);
-		jse.executeScript("arguments[0].style.left = 50;", inputFile);
-		jse.executeScript("arguments[0].style.zIndex = 3;", inputFile);
-		// important!
-		jse.executeScript("arguments[0].style.position = 'relative';", inputFile);
-		jse.executeScript("arguments[0].removeAttribute('class');", inputFile);
-		jse.executeScript("arguments[0].setAttribute('ng-show', 'true');", inputFile);
+		//Wait for the visibility of the upload element
+		wait.until(ExpectedConditions.attributeToBe(inputFile, "visibility", "visible"));
 		
 		inputFile.sendKeys(filepath);
 
