@@ -67,6 +67,7 @@ public class ActionComponent extends BasePage {
 	
 	public EditItemsPage editAllItems() {
 		new Actions(driver).moveToElement(menuItems).moveToElement(editItems).click().build().perform();
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loaderWrapper")));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -89,7 +90,8 @@ public class ActionComponent extends BasePage {
 //		wait.until(ExpectedConditions.visibilityOf(releaseCollection));
 //		releaseCollection.click();
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#releaseCollection .imj_submitPanel .imj_submitButton').click();");
-
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loaderWrapper")));
+		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
