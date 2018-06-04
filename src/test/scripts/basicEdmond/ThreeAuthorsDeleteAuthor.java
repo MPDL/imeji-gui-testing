@@ -181,6 +181,7 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 			collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 			ItemViewPage itemView = collectionEntry.openItem(i);
 			itemView.editItem().selectLicense("CC0");
+			itemView.hideMessages();
 			
 			collectionEntry = itemView.goToCollectionEntry();
 			itemView = collectionEntry.openItem(i);
@@ -197,6 +198,7 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		ItemViewPage itemView = collectionEntry.openItem("SamplePDFFile.pdf");
 		itemView.editItem().enterOwnLicense("CC0 1.0", "https://creativecommons.org/publicdomain/zero/1.0/");
+		itemView.hideMessages();
 		
 		collectionEntry = itemView.goToCollectionEntry();
 		itemView = collectionEntry.openItem("SamplePDFFile.pdf");

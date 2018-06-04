@@ -281,6 +281,7 @@ public class Default extends BaseSelenium {
 		editCollection.addAuthor(newAuthor, getPropertyAttribute(ruOrganizationName));
 		collectionEntry = editCollection.submitChanges();
 		String authors = collectionEntry.getAuthor();
+		collectionEntry.hideMessages();
 		
 		Assert.assertTrue(authors.contains(newAuthor), "New author is not part of author list.");
 	}
@@ -385,6 +386,7 @@ public class Default extends BaseSelenium {
 	public void deleteCollection() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		CollectionsPage collectionsPage = collectionEntry.deleteCollection();
+		collectionsPage.hideMessages();
 		
 		boolean collectionPresent = collectionsPage.collectionPresent(collectionTitle);
 		Assert.assertFalse(collectionPresent, "Collection was not deleted.");
