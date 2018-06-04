@@ -143,7 +143,7 @@ public class NewCollectionPage extends BasePage {
 	
 	private void submitForm() {
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", saveButton);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loaderWrapper")));
+		wait.until(ExpectedConditions.attributeContains(By.className("loaderWrapper"), "display", "none"));
 	}
 
 	private void setTitle(String title) {
