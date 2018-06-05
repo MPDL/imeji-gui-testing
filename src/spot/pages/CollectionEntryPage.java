@@ -365,7 +365,10 @@ public class CollectionEntryPage extends BasePage {
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
 		// avoid 'element not clickable' exceptions, lasts about 4 seconds
-		wait.until(ExpectedConditions.attributeContains(By.className("loaderWrapper"), "display", "none"));
+		
+		//Find the loaderWrapper with the style-attribute to get the actual, non-stale loaderWrapper
+		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper[style]"));
+		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
@@ -492,7 +495,10 @@ public class CollectionEntryPage extends BasePage {
 		retryingFindClick(By.cssSelector("#selMenu\\:sf>.dropdown>.content>a:nth-of-type(5)"));
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#deleteSelectedItems .imj_submitPanel .imj_submitButton').click();");
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
-		wait.until(ExpectedConditions.attributeContains(By.className("loaderWrapper"), "display", "none"));
+		
+		//Find the loaderWrapper with the style-attribute to get the actual, non-stale loaderWrapper
+		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper[style]"));
+		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}

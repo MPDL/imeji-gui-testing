@@ -143,7 +143,10 @@ public class NewCollectionPage extends BasePage {
 	
 	private void submitForm() {
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", saveButton);
-		wait.until(ExpectedConditions.attributeContains(By.className("loaderWrapper"), "display", "none"));
+
+		//Find the loaderWrapper with the style-attribute to get the actual, non-stale loaderWrapper
+		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper[style]"));
+		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
 	}
 
 	private void setTitle(String title) {
