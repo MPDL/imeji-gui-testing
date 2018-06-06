@@ -125,7 +125,8 @@ public class MetadataSelectedItems extends BaseSelenium {
 		
 		List<String[]> arguments = composeArguments(titleItems, titleKey, titleValue);
 		MetadataTablePage metadataTable = goToMetadataTable(titleItems);
-		metadataTable.editEntry(arguments);
+		collectionEntry = metadataTable.editEntry(arguments);
+		collectionEntry.deselectAllSelectedItems();
 		validateMetadata(titleItems, titleKey, titleValue);
 	}
 	
@@ -138,7 +139,8 @@ public class MetadataSelectedItems extends BaseSelenium {
 		List<String[]> arguments = composeArguments(titleItems, titleKey, titleValue);
 		MetadataTablePage metadataTable = goToMetadataTable(titleItems);
 		metadataTable.addColumn(titleKey);
-		metadataTable.editEntry(arguments);
+		collectionEntry = metadataTable.editEntry(arguments);
+		collectionEntry.deselectAllSelectedItems();
 		validateMetadata(titleItems, titleKey, titleValue);
 	}
 	
@@ -151,7 +153,8 @@ public class MetadataSelectedItems extends BaseSelenium {
 		List<String[]> arguments = composeArguments(titleItems, titleKey, titleValue);
 		MetadataTablePage metadataTable = goToMetadataTable(titleItems);
 		metadataTable = metadataTable.addColumn(titleKey);
-		metadataTable.editEntry(arguments);
+		collectionEntry = metadataTable.editEntry(arguments);
+		collectionEntry.deselectAllSelectedItems();
 		validateMetadata(titleItems, titleKey, titleValue);
 	}
 	
@@ -164,7 +167,8 @@ public class MetadataSelectedItems extends BaseSelenium {
 		List<String[]> arguments = composeArguments(titleItems, titleKey, titleValue);
 		MetadataTablePage metadataTable = goToMetadataTable(titleItems);
 		metadataTable = metadataTable.addColumn(titleKey);
-		metadataTable.editEntry(arguments);
+		collectionEntry = metadataTable.editEntry(arguments);
+		collectionEntry.deselectAllSelectedItems();
 		validateMetadata(titleItems, titleKey, titleValue);
 	}
 	
@@ -177,7 +181,8 @@ public class MetadataSelectedItems extends BaseSelenium {
 		List<String[]> arguments = composeArguments(titleItems, titleKey, titleValue);
 		MetadataTablePage metadataTable = goToMetadataTable(titleItems);
 		metadataTable = metadataTable.addColumn(titleKey);
-		metadataTable.editEntry(arguments);
+		collectionEntry = metadataTable.editEntry(arguments);
+		collectionEntry.deselectAllSelectedItems();
 		validateMetadata(titleItems, titleKey, "MPDL, MPDL (MPDL)");
 	}
 	
@@ -190,7 +195,8 @@ public class MetadataSelectedItems extends BaseSelenium {
 		List<String[]> arguments = composeArguments(titleItems, titleKey, titleValue);
 		MetadataTablePage metadataTable = goToMetadataTable(titleItems);
 		metadataTable = metadataTable.addColumn(titleKey);
-		metadataTable.editEntry(arguments);
+		collectionEntry = metadataTable.editEntry(arguments);
+		collectionEntry.deselectAllSelectedItems();
 		validateMetadata(titleItems, titleKey, "MPDL, MPDL (MPDL)");
 	}
 	

@@ -20,7 +20,6 @@ import spot.components.ActionComponent;
 import spot.components.SearchComponent.CategoryType;
 import spot.components.ShareComponent;
 import spot.components.UploadWindow;
-import spot.pages.registered.DiscardedCollectionEntryPage;
 import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.EditLicensePage;
@@ -488,6 +487,19 @@ public class CollectionEntryPage extends BasePage {
 	
 	public CollectionEntryPage selectItem(String title) {
 		return selectItem(getItemIndex(title));
+	}
+	
+	/**
+	 * Deselect all selected items.
+	 * Works only if the CollectionEntryPage is reloaded or visited again after the selection.
+	 * @return the CollectionEntryPage
+	 */
+	public CollectionEntryPage deselectAllSelectedItems() {
+		List<WebElement> selectedCheckboxes = driver.findElements(By.cssSelector("[class='imj_optionCheckbox'][id^='th:f:i:'][checked='checked']"));
+		for (WebElement selectedCheckbox : selectedCheckboxes) {
+			selectedCheckbox.click();
+		}
+		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
 	public CollectionEntryPage deleteSelectedItems() {

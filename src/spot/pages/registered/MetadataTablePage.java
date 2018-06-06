@@ -39,9 +39,8 @@ public class MetadataTablePage extends BasePage {
 	}
 	
 	public MetadataTablePage addColumn(String columnName) {
-		// 'add column' button does not always respond to the click command
 		wait.until(ExpectedConditions.elementToBeClickable(addColumn));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", addColumn);
+		addColumn.click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("selectStatementDialog")));
 		try {
 			driver.findElement(By.linkText(columnName)).click();
