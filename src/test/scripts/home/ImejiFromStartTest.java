@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
+import spot.pages.BasePage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
@@ -23,7 +24,7 @@ public class ImejiFromStartTest extends BaseSelenium {
 	public void imejiFromStartNRUPublic() {
 		String url = imejiFromStart();
 		closeImeji();
-		Assert.assertEquals(url, "https://github.com/imeji-community/imeji/");
+		Assert.assertEquals(url, BasePage.IMEJI_GITHUB_URL);
 	}
 	
 	@Test(priority = 2)
@@ -33,7 +34,7 @@ public class ImejiFromStartTest extends BaseSelenium {
 		String url = imejiFromStart();
 		closeImeji();
 		homePage.logout();
-		Assert.assertEquals(url, "https://github.com/imeji-community/imeji/");
+		Assert.assertEquals(url, BasePage.IMEJI_GITHUB_URL);
 	}
 	
 	@Test(priority = 3)
@@ -41,7 +42,7 @@ public class ImejiFromStartTest extends BaseSelenium {
 		switchPrivateMode(true);
 		String url = imejiFromStart();
 		closeImeji();
-		Assert.assertEquals(url, "https://github.com/imeji-community/imeji/");
+		Assert.assertEquals(url, BasePage.IMEJI_GITHUB_URL);
 	}
 	
 	@Test(priority = 4)
@@ -51,7 +52,7 @@ public class ImejiFromStartTest extends BaseSelenium {
 		String url = imejiFromStart();
 		closeImeji();
 		homePage.logout();
-		Assert.assertEquals(url, "https://github.com/imeji-community/imeji/");
+		Assert.assertEquals(url, BasePage.IMEJI_GITHUB_URL);
 	}
 	
 	@AfterClass

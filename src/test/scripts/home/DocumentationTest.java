@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
+import spot.pages.BasePage;
 import spot.pages.HelpPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
@@ -25,7 +26,7 @@ public class DocumentationTest extends BaseSelenium {
 	public void openDocumentationNRUPublic() {
 		String url = openDocumentation();
 		closeDocumentation();
-		Assert.assertEquals(url, "https://github.com/imeji-community/imeji/", "Documentation URLs don't match.");
+		Assert.assertEquals(url, BasePage.IMEJI_GITHUB_URL, "Documentation URLs don't match.");
 	}
 	
 	@Test (priority = 2)
@@ -35,7 +36,7 @@ public class DocumentationTest extends BaseSelenium {
 		String url = openDocumentation();
 		closeDocumentation();
 		homePage.logout();
-		Assert.assertEquals(url, "https://github.com/imeji-community/imeji/", "Documentation URLs don't match.");
+		Assert.assertEquals(url, BasePage.IMEJI_GITHUB_URL, "Documentation URLs don't match.");
 	}
   
 	@Test (priority = 3)
@@ -43,7 +44,7 @@ public class DocumentationTest extends BaseSelenium {
 		switchPrivateMode(true);
 		String url = openDocumentation();
 		closeDocumentation();
-		Assert.assertEquals(url, "https://github.com/imeji-community/imeji/", "Documentation URLs don't match.");
+		Assert.assertEquals(url, BasePage.IMEJI_GITHUB_URL, "Documentation URLs don't match.");
 	}
 	
 	@Test (priority = 4)
@@ -53,7 +54,7 @@ public class DocumentationTest extends BaseSelenium {
 		String url = openDocumentation();
 		closeDocumentation();
 		homePage.logout();
-		Assert.assertEquals(url, "https://github.com/imeji-community/imeji/", "Documentation URLs don't match.");
+		Assert.assertEquals(url, BasePage.IMEJI_GITHUB_URL, "Documentation URLs don't match.");
 	}
 	
 	@AfterClass

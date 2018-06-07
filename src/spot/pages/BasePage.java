@@ -75,6 +75,11 @@ public abstract class BasePage {
 	protected WebElement mpdlHomePage;
 	
 	/**
+	 * The link to imeji on github.
+	 */
+	public static final String IMEJI_GITHUB_URL = "https://github.com/MPDL/imeji/";
+	
+	/**
 	 * Constructor
 	 * 
 	 * @param driver
