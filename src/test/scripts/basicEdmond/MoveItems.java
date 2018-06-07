@@ -75,7 +75,7 @@ public class MoveItems extends BaseSelenium {
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle1);
 		int itemCount = collectionEntry.getItemListSize();
-		Assert.assertEquals(itemCount, 20, "An item was not successfully uploaded.");
+		Assert.assertEquals(itemCount, items.length, "An item was not successfully uploaded.");
 	}
 	
 	@Test(priority = 4)

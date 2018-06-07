@@ -116,7 +116,7 @@ public class MoveItems extends BaseSelenium {
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle1);
 		int uploadedCount = collectionEntry.getItemListSize();
-		Assert.assertEquals(uploadedCount, 11, "An item was not uploaded");
+		Assert.assertEquals(uploadedCount, items.length, "An item was not uploaded");
 	}
 	
 	/**
