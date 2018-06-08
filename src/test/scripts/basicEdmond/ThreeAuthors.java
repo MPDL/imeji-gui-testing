@@ -260,7 +260,7 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-236
 	 */
-	@Test(priority = 18, dependsOnMethods = { "createCollection3Authors" })
+	@Test(priority = 17, dependsOnMethods = { "createCollection3Authors" })
 	public void downloadSelectedItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.selectItem(0);
@@ -273,9 +273,10 @@ public class ThreeAuthors extends BaseSelenium {
 	/**
 	 * IMJ-232
 	 */
-	@Test(priority = 17, dependsOnMethods = { "createCollection3Authors" })
+	@Test(priority = 18, dependsOnMethods = { "createCollection3Authors" })
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		collectionEntry.deselectAllSelectedItems();
 		boolean canDownloadAll = collectionEntry.downloadAllPossible();
 		Assert.assertTrue(canDownloadAll, "'Download All' button is not displayed or enabled.");
 	}
@@ -325,8 +326,9 @@ public class ThreeAuthors extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.selectItem(0);
 		collectionEntry = collectionEntry.discardSelectedItems();
-		int newItemCount = collectionEntry.getTotalItemNumber();
 		
+		collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		int newItemCount = collectionEntry.getTotalItemNumber();
 		Assert.assertEquals(newItemCount, itemCount - 1, "Discarded item should not be in item list.");
 	}
 

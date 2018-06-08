@@ -335,6 +335,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	@Test(priority = 25, dependsOnMethods = { "createDefaultCollection" })
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		collectionEntry.deselectAllSelectedItems();
 		boolean canDownloadAll = collectionEntry.downloadAllPossible();
 		Assert.assertTrue(canDownloadAll, "'Download' button is not displayed or enabled.");
 	}

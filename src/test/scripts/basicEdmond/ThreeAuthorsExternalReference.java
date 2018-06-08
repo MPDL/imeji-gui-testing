@@ -302,8 +302,9 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.selectItem(0);
 		collectionEntry = collectionEntry.discardSelectedItems();
-		int newItemCount = collectionEntry.getTotalItemNumber();
 		
+		collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		int newItemCount = collectionEntry.getTotalItemNumber();
 		Assert.assertEquals(newItemCount, itemCount - 1, "Discarded item should not be in item list.");
 	}
 	

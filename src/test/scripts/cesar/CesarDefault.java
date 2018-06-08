@@ -344,6 +344,7 @@ public class CesarDefault extends BaseSelenium {
 	@Test(priority = 23, dependsOnMethods = {"createDefaultCollection"})
 	public void downloadAllItems() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		collectionEntry.deselectAllSelectedItems();
 		boolean canDownloadAll = collectionEntry.downloadAllPossible();
 		Assert.assertTrue(canDownloadAll, "'Download All' button is not displayed or enabled.");
 	}
