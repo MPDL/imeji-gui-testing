@@ -508,9 +508,7 @@ public class CollectionEntryPage extends BasePage {
 				"document.querySelector('#deleteSelectedItems .imj_submitPanel .imj_submitButton').click();");
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
 
-		// Find the loaderWrapper with the style-attribute to get the actual, non-stale
-		// loaderWrapper
-		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper[style]"));
+		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
 		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
 
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
@@ -524,6 +522,9 @@ public class CollectionEntryPage extends BasePage {
 		((JavascriptExecutor) driver).executeScript(
 				"document.querySelector('#withdrawSelectedItems .imj_submitPanel .imj_submitButton').click();");
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
+		
+		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
+		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
 
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}

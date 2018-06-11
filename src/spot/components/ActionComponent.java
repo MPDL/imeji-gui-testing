@@ -78,6 +78,10 @@ public class ActionComponent extends BasePage {
 	public MetadataTablePage editSelectedItems() {
 		new Actions(driver).moveToElement(selectedMenu).moveToElement(editSelectedItems).click().build().perform();
 		
+		//Find the loaderWrapper with the specified parent to get the actual, non-stale loaderWrapper
+		WebElement loaderWrapper = driver.findElement(By.cssSelector(".imj_allContentWrapper>.loaderWrapper[style]"));
+		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+		
 		return PageFactory.initElements(driver, MetadataTablePage.class);
 	}
 	
@@ -89,9 +93,6 @@ public class ActionComponent extends BasePage {
 	
 	public CollectionEntryPage releaseCollection() {
 		new Actions(driver).moveToElement(menuCollection).moveToElement(releaseCollection).click().build().perform();
-//		openMenuCollection();
-//		wait.until(ExpectedConditions.visibilityOf(releaseCollection));
-//		releaseCollection.click();
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#releaseCollection .imj_submitPanel .imj_submitButton').click();");
 		
 		//Find the loaderWrapper with the style-attribute to get the actual, non-stale loaderWrapper
