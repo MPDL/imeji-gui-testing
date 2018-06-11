@@ -27,6 +27,9 @@ public class SearchComponent {
 	@FindBy(id = "btnSimpleSearch")
 	private WebElement goToQuickSearchingButton;
 	
+	@FindBy(id = "simpleSearchForItems")
+	private WebElement searchItems;
+	
 	@FindBy(id = "simpleSearchForCollections")
 	private WebElement searchCollections;
 	
@@ -64,17 +67,15 @@ public class SearchComponent {
 		quickSearchTextField.clear();
 		quickSearchTextField.sendKeys(searchQuery);
 		
-		WebElement categoryMenu = driver.findElement(By.className("imj_bodyContextSearch"));
 		switch(category) {
 			case ITEM:
-				categoryMenu.findElement(By.id("simpleSearchForItems")).click();
+				searchItems.click();
 				break;
 			case COLLECTION:
-				new Actions(driver).moveToElement(categoryMenu).moveToElement(searchCollections).click().build().perform();
-				//driver.navigate().to("http://qa-imeji.mpdl.mpg.de/imeji/collections?q=" + searchQuery);
+				searchCollections.click();
 				break;
 			default:
-				categoryMenu.findElement(By.id("simpleSearchForItems")).click();
+				searchItems.click();
 				break;
 		}
 		
