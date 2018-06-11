@@ -3,6 +3,7 @@ package test.scripts.home;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -33,7 +34,7 @@ public class TermsOfUseTest extends BaseSelenium {
 		boolean termsOfUseDisplayed = termsOfUseTest();
 		closeTermsOfUse();
 		
-		Assert.assertTrue(termsOfUseDisplayed, "Terms of Use page is not displayed.");
+		Assert.assertTrue(termsOfUseDisplayed, "Terms of Use page is not displayed correctly.");
 	}
 	
 	@Test (priority = 2)
@@ -44,7 +45,7 @@ public class TermsOfUseTest extends BaseSelenium {
 		closeTermsOfUse();
 		homePage.logout();
 		
-		Assert.assertTrue(termsOfUseDisplayed, "Terms of Use page is not displayed to RU in public mode.");
+		Assert.assertTrue(termsOfUseDisplayed, "Terms of Use page is not displayed correctly to RU in public mode.");
 	}
   
 	@Test (priority = 3)
@@ -53,7 +54,7 @@ public class TermsOfUseTest extends BaseSelenium {
 		boolean termsOfUseDisplayed = termsOfUseTest();
 		closeTermsOfUse();
 		
-		Assert.assertTrue(termsOfUseDisplayed, "Terms of Use page is not displayed.");
+		Assert.assertTrue(termsOfUseDisplayed, "Terms of Use page is not displayed correctly.");
 	}
 	
 	@Test (priority = 4)
@@ -64,7 +65,7 @@ public class TermsOfUseTest extends BaseSelenium {
 		closeTermsOfUse();
 		homePage.logout();
 		
-		Assert.assertTrue(termsOfUseDisplayed, "Terms of Use page is not displayed.");
+		Assert.assertTrue(termsOfUseDisplayed, "Terms of Use page is not displayed correctly.");
 	}
 	
 	private boolean termsOfUseTest() {
@@ -78,7 +79,12 @@ public class TermsOfUseTest extends BaseSelenium {
 		termsHandle = windowHandles.iterator().next();
 		driver.switchTo().window(termsHandle);
 
-		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.id("carousel1")));
+		try {
+			new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.id("carousel1")));
+		} catch (TimeoutException e) {
+			return false;
+		}
+		
 		String actualCurrentURL = getCurrentURL();		
 		return actualCurrentURL.equals(TERMS_OF_USE);
 	}
