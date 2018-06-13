@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
 
@@ -27,6 +28,9 @@ public class NewUserGroupPage extends BasePage {
 		newUserGroupNameTextField.sendKeys(newUserGroupName);
 		
 		((JavascriptExecutor) driver).executeScript("document.querySelector('.imj_metadataValueEntry .imj_submitButton').click();");
+		
+		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
+		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
 		
 		return PageFactory.initElements(driver, UserGroupPage.class);
 	}

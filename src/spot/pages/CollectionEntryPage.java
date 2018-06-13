@@ -549,7 +549,7 @@ public class CollectionEntryPage extends BasePage {
 
 		driver.findElement(By.linkText(collectionTitle)).click();
 		WebElement moveDialog = driver.findElement(By.id("moveSelected"));
-		moveDialog.findElement(By.id("selDialogs:moveSel:form:j_idt852")).click();
+		moveDialog.findElement(By.className("imj_submitButton")).click();
 
 		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
 		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
