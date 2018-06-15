@@ -577,6 +577,9 @@ public class CollectionEntryPage extends BasePage {
 			new Actions(driver).moveToElement(displayMenu).moveToElement(thumbnailViewButtons.get(0)).click().build()
 					.perform();
 		}
+		
+		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
+		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
 
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
@@ -589,6 +592,9 @@ public class CollectionEntryPage extends BasePage {
 					.perform();
 		}
 
+		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
+		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 }
