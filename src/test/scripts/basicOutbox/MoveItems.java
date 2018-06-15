@@ -195,7 +195,7 @@ public class MoveItems extends BaseSelenium {
 		uploadItem(collectionTitle1, "APC_Springer_Strafrecht_201608.xlsx");
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle1);
 		collectionEntry = collectionEntry.selectItem("APC_Springer_Strafrecht_201608.xlsx");
-		collectionEntry = collectionEntry.moveSelectedItemsToReleasedCollection(collectionTitle2);
+		collectionEntry = collectionEntry.moveSelectedItemsToPrivateCollection(collectionTitle2);
 		
 		MessageType messageType = collectionEntry.getPageMessageType();
 		Assert.assertEquals(messageType, MessageType.ERROR, "Error message for repeated item is not displayed.");

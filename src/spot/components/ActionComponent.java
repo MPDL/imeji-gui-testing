@@ -103,8 +103,7 @@ public class ActionComponent extends BasePage {
 	}
 	
 	public CollectionsPage deleteCollection() {
-		openMenuCollection();
-		deleteCollection.click();
+		new Actions(driver).moveToElement(menuCollection).moveToElement(deleteCollection).click().build().perform();
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#deleteCollection .imj_submitPanel .imj_submitButton').click();");
 		
 		return PageFactory.initElements(driver, CollectionsPage.class);
@@ -129,14 +128,6 @@ public class ActionComponent extends BasePage {
 		try { Thread.sleep(5000); } catch (InterruptedException e) { }
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
-	}
-	
-	private void openMenuCollection() {
-		menuCollection.click();
-	}
-	
-	private void openMenuItems() {
-		menuItems.click();
 	}
 	
 }
