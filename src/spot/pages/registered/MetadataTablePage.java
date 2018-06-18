@@ -44,6 +44,10 @@ public class MetadataTablePage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("selectStatementDialog")));
 		try {
 			driver.findElement(By.linkText(columnName)).click();
+			
+			WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
+			wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+			
 			return PageFactory.initElements(driver, MetadataTablePage.class);
 		}
 		catch (NoSuchElementException exc) {
