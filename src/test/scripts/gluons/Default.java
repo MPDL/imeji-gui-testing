@@ -101,6 +101,7 @@ public class Default extends BaseSelenium {
 		EditCollectionPage editCollection = collectionEntry.editInformation();
 		editCollection.addLogo(getFilepath("SampleJPGFile.jpg"));
 		collectionEntry = editCollection.submitChanges();
+		collectionEntry.hideMessages();
 		
 		boolean hasLogo = collectionEntry.hasLogo();
 		Assert.assertTrue(hasLogo, "Logo is not displayed.");

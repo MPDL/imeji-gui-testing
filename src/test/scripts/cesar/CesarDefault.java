@@ -82,6 +82,7 @@ public class CesarDefault extends BaseSelenium {
 		EditCollectionPage editCollection = collectionEntry.editInformation();
 		editCollection.addInformation("Custom information", "https://mpdl.mpg.de/");
 		collectionEntry = editCollection.submitChanges();
+		collectionEntry.hideMessages();
 		
 		collectionEntry = collectionEntry.openDescription();
 		boolean labelDisplayed = collectionEntry.labelDisplayed("Custom information");
@@ -97,6 +98,7 @@ public class CesarDefault extends BaseSelenium {
 		EditCollectionPage editCollection = collectionEntry.editInformation();
 		editCollection.addLogo(getFilepath("SampleJPGFile.jpg"));
 		collectionEntry = editCollection.submitChanges();
+		collectionEntry.hideMessages();
 		
 		boolean hasLogo = collectionEntry.hasLogo();
 		Assert.assertTrue(hasLogo, "Logo is not displayed.");
