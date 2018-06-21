@@ -263,6 +263,12 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 		deleteFacetTest(licenseFacet);
 	}
 	
+	@Test(priority = 26)
+	public void deleteCollection() {
+		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		collectionEntry.deleteCollection();
+	}
+	
 	@AfterClass
 	public void logoutAdmin() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);

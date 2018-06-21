@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import spot.components.MessageComponent.MessageType;
 import spot.pages.CollectionEntryPage;
+import spot.pages.CollectionsPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
@@ -208,6 +209,19 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		sharePage = sharePage.invite();
 		boolean pendingInvitation = sharePage.isEmailPendingInvitation(email);
 		Assert.assertTrue(pendingInvitation, "Email of external user is not in 'Pending invitations' list.");
+	}
+	
+	/**
+	 * IMJ-96
+	 */
+	@Test(priority = 14, dependsOnMethods = {"createDefaultCollection"})
+	public void deleteCollection() {
+		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		CollectionsPage collectionsPage = collectionEntry.deleteCollection();
+		collectionsPage.hideMessages();
+		
+		boolean collectionPresent = collectionsPage.collectionPresent(collectionTitle);
+		Assert.assertFalse(collectionPresent, "Collection was not deleted.");
 	}
 
 	/**

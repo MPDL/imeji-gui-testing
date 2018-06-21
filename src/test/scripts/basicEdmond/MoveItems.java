@@ -254,9 +254,13 @@ public class MoveItems extends BaseSelenium {
 	}
 	
 	@Test(priority = 17)
-	public void removeCollections() {
+	public void deleteCollections() {
 		homepage.goToCollectionPage().openCollectionByTitle(collectionTitle1).deleteCollection();
 		homepage.goToCollectionPage().openCollectionByTitle(collectionTitle2).deleteCollection();
+	}
+	
+	@Test(priority = 18)
+	public void discardCollection() {
 		homepage.goToCollectionPage().openCollectionByTitle(collectionTitle3).discardCollection();
 	}
 	
