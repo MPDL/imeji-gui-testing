@@ -370,6 +370,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	public void addCollectionDOI() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.setDOI();
+		collectionEntry.hideMessages();
 		
 		collectionEntry = collectionEntry.openDescription();
 		String actualDOI = collectionEntry.getDOI();

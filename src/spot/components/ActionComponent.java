@@ -2,8 +2,6 @@ package spot.components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -14,10 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import spot.pages.BasePage;
 import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
-import spot.pages.registered.DiscardedCollectionEntryPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.EditLicensePage;
-import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.MetadataTablePage;
 
 public class ActionComponent extends BasePage {
@@ -40,14 +36,13 @@ public class ActionComponent extends BasePage {
 	@FindBy(css = "#colForm>.dropdown:nth-of-type(2)>.content>a:nth-of-type(2)")
 	private WebElement editLicenses;
 	
-	@FindBy(css = ".dropdown>.content>a:nth-of-type(3)")
+	@FindBy(linkText = "Publish")
 	private WebElement releaseCollection;
 	
 	@FindBy(linkText = "Delete")
 	private WebElement deleteCollection;
 	
 	@FindBy(linkText = "Discard")
-//	@FindBy(css = ".dropdown>.content>a:nth-of-type(5)")
 	private WebElement discardCollection;
 	
 	@FindBy(id = "lnkCreateDOI")
