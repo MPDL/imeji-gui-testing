@@ -3,7 +3,6 @@ package test.scripts.home;
 import java.util.Set;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -15,10 +14,12 @@ import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
 import spot.pages.registered.Homepage;
 import test.base.BaseSelenium;
+import test.base.SeleniumTestSuite;
 
 public class TermsOfUseTest extends BaseSelenium {
 
-	private static String TERMS_OF_USE = "https://www.mpdl.mpg.de/en/terms-of-service-en.html";
+	private static final String TERMS_OF_USE_PAGE_TITLE = "Nutzungsbedingungen";
+	private static final String TERMS_OF_USE_URL = SeleniumTestSuite.TEST_ENV_URL + "imeji/terms_of_use";
 	
 	private String windowHandleStartPage;
 	private String termsHandle;
@@ -78,15 +79,12 @@ public class TermsOfUseTest extends BaseSelenium {
 		windowHandles.remove(windowHandleStartPage);
 		termsHandle = windowHandles.iterator().next();
 		driver.switchTo().window(termsHandle);
-
-		try {
-			new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.id("carousel1")));
-		} catch (TimeoutException e) {
-			return false;
-		}
 		
-		String actualCurrentURL = getCurrentURL();		
-		return actualCurrentURL.equals(TERMS_OF_USE);
+		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_siteContentHeadline>h1")));
+		
+		String actualPagetitle = driver.findElement(By.cssSelector(".imj_siteContentHeadline>h1")).getText();
+		String actualCurrentURL = getCurrentURL();
+		return actualCurrentURL.equals(TERMS_OF_USE_URL) && actualPagetitle.equals(TERMS_OF_USE_PAGE_TITLE);
 	}
 	
 	private void switchPrivateMode(boolean privateMode) {

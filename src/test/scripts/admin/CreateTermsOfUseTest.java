@@ -60,6 +60,8 @@ public class CreateTermsOfUseTest extends BaseSelenium {
 		Assert.assertEquals(actualTerms, termsOfUse, "Terms of use were not correctly uploaded.");
 	}
 	
+	//TODO: Add Terms of Use URL tests
+	
 	@Test(priority = 4)
 	public void revertTermsOfUse() throws IOException {
 		if (driver.getWindowHandles().size() > 1) {
