@@ -18,7 +18,6 @@ import test.base.SeleniumTestSuite;
 
 public class TermsOfUseTest extends BaseSelenium {
 
-	private static final String TERMS_OF_USE_PAGE_TITLE = "Nutzungsbedingungen";
 	private static final String TERMS_OF_USE_URL = SeleniumTestSuite.TEST_ENV_URL + "imeji/terms_of_use";
 	
 	private String windowHandleStartPage;
@@ -29,6 +28,9 @@ public class TermsOfUseTest extends BaseSelenium {
 		super.setup();
 		navigateToStartPage();
 	}
+	
+	//TODO: Check that the terms of use url is NOT set (these tests only work if no terms of use URL is set)
+	//TODO: Merge with class CreateTermsOfUseTest
 
 	@Test (priority = 1)
 	public void openTermsOfUseNRUPublic() {
@@ -82,9 +84,8 @@ public class TermsOfUseTest extends BaseSelenium {
 		
 		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".imj_siteContentHeadline>h1")));
 		
-		String actualPagetitle = driver.findElement(By.cssSelector(".imj_siteContentHeadline>h1")).getText();
 		String actualCurrentURL = getCurrentURL();
-		return actualCurrentURL.equals(TERMS_OF_USE_URL) && actualPagetitle.equals(TERMS_OF_USE_PAGE_TITLE);
+		return actualCurrentURL.equals(TERMS_OF_USE_URL);
 	}
 	
 	private void switchPrivateMode(boolean privateMode) {
