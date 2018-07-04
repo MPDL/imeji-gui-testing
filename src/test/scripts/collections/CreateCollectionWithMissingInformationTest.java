@@ -53,7 +53,7 @@ public class CreateCollectionWithMissingInformationTest extends BaseSelenium {
 		String collectionDescription = "Some collection description";
 
 		CollectionEntryPage collectionEntryPage = createNewCollectionPage.createCollection(
-				"", collectionDescription, getPropertyAttribute("aGivenName"), getPropertyAttribute("aFamilyName"), 
+				"", collectionDescription, getPropertyAttribute(adminGivenName), getPropertyAttribute(adminFamilyName), 
 				getPropertyAttribute(ruOrganizationName));
 
 		Assert.assertTrue(collectionEntryPage == null, "Collection shouldn't have been created since collection title was missing.");

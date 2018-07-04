@@ -19,7 +19,7 @@ public class EnterUserManagementTest extends BaseSelenium {
 	@Test(priority = 1)
 	private void loginAsAdmin() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
-		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute("aSpotUserName"), getPropertyAttribute("aSpotPassword"));
+		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
 	}
 	
 	@Test(priority = 2)
