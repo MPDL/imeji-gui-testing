@@ -61,7 +61,8 @@ public class ActionComponent extends BasePage {
 	}
 	
 	public EditItemsPage editAllItems() {
-		new Actions(driver).moveToElement(menuItems).moveToElement(editItems).click().build().perform();
+		new Actions(driver).moveToElement(menuItems).perform();
+		editItems.click();
 		
 		//Find the loaderWrapper with the style-attribute to get the actual, non-stale loaderWrapper
 		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper[style]"));
@@ -71,7 +72,8 @@ public class ActionComponent extends BasePage {
 	}
 	
 	public MetadataTablePage editSelectedItems() {
-		new Actions(driver).moveToElement(selectedMenu).moveToElement(editSelectedItems).click().build().perform();
+		new Actions(driver).moveToElement(selectedMenu).perform();
+		editSelectedItems.click();
 		
 		//Find the loaderWrapper with the specified parent to get the actual, non-stale loaderWrapper
 		WebElement loaderWrapper = driver.findElement(By.cssSelector(".imj_allContentWrapper>.loaderWrapper[style]"));
@@ -81,13 +83,16 @@ public class ActionComponent extends BasePage {
 	}
 	
 	public EditLicensePage editAllLicenses() {
-		new Actions(driver).moveToElement(menuItems).moveToElement(editLicenses).click().build().perform();
+		new Actions(driver).moveToElement(menuItems).perform();
+		editLicenses.click();
 
 		return PageFactory.initElements(driver, EditLicensePage.class);
 	}
 	
 	public CollectionEntryPage releaseCollection() {
-		new Actions(driver).moveToElement(menuCollection).moveToElement(releaseCollection).click().build().perform();
+		new Actions(driver).moveToElement(menuCollection).perform();
+		releaseCollection.click();
+		
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#releaseCollection .imj_submitPanel .imj_submitButton').click();");
 		
 		//Find the loaderWrapper with the style-attribute to get the actual, non-stale loaderWrapper
@@ -98,14 +103,17 @@ public class ActionComponent extends BasePage {
 	}
 	
 	public CollectionsPage deleteCollection() {
-		new Actions(driver).moveToElement(menuCollection).moveToElement(deleteCollection).click().build().perform();
+		new Actions(driver).moveToElement(menuCollection).perform();
+		deleteCollection.click();
+		
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#deleteCollection .imj_submitPanel .imj_submitButton').click();");
 		
 		return PageFactory.initElements(driver, CollectionsPage.class);
 	}
 	
 	public CollectionsPage discardCollection() {
-		new Actions(driver).moveToElement(menuCollection).moveToElement(discardCollection).click().build().perform();
+		new Actions(driver).moveToElement(menuCollection).perform();
+		discardCollection.click();
 		
 		WebElement discardBox = driver.findElement(By.className("imj_dialogReasonText"));
 		discardBox.sendKeys("Discarding for testing purposes.");
@@ -116,7 +124,8 @@ public class ActionComponent extends BasePage {
 	}
 	
 	public CollectionEntryPage setDOI() {
-		new Actions(driver).moveToElement(menuCollection).moveToElement(addDOI).click().build().perform();
+		new Actions(driver).moveToElement(menuCollection).perform();
+		addDOI.click();
 		
 		retryingFindClick(By.cssSelector("#getDOIDialog>form>.imj_submitPanel>.imj_submitButton"));
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
