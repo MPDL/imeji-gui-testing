@@ -1,10 +1,10 @@
 package test.scripts.collections;
 
 import org.testng.Assert;
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
@@ -18,8 +18,6 @@ public class CancelCollectionCreationTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClass() {
-		super.setup();
-		navigateToStartPage();
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(ruUsername),getPropertyAttribute(ruPassword));
 	}

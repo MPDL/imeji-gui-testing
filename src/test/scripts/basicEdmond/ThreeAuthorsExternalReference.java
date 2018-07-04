@@ -2,7 +2,6 @@ package test.scripts.basicEdmond;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.CollectionEntryPage;
@@ -27,11 +26,6 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 	private String collectionTitle = TimeStamp.getTimeStamp() + " 3 authors public mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
 	private String extLabel = "Custom information";
-	
-	@BeforeClass
-	public void beforeClass() {
-		navigateToStartPage();
-	}
 
 	/**
 	 * IMJ-1

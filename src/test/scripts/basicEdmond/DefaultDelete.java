@@ -2,7 +2,6 @@ package test.scripts.basicEdmond;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.CollectionEntryPage;
@@ -23,11 +22,6 @@ public class DefaultDelete extends BaseSelenium {
 	
 	private String collectionTitle = TimeStamp.getTimeStamp() + " 1 author public mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
-	
-	@BeforeClass
-	public void beforeClass() {
-		navigateToStartPage();
-	}
 
 	/**
 	 * IMJ-1

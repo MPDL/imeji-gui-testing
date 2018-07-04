@@ -2,7 +2,8 @@ package test.scripts.admin;
 
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
 
 import spot.components.MessageComponent.MessageType;
 import spot.pages.LoginPage;
@@ -17,12 +18,6 @@ public class UserPolicyManagementTest extends BaseSelenium {
 
 	private AdminHomepage adminHomePage;
 	private String emailOfNewUser;
-
-	@BeforeClass
-	public void setup() {
-		super.setup();
-		navigateToStartPage();
-	}
 	
 	@Test(priority = 1)
 	public void loginAsAdmin() {

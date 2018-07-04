@@ -3,7 +3,6 @@ package test.scripts.basicOutbox;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.components.MessageComponent.MessageType;
@@ -26,11 +25,6 @@ public class MoveItems extends BaseSelenium {
 	private String collectionTitle1 = "Collection for moving files (private) 1: " + TimeStamp.getTimeStamp();
 	private String collectionTitle2 = "Collection for moving files (private) 2: " + TimeStamp.getTimeStamp();
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
-	
-	@BeforeClass
-	public void beforeClass() {
-		navigateToStartPage();
-	}
 	
 	@Test(priority = 1)
 	public void switchPrivateMode() {

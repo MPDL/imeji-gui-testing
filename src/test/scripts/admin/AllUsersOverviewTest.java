@@ -2,7 +2,6 @@ package test.scripts.admin;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.LoginPage;
@@ -16,12 +15,6 @@ public class AllUsersOverviewTest extends BaseSelenium {
 
 	private AdminHomepage adminHomePage;
 	private UsersOverviewPage allUsersOverViewPage;
-	
-	@BeforeClass
-	public void setup() {
-		super.setup();
-		navigateToStartPage();
-	}
 	
 	@Test(priority = 1)
 	public void loginAsAdmin() {

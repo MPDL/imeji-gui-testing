@@ -24,10 +24,7 @@ public class EditUserProfileTest extends BaseSelenium {
 	private String newUserName = "edmond-test@mpdl.mpg.de";
 	
 	@BeforeClass
-	public void beforeClass() {
-		super.setup();
-		navigateToStartPage();
-		
+	public void beforeClass() {		
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
 		adminPage = adminHomePage.goToAdminPage();

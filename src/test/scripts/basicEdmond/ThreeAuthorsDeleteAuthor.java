@@ -2,21 +2,17 @@ package test.scripts.basicEdmond;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import spot.components.MessageComponent.MessageType;
 import spot.components.SearchComponent.CategoryType;
 import spot.pages.CollectionEntryPage;
 import spot.pages.ItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.SearchResultsPage;
 import spot.pages.StartPage;
-import spot.pages.registered.DiscardedCollectionEntryPage;
 import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.Homepage;
-import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.NewCollectionPage;
 import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
@@ -29,11 +25,6 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 	
 	private String collectionTitle = TimeStamp.getTimeStamp() + " 3 authors public mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
-	
-	@BeforeClass
-	public void beforeClass() {
-		navigateToStartPage();
-	}
 
 	/**
 	 * IMJ-1

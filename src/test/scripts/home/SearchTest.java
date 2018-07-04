@@ -1,7 +1,9 @@
 package test.scripts.home;
 
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import spot.components.SearchComponent.CategoryType;
 import spot.pages.AdvancedSearchPage;
@@ -22,7 +24,6 @@ public class SearchTest extends BaseSelenium {
 
 	@BeforeClass
 	public void beforeClassTest() {
-		super.setup();
 		switchPrivateMode(false);
 		startPage = new StartPage(driver);
 	}

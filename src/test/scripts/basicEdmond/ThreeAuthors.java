@@ -5,14 +5,12 @@ import java.util.List;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.CollectionEntryPage;
 import spot.pages.ItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
-import spot.pages.registered.DiscardedCollectionEntryPage;
 import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.EditLicensePage;
@@ -30,11 +28,6 @@ public class ThreeAuthors extends BaseSelenium {
 	private String collectionTitle = TimeStamp.getTimeStamp() + " 3 authors public mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
 	private List<String> organisations = new LinkedList<>();
-	
-	@BeforeClass
-	public void beforeClass() {
-		navigateToStartPage();
-	}
 
 	/**
 	 * IMJ-1

@@ -1,14 +1,11 @@
 package test.scripts.admin;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.LoginPage;
@@ -26,11 +23,6 @@ public class CreateTermsOfUseTest extends BaseSelenium {
 	private String originalTerms;
 	private String windowHandleStartPage;
 	private String termsHandle;
-	
-	@BeforeClass
-	public void beforeClass() {
-		super.setup();
-	}
 	
 	@Test(priority = 1)
 	public void goToAdministration() {

@@ -3,7 +3,6 @@ package test.scripts.admin;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.LoginPage;
@@ -16,12 +15,6 @@ public class EnterUserManagementTest extends BaseSelenium {
 	
 	private AdminHomepage adminHomePage;
 	private AdministrationPage administrationPage;
-	
-	@BeforeClass
-	public void setup() {
-		super.setup();
-		navigateToStartPage();
-	}
 	
 	@Test(priority = 1)
 	private void loginAsAdmin() {

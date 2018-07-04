@@ -2,7 +2,6 @@ package test.scripts.facets;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.components.MessageComponent.MessageType;
@@ -44,11 +43,6 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	private String statementNumber = "Number statement: " + TimeStamp.getTimeStamp();
 	private String facetNumber = "Number facet: " + TimeStamp.getTimeStamp();
 	private String numberValue = "1000.0";
-	
-	@BeforeClass
-	public void beforeClass() {
-		navigateToStartPage();
-	}
 	
 	@Test(priority = 1)
 	public void switchPrivateMode() {

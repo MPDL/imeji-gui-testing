@@ -2,7 +2,6 @@ package test.scripts.facets;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.CollectionEntryPage;
@@ -26,11 +25,6 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 	private String filetypeFacet = "Filetype facet: " + TimeStamp.getTimeStamp();
 	private String organizationsFacet = "Organizations facet: " + TimeStamp.getTimeStamp();
 	private String licenseFacet = "License facet: " + TimeStamp.getTimeStamp();
-	
-	@BeforeClass
-	public void beforeClass() {
-		navigateToStartPage();
-	}
 	
 	@Test(priority = 1)
 	public void switchPrivateMode() {

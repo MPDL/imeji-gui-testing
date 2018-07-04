@@ -2,7 +2,6 @@ package test.scripts.basicEdmond;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.CollectionEntryPage;
@@ -10,7 +9,6 @@ import spot.pages.ItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
-import spot.pages.registered.DiscardedCollectionEntryPage;
 import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.EditLicensePage;
@@ -28,11 +26,6 @@ public class OneAuthorLogo extends BaseSelenium {
 	
 	private String collectionTitle = TimeStamp.getTimeStamp() + " 1 author send note public mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
-	
-	@BeforeClass
-	public void beforeClass() {
-		navigateToStartPage();
-	}
 	
 	@Test(priority = 1)
 	public void disablePrivateMode() {
@@ -356,7 +349,7 @@ public class OneAuthorLogo extends BaseSelenium {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 		
-		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);		
 		collectionEntry = collectionEntry.releaseCollection();
 		
 		boolean releaseDisplayed = collectionEntry.releasedIconVisible();

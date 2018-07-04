@@ -4,7 +4,6 @@ import java.util.Random;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.components.MessageComponent.MessageType;
@@ -32,11 +31,6 @@ public class Default extends BaseSelenium {
 	
 	private String collectionTitle = TimeStamp.getTimeStamp() + " default 1 author private mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
-	
-	@BeforeClass
-	public void beforeClass() {
-		navigateToStartPage();
-	}
 
 	/**
 	 * IMJ-188

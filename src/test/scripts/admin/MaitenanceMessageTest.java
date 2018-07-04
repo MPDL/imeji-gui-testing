@@ -1,7 +1,6 @@
 package test.scripts.admin;
 
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.LoginPage;
@@ -17,11 +16,6 @@ public class MaitenanceMessageTest extends BaseSelenium {
 	private AdministrationPage adminPage;
 	
 	private String message = "Testing maintenance message functionality";
-	
-	@BeforeClass
-	public void beforeClass() {
-		super.setup();
-	}
 	
 	@Test(priority = 1)
 	public void goToAdministration() {

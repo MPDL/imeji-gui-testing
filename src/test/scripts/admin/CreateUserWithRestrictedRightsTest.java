@@ -22,10 +22,7 @@ public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
 	private UsersOverviewPage allUsersOverViewPage;
 	
 	@BeforeClass
-	public void beforeClass() {
-		super.setup();
-		navigateToStartPage();		
-		
+	public void beforeClass() {		
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
 		

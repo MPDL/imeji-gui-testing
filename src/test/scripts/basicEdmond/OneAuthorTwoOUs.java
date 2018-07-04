@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.CollectionEntryPage;
@@ -27,12 +26,7 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 	
 	private String collectionTitle = TimeStamp.getTimeStamp() + " 1 author 2 OUs public mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
-	
-	@BeforeClass
-	public void beforeClass() {
-		navigateToStartPage();
-	}
-	
+
 	/**
 	 * IMJ-1
 	 */

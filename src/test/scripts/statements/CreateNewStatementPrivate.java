@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
@@ -127,12 +126,6 @@ public class CreateNewStatementPrivate extends BaseSelenium {
 	@DataProvider(name = "statementData")
 	public static Iterator<Object[]> reindexerDataProvider() {
 		return new ReindexerDataIterator();
-	}
-	
-	@BeforeClass
-	public void beforeClass() {
-		//super.setup();
-		navigateToStartPage();
 	}
 	
 	@Factory(dataProvider = "statementData")

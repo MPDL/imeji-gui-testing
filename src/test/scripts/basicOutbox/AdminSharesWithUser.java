@@ -2,7 +2,6 @@ package test.scripts.basicOutbox;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.components.MessageComponent.MessageType;
@@ -29,11 +28,6 @@ public class AdminSharesWithUser extends BaseSelenium {
 	
 	private String collectionTitle = TimeStamp.getTimeStamp() + " Outbox private mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
-	
-	@BeforeClass
-	public void beforeClass() {
-		navigateToStartPage();
-	}
 
 	/**
 	 * IMJ-188

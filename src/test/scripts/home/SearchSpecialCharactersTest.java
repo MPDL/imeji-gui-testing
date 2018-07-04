@@ -20,7 +20,6 @@ private StartPage startPage;
 
 	@BeforeClass
 	public void beforeClassTest() {
-		super.setup();
 		startPage = new StartPage(driver);
 	}
 

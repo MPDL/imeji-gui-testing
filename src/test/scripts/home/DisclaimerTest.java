@@ -3,7 +3,8 @@ package test.scripts.home;
 import java.util.Set;
 
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
 
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
@@ -15,12 +16,6 @@ public class DisclaimerTest extends BaseSelenium {
 
 	private String windowHandleStartPage;
 	private String disclaimerHandle;
-	
-	@BeforeClass
-	public void beforeClass() {
-		super.setup();
-		navigateToStartPage();
-	}
 	
 	@Test (priority = 1)
 	public void openHelpNRUPublic() {
