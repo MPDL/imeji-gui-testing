@@ -64,6 +64,11 @@ public abstract class BaseSelenium {
 	public void setup() {
 		configureDriver();
 		setupUsers();
+		
+		//Each test run starts at the imeji StartPage
+		StartPage startPage = navigateToStartPage();
+		//Set English as language, because some tests use English labels to select elements
+		startPage.switchToEnglish();
 	}
 
 	private void setupUsers() {
@@ -119,10 +124,17 @@ public abstract class BaseSelenium {
 		driver.navigate().to(URLtoLoad);
 	}
 
-	public void navigateToStartPage() {
+	/**
+	 * Navigate to the imeji SartPage.
+	 * 
+	 * @return the SartPage
+	 */
+	public StartPage navigateToStartPage() {
 		if (!getCurrentURL().equals(SeleniumTestSuite.TEST_ENV_URL)) {
 			navigateDriverTo(SeleniumTestSuite.TEST_ENV_URL);
 		}
+		
+		return new StartPage(driver);
 	}
 
 	public HelpPage navigateToHelpPage() {

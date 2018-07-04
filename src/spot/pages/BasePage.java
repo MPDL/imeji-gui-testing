@@ -3,7 +3,6 @@ package spot.pages;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -17,6 +16,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import spot.components.MainMenuComponent;
@@ -51,6 +51,9 @@ public abstract class BasePage {
 
 	@FindBy(css=".imj_siteContentHeadline>h1")
 	private WebElement siteContentHeadline;
+	
+	@FindBy (id="langForm:sel")
+	private WebElement languageButton;
 	
 	@FindBy (css="#lnkHelp")
 	private WebElement helpButton;
@@ -89,6 +92,7 @@ public abstract class BasePage {
 		this.messageComponent = new MessageComponent(driver);
 		this.mainMenuComponent = new MainMenuComponent(driver);
 		this.searchComponent = new SearchComponent(driver);
+		//TODO: Add headerMenu Component with: txtAccountUserName, lnkLogout/lnkLogin, langForm, lnkHelp
 		
 		wait = new WebDriverWait(this.driver, 20);
 	}
@@ -279,6 +283,22 @@ public abstract class BasePage {
 	 */
 	public void hideMessages() {
 		messageComponent.hideMessages();
+	}
+	
+	/**
+	 * Switch the language of imeji to English.
+	 */
+	public void switchToEnglish() {
+		Select languageSelect = new Select(languageButton);
+		languageSelect.selectByValue("en");
+	}
+	
+	/**
+	 * Switch the language of imeji to German.
+	 */
+	public void switchToGerman() {
+		Select languageSelect = new Select(languageButton);
+		languageSelect.selectByValue("de");
 	}
 	
 }
