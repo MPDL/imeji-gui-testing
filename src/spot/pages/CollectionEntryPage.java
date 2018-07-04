@@ -186,7 +186,7 @@ public class CollectionEntryPage extends BasePage {
 			}
 		}
 
-		throw new NoSuchElementException("Label is not present.");
+		throw new NoSuchElementException("Label '" + label  + "' is not present.");
 	}
 
 	public int getTotalItemNumber() {

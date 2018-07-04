@@ -12,8 +12,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.google.common.base.Predicate;
-
 import spot.components.SearchComponent.CategoryType;
 import spot.components.ShareComponent;
 import spot.pages.registered.EditItemPage;
@@ -246,7 +244,7 @@ public class ItemViewPage extends BasePage {
 			}
 		}
 
-		throw new NoSuchElementException("Label is not present.");
+		throw new NoSuchElementException("Label '" + label  + "' is not present.");
 	}
 
 	public ItemViewPage moveItemToReleasedCollection(String collectionTitle) {
