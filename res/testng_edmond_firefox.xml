@@ -2,16 +2,21 @@
 <suite name="Basic" verbose="1" preserve-order="true">
 	<parameter name="browserType" value="firefox" />
 
-	<test name="Basic Edmond with one author">
+	<test name="Test Setup">
 		<classes>
-			<!-- Setup test cases. Must always run! -->
 		
+			<!-- Setup test cases. Must always run! -->
+			
 			<class name="test.base.SeleniumTestSuite" />
 			
-			<class name="test.base.BaseSelenium" />
-			
 			<!-- End of setup test cases. -->
+			
+		</classes>
+	</test>
 
+	<test name="Basic Edmond with one author">
+		<classes>
+		
 			<!-- Basic Edmond -->
 			
 			<class name="test.scripts.basicEdmond.OneAuthorLogo"></class>
@@ -82,20 +87,12 @@
 			
 		</classes>
 	</test>
+	
 	<test name="Statements test" group-by-instances="true">
 		<classes>
-			<!-- Setup test cases. Must always run! -->
-			
-			<class name="test.base.SeleniumTestSuite" />
-			
-			<class name="test.base.BaseSelenium" />
-			
-			<!-- End of setup test cases. -->
 						
 			<!-- Statements -->
 			
-			<!-- Temporarily don't run statements-tests because they lead to a TestNGException on Jenkins -->
-			<!-- 
 			<class name="test.scripts.statements.CreateDefaultStatementTest"></class>
 
 			<class name="test.scripts.statements.CreateNewStatementTest"></class>
@@ -103,8 +100,7 @@
 			<class name="test.scripts.statements.CreateDefaultStatementPrivate"></class>
 
 			<class name="test.scripts.statements.CreateNewStatementPrivate"></class>
-			 -->
-			 
+			
 			<!-- End of Statements -->
 			
 			<!-- Facets -->
@@ -121,4 +117,5 @@
 			
 		</classes>
 	</test>
+	
 </suite>
