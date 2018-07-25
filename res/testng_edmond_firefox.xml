@@ -14,7 +14,7 @@
 		</classes>
 	</test>
 
-	<test name="Basic Edmond with one author">
+	<test name="All Imeji Gui Tests">
 		<classes>
 		
 			<!-- Basic Edmond -->
@@ -84,12 +84,6 @@
 			<class name="test.scripts.home.SearchSpecialCharactersTest"></class>
 
 			<!--  End of Basic Home -->
-			
-		</classes>
-	</test>
-	
-	<test name="Statements test" group-by-instances="true">
-		<classes>
 						
 			<!-- Statements -->
 			
