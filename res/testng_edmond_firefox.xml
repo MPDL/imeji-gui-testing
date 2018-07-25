@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
-<suite name="Basic" verbose="1" preserve-order="true">
+<suite name="Basic" verbose="1" preserve-order="true" group-by-instances="true">
 	<parameter name="browserType" value="firefox" />
 
 	<test name="Test Setup">
