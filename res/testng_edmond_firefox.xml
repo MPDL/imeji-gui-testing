@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
-<suite name="Basic" verbose="1" preserve-order="true" group-by-instances="true">
+<suite name="Basic" verbose="1" preserve-order="true">
 	<parameter name="browserType" value="firefox" />
 
 	<test name="Test Setup">
@@ -100,7 +100,7 @@
 		</classes>
 	</test>
 
-	<test name="Data Driven Imeji Gui Tests" parallel="instances">
+	<test name="Data Driven Imeji Gui Tests" group-by-instances="true" parallel="instances">
 		<classes>
 						
 			<!-- Statements -->
