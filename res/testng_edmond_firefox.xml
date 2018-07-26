@@ -14,7 +14,7 @@
 		</classes>
 	</test>
 
-	<test name="All Imeji Gui Tests">
+	<test name="Single Imeji Gui Tests">
 		<classes>
 		
 			<!-- Basic Edmond -->
@@ -84,18 +84,6 @@
 			<class name="test.scripts.home.SearchSpecialCharactersTest"></class>
 
 			<!--  End of Basic Home -->
-						
-			<!-- Statements -->
-			
-			<class name="test.scripts.statements.CreateDefaultStatementTest"></class>
-
-			<class name="test.scripts.statements.CreateNewStatementTest"></class>
-			
-			<class name="test.scripts.statements.CreateDefaultStatementPrivate"></class>
-
-			<class name="test.scripts.statements.CreateNewStatementPrivate"></class>
-			
-			<!-- End of Statements -->
 			
 			<!-- Facets -->
 
@@ -108,6 +96,24 @@
 			<class name="test.scripts.facets.CreateMetadataFacetPrivate"></class>
 			
 			<!-- End of Facets -->
+
+		</classes>
+	</test>
+
+	<test name="Data Driven Imeji Gui Tests" parallel="instances">
+		<classes>
+						
+			<!-- Statements -->
+			
+			<class name="test.scripts.statements.CreateDefaultStatementTest"></class>
+
+			<class name="test.scripts.statements.CreateNewStatementTest"></class>
+			
+			<class name="test.scripts.statements.CreateDefaultStatementPrivate"></class>
+
+			<class name="test.scripts.statements.CreateNewStatementPrivate"></class>
+			
+			<!-- End of Statements -->
 			
 		</classes>
 	</test>
