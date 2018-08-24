@@ -34,6 +34,7 @@ public class StartPage extends BasePage {
 		PageFactory.initElements(this.driver, this);
 	}	
 	
+	// IMJ-1, IMJ-22
 	public LoginPage openLoginForm() {
 		try {
 			openLoginFormButton.click();	

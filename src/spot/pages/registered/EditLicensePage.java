@@ -24,6 +24,7 @@ public class EditLicensePage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
+	// IMJ-134
 	public CollectionEntryPage setLicense(String license) {
 		Select licenseSelect = new Select(licenseDropdown);
 		if (!licenseSelect.getFirstSelectedOption().equals(license))

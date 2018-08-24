@@ -1,16 +1,12 @@
 package spot.pages.registered;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -87,6 +83,7 @@ public class SharePage extends BasePage {
 		return checkCollectionGrants(released, sendMail, read, createItems, editItems, deleteItems, editCollectionInformation, editProfile, administrate);
 	}
 	
+	// IMJ-204, IMJ-196
 	public SharePage share(boolean released, boolean sendMail, String email, boolean read, boolean editItems, boolean administrate) {
 		emailTextField.sendKeys(email);
 		
@@ -303,6 +300,7 @@ public class SharePage extends BasePage {
 		return isGrantCorrect;
 	}
 	
+	// IMJ-204
 	public SharePage invite() {
 		WebElement inviteButton = unknownEmailPanel.findElement(By.className("imj_submitButton"));
 		inviteButton.click();

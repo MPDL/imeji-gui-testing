@@ -27,6 +27,9 @@ public class OneAuthorLogo extends BaseSelenium {
 	private String collectionTitle = TimeStamp.getTimeStamp() + " 1 author send note public mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
 	
+	/**
+	 * IMJ-21, IMJ-226
+	 */
 	@Test(priority = 1)
 	public void disablePrivateMode() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
@@ -34,12 +37,18 @@ public class OneAuthorLogo extends BaseSelenium {
 		adminHomepage.goToAdminPage().disablePrivateMode();
 	}
 	
+	/**
+	 * IMJ-226
+	 */
 	@Test(priority = 2)
 	public void enableThumbnailView() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		adminHomepage.goToAdminPage().enableThumbnailView();
 	}
 	
+	/**
+	 * IMJ-226
+	 */
 	@Test(priority = 3)
 	public void forceThumbnailView() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
@@ -53,7 +62,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	}
 	
 	/**
-	 * IMJ-1
+	 * IMJ-1, IMJ-112
 	 */
 	@Test(priority = 5)
 	public void loginUser1() {
@@ -65,7 +74,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-83
+	 * IMJ-112, IMJ-113, IMJ-83
 	 */
 	@Test(priority = 6)
 	public void createDefaultCollection() {
@@ -104,6 +113,9 @@ public class OneAuthorLogo extends BaseSelenium {
 		Assert.assertEquals(pageTitle, collectionTitle, "Title was not changed.");
 	}
 	
+	/**
+	 * IMJ-131, IMJ-56
+	 */
 	private void uploadItem(String title) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
@@ -122,7 +134,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-279
+	 * IMJ-279, IMJ-228
 	 */
 	@Test(priority = 10, dependsOnMethods = { "createDefaultCollection" })
 	public void metadataAllItems() {
@@ -148,7 +160,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-280
+	 * IMJ-280, IMJ-140
 	 */
 	@Test(priority = 12, dependsOnMethods = { "createDefaultCollection" })
 	public void metadataIfEmpty() {
@@ -179,7 +191,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-281
+	 * IMJ-281, IMJ-229
 	 */
 	@Test(priority = 14, dependsOnMethods = { "createDefaultCollection" })
 	public void metadataOverwrite() {
@@ -277,7 +289,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-22
+	 * IMJ-22, IMJ-1
 	 */
 	@Test(priority = 21, dependsOnMethods = { "createDefaultCollection" })
 	public void loginUser2() {
@@ -288,7 +300,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-46
+	 * (IMJ-46), IMJ-47
 	 */
 	@Test(priority = 22, dependsOnMethods = { "createDefaultCollection" })
 	public void openCollection() {
@@ -342,7 +354,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-98, IMJ-139, IMJ-45
+	 * IMJ-1, IMJ-113, IMJ-98, IMJ-139, IMJ-45
 	 */
 	@Test(priority = 27, dependsOnMethods = { "createDefaultCollection" })
 	public void releaseCollection() {
@@ -385,7 +397,7 @@ public class OneAuthorLogo extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-59
+	 * IMJ-2, IMJ-59, IMJ-235
 	 */
 	@Test(priority = 30, dependsOnMethods = { "createDefaultCollection" })
 	public void downloadItemNRU() {

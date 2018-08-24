@@ -70,6 +70,7 @@ public class EditCollectionPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
+	// IMJ-123
 	public void editTitle(String newTitle) {
 		titleBox.clear();
 		titleBox.sendKeys(newTitle);
@@ -112,6 +113,7 @@ public class EditCollectionPage extends BasePage {
 		wait.until(ExpectedConditions.elementToBeClickable(saveButton));
 	}
 	
+	// IMJ-133
 	public void addLogo(String filepath) {
 		WebElement inputDiv = logoContainer.findElement(By.className("moxie-shim-html5"));
 		WebElement inputFile = inputDiv.findElement(By.tagName("input"));

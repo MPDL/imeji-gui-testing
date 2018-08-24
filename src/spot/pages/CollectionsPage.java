@@ -9,10 +9,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import spot.components.SortingComponent;
 import spot.components.StateComponent;
 import spot.components.StateComponent.StateOptions;
 import spot.pages.registered.NewCollectionPage;
-import spot.components.SortingComponent;
 
 public class CollectionsPage extends BasePage {
 
@@ -105,7 +105,7 @@ public class CollectionsPage extends BasePage {
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
-	
+	// IMJ-131
 	public CollectionEntryPage openCollectionByTitle(String collectionTitle) {
 		WebElement collectionInQuestion = findCollectionByTitle(collectionTitle);
 		collectionInQuestion.findElement(By.tagName("a")).click();

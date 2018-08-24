@@ -35,10 +35,12 @@ public class LoginPage extends BasePage {
 	    return PageFactory.initElements(driver, expectedPage);
 	}
 
+	// IMJ- 21
 	public AdminHomepage loginAsAdmin(String user, String pw){
 	    return login(user, pw, AdminHomepage.class);
 	}
 
+	// IMJ-1, IMJ-22
 	public Homepage loginAsNotAdmin(String user, String pw){
 	    return login(user, pw, Homepage.class);
 	}

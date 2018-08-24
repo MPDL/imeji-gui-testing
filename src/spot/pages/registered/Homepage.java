@@ -29,11 +29,13 @@ public class Homepage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
+	// IMJ-2
 	public void logout() {
 		logoutButton.click();
 		this.hideMessages();
 	}
 
+	// IMJ-112, IMJ-113
 	public NewCollectionPage goToCreateNewCollectionPage() {
 		CollectionsPage collections = goToCollectionPage();
 		return collections.createCollection();

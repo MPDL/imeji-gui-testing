@@ -137,6 +137,7 @@ public class CollectionEntryPage extends BasePage {
 		return shareComponent.share(CategoryType.COLLECTION);
 	}
 
+	// IMJ-46, IMJ-47
 	/* TODO: icons as private attributes */
 	public boolean shareIconVisible() {
 		try {
@@ -147,6 +148,7 @@ public class CollectionEntryPage extends BasePage {
 		}
 	}
 
+	// IMJ-45
 	/* TODO: icons as private attributes */
 	public boolean releasedIconVisible() {
 		try {
@@ -263,6 +265,7 @@ public class CollectionEntryPage extends BasePage {
 		return isElementPresent(By.className("thumb"));
 	}
 
+	// IMJ-98, IMJ-139
 	public CollectionEntryPage releaseCollection() {
 		return actionComponent.releaseCollection();
 	}
@@ -271,10 +274,12 @@ public class CollectionEntryPage extends BasePage {
 		return actionComponent.deleteCollection();
 	}
 
+	// IMJ-97
 	public CollectionsPage discardCollection() {
 		return actionComponent.discardCollection();
 	}
 
+	// IMJ-204, IMJ-196
 	public SharePage share() {
 		new Actions(driver).moveToElement(editButton).moveToElement(share).click().build().perform();
 
@@ -288,6 +293,7 @@ public class CollectionEntryPage extends BasePage {
 		return PageFactory.initElements(driver, ItemViewPage.class);
 	}
 
+	// IMJ-67
 	public CollectionEntryPage deleteItem(String title) {
 		return deleteItem(getItemIndex(title));
 	}
@@ -352,6 +358,7 @@ public class CollectionEntryPage extends BasePage {
 		}
 	}
 
+	// IMJ-56
 	public CollectionEntryPage uploadFile(String filepath) {
 		uploadButton.click();
 		UploadWindow upload = new UploadWindow(driver);
@@ -368,15 +375,18 @@ public class CollectionEntryPage extends BasePage {
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
+	// IMJ-115
 	public CollectionEntryPage setDOI() {
 		return actionComponent.setDOI();
 	}
 
+	// IMJ-115
 	public String getDOI() {
 		String doi = getValue("DOI");
 		return doi.substring("http://dx.doi.org/".length());
 	}
 
+	// IMJ-232, IMJ-233
 	public boolean downloadAllPossible() {
 		return downloadButton.isDisplayed() && downloadButton.isEnabled();
 	}
@@ -386,6 +396,7 @@ public class CollectionEntryPage extends BasePage {
 		new Actions(driver).sendKeys(Keys.ENTER);
 	}
 
+	// IMJ-236
 	public boolean downloadSelectedPossible() {
 		selectedItemsMenu.click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fa-download")));
@@ -402,10 +413,12 @@ public class CollectionEntryPage extends BasePage {
 		return actionComponent.editSelectedItems();
 	}
 
+	// IMJ-279, IMJ-228, IMJ-280, IMJ-140, IMJ-281, IMJ-229
 	public EditItemsPage editAllItems() {
 		return actionComponent.editAllItems();
 	}
 
+	// IMJ-134
 	public EditLicensePage editAllLicenses() {
 		return actionComponent.editAllLicenses();
 	}
@@ -514,6 +527,7 @@ public class CollectionEntryPage extends BasePage {
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
+	// IMJ-69
 	public CollectionEntryPage discardSelectedItems() {
 		driver.findElement(By.cssSelector("#selMenu\\:sf>.dropdown")).click();
 		retryingFindClick(By.cssSelector("#selMenu\\:sf>.dropdown>.content>a:nth-of-type(4)"));

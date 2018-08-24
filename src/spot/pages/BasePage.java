@@ -121,10 +121,12 @@ public abstract class BasePage {
 		return null;
 	}
 	
+	// IMJ-113
 	public CollectionsPage goToCollectionPage() {
 		return mainMenuComponent.navigateTo(CollectionsPage.class);
 	}
 	
+	// IMJ-226
 	public AdministrationPage goToAdminPage() {
 		return mainMenuComponent.navigateTo(AdministrationPage.class);
 	}

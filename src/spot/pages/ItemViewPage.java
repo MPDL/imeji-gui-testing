@@ -95,6 +95,7 @@ public class ItemViewPage extends BasePage {
 		return fileTitle;
 	}
 
+	// IMJ-234, IMJ-235, IMJ-59
 	public boolean isDownloadPossible() {
 		return downloadMenu.isDisplayed() && downloadMenu.isEnabled();
 	}

@@ -69,6 +69,7 @@ public class NewCollectionPage extends BasePage {
 		organizationNameTextField.clear();
 	}
 
+	// IMJ-83
 	public CollectionEntryPage createCollection(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
 		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
 		

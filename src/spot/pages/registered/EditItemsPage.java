@@ -3,6 +3,7 @@ package spot.pages.registered;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
@@ -40,6 +41,7 @@ public class EditItemsPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
+	// IMJ-279, IMJ-228
 	public EditItemsPage addValueAll(String key, String value) {
 		addMetadata(key, value);
 		try {
@@ -57,6 +59,7 @@ public class EditItemsPage extends BasePage {
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
 	
+	// IMJ-280, IMJ-140
 	public EditItemsPage addValueIfEmpty(String key, String value) {
 		addMetadata(key, value);
 		addValueIfEmpty.click();
@@ -66,6 +69,7 @@ public class EditItemsPage extends BasePage {
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
 	
+	// IMJ-281, IMJ-229
 	public EditItemsPage overwriteAllValues(String key, String value) {
 		addMetadata(key, value);
 		overwriteAllValues.click();
