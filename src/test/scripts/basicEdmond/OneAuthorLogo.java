@@ -18,6 +18,12 @@ import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #1
+ * 
+ * @author helk
+ *
+ */
 public class OneAuthorLogo extends BaseSelenium {
 
 	private Homepage homepage;
