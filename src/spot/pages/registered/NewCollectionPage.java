@@ -82,6 +82,7 @@ public class NewCollectionPage extends BasePage {
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
+	// IMJ-86
 	public CollectionEntryPage createCollection3Authors(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
 		try {
 			fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);

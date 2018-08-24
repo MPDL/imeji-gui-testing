@@ -20,6 +20,12 @@ import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #2
+ * 
+ * @author helk
+ *
+ */
 public class ThreeAuthors extends BaseSelenium {
 	
 	private Homepage homepage;
@@ -39,7 +45,7 @@ public class ThreeAuthors extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-86
+	 * IMJ-112, IMJ-113, IMJ-86
 	 */
 	@Test(priority = 2)
 	public void createCollection3Authors() {
@@ -74,6 +80,9 @@ public class ThreeAuthors extends BaseSelenium {
 		Assert.assertEquals(pageTitle, collectionTitle, "Title was not changed.");
 	}
 	
+	/**
+	 * IMJ-131, IMJ-56
+	 */
 	private void uploadItem(String title) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
@@ -91,7 +100,7 @@ public class ThreeAuthors extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-279
+	 * IMJ-279, IMJ-228
 	 */
 	@Test(priority = 5, dependsOnMethods = { "createCollection3Authors" })
 	public void metadataAllItems() {
@@ -116,7 +125,7 @@ public class ThreeAuthors extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-280
+	 * IMJ-280, IMJ-140
 	 */
 	@Test(priority = 7, dependsOnMethods = { "createCollection3Authors" })
 	public void metadataIfEmpty() {
@@ -145,7 +154,7 @@ public class ThreeAuthors extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-281
+	 * IMJ-281, IMJ-229
 	 */
 	@Test(priority = 9, dependsOnMethods = { "createCollection3Authors" })
 	public void metadataOverwrite() {
@@ -220,7 +229,7 @@ public class ThreeAuthors extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-22
+	 * IMJ-1, IMJ-22
 	 */
 	@Test(priority = 14, dependsOnMethods = { "createCollection3Authors" })
 	public void loginUser2() {
@@ -229,7 +238,7 @@ public class ThreeAuthors extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-46
+	 * IMJ-46, IMJ-47
 	 */
 	@Test(priority = 15, dependsOnMethods = { "createCollection3Authors" })
 	public void openCollection() {
@@ -283,7 +292,7 @@ public class ThreeAuthors extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-98, IMJ-139, IMJ-45
+	 * IMJ-1, IMJ-113, IMJ-98, IMJ-139, IMJ-45
 	 */
 	@Test(priority = 20, dependsOnMethods = { "createCollection3Authors" })
 	public void releaseCollection() {
@@ -337,7 +346,7 @@ public class ThreeAuthors extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-59
+	 * IMJ-2, IMJ-235, IMJ-59
 	 */
 	@Test(priority = 24, dependsOnMethods = { "createCollection3Authors" })
 	public void downloadItemNRU() {
