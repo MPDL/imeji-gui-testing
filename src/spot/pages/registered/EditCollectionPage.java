@@ -94,6 +94,7 @@ public class EditCollectionPage extends BasePage {
 		organisation2Name.sendKeys(organisation);
 	}
 	
+	// IMJ-127
 	public void addInformation(String label, String link) {
 		additionalInfo.findElement(By.className("fa-plus-square-o")).click();
 		

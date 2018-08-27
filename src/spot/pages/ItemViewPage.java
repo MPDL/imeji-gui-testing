@@ -220,6 +220,7 @@ public class ItemViewPage extends BasePage {
 	 * @param license
 	 *            - select option value
 	 */
+	// IMJ-81
 	public ItemViewPage addLicense(String license) {
 		EditItemPage editItem = editItem();
 		return editItem.selectLicense(license);

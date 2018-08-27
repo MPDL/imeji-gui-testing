@@ -18,6 +18,12 @@ import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #5
+ * 
+ * @author helk
+ *
+ */
 public class ThreeAuthorsExternalReference extends BaseSelenium {
 
 	private Homepage homepage;
@@ -37,7 +43,7 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-86
+	 * IMJ-112, IMJ-113, IMJ-86
 	 */
 	@Test(priority = 2)
 	public void createCollection3Authors() {
@@ -76,6 +82,9 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		Assert.assertEquals(pageTitle, collectionTitle, "Title was not changed.");
 	}
 	
+	/**
+	 * IMJ-131, IMJ-56
+	 */
 	private void uploadItem(String title) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
@@ -93,7 +102,7 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-279
+	 * IMJ-279, IMJ-228
 	 */
 	@Test(priority = 6, dependsOnMethods = { "createCollection3Authors" })
 	public void metadataAllItems() {
@@ -118,7 +127,7 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-280
+	 * IMJ-280, IMJ-140
 	 */
 	@Test(priority = 8, dependsOnMethods = { "createCollection3Authors" })
 	public void metadataIfEmpty() {
@@ -147,7 +156,7 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-281
+	 * IMJ-281, IMJ-229
 	 */
 	@Test(priority = 9, dependsOnMethods = { "createCollection3Authors" })
 	public void metadataOverwrite() {
@@ -311,7 +320,7 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-59
+	 * IMJ-59, IMJ-235
 	 */
 	@Test(priority = 22, dependsOnMethods = { "createCollection3Authors" })
 	public void downloadItemNRU() {
