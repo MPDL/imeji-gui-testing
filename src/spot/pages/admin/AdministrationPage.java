@@ -158,6 +158,7 @@ public class AdministrationPage extends BasePage {
 		return createFacet.createSystemFacet(facetTitle, type);
 	}
 	
+	// IMJ-282
 	public BrowseFacetsPage createFacet(String facetTitle, String metadata) {
 		createFacet.click();
 		CreateFacetPage createFacet = new CreateFacetPage(driver);
