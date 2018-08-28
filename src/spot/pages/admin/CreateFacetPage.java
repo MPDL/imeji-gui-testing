@@ -57,6 +57,8 @@ public class CreateFacetPage extends BasePage {
 		try {
 			facetTitleBox.sendKeys(facetTitle);
 			driver.findElement(By.linkText(type)).click();
+			
+			wait.until(ExpectedConditions.elementToBeClickable(submitButton));
 			submitButton.click();
 			
 			return PageFactory.initElements(driver, BrowseFacetsPage.class);
