@@ -65,7 +65,9 @@ public class BrowseFacetsPage extends BasePage {
 	public BrowseFacetsPage deleteFacet(String facetTitle) {
 		WebElement facet = findFacet(facetTitle);
 		facet.findElement(By.linkText("Delete")).click();
-		driver.findElement(By.cssSelector("#deleteFacet0>form>.imj_submitPanel>.imj_submitButton")).click();
+		WebElement deleteDialog = driver.findElement(By.xpath("//div[@class='imj_modalDialogBox' and contains(@id,'deleteFacet') and descendant::div[contains(text(),'" + facetTitle + "')]]"));
+		WebElement deleteButton = deleteDialog.findElement(By.xpath(".//input[@class='imj_submitButton' and @value='Delete']"));
+		deleteButton.click();
 		try { Thread.sleep(2500); } catch(InterruptedException exc) {}
 		
 		return PageFactory.initElements(driver, BrowseFacetsPage.class);
