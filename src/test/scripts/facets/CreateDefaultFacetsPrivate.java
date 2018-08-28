@@ -21,7 +21,7 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 	private String collectionTitle = TimeStamp.getTimeStamp() + " Outbox private mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
 	private String collectionFacet = "Collection facet: " + TimeStamp.getTimeStamp();
-	private String authorsFacet = "Collection's authors facet: " + TimeStamp.getTimeStamp();
+	private String authorsFacet = "Collections authors facet: " + TimeStamp.getTimeStamp();
 	private String filetypeFacet = "Filetype facet: " + TimeStamp.getTimeStamp();
 	private String organizationsFacet = "Organizations facet: " + TimeStamp.getTimeStamp();
 	private String licenseFacet = "License facet: " + TimeStamp.getTimeStamp();
