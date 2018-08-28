@@ -52,10 +52,6 @@ public class StartPage extends BasePage {
 		return PageFactory.initElements(driver, RegistrationPage.class);
 	}
 	
-	public boolean uploadPageAvailable() {
-		return isElementPresent(By.className("fa-upload")) && uploadButton.isDisplayed() && uploadButton.isEnabled() ;
-	}
-	
 	/**
 	 * Is the button that opens the login form present?
 	 * @return

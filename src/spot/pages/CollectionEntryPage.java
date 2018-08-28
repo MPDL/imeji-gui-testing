@@ -168,8 +168,13 @@ public class CollectionEntryPage extends BasePage {
 		return false;
 	}
 
-	public boolean hasThumbnailView() {
-		return isElementPresent(By.id("imgFrame"));
+	public boolean isThumbnailViewActivated() {		
+		WebElement thumbnailsElement = driver.findElement(By.xpath("//span[text()='Thumbnails']"));
+		String thumbnailsElementColor = thumbnailsElement.getCssValue("color");
+		
+		//If the thumbnailsElement is white, then the Thumbnail-View is activated
+		String rgbWhite = "rgb(240, 240, 240)";
+		return thumbnailsElementColor.equals(rgbWhite);
 	}
 
 	public String getValue(String label) {
@@ -201,7 +206,7 @@ public class CollectionEntryPage extends BasePage {
 	public boolean findItem(String title) {
 		wait.until(ExpectedConditions.elementToBeClickable(aboutLink));
 		List<WebElement> itemList = getItemList();
-		if (thumbnailView()) {
+		if (isThumbnailViewActivated()) {
 			for (WebElement item : itemList) {
 				WebElement itemTitleLabel = item.findElement(By.cssSelector("span>label"));
 				if (itemTitleLabel.getText().equals(title))
@@ -218,10 +223,9 @@ public class CollectionEntryPage extends BasePage {
 	}
 
 	private int getItemIndex(String title) {
-		// wait.until(ExpectedConditions.elementToBeClickable(aboutLink));
 		List<WebElement> itemList = getItemList();
 		int i = 0;
-		if (thumbnailView()) {
+		if (isThumbnailViewActivated()) {	
 			for (WebElement item : itemList) {
 				if (item.findElement(By.tagName("label")).getText().equals(title)) {
 					return i;
@@ -246,23 +250,14 @@ public class CollectionEntryPage extends BasePage {
 	}
 
 	public List<WebElement> getItemList() {
-		// assumes collection is not empty. will create problems if we want to test if
-		// the collection is empty
 		List<WebElement> itemList;
-		if (thumbnailView()) {
+		if (isThumbnailViewActivated()) {	
 			itemList = driver.findElements(By.className("thumb"));
 		} else {
 			// list view
 			itemList = driver.findElements(By.className("imj_colFilename"));
 		}
 		return itemList;
-	}
-
-	/*
-	 * Use only for non-empty collections.
-	 */
-	public boolean thumbnailView() {
-		return isElementPresent(By.className("thumb"));
 	}
 
 	// IMJ-98, IMJ-139
