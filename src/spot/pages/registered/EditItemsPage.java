@@ -136,6 +136,13 @@ public class EditItemsPage extends BasePage {
 		addKey(key);
 		WebElement valueBox1 = retryingElement(By.cssSelector(".imj_mdInput"));
 		valueBox1.sendKeys(value);
+		
+		//If the type of the metadata is date, the datepicker hides some fields.
+		String valueBoxType = valueBox1.getAttribute("type");		
+		if (valueBoxType.equals("date")) {
+			//Hide the datepicker
+			((JavascriptExecutor) driver).executeScript("arguments[0].style.visibility = 'hidden'", driver.findElement(By.id("ui-datepicker-div")));
+		}
 	}
 	
 	private void addKey(String key) {
