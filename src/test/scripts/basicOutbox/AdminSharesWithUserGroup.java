@@ -94,7 +94,7 @@ public class AdminSharesWithUserGroup extends BaseSelenium {
 	public void deleteUserFromGroup() {
 		UserGroupsOverviewPage userGroups = adminHomepage.goToAdminPage().viewAllUserGroups();
 		UserGroupPage groupPage = userGroups.viewUserGroupDetails(userGroupName);
-		groupPage = groupPage.deleteUser(0);
+		groupPage = groupPage.deleteUser(getPropertyAttribute(restrUsername));
 		Assert.assertFalse(groupPage.isUserPresent(getPropertyAttribute(restrUsername)), "User was not deleted from user group.");
 	}
 

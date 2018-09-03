@@ -1,5 +1,7 @@
 package spot.pages.admin;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -8,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
 
@@ -32,7 +35,6 @@ public class UserGroupPage extends BasePage {
 		addUserButton.click();
 		UsersOverviewPage allUsersOverViewPage = PageFactory.initElements(driver, UsersOverviewPage.class);
 		allUsersOverViewPage.addUserToUserGroup(userEmail);
-		try { Thread.sleep(1000); } catch (InterruptedException e) {}
 			
 		// this page is refreshed; init elements once again
 		PageFactory.initElements(driver, this);
@@ -45,13 +47,43 @@ public class UserGroupPage extends BasePage {
 		return allUsers.contains(userEmail);
 	}
 	
-	/**
-	 * TODO: make delete method by user email: it would be a bit hard, since the user information is not nested in an element
-	 */
-	public UserGroupPage deleteUser(int index) {
-		List<WebElement> userDeleteButtons = driver.findElements(By.cssSelector("#userList .fa-times"));
-		userDeleteButtons.get(index).click();
+	private int getUserPositionInUserList(String userEmail) {
+		ArrayList<String> userListLines = new ArrayList<>(Arrays.asList(alreadyAddedUsers.getAttribute("innerText").split("\\R")));
+		// First line is no user but the "Hide users" element and therefore must be removed from userListLines
+		userListLines.remove(0);
 		
+		int position = 0;
+		for (String line : userListLines) {
+			if(line.contains("(" + userEmail + ")")) {
+				return position;
+			}
+			position++;
+		}
+		
+		throw new NoSuchElementException("User with email '" + userEmail + "' was not found in user group.");
+	}
+	
+	public UserGroupPage deleteUser(String userEmail) {
+		List<WebElement> userDeleteButtons = driver.findElements(By.cssSelector("#userList .fa-times"));
+		int userPositionInUserList = this.getUserPositionInUserList(userEmail);
+		WebElement userDeleteButton = userDeleteButtons.get(userPositionInUserList);
+		userDeleteButton.click();
+		
+		// Wait until the user group page starts reloading, after clicking userDeleteButton (then the userDeleteButton element is stale)
+		wait.until(ExpectedConditions.stalenessOf(userDeleteButton));
+		// this page is refreshed; init elements once again
+		PageFactory.initElements(driver, this);
+		return this;
+	}
+	
+	public UserGroupPage deleteUser(int index) {		
+		List<WebElement> userDeleteButtons = driver.findElements(By.cssSelector("#userList .fa-times"));
+		WebElement userDeleteButton = userDeleteButtons.get(index);		
+		userDeleteButton.click();		
+		
+		// Wait until the user group page starts reloading, after clicking userDeleteButton (then the userDeleteButton element is stale)
+		wait.until(ExpectedConditions.stalenessOf(userDeleteButton));
+		// this page is refreshed; init elements once again
 		PageFactory.initElements(driver, this);
 		return this;
 	}

@@ -4,12 +4,10 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
@@ -67,7 +65,11 @@ public class UsersOverviewPage extends BasePage {
 		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@id, ':userListForm:filterMd')]"));
 		searchBox.clear();
 		searchBox.sendKeys(emailInQuestion);
-		try { Thread.sleep(2000); } catch (InterruptedException e) {}
+		
+		// Wait for the loaderWrapper with the style-attribute to get the loaderWrapper-start of loading, then wait for its invisibility to get the end of loading.	
+		WebElement loaderWrapper = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".loaderWrapper[style]")));
+		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+		
 		userList = driver.findElements(By.cssSelector("#addUser p>a"));
 		if (userList.size() == 1)
 			return userList.get(0);
@@ -106,15 +108,11 @@ public class UsersOverviewPage extends BasePage {
 	}
 	
 	public void addUserToUserGroup(String userEmail) {
-		// sleep() does not help here
-		try {
-			WebElement userInQuestion = findUserByEmail(userEmail);
-			userInQuestion.click();
-		}
-		catch (StaleElementReferenceException exc) {
-			userList = driver.findElements(By.cssSelector("#addUser p>a"));
-			userList.get(0).click();
-		}
+		WebElement userInQuestion = findUserByEmail(userEmail);
+		userInQuestion.click();
+		
+		// Wait until the user group page starts reloading, after clicking userInQuestion (then the userInQuestion element is stale)
+		wait.until(ExpectedConditions.stalenessOf(userInQuestion));
 	}
 	
 	public int userCount() {
