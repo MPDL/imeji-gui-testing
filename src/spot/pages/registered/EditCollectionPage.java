@@ -134,6 +134,7 @@ public class EditCollectionPage extends BasePage {
 		saveButton.click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("content")));
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
+		this.hideMessages();
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
