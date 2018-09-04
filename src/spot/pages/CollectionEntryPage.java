@@ -485,8 +485,14 @@ public class CollectionEntryPage extends BasePage {
 	}
 
 	public CollectionEntryPage selectItem(int index) {
-		driver.findElement(By.id("th:f:i:" + index + ":sel")).click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("th:f:i:0:sel")));
+		WebElement itemCheckbox;
+		if (isThumbnailViewActivated()) {
+			itemCheckbox = driver.findElement(By.id("th:f:i:" + index + ":sel"));
+		}else {
+			itemCheckbox = driver.findElement(By.xpath(".//input[contains(@id, '" + index + ":pictureCheckbox')]"));
+		}
+		itemCheckbox.click();
+		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
@@ -495,14 +501,21 @@ public class CollectionEntryPage extends BasePage {
 	}
 
 	/**
-	 * Deselect all selected items. Works only if the CollectionEntryPage is
-	 * reloaded or visited again after the selection.
+	 * Deselect all selected items. <br>
+	 * 
+	 * Works only if the CollectionEntryPage is reloaded or visited again after the selection, 
+	 * because the attribute "checked" is updated only after a page reload!
 	 * 
 	 * @return the CollectionEntryPage
 	 */
 	public CollectionEntryPage deselectAllSelectedItems() {
-		List<WebElement> selectedCheckboxes = driver
-				.findElements(By.cssSelector("[class='imj_optionCheckbox'][id^='th:f:i:'][checked='checked']"));
+		List<WebElement> selectedCheckboxes;
+		if (isThumbnailViewActivated()) {
+			selectedCheckboxes = driver.findElements(By.cssSelector("[class='imj_optionCheckbox'][id^='th:f:i:'][checked='checked']"));
+		}else{
+			selectedCheckboxes = driver.findElements(By.xpath(".//input[contains(@id, ':pictureCheckbox') and @checked='checked']"));
+		}
+		
 		for (WebElement selectedCheckbox : selectedCheckboxes) {
 			selectedCheckbox.click();
 		}
