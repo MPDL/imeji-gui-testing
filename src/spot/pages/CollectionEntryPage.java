@@ -1,5 +1,7 @@
 package spot.pages;
 
+import static test.base.SeleniumWrapper.waitForReloadOfCurrentPage;
+
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -523,58 +525,53 @@ public class CollectionEntryPage extends BasePage {
 	}
 
 	public CollectionEntryPage deleteSelectedItems() {
-		driver.findElement(By.cssSelector("#selMenu\\:sf>.dropdown")).click();
+		WebElement selectedItemsDropDown = driver.findElement(By.cssSelector("#selMenu\\:sf>.dropdown"));
+		selectedItemsDropDown.click();
 		retryingFindClick(By.cssSelector("#selMenu\\:sf>.dropdown>.content>a:nth-of-type(5)"));
 		((JavascriptExecutor) driver).executeScript(
 				"document.querySelector('#deleteSelectedItems .imj_submitPanel .imj_submitButton').click();");
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
-
-		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
-		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+		
+		waitForReloadOfCurrentPage(wait, selectedItemsDropDown);
 
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
 	// IMJ-69
 	public CollectionEntryPage discardSelectedItems() {
-		driver.findElement(By.cssSelector("#selMenu\\:sf>.dropdown")).click();
+		WebElement selectedItemsDropDown = driver.findElement(By.cssSelector("#selMenu\\:sf>.dropdown"));
+		selectedItemsDropDown.click();
 		retryingFindClick(By.cssSelector("#selMenu\\:sf>.dropdown>.content>a:nth-of-type(4)"));
 		driver.findElement(By.id("selDialogs:witdrawSel:f:discardComment"))
 				.sendKeys("Discarding for testing purposes.");
 		((JavascriptExecutor) driver).executeScript(
 				"document.querySelector('#withdrawSelectedItems .imj_submitPanel .imj_submitButton').click();");
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
 		
-		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
-		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+		waitForReloadOfCurrentPage(wait, selectedItemsDropDown);
 
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
 	public CollectionEntryPage moveSelectedItemsToPrivateCollection(String collectionTitle) {
 		selectedItemsMenu.click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("selMenu:sf:moveItems")));
-		driver.findElement(By.id("selMenu:sf:moveItems")).click();
-
+		WebElement move = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("selMenu:sf:moveItems")));
+		move.click();
 		driver.findElement(By.linkText(collectionTitle)).click();
 
-		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
-		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+		waitForReloadOfCurrentPage(wait, move);
 
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
 	public CollectionEntryPage moveSelectedItemsToReleasedCollection(String collectionTitle) {
 		selectedItemsMenu.click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("selMenu:sf:moveItems")));
-		driver.findElement(By.id("selMenu:sf:moveItems")).click();
+		WebElement move = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("selMenu:sf:moveItems")));
+		move.click();
 
 		driver.findElement(By.linkText(collectionTitle)).click();
 		WebElement moveDialog = driver.findElement(By.id("moveSelected"));
 		moveDialog.findElement(By.className("imj_submitButton")).click();
 
-		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
-		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+		waitForReloadOfCurrentPage(wait, move);
 
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
