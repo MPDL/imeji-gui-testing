@@ -311,7 +311,8 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
 	}
 	
-	@Test(priority = 22, dependsOnMethods = { "createCollection3Authors" })
+	//TODO: The successful deletion of the third author should be tested above and not in this way! Maybe remove this test-method?
+	@Test(priority = 22, dependsOnMethods = { "createCollection3Authors" })	
 	public void deletedAuthorTest() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.openDescription();

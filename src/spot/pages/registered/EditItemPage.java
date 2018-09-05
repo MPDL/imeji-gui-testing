@@ -1,7 +1,8 @@
 package spot.pages.registered;
 
+import static test.base.SeleniumWrapper.waitForLoadOfNewPage;
+
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -83,9 +84,12 @@ public class EditItemPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOf(licenseName));
 		licenseName.sendKeys(name);
 		licenseLink.sendKeys(link);
+		// TODO: Find a way to wait for the loading/loaderWrapper which in this case does not really load any element
+		// The actual waiting for the visibility of saveButton does not handle every race condition!
 		wait.until(ExpectedConditions.visibilityOf(saveButton));
+		
 		saveButton.click();
-		try { Thread.sleep(2500); } catch (InterruptedException e) { }
+		waitForLoadOfNewPage(wait, licenseLink);
 		
 		return PageFactory.initElements(driver, ItemViewPage.class);
 	}

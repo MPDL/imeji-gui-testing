@@ -42,10 +42,10 @@ public class SeleniumWrapper {
 	 * Wait until the new/next page is loaded. <br>
 	 * Uses waiting for an old element to become invisible (not present on the DOM) to detect that the old page doesn't exist anymore. <br>
 	 * The oldElement must be a WebElement of the old page. It must be initialized before the event, that led to the page reload. <br>
-	 * The oldElement must can be a Page Object field, which uses lazy loading.
+	 * The oldElement can be a Page Object field, which does not exist in the new page.
 	 * 
 	 * @param wait The WebDriverWait, which defines the wait timeout in seconds
-	 * @param oldElement An element of the current page which becomes invisible after the page reload 
+	 * @param oldElement An element of the current page which is no longer present (or invisible) after the page reload 
 	 */
 	public static void waitForLoadOfNewPage(WebDriverWait wait, WebElement oldElement) {
 		wait.until(ExpectedConditions.invisibilityOf(oldElement));
