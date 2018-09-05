@@ -1,5 +1,7 @@
 package spot.pages.admin;
 
+import static test.base.SeleniumWrapper.waitForReloadOfElement;
+
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -14,7 +16,7 @@ import spot.pages.BasePage;
 
 public class UsersOverviewPage extends BasePage {
 
-	@FindBy(css="#addUser p")
+	@FindBy(css="#addUser p>a")
 	private List<WebElement> userList;
 	
 	public UsersOverviewPage(WebDriver driver) {
@@ -62,15 +64,14 @@ public class UsersOverviewPage extends BasePage {
 	}
 
 	private WebElement findUserByEmail(String emailInQuestion) {
+		WebElement userListElement = driver.findElement(By.xpath("//div[contains(@id, ':userListForm:userList')]"));
+		
 		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@id, ':userListForm:filterMd')]"));
 		searchBox.clear();
 		searchBox.sendKeys(emailInQuestion);
 		
-		// Wait for the loaderWrapper with the style-attribute to get the loaderWrapper-start of loading, then wait for its invisibility to get the end of loading.	
-		WebElement loaderWrapper = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".loaderWrapper[style]")));
-		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+		waitForReloadOfElement(wait, userListElement);
 		
-		userList = driver.findElements(By.cssSelector("#addUser p>a"));
 		if (userList.size() == 1)
 			return userList.get(0);
 		for (WebElement currentEmail : userList) {
