@@ -19,6 +19,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import spot.components.ActionComponent;
+import spot.components.FacetsComponent;
 import spot.components.SearchComponent.CategoryType;
 import spot.components.ShareComponent;
 import spot.components.UploadWindow;
@@ -33,6 +34,7 @@ public class CollectionEntryPage extends BasePage {
 
 	private ActionComponent actionComponent;
 	private ShareComponent shareComponent;
+	private FacetsComponent facetsComponent;
 
 	@FindBy(css = ".content a:nth-of-type(2)")
 	private WebElement share;
@@ -108,6 +110,7 @@ public class CollectionEntryPage extends BasePage {
 
 		actionComponent = new ActionComponent(driver);
 		shareComponent = new ShareComponent(driver);
+		facetsComponent = new FacetsComponent(driver);
 
 		PageFactory.initElements(driver, this);
 	}
@@ -452,26 +455,6 @@ public class CollectionEntryPage extends BasePage {
 		return metadataPresent;
 	}
 
-	public boolean facetDisplayed(String key, String value) {
-		List<WebElement> facets = facetsArea.findElements(By.className("imj_facet"));
-
-		for (WebElement facet : facets) {
-			String currentKey = facet.findElement(By.className("imj_facetName")).getText();
-			if (currentKey.equals(key)) {
-				List<WebElement> values = facet.findElement(By.className("imj_facetValue"))
-						.findElements(By.tagName("a"));
-				for (WebElement currentValue : values) {
-					String currentValueText = currentValue.getText();
-					if (currentValueText.equals(value)) {
-						return true;
-					}
-				}
-			}
-		}
-
-		return false;
-	}
-
 	public boolean checkLicenseAll(String link) {
 		List<WebElement> itemList = getItemList();
 		boolean licensePresent = true;
@@ -616,4 +599,25 @@ public class CollectionEntryPage extends BasePage {
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
+	
+	public boolean isTextFacetPresent(String facetName, String facetValue) {
+		return this.facetsComponent.isTextFacetPresent(facetName, facetValue);
+	}
+
+	public boolean isNumberFacetPresent(String facetName, String facetValue) {
+		return this.facetsComponent.isNumberFacetPresent(facetName, facetValue);
+	}
+
+	public boolean isDateFacetPresent(String facetName, String facetValue) {
+		return this.facetsComponent.isDateFacetPresent(facetName, facetValue);
+	}
+
+	public boolean isPersonFacetPresent(String facetName, String facetValue) {
+		return this.facetsComponent.isPersonFacetPresent(facetName, facetValue);
+	}
+
+	public boolean isUrlFacetPresent(String facetName, String facetValue) {
+		return this.facetsComponent.isUrlFacetPresent(facetName, facetValue);
+	}
+	
 }

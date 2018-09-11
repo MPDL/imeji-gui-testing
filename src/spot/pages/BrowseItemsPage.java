@@ -6,19 +6,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class BrowseItemsPage extends BasePage {
+import spot.components.FacetsComponent;
 
+public class BrowseItemsPage extends BasePage {
+	
+	private FacetsComponent facetsComponent;
+	
 	private List<WebElement> allItems;
 	List<WebElement> imageList;
 	
-	@FindBy(id = "facetsArea")
-	private WebElement facetsArea;
-	
 	public BrowseItemsPage(WebDriver driver) {
 		super(driver);
+		
+		facetsComponent = new FacetsComponent(driver);
 		
 		allItems = driver.findElements(By.className("imj_tileItem"));
 		imageList = driver.findElements(By.tagName("img"));
@@ -32,25 +34,6 @@ public class BrowseItemsPage extends BasePage {
 			String currentItemTitle = titleElement.getAttribute("title");
 			if (currentItemTitle.equals(itemTitle)) {
 				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	public boolean isFacetPresent(String key, String value) {
-		List<WebElement> facets = facetsArea.findElements(By.className("imj_facet"));
-		
-		for (WebElement facet : facets) {
-			String currentKey = facet.findElement(By.className("imj_facetName")).getText();
-			if (currentKey.equals(key)) {
-				List<WebElement> values = facet.findElement(By.className("imj_facetValue")).findElements(By.tagName("a"));
-				for (WebElement currentValue : values) {
-					String currentValueText = currentValue.getText();
-					if (currentValueText.equals(value)) {
-						return true;
-					}
-				}
 			}
 		}
 		
@@ -84,5 +67,25 @@ public class BrowseItemsPage extends BasePage {
 		catch (NoSuchElementException exc) {
 			return false;
 		}
+	}
+	
+	public boolean isTextFacetPresent(String facetName, String facetValue) {
+		return this.facetsComponent.isTextFacetPresent(facetName, facetValue);
+	}
+
+	public boolean isNumberFacetPresent(String facetName, String facetValue) {
+		return this.facetsComponent.isNumberFacetPresent(facetName, facetValue);
+	}
+
+	public boolean isDateFacetPresent(String facetName, String facetValue) {
+		return this.facetsComponent.isDateFacetPresent(facetName, facetValue);
+	}
+
+	public boolean isPersonFacetPresent(String facetName, String facetValue) {
+		return this.facetsComponent.isPersonFacetPresent(facetName, facetValue);
+	}
+
+	public boolean isUrlFacetPresent(String facetName, String facetValue) {
+		return this.facetsComponent.isUrlFacetPresent(facetName, facetValue);
 	}
 }

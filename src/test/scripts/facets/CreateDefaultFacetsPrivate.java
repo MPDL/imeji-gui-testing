@@ -118,7 +118,7 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 		
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		Assert.assertTrue(collectionEntry.facetDisplayed(collectionFacet, getPropertyAttribute(adminFamilyName) + ", " + getPropertyAttribute(adminGivenName)));
+		Assert.assertTrue(collectionEntry.isTextFacetPresent(collectionFacet, getPropertyAttribute(adminFamilyName) + ", " + getPropertyAttribute(adminGivenName)));
 	}
 	
 	@Test(priority = 8)
@@ -128,8 +128,8 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 		renameFacetTest(oldCollectionFacet, collectionFacet);
 		
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		Assert.assertTrue(collectionEntry.facetDisplayed(collectionFacet, getPropertyAttribute(adminFamilyName) + ", " + getPropertyAttribute(adminGivenName)));
-		Assert.assertFalse(collectionEntry.facetDisplayed(oldCollectionFacet, getPropertyAttribute(adminFamilyName) + ", " + getPropertyAttribute(adminGivenName)));
+		Assert.assertTrue(collectionEntry.isTextFacetPresent(collectionFacet, getPropertyAttribute(adminFamilyName) + ", " + getPropertyAttribute(adminGivenName)));
+		Assert.assertFalse(collectionEntry.isTextFacetPresent(oldCollectionFacet, getPropertyAttribute(adminFamilyName) + ", " + getPropertyAttribute(adminGivenName)));
 	}
 	
 	@Test(priority = 9)
@@ -148,7 +148,7 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		Assert.assertTrue(collectionEntry.facetDisplayed(authorsFacet, "Image"));
+		Assert.assertTrue(collectionEntry.isTextFacetPresent(authorsFacet, "Image"));
 	}
 	
 	@Test(priority = 12)
@@ -158,8 +158,8 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 		renameFacetTest(oldAuthorsFacet, authorsFacet);
 		
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		Assert.assertTrue(collectionEntry.facetDisplayed(authorsFacet, "Image"));
-		Assert.assertFalse(collectionEntry.facetDisplayed(oldAuthorsFacet, "Image"));
+		Assert.assertTrue(collectionEntry.isTextFacetPresent(authorsFacet, "Image"));
+		Assert.assertFalse(collectionEntry.isTextFacetPresent(oldAuthorsFacet, "Image"));
 	}
 	
 	@Test(priority = 13)
@@ -178,7 +178,7 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 		
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		Assert.assertTrue(collectionEntry.facetDisplayed(filetypeFacet, getPropertyAttribute(adminOrganizationName)));
+		Assert.assertTrue(collectionEntry.isTextFacetPresent(filetypeFacet, getPropertyAttribute(adminOrganizationName)));
 	}
 	
 	@Test(priority = 16)
@@ -188,8 +188,8 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 		renameFacetTest(oldFiletypeFacet, filetypeFacet);
 		
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		Assert.assertTrue(collectionEntry.facetDisplayed(filetypeFacet, getPropertyAttribute(adminOrganizationName)));
-		Assert.assertFalse(collectionEntry.facetDisplayed(oldFiletypeFacet, getPropertyAttribute(adminOrganizationName)));
+		Assert.assertTrue(collectionEntry.isTextFacetPresent(filetypeFacet, getPropertyAttribute(adminOrganizationName)));
+		Assert.assertFalse(collectionEntry.isTextFacetPresent(oldFiletypeFacet, getPropertyAttribute(adminOrganizationName)));
 	}
 	
 	@Test(priority = 17)
@@ -208,7 +208,7 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		Assert.assertTrue(collectionEntry.facetDisplayed(organizationsFacet, "None"));
+		Assert.assertTrue(collectionEntry.isTextFacetPresent(organizationsFacet, "None"));
 	}
 	
 	@Test(priority = 20)
@@ -218,8 +218,8 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 		renameFacetTest(oldOrganizationsFacet, organizationsFacet);
 		
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		Assert.assertTrue(collectionEntry.facetDisplayed(organizationsFacet, "None"));
-		Assert.assertFalse(collectionEntry.facetDisplayed(oldOrganizationsFacet, "None"));
+		Assert.assertTrue(collectionEntry.isTextFacetPresent(organizationsFacet, "None"));
+		Assert.assertFalse(collectionEntry.isTextFacetPresent(oldOrganizationsFacet, "None"));
 	}
 	
 	@Test(priority = 21)
@@ -238,7 +238,7 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		Assert.assertTrue(collectionEntry.facetDisplayed(licenseFacet, collectionTitle));
+		Assert.assertTrue(collectionEntry.isTextFacetPresent(licenseFacet, collectionTitle));
 	}
 	
 	@Test(priority = 24)
@@ -248,8 +248,8 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 		renameFacetTest(oldLicenseFacet, licenseFacet);
 		
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		Assert.assertTrue(collectionEntry.facetDisplayed(licenseFacet, collectionTitle));
-		Assert.assertFalse(collectionEntry.facetDisplayed(oldLicenseFacet, collectionTitle));
+		Assert.assertTrue(collectionEntry.isTextFacetPresent(licenseFacet, collectionTitle));
+		Assert.assertFalse(collectionEntry.isTextFacetPresent(oldLicenseFacet, collectionTitle));
 	}
 	
 	@Test(priority = 25)

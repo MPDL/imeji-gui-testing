@@ -187,7 +187,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void textFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isFacetPresent(facetText, textValue);
+		boolean facetDisplayedInItems = browseItems.isTextFacetPresent(facetText, textValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -195,7 +195,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void textFacetDisplayedInCollection() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean facetDisplayed = collectionEntry.facetDisplayed(facetText, textValue);
+		boolean facetDisplayed = collectionEntry.isTextFacetPresent(facetText, textValue);
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
@@ -217,7 +217,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedTextFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isFacetPresent(facetText, textValue);
+		boolean facetDisplayedInItems = browseItems.isTextFacetPresent(facetText, textValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -225,7 +225,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedTextFacetDisplayedOnCollectionPage() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean facetDisplayed = collectionEntry.facetDisplayed(facetText, textValue);
+		boolean facetDisplayed = collectionEntry.isTextFacetPresent(facetText, textValue);
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
@@ -254,7 +254,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void URLFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isFacetPresent(facetURL, URLValue);
+		boolean facetDisplayedInItems = browseItems.isUrlFacetPresent(facetURL, URLValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -262,7 +262,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void URLFacetDisplayedInCollection() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean facetDisplayed = collectionEntry.facetDisplayed(facetURL, URLValue);
+		boolean facetDisplayed = collectionEntry.isUrlFacetPresent(facetURL, URLValue);
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
@@ -284,7 +284,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedURLFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isFacetPresent(facetURL, URLValue);
+		boolean facetDisplayedInItems = browseItems.isUrlFacetPresent(facetURL, URLValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -292,7 +292,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedURLFacetDisplayedOnCollectionPage() {
 			adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 			collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-			boolean facetDisplayed = collectionEntry.facetDisplayed(facetURL, URLValue);
+			boolean facetDisplayed = collectionEntry.isUrlFacetPresent(facetURL, URLValue);
 			Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
@@ -320,7 +320,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void personFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isFacetPresent(facetPerson, personValue + ", ()");
+		boolean facetDisplayedInItems = browseItems.isPersonFacetPresent(facetPerson, personValue + ", ()");
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -328,7 +328,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void personFacetDisplayedInCollection() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean facetDisplayed = collectionEntry.facetDisplayed(facetPerson, personValue + ", ()");
+		boolean facetDisplayed = collectionEntry.isPersonFacetPresent(facetPerson, personValue + ", ()");
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
@@ -350,7 +350,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedPersonFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isFacetPresent(facetPerson, personValue + ", ()");
+		boolean facetDisplayedInItems = browseItems.isPersonFacetPresent(facetPerson, personValue + ", ()");
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -358,7 +358,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedPersonFacetDisplayedOnCollectionPage() {
 			adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 			collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-			boolean facetDisplayed = collectionEntry.facetDisplayed(facetPerson, personValue + ", ()");
+			boolean facetDisplayed = collectionEntry.isPersonFacetPresent(facetPerson, personValue + ", ()");
 			Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 
@@ -387,7 +387,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void dateFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isFacetPresent(facetDate, dateValue);
+		boolean facetDisplayedInItems = browseItems.isDateFacetPresent(facetDate, dateValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -395,7 +395,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void dateFacetDisplayedInCollection() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean facetDisplayed = collectionEntry.facetDisplayed(facetDate, dateValue);
+		boolean facetDisplayed = collectionEntry.isDateFacetPresent(facetDate, dateValue);
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
@@ -417,7 +417,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedDateFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isFacetPresent(facetDate, dateValue);
+		boolean facetDisplayedInItems = browseItems.isDateFacetPresent(facetDate, dateValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -425,7 +425,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedDateFacetDisplayedOnCollectionPage() {
 			adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 			collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-			boolean facetDisplayed = collectionEntry.facetDisplayed(facetDate, dateValue);
+			boolean facetDisplayed = collectionEntry.isDateFacetPresent(facetDate, dateValue);
 			Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 
@@ -454,7 +454,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void numberFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isFacetPresent(facetNumber, numberValue);
+		boolean facetDisplayedInItems = browseItems.isNumberFacetPresent(facetNumber, numberValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -462,7 +462,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void numberFacetDisplayedInCollection() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean facetDisplayed = collectionEntry.facetDisplayed(facetNumber, numberValue);
+		boolean facetDisplayed = collectionEntry.isNumberFacetPresent(facetNumber, numberValue);
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
@@ -484,7 +484,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedNumberFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isFacetPresent(facetNumber, numberValue);
+		boolean facetDisplayedInItems = browseItems.isNumberFacetPresent(facetNumber, numberValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -492,7 +492,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedNumberFacetDisplayedOnCollectionPage() {
 			adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 			collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-			boolean facetDisplayed = collectionEntry.facetDisplayed(facetNumber, numberValue);
+			boolean facetDisplayed = collectionEntry.isNumberFacetPresent(facetNumber, numberValue);
 			Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
