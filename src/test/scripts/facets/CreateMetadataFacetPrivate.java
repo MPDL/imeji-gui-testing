@@ -28,21 +28,35 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	private String collectionTitle = TimeStamp.getTimeStamp() + " Edmond public mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
 	
-	private String statementText = "Text statement: " + TimeStamp.getTimeStamp();
 	private String facetText = "Text facet: " + TimeStamp.getTimeStamp();
-	private String textValue = "Some metadata value";
-	private String statementURL = "URL statement: " + TimeStamp.getTimeStamp();
+	private String statementText = "Text statement: " + TimeStamp.getTimeStamp();	
+	private String statementTextValue = "Some metadata value";
+	private String statementTitle = "Title statement: " + TimeStamp.getTimeStamp();
+	private String statementTitleValue = "Title value";
+	
 	private String facetURL = "URL facet: " + TimeStamp.getTimeStamp();
-	private String URLValue = "https://www.mpdl.mpg.de/";
-	private String statementPerson = "Person statement: " + TimeStamp.getTimeStamp();
+	private String statementURL = "URL statement: " + TimeStamp.getTimeStamp();	
+	private String statementURLValue = "https://www.mpdl.mpg.de/";
+	private String statementLink = "Link statement: " + TimeStamp.getTimeStamp();
+	private String statementLinkValue = "Link value";
+	
 	private String facetPerson = "Person facet: " + TimeStamp.getTimeStamp();
+	private String statementPerson = "Person statement: " + TimeStamp.getTimeStamp();	
 	private String personValue = "Testermann";
-	private String statementDate = "Date statement: " + TimeStamp.getTimeStamp();
+	private String statementPerformer = "Performer 1 statement: " + TimeStamp.getTimeStamp();
+	private String statementPerformerValue = "Performer 1 value";
+	
 	private String facetDate = "Date facet: " + TimeStamp.getTimeStamp();
+	private String statementDate = "Date statement: " + TimeStamp.getTimeStamp();	
 	private String dateValue = "2017-11-09";
-	private String statementNumber = "Number statement: " + TimeStamp.getTimeStamp();
+	private String statementNewDate = "New Date statement: " + TimeStamp.getTimeStamp();
+	private String statementNewDateValue = "2222-02-02";
+	
 	private String facetNumber = "Number facet: " + TimeStamp.getTimeStamp();
+	private String statementNumber = "Number statement: " + TimeStamp.getTimeStamp();	
 	private String numberValue = "1000.0";
+	private String statementNewNumber = "New Number statement: " + TimeStamp.getTimeStamp();
+	private String statementNewNumberValue = "2000.0";
 	
 	@Test(priority = 1)
 	public void switchPrivateMode() {
@@ -74,6 +88,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		AdministrationPage adminPage = adminHomepage.goToAdminPage();
 		
 		BrowseStatementsPage allStatements = adminPage.createStatement(statementTitle, statementType);
+		allStatements.hideMessages();
 		allStatements = allStatements.makeDefault(statementTitle);
 		
 		boolean isDefault = allStatements.isDefault(statementTitle);
@@ -94,11 +109,17 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		Assert.assertTrue(metadataListed, "Metadata " + statementTitle + " is not listed in page for creating facets.");
 	}
 	
+	// IMJ-282
 	private void createFacetTest(String facetTitle, String metadata) {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseFacetsPage browseFacets = adminHomepage.goToAdminPage().createFacet(facetTitle, metadata);
 		boolean facetListed = browseFacets.facetListed(facetTitle);
 		Assert.assertTrue(facetListed, "Facet " + facetTitle + " is not listed.");
+	}
+	
+	private String convertStatementName(String string) {
+		string = string.toLowerCase().replaceAll(" ", "_").replaceAll(":", "").replaceAll("\\-", "").replaceAll("\\.", "");
+		return string;
 	}
 	
 	private void changeFacetSelectionTest(String facetTitle, String newSelection, String selectionAlias) {
@@ -128,6 +149,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		AdministrationPage adminPage = adminHomepage.goToAdminPage();
 		BrowseStatementsPage allStatements = adminPage.deleteStatement(statementTitle);
+		allStatements.hideMessages();
 		
 		boolean statementPresent = allStatements.isStatementPresent(statementTitle);
 		Assert.assertFalse(statementPresent, "Statement " + statementTitle + " is still in list.");
@@ -162,11 +184,18 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		}
 	}
 	
+	/**
+	 * Create statement (Type Text), IMJ-226
+	 */
 	@Test(priority = 5)
 	public void createStatementText() {
 		createStatementTest(statementText, StatementType.TEXT);
+		createStatementTest(statementTitle, StatementType.TEXT);
 	}
 	
+	/**
+	 * IMJ-282 (Type Text)
+	 */
 	@Test(priority = 6)
 	public void createFacetText() {
 		createFacetTest(facetText, statementText);
@@ -176,18 +205,23 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void addValuesToTextStatement() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
-		editItems = editItems.addValueAll(statementText, textValue);
+		editItems = editItems.addValueAll(statementText, statementTextValue);
+		editItems = editItems.addValueAll(statementTitle, statementTitleValue);
+		
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementText, textValue);
+		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementText, statementTextValue);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
+		boolean titleDisplayedAll = collectionEntry.metadataDisplayedAll(statementTitle, statementTitleValue);
+		Assert.assertTrue(titleDisplayedAll, "Title is not displayed on item page.");
 	}
 	
 	@Test(priority = 8)
 	public void textFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isTextFacetPresent(facetText, textValue);
+		boolean facetDisplayedInItems = browseItems.isTextFacetPresent(facetText, statementTextValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -195,15 +229,15 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void textFacetDisplayedInCollection() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean facetDisplayed = collectionEntry.isTextFacetPresent(facetText, textValue);
+		boolean facetDisplayed = collectionEntry.isTextFacetPresent(facetText, statementTextValue);
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
 	@Test(priority = 10)
 	public void changeFacetText() {
-		String newSelection = "Title";
-		String selectionAlias = "md.title.exact";
-		changeFacetSelectionTest(facetText, newSelection, selectionAlias);
+		String newSelection = statementTitle;
+		String newSelectionAlias = "md." + this.convertStatementName(statementTitle) + ".exact";
+		changeFacetSelectionTest(facetText, newSelection, newSelectionAlias);
 	}
 	
 	@Test(priority = 11)
@@ -217,7 +251,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedTextFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isTextFacetPresent(facetText, textValue);
+		boolean facetDisplayedInItems = browseItems.isTextFacetPresent(facetText, statementTitleValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -225,15 +259,22 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedTextFacetDisplayedOnCollectionPage() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean facetDisplayed = collectionEntry.isTextFacetPresent(facetText, textValue);
+		boolean facetDisplayed = collectionEntry.isTextFacetPresent(facetText, statementTitleValue);
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
+	/**
+	 * Create statement (Type URL)
+	 */
 	@Test(priority = 14)
 	public void createStatementURL() {
 		createStatementTest(statementURL, StatementType.URL);
+		createStatementTest(statementLink, StatementType.URL);
 	}
 
+	/**
+	 * IMJ-282 (Type URL)
+	 */
 	@Test(priority = 15)
 	public void createFacetURL() {
 		createFacetTest(facetURL, statementURL);
@@ -243,18 +284,23 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void addValuesToURLStatement() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
-		editItems = editItems.addValueAll(statementURL, URLValue);
+		editItems = editItems.addValueAll(statementURL, statementURLValue);
+		editItems = editItems.addValueAll(statementLink, statementLinkValue);
+		
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementURL, URLValue);
+		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementURL, statementURLValue);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
+		boolean linkDisplayedAll = collectionEntry.metadataDisplayedAll(statementLink, statementLinkValue);
+		Assert.assertTrue(linkDisplayedAll, "Link is not displayed on item page.");
 	}
 	
 	@Test(priority = 17)
 	public void URLFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isUrlFacetPresent(facetURL, URLValue);
+		boolean facetDisplayedInItems = browseItems.isUrlFacetPresent(facetURL, statementURLValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -262,15 +308,15 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void URLFacetDisplayedInCollection() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean facetDisplayed = collectionEntry.isUrlFacetPresent(facetURL, URLValue);
+		boolean facetDisplayed = collectionEntry.isUrlFacetPresent(facetURL, statementURLValue);
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
 	@Test(priority = 19)
 	public void changeFacetURL() {
-		String newSelection = "Link";
-		String selectionAlias = "md.link.exact";
-		changeFacetSelectionTest(facetURL, newSelection, selectionAlias);
+		String newSelection = statementLink;
+		String newSelectionAlias = "md." + this.convertStatementName(statementLink) + ".exact";
+		changeFacetSelectionTest(facetURL, newSelection, newSelectionAlias);
 	}
 	
 	@Test(priority = 20)
@@ -284,7 +330,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedURLFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isUrlFacetPresent(facetURL, URLValue);
+		boolean facetDisplayedInItems = browseItems.isUrlFacetPresent(facetURL, statementLinkValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -292,15 +338,22 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedURLFacetDisplayedOnCollectionPage() {
 			adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 			collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-			boolean facetDisplayed = collectionEntry.isUrlFacetPresent(facetURL, URLValue);
+			boolean facetDisplayed = collectionEntry.isUrlFacetPresent(facetURL, statementLinkValue);
 			Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
+	/**
+	 * Create statement (Type Person)
+	 */
 	@Test(priority = 23)
 	public void createStatementPerson() {
 		createStatementTest(statementPerson, StatementType.PERSON);
+		createStatementTest(statementPerformer, StatementType.PERSON);
 	}
 	
+	/**
+	 * IMJ-282 (Type Person)
+	 */
 	@Test(priority = 24)
 	public void createFacetPerson() {
 		createFacetTest(facetPerson, statementPerson);
@@ -310,17 +363,22 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(statementPerson, personValue);
+		editItems = editItems.addValueAll(statementPerformer, statementPerformerValue);
+		
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementPerson, personValue);
+		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementPerson, personValue + ", ()");
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
+		boolean performerDisplayedAll = collectionEntry.metadataDisplayedAll(statementPerformer, statementPerformerValue + ", ()");
+		Assert.assertTrue(performerDisplayedAll, "Performer is not displayed on item page.");
 	}
 	
 	@Test(priority = 26)
 	public void personFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isPersonFacetPresent(facetPerson, personValue + ", ()");
+		boolean facetDisplayedInItems = browseItems.isPersonFacetPresent(facetPerson, personValue + ",");
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -328,15 +386,15 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void personFacetDisplayedInCollection() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean facetDisplayed = collectionEntry.isPersonFacetPresent(facetPerson, personValue + ", ()");
+		boolean facetDisplayed = collectionEntry.isPersonFacetPresent(facetPerson, personValue + ",");
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
 	@Test(priority = 28)
 	public void changeFacetPerson() {
-		String newSelection = "Performer 1";
-		String selectionAlias = "md.performer_1.exact";
-		changeFacetSelectionTest(facetPerson, newSelection, selectionAlias);
+		String newSelection = statementPerformer;
+		String newSelectionAlias = "md." + this.convertStatementName(statementPerformer) + ".exact";
+		changeFacetSelectionTest(facetPerson, newSelection, newSelectionAlias);
 	}
 	
 	@Test(priority = 29)
@@ -350,7 +408,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedPersonFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isPersonFacetPresent(facetPerson, personValue + ", ()");
+		boolean facetDisplayedInItems = browseItems.isPersonFacetPresent(facetPerson, statementPerformerValue + ",");
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -358,15 +416,22 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedPersonFacetDisplayedOnCollectionPage() {
 			adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 			collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-			boolean facetDisplayed = collectionEntry.isPersonFacetPresent(facetPerson, personValue + ", ()");
+			boolean facetDisplayed = collectionEntry.isPersonFacetPresent(facetPerson, statementPerformerValue + ",");
 			Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 
+	/**
+	 * Create statement (Type Date)
+	 */
 	@Test(priority = 32)
 	public void createStatementDate() {
 		createStatementTest(statementDate, StatementType.DATE);
+		createStatementTest(statementNewDate, StatementType.DATE);
 	}
 	
+	/**
+	 * IMJ-282 (Type Date)
+	 */
 	@Test(priority = 33)
 	public void createFacetDate() {
 		createFacetTest(facetDate, statementDate);
@@ -377,10 +442,15 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(statementDate, dateValue);
+		editItems = editItems.addValueAll(statementNewDate, statementNewDateValue);
+		
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementDate, dateValue);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
+		boolean newDateDisplayedAll = collectionEntry.metadataDisplayedAll(statementNewDate, statementNewDateValue);
+		Assert.assertTrue(newDateDisplayedAll, "New Date is not displayed on item page.");
 	}
 	
 	@Test(priority = 35)
@@ -401,9 +471,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	
 	@Test(priority = 37)
 	public void changeFacetDate() {
-		String newSelection = "Date";
-		String selectionAlias = "md.date.date";
-		changeFacetSelectionTest(facetDate, newSelection, selectionAlias);
+		String newSelection = statementNewDate;
+		String newSelectionAlias = "md." + this.convertStatementName(statementNewDate) + ".date";
+		changeFacetSelectionTest(facetDate, newSelection, newSelectionAlias);
 	}
 	
 	@Test(priority = 38)
@@ -417,7 +487,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedDateFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isDateFacetPresent(facetDate, dateValue);
+		boolean facetDisplayedInItems = browseItems.isDateFacetPresent(facetDate, statementNewDateValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -425,15 +495,22 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedDateFacetDisplayedOnCollectionPage() {
 			adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 			collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-			boolean facetDisplayed = collectionEntry.isDateFacetPresent(facetDate, dateValue);
+			boolean facetDisplayed = collectionEntry.isDateFacetPresent(facetDate, statementNewDateValue);
 			Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 
+	/**
+	 * Create statement (Type Number)
+	 */
 	@Test(priority = 41)
 	public void createStatementNumber() {
 		createStatementTest(statementNumber, StatementType.NUMBER);
+		createStatementTest(statementNewNumber, StatementType.NUMBER);
 	}
 
+	/**
+	 * IMJ-282 (Type Number)
+	 */
 	@Test(priority = 42)
 	public void createFacetNumber() {
 		createFacetTest(facetNumber, statementNumber);
@@ -444,10 +521,15 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(statementNumber, numberValue);
+		editItems = editItems.addValueAll(statementNewNumber, statementNewNumberValue);
+		
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementNumber, dateValue);
+		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementNumber, numberValue);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
+		boolean newNumberDisplayedAll = collectionEntry.metadataDisplayedAll(statementNewNumber, statementNewNumberValue);
+		Assert.assertTrue(newNumberDisplayedAll, "New Number is not displayed on item page.");
 	}
 	
 	@Test(priority = 44)
@@ -468,9 +550,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	
 	@Test(priority = 46)
 	public void changeFacetNumber() {
-		String newSelection = "Number";
-		String selectionAlias = "md.number.number";
-		changeFacetSelectionTest(facetNumber, newSelection, selectionAlias);
+		String newSelection = statementNewNumber;
+		String newSelectionAlias = "md." + this.convertStatementName(statementNewNumber) + ".number";
+		changeFacetSelectionTest(facetNumber, newSelection, newSelectionAlias);
 	}
 	
 	@Test(priority = 47)
@@ -484,7 +566,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedNumberFacetDisplayedInItems() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseItemsPage browseItems = adminHomepage.navigateToItemPage();
-		boolean facetDisplayedInItems = browseItems.isNumberFacetPresent(facetNumber, numberValue);
+		boolean facetDisplayedInItems = browseItems.isNumberFacetPresent(facetNumber, statementNewNumberValue);
 		Assert.assertTrue(facetDisplayedInItems, "Facet is not displayed while browsing items");
 	}
 	
@@ -492,7 +574,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void renamedNumberFacetDisplayedOnCollectionPage() {
 			adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 			collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-			boolean facetDisplayed = collectionEntry.isNumberFacetPresent(facetNumber, numberValue);
+			boolean facetDisplayed = collectionEntry.isNumberFacetPresent(facetNumber, statementNewNumberValue);
 			Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
@@ -505,6 +587,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	@Test(priority = 51)
 	public void deleteStatementText() {
 		deleteStatementTest(statementText);
+		deleteStatementTest(statementTitle);
 	}
 	
 	@Test(priority = 52)
@@ -515,6 +598,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	@Test(priority = 53)
 	public void deleteStatementURL() {
 		deleteStatementTest(statementURL);
+		deleteStatementTest(statementLink);
 	}
 	
 	@Test(priority = 54)
@@ -525,6 +609,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	@Test(priority = 55)
 	public void deleteStatementPerson() {
 		deleteStatementTest(statementPerson);
+		deleteStatementTest(statementPerformer);
 	}
 	
 	@Test(priority = 56)
@@ -535,6 +620,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	@Test(priority = 57)
 	public void deleteStatementDate() {
 		deleteStatementTest(statementDate);
+		deleteStatementTest(statementNewDate);
 	}
 	
 	@Test(priority = 58)
@@ -545,6 +631,7 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	@Test(priority = 59)
 	public void deleteStatementNumber() {
 		deleteStatementTest(statementNumber);
+		deleteStatementTest(statementNewNumber);
 	}
 	
 	@Test(priority = 60)
