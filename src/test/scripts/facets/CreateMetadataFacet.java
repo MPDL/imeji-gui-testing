@@ -19,6 +19,7 @@ import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 import test.base.StatementType;
 
+//TODO: Merge with CreateMetadataFacetPrivate
 public class CreateMetadataFacet extends BaseSelenium {
 
 	private AdminHomepage adminHomepage;

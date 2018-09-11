@@ -89,6 +89,7 @@ public class EditItemPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOf(saveButton));
 		
 		saveButton.click();
+		// TODO: Why is the saveButton not clicked ???
 		waitForLoadOfNewPage(wait, licenseLink);
 		
 		return PageFactory.initElements(driver, ItemViewPage.class);

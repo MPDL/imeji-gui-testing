@@ -13,6 +13,7 @@ import spot.pages.registered.NewCollectionPage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+//TODO: Merge with CreateDefaultFacets
 public class CreateDefaultFacetsPrivate extends BaseSelenium {
 
 	private AdminHomepage adminHomepage;

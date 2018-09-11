@@ -19,6 +19,7 @@ import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 import test.base.StatementType;
 
+//TODO: Merge with CreateMetadataFacet
 public class CreateMetadataFacetPrivate extends BaseSelenium {
 
 
