@@ -1,7 +1,5 @@
 package spot.pages.registered;
 
-import static test.base.SeleniumWrapper.waitForLoadOfNewPage;
-
 import java.util.Iterator;
 import java.util.List;
 
@@ -84,13 +82,13 @@ public class EditItemPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOf(licenseName));
 		licenseName.sendKeys(name);
 		licenseLink.sendKeys(link);
-		// TODO: Find a way to wait for the loading/loaderWrapper which in this case does not really load any element
-		// The actual waiting for the visibility of saveButton does not handle every race condition!
-		wait.until(ExpectedConditions.visibilityOf(saveButton));
+		
+		// FIXME: Replace the Thread.sleep with an explicit wait
+		// Problem: Clicking on another field after changing licenseName and licenseLink results in a short loading screen (loaderWrapper)
+		// But nothing is loaded, therefore an explicit wait is not possible for now, because there is nothing (race condition safe) to wait for!
+		try { Thread.sleep(2000); } catch (InterruptedException e) {}
 		
 		saveButton.click();
-		// TODO: Why is the saveButton not clicked ???
-		waitForLoadOfNewPage(wait, licenseLink);
 		
 		return PageFactory.initElements(driver, ItemViewPage.class);
 	}
