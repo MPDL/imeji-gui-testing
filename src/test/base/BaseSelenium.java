@@ -168,7 +168,7 @@ public abstract class BaseSelenium {
 		String systemIndependentFilePath = systemIndependentFile.getPath();
 		return systemIndependentFilePath;
 	}
-
+	
 	/**
 	 * Handles failed tests.
 	 * @param testResult
@@ -176,9 +176,7 @@ public abstract class BaseSelenium {
 	@AfterMethod
 	public void handleTestFailure(ITestResult testResult) {
 		if (testResult.getStatus() == ITestResult.FAILURE) {
-			if (!SeleniumTestSuite.HEADLESS) {
-				takeScreenshot(testResult.getName());
-			}
+			takeScreenshot(testResult.getName());
 			logTestResult(testResult);
 			navigateToStartPage();
 		}
