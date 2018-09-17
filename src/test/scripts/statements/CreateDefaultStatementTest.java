@@ -145,6 +145,7 @@ public class CreateDefaultStatementTest extends BaseSelenium {
 	public void switchOffPrivateMode() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
+		//TODO: Switch off the private mode not necessary here? Rename method!
 	}
 	
 	@Test(priority = 2)
@@ -153,7 +154,7 @@ public class CreateDefaultStatementTest extends BaseSelenium {
 		items.add("SampleTXTFile.txt");
 		items.add("SampleTIFFile.tif");
 		items.add("SampleMP3File.mp3");
-		items.add("SampleSWCFile.swc");
+//		items.add("SampleSWCFile.swc");
 	}
 	
 	@Test(priority = 3)
@@ -305,6 +306,7 @@ public class CreateDefaultStatementTest extends BaseSelenium {
 		arguments.add(args1);
 		arguments.add(args2);
 		collectionEntry = metadataTable.editEntry(arguments);
+		collectionEntry.hideMessages();
 		
 		ItemViewPage itemView = collectionEntry.openItem(items.get(1));
 		Assert.assertFalse(itemView.metadataPresent(statement.name, statement.valueOverwrite), items.get(1) + ": old metadata still displayed");
@@ -322,7 +324,7 @@ public class CreateDefaultStatementTest extends BaseSelenium {
 		for (String item : items) {
 			adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 			collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-			ItemViewPage itemView = collectionEntry.openItem(item).deleteMetadata(statement.name);
+			ItemViewPage itemView = collectionEntry.openItem(item).deleteAllMetadata(statement.name);
 			itemView.hideMessages();
 			collectionEntry = itemView.goToCollectionEntry();
 			

@@ -148,7 +148,7 @@ public class CreateDefaultStatementPrivate extends BaseSelenium {
 		items.add("SampleTXTFile.txt");
 		items.add("SampleTIFFile.tif");
 		items.add("SampleMP3File.mp3");
-		items.add("SampleSWCFile.swc");
+//		items.add("SampleSWCFile.swc");
 	}
 	
 	@Test(priority = 3)
@@ -204,6 +204,7 @@ public class CreateDefaultStatementPrivate extends BaseSelenium {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueAll(statement.name, statement.value);
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statement.name, statement.value);
@@ -215,6 +216,7 @@ public class CreateDefaultStatementPrivate extends BaseSelenium {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		ItemViewPage itemView = collectionEntry.openItem(items.get(0)).deleteMetadata(statement.name);
+		itemView.hideMessages();
 		
 		boolean metadataDeleted = !itemView.goToCollectionEntry().metadataDisplayed(items.get(0), statement.name, statement.value);
 		Assert.assertTrue(metadataDeleted, "Metadata was not deleted from item " + items.get(0));
@@ -229,6 +231,7 @@ public class CreateDefaultStatementPrivate extends BaseSelenium {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.addValueIfEmpty(statement.name, statement.valueEmpty);
+		editItems.hideMessages();
 		
 		Iterator<String> iterator = items.iterator();
 		
@@ -257,6 +260,7 @@ public class CreateDefaultStatementPrivate extends BaseSelenium {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
 		editItems = editItems.overwriteAllValues(statement.name, statement.valueOverwrite);
+		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statement.name, statement.valueOverwrite);
@@ -269,6 +273,7 @@ public class CreateDefaultStatementPrivate extends BaseSelenium {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemPage editItem = collectionEntry.openItem(items.get(0)).editItem();
 		ItemViewPage itemView = editItem.addMetadata(statement.name, statement.oneItemValue);
+		itemView.hideMessages();
 		
 		boolean newMetadataDisplayed = itemView.goToCollectionEntry().metadataDisplayed(items.get(0), statement.name, statement.oneItemValue);
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
@@ -294,6 +299,7 @@ public class CreateDefaultStatementPrivate extends BaseSelenium {
 		arguments.add(args1);
 		arguments.add(args2);
 		collectionEntry = metadataTable.editEntry(arguments);
+		collectionEntry.hideMessages();
 		
 		ItemViewPage itemView = collectionEntry.openItem(items.get(1));
 		Assert.assertFalse(itemView.metadataPresent(statement.name, statement.valueOverwrite), items.get(1) + ": old metadata still displayed");
@@ -311,7 +317,8 @@ public class CreateDefaultStatementPrivate extends BaseSelenium {
 		for (String item : items) {
 			adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 			collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-			ItemViewPage itemView = collectionEntry.openItem(item).deleteMetadata(statement.name);
+			ItemViewPage itemView = collectionEntry.openItem(item).deleteAllMetadata(statement.name);
+			itemView.hideMessages();
 			
 			boolean metadataDeleted = !itemView.goToCollectionEntry().metadataDisplayed(item, statement.name);
 			Assert.assertTrue(metadataDeleted, "Metadata was not deleted from item " + item);

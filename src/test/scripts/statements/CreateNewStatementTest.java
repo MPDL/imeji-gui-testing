@@ -147,7 +147,7 @@ public class CreateNewStatementTest extends BaseSelenium {
 		items.add("SampleTXTFile.txt");
 		items.add("SampleTIFFile.tif");
 		items.add("SampleMP3File.mp3");
-		items.add("SampleSWCFile.swc");
+//		items.add("SampleSWCFile.swc");
 	}
 	
 	@Test(priority = 3)
@@ -300,7 +300,7 @@ public class CreateNewStatementTest extends BaseSelenium {
 		for (String item : items) {
 			adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 			collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-			ItemViewPage itemView = collectionEntry.openItem(item).deleteMetadata(statement.name);
+			ItemViewPage itemView = collectionEntry.openItem(item).deleteAllMetadata(statement.name);
 			itemView.hideMessages();
 			collectionEntry = itemView.goToCollectionEntry();
 			
