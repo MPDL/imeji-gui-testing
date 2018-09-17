@@ -134,7 +134,9 @@ public class ItemViewPage extends BasePage {
 	}
 
 	public EditItemPage editItem() {
+		WebElement globalMetadataSet = driver.findElement(By.className("imj_globalMetadataSet"));
 		editButton.click();
+		wait.until(ExpectedConditions.stalenessOf(globalMetadataSet));
 
 		return PageFactory.initElements(driver, EditItemPage.class);
 	}
@@ -205,15 +207,14 @@ public class ItemViewPage extends BasePage {
 		return false;
 	}
 
-	public ItemViewPage deleteMetadata(String key) {
-		ItemViewPage itemView = this;
-
-		while (metadataPresent(key)) {
-			EditItemPage editItem = itemView.editItem();
-			itemView = editItem.deleteFirstMetadata(key);
-		}
-
-		return itemView;
+	public ItemViewPage deleteMetadata(String metaDataLabelName) {
+		ItemViewPage itemViewPage = this.editItem().deleteFirstMetadata(metaDataLabelName);
+		return itemViewPage;
+	}
+	
+	public ItemViewPage deleteAllMetadata(String metaDataLabelName) {
+			ItemViewPage itemViewPage = this.editItem().deleteAllMetadata(metaDataLabelName);
+			return itemViewPage;
 	}
 
 	/**

@@ -1,6 +1,5 @@
 package spot.pages.registered;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -55,26 +54,60 @@ public class EditItemPage extends BasePage {
 		return PageFactory.initElements(driver, ItemViewPage.class);
 	}
 	
-	public ItemViewPage deleteFirstMetadata(String name) {
-		try { Thread.sleep(2000); } catch (InterruptedException e) {}
+	// TODO: Execution-Time of this method is too long (~21 seconds). Reason: ?
+	public ItemViewPage deleteFirstMetadata(String metaDataLabelName) {
+		this.deleteMetadata(metaDataLabelName);
 		
-		Iterator<WebElement> fieldIterator = metadataFields.iterator();
-		while (fieldIterator.hasNext()) {
-			WebElement field = fieldIterator.next();
-			List<WebElement> labels = field.findElements(By.className("imj_metadataLabel"));
-			if (labels.size() > 0) {
-				String currentName = labels.get(0).getText();
-				if (currentName.equals(name)) {
-					field.findElement(By.className("fa-minus-square-o")).click();
-					break;
-				}
-			}
-		}
-
-		PageFactory.initElements(driver, this);
+		WebElement itemMetaData = driver.findElement(By.id("itemMetadata"));
 		saveButton.click();
-		try { Thread.sleep(2000); } catch (InterruptedException e) {}
+		wait.until(ExpectedConditions.stalenessOf(itemMetaData));
+		
 		return PageFactory.initElements(driver, ItemViewPage.class);
+	}
+	
+	// TODO: Execution-Time of this method is too long (~21 seconds). Reason: ?
+	public ItemViewPage deleteAllMetadata(String metaDataLabelName) {		
+		int numberOfMetadata = this.numberOfMetadata(metaDataLabelName);
+		for(int i=0; i<numberOfMetadata;  i++) {
+			this.deleteMetadata(metaDataLabelName);
+		}
+		
+		WebElement itemMetaData = driver.findElement(By.id("itemMetadata"));
+		saveButton.click();
+		wait.until(ExpectedConditions.stalenessOf(itemMetaData));
+		
+		return PageFactory.initElements(driver, ItemViewPage.class);
+	}
+	
+	private void deleteMetadata(String metaDataLabelName) {
+		for (WebElement metadataField : metadataFields) {
+			List<WebElement> metaDataLabels = metadataField.findElements(By.className("imj_metadataLabel"));
+				if(metaDataLabels.size() == 1) {
+					WebElement metaDataLabel = metaDataLabels.get(0);
+					String currentName = metaDataLabel.getText();
+					if (currentName.equals(metaDataLabelName)) {
+						metadataField.findElement(By.className("fa-minus-square-o")).click();
+						wait.until(ExpectedConditions.stalenessOf(metaDataLabel));
+						break;
+					}
+				}
+		}
+		PageFactory.initElements(driver, this);
+	}
+	
+	private int numberOfMetadata(String metaDataLabelName) {
+		int numberOfMetadata = 0;		
+		for (WebElement metadataField : metadataFields) {
+			List<WebElement> metaDataLabels = metadataField.findElements(By.className("imj_metadataLabel"));
+				if(metaDataLabels.size() == 1) {
+					WebElement metaDataLabel = metaDataLabels.get(0);
+					String currentName = metaDataLabel.getText();
+					if (currentName.equals(metaDataLabelName)) {
+						numberOfMetadata++;
+					}
+				}
+		}
+		return numberOfMetadata;
 	}
 	
 	public ItemViewPage enterOwnLicense(String name, String link) {
