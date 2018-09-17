@@ -126,13 +126,16 @@ public class EditCollectionPage extends BasePage {
 		wait.until(ExpectedConditions.attributeToBe(inputFile, "visibility", "visible"));
 		
 		inputFile.sendKeys(filepath);
-
-		try {Thread.sleep(2500);} catch (Exception exc) {}
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='uploader']//span[text()='100%']")));
 	}
 	
 	public CollectionEntryPage submitChanges() {
+		// Clicking the saveButton throws not Exceptions but the click doesen't work correctly (is not recoginzed)
+		// Scrolling the saveButton into view seems to solve this problem
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].scrollIntoView();", saveButton);
 		saveButton.click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("content")));
+		
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
 		this.hideMessages();
 		
