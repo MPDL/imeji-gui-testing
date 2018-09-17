@@ -130,8 +130,8 @@ public class EditCollectionPage extends BasePage {
 	}
 	
 	public CollectionEntryPage submitChanges() {
-		// Clicking the saveButton throws not Exceptions but the click doesen't work correctly (is not recoginzed)
-		// Scrolling the saveButton into view seems to solve this problem
+		// Clicking the saveButton throws no Exceptions but the click does not work correctly (is not recognized)
+		// Scrolling the saveButton into view solves this problem
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].scrollIntoView();", saveButton);
 		saveButton.click();
