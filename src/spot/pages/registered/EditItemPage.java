@@ -54,7 +54,6 @@ public class EditItemPage extends BasePage {
 		return PageFactory.initElements(driver, ItemViewPage.class);
 	}
 	
-	// TODO: Execution-Time of this method is too long (~21 seconds). Reason: ?
 	public ItemViewPage deleteFirstMetadata(String metaDataLabelName) {
 		this.deleteMetadata(metaDataLabelName);
 		
@@ -65,7 +64,6 @@ public class EditItemPage extends BasePage {
 		return PageFactory.initElements(driver, ItemViewPage.class);
 	}
 	
-	// TODO: Execution-Time of this method is too long (~21 seconds). Reason: ?
 	public ItemViewPage deleteAllMetadata(String metaDataLabelName) {		
 		int numberOfMetadata = this.numberOfMetadata(metaDataLabelName);
 		for(int i=0; i<numberOfMetadata;  i++) {
@@ -80,32 +78,27 @@ public class EditItemPage extends BasePage {
 	}
 	
 	private void deleteMetadata(String metaDataLabelName) {
-		for (WebElement metadataField : metadataFields) {
-			List<WebElement> metaDataLabels = metadataField.findElements(By.className("imj_metadataLabel"));
-				if(metaDataLabels.size() == 1) {
-					WebElement metaDataLabel = metaDataLabels.get(0);
-					String currentName = metaDataLabel.getText();
-					if (currentName.equals(metaDataLabelName)) {
-						metadataField.findElement(By.className("fa-minus-square-o")).click();
-						wait.until(ExpectedConditions.stalenessOf(metaDataLabel));
-						break;
-					}
-				}
+		List<WebElement> metaDataLabels = driver.findElements(By.xpath("//div[@class='imj_metadataLabel' and contains(text(),'" + metaDataLabelName + "')]"));
+		for (WebElement metaDataLabel : metaDataLabels) {
+			String currentName = metaDataLabel.getText();
+			if (currentName.equals(metaDataLabelName)) {
+				WebElement minusButton = metaDataLabel.findElement(By.xpath("./following-sibling::div/a[contains(@class,'fa-minus-square-o')]"));
+				minusButton.click();
+				wait.until(ExpectedConditions.stalenessOf(metaDataLabel));
+				break;
+			}
 		}
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(driver, this);		
 	}
 	
 	private int numberOfMetadata(String metaDataLabelName) {
-		int numberOfMetadata = 0;		
-		for (WebElement metadataField : metadataFields) {
-			List<WebElement> metaDataLabels = metadataField.findElements(By.className("imj_metadataLabel"));
-				if(metaDataLabels.size() == 1) {
-					WebElement metaDataLabel = metaDataLabels.get(0);
-					String currentName = metaDataLabel.getText();
-					if (currentName.equals(metaDataLabelName)) {
-						numberOfMetadata++;
-					}
-				}
+		int numberOfMetadata = 0;
+		List<WebElement> metaDataLabels = driver.findElements(By.xpath("//div[@class='imj_metadataLabel' and contains(text(),'" + metaDataLabelName + "')]"));
+		for (WebElement metaDataLabel : metaDataLabels) {
+			String currentName = metaDataLabel.getText();
+			if (currentName.equals(metaDataLabelName)) {
+				numberOfMetadata++;
+			}
 		}
 		return numberOfMetadata;
 	}
