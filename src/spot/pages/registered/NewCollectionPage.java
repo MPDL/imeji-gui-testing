@@ -112,6 +112,7 @@ public class NewCollectionPage extends BasePage {
 		}
 	}
 	
+	// IMJ-245
 	public CollectionEntryPage createCollection1Author2OUs(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
 		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
 		addOrganization();

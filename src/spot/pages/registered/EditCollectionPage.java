@@ -76,6 +76,7 @@ public class EditCollectionPage extends BasePage {
 		titleBox.sendKeys(newTitle);
 	}
 	
+	// IMJ-246
 	public void editDescription(String newDescription) {
 		descriptionBox.clear();
 		descriptionBox.sendKeys(newDescription);

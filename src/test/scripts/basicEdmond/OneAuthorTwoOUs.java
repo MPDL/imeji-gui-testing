@@ -19,6 +19,12 @@ import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #8
+ * 
+ * @author helk
+ *
+ */
 public class OneAuthorTwoOUs extends BaseSelenium {
 
 	private Homepage homepage;
@@ -37,7 +43,7 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-245
+	 * IMJ-112, IMJ-113, IMJ-245
 	 */
 	@Test(priority = 2)
 	public void createCollection() {
@@ -61,6 +67,8 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 		Assert.assertEquals(actual, collectionDescription, "Description probably was not changed.");
 	}
 	
+	
+	// IMJ-131, IMJ-56
 	private void uploadItem(String title) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
@@ -299,7 +307,7 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-59
+	 * (IMJ-2), IMJ-59
 	 */
 	@Test(priority = 23, dependsOnMethods = { "createCollection" })
 	public void downloadItemNRU() {
@@ -320,6 +328,9 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 		Assert.assertTrue(downloadAllPossible, "Non-registered user cannot download collection's items.");
 	}
 	
+	/**
+	 * Postcondition
+	 */
 	@Test(priority = 25, dependsOnMethods = { "createCollection" })
 	public void checkOU2Correctness() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
