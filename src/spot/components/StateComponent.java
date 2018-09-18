@@ -32,6 +32,12 @@ public class StateComponent extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
+	/**
+	 * Filter the collections list based on the collection-state: private, published or discarded. <br>
+	 * The filter options: private, published and discarded are only visible in 'disabled' private mode.
+	 * 
+	 * @param filter The filter-option
+	 */
 	public void filter(StateOptions filter) {
 		stateMenu.click();
 		

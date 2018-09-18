@@ -41,6 +41,8 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 	}
+	
+	//TODO: Enable private mode to use the filterDiscarded-method at the end of the test
 
 	/**
 	 * IMJ-112, IMJ-113, IMJ-86
