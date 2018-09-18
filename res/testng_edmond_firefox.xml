@@ -100,12 +100,11 @@
 		</classes>
 	</test>
 
-	<!-- Statement Tests temporarily removed because of very long execution time -->
-	<!-- 
+	<!-- Statement Tests have a high execution time -->
 	<test name="Data Driven Imeji Gui Tests" group-by-instances="true" parallel="instances">
 		<classes>
 						
-			Statements
+			<!-- Statements -->
 			
 			<class name="test.scripts.statements.CreateDefaultStatementTest"></class>
 
@@ -115,10 +114,9 @@
 
 			<class name="test.scripts.statements.CreateNewStatementPrivate"></class>
 			
-			End of Statements
+			<!-- End of Statements -->
 			
 		</classes>
 	</test>
-	 -->
 	
 </suite>
