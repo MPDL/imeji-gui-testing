@@ -15,6 +15,12 @@ import spot.pages.registered.NewCollectionPage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #7
+ * 
+ * @author helk
+ *
+ */
 public class DefaultDelete extends BaseSelenium {
 	
 	private Homepage homepage;
@@ -33,7 +39,7 @@ public class DefaultDelete extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-83
+	 * IMJ-112, IMJ-113, IMJ-83
 	 */
 	@Test(priority = 2)
 	public void createDefaultCollection() {
@@ -72,6 +78,7 @@ public class DefaultDelete extends BaseSelenium {
 		Assert.assertEquals(pageTitle, collectionTitle, "Title was not changed.");
 	}
 	
+	// IMJ-131, IMJ-56
 	private void uploadItem(String title) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
@@ -89,7 +96,7 @@ public class DefaultDelete extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-279
+	 * IMJ-228, IMJ-279
 	 */
 	@Test(priority = 6)
 	public void metadataAllItems() {

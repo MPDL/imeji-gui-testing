@@ -270,6 +270,7 @@ public class CollectionEntryPage extends BasePage {
 		return actionComponent.releaseCollection();
 	}
 
+	// IMJ-96
 	public CollectionsPage deleteCollection() {
 		return actionComponent.deleteCollection();
 	}
@@ -507,6 +508,7 @@ public class CollectionEntryPage extends BasePage {
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
+	// IMJ-67, IMJ-242
 	public CollectionEntryPage deleteSelectedItems() {
 		WebElement selectedItemsDropDown = driver.findElement(By.cssSelector("#selMenu\\:sf>.dropdown"));
 		selectedItemsDropDown.click();
