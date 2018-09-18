@@ -103,6 +103,7 @@ public class EditCollectionPage extends BasePage {
 		infoUrlBox.sendKeys(link);
 	}
 	
+	// IMJ-243
 	public void removeAuthor() {
 		removeAuthor.click();
 		wait.until(ExpectedConditions.elementToBeClickable(saveButton));

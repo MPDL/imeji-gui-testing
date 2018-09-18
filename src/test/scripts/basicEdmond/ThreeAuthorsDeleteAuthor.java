@@ -18,6 +18,12 @@ import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #6
+ * 
+ * @author helk
+ *
+ */
 public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 	
 	private Homepage homepage;
@@ -36,7 +42,7 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-86
+	 * IMJ-112, IMJ-113, IMJ-86
 	 */
 	@Test(priority = 2)
 	public void createCollection3Authors() {
@@ -76,6 +82,7 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 		Assert.assertFalse(authors.contains("Thethird"), "Third author should not be present");
 	}
 	
+	// IMJ-131, IMJ-56
 	private void uploadItem(String title) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
@@ -312,6 +319,9 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 	}
 	
 	//TODO: The successful deletion of the third author should be tested above and not in this way! Maybe remove this test-method?
+	/**
+	 * Postcondition
+	 */
 	@Test(priority = 22, dependsOnMethods = { "createCollection3Authors" })	
 	public void deletedAuthorTest() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -326,7 +336,7 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-59
+	 * (IMJ-2), IMJ-59
 	 */
 	@Test(priority = 23, dependsOnMethods = { "createCollection3Authors" })
 	public void downloadItemNRU() {

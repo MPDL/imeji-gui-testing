@@ -43,6 +43,7 @@ public class EditItemPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
+	// IMJ-79
 	public ItemViewPage selectLicense(String value) {
 		Select licenseSelect = new Select(licenseDropdown);
 		licenseSelect.selectByValue(value);
@@ -103,6 +104,7 @@ public class EditItemPage extends BasePage {
 		return numberOfMetadata;
 	}
 	
+	// IMJ-80
 	public ItemViewPage enterOwnLicense(String name, String link) {
 		licenseEditor.click();
 		wait.until(ExpectedConditions.visibilityOf(licenseName));
