@@ -69,7 +69,7 @@ public class EditItemsPage extends BasePage {
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
 	
-	// IMJ-281, IMJ-229, IMJ-259
+	// IMJ-281, IMJ-229, IMJ-259, IMJ-262
 	public EditItemsPage overwriteAllValues(String key, String value) {
 		addMetadata(key, value);
 		overwriteAllValues.click();

@@ -280,7 +280,7 @@ public class CollectionEntryPage extends BasePage {
 		return actionComponent.discardCollection();
 	}
 
-	// IMJ-204, IMJ-196
+	// IMJ-204, IMJ-196, IMJ-195
 	public SharePage share() {
 		new Actions(driver).moveToElement(editButton).moveToElement(share).click().build().perform();
 
@@ -414,7 +414,7 @@ public class CollectionEntryPage extends BasePage {
 		return actionComponent.editSelectedItems();
 	}
 
-	// IMJ-279, IMJ-228, IMJ-280, IMJ-140, IMJ-281, IMJ-229, IMJ-249, IMJ-251
+	// IMJ-279, IMJ-228, IMJ-280, IMJ-140, IMJ-281, IMJ-229, IMJ-249, IMJ-251, IMJ-262
 	public EditItemsPage editAllItems() {
 		return actionComponent.editAllItems();
 	}

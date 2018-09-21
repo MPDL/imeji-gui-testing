@@ -23,6 +23,12 @@ import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #15
+ * 
+ * @author helk
+ *
+ */
 public class Default extends BaseSelenium {
 
 	private Homepage homepage;
@@ -61,7 +67,7 @@ public class Default extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-83
+	 * (IMJ-112, IMJ-113), IMJ-83
 	 */
 	@Test(priority = 4)
 	public void createDefaultCollection() {
@@ -74,6 +80,9 @@ public class Default extends BaseSelenium {
 		Assert.assertEquals(messageType, MessageType.SUCCESS, "Success message was not displayed.");
 	}
 	
+	/**
+	 * IMJ-127
+	 */
 	@Test(priority = 5, dependsOnMethods = {"createDefaultCollection"})
 	public void createExternalReference() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -116,6 +125,7 @@ public class Default extends BaseSelenium {
 		Assert.assertEquals(pageTitle, collectionTitle, "Title was not changed.");
 	}
 	
+	// IMJ-131, IMJ-56
 	private void uploadItem(String title) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
@@ -134,7 +144,7 @@ public class Default extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-279
+	 * IMJ-249, IMJ-279
 	 */
 	@Test(priority = 8, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataAllItems() {
@@ -160,7 +170,7 @@ public class Default extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-280
+	 * IMJ-251, IMJ-280
 	 */
 	@Test(priority = 10, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataIfEmpty() {
@@ -237,7 +247,7 @@ public class Default extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-22
+	 * (IMJ-22) IMJ-22
 	 */
 	@Test(priority = 15, dependsOnMethods = {"createDefaultCollection"})
 	public void loginRestrictedUser() {
@@ -256,7 +266,7 @@ public class Default extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-46
+	 * IMJ-47
 	 */
 	@Test(priority = 17, dependsOnMethods = {"createDefaultCollection"})
 	public void shareIconDisplayed() {
@@ -290,7 +300,7 @@ public class Default extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-281
+	 * (IMJ-281) IMJ-259
 	 */
 	@Test(priority = 20, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataOverwrite() {
@@ -307,6 +317,9 @@ public class Default extends BaseSelenium {
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on all item pages.");
 	}
 	
+	/**
+	 * (IMJ-266)
+	 */
 	@Test(priority = 21, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataAllItemsOwn() {
 		String key = new Random().nextInt(1000) + "";
