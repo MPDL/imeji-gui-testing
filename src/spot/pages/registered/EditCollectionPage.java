@@ -128,6 +128,10 @@ public class EditCollectionPage extends BasePage {
 		wait.until(ExpectedConditions.attributeToBe(inputFile, "visibility", "visible"));
 		
 		inputFile.sendKeys(filepath);
+		
+		// Wait for the upload to complete
+		try {Thread.sleep(2000);} catch (Exception exc) {}
+		// Waiting for the '100%' upload-status to show up seems not enough
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='uploader']//span[text()='100%']")));
 	}
 	
