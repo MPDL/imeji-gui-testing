@@ -13,6 +13,9 @@ import spot.pages.registered.NewCollectionPage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #23 (in Private mode)
+ */
 //TODO: Merge with CreateDefaultFacets
 public class CreateDefaultFacetsPrivate extends BaseSelenium {
 

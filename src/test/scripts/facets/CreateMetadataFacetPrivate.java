@@ -19,6 +19,9 @@ import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 import test.base.StatementType;
 
+/**
+ * Testcases #24, #25, #26, #27, #28, #29 (in Private mode)
+ */
 //TODO: Merge with CreateMetadataFacet
 public class CreateMetadataFacetPrivate extends BaseSelenium {
 
@@ -202,6 +205,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		createFacetTest(facetText, statementText);
 	}
 	
+	/**
+	 * IMJ-279
+	 */
 	@Test(priority = 7)
 	public void addValuesToTextStatement() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -234,6 +240,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
+	/**
+	 * IMJ-285
+	 */
 	@Test(priority = 10)
 	public void changeFacetText() {
 		String newSelection = statementTitle;
@@ -241,6 +250,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		changeFacetSelectionTest(facetText, newSelection, newSelectionAlias);
 	}
 	
+	/**
+	 * IMJ-284
+	 */
 	@Test(priority = 11)
 	public void renameFacetText() {
 		String oldFacetText = facetText;
@@ -281,6 +293,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		createFacetTest(facetURL, statementURL);
 	}
 
+	/**
+	 * IMJ-279
+	 */
 	@Test(priority = 16)
 	public void addValuesToURLStatement() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -313,6 +328,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
+	/**
+	 * IMJ-285
+	 */
 	@Test(priority = 19)
 	public void changeFacetURL() {
 		String newSelection = statementLink;
@@ -320,6 +338,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		changeFacetSelectionTest(facetURL, newSelection, newSelectionAlias);
 	}
 	
+	/**
+	 * IMJ-284
+	 */
 	@Test(priority = 20)
 	public void renameFacetURL() {
 		String oldFacetURL = facetURL;
@@ -359,6 +380,10 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	public void createFacetPerson() {
 		createFacetTest(facetPerson, statementPerson);
 	}
+	
+	/**
+	 * IMJ-279
+	 */
 	@Test(priority = 25)
 	public void addValuesToPersonStatement() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -391,6 +416,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
+	/**
+	 * IMJ-285
+	 */
 	@Test(priority = 28)
 	public void changeFacetPerson() {
 		String newSelection = statementPerformer;
@@ -398,6 +426,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		changeFacetSelectionTest(facetPerson, newSelection, newSelectionAlias);
 	}
 	
+	/**
+	 * IMJ-284
+	 */
 	@Test(priority = 29)
 	public void renameFacetPerson() {
 		String oldFacetPerson = facetPerson;
@@ -438,6 +469,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		createFacetTest(facetDate, statementDate);
 	}
 	
+	/**
+	 * IMJ-279
+	 */
 	@Test(priority = 34)
 	public void addValuesToDateStatement() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -470,6 +504,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
+	/**
+	 * IMJ-285
+	 */
 	@Test(priority = 37)
 	public void changeFacetDate() {
 		String newSelection = statementNewDate;
@@ -477,6 +514,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		changeFacetSelectionTest(facetDate, newSelection, newSelectionAlias);
 	}
 	
+	/**
+	 * IMJ-284
+	 */
 	@Test(priority = 38)
 	public void renameFacetDate() {
 		String oldFacetDate = facetDate;
@@ -517,6 +557,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		createFacetTest(facetNumber, statementNumber);
 	}
 
+	/**
+	 * IMJ-279
+	 */
 	@Test(priority = 43)
 	public void addValuesToNumberStatement() {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -549,6 +592,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		Assert.assertTrue(facetDisplayed, "Facet is not displayed on collection page");
 	}
 	
+	/**
+	 * IMJ-285
+	 */
 	@Test(priority = 46)
 	public void changeFacetNumber() {
 		String newSelection = statementNewNumber;
@@ -556,6 +602,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		changeFacetSelectionTest(facetNumber, newSelection, newSelectionAlias);
 	}
 	
+	/**
+	 * IMJ-284
+	 */
 	@Test(priority = 47)
 	public void renameFacetNumber() {
 		String oldFacetNumber = facetNumber;
@@ -591,6 +640,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		deleteStatementTest(statementTitle);
 	}
 	
+	/**
+	 * IMJ-291
+	 */
 	@Test(priority = 52)
 	public void deleteFacetText() {
 		deleteFacetTest(facetText);
@@ -602,6 +654,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		deleteStatementTest(statementLink);
 	}
 	
+	/**
+	 * IMJ-291
+	 */
 	@Test(priority = 54)
 	public void deleteFacetURL() {
 		deleteFacetTest(facetURL);
@@ -613,6 +668,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		deleteStatementTest(statementPerformer);
 	}
 	
+	/**
+	 * IMJ-291
+	 */
 	@Test(priority = 56)
 	public void deleteFacetPerson() {
 		deleteFacetTest(facetPerson);
@@ -624,6 +682,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		deleteStatementTest(statementNewDate);
 	}
 	
+	/**
+	 * IMJ-291
+	 */
 	@Test(priority = 58)
 	public void deleteFacetDate() {
 		deleteFacetTest(facetDate);
@@ -635,6 +696,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 		deleteStatementTest(statementNewNumber);
 	}
 	
+	/**
+	 * IMJ-291
+	 */
 	@Test(priority = 60)
 	public void deleteFacetNumber() {
 		deleteFacetTest(facetNumber);

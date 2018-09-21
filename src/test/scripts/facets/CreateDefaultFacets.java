@@ -13,6 +13,9 @@ import spot.pages.registered.NewCollectionPage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #23 + #30
+ */
 //TODO: Merge with CreateDefaultFacetsPrivate
 public class CreateDefaultFacets extends BaseSelenium {
 
@@ -35,7 +38,7 @@ public class CreateDefaultFacets extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-240
+	 * (IMJ-240)
 	 */
 	@Test(priority = 3)
 	public void enableThumbnailView() {
@@ -69,6 +72,7 @@ public class CreateDefaultFacets extends BaseSelenium {
 		}
 	}
 	
+	// IMJ-298
 	private void createSystemFacet(String facetTitle, String type) {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		BrowseFacetsPage browseFacets = adminHomepage.goToAdminPage().createSystemFacet(facetTitle, type);
@@ -100,6 +104,9 @@ public class CreateDefaultFacets extends BaseSelenium {
 		Assert.assertFalse(browseFacets.facetListed(facetTitle), "Deleted facet is still in facet list.");
 	}
 	
+	/**
+	 * IMJ-298
+	 */
 	@Test(priority = 6)
 	public void createSystemFacetCollection() {
 		createSystemFacet(collectionFacet, "Collection");
