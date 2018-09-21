@@ -30,6 +30,9 @@ import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 import test.base.StatementType;
 
+/**
+ * Testcase #21
+ */
 public class CreateDefaultStatementPrivate extends BaseSelenium {
 
 	private Statement statement = new Statement();
@@ -135,6 +138,9 @@ public class CreateDefaultStatementPrivate extends BaseSelenium {
 				statementValueEmpty, statementValueOverwrite, statementOneItemValue, tableValue);
 	}
 	
+	/**
+	 * IMJ-21, IMJ-188
+	 */
 	@Test(priority = 1)
 	public void switchPrivateMode() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
@@ -148,6 +154,7 @@ public class CreateDefaultStatementPrivate extends BaseSelenium {
 		items.add("SampleTXTFile.txt");
 		items.add("SampleTIFFile.tif");
 		items.add("SampleMP3File.mp3");
+		// FIXME: Reinsert swc-file
 //		items.add("SampleSWCFile.swc");
 	}
 	
