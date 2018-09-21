@@ -30,6 +30,9 @@ import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 import test.base.StatementType;
 
+/**
+ * Testcase #20
+ */
 public class CreateNewStatementTest extends BaseSelenium {
 
 	private Statement statement = new Statement();
@@ -147,6 +150,7 @@ public class CreateNewStatementTest extends BaseSelenium {
 		items.add("SampleTXTFile.txt");
 		items.add("SampleTIFFile.tif");
 		items.add("SampleMP3File.mp3");
+		// FIXME: Reinsert swc-file
 //		items.add("SampleSWCFile.swc");
 	}
 	

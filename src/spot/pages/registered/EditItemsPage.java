@@ -101,6 +101,7 @@ public class EditItemsPage extends BasePage {
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
 	
+	// IMJ-279
 	public EditItemsPage addOwnMetadataAll(String key, String value, final List<String> predefinedValues) {
 		metadataButton.click();
 		keyBox.sendKeys(key);
