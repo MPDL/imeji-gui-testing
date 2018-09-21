@@ -1,10 +1,8 @@
 package spot.components;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -63,6 +61,7 @@ public class SearchComponent {
 		return PageFactory.initElements(driver, SearchResultsPage.class);
 	}	
 	
+	// IMJ-162
 	public SearchResultsPage searchByCategory(String searchQuery, CategoryType category) {
 		quickSearchTextField.clear();
 		quickSearchTextField.sendKeys(searchQuery);

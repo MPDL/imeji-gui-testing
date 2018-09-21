@@ -83,7 +83,7 @@ public class SharePage extends BasePage {
 		return checkCollectionGrants(released, sendMail, read, createItems, editItems, deleteItems, editCollectionInformation, editProfile, administrate);
 	}
 	
-	// IMJ-204, IMJ-196
+	// IMJ-204, IMJ-196, IMJ-214, IMJ-272
 	public SharePage share(boolean released, boolean sendMail, String email, boolean read, boolean editItems, boolean administrate) {
 		emailTextField.sendKeys(email);
 		
@@ -104,6 +104,7 @@ public class SharePage extends BasePage {
 	/**
 	 * Share method for user groups
 	 */
+	// IMJ-241
 	public SharePage shareWithGroup(String groupName, boolean released, boolean sendMail, boolean read, boolean editItems, boolean administrate) {
 		new Actions(driver).moveToElement(shareWithGroup).click().build().perform();;
 		selectGroup(groupName);

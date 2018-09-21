@@ -41,7 +41,7 @@ public class EditItemsPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	// IMJ-279, IMJ-228
+	// IMJ-279, IMJ-228, IMJ-249
 	public EditItemsPage addValueAll(String key, String value) {
 		addMetadata(key, value);
 		try {
@@ -59,7 +59,7 @@ public class EditItemsPage extends BasePage {
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
 	
-	// IMJ-280, IMJ-140
+	// IMJ-280, IMJ-140, IMJ-251
 	public EditItemsPage addValueIfEmpty(String key, String value) {
 		addMetadata(key, value);
 		addValueIfEmpty.click();
@@ -69,7 +69,7 @@ public class EditItemsPage extends BasePage {
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
 	
-	// IMJ-281, IMJ-229
+	// IMJ-281, IMJ-229, IMJ-259
 	public EditItemsPage overwriteAllValues(String key, String value) {
 		addMetadata(key, value);
 		overwriteAllValues.click();

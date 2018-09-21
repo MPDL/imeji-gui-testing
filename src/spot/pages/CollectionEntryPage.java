@@ -414,7 +414,7 @@ public class CollectionEntryPage extends BasePage {
 		return actionComponent.editSelectedItems();
 	}
 
-	// IMJ-279, IMJ-228, IMJ-280, IMJ-140, IMJ-281, IMJ-229
+	// IMJ-279, IMJ-228, IMJ-280, IMJ-140, IMJ-281, IMJ-229, IMJ-249, IMJ-251
 	public EditItemsPage editAllItems() {
 		return actionComponent.editAllItems();
 	}

@@ -23,6 +23,12 @@ import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #14
+ * 
+ * @author helk
+ *
+ */
 public class CesarDefault extends BaseSelenium {
 
 	private Homepage homepage;
@@ -56,7 +62,7 @@ public class CesarDefault extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-83
+	 * (IMJ-112, IMJ-113), IMJ-83
 	 */
 	@Test(priority = 4)
 	public void createDefaultCollection() {
@@ -69,6 +75,9 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertEquals(messageType, MessageType.SUCCESS, "Success message was not displayed.");
 	}
 	
+	/**
+	 * IMJ-127
+	 */
 	@Test(priority = 5, dependsOnMethods = {"createDefaultCollection"})
 	public void createExternalReference() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
@@ -113,6 +122,7 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertEquals(pageTitle, collectionTitle, "Title was not changed.");
 	}
 	
+	// IMJ-131, IMJ-56
 	private void uploadItem(String title, Homepage roleHomepage) {
 		collectionEntry = roleHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
@@ -130,7 +140,7 @@ public class CesarDefault extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-279
+	 * IMJ-249, IMJ-279
 	 */
 	@Test(priority = 8, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataAllItems() {
@@ -159,7 +169,7 @@ public class CesarDefault extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-280
+	 * IMJ-251, IMJ-280
 	 */
 	@Test(priority = 10, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataIfEmpty() {
@@ -209,7 +219,7 @@ public class CesarDefault extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-214
+	 * IMJ-272
 	 */
 	@Test(priority = 13, dependsOnMethods = {"createDefaultCollection"})
 	public void shareEditRU() {
@@ -229,6 +239,9 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
 	
+	/**
+	 * IMJ-2
+	 */
 	@Test(priority = 14, dependsOnMethods = {"createDefaultCollection"})
 	public void logoutAdmin() {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
@@ -236,7 +249,7 @@ public class CesarDefault extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-22
+	 * (IMJ-22) IMJ-19
 	 */
 	@Test(priority = 15, dependsOnMethods = {"createDefaultCollection"})
 	public void loginRestrictedUser() {
@@ -254,7 +267,7 @@ public class CesarDefault extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-46
+	 * IMJ-47
 	 */
 	@Test(priority = 17, dependsOnMethods = {"createDefaultCollection"})
 	public void shareIconDisplayed() {
@@ -272,7 +285,7 @@ public class CesarDefault extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-281
+	 * (IMJ-281) IMJ-259
 	 */
 	@Test(priority = 19, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataOverwrite() {
@@ -292,6 +305,9 @@ public class CesarDefault extends BaseSelenium {
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on all item pages.");
 	}
 	
+	/**
+	 * (IMJ-266)
+	 */
 	@Test(priority = 20, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataAllItemsOwn() {
 		String key = new Random().nextInt(1000) + "";
