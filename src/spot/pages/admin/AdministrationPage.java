@@ -63,6 +63,7 @@ public class AdministrationPage extends BasePage {
 		return PageFactory.initElements(driver, UsersOverviewPage.class);
 	}
 
+	// IMJ-38
 	public UserGroupPage createNewUserGroup(String newUserGroupName) {
 		createNewUserGroup.click();
 		NewUserGroupPage createNewUserGroupPage = new NewUserGroupPage(driver);

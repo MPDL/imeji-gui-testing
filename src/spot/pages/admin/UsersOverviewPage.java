@@ -134,6 +134,7 @@ public class UsersOverviewPage extends BasePage {
 		return PageFactory.initElements(driver, UserProfilePage.class);
 	}
 	
+	// IMJ-41
 	public void addUserToUserGroup(String userEmail) {
 		WebElement userInQuestion = findUserByEmail(userEmail);
 		userInQuestion.click();

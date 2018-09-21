@@ -31,6 +31,7 @@ public class UserGroupPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
+	// IMJ-41
 	public UserGroupPage addNewUser(String userEmail) {
 		addUserButton.click();
 		UsersOverviewPage allUsersOverViewPage = PageFactory.initElements(driver, UsersOverviewPage.class);
@@ -63,6 +64,7 @@ public class UserGroupPage extends BasePage {
 		throw new NoSuchElementException("User with email '" + userEmail + "' was not found in user group.");
 	}
 	
+	// IMJ-42
 	public UserGroupPage deleteUser(String userEmail) {
 		List<WebElement> userDeleteButtons = driver.findElements(By.cssSelector("#userList .fa-times"));
 		int userPositionInUserList = this.getUserPositionInUserList(userEmail);
@@ -88,6 +90,7 @@ public class UserGroupPage extends BasePage {
 		return this;
 	}
 	
+	// IMJ-40
 	public UserGroupPage changeTitle(String newTitle) {
 		editButton.click();
 		try { Thread.sleep(2000); } catch (InterruptedException e) {}

@@ -23,6 +23,12 @@ import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #11 + #12
+ * 
+ * @author helk
+ *
+ */
 public class AdminSharesWithUserGroup extends BaseSelenium {
 
 	private Homepage homepage;
@@ -141,6 +147,7 @@ public class AdminSharesWithUserGroup extends BaseSelenium {
 		Assert.assertEquals(pageTitle, collectionTitle, "Title was not changed.");
 	}
 	
+	// IMJ-131, IMJ-56
 	private void uploadItem(String title) {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
@@ -184,13 +191,14 @@ public class AdminSharesWithUserGroup extends BaseSelenium {
 		Assert.assertTrue(canRevoke, "Grants cannot be revoked: button not displayed.");
 	}
 	
+	// IMJ-2
 	@Test(priority = 12)
 	public void logout() {
 		adminHomepage.logout();
 	}
 
 	/**
-	 * IMJ-46
+	 * IMJ-47
 	 */
 	@Test(priority = 13)
 	public void openCollection() {

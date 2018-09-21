@@ -22,6 +22,7 @@ public class EditUserGroupPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
+	// IMJ-40
 	public UserGroupPage editTitle(String newTitle) {
 		wait.until(ExpectedConditions.visibilityOf(titleBox));
 		titleBox.clear();
