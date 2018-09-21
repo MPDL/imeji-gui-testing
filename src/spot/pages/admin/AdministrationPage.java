@@ -138,12 +138,14 @@ public class AdministrationPage extends BasePage {
 		return configurationEditPage.restrictRegistrationDomains(domains);
 	}
 	
+	// IMJ-271
 	public BrowseStatementsPage createStatement(String name, StatementType type) {
 		createStatement.click();
 		NewStatementPage newStatementPage = new NewStatementPage(driver);
 		return newStatementPage.createNewStatement(name, type);
 	}
 	
+	// IMJ-271
 	public BrowseStatementsPage createStatement(String name, StatementType type, List<String> predefinedValues) {
 		createStatement.click();
 		NewStatementPage newStatementPage = new NewStatementPage(driver);

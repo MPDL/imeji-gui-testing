@@ -31,6 +31,8 @@ import test.base.BaseSelenium;
 import test.base.StatementType;
 
 /**
+ * Testcase #19 
+ * 
  * Data-driven testing of the statement functionality (KWT 17-08-01).
  * Average duration: 28 minutes
  * @author apetrova
@@ -141,6 +143,9 @@ public class CreateDefaultStatementTest extends BaseSelenium {
 				statementValueEmpty, statementValueOverwrite, statementOneItemValue, tableValue);
 	}
 	
+	/**
+	 * IMJ-21
+	 */
 	@Test(priority = 1)
 	public void switchOffPrivateMode() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
@@ -154,6 +159,7 @@ public class CreateDefaultStatementTest extends BaseSelenium {
 		items.add("SampleTXTFile.txt");
 		items.add("SampleTIFFile.tif");
 		items.add("SampleMP3File.mp3");
+		// FIXME: Reinsert swc-file
 //		items.add("SampleSWCFile.swc");
 	}
 	

@@ -9,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
 
@@ -48,6 +47,7 @@ public class BrowseStatementsPage extends BasePage {
 		}
 	}
 	
+	// IMJ-271
 	public BrowseStatementsPage makeDefault(String name) {
 		WebElement statement = findStatement(name);
 		statement.findElement(By.className("fa-star-o")).click();
