@@ -74,6 +74,7 @@ public class AdministrationPage extends BasePage {
 		return PageFactory.initElements(driver, UserGroupsOverviewPage.class);
 	}
 	
+	// IMJ-188
 	public ConfigurationPage enablePrivateMode() {
 		configurationEdit.click();
 		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
@@ -92,6 +93,7 @@ public class AdministrationPage extends BasePage {
 		return configurationEditPage.enableThumbnailView();
 	}
 	
+	// IMJ-240
 	public ConfigurationPage enableListView() {
 		configurationEdit.click();
 		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
@@ -116,6 +118,7 @@ public class AdministrationPage extends BasePage {
 		return configurationEditPage.setLicense(license);
 	}
 	
+	// IMJ-191
 	public ConfigurationPage setAutosuggestionMP() {
 		configurationEdit.click();
 		ConfigurationPage configurationEditPage = new ConfigurationPage(driver);

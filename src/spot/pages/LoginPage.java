@@ -40,7 +40,7 @@ public class LoginPage extends BasePage {
 	    return login(user, pw, AdminHomepage.class);
 	}
 
-	// IMJ-1, IMJ-22
+	// IMJ-1, IMJ-22, IMJ-19
 	public Homepage loginAsNotAdmin(String user, String pw){
 	    return login(user, pw, Homepage.class);
 	}

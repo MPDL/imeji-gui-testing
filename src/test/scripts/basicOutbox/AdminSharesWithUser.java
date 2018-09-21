@@ -20,6 +20,12 @@ import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #9 + #10
+ * 
+ * @author helk
+ *
+ */
 public class AdminSharesWithUser extends BaseSelenium {
 	
 	private Homepage homepage;
@@ -122,6 +128,7 @@ public class AdminSharesWithUser extends BaseSelenium {
 		Assert.assertEquals(actual, collectionDescription, "Description was not changed.");
 	}
 	
+	// IMJ-131
 	private void uploadItem(String title) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
@@ -214,6 +221,7 @@ public class AdminSharesWithUser extends BaseSelenium {
 		Assert.assertTrue(shareVisible, "Share icon is not displayed.");
 	}
 	
+	// IMJ-183
 	private void advancedSearch(String term) {
 		AdvancedSearchPage advancedSearch = homepage.goToAdvancedSearch();
 		SearchResultsPage searchResults = advancedSearch.advancedSearch(term);
@@ -243,6 +251,7 @@ public class AdminSharesWithUser extends BaseSelenium {
 		advancedSearch("Botanica Marina (botm)");
 	}
 	
+	// IMJ-234
 	private void downloadItem(String title) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		ItemViewPage itemView = collectionEntry.openItem(title);
@@ -276,6 +285,9 @@ public class AdminSharesWithUser extends BaseSelenium {
 		downloadItem("JR1_deGruyter_deGruyter_Menschheitsgeschichte_2014.txt");
 	}
 	
+	/**
+	 * IMJ-2
+	 */
 	@Test(priority = 23)
 	public void logoutRestricted() {
 		homepage.logout();

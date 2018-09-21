@@ -25,6 +25,7 @@ public class ConfigurationPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
+	// IMJ-188
 	public ConfigurationPage enablePrivateMode() {
 		return generalPanel.enablePrivateMode();
 	}
@@ -61,10 +62,12 @@ public class ConfigurationPage extends BasePage {
 		return appearancePanel.enableThumbnailView();
 	}
 	
+	// IMJ-240
 	public ConfigurationPage enableListView() {
 		return appearancePanel.enableListView();
 	}
 	
+	// IMJ-191
 	public ConfigurationPage setAutosuggestionMP() {
 		return autosuggestionPanel.setAutosuggestionMaxPlanck();
 	}

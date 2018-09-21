@@ -49,6 +49,7 @@ public class AdvancedSearchPage extends BasePage {
 		}
 	}
 	
+	// IMJ-183
 	public SearchResultsPage advancedSearch(String term) {
 		advancedSearchBox.sendKeys(term);
 		if (!fulltextCheckbox.isSelected())
