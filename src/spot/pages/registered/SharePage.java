@@ -85,7 +85,7 @@ public class SharePage extends BasePage {
 		return checkCollectionGrants(released, sendMail, read, createItems, editItems, deleteItems, editCollectionInformation, editProfile, administrate);
 	}
 	
-	// IMJ-204, IMJ-196, IMJ-195, IMJ-214, IMJ-272
+	// IMJ-204, IMJ-196, IMJ-195, IMJ-214, IMJ-272, IMJ-201
 	public SharePage share(boolean released, boolean sendMail, String email, boolean read, boolean editItems, boolean administrate) {
 		emailTextField.sendKeys(email);
 		
@@ -303,7 +303,7 @@ public class SharePage extends BasePage {
 		return isGrantCorrect;
 	}
 	
-	// IMJ-204
+	// IMJ-204, IMJ-201
 	public SharePage invite() {
 		WebElement inviteButton = unknownEmailPanel.findElement(By.className("imj_submitButton"));
 		inviteButton.click();

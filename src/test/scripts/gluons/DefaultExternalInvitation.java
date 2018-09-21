@@ -18,6 +18,12 @@ import spot.pages.registered.SharePage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #17
+ * 
+ * @author helk
+ *
+ */
 public class DefaultExternalInvitation extends BaseSelenium {
 
 	private Homepage homepage;
@@ -48,7 +54,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-83
+	 * (IMJ-112, IMJ-113), IMJ-83
 	 */
 	@Test(priority = 3)
 	public void createDefaultCollection() {
@@ -61,6 +67,9 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		Assert.assertEquals(messageType, MessageType.SUCCESS, "Success message was not displayed.");
 	}
 	
+	/**
+	 * IMJ-127
+	 */
 	@Test(priority = 4, dependsOnMethods = {"createDefaultCollection"})
 	public void createExternalReference() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
@@ -103,6 +112,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 		Assert.assertEquals(pageTitle, collectionTitle, "Title was not changed.");
 	}
 	
+	// IMJ-131, IMJ-56
 	private void uploadItem(String title) {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
@@ -120,7 +130,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-279
+	 * IMJ-249, IMJ-279
 	 */
 	@Test(priority = 8, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataAllItems() {
@@ -145,7 +155,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	}
 
 	/**
-	 * IMJ-280
+	 * IMJ-251, IMJ-280
 	 */
 	@Test(priority = 10, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataIfEmpty() {

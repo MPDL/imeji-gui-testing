@@ -280,7 +280,7 @@ public class CollectionEntryPage extends BasePage {
 		return actionComponent.discardCollection();
 	}
 
-	// IMJ-204, IMJ-196, IMJ-195
+	// IMJ-204, IMJ-196, IMJ-195, IMJ-201
 	public SharePage share() {
 		new Actions(driver).moveToElement(editButton).moveToElement(share).click().build().perform();
 
