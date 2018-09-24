@@ -255,7 +255,7 @@ public class ItemViewPage extends BasePage {
 		moveButton.click();
 		driver.findElement(By.linkText(collectionTitle)).click();
 		WebElement moveDialog = driver.findElement(By.id("moveItem"));
-		moveDialog.findElement(By.id("itemDialogs:move:form:j_idt404")).click();
+		moveDialog.findElement(By.xpath(".//input[@value='Move' and @class='imj_submitButton']")).click();
 
 		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
 		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
