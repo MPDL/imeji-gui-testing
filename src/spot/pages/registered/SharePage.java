@@ -234,14 +234,36 @@ public class SharePage extends BasePage {
 	 * @param wantedSharedPersonName - user's name in the form [surname, first]
 	 * @return allGrantsCorrect - user permissions are exactly as specified in method signature
 	 */
-	public boolean checkGrantSelections(boolean released, String wantedSharedPersonName, boolean read, boolean editItems, boolean administrate) {
+	public boolean checkUserGrantSelections(boolean released, String wantedSharedPersonName, boolean read, boolean editItems, boolean administrate) {
 		String sharedPersonNameWithUserTag = wantedSharedPersonName + " (User)";
 
-		WebElement wantedSharedPerson = findWantedPerson(sharedPersonNameWithUserTag);
+		return this.checkGrantSelections(released, sharedPersonNameWithUserTag, read, editItems, administrate);
+	}
+	
+	/**
+	 * Check method for collections
+	 * @param released TODO
+	 * @param wantedSharedGroupName - user group name in the form [user-group-name]
+	 * @return allGrantsCorrect - user group permissions are exactly as specified in method signature
+	 */
+	public boolean checkUserGroupGrantSelections(boolean released, String wantedSharedGroupName, boolean read, boolean editItems, boolean administrate) {
+		String sharedGroupNameWithUserGroupTag = wantedSharedGroupName + " (User group)";
+
+		return this.checkGrantSelections(released, sharedGroupNameWithUserGroupTag, read, editItems, administrate);
+	}
+	
+	/**
+	 * Check method for collections
+	 * @param released TODO
+	 * @param sharedWithName
+	 * @return allGrantsCorrect - user permissions are exactly as specified in method signature
+	 */
+	private boolean checkGrantSelections(boolean released, String sharedWithName, boolean read, boolean editItems, boolean administrate) {
+		WebElement sharedWithTableRowElement = findSharedWithTableRowElement(sharedWithName);
 		
-		WebElement readRadioButton = wantedSharedPerson.findElement(By.xpath("//input[@value='READ']"));
-		WebElement editRadioButton = wantedSharedPerson.findElement(By.xpath("//input[@value='EDIT']"));
-		WebElement adminRadioButton = wantedSharedPerson.findElement(By.xpath("//input[@value='ADMIN']"));
+		WebElement readRadioButton = sharedWithTableRowElement.findElement(By.xpath("//input[@value='READ']"));
+		WebElement editRadioButton = sharedWithTableRowElement.findElement(By.xpath("//input[@value='EDIT']"));
+		WebElement adminRadioButton = sharedWithTableRowElement.findElement(By.xpath("//input[@value='ADMIN']"));
 		
 		if (read)
 			return readRadioButton.isSelected();
@@ -258,27 +280,39 @@ public class SharePage extends BasePage {
 	 * @param wantedSharedPersonName - user's name in the form [surname, first]
 	 */
 	public boolean checkGrantSelections(String wantedSharedPersonName, boolean read) {
-		WebElement wantedSharedPerson = findWantedPerson(wantedSharedPersonName);
+		WebElement wantedSharedPerson = findSharedWithTableRowElement(wantedSharedPersonName);
 		WebElement readGrant = wantedSharedPerson.findElement(By.tagName("input"));
 		
 		return checkCorrectnessOfGrant(read, readGrant);
 	}
 	
-	private WebElement findWantedPerson(String wantedSharedPersonName) {
-		List<WebElement> sharedPersons = driver.findElements(By.cssSelector("#history>tbody>tr"));
+	private WebElement findSharedWithTableRowElement(String wantedSharedPersonName) {
+		List<WebElement> sharedWithElements = driver.findElements(By.cssSelector("#history>tbody>tr"));
 		
-		for (WebElement sharedPerson : sharedPersons) {
-			String sharedPersonName = sharedPerson.findElement(By.cssSelector("td:nth-of-type(1)")).getText();
-			if (sharedPersonName.equals(wantedSharedPersonName)) {
-				return sharedPerson;
+		for (WebElement sharedWith : sharedWithElements) {
+			String sharedWithName = sharedWith.findElement(By.cssSelector("td:nth-of-type(1)")).getText();
+			if (sharedWithName.equals(wantedSharedPersonName)) {
+				return sharedWith;
 			}
 		}
 
-		throw new NoSuchElementException("The wanted person's name was not found in the share page.");
+		throw new NoSuchElementException("The name of the shared person/group was not found in the share page.");
 	}
 	
-	public boolean revokeDisplayed(String personName) {
-		WebElement grantedUser = findWantedPerson(personName);
+	public boolean revokeDisplayedforUser(String personName) {
+		String sharedPersonNameWithUserTag = personName + " (User)";
+		
+		return revokeDisplayed(sharedPersonNameWithUserTag);
+	}
+	
+	public boolean revokeDisplayedForUserGroup(String groupName) {
+		String sharedGroupNameWithUserGroupTag = groupName + " (User group)";
+		
+		return revokeDisplayed(sharedGroupNameWithUserGroupTag);
+	}
+	
+	private boolean revokeDisplayed(String personName) {
+		WebElement grantedUser = findSharedWithTableRowElement(personName);
 		
 		try {
 			grantedUser.findElement(By.className("fa-trash"));

@@ -184,10 +184,10 @@ public class AdminSharesWithUserGroup extends BaseSelenium {
 		sharePage = sharePage.shareWithGroup(userGroupName, false, false, true, false, false);
 		sharePage.hideMessages();
 		
-		boolean grantsCorrect = sharePage.checkGrantSelections(false, userGroupName, true, false, false);
+		boolean grantsCorrect = sharePage.checkUserGroupGrantSelections(false, userGroupName, true, false, false);
 		Assert.assertTrue(grantsCorrect, "Share grants are not correct.");
 		
-		boolean canRevoke = sharePage.revokeDisplayed(userGroupName);
+		boolean canRevoke = sharePage.revokeDisplayedForUserGroup(userGroupName);
 		Assert.assertTrue(canRevoke, "Grants cannot be revoked: button not displayed.");
 	}
 	

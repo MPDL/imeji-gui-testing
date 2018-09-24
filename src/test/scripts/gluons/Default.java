@@ -233,7 +233,7 @@ public class Default extends BaseSelenium {
 		boolean user2InSharedList = sharePage.isSharedPersonInList(user2Name);
 		Assert.assertTrue(user2InSharedList, "Second user is not present in shared list.");
 		
-		boolean grantsCorrect = sharePage.checkGrantSelections(false, user2Name, true, true, true);
+		boolean grantsCorrect = sharePage.checkUserGrantSelections(false, user2Name, true, true, true);
 		Assert.assertTrue(grantsCorrect, "User grants are not correct.");
 	}
 
