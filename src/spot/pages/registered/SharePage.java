@@ -235,8 +235,9 @@ public class SharePage extends BasePage {
 	 * @return allGrantsCorrect - user permissions are exactly as specified in method signature
 	 */
 	public boolean checkGrantSelections(boolean released, String wantedSharedPersonName, boolean read, boolean editItems, boolean administrate) {
+		String sharedPersonNameWithUserTag = wantedSharedPersonName + " (User)";
 
-		WebElement wantedSharedPerson = findWantedPerson(wantedSharedPersonName);
+		WebElement wantedSharedPerson = findWantedPerson(sharedPersonNameWithUserTag);
 		
 		WebElement readRadioButton = wantedSharedPerson.findElement(By.xpath("//input[@value='READ']"));
 		WebElement editRadioButton = wantedSharedPerson.findElement(By.xpath("//input[@value='EDIT']"));
@@ -334,11 +335,13 @@ public class SharePage extends BasePage {
 	}
 	
 	public boolean isSharedPersonInList(String sharedPersonName) {
+		String sharedPersonNameWithUserTag = sharedPersonName + " (User)";
+		
 		List<WebElement> sharedPersons = driver.findElements(By.className("imj_rightsTableUser"));
 		
 		for (WebElement sharedPerson : sharedPersons) {
 			String spName = sharedPerson.getText();
-			if (spName.equals(sharedPersonName)) {
+			if (spName.equals(sharedPersonNameWithUserTag)) {
 				return true;
 			}
 		}
