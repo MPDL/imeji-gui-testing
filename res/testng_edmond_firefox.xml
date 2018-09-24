@@ -43,7 +43,7 @@
 			
 			<class name="test.scripts.basicOutbox.AdminSharesWithUserGroup"></class>
 
-			<class name="test.scripts.basicOutbox.MoveItems"></class>
+			<class name="test.scripts.basicOutbox.MoveItemsPrivate"></class>
 			
 			<!-- End of Basic Outbox -->
 			

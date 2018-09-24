@@ -536,6 +536,7 @@ public class CollectionEntryPage extends BasePage {
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
+	// IMJ-275
 	public CollectionEntryPage moveSelectedItemsToPrivateCollection(String collectionTitle) {
 		selectedItemsMenu.click();
 		WebElement move = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("selMenu:sf:moveItems")));
@@ -547,6 +548,7 @@ public class CollectionEntryPage extends BasePage {
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 
+	// IMJ-276
 	public CollectionEntryPage moveSelectedItemsToReleasedCollection(String collectionTitle) {
 		selectedItemsMenu.click();
 		WebElement move = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("selMenu:sf:moveItems")));

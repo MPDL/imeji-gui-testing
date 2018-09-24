@@ -16,7 +16,10 @@ import spot.pages.registered.NewCollectionPage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
-public class MoveItems extends BaseSelenium {
+/**
+ * Testcase #32
+ */
+public class MoveItemsPrivate extends BaseSelenium {
 
 	private AdminHomepage adminHomepage;
 	private Homepage homepage;
@@ -66,6 +69,7 @@ public class MoveItems extends BaseSelenium {
 		homepage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
 	}
 	
+	// IMJ-83
 	private void createCollection(String collectionTitle) {
 		NewCollectionPage newCollectionPage = homepage.goToCreateNewCollectionPage();
 		collectionEntry = newCollectionPage.createCollection(collectionTitle, collectionDescription, 
@@ -146,6 +150,9 @@ public class MoveItems extends BaseSelenium {
 				"Item was not moved from private collection " + collectionTitle1);
 	}
 	
+	/**
+	 * IMJ-277 (repeat move to private collection)
+	 */
 	@Test(priority = 10)
 	public void repeatMovingItemToPrivateCollection() {
 		uploadItem(collectionTitle1, "APC_Springer_Psycholinguistik_201609.xlsx");
@@ -184,6 +191,9 @@ public class MoveItems extends BaseSelenium {
 		}
 	}
 	
+	/**
+	 * IMJ-277 (repeat move to private collection)
+	 */
 	@Test(priority = 12)
 	public void repeatMovingSelectedItemsToPrivateCollection() {
 		uploadItem(collectionTitle1, "APC_Springer_Strafrecht_201608.xlsx");

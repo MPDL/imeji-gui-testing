@@ -250,6 +250,7 @@ public class ItemViewPage extends BasePage {
 		throw new NoSuchElementException("Label '" + label  + "' is not present.");
 	}
 
+	// IMJ-278
 	public ItemViewPage moveItemToReleasedCollection(String collectionTitle) {
 		moveButton.click();
 		driver.findElement(By.linkText(collectionTitle)).click();
@@ -262,6 +263,7 @@ public class ItemViewPage extends BasePage {
 		return PageFactory.initElements(driver, ItemViewPage.class);
 	}
 
+	// IMJ-277
 	public ItemViewPage moveItemToPrivateCollection(String collectionTitle) {
 		moveButton.click();
 		driver.findElement(By.linkText(collectionTitle)).click();
