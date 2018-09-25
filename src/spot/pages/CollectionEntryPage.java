@@ -528,7 +528,7 @@ public class CollectionEntryPage extends BasePage {
 		retryingFindClick(By.cssSelector("#selMenu\\:sf>.dropdown>.content>a:nth-of-type(4)"));
 		driver.findElement(By.id("selDialogs:witdrawSel:f:discardComment"))
 				.sendKeys("Discarding for testing purposes.");
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(".//div[@id='withdrawSelectedItems']/descendant::input[@class='imj_submitButton']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='withdrawSelectedItems']/descendant::input[@class='imj_submitButton']")));
 		((JavascriptExecutor) driver).executeScript(
 				"document.querySelector('#withdrawSelectedItems .imj_submitPanel .imj_submitButton').click();");
 		
