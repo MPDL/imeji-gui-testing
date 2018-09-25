@@ -361,15 +361,16 @@ public class CollectionEntryPage extends BasePage {
 
 	// IMJ-56
 	public CollectionEntryPage uploadFile(String filepath) {
+		WebElement staleElement =  driver.findElement(By.id("colForm:upload"));
+		
 		uploadButton.click();
 		UploadWindow upload = new UploadWindow(driver);
 		upload.uploadFile(filepath);
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
-		// avoid 'element not clickable' exceptions, lasts about 4 seconds
 
-		// Find the loaderWrapper with the style-attribute to get the actual, non-stale
-		// loaderWrapper
+		// Wait for page reload
+		wait.until(ExpectedConditions.stalenessOf(staleElement));
+		// Find  loaderWrapper with the style-attribute to get the actual, non-stale
+		// loaderWrapper and wait for its invisibility 
 		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper[style]"));
 		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
 
