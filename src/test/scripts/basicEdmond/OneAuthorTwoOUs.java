@@ -283,6 +283,7 @@ public class OneAuthorTwoOUs extends BaseSelenium {
 	public void addCollectionDOI() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.setDOI();
+		collectionEntry.hideMessages();
 		collectionEntry = collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		
 		collectionEntry = collectionEntry.openDescription();

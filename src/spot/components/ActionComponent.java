@@ -124,12 +124,13 @@ public class ActionComponent extends BasePage {
 	}
 	
 	public CollectionEntryPage setDOI() {
+		WebElement staleElement = driver.findElement(By.id("pageTitle"));
+		
 		new Actions(driver).moveToElement(menuCollection).perform();
 		addDOI.click();
 		
 		retryingFindClick(By.cssSelector("#getDOIDialog>form>.imj_submitPanel>.imj_submitButton"));
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
-		try { Thread.sleep(5000); } catch (InterruptedException e) { }
+		wait.until(ExpectedConditions.stalenessOf(staleElement));
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
