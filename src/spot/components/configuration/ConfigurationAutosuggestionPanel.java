@@ -29,9 +29,8 @@ public class ConfigurationAutosuggestionPanel extends BasePage {
 	public ConfigurationPage setAutosuggestionMaxPlanck() {
 		openAutosuggestionPanel();
 		
-		// Div-Elements can not be selected by their inner text() with xpath
-		// => Select 'Enable suggestion for Users' element by its position:
-		WebElement enableSuggestionForUsersDataSet = autosuggestionPanelContent.findElement(By.xpath(".//div[3]"));
+		WebElement enableSuggestionForUsersDataSet = autosuggestionPanelContent.findElement(
+				By.xpath(".//div[@class='imj_admindataSet' and div[@class='imj_admindataLabel' and contains(text()[1],'Enable suggestion for Users')]]"));
 		WebElement radioButtonMPAuthors = enableSuggestionForUsersDataSet.findElement(By.xpath(".//label[contains(text(),'Max Planck authors')]/preceding-sibling::input"));
 		
 		if (!radioButtonMPAuthors.isSelected())
