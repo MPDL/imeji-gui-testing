@@ -2,6 +2,7 @@ package spot.components;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -39,7 +40,7 @@ public class StateComponent extends BasePage {
 	 * @param filter The filter-option
 	 */
 	public void filter(StateOptions filter) {
-		stateMenu.click();
+		new Actions(driver).moveToElement(stateMenu).perform();
 		
 		switch (filter) {
 			case ONLY_PRIVATE:
