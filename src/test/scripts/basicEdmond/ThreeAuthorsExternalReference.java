@@ -308,6 +308,7 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.selectItem(0);
 		collectionEntry = collectionEntry.discardSelectedItems();
+		collectionEntry.hideMessages();
 		
 		collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		int newItemCount = collectionEntry.getTotalItemNumber();
