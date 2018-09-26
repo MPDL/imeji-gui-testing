@@ -6,12 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
@@ -151,8 +153,11 @@ public class EditItemsPage extends BasePage {
 		metadataButton.click();
 		keyBox.clear();
 		keyBox.sendKeys(key);
+				
 		wait.until(ExpectedConditions.textToBePresentInElementValue(keyBox, key));
-		try { Thread.sleep(2000); } catch (Exception exc) {}
+		// Wait till no more candidates are loaded = Wait till all names of all candidates contain the full name-key
+		// => Use textToBePresentInAllElements method Which has a higher execution time than Thread.sleep(2000), but is the correct way!
+		wait.until(textToBePresentInAllElements(By.xpath("//div[@id='selectStatementDialog']/descendant::a[contains(@id,'editBatchForm:select')]"), key));
 		try {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(key)));
 			driver.findElement(By.linkText(key)).click();
@@ -162,4 +167,32 @@ public class EditItemsPage extends BasePage {
 			throw new NoSuchElementException("Statement " + key + " is not available.");
 		}
 	}
+	
+	private static ExpectedCondition<Boolean> textToBePresentInAllElements(final By locator, final String text) {
+		return new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				try {					
+					List<WebElement> elements = driver.findElements(locator);
+					for (WebElement webElement : elements) {
+						String elementText = webElement.getText();
+						if (elementText != null) {
+							if(!elementText.toLowerCase().contains(text.toLowerCase())) {
+								return false;
+							}
+						}
+					}
+					return true;
+				} catch (StaleElementReferenceException e) {
+					return null;
+				}
+			}
+
+			@Override
+			public String toString() {
+				return String.format("text ('%s') to be the value of elements located by %s", text, locator);
+			}
+		};
+	}
+	
 }
