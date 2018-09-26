@@ -159,8 +159,7 @@ public class CreateDefaultStatementTest extends BaseSelenium {
 		items.add("SampleTXTFile.txt");
 		items.add("SampleTIFFile.tif");
 		items.add("SampleMP3File.mp3");
-		// FIXME: Reinsert swc-file
-//		items.add("SampleSWCFile.swc");
+		items.add("SampleSWCFile.swc");
 	}
 	
 	@Test(priority = 3)
