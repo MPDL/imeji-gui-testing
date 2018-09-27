@@ -61,7 +61,7 @@ public class BrowseItemsPage extends BasePage {
 	
 	public boolean isItemAreaDisplayed() {
 		try {
-			driver.findElement(By.id("itemsArea"));
+			driver.findElement(By.className("itemsArea"));
 			return true;
 		}
 		catch (NoSuchElementException exc) {

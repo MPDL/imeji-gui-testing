@@ -59,6 +59,8 @@
 			<!-- Basic Home -->
 
  			<class name="test.scripts.home.AdvancedSearchPageTest"></class>
+ 			
+ 			<class name="test.scripts.home.BrowsePageTest"></class>
 
 			<class name="test.scripts.home.ContactSupportFromHelpPageTest"></class>
 
