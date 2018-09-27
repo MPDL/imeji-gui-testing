@@ -153,14 +153,18 @@ public class EditItemsPage extends BasePage {
 		metadataButton.click();
 		keyBox.clear();
 		keyBox.sendKeys(key);
-				
+		
+		// Wait until the full metadata name is typed in the keyBox
 		wait.until(ExpectedConditions.textToBePresentInElementValue(keyBox, key));
-		// Wait till no more candidates are loaded = Wait till all names of all candidates contain the full name-key
+		// Wait until no more candidates are loaded = Wait until all names of all candidates contain the full name-key AND the 'ADD METADATA' button is not displayed:
+		// Wait until all names of all candidates contain the full name-key
 		// => Use textToBePresentInAllElements method Which has a higher execution time than Thread.sleep(2000), but is the correct way!
 		wait.until(textToBePresentInAllElements(By.xpath("//div[@id='selectStatementDialog']/descendant::a[contains(@id,'editBatchForm:select')]"), key));
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(key)));
-			driver.findElement(By.linkText(key)).click();
+			// Wait until the 'ADD METADATA' button is not displayed (then an exact match is found)
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='selectStatementDialog']/descendant::button[contains(text()[2],'Add metadata')]")));
+			WebElement metaData = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(key)));
+			metaData.click();
 			return;
 		}
 		catch (TimeoutException exc) {
