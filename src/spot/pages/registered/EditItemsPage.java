@@ -154,17 +154,16 @@ public class EditItemsPage extends BasePage {
 		keyBox.clear();
 		keyBox.sendKeys(key);
 		
-		// Wait until the full metadata name is typed in the keyBox
+		// Wait until no more candidates are loaded (by ajax) can only be approximated with waits:
+		// 1) Wait until the full metadata name is typed in the keyBox
 		wait.until(ExpectedConditions.textToBePresentInElementValue(keyBox, key));
-		// Wait until no more candidates are loaded = Wait until all names of all candidates contain the full name-key AND the 'ADD METADATA' button is not displayed:
-		// Wait until all names of all candidates contain the full name-key
-		// => Use textToBePresentInAllElements method Which has a higher execution time than Thread.sleep(2000), but is the correct way!
+		// 2) Wait until all names of all candidates contain the full name-key
 		wait.until(textToBePresentInAllElements(By.xpath("//div[@id='selectStatementDialog']/descendant::a[contains(@id,'editBatchForm:select')]"), key));
 		try {
-			// Wait until the 'ADD METADATA' button is not displayed (then an exact match is found)
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='selectStatementDialog']/descendant::button[contains(text()[2],'Add metadata')]")));
-			WebElement metaData = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(key)));
-			metaData.click();
+			// 3) Wait until the searched metadata is visible (if not the statement is not available)
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(key)));
+			// The metadata to click can still be stale (if there is another ajax reload). Therefore use retryFindClick to avoid a stale exception.
+			retryingFindClick(By.linkText(key));
 			return;
 		}
 		catch (TimeoutException exc) {
