@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.Set;
 
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import spot.pages.HelpPage;
 import spot.pages.LoginPage;
@@ -13,6 +16,9 @@ import spot.pages.admin.AdminHomepage;
 import spot.pages.registered.Homepage;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #13 (IMJ-5)
+ */
 public class ContactSupportFromHelpPageTest extends BaseSelenium {
 
 	private String imejiSupportEmail = "saquet@mpdl.mpg.de";
@@ -61,6 +67,7 @@ public class ContactSupportFromHelpPageTest extends BaseSelenium {
 		homePage.logout();
 	}
 	
+	// IMJ-5
 	private void contactSupportTest() {
 		windowHandleBeforeHelp = driver.getWindowHandle();
 		

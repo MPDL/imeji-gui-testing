@@ -12,6 +12,9 @@ import spot.pages.admin.AdminHomepage;
 import spot.pages.registered.Homepage;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #13 (IMJ-6)
+ */
 public class DisclaimerTest extends BaseSelenium {
 
 	private String windowHandleStartPage;
@@ -48,6 +51,7 @@ public class DisclaimerTest extends BaseSelenium {
 		homePage.logout();
 	}
 
+	// IMJ-6
 	private void openDisclaimerTest() {
 		windowHandleStartPage = driver.getWindowHandle();
 

@@ -16,6 +16,9 @@ import spot.pages.admin.AdminHomepage;
 import spot.pages.registered.Homepage;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #13 (IMJ-7)
+ */
 public class ImejiFromStartTest extends BaseSelenium {
 	
 	private String windowHandleStartPage;
@@ -60,6 +63,7 @@ public class ImejiFromStartTest extends BaseSelenium {
 		switchPrivateMode(false);
 	}
 	
+	// IMJ-7
 	private String imejiFromStart() {
 		windowHandleStartPage = driver.getWindowHandle();
 		

@@ -15,6 +15,9 @@ import spot.pages.registered.Homepage;
 import test.base.BaseSelenium;
 import test.base.SeleniumTestSuite;
 
+/**
+ * Testcase #13 (IMJ-20)
+ */
 public class TermsOfUseTest extends BaseSelenium {
 
 	private static final String TERMS_OF_USE_URL = SeleniumTestSuite.TEST_ENV_URL + "imeji/terms_of_use";
@@ -64,6 +67,7 @@ public class TermsOfUseTest extends BaseSelenium {
 		Assert.assertTrue(termsOfUseDisplayed, "Terms of Use page is not displayed correctly.");
 	}
 	
+	// IMJ-20
 	private boolean termsOfUseTest() {
 		windowHandleStartPage = driver.getWindowHandle();
 

@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HelpPage extends BasePage {
 
@@ -25,6 +24,7 @@ public class HelpPage extends BasePage {
 		return helpPageSubtitle.getText();
 	}
 
+	// IMJ-5
 	public List<String> contactSupport() {
 		List<String> supportEmails = new LinkedList<String>();
 		List<WebElement> contactSupportLinks = driver.findElements(By.partialLinkText("support team"));
@@ -36,6 +36,7 @@ public class HelpPage extends BasePage {
 		return supportEmails;
 	}
 
+	// IMJ-4
 	public void lookUpImejiHomePage() {		
 		super.lookUpImejiHomePage();
 	}

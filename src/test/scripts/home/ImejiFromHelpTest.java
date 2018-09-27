@@ -6,7 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
 
 import spot.pages.BasePage;
 import spot.pages.HelpPage;
@@ -16,6 +17,9 @@ import spot.pages.admin.AdminHomepage;
 import spot.pages.registered.Homepage;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #13 (IMJ-4, Help page accessible from startpage)
+ */
 public class ImejiFromHelpTest extends BaseSelenium {
 
 	private String windowHandleImejiPage;
@@ -62,6 +66,7 @@ public class ImejiFromHelpTest extends BaseSelenium {
 		switchPrivateMode(false);
 	}
 	
+	// IMJ-4
 	private String imejiFromHelp() {
 		windowHandleStartPage = driver.getWindowHandle();
 
@@ -77,6 +82,7 @@ public class ImejiFromHelpTest extends BaseSelenium {
 
 		Set<String> windowHandlesBeforeImejiHomePage = driver.getWindowHandles();
 
+		// IMJ-4
 		helpPage.lookUpImejiHomePage();
 		
 		try { Thread.sleep(1000); } catch (InterruptedException exc) {}

@@ -9,6 +9,9 @@ import spot.pages.SearchResultsPage;
 import spot.pages.StartPage;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #13 (Simple Search, not private mode, NRU, special search terms)
+ */
 public class SearchSpecialCharactersTest extends BaseSelenium {
 
 private StartPage startPage;

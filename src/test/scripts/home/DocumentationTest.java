@@ -17,6 +17,9 @@ import spot.pages.admin.AdminHomepage;
 import spot.pages.registered.Homepage;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #13 (IMJ-218)
+ */
 public class DocumentationTest extends BaseSelenium {
 	
 	private String windowHandleHelpPage;
@@ -62,6 +65,7 @@ public class DocumentationTest extends BaseSelenium {
 		switchPrivateMode(false);
 	}
 
+	// IMJ-218
 	private String openDocumentation() {
 		windowHandleStartPage = driver.getWindowHandle();
 

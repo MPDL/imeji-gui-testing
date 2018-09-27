@@ -12,6 +12,9 @@ import spot.pages.admin.AdminHomepage;
 import spot.pages.registered.Homepage;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #13 (IMJ-219)
+ */
 public class AdvancedSearchPageTest extends BaseSelenium {
 	
 	@BeforeClass
@@ -53,6 +56,7 @@ public class AdvancedSearchPageTest extends BaseSelenium {
 		switchPrivateMode(false);
 	}
 	
+	// IMJ-219
 	private void openAdvancedSearch() {
 		StartPage startPage = new StartPage(driver);
 		boolean advancedSearchAccessible = startPage.advancedSearchAccessible();

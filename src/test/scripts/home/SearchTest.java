@@ -13,6 +13,9 @@ import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #13 (Simple Search, not private mode, NRU)
+ */
 public class SearchTest extends BaseSelenium {
 
 	private StartPage startPage;

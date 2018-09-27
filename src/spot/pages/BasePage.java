@@ -103,6 +103,7 @@ public abstract class BasePage {
 		return searchComponent.browseAccessible();
 	}
 	
+	// IMJ-17
 	public BrowseItemsPage navigateToItemPage() {
 		return mainMenuComponent.navigateTo(BrowseItemsPage.class);
 	}
@@ -129,16 +130,19 @@ public abstract class BasePage {
 		return mainMenuComponent.navigateTo(AdministrationPage.class);
 	}
 	
+	// IMJ-3, IMJ-218
 	public HelpPage goToHelpPage() {
 		helpButton.click();
 		
 		return PageFactory.initElements(driver, HelpPage.class);
 	}
 	
+	// IMJ-6
 	public void lookUpDisclaimer() {
 		disclaimer.click();
 	}
 	
+	// IMJ-20
 	public void lookUpTermsOfUse() {
 		termsOfUse.click();
 	}
@@ -147,6 +151,7 @@ public abstract class BasePage {
 		mpdlHomePage.click();
 	}
 	
+	// IMJ-7, IMJ-4
 	public void lookUpImejiHomePage() {		
 		imejiHomePageLink.click();
 	}
@@ -203,6 +208,7 @@ public abstract class BasePage {
 		return searchComponent.advancedSearchUnaccessible();
 	}
 	
+	// IMJ-219
 	public AdvancedSearchPage goToAdvancedSearch() {
 		return searchComponent.navigateToAdvancedSearchPage();
 	}

@@ -12,6 +12,9 @@ import spot.pages.admin.AdminHomepage;
 import spot.pages.registered.Homepage;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #13 (IMJ-17)
+ */
 public class BrowsePageTest extends BaseSelenium {
 
 	@BeforeClass
@@ -52,6 +55,7 @@ public class BrowsePageTest extends BaseSelenium {
 		switchPrivateMode(false);
 	}
 	
+	// IMJ-17
 	private void browse() {
 		StartPage startPage = new StartPage(driver);
 		boolean browseAccessible = startPage.browseAccessible();

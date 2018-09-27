@@ -3,7 +3,8 @@ package test.scripts.home;
 import java.util.Set;
 
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
 
 import spot.pages.HelpPage;
 import spot.pages.LoginPage;
@@ -12,6 +13,9 @@ import spot.pages.admin.AdminHomepage;
 import spot.pages.registered.Homepage;
 import test.base.BaseSelenium;
 
+/**
+ * Testcase #13 (IMJ-3)
+ */
 public class HelpTest extends BaseSelenium {
   
 	private Homepage homePage; 
@@ -58,6 +62,7 @@ public class HelpTest extends BaseSelenium {
 		switchPrivateMode(false);
 	}
 	
+	// IMJ-3
 	private void openHelpPage() {
 		//storing the current window handle (right before the help page is opened)
 		String windowHandleBeforeHelp = driver.getWindowHandle();

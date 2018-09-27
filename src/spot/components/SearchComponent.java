@@ -42,6 +42,7 @@ public class SearchComponent {
 		PageFactory.initElements(driver, this);
 	}
 	
+	// IMJ-219
 	public AdvancedSearchPage navigateToAdvancedSearchPage() {
 		advancedSearchButton.click();		
 		return PageFactory.initElements(driver, AdvancedSearchPage.class);
