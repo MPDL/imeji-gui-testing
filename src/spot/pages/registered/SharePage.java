@@ -182,10 +182,10 @@ public class SharePage extends BasePage {
 			setGrant(read, readGrantCheckBox);
 		}
 		
+		WebElement staleElement = driver.findElement(By.xpath("//div[@id='shareBtn']"));
 		shareButton.click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {}
+		wait.until(ExpectedConditions.stalenessOf(staleElement));
+		
 		return PageFactory.initElements(driver, SharePage.class);
 	}
 	
