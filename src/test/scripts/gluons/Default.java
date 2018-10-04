@@ -1,7 +1,5 @@
 package test.scripts.gluons;
 
-import java.util.Random;
-
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
@@ -15,6 +13,8 @@ import spot.pages.LoginPage;
 import spot.pages.SearchResultsPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
+import spot.pages.admin.AdministrationPage;
+import spot.pages.admin.BrowseStatementsPage;
 import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.Homepage;
@@ -38,6 +38,8 @@ public class Default extends BaseSelenium {
 	private String collectionTitle = TimeStamp.getTimeStamp() + " default 1 author private mode";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
 
+	private String statementName = "Metadata: " + TimeStamp.getTimeStamp();
+	
 	/**
 	 * IMJ-188
 	 */
@@ -322,16 +324,15 @@ public class Default extends BaseSelenium {
 	 */
 	@Test(priority = 21, dependsOnMethods = {"createDefaultCollection"})
 	public void metadataAllItemsOwn() {
-		String key = new Random().nextInt(1000) + "";
-		String value = "Collection test";
+		String value = "Metadata value";
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditItemsPage editItems = collectionEntry.editAllItems();
-		editItems = editItems.addOwnMetadataAll(key, value);
+		editItems = editItems.addOwnMetadataAll(statementName, value);
 		editItems.hideMessages();
 		
 		collectionEntry = editItems.goToCollectionPage().openCollectionByTitle(collectionTitle);
-		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(key, value);
+		boolean metadataDisplayedAll = collectionEntry.metadataDisplayedAll(statementName, value);
 		Assert.assertTrue(metadataDisplayedAll, "Metadata is not displayed on item page.");
 	}
 
@@ -384,7 +385,7 @@ public class Default extends BaseSelenium {
 	@Test(priority = 26, dependsOnMethods = {"createDefaultCollection"})
 	public void loginRU2() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
-		homepage = loginPage.loginAsAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
+		homepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
 	}
 
 	/**
@@ -398,6 +399,16 @@ public class Default extends BaseSelenium {
 		
 		boolean collectionPresent = collectionsPage.collectionPresent(collectionTitle);
 		Assert.assertFalse(collectionPresent, "Collection was not deleted.");
+	}
+	
+	@Test(priority = 28, dependsOnMethods = {"createDefaultCollection"})
+	public void deleteStatement() {
+		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
+		AdministrationPage adminPage = adminHomepage.goToAdminPage();
+		BrowseStatementsPage allStatements = adminPage.deleteStatement(statementName);
+		
+		boolean statementPresent = allStatements.isStatementPresent(statementName);
+		Assert.assertFalse(statementPresent, "Statement is still in list.");
 	}
 
 	/**
