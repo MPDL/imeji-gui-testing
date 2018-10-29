@@ -21,7 +21,7 @@ public class AdministrationPage extends BasePage {
 	private WebElement createNewUserGroup;
 	
 	@FindBy(css=".imj_listBody>div:nth-of-type(1) li:nth-of-type(2)>a")
-	private WebElement viewAllUsers;
+	private WebElement browseUsers;
 	
 	@FindBy(css=".imj_listBody>.imj_adminPanel:nth-of-type(2)>.imj_content li:nth-of-type(2)>a")
 	private WebElement viewAllUserGroups;
@@ -58,9 +58,9 @@ public class AdministrationPage extends BasePage {
 		return createNewUserPage.createdNewRestrictedUser(newUserName);
 	}
 	
-	public UsersOverviewPage viewAllUsers() {
-		viewAllUsers.click();
-		return PageFactory.initElements(driver, UsersOverviewPage.class);
+	public BrowseUsersPage browseAllUsers() {
+		browseUsers.click();
+		return PageFactory.initElements(driver, BrowseUsersPage.class);
 	}
 
 	// IMJ-38

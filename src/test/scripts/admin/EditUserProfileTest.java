@@ -10,16 +10,16 @@ import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
 import spot.pages.admin.AdministrationPage;
+import spot.pages.admin.BrowseUsersPage;
 import spot.pages.admin.EditUserProfilePage;
 import spot.pages.admin.UserProfilePage;
-import spot.pages.admin.UsersOverviewPage;
 import test.base.BaseSelenium;
 
 public class EditUserProfileTest extends BaseSelenium {
 
 	private AdminHomepage adminHomePage;
 	private AdministrationPage adminPage;
-	private UsersOverviewPage allUsersOverViewPage;
+	private BrowseUsersPage allUsersOverViewPage;
 	
 	private String newUserName = "edmond-test@mpdl.mpg.de";
 	
@@ -29,12 +29,12 @@ public class EditUserProfileTest extends BaseSelenium {
 		adminHomePage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
 		adminPage = adminHomePage.goToAdminPage();
 		UserProfilePage userProfilePage = adminPage.createNewUser(newUserName);
-		allUsersOverViewPage = userProfilePage.goToAdminPage().viewAllUsers();
+		allUsersOverViewPage = userProfilePage.goToAdminPage().browseAllUsers();
 	}
 	
 	@Test(priority = 1)
 	public void changeNameOfUserTest() {
-		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetails(newUserName);
+		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetailsOfUser(newUserName);
 		EditUserProfilePage editUserProfilePage = userProfilePage.editProfile();
 		
 		String newFamilyName = "TestMan";
@@ -47,7 +47,7 @@ public class EditUserProfileTest extends BaseSelenium {
 	
 	@Test(priority = 2)
 	public void changePasswordOfUserTest() {
-		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetails(newUserName);
+		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetailsOfUser(newUserName);
 		userProfilePage.changePassword();
 		
 		String actualInfoMessage = userProfilePage.getMessageComponent().getSuccessMessage();
@@ -57,7 +57,7 @@ public class EditUserProfileTest extends BaseSelenium {
 	
 	@Test(priority = 3)
 	public void removeCollectionRightsTest() {
-		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetails(newUserName);
+		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetailsOfUser(newUserName);
 		userProfilePage = userProfilePage.editProfile().removeCollectionRights();
 		
 		/*String actualInfoMessage = userProfilePage.getMessageComponent().getInfoMessage();
@@ -67,27 +67,27 @@ public class EditUserProfileTest extends BaseSelenium {
 	
 	@Test(priority = 4)
 	public void giveAdminRights() {
-		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetails(newUserName);
+		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetailsOfUser(newUserName);
 		userProfilePage = userProfilePage.giveAdminRights();
 		Assert.assertTrue(userProfilePage.isAdmin(), "User is not given administrator rights.");
 	}
 	
 	@Test(priority = 5)
 	public void withdrawAdminRights() {
-		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetails(newUserName);
+		UserProfilePage userProfilePage = allUsersOverViewPage.viewDetailsOfUser(newUserName);
 		userProfilePage = userProfilePage.withdrawAdminRights();
 		Assert.assertFalse(userProfilePage.isAdmin(), "User should not have administrator rights.");
 	}
 	
 	@Test(priority = 6)
 	public void deleteUser() {
-		allUsersOverViewPage.deleteUserByEmail(newUserName);
+		allUsersOverViewPage.deleteUser(newUserName);
 	}
 	
 	@AfterMethod
 	public void afterMethod() {
 		adminHomePage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomePage);
-		allUsersOverViewPage = adminHomePage.goToAdminPage().viewAllUsers();
+		allUsersOverViewPage = adminHomePage.goToAdminPage().browseAllUsers();
 	}
 	
 	@AfterClass

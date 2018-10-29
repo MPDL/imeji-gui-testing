@@ -10,8 +10,8 @@ import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
 import spot.pages.admin.AdministrationPage;
+import spot.pages.admin.BrowseUsersPage;
 import spot.pages.admin.UserProfilePage;
-import spot.pages.admin.UsersOverviewPage;
 import test.base.BaseSelenium;
 
 public class UserPolicyManagementTest extends BaseSelenium {
@@ -58,9 +58,9 @@ public class UserPolicyManagementTest extends BaseSelenium {
 	
 	@Test(priority = 5)
 	public void deleteTestUserTest() {
-		UsersOverviewPage allUsersOverViewPage = adminHomePage.goToAdminPage().viewAllUsers();
-		allUsersOverViewPage.deleteUserByEmail(emailOfNewUser);
-		allUsersOverViewPage = allUsersOverViewPage.goToAdminPage().viewAllUsers();
+		BrowseUsersPage allUsersOverViewPage = adminHomePage.goToAdminPage().browseAllUsers();
+		allUsersOverViewPage.deleteUser(emailOfNewUser);
+		allUsersOverViewPage = allUsersOverViewPage.goToAdminPage().browseAllUsers();
 		
 		Assert.assertFalse(allUsersOverViewPage.isEmailInUserList(emailOfNewUser), "User deletion failed: user still registered");
 	}

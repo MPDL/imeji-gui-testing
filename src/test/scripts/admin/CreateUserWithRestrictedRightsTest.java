@@ -9,8 +9,8 @@ import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
 import spot.pages.admin.AdministrationPage;
+import spot.pages.admin.BrowseUsersPage;
 import spot.pages.admin.UserProfilePage;
-import spot.pages.admin.UsersOverviewPage;
 import test.base.BaseSelenium;
 
 public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
@@ -19,7 +19,7 @@ public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
 	private AdministrationPage adminPage;
 	
 	private String newUserName;
-	private UsersOverviewPage allUsersOverViewPage;
+	private BrowseUsersPage allUsersOverViewPage;
 	
 	@BeforeClass
 	public void beforeClass() {		
@@ -34,7 +34,7 @@ public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
 	@Test(priority = 1)
 	public void createUserTest() {
 		UserProfilePage userProfilePage = adminPage.createNewRestrictedUser(newUserName);
-		allUsersOverViewPage = userProfilePage.goToAdminPage().viewAllUsers();
+		allUsersOverViewPage = userProfilePage.goToAdminPage().browseAllUsers();
 		boolean isUserPresent = allUsersOverViewPage.isEmailInUserList(newUserName);
 		Assert.assertTrue(isUserPresent, "Email of new restricted user is not in user list.");
 	}
@@ -42,8 +42,8 @@ public class CreateUserWithRestrictedRightsTest extends BaseSelenium {
 	@Test(priority = 2)
 	public void deleteRestrictedUser() {
 		adminHomePage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomePage);
-		allUsersOverViewPage = adminHomePage.goToAdminPage().viewAllUsers();
-		allUsersOverViewPage.deleteUserByEmail(newUserName);
+		allUsersOverViewPage = adminHomePage.goToAdminPage().browseAllUsers();
+		allUsersOverViewPage.deleteUser(newUserName);
 	}
 	
 	@AfterClass

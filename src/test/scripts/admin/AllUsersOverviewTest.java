@@ -8,13 +8,13 @@ import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
 import spot.pages.admin.AdministrationPage;
-import spot.pages.admin.UsersOverviewPage;
+import spot.pages.admin.BrowseUsersPage;
 import test.base.BaseSelenium;
 
 public class AllUsersOverviewTest extends BaseSelenium {
 
 	private AdminHomepage adminHomePage;
-	private UsersOverviewPage allUsersOverViewPage;
+	private BrowseUsersPage allUsersOverViewPage;
 	
 	@Test(priority = 1)
 	public void loginAsAdmin() {
@@ -25,7 +25,7 @@ public class AllUsersOverviewTest extends BaseSelenium {
 	@Test(priority = 2)
 	public void viewAllUsers() {
 		AdministrationPage administrationPage = adminHomePage.goToAdminPage();
-		allUsersOverViewPage = administrationPage.viewAllUsers();
+		allUsersOverViewPage = administrationPage.browseAllUsers();
 		int userCount = allUsersOverViewPage.userCount();
 		Assert.assertTrue(userCount > 1, "User overview page was not displayed.");
 	}
