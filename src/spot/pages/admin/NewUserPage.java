@@ -21,10 +21,10 @@ public class NewUserPage extends BasePage {
 	@FindBy(xpath="//input[contains(@id, 'inputOrgaName')]")
 	private WebElement organizationNameTextField;
 	
-	@FindBy(css=".imj_content>div:nth-last-child(2) input")
+	@FindBy(css=".imj_content>div:nth-last-child(3) input")
 	private WebElement canCreateNewCollectionCheckBox;
 	
-	@FindBy(css=".imj_content>div:nth-last-child(1) input")
+	@FindBy(css=".imj_content>div:nth-last-child(2) input")
 	private WebElement sendEmailCheckBox;
 	
 	@FindBy(css=".imj_submitButton")
@@ -36,25 +36,26 @@ public class NewUserPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public UserProfilePage createNewUser(String newUserName) {
-		fillPersonalData(newUserName);
+	public UserProfilePage createNewUser(String newUserEmailAddress) {
+		fillPersonalData(newUserEmailAddress);
 		fillOrganizationData();
-		
-		// user shall receive email
-		if (!sendEmailCheckBox.isSelected())
-			sendEmailCheckBox.click();
-		
-		// user shall be able to create collections
-		if (!canCreateNewCollectionCheckBox.isSelected())
-			canCreateNewCollectionCheckBox.click();
 		
 		saveButton.click();
 		
 		return PageFactory.initElements(driver, UserProfilePage.class);
 	}
 	
-	public UserProfilePage createdNewRestrictedUser(String newUserName) {
-		fillPersonalData(newUserName);
+	public UserProfilePage createNewUser(String emailAddress, String familyName, String givenName) {
+		fillPersonalData(emailAddress, familyName, givenName);
+		fillOrganizationData();
+		
+		saveButton.click();
+		
+		return PageFactory.initElements(driver, UserProfilePage.class);
+	}
+	
+	public UserProfilePage createdNewRestrictedUser(String newUserEmailAddress) {
+		fillPersonalData(newUserEmailAddress);
 		fillOrganizationData();
 		
 		// restricted user cannot create collections
@@ -65,10 +66,16 @@ public class NewUserPage extends BasePage {
 		return PageFactory.initElements(driver, UserProfilePage.class);
 	}
 
-	private void fillPersonalData(String newUserName) {
-		emailTextField.sendKeys(newUserName);
+	private void fillPersonalData(String newUserEmailAddress) {
+		emailTextField.sendKeys(newUserEmailAddress);
 		familyNameTextField.sendKeys("Testuser");
 		givenNameTextField.sendKeys("Tester");
+	}
+	
+	private void fillPersonalData(String emailAddress, String familyName, String givenName) {
+		emailTextField.sendKeys(emailAddress);
+		familyNameTextField.sendKeys(familyName);
+		givenNameTextField.sendKeys(givenName);
 	}
 	
 	private void fillOrganizationData() {
