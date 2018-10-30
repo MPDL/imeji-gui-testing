@@ -22,24 +22,18 @@ public class UserGroupsOverviewPage extends BasePage {
 		
 		PageFactory.initElements(driver, this);
 	}
-
+	
 	public UserGroupsOverviewPage deleteUserGroupByName(String userGroupName) {
-		if (!isNewUserGroupPresent(userGroupName))
-			throw new NoSuchElementException("User group with this title does not exist.");
-		
-		
 		WebElement toBeDeletedUserGroup = findUserGroupByName(userGroupName);
+		
 		WebElement deleteButton = toBeDeletedUserGroup.findElement(By.className("fa-trash"));
 		deleteButton.click();
-			
-		wait.until(ExpectedConditions.visibilityOf(toBeDeletedUserGroup));
-			
-		// TODO delete currently dependent on number in code
-		WebElement confirmDelete = toBeDeletedUserGroup.findElement(By.cssSelector("#deleteUserGroup0 form .imj_submitPanel .imj_submitButton"));
-
-		wait.until(ExpectedConditions.visibilityOf(confirmDelete));
-		confirmDelete.click();
-		try { Thread.sleep(2000); } catch (InterruptedException e) {}
+		wait.until(ExpectedConditions.visibilityOf(deleteDialog));
+		
+		WebElement deleteDialog = toBeDeletedUserGroup.findElement(By.className("imj_modalDialogBox"));	
+		WebElement confirmDeleteButton = deleteDialog.findElement(By.className("imj_submitButton"));
+		confirmDeleteButton.click();		
+		wait.until(ExpectedConditions.stalenessOf(toBeDeletedUserGroup));
 		
 		return PageFactory.initElements(driver, UserGroupsOverviewPage.class);
 	}
