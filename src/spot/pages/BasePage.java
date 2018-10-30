@@ -1,5 +1,6 @@
 package spot.pages;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -292,6 +293,16 @@ public abstract class BasePage {
 	public void switchToGerman() {
 		Select languageSelect = new Select(languageButton);
 		languageSelect.selectByValue("de");
+	}
+	
+	/**
+	 * Sets the waiting-timeout: 
+	 * How long to wait for a condition to become true, when using the selenium explicit wait.
+	 * 
+	 * @param timeOutInSeconds
+	 */
+	public void setWaitingTime(int timeOutInSeconds) {
+		this.wait.withTimeout(Duration.ofSeconds(timeOutInSeconds));
 	}
 	
 }

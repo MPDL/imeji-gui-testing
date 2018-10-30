@@ -170,6 +170,46 @@ public abstract class BaseSelenium {
 	}
 	
 	/**
+	 * Get the paths of all files of the given file directory. <br>
+	 * Returns the paths of all files separated by "\n", 
+	 * so that the files can be uploaded at once using the selenium sendKeys() method!
+	 * 
+	 * @param directoryName The name of the directory
+	 * @return the system-independent file paths, separated by "\n"
+	 */
+	public final String getPathsOfAllFilesInDirectory(String directoryName) {
+		String systemIndependentDirectoryPath = this.getDirectoryPath(directoryName);
+		
+		File directory = new File(systemIndependentDirectoryPath);
+		File[] files = directory.listFiles();
+		StringBuilder stringBuilder = new StringBuilder();
+		for (int i=0; i<files.length; i++) {
+			File file = files[i];
+			if(file.isFile()) {
+				stringBuilder.append(file.getPath());
+				if(i<files.length-1) {
+					stringBuilder.append("\n");
+				}
+			}
+		}
+		String filespaths = stringBuilder.toString();
+		
+		return filespaths;
+	}
+	
+	
+	public final String getDirectoryPath(String directoryName) {
+		//TODO: Refactor this method: make it independent of maven, handle not existing directory
+		String classesDirectoryPath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+		String directoryPath = classesDirectoryPath + File.separator + directoryName;
+		
+		File systemIndependentDirectory = new File(directoryPath);
+		String systemIndependentDirectoryPath = systemIndependentDirectory.getPath();
+		
+		return systemIndependentDirectoryPath;
+	}
+	
+	/**
 	 * Handles failed tests.
 	 * @param testResult
 	 */

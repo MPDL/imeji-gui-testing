@@ -108,6 +108,8 @@ public class ActionComponent extends BasePage {
 		
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#deleteCollection .imj_submitPanel .imj_submitButton').click();");
 		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text()[2],'New collection')]")));
+		
 		return PageFactory.initElements(driver, CollectionsPage.class);
 	}
 	

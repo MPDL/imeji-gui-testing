@@ -23,13 +23,19 @@ public class UploadWindow extends BasePage {
 		PageFactory.initElements(driver,  this);
 	}
 	
-	public void uploadFile(String filepath) {		
+	/**
+	 * Upload files to a collection by sending the paths of the files to the upload-element. <br>
+	 * The filespaths must be of the form: "filepath_1" + "/n" + "filepath_2"
+	 * 
+	 * @param filespaths The filespaths
+	 */
+	public void uploadFiles(String filespaths) {		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		//Set the visibility of the upload element so that the sendKeys() method works
 		jse.executeScript("arguments[0].style.visibility = 'visible';", selectFiles);
 		//Wait for the visibility of the upload element
 		wait.until(ExpectedConditions.attributeToBe(selectFiles, "visibility", "visible"));
 		
-		selectFiles.sendKeys(filepath);
+		selectFiles.sendKeys(filespaths);
 	}
 }

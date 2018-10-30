@@ -365,7 +365,7 @@ public class CollectionEntryPage extends BasePage {
 		
 		uploadButton.click();
 		UploadWindow upload = new UploadWindow(driver);
-		upload.uploadFile(filepath);
+		upload.uploadFiles(filepath);
 
 		// Wait for page reload
 		wait.until(ExpectedConditions.stalenessOf(staleElement));
@@ -376,7 +376,7 @@ public class CollectionEntryPage extends BasePage {
 
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
-
+	
 	// IMJ-115
 	public CollectionEntryPage setDOI() {
 		return actionComponent.setDOI();
