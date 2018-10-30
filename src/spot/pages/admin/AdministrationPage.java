@@ -144,6 +144,11 @@ public class AdministrationPage extends BasePage {
 		return configurationEditPage.restrictRegistrationDomains(domains);
 	}
 	
+	public BrowseStatementsPage browseAllStatements() {
+		browseStatement.click();
+		return PageFactory.initElements(driver, BrowseStatementsPage.class);
+	}
+	
 	// IMJ-271
 	public BrowseStatementsPage createStatement(String name, StatementType type) {
 		createStatement.click();
