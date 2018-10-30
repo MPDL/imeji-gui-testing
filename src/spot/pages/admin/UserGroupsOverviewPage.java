@@ -28,9 +28,10 @@ public class UserGroupsOverviewPage extends BasePage {
 		
 		WebElement deleteButton = toBeDeletedUserGroup.findElement(By.className("fa-trash"));
 		deleteButton.click();
+		
+		WebElement deleteDialog = toBeDeletedUserGroup.findElement(By.className("imj_modalDialogBox"));
 		wait.until(ExpectedConditions.visibilityOf(deleteDialog));
 		
-		WebElement deleteDialog = toBeDeletedUserGroup.findElement(By.className("imj_modalDialogBox"));	
 		WebElement confirmDeleteButton = deleteDialog.findElement(By.className("imj_submitButton"));
 		confirmDeleteButton.click();		
 		wait.until(ExpectedConditions.stalenessOf(toBeDeletedUserGroup));
