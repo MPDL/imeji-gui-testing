@@ -1,5 +1,6 @@
 package test.scripts.highVolume;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
@@ -20,7 +21,7 @@ public class CreateMultipleUsers extends BaseSelenium{
 	
 	private String genericUserName = TimeStamp.getTimeStamp(); 
 	
-	private final int numberOfUsers = 2;
+	private final int numberOfUsers = 10;
 	
 	/**
 	 * IMJ-21
@@ -35,12 +36,25 @@ public class CreateMultipleUsers extends BaseSelenium{
 	public void createUsers() {
 		adminPage = adminHomepage.goToAdminPage();
 		
+		int oldUserCount = this.getUserCount();
+		
 		for(int i=0; i<numberOfUsers; i++) {
 			String newUserEmailAddress = "Temp_Test_User_" + i + "@seleniumtest.imeji.org";
 			String newUserFamilyName = "Temp_Test_User";
 			String newUserGivenName = "Temp_Test_User_" + i + " " + genericUserName;
 			createUser(newUserEmailAddress, newUserFamilyName, newUserGivenName);
 		}
+		
+		int newUserCount = this.getUserCount();
+		Assert.assertEquals(newUserCount-oldUserCount, numberOfUsers, "Not all users have been created.");
+	}
+	
+	public int getUserCount() {
+		BrowseUsersPage browseUsersPage = adminPage.browseAllUsers();
+		int userCount = browseUsersPage.userCount();
+		adminPage = browseUsersPage.goToAdminPage();
+		
+		return userCount;
 	}
 	
 	public void createUser(String emailAddress, String familyName, String givenName) {

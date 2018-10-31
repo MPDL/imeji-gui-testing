@@ -116,7 +116,12 @@ public class BrowseUsersPage extends BasePage{
 	}
 	
 	public int userCount() {
-		List <WebElement> userCount = driver.findElements(By.className("imj_itemContent "));
-		return userCount.size();
+		WebElement usersFound = driver.findElement(By.xpath("//div[@class='imj_admindataLabel' and contains(text()[1],'Users found')]"));
+		String usersFoundText = usersFound.getText();
+		
+		String userCountText = usersFoundText.replace(" Users found", "");
+		int userCount = Integer.parseInt(userCountText);
+		
+		return userCount;
 	}
 }
