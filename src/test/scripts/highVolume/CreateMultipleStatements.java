@@ -1,5 +1,6 @@
 package test.scripts.highVolume;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
@@ -20,7 +21,7 @@ public class CreateMultipleStatements extends BaseSelenium{
 	
 	private String genericStatementName = TimeStamp.getTimeStamp() + "_statement_"; 
 	
-	private final int numberOfStatements = 2;
+	private final int numberOfStatements = 10;
 	
 	/**
 	 * IMJ-21
@@ -35,9 +36,22 @@ public class CreateMultipleStatements extends BaseSelenium{
 	public void createStatements() {
 		adminPage = adminHomepage.goToAdminPage();
 		
+		int oldStatementCount = this.getStatementCount();
+		
 		for(int i=0; i<numberOfStatements; i++) {
 			this.createStatement(genericStatementName + i);
 		}
+		
+		int newStatementCount = this.getStatementCount();
+		Assert.assertEquals(newStatementCount-oldStatementCount, numberOfStatements, "Not all statements have been created.");
+	}
+	
+	public int getStatementCount() {
+		BrowseStatementsPage browseStatementsPage = adminPage.browseAllStatements();
+		int statementCount = browseStatementsPage.statementCount();
+		adminPage = browseStatementsPage.goToAdminPage();
+		
+		return statementCount;
 	}
 	
 	public void createStatement(String newStatementName) {

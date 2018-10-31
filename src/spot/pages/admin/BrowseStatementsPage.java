@@ -76,4 +76,13 @@ public class BrowseStatementsPage extends BasePage {
 		throw new NoSuchElementException("Statement with this name is not available on the page.");
 	}
 	
+	public int statementCount() {
+		final int defaultAdmindataSetCount = 2;
+		List<WebElement> adminDataSets = driver.findElements(By.xpath("//div[@class='imj_admindataSet']"));
+		
+		int statementCount = adminDataSets.size() - defaultAdmindataSetCount;
+		
+		return statementCount;
+	}
+	
 }
