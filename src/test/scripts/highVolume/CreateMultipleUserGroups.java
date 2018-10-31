@@ -1,5 +1,6 @@
 package test.scripts.highVolume;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
@@ -20,7 +21,7 @@ public class CreateMultipleUserGroups extends BaseSelenium{
 	
 	private String genericUserGroupName = TimeStamp.getTimeStamp() + "_userGroup_"; 
 	
-	private final int numberOfUserGroups = 2;
+	private final int numberOfUserGroups = 10;
 	
 	/**
 	 * IMJ-21
@@ -35,9 +36,22 @@ public class CreateMultipleUserGroups extends BaseSelenium{
 	public void createUserGroups() {
 		adminPage = adminHomepage.goToAdminPage();
 		
+		int oldUserGroupsCount = this.getUserGroupsCount();
+		
 		for(int i=0; i<numberOfUserGroups; i++) {
 			this.createUserGroup(genericUserGroupName + i);
 		}
+		
+		int newUserGroupsCount = this.getUserGroupsCount();
+		Assert.assertEquals(newUserGroupsCount-oldUserGroupsCount, numberOfUserGroups, "Not all userGroups have been created.");
+	}
+	
+	public int getUserGroupsCount() {
+		UserGroupsOverviewPage browseUserGroupsPage = adminPage.viewAllUserGroups();
+		int userGroupCount = browseUserGroupsPage.userGroupsCount();
+		adminPage = browseUserGroupsPage.goToAdminPage();
+		
+		return userGroupCount;
 	}
 	
 	public void createUserGroup(String newUserGroupName) {

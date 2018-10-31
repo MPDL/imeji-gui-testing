@@ -85,4 +85,15 @@ public class UserGroupsOverviewPage extends BasePage {
 		
 		return PageFactory.initElements(driver, UserGroupPage.class);
 	}
+	
+	public int userGroupsCount() {
+		WebElement userGroupsFound = driver.findElement(By.xpath("//div[@class='imj_admindataLabel' and contains(text()[1],'User groups found')]"));
+		String userGroupsFoundText = userGroupsFound.getText();
+		
+		String userGroupsCountText = userGroupsFoundText.replace(" User groups found", "");
+		int userGroupsCount = Integer.parseInt(userGroupsCountText);
+		
+		return userGroupsCount;
+	}
+	
 }
