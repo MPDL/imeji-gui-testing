@@ -46,7 +46,8 @@ public class UploadMultipleItems extends BaseSelenium {
 	}
 	
 	@Test(priority = 3)
-	public void uploadItems() {		
+	public void uploadItems() {
+		//TODO: Commit/Push the res/MultipleItems directory with appropriate items.
 		String filespaths = getPathsOfAllFilesInDirectory("MultipleItems");
 		
 		collectionEntry.setWaitingTime(timeOutInSeconds);
