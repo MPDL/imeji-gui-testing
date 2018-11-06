@@ -19,9 +19,9 @@ public class CreateMultipleUserGroups extends BaseSelenium{
 	private AdministrationPage adminPage;
 	private UserGroupsOverviewPage browseUserGroupsPage;
 	
-	private String genericUserGroupName = TimeStamp.getTimeStamp() + "_userGroup_"; 
+	private String genericUserGroupName = TimeStamp.getTimeStamp() + " temp_test_userGroup_"; 
 	
-	private final int numberOfUserGroups = 10;
+	private final int numberOfUserGroups = 550;
 	
 	/**
 	 * IMJ-21
