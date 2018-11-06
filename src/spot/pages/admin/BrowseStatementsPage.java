@@ -3,6 +3,7 @@ package spot.pages.admin;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,10 +21,17 @@ public class BrowseStatementsPage extends BasePage {
 	
 	public BrowseStatementsPage deleteStatement(String name) {
 		WebElement statement = findStatement(name);
-		statement.findElement(By.className("fa-trash")).click();
 		
-		WebElement deleteButton = driver.findElement(By.cssSelector("#deleteStatement>form>.imj_submitPanel>.imj_submitButton"));		
-		deleteButton.click();
+		WebElement staleDialogDeleteButton = driver.findElement(By.cssSelector("#deleteStatement>form>.imj_submitPanel>.imj_submitButton"));
+		
+		WebElement deleteButton = statement.findElement(By.xpath(".//a[contains(@class,'imj_menuButton') and span[contains(@class,'fa-trash')]]"));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", deleteButton);
+		
+		wait.until(ExpectedConditions.stalenessOf(staleDialogDeleteButton));
+		
+		WebElement dialogDeleteButton = driver.findElement(By.cssSelector("#deleteStatement>form>.imj_submitPanel>.imj_submitButton"));
+		wait.until(ExpectedConditions.visibilityOf(dialogDeleteButton));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", dialogDeleteButton);
 		
 		wait.until(ExpectedConditions.stalenessOf(statement));
 		
