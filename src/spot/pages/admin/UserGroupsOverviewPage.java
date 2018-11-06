@@ -39,17 +39,20 @@ public class UserGroupsOverviewPage extends BasePage {
 		return PageFactory.initElements(driver, UserGroupsOverviewPage.class);
 	}
 	
-	private WebElement findUserGroupByName(String userGroupNameInQuestion) {
-		for (WebElement userGroup : userGroupList) {
-			WebElement userGroupIdentification = userGroup.findElement(By.className("imj_admindataLabel"));
-			String userGroupName  = userGroupIdentification.getText();
-			
-			if (userGroupName.equals(userGroupNameInQuestion)) {
+	private WebElement findUserGroupByName(String userGroupName) {
+		// Find labels that contain the name of the userGroup
+		List<WebElement> userGroupContainingTheName = driver.findElements(By.xpath("//div[@class='imj_admindataLabel' and contains(text()[1],'" + userGroupName + "')]"));
+		
+		// Return the userGroup that matches the userGroup name exactly
+		for (WebElement userGroupLabel : userGroupContainingTheName) {
+			String currentName = userGroupLabel.getText();
+			if (currentName.equals(userGroupName)) {
+				WebElement userGroup = userGroupLabel.findElement(By.xpath(".//.."));
 				return userGroup;
 			}
 		}
-
-		throw new NoSuchElementException("User group " + userGroupNameInQuestion + " is not present.");
+		
+		throw new NoSuchElementException("User group " + userGroupName + " is not present.");
 	}
 
 	public boolean isNewUserGroupPresent(String newUserGroupName) {

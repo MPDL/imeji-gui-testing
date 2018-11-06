@@ -29,8 +29,7 @@ public class NewUserGroupPage extends BasePage {
 		
 		((JavascriptExecutor) driver).executeScript("document.querySelector('.imj_metadataValueEntry .imj_submitButton').click();");
 		
-		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
-		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@id,'EditUserdata')]")));
 		
 		return PageFactory.initElements(driver, UserGroupPage.class);
 	}
