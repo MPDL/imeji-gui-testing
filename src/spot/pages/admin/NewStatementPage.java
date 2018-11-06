@@ -55,6 +55,7 @@ public class NewStatementPage extends BasePage {
 	public BrowseStatementsPage submit(){
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@id, 'btnCreateStatement')]")));
 		saveButton.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("createStatement")));
 		
 		return PageFactory.initElements(driver, BrowseStatementsPage.class);
 	}
