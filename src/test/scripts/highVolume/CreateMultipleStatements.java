@@ -14,14 +14,14 @@ import test.base.BaseSelenium;
 import test.base.StatementType;
 
 public class CreateMultipleStatements extends BaseSelenium{
-
+	
 	private AdminHomepage adminHomepage;
 	private AdministrationPage adminPage;
 	private BrowseStatementsPage browseAllStatements;
 	
-	private String genericStatementName = TimeStamp.getTimeStamp() + "_statement_"; 
+	private String genericStatementName = TimeStamp.getTimeStamp() + " temp_test_statement_"; 
 	
-	private final int numberOfStatements = 10;
+	private final int numberOfStatements = 550;
 	
 	/**
 	 * IMJ-21
@@ -59,7 +59,7 @@ public class CreateMultipleStatements extends BaseSelenium{
 		adminPage = browseStatementsPage.goToAdminPage();
 	}
 	
-	@Test(priority = 2)
+	@Test(priority = 3)
 	public void deleteStatements() {
 		browseAllStatements = adminPage.browseAllStatements();
 		
