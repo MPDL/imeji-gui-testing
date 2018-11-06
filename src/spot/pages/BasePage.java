@@ -15,6 +15,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -283,16 +284,24 @@ public abstract class BasePage {
 	 * Switch the language of imeji to English.
 	 */
 	public void switchToEnglish() {
+		WebElement staleElement = driver.findElement(By.id("langForm:sel"));
+		
 		Select languageSelect = new Select(languageButton);
 		languageSelect.selectByValue("en");
+		
+		wait.until(ExpectedConditions.stalenessOf(staleElement));
 	}
 	
 	/**
 	 * Switch the language of imeji to German.
 	 */
 	public void switchToGerman() {
+		WebElement staleElement = driver.findElement(By.id("langForm:sel"));
+		
 		Select languageSelect = new Select(languageButton);
 		languageSelect.selectByValue("de");
+		
+		wait.until(ExpectedConditions.stalenessOf(staleElement));
 	}
 	
 	/**
