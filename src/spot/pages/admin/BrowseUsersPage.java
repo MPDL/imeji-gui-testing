@@ -95,13 +95,15 @@ public class BrowseUsersPage extends BasePage{
 	}
 	
 	private WebElement findUserByEmail(String userEmailAddress) {
-		WebElement userLabel = driver.findElement(By.xpath("//div[@class='imj_admindataLabel' and contains(text(),'"+ userEmailAddress +"')]"));
-		WebElement userSet = userLabel.findElement(By.xpath(".."));		
+		//FIXME: Find user by EXACT match of familyname, name and email
+		//For now the first user-webelement that CONTAINS the  given email address is being returned
+		WebElement userLabel = driver.findElement(By.xpath("//div[@class='imj_admindataLabel' and contains(text(),'("+ userEmailAddress +")')]"));
+		WebElement userSet = userLabel.findElement(By.xpath(".."));
 		return userSet;
 	}
 	
 	public boolean isEmailInUserList(String userEmailAddress) {
-		List<WebElement> userLabels = driver.findElements(By.xpath("//div[@class='imj_admindataLabel' and contains(text(),'"+ userEmailAddress +"')]"));
+		List<WebElement> userLabels = driver.findElements(By.xpath("//div[@class='imj_admindataLabel' and contains(text(),'("+ userEmailAddress +")')]"));
 		
 		int userCount = userLabels.size();
 		

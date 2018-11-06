@@ -21,7 +21,7 @@ public class CreateMultipleUsers extends BaseSelenium{
 	
 	private String genericUserName = TimeStamp.getTimeStamp(); 
 	
-	private final int numberOfUsers = 10;
+	private final int numberOfUsers = 550;
 	
 	/**
 	 * IMJ-21
@@ -73,6 +73,9 @@ public class CreateMultipleUsers extends BaseSelenium{
 	}
 	
 	public void deleteUser(String newUserEmailAddress) {
+		//TODO: Use the searchComponent to search for a user, then delete the user from the user-search-result-page
+		// This way the user can be deleted faster, because the reload time of the users page is lower (because there are less users to load)
+		
 		allUsersPage = allUsersPage.deleteUser(newUserEmailAddress);
 	}
 	
