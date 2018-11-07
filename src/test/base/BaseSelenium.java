@@ -216,7 +216,7 @@ public abstract class BaseSelenium {
 	@AfterMethod
 	public void handleTestFailure(ITestResult testResult) {
 		if (testResult.getStatus() == ITestResult.FAILURE) {
-			takeScreenshot(testResult.getName());
+			takeScreenshot(testResult);
 			logTestResult(testResult);
 			navigateToStartPage();
 		}
@@ -224,11 +224,11 @@ public abstract class BaseSelenium {
 
 	/**
 	 * Takes a screenshot of the current test step.
-	 * @param screenshotName
+	 * @param testResult
 	 */
-	public void takeScreenshot(String screenshotName) {
+	public void takeScreenshot(ITestResult testResult) {
 		try {
-			String screenshotPath = "./target/" + screenshotName + "_Screenshot.jpg";
+			String screenshotPath = "./target/" + testResult.getInstanceName() + "_" + testResult.getName() + "_Screenshot.jpg";
 			File screenshot = ((TakesScreenshot) driver).getScreenshotAs(org.openqa.selenium.OutputType.FILE);
 			FileUtils.copyFile(screenshot, new File(screenshotPath));
 		} catch (IOException exc) {
