@@ -73,9 +73,9 @@ public class CreateMultipleUsers extends BaseSelenium{
 	}
 	
 	public void deleteUser(String newUserEmailAddress) {
-		//TODO: Use the searchComponent to search for a user, then delete the user from the user-search-result-page
-		// This way the user can be deleted faster, because the reload time of the users page is lower (because there are less users to load)
-		
+		// First search for the user:
+		// This makes the deletion of the user much faster, because the reload time of the users page is lower (because there are less users to load)
+		allUsersPage = allUsersPage.getSearchComponent().searchForUsersByExactTitle(newUserEmailAddress);
 		allUsersPage = allUsersPage.deleteUser(newUserEmailAddress);
 	}
 	

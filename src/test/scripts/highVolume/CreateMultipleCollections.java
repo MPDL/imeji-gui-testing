@@ -22,7 +22,7 @@ public class CreateMultipleCollections extends BaseSelenium{
 	private String genericCollectionTitle = TimeStamp.getTimeStamp() + " multiple collections _ ";
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
 	
-	private final int numberOfCollections = 10;
+	private final int numberOfCollections = 550;
 
 	/**
 	 * IMJ-1
@@ -53,6 +53,7 @@ public class CreateMultipleCollections extends BaseSelenium{
 				getPropertyAttribute(ruOrganizationName));
 		collectionsPage = collectionEntry.goToCollectionPage();
 		
+		collectionsPage = collectionsPage.getSearchComponent().searchForCollectionsByExactTitle(collectionTitle);
 		boolean collectionPresent = collectionsPage.collectionPresent(collectionTitle);
 		Assert.assertTrue(collectionPresent, "Collection was not created.");
 	}
@@ -69,13 +70,14 @@ public class CreateMultipleCollections extends BaseSelenium{
 	 * IMJ-96
 	 */
 	public void deleteCollection(String collectionTitle) {
-		// TODO: Refactor: openCollectionByTitle-method + collectionPresent-method
-		// Both methods only search on the first collections-page
-		// Maybe use the search-component and search for the "collectionTitle" to find the collection in a efficient way
+		// The collection to delete may not be on the first page,
+		// therefore first search for the collection, then open/find the collection (openCollectionByTitle/collectionPresent)
 		
+		collectionsPage = collectionsPage.getSearchComponent().searchForCollectionsByExactTitle(collectionTitle);
 		collectionEntry = collectionsPage.openCollectionByTitle(collectionTitle);
 		collectionsPage = collectionEntry.deleteCollection();
 		
+		collectionsPage = collectionsPage.getSearchComponent().searchForCollectionsByExactTitle(collectionTitle);
 		boolean collectionPresent = collectionsPage.collectionPresent(collectionTitle);
 		Assert.assertFalse(collectionPresent, "Collection was not deleted.");
 	}
