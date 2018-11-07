@@ -93,6 +93,8 @@ public class SeleniumTestSuite {
 		driver.manage().window().maximize();
 		log4j.info("Window maximised.");
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		// TODO: Remove the implicitlyWait. Check and fix all tests that  wont't run if there is no implicitlyWait.
+		// The implicitlyWait is a problem wherever driver.findElements()-method finds no element, then it waits the whole implicitlyWait time..
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
