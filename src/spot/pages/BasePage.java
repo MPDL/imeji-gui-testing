@@ -284,24 +284,30 @@ public abstract class BasePage {
 	 * Switch the language of imeji to English.
 	 */
 	public void switchToEnglish() {
-		WebElement staleElement = driver.findElement(By.id("langForm:sel"));
-		
 		Select languageSelect = new Select(languageButton);
-		languageSelect.selectByValue("en");
+		String actualLanguage = languageSelect.getFirstSelectedOption().getText();
 		
-		wait.until(ExpectedConditions.stalenessOf(staleElement));
+		if("GERMAN".equals(actualLanguage)) {
+			WebElement staleElement = driver.findElement(By.id("langForm:sel"));
+			languageSelect.selectByValue("en");
+			wait.until(ExpectedConditions.stalenessOf(staleElement));
+		}
+		// else: the language is already English => nothing to do
 	}
 	
 	/**
 	 * Switch the language of imeji to German.
 	 */
 	public void switchToGerman() {
-		WebElement staleElement = driver.findElement(By.id("langForm:sel"));
-		
 		Select languageSelect = new Select(languageButton);
-		languageSelect.selectByValue("de");
+		String actualLanguage = languageSelect.getFirstSelectedOption().getText();
 		
-		wait.until(ExpectedConditions.stalenessOf(staleElement));
+		if("ENGLISH".equals(actualLanguage)) {
+			WebElement staleElement = driver.findElement(By.id("langForm:sel"));
+			languageSelect.selectByValue("de");
+			wait.until(ExpectedConditions.stalenessOf(staleElement));
+		}
+		// else: the language is already German => nothing to do
 	}
 	
 	/**
