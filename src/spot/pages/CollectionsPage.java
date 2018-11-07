@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import spot.components.DisplaySearchQueryComponent;
 import spot.components.SortingComponent;
 import spot.components.StateComponent;
 import spot.components.StateComponent.StateOptions;
@@ -20,6 +21,7 @@ public class CollectionsPage extends BasePage {
 	
 	private SortingComponent sortingComponent;
 	private StateComponent stateComponent;
+	private DisplaySearchQueryComponent searchQueryComponent;
 	
 	@FindBy(css="#actions .fa-plus")
 	private WebElement newCollectionButton;
@@ -32,6 +34,7 @@ public class CollectionsPage extends BasePage {
 		
 		collectionList = driver.findElements(By.className("imj_bibliographicListItem"));
 		stateComponent = new StateComponent(driver);
+		searchQueryComponent = new DisplaySearchQueryComponent(driver);
 		
 		PageFactory.initElements(driver, this);
 	}
@@ -106,6 +109,8 @@ public class CollectionsPage extends BasePage {
 	}
 
 	// IMJ-131
+	//TODO: Refactor: Rename in 'openCollectionOnFirstPage' 
+	// + Create new openCollection-method which uses the search to open a collection which is not present on the first page
 	public CollectionEntryPage openCollectionByTitle(String collectionTitle) {
 		WebElement collectionInQuestion = findCollectionByTitle(collectionTitle);
 		collectionInQuestion.findElement(By.tagName("a")).click();
@@ -124,6 +129,8 @@ public class CollectionsPage extends BasePage {
 		}
 	}
 	
+	//TODO: Refactor: Rename in 'collectionPresentOnFirstPage'
+	// + Create new collectionPresent-method which uses the search to find a collection which is not present on the first page
 	public boolean collectionPresent(String collectionTitle) {
 		try {
 			findCollectionByTitle(collectionTitle);

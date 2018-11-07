@@ -1,14 +1,12 @@
 package spot.pages;
 
-import java.util.List;
-
 import org.apache.commons.lang.StringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+//TODO: Remove this generic class -> Insteaad the items-, collections- and users-page should have a searchQuery component -> class: DisplaySearchQueryComponent
 public class SearchResultsPage extends BasePage {
 
 	@FindBy(className="imj_searchQueryText")

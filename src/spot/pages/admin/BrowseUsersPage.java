@@ -11,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import spot.components.DisplaySearchQueryComponent;
 import spot.pages.BasePage;
 import test.base.SeleniumTestSuite;
 
@@ -24,11 +25,16 @@ public class BrowseUsersPage extends BasePage{
 	
 	private static final Logger log4j = LogManager.getLogger(SeleniumTestSuite.class.getName());
 
+	private DisplaySearchQueryComponent searchQueryComponent;
+	
 	@FindBy(id="#createUser")
 	private WebElement createNewUser;
 	
 	public BrowseUsersPage(WebDriver driver) {
 		super(driver);
+		
+		searchQueryComponent = new DisplaySearchQueryComponent(driver);
+		
 		PageFactory.initElements(driver, this);
 	}
 	

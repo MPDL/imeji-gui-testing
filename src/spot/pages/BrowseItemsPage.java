@@ -8,11 +8,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import spot.components.DisplaySearchQueryComponent;
 import spot.components.FacetsComponent;
 
 public class BrowseItemsPage extends BasePage {
 	
 	private FacetsComponent facetsComponent;
+	private DisplaySearchQueryComponent searchQueryComponent;
 	
 	private List<WebElement> allItems;
 	List<WebElement> imageList;
@@ -21,6 +23,7 @@ public class BrowseItemsPage extends BasePage {
 		super(driver);
 		
 		facetsComponent = new FacetsComponent(driver);
+		searchQueryComponent = new DisplaySearchQueryComponent(driver);
 		
 		allItems = driver.findElements(By.className("imj_tileItem"));
 		imageList = driver.findElements(By.tagName("img"));
