@@ -55,7 +55,6 @@ public class EditItemsPage extends BasePage {
 			wait.until(ExpectedConditions.elementToBeClickable(addValueAll));
 			addValueAll.click();
 		}
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
 		wait.until(ExpectedConditions.elementToBeClickable(metadataButton));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
@@ -65,8 +64,7 @@ public class EditItemsPage extends BasePage {
 	public EditItemsPage addValueIfEmpty(String key, String value) {
 		addMetadata(key, value);
 		addValueIfEmpty.click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
-		try { Thread.sleep(2500); } catch (InterruptedException e) {}
+		wait.until(ExpectedConditions.elementToBeClickable(metadataButton));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
@@ -75,8 +73,7 @@ public class EditItemsPage extends BasePage {
 	public EditItemsPage overwriteAllValues(String key, String value) {
 		addMetadata(key, value);
 		overwriteAllValues.click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("lnkCollections")));
-		try { Thread.sleep(2500); } catch (InterruptedException e) {}
+		wait.until(ExpectedConditions.elementToBeClickable(metadataButton));
 		
 		return PageFactory.initElements(driver, EditItemsPage.class);
 	}
