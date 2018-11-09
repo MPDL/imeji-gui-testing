@@ -132,7 +132,12 @@ public class ActionComponent extends BasePage {
 		addDOI.click();
 		
 		retryingFindClick(By.cssSelector("#getDOIDialog>form>.imj_submitPanel>.imj_submitButton"));
+		
+		//Waiting for the staleness doesn't seem to be enough. Sometimes the loading-screen (loaderWrapper) is still visible , which leads to errors.
+		//Why is the waiting for the staleness, in this case, not sufficient?
 		wait.until(ExpectedConditions.stalenessOf(staleElement));
+		//=> Added an additional wait
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pageTitle")));
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
