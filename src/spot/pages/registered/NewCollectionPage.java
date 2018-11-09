@@ -86,17 +86,8 @@ public class NewCollectionPage extends BasePage {
 	public CollectionEntryPage createCollection3Authors(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
 		try {
 			fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
-			addAuthor();
-			WebElement author2Name = driver.findElement(By.id("editContainer:form:persons:1:collectionAuthor:inputFamilyNameText"));
-			author2Name.sendKeys("Thesecond");
-			WebElement author2Org = driver.findElement(By.xpath("//input[contains(@id, 'form:persons:1') and contains(@id, 'inputOrgaName1')]"));
-			author2Org.sendKeys("MPDL");
-			addAuthor();
-			try { Thread.sleep(2000); } catch (InterruptedException e) { }
-			WebElement author3Name = retryingElement(By.id("editContainer:form:persons:1:collectionAuthor:inputFamilyNameText"));
-			author3Name.sendKeys("Thethird");
-			WebElement author3Org = retryingElement(By.xpath("//input[contains(@id, 'form:persons:1') and contains(@id, 'inputOrgaName1')]"));
-			author3Org.sendKeys("Max Planck Society");
+			this.addAuthor("Thesecond", "MPDL");
+			this.addAuthor("Thethird", "Max Planck Society");
 			
 			submitForm();
 			
@@ -115,7 +106,7 @@ public class NewCollectionPage extends BasePage {
 	// IMJ-245
 	public CollectionEntryPage createCollection1Author2OUs(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
 		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
-		addOrganization();
+		addOrganizationToFirstAuthor();
 		WebElement org2 = driver.findElement(By.xpath("//input[contains(@name, '1:inputOrgaName1')]"));
 		org2.sendKeys("MPDL");
 		
@@ -162,13 +153,31 @@ public class NewCollectionPage extends BasePage {
 	private void setDescription(String description) {
 		descriptionTextField.sendKeys(description);
 	}
-
-	public void addAuthor() {
-		addAuthorButton.click();
+	
+	public void addAuthor(String familyName, String organisationName) {
+		addAuthor();
+		// addAuthor() always adds authors behind the first author: Therefore selecting the elements containing '1' as counter in the selection-expression is correct
+		WebElement additionalAuthorName = driver.findElement(By.xpath("//input[contains(@id, 'form:persons:1') and contains(@id, 'inputFamilyNameText')]"));
+		additionalAuthorName.sendKeys(familyName);
+		WebElement additionalAuthorOrganisation = driver.findElement(By.xpath("//input[contains(@id, 'form:persons:1') and contains(@id, 'inputOrgaName')]"));
+		additionalAuthorOrganisation.sendKeys(organisationName);
 	}
 
-	public void addOrganization() {
+	public void addAuthor() {
+		int autherElementCound = driver.findElements(By.className("imj_authorMetadataSet")).size();
+		
+		// Click the first AddAuthor-Button
+		addAuthorButton.click();
+		
+		wait.until(ExpectedConditions.numberOfElementsToBe(By.className("imj_authorMetadataSet"), autherElementCound+1));
+	}
+
+	public void addOrganizationToFirstAuthor() {
+		int organisationInputElementCound = driver.findElements(By.xpath("//input[contains(@id,'inputOrgaName')]")).size();
+		
 		addOrganizationButton.click();
+		
+		wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//input[contains(@id,'inputOrgaName')]"), organisationInputElementCound+1));
 	}
 	
 }
