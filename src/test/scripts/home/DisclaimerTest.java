@@ -11,6 +11,7 @@ import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
 import spot.pages.registered.Homepage;
 import test.base.BaseSelenium;
+import test.base.SeleniumTestSuite;
 
 /**
  * Testcase #13 (IMJ-6)
@@ -63,8 +64,8 @@ public class DisclaimerTest extends BaseSelenium {
 		disclaimerHandle = windowHandles.iterator().next();
 		driver.switchTo().window(disclaimerHandle);
 
-		String actualCurrentURL = getCurrentURL();		
-		Assert.assertEquals(actualCurrentURL, "http://qa-imeji.mpdl.mpg.de/imeji/imprint");
+		String actualCurrentURL = getCurrentURL();
+		Assert.assertEquals(actualCurrentURL, SeleniumTestSuite.TEST_ENV_URL + "imeji/imprint");
 	}
 	
 	private void switchPrivateMode(boolean privateMode) {
