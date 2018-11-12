@@ -3,6 +3,7 @@ package spot.pages.registered;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -84,7 +85,10 @@ public class EditItemPage extends BasePage {
 			String currentName = metaDataLabel.getText();
 			if (currentName.equals(metaDataLabelName)) {
 				WebElement minusButton = metaDataLabel.findElement(By.xpath("./following-sibling::div/a[contains(@class,'fa-minus-square-o')]"));
-				minusButton.click();
+				//FIXME: On Jenkins the waiting for the staleness does not work -> reason?
+				// Try: Use a JavaSript click on the minusButton OR wait for the invisibility of metaDataLabel OR wait for another stale element to become stale
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", minusButton);
+//				minusButton.click();
 				wait.until(ExpectedConditions.stalenessOf(metaDataLabel));
 				break;
 			}
