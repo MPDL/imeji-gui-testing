@@ -107,13 +107,13 @@
 		<classes>
 						
 			<!-- Statements -->
-<!--			
+			
 			<class name="test.scripts.statements.CreateDefaultStatementTest"></class>
 
 			<class name="test.scripts.statements.CreateNewStatementTest"></class>
 			
 			<class name="test.scripts.statements.CreateDefaultStatementPrivate"></class>
--->
+
 			<class name="test.scripts.statements.CreateNewStatementPrivate"></class>
 			
 			<!-- End of Statements -->
