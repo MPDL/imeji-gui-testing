@@ -65,8 +65,9 @@ public class UsersOverviewPage extends BasePage {
 		searchBox.clear();
 		searchBox.sendKeys(emailInQuestion);
 		
+		//TODO: Find a working, clear and efficient way to filter + select the users from the list. Maybe use the retryingFindClick-method. Remove the workaround.
 		// Workaround: First wait for the whole email to be sent to the searchBox, then wait till the loaderWrapper is not visible any more.
-		// See filterUserList-method for the correct but slow approach.
+		// This workaround works most of the time. See filterUserList-method for a correct but very slow approach.
 		wait.until(ExpectedConditions.attributeToBe(searchBox, "value", emailInQuestion));
 		WebElement loaderWrapper = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".loaderWrapper[style]")));
 		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
