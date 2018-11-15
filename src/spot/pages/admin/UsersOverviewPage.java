@@ -1,11 +1,13 @@
 package spot.pages.admin;
 
+import static test.base.SeleniumWrapper.textToBePresentInAllElements;
 import static test.base.SeleniumWrapper.waitForReloadOfElement;
 
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,17 +27,7 @@ public class UsersOverviewPage extends BasePage {
 		
 		PageFactory.initElements(driver, this);
 	}
-	
-	public boolean isEmailInUserList(String email) {
-		try {
-			findUserByEmail(email);
-			return true;
-		}
-		catch (NoSuchElementException exc) {
-			return false;
-		}
-	}
-	
+		
 	/**
 	 * Filters the user list for the query string. Returns only the non member user links. <br>
 	 * This method has a high runtime => Use this method only to test the filter. <br>
@@ -60,35 +52,31 @@ public class UsersOverviewPage extends BasePage {
 		return userList;
 	}
 	
-	private WebElement findUserByEmail(String emailInQuestion) {
+	private void addUserUsingFilter(String emailInQuestion) {
 		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@id, ':userListForm:filterMd')]"));
 		searchBox.clear();
 		searchBox.sendKeys(emailInQuestion);
 		
-		//TODO: Find a working, clear and efficient way to filter + select the users from the list. Maybe use the retryingFindClick-method. Remove the workaround.
-		// Workaround: First wait for the whole email to be sent to the searchBox, then wait till the loaderWrapper is not visible any more.
-		// This workaround works most of the time. See filterUserList-method for a correct but very slow approach.
+		// Wait until no more candidates are loaded (by ajax) can only be approximated with waits:
+        // 1) Wait until the full email name is typed in the searchBox
 		wait.until(ExpectedConditions.attributeToBe(searchBox, "value", emailInQuestion));
-		WebElement loaderWrapper = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".loaderWrapper[style]")));
-		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
-		
-		if (userList.size() == 1)
-			return userList.get(0);
-		for (WebElement currentEmail : userList) {
-			if (currentEmail.getText().contains(emailInQuestion)) {
-				return currentEmail;
-			}
-		}
-		throw new NoSuchElementException("Email " + emailInQuestion + " was not found.");
+        // 2) Wait until all names of all candidates contain the full name-key
+        wait.until(textToBePresentInAllElements(By.xpath("//div[@id='addUser']/form/div[contains(@id,'userList')]/descendant::a[contains(@onclick,'addUser')]"), emailInQuestion));
+        try {
+          // 3) Wait until the searched email is visible (if not: the user with that email is not available => throws TimeoutException)
+          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='addUser']/form/div[contains(@id,'userList')]/descendant::a[contains(@onclick,'addUser') and contains(text(),'" + "(" + emailInQuestion + ")" + "')]")));
+          // The element to click can still be stale (if there is another ajax reload). Therefore use retryFindClick to avoid a stale exception.
+          retryingFindClick(By.xpath("//div[@id='addUser']/form/div[contains(@id,'userList')]/descendant::a[contains(@onclick,'addUser') and contains(text(),'" + "(" + emailInQuestion + ")" + "')]"));
+        } catch (TimeoutException exc) {
+          throw new NoSuchElementException("Email " + emailInQuestion + " was not found.");
+        }
+        
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("addUser")));
 	}
 	
 	// IMJ-41
 	public void addUserToUserGroup(String userEmail) {
-		WebElement userInQuestion = findUserByEmail(userEmail);
-		userInQuestion.click();
-		
-		// Wait until the user group page starts reloading, after clicking userInQuestion (then the userInQuestion element is stale)
-		wait.until(ExpectedConditions.stalenessOf(userInQuestion));
+	    addUserUsingFilter(userEmail);
 	}
-	
+		
 }

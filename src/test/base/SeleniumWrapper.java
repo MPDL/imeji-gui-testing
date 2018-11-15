@@ -1,6 +1,12 @@
 package test.base;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -50,5 +56,41 @@ public class SeleniumWrapper {
 	public static void waitForLoadOfNewPage(WebDriverWait wait, WebElement oldElement) {
 		wait.until(ExpectedConditions.invisibilityOf(oldElement));
 	}
+	
+	/**
+  	 * An expectation for checking if the given text is present in ALL specified elements. <br>
+	 * This method can be used to wait for the ExpectedCondition to become true: <br>
+	 * -> wait.until(textToBePresentInAllElements(locator, text));
+	 * 
+	 * @param locator used to find the elements
+	 * @param text to be present all elements
+	 * @return true once all elements contain the given text
+	 */
+	public static ExpectedCondition<Boolean> textToBePresentInAllElements(final By locator, final String text) {
+      return new ExpectedCondition<Boolean>() {
+          @Override
+          public Boolean apply(WebDriver driver) {
+              try {
+                  List<WebElement> elements = driver.findElements(locator);
+                  for (WebElement webElement : elements) {
+                      String elementText = webElement.getText();
+                      if (elementText != null) {
+                          if(!elementText.toLowerCase().contains(text.toLowerCase())) {
+                              return false;
+                          }
+                      }
+                  }
+                  return true;
+              } catch (StaleElementReferenceException e) {
+                  return null;
+              }
+          }
+
+          @Override
+          public String toString() {
+              return String.format("inner text '%s' to be the value of all elements located %s", text, locator);
+          }
+      };
+  }
 	
 }
