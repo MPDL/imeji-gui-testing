@@ -1,9 +1,11 @@
 package spot.components;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import spot.pages.BrowseItemsPage;
 import spot.pages.CollectionsPage;
@@ -15,37 +17,40 @@ import spot.pages.registered.Homepage;
 public class MainMenuComponent {
 
 	private WebDriver driver;
-	
-	@FindBy (id="lnkHome")
-	private WebElement startButton;
-	
-	@FindBy (id="lnkCollections")
-	private WebElement collectionsButton;
-	
-	@FindBy(id = "lnkItems")
-	private WebElement itemsButton;
-	
-	@FindBy (id="lnkAdmin")
-	private WebElement adminButton;
+	protected WebDriverWait wait;
 	
 	public MainMenuComponent(WebDriver driver) {
 		this.driver = driver;
+		
+		//TODO: use a global static wait (like in BasePage)
+		wait = new WebDriverWait(this.driver, 20);
 		
 		PageFactory.initElements(driver, this);
 	}
 	
 	// TODO: old method, refactor
 	public <T> T navigateTo(Class<T> expectedPage) {
-		if (expectedPage == CollectionsPage.class)
+		if (expectedPage == CollectionsPage.class) {
+		    WebElement collectionsButton = driver.findElement(By.id("lnkCollections"));
 			collectionsButton.click();
-		else if (expectedPage == StartPage.class)
+			wait.until(ExpectedConditions.stalenessOf(collectionsButton));
+		} else if (expectedPage == StartPage.class) {
+		    WebElement startButton =  driver.findElement(By.id("lnkHome"));
 			startButton.click();
-		else if (expectedPage == AdministrationPage.class)
+			wait.until(ExpectedConditions.stalenessOf(startButton));
+		} else if (expectedPage == AdministrationPage.class) {
+		    WebElement adminButton =  driver.findElement(By.id("lnkAdmin"));
 			adminButton.click();
-		else if (expectedPage == Homepage.class || expectedPage == AdminHomepage.class)
+			wait.until(ExpectedConditions.stalenessOf(adminButton));
+		} else if (expectedPage == Homepage.class || expectedPage == AdminHomepage.class) {
+		    WebElement startButton =  driver.findElement(By.id("lnkHome"));
 			startButton.click();
-		else if (expectedPage == BrowseItemsPage.class)
+			wait.until(ExpectedConditions.stalenessOf(startButton));
+		} else if (expectedPage == BrowseItemsPage.class) {
+		    WebElement itemsButton =  driver.findElement(By.id("lnkItems"));
 			itemsButton.click();
+			wait.until(ExpectedConditions.stalenessOf(itemsButton));
+		}
 		
 		return PageFactory.initElements(driver, expectedPage);
 	}
