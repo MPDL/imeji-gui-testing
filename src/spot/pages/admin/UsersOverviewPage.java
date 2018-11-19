@@ -1,13 +1,10 @@
 package spot.pages.admin;
 
-import static test.base.SeleniumWrapper.textToBePresentInAllElements;
 import static test.base.SeleniumWrapper.waitForReloadOfElement;
 
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -52,31 +49,19 @@ public class UsersOverviewPage extends BasePage {
 		return userList;
 	}
 	
-	private void addUserUsingFilter(String emailInQuestion) {
-		WebElement searchBox = driver.findElement(By.xpath("//input[contains(@id, ':userListForm:filterMd')]"));
-		searchBox.clear();
-		searchBox.sendKeys(emailInQuestion);
-		
-		// Wait until no more candidates are loaded (by ajax) can only be approximated with waits:
-        // 1) Wait until the full email name is typed in the searchBox
-		wait.until(ExpectedConditions.attributeToBe(searchBox, "value", emailInQuestion));
-        // 2) Wait until all names of all candidates contain the full name-key
-        wait.until(textToBePresentInAllElements(By.xpath("//div[@id='addUser']/form/div[contains(@id,'userList')]/descendant::a[contains(@onclick,'addUser')]"), emailInQuestion));
-        try {
-          // 3) Wait until the searched email is visible (if not: the user with that email is not available => throws TimeoutException)
-          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='addUser']/form/div[contains(@id,'userList')]/descendant::a[contains(@onclick,'addUser') and contains(text(),'" + "(" + emailInQuestion + ")" + "')]")));
-          // The element to click can still be stale (if there is another ajax reload). Therefore use retryFindClick to avoid a stale exception.
-          retryingFindClick(By.xpath("//div[@id='addUser']/form/div[contains(@id,'userList')]/descendant::a[contains(@onclick,'addUser') and contains(text(),'" + "(" + emailInQuestion + ")" + "')]"));
-        } catch (TimeoutException exc) {
-          throw new NoSuchElementException("Email " + emailInQuestion + " was not found.");
-        }
-        
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("addUser")));
+	// IMJ-41
+	private void selectUserFromUserList(String userEmail) {
+	    WebElement userList = driver.findElement(By.id("userList"));
+	  
+	    WebElement userLink = driver.findElement(By.xpath("//div[@id='addUser']//div[contains(@id,'userList')]//a[contains(@onclick,'addUser') and contains(text(),'" + "(" + userEmail + ")" + "')]"));
+	    userLink.click();
+	    
+	    wait.until(ExpectedConditions.stalenessOf(userList));
 	}
 	
 	// IMJ-41
 	public void addUserToUserGroup(String userEmail) {
-	    addUserUsingFilter(userEmail);
+	    this.selectUserFromUserList(userEmail);
 	}
 		
 }

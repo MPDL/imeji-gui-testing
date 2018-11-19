@@ -130,9 +130,9 @@ public class EditCollectionPage extends BasePage {
 		inputFile.sendKeys(filepath);
 		
 		// Wait for the upload to complete
-		try {Thread.sleep(2000);} catch (Exception exc) {}
-		// Waiting for the '100%' upload-status to show up seems not enough
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='uploader']//span[text()='100%']")));
+		// Waiting for the '100%' upload-status to show up is sometimes not enough
+		try {Thread.sleep(2000);} catch (Exception exc) {}
 	}
 	
 	public CollectionEntryPage submitChanges() {

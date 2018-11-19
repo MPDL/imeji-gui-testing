@@ -36,10 +36,9 @@ public class UserGroupPage extends BasePage {
 		addUserButton.click();
 		UsersOverviewPage allUsersOverViewPage = PageFactory.initElements(driver, UsersOverviewPage.class);
 		allUsersOverViewPage.addUserToUserGroup(userEmail);
-			
+		
 		// this page is refreshed; init elements once again
-		PageFactory.initElements(driver, this);
-		return this;
+		return PageFactory.initElements(driver, UserGroupPage.class);
 	}
 
 	public boolean isUserPresent(String userEmail) {
