@@ -154,6 +154,6 @@ public class EditItemPage extends BasePage {
 				}
 			}
 		}
-		throw new NoSuchElementException("Metadata with this name was not found.");
+		throw new NoSuchElementException("Metadata with name '" + name + "' was not found.");
 	}
 }
