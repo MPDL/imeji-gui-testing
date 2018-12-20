@@ -15,6 +15,7 @@ import spot.pages.CollectionsPage;
  * @author kocar
  *
  */
+//TODO: Remove the HomePage class! Put its functionality in BasePage
 public class Homepage extends BasePage {
 
 	@FindBy(id = "txtAccountUserName")

@@ -9,6 +9,7 @@ import spot.pages.ItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
+import spot.pages.admin.UserProfilePage;
 import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.EditLicensePage;
@@ -438,6 +439,17 @@ public class OneAuthorLogo extends BaseSelenium {
 		collectionEntry.discardCollection();
 	}
 
+	//TODO: Remove the revokeDiscardedCollection! It is only a workaround (for imeji-GitHub-BugTicket #1091) to keep the selenium tests running!
+    @Test(priority = 33, dependsOnMethods = { "createDefaultCollection" })
+    public void revokeDiscardedCollection() {
+        homepage.logout();
+        LoginPage loginPage = new StartPage(driver).openLoginForm();
+        homepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
+
+        UserProfilePage userProfilePage = homepage.goToAdminPage().browseAllUsers().viewDetailsOfUser(getPropertyAttribute(ruUsername));
+        userProfilePage.revokeUserGrants(collectionTitle);
+    }
+	
 	/**
 	 * IMJ-2
 	 */

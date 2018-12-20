@@ -9,6 +9,7 @@ import spot.pages.CollectionsPage;
 import spot.pages.ItemViewPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
+import spot.pages.admin.UserProfilePage;
 import spot.pages.registered.EditCollectionPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.EditLicensePage;
@@ -359,6 +360,17 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 		collections = collections.filterDiscarded();
 		Assert.assertTrue(collections.collectionPresent(collectionTitle), "Collection is not among discarded collection list.");
 	}
+	
+	//TODO: Remove the revokeDiscardedCollection! It is only a workaround (for imeji-GitHub-BugTicket #1091) to keep the selenium tests running!
+    @Test(priority = 25, dependsOnMethods = { "createCollection3Authors" })
+    public void revokeDiscardedCollection() {
+        homepage.logout();
+        LoginPage loginPage = new StartPage(driver).openLoginForm();
+        homepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
+
+        UserProfilePage userProfilePage = homepage.goToAdminPage().browseAllUsers().viewDetailsOfUser(getPropertyAttribute(ruUsername));
+        userProfilePage.revokeUserGrants(collectionTitle);
+    }
 
 	/**
 	 * IMJ-2
