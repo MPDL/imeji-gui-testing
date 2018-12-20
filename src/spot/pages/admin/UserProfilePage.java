@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
+import spot.pages.registered.SharePage;
 
 public class UserProfilePage extends BasePage {
 
@@ -113,6 +114,31 @@ public class UserProfilePage extends BasePage {
 		driver.findElement(By.className("imj_submitButton")).click();
 		
 		return PageFactory.initElements(driver, UserProfilePage.class);
+	}
+	
+	public SharePage changeUserGrants(String collectionName) {
+	  WebElement collectionSet = driver.findElement(By.xpath("//span[@title='" + collectionName + "']/../.."));
+	  WebElement changeButton = collectionSet.findElement(By.xpath(".//a[contains(@title,'Change')]"));
+	  
+	  changeButton.click();
+	  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("userGroupShare")));
+	  return PageFactory.initElements(driver, SharePage.class);
+	}
+	
+	public UserProfilePage revokeUserGrants(String collectionName) {
+      WebElement collectionSet = driver.findElement(By.xpath("//span[@title='" + collectionName + "']/../.."));
+      WebElement revokeButton = collectionSet.findElement(By.xpath(".//a[contains(@title,'Revoke')]"));
+      
+      revokeButton.click();
+      WebElement revokeConfirmationButton = collectionSet.findElement(By.xpath(".//input[@value='Revoke']"));
+      wait.until(ExpectedConditions.visibilityOf(revokeConfirmationButton));
+      
+      revokeConfirmationButton.click();
+      //FIXME: The UserProfilePage is Not reloaded by imeji! Refresh the page by selenium-driver:
+      driver.navigate().refresh();
+      wait.until(ExpectedConditions.stalenessOf(collectionSet));
+      
+      return PageFactory.initElements(driver, UserProfilePage.class);
 	}
 	
 }
