@@ -572,10 +572,18 @@ public class CollectionEntryPage extends BasePage {
 	public CollectionEntryPage displayMaximalItems() {
 		Select rangeSelect = new Select(rangeSelector);
 		int optionCount = rangeSelect.getOptions().size();
-		rangeSelect.selectByIndex(optionCount - 1);
-
-		wait.until(ExpectedConditions.elementToBeClickable(By.className("imj_itemsAreaContent")));
-		return PageFactory.initElements(driver, CollectionEntryPage.class);
+		
+		WebElement currentSelectedOption = rangeSelector.findElement(By.xpath(".//option[@selected='selected']"));
+		WebElement lastOption = rangeSelector.findElement(By.xpath(".//option[" + optionCount + "]"));
+		
+		if(currentSelectedOption.equals(lastOption)) {
+		    //do nothing
+		    return PageFactory.initElements(driver, CollectionEntryPage.class);
+		}else {
+		    rangeSelect.selectByIndex(optionCount - 1);
+		    wait.until(ExpectedConditions.stalenessOf(lastOption));
+	        return PageFactory.initElements(driver, CollectionEntryPage.class);
+		}
 	}
 
 	public CollectionEntryPage enableThumbnailView() {
