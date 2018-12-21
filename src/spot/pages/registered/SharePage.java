@@ -287,6 +287,7 @@ public class SharePage extends BasePage {
 	}
 	
 	private WebElement findSharedWithTableRowElement(String wantedSharedPersonName) {
+	    //TODO: the parameter 'wantedSharedPersonName' must be of the exact form 'Family-Name, Given-Name (User)'. Change/Refactor that!
 		List<WebElement> sharedWithElements = driver.findElements(By.cssSelector("#history>tbody>tr"));
 		
 		for (WebElement sharedWith : sharedWithElements) {
@@ -321,6 +322,18 @@ public class SharePage extends BasePage {
 		catch (NoSuchElementException exc) {
 			return false;
 		}
+	}
+	
+	public SharePage removeUser(String fullUserName) {
+	    String sharedPersonNameWithUserTag = fullUserName + " (User)";
+	    
+	    WebElement grantedUser = findSharedWithTableRowElement(sharedPersonNameWithUserTag);
+	    WebElement trash = grantedUser.findElement(By.className("fa-trash"));
+	    
+	    trash.click();
+	    wait.until(ExpectedConditions.stalenessOf(grantedUser));
+	    
+	    return PageFactory.initElements(driver, SharePage.class);
 	}
 
 	private boolean checkCorrectnessOfGrant(boolean grantedTo, WebElement grantCheckBox) {

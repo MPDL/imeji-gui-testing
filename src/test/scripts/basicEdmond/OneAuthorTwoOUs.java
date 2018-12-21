@@ -360,6 +360,10 @@ public class OneAuthorTwoOUs extends BaseSelenium {
         LoginPage loginPage = new StartPage(driver).openLoginForm();
         homepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
 
+        UserProfilePage restrictedUserProfilePage = homepage.goToAdminPage().browseAllUsers().viewDetailsOfUser(getPropertyAttribute(restrUsername));
+        String fullRestrictedUserName = getPropertyAttribute(restrFamilyName) + ", " + getPropertyAttribute(restrGivenName);
+        restrictedUserProfilePage.changeUserGrants(collectionTitle).removeUser(fullRestrictedUserName);
+        
         UserProfilePage userProfilePage = homepage.goToAdminPage().browseAllUsers().viewDetailsOfUser(getPropertyAttribute(ruUsername));
         userProfilePage.revokeUserGrants(collectionTitle);
     }
