@@ -13,10 +13,6 @@ hs_err_pid*
 /target/
 test-output/
 
-# Test user data
-res/testData.properties
-src/testData.properties
-
 *.pydevproject
 .project
 .metadata
