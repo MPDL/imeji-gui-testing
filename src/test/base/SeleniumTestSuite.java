@@ -1,22 +1,26 @@
 package test.base;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.testng.annotations.*;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.FileNotFoundException;
-import java.net.MalformedURLException;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 public class SeleniumTestSuite {
 	
@@ -24,14 +28,17 @@ public class SeleniumTestSuite {
 	
 	/** properties file with required login information for test user and admin **/
 	private static Properties properties;	
-	public static final String propertiesFileName = "testData.properties";
+	public static final String PROPERTIES_FILE_NAME = "testData.properties";
 	
 	public static final boolean HEADLESS = true;
 	
-	public static final String qaEdmond = "http://qa-edmond.mpdl.mpg.de/imeji/";
-	public static final String qaImeji = "http://qa-imeji.mpdl.mpg.de/";
+	public static final String QA_EDMOND = "http://qa-edmond.mpdl.mpg.de/imeji/";
+	public static final String QA_IMEJI = "http://qa-imeji.mpdl.mpg.de/imeji/";
 	
-	public static final String TEST_ENV_URL = qaImeji;
+	public static final String DEV_IMEJI = "https://dev-imeji.mpdl.mpg.de/imeji/";
+	
+//	public static final String TEST_ENV_URL = QA_IMEJI;
+	public static final String TEST_ENV_URL = DEV_IMEJI;
 
 	private static final Logger log4j = LogManager.getLogger(SeleniumTestSuite.class.getName());
 	
@@ -51,7 +58,7 @@ public class SeleniumTestSuite {
 	private void loadPropertiesFile() throws FileNotFoundException {
 		log4j.info("Reading properties file");
 		properties = new Properties();
-		InputStream input = this.getClass().getClassLoader().getResourceAsStream(propertiesFileName);
+		InputStream input = this.getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE_NAME);
 
 		try {	
 			properties.load(input);
@@ -92,6 +99,7 @@ public class SeleniumTestSuite {
 		}
 		driver.manage().window().maximize();
 		log4j.info("Window maximised.");
+		
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 		// TODO: Remove the implicitlyWait. Check and fix all tests that  wont't run if there is no implicitlyWait.
 		// The implicitlyWait is a problem wherever driver.findElements()-method finds no element, then it waits the whole implicitlyWait time..
@@ -100,6 +108,7 @@ public class SeleniumTestSuite {
 
 	private WebDriver initFirefoxDriver() {
 		log4j.info("Launching Firefox browser...");
+		// The system property webdriver.gecko.driver must be set to the webdriver-executable-file -> this is done by Maven!
 		log4j.info("Found system property webdriver.gecko.driver: " + System.getProperty("webdriver.gecko.driver"));
 		FirefoxOptions options = new FirefoxOptions();
 		options.setCapability("marionette", true);
@@ -109,12 +118,13 @@ public class SeleniumTestSuite {
 		options.setHeadless(HEADLESS);
 		FirefoxProfile profile = initFirefoxProfile();
 		options.setProfile(profile);
-
+		
 		return new FirefoxDriver(options);
 	}
 	
 	private WebDriver initChromeDriver() {
 		log4j.info("Launching Chrome browser...");
+		// The system property webdriver.chrome.driver must be set to the webdriver-executable-file -> this is done by Maven!
 		log4j.info("Found system property webdriver.chrome.driver: " + System.getProperty("webdriver.chrome.driver"));
 		ChromeOptions options = new ChromeOptions();		
 		options.setCapability("marionette", true);
