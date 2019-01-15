@@ -19,6 +19,7 @@ import spot.pages.registered.NewCollectionPage;
 import spot.util.TimeStamp;
 import test.base.BaseSelenium;
 
+//TODO: This Test class has no Test-ID and is not described in the keyword-usage-table. -> Add Test-ID + Description
 public class MetadataSelectedItems extends BaseSelenium {
 
 	private Homepage homepage;
@@ -113,6 +114,7 @@ public class MetadataSelectedItems extends BaseSelenium {
 	
 	@Test(priority = 8, dependsOnMethods = { "createDefaultCollection" })
 	public void addMetadataSelectedTitle() {
+	    //TODO: Create Metadata=Statement "Title" before calling this method
 		String[] titleItems = {items[0], items[1], items[2]};
 		String titleKey = "Title";
 		String titleValue = "Test title \"8.-:;";
@@ -126,6 +128,7 @@ public class MetadataSelectedItems extends BaseSelenium {
 	
 	@Test(priority = 9, dependsOnMethods = { "createDefaultCollection" })
 	public void addMetadataSelectedText() {
+	    //TODO: Create Metadata=Statement "Text (predefined)" before calling this method
 		String[] titleItems = {items[3], items[4], items[5]};
 		String titleKey = "Text (predefined)";
 		String titleValue = "Value B";
@@ -140,6 +143,7 @@ public class MetadataSelectedItems extends BaseSelenium {
 	
 	@Test(priority = 10, dependsOnMethods = { "createDefaultCollection" })
 	public void addMetadataSelectedNumber() {
+	    //TODO: Create Metadata=Statement "Number" before calling this method
 		String[] titleItems = {items[5], items[6], items[0]};
 		String titleKey = "Number";
 		String titleValue = "2.718";
@@ -154,6 +158,7 @@ public class MetadataSelectedItems extends BaseSelenium {
 	
 	@Test(priority = 11, dependsOnMethods = { "createDefaultCollection" })
 	public void addMetadataSelectedDate() {
+	    //TODO: Create Metadata=Statement "Date" before calling this method
 		String[] titleItems = {items[2], items[4], items[6]};
 		String titleKey = "Date";
 		String titleValue = "2018-01-01";
@@ -168,6 +173,7 @@ public class MetadataSelectedItems extends BaseSelenium {
 	
 	@Test(priority = 12, dependsOnMethods = { "createDefaultCollection" })
 	public void addMetadataSelectedPerson() {
+	    //TODO: Create Metadata=Statement "PERSON 31" before calling this method
 		String[] titleItems = {items[2], items[4], items[6]};
 		String titleKey = "PERSON 31";
 		String titleValue = "MPDL";
@@ -182,6 +188,7 @@ public class MetadataSelectedItems extends BaseSelenium {
 	
 	@Test(priority = 13, dependsOnMethods = { "createDefaultCollection" })
 	public void addMetadataSelectedPersonPreselected() {
+	    //TODO: Create Metadata=Statement "PERSON 31" before calling this method
 		String[] titleItems = {items[1], items[3], items[5]};
 		String titleKey = "PERSON 31";
 		String titleValue = "MPDL";
