@@ -180,6 +180,7 @@ public class CreateDefaultStatementTest extends BaseSelenium {
 	private void uploadItem(String title) {
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		collectionEntry = collectionEntry.uploadFile(getFilepath(title));
+		collectionEntry.hideMessages();
 		
 		boolean uploadSuccessful = collectionEntry.findItem(title);
 		Assert.assertTrue(uploadSuccessful, "Item " + title + " not among uploads.");
