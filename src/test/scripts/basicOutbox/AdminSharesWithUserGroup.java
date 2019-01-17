@@ -69,6 +69,7 @@ public class AdminSharesWithUserGroup extends BaseSelenium {
 		List<String> emailsNewUsers = new LinkedList<>();
 		emailsNewUsers.add(getPropertyAttribute(ruUsername));
 		emailsNewUsers.add(getPropertyAttribute(restrUsername));
+		//TODO: The test_temp user must be created before calling this method (for now created manually)
 		emailsNewUsers.add("test_temp1@mpdl.mpg.de");
 		emailsNewUsers.add("test_temp2@mpdl.mpg.de");
 		

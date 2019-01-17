@@ -25,6 +25,8 @@ private StartPage startPage;
 	public void beforeClassTest() {
 		startPage = new StartPage(driver);
 	}
+	
+	//FIXME: Create an item or a collection containing the special characters before searching for them
 
 	@Test
 	public void searchAUmlaut() {

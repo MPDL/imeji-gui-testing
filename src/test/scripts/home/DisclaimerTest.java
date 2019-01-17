@@ -21,6 +21,8 @@ public class DisclaimerTest extends BaseSelenium {
 	private String windowHandleStartPage;
 	private String disclaimerHandle;
 	
+	//TODO: Refactor this class and openDisclaimerTest() method
+	
 	@Test (priority = 1)
 	public void openHelpNRUPublic() {
 		openDisclaimerTest();
@@ -65,7 +67,7 @@ public class DisclaimerTest extends BaseSelenium {
 		driver.switchTo().window(disclaimerHandle);
 
 		String actualCurrentURL = getCurrentURL();
-		Assert.assertEquals(actualCurrentURL, SeleniumTestSuite.TEST_ENV_URL + "imeji/imprint");
+		Assert.assertEquals(actualCurrentURL, SeleniumTestSuite.TEST_ENV_URL + "imprint");
 	}
 	
 	private void switchPrivateMode(boolean privateMode) {

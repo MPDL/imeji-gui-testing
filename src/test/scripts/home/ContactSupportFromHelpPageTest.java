@@ -85,6 +85,7 @@ public class ContactSupportFromHelpPageTest extends BaseSelenium {
 		List<String> supportMailAddresses = helpPage.contactSupport();
 		
 		for (String supportEmail : supportMailAddresses)
+		    //TODO: Get the support email address from the Admin configuration
 			Assert.assertEquals(supportEmail, imejiSupportEmail, "Support mail address cannot be accessed.");
 	}
 	

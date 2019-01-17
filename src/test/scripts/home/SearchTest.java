@@ -30,6 +30,8 @@ public class SearchTest extends BaseSelenium {
 		switchPrivateMode(false);
 		startPage = new StartPage(driver);
 	}
+	
+	//FIXME: Create an item or a collection containing the special characters before searching for them
 
 	@Test
 	public void inexistentItemTest() {
