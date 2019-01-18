@@ -20,7 +20,7 @@ import test.base.SeleniumTestSuite;
  */
 public class TermsOfUseTest extends BaseSelenium {
 
-	private static final String TERMS_OF_USE_URL = SeleniumTestSuite.TEST_ENV_URL + "imeji/terms_of_use";
+	private static final String TERMS_OF_USE_URL = SeleniumTestSuite.TEST_ENV_URL + "terms_of_use";
 	
 	private String windowHandleStartPage;
 	private String termsHandle;
