@@ -229,14 +229,14 @@ public class ItemViewPage extends BasePage {
 
 	public boolean licensePresent(String link) {
 		try {
-			WebElement license = getValue("License").findElement(By.tagName("a"));
+			WebElement license = getValueWebElement("License").findElement(By.tagName("a"));
 			return license.getAttribute("href").equals(link);
 		} catch (NoSuchElementException exc) {
 			return false;
 		}
 	}
 
-	public WebElement getValue(String label) {
+	private WebElement getValueWebElement(String label) {
 		List<WebElement> sets = driver.findElements(By.className("imj_metadataSet"));
 		for (WebElement set : sets) {
 			try {
@@ -248,6 +248,11 @@ public class ItemViewPage extends BasePage {
 		}
 
 		throw new NoSuchElementException("Label '" + label  + "' is not present.");
+	}
+	
+	public String getValueOfMetaData(String metaDatalabel) {
+	    String metaDataValue = getValueWebElement(metaDatalabel).getText();
+	    return metaDataValue;
 	}
 
 	// IMJ-278

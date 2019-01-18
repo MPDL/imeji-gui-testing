@@ -29,6 +29,9 @@ public class EditItemPage extends BasePage {
 	@FindBy(css = "#editor\\:editItem\\:licenseEditor>.imj_metadataValue>.imj_metadataSet:nth-of-type(2)>input")
 	private WebElement licenseLink;
 	
+	@FindBy(xpath = "//div[@class='imj_metadataSet']/div[@class='imj_metadataLabel' and normalize-space(text()[1])='File name']/../div[@class='imj_metadataValue']/input")
+    private WebElement fileNameInputField;
+	
 	@FindBy(css = ".selectMdButton")
 	private WebElement addMetadata;
 	
@@ -156,4 +159,16 @@ public class EditItemPage extends BasePage {
 		}
 		throw new NoSuchElementException("Metadata with name '" + name + "' was not found.");
 	}
+	
+	public ItemViewPage editFileName(String newFileName) {
+	    this.fileNameInputField.clear();
+	    this.fileNameInputField.sendKeys(newFileName);
+	    
+	    WebElement itemMetaData = driver.findElement(By.id("itemMetadata"));
+        saveButton.click();
+        wait.until(ExpectedConditions.stalenessOf(itemMetaData));
+        
+        return PageFactory.initElements(driver, ItemViewPage.class);
+	}
+	
 }
