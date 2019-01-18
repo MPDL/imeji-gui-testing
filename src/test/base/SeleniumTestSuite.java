@@ -53,10 +53,11 @@ public class SeleniumTestSuite {
 		
 		driver.navigate().to(TEST_ENV_URL);
 		log4j.info("Test environment url loaded.");
+		log4j.info("Running Tests on: " + TEST_ENV_URL);
 	}
 
 	private void loadPropertiesFile() throws FileNotFoundException {
-		log4j.info("Reading properties file");
+		log4j.info("Reading properties file...");
 		properties = new Properties();
 		InputStream input = this.getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE_NAME);
 
