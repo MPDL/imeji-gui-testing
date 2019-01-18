@@ -45,6 +45,12 @@ public class AdministrationPage extends BasePage {
 		super(driver);
 		PageFactory.initElements(driver, this);
 	}
+	
+	public ConfigurationPage goToSystemConfigurationPage() {
+	    configurationEdit.click();
+	    ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
+	    return configurationEditPage;
+	}
 
 	public UserProfilePage createNewUser(String newUserName) {
 		createNewUser.click();
@@ -224,4 +230,5 @@ public class AdministrationPage extends BasePage {
 			return false;
 		}
 	}
+	
 }

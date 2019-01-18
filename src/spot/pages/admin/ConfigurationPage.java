@@ -71,5 +71,9 @@ public class ConfigurationPage extends BasePage {
 	public ConfigurationPage setAutosuggestionMP() {
 		return autosuggestionPanel.setAutosuggestionMaxPlanck();
 	}
+
+    public String getContectEmail() {
+        return generalPanel.getContectEmail();
+    }
 	
 }

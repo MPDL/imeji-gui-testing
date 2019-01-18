@@ -33,6 +33,9 @@ public class ConfigurationGeneralPanel extends BasePage {
 	@FindBy(css = ".imj_adminPanel .imj_admindataSet:nth-of-type(8) textarea")
 	private WebElement termsOfUseBox;
 	
+	@FindBy(xpath = "//div[@class='imj_admindataSet']/div[@class='imj_admindataLabel' and normalize-space(text()[1])='Contact e-mail']/../div[@class='imj_admindataValue']/input")
+    private WebElement contactEmailInputField;
+	
 	@FindBy(tagName = "select")
 	private WebElement licenseDropdown;
 	
@@ -45,6 +48,7 @@ public class ConfigurationGeneralPanel extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
+	//TODO: openGeneralPanel() should be located in ConfigurationPage.class
 	private void openGeneralPanel() {
 		generalPanelReveal.click();
 	}
@@ -114,4 +118,10 @@ public class ConfigurationGeneralPanel extends BasePage {
 		
 		return PageFactory.initElements(driver, ConfigurationPage.class);
 	}
+
+    public String getContectEmail() {
+        openGeneralPanel();
+        String contactEmail = this.contactEmailInputField.getAttribute("value");
+        return contactEmail;
+    }
 }

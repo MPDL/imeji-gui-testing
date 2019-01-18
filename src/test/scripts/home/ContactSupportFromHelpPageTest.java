@@ -13,6 +13,7 @@ import spot.pages.HelpPage;
 import spot.pages.LoginPage;
 import spot.pages.StartPage;
 import spot.pages.admin.AdminHomepage;
+import spot.pages.admin.ConfigurationPage;
 import spot.pages.registered.Homepage;
 import test.base.BaseSelenium;
 
@@ -21,7 +22,7 @@ import test.base.BaseSelenium;
  */
 public class ContactSupportFromHelpPageTest extends BaseSelenium {
 
-	private String imejiSupportEmail = "saquet@mpdl.mpg.de";
+	private String imejiSupportEmail;
 	
 	private String windowHandleBeforeHelp;
 	private String helpHandle;
@@ -35,14 +36,24 @@ public class ContactSupportFromHelpPageTest extends BaseSelenium {
 	public void beforeMethod() {
 		navigateToStartPage();
 	}
-
+	
 	@Test (priority = 1)
+    public void getSupportEmailAdress() {
+	    LoginPage loginPage = new StartPage(driver).openLoginForm();
+	    AdminHomepage adminHomepage = loginPage.loginAsAdmin(getPropertyAttribute(adminUsername), getPropertyAttribute(adminPassword));
+	    ConfigurationPage configurationPage  = adminHomepage.goToAdminPage().goToSystemConfigurationPage();
+	    imejiSupportEmail = configurationPage.getContectEmail();
+	    //TODO: configurationPage.logout(); as soon as logout() is in BasePage
+	    adminHomepage.logout();
+    }
+
+	@Test (priority = 2)
 	public void contactSupportNRUPublic() {
 		contactSupportTest();
 		closeHelp();
 	}
 	
-	@Test (priority = 2)
+	@Test (priority = 3)
 	public void contactSupportRUPublic() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		Homepage homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
@@ -51,14 +62,14 @@ public class ContactSupportFromHelpPageTest extends BaseSelenium {
 		homePage.logout();
 	}
   
-	@Test (priority = 3)
+	@Test (priority = 4)
 	public void contactSupportNRUPrivate() {
 		switchPrivateMode(true);
 		contactSupportTest();
 		closeHelp();
 	}
 	
-	@Test (priority = 4)
+	@Test (priority = 5)
 	public void contactSupportRUPrivate() {
 		LoginPage loginPage = new StartPage(driver).openLoginForm();
 		Homepage homePage = loginPage.loginAsNotAdmin(getPropertyAttribute(ruUsername), getPropertyAttribute(ruPassword));
@@ -85,7 +96,6 @@ public class ContactSupportFromHelpPageTest extends BaseSelenium {
 		List<String> supportMailAddresses = helpPage.contactSupport();
 		
 		for (String supportEmail : supportMailAddresses)
-		    //TODO: Get the support email address from the Admin configuration
 			Assert.assertEquals(supportEmail, imejiSupportEmail, "Support mail address cannot be accessed.");
 	}
 	
