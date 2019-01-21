@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +14,6 @@ import org.openqa.selenium.support.ui.Select;
 
 import spot.pages.BasePage;
 import spot.pages.CollectionEntryPage;
-import spot.pages.ItemViewPage;
 
 public class MetadataTablePage extends BasePage {
 
@@ -86,6 +84,7 @@ public class MetadataTablePage extends BasePage {
 			if (currentKey.equals(key)) {
 				WebElement correctEntry = metadataEntries.get(i);
 				correctEntry.click();
+				wait.until(ExpectedConditions.stalenessOf(correctEntry));
 				correctEntry = refreshCell(item, i);
 				List<WebElement> valueBoxes = correctEntry.findElements(By.className("imj_mdInput"));
 				WebElement valueBox = valueBoxes.get(0);

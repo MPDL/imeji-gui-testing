@@ -121,6 +121,7 @@ public class MetadataSelectedItems extends BaseSelenium {
 		
 		List<String[]> arguments = composeArguments(titleItems, titleKey, titleValue);
 		MetadataTablePage metadataTable = goToMetadataTable(titleItems);
+		metadataTable.addColumn(titleKey);
 		collectionEntry = metadataTable.editEntry(arguments);
 		collectionEntry.deselectAllSelectedItems();
 		validateMetadata(titleItems, titleKey, titleValue);
