@@ -284,30 +284,40 @@ public abstract class BasePage {
 	 * Switch the language of imeji to English.
 	 */
 	public void switchToEnglish() {
-		Select languageSelect = new Select(languageButton);
-		String actualLanguage = languageSelect.getFirstSelectedOption().getText();
-		
-		if("GERMAN".equals(actualLanguage)) {
-			WebElement staleElement = driver.findElement(By.id("langForm:sel"));
-			languageSelect.selectByValue("en");
-			wait.until(ExpectedConditions.stalenessOf(staleElement));
-		}
-		// else: the language is already English => nothing to do
+	    //languageButton is missing if no other language is selectable -> this would lead to an error!
+	    // => check whether the language must be switched without accessing the languageButton
+	    // This is done based on the helpButton, because driver.findElements(By.id("langForm")) leads to long waiting times, as long as the implicitlyWait is still be set
+	    if(helpButton.getText() != "Help") {
+    		Select languageSelect = new Select(languageButton);
+    		String actualLanguage = languageSelect.getFirstSelectedOption().getText();
+    		
+    		if("GERMAN".equals(actualLanguage)) {
+    			WebElement staleElement = driver.findElement(By.id("langForm:sel"));
+    			languageSelect.selectByValue("en");
+    			wait.until(ExpectedConditions.stalenessOf(staleElement));
+    		}
+    		// else: the language is already English => nothing to do
+	    }	
 	}
 	
 	/**
 	 * Switch the language of imeji to German.
 	 */
 	public void switchToGerman() {
-		Select languageSelect = new Select(languageButton);
-		String actualLanguage = languageSelect.getFirstSelectedOption().getText();
-		
-		if("ENGLISH".equals(actualLanguage)) {
-			WebElement staleElement = driver.findElement(By.id("langForm:sel"));
-			languageSelect.selectByValue("de");
-			wait.until(ExpectedConditions.stalenessOf(staleElement));
-		}
-		// else: the language is already German => nothing to do
+	    //languageButton is missing if no other language is selectable -> this would lead to an error!
+        // => check whether the language must be switched without accessing the languageButton
+        // This is done based on the helpButton, because driver.findElements(By.id("langForm")) leads to long waiting times, as long as the implicitlyWait is still be set
+  	    if(helpButton.getText() != "Hilfe") {
+    		Select languageSelect = new Select(languageButton);
+    		String actualLanguage = languageSelect.getFirstSelectedOption().getText();
+    		
+    		if("ENGLISH".equals(actualLanguage)) {
+    			WebElement staleElement = driver.findElement(By.id("langForm:sel"));
+    			languageSelect.selectByValue("de");
+    			wait.until(ExpectedConditions.stalenessOf(staleElement));
+    		}
+    		// else: the language is already German => nothing to do
+  	    }
 	}
 	
 	/**
