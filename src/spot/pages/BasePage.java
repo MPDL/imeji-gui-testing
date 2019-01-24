@@ -287,7 +287,7 @@ public abstract class BasePage {
 	    //languageButton is missing if no other language is selectable -> this would lead to an error!
 	    // => check whether the language must be switched without accessing the languageButton
 	    // This is done based on the helpButton, because driver.findElements(By.id("langForm")) leads to long waiting times, as long as the implicitlyWait is still be set
-	    if(helpButton.getText() != "Help") {
+	    if(!helpButton.getText().equalsIgnoreCase("HELP")) {
     		Select languageSelect = new Select(languageButton);
     		String actualLanguage = languageSelect.getFirstSelectedOption().getText();
     		
@@ -307,7 +307,7 @@ public abstract class BasePage {
 	    //languageButton is missing if no other language is selectable -> this would lead to an error!
         // => check whether the language must be switched without accessing the languageButton
         // This is done based on the helpButton, because driver.findElements(By.id("langForm")) leads to long waiting times, as long as the implicitlyWait is still be set
-  	    if(helpButton.getText() != "Hilfe") {
+  	    if(!helpButton.getText().equalsIgnoreCase("HILFE")) {
     		Select languageSelect = new Select(languageButton);
     		String actualLanguage = languageSelect.getFirstSelectedOption().getText();
     		
