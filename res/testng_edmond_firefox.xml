@@ -99,6 +99,12 @@
 			
 			<!-- End of Facets -->
 
+			<!-- Subcollections -->
+ 			
+			<class name="test.scripts.subcollections.CreateSubcollectionsTest"></class>
+			
+			<!-- End of Subcollections -->
+
 		</classes>
 	</test>
 
