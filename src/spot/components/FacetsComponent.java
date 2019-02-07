@@ -31,7 +31,9 @@ public class FacetsComponent extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	private void showMoreFacetValues(WebElement facet) {
+	private WebElement showMoreFacetValues(WebElement facet) {
+		String currentFacetName = facet.findElement(By.className("imj_facetName")).getText();
+		
 		List<WebElement> moreElements = facet
 				.findElements(By.xpath(".//descendant::div/a[contains(text(),'More') and not(@title)]"));
 		if (moreElements.size() == 1) {
@@ -40,14 +42,20 @@ public class FacetsComponent extends BasePage {
 			// Wait after the more-click -> until more statement values are loaded 
 			// (then the old facet element is stale)
 			wait.until(ExpectedConditions.stalenessOf(facet));
+			
+			//Find and return the reloaded facet element (because the old facet element has become stale)
+			WebElement reloadedFacet = driver.findElement(By.xpath("//div[@class='imj_facet' and div[@class='imj_facetName' and text()='" + currentFacetName + "']]"));
+			return reloadedFacet;
 		}
+		
+		return facet;
 	}
 
 	private boolean isFacetPresent(String facetName, String facetValue) {
 		for (WebElement facet : facets) {
 			String currentFacetName = facet.findElement(By.className("imj_facetName")).getText();
 			if (currentFacetName.equals(facetName)) {
-				this.showMoreFacetValues(facet);
+				facet = this.showMoreFacetValues(facet);
 				List<WebElement> values = facet.findElement(By.className("imj_facetValue"))
 						.findElements(By.tagName("a"));
 				for (WebElement currentValue : values) {
