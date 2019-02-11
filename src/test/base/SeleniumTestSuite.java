@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,6 +17,7 @@ import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
@@ -40,9 +42,9 @@ public class SeleniumTestSuite {
 
 	public static final String DEV_IMEJI = "https://dev-imeji.mpdl.mpg.de/imeji/";
 
-	// public static final String TEST_ENV_URL = QA_IMEJI;
+	 public static final String TEST_ENV_URL = QA_IMEJI;
 	// public static final String TEST_ENV_URL = DEV_IMEJI;
-	public static final String TEST_ENV_URL = QA_CESAR;
+//	public static final String TEST_ENV_URL = QA_CESAR;
 
 	private static final Logger log4j = LogManager.getLogger(SeleniumTestSuite.class.getName());
 
@@ -118,14 +120,23 @@ public class SeleniumTestSuite {
 		log4j.info("Found system property webdriver.gecko.driver: " + System.getProperty("webdriver.gecko.driver"));
 		FirefoxOptions options = new FirefoxOptions();
 		options.setCapability("marionette", true);
-
+		
+//		options.setBinary("C:/Program Files/Firefox Nightly/firefox.exe");
+//		options.setBinary("C:/Program Files/Mozilla Firefox/firefox.exe");
 		FirefoxBinary binary = new FirefoxBinary();
 		options.setBinary(binary);
 		options.setHeadless(HEADLESS);
 		FirefoxProfile profile = initFirefoxProfile();
 		options.setProfile(profile);
 
-		return new FirefoxDriver(options);
+		WebDriver webDriver = new FirefoxDriver(options);
+		Capabilities capabilities = ((RemoteWebDriver) webDriver).getCapabilities();
+		
+		String browserName = capabilities.getBrowserName();
+		String browserVersion = capabilities.getVersion();
+		log4j.info("Browser version: " + browserVersion + " (" + browserName + ")");
+		
+		return webDriver;
 	}
 
 	private WebDriver initChromeDriver() {
