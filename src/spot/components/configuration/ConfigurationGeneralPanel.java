@@ -1,9 +1,11 @@
 package spot.components.configuration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import spot.pages.BasePage;
@@ -51,6 +53,9 @@ public class ConfigurationGeneralPanel extends BasePage {
 	//TODO: openGeneralPanel() should be located in ConfigurationPage.class
 	private void openGeneralPanel() {
 		generalPanelReveal.click();
+		
+		WebElement saveAllButton = generalPanelReveal.findElement(By.className("imj_submitButton"));
+		wait.until(ExpectedConditions.elementToBeClickable(saveAllButton));
 	}
 	
 	public ConfigurationPage enablePrivateMode() {
