@@ -25,7 +25,7 @@ public class TermsOfUseTest extends BaseSelenium {
 	private String windowHandleStartPage;
 	private String termsHandle;
 	
-	//TODO: Check that the terms of use url is NOT set (these tests only work if no terms of use URL is set)
+	//TODO: Check that the terms of use are set and the terms of use url is NOT set (these tests only work if no terms of use URL is set)
 	//TODO: Merge with class CreateTermsOfUseTest
 
 	@Test (priority = 1)
