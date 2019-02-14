@@ -25,6 +25,8 @@ public class DocumentationTest extends BaseSelenium {
 	private String windowHandleHelpPage;
 	private String windowHandleStartPage;
 	
+	//TODO: Refactor this test class and the openDocumentation() method
+	
 	@Test (priority = 1)
 	public void openDocumentationNRUPublic() {
 		String url = openDocumentation();
