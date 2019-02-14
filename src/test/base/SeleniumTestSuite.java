@@ -13,7 +13,6 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -118,13 +117,13 @@ public class SeleniumTestSuite {
 		// The system property webdriver.gecko.driver must be set to the
 		// webdriver-executable-file -> this is done by Maven!
 		log4j.info("Found system property webdriver.gecko.driver: " + System.getProperty("webdriver.gecko.driver"));
-		FirefoxOptions options = new FirefoxOptions();
-		options.setCapability("marionette", true);
 		
+		FirefoxOptions options = new FirefoxOptions();
+		
+		// Set a different binary if another Version of Firefox should be used for the tests
 //		options.setBinary("C:/Program Files/Firefox Nightly/firefox.exe");
-//		options.setBinary("C:/Program Files/Mozilla Firefox/firefox.exe");
-		FirefoxBinary binary = new FirefoxBinary();
-		options.setBinary(binary);
+		
+		options.setCapability("marionette", true);
 		options.setHeadless(HEADLESS);
 		FirefoxProfile profile = initFirefoxProfile();
 		options.setProfile(profile);
@@ -145,20 +144,26 @@ public class SeleniumTestSuite {
 		// webdriver-executable-file -> this is done by Maven!
 		log4j.info("Found system property webdriver.chrome.driver: " + System.getProperty("webdriver.chrome.driver"));
 
-		// ChromeDriverService service =
-		// ChromeDriverService.createDefaultService();
-
 		ChromeOptions options = new ChromeOptions();
+		
 		options.setCapability("marionette", true);
 		options.setHeadless(HEADLESS);
-		// options.addArguments("--proxy-server='direct://'");
-		// options.addArguments("--proxy-bypass-list=*");
-		// options.addArguments("--no-sandbox");
-		// options.addArguments("--window-size=1920,1200");
-		// options.addArguments("--headless", "window-size=1024,768",
-		// "--no-sandbox");
-		// options.addArguments("headless", "no-sandbox");
-		return new ChromeDriver(options);
+		options.addArguments("--window-size=1920,1200");
+		 
+		// Without the two following proxy-options the tests do not run in headless mode or are very slow:
+		// Set proxy-server -> 'direct://' means: Do not use a proxy for all connections
+		options.addArguments("--proxy-server='direct://'");
+		// Set which addresses should not be proxied -> * means: All. Do not use a proxy without any exception
+		options.addArguments("--proxy-bypass-list=*");
+		
+		WebDriver webDriver = new ChromeDriver(options);
+		Capabilities capabilities = ((RemoteWebDriver) webDriver).getCapabilities();
+		
+		String browserName = capabilities.getBrowserName();
+		String browserVersion = capabilities.getVersion();
+		log4j.info("Browser version: " + browserVersion + " (" + browserName + ")");
+		
+		return webDriver;
 	}
 
 	private FirefoxProfile initFirefoxProfile() {
