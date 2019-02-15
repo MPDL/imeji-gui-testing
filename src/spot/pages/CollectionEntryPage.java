@@ -159,8 +159,12 @@ public class CollectionEntryPage extends BasePage {
   }
 
   public EditCollectionPage editInformation() {
+	WebElement staleElement = driver.findElement(By.cssSelector("#colForm>.dropdown"));
+	  
     new Actions(driver).moveToElement(editButton).moveToElement(editInfoOption).click().build().perform();
 
+    wait.until(ExpectedConditions.stalenessOf(staleElement));
+    
     return PageFactory.initElements(driver, EditCollectionPage.class);
   }
 
@@ -200,9 +204,9 @@ public class CollectionEntryPage extends BasePage {
   }
 
   public boolean isThumbnailViewActivated() {
-    WebElement thumbnailsElement = driver.findElement(By.xpath("//span[text()='Thumbnails']"));
+	WebElement thumbnailsElement = wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//span[text()='Thumbnails']"))));
     String thumbnailsElementColor = thumbnailsElement.getCssValue("color");
-
+    
     //If the thumbnailsElement is white, then the Thumbnail-View is activated
     String rgbWhite = "rgb(240, 240, 240)";
     return thumbnailsElementColor.equals(rgbWhite);
@@ -245,8 +249,7 @@ public class CollectionEntryPage extends BasePage {
       }
     } else {
       for (WebElement item : itemList) {
-        WebElement itemTitleLabel = item.findElement(By.xpath("//td[@class='imj_colFilename']/a"));
-        if (itemTitleLabel.getText().equals(title))
+        if (item.getText().equals(title))
           return true;
       }
     }
@@ -287,6 +290,7 @@ public class CollectionEntryPage extends BasePage {
       // list view
       itemList = driver.findElements(By.className("imj_colFilename"));
     }
+    
     return itemList;
   }
 
@@ -307,8 +311,12 @@ public class CollectionEntryPage extends BasePage {
 
   // IMJ-204, IMJ-196, IMJ-195, IMJ-201
   public SharePage share() {
+	WebElement staleElement = driver.findElement(By.cssSelector("#colForm>.dropdown"));
+	  
     new Actions(driver).moveToElement(editButton).moveToElement(share).click().build().perform();
 
+    wait.until(ExpectedConditions.stalenessOf(staleElement));
+    
     return PageFactory.initElements(driver, SharePage.class);
   }
 
@@ -578,7 +586,9 @@ public class CollectionEntryPage extends BasePage {
     selectedItemsMenu.click();
     WebElement move = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("selMenu:sf:moveItems")));
     move.click();
-    driver.findElement(By.linkText(collectionTitle)).click();
+    
+    WebElement collectionLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(collectionTitle)));
+    collectionLink.click();
 
     waitForReloadOfCurrentPage(wait, move);
 
@@ -590,8 +600,10 @@ public class CollectionEntryPage extends BasePage {
     selectedItemsMenu.click();
     WebElement move = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("selMenu:sf:moveItems")));
     move.click();
-
-    driver.findElement(By.linkText(collectionTitle)).click();
+    
+    WebElement collectionLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(collectionTitle)));
+    collectionLink.click();
+    
     WebElement moveDialog = driver.findElement(By.id("moveSelected"));
     moveDialog.findElement(By.className("imj_submitButton")).click();
 

@@ -282,7 +282,10 @@ public class ItemViewPage extends BasePage {
   // IMJ-278
   public ItemViewPage moveItemToReleasedCollection(String collectionTitle) {
     moveButton.click();
-    driver.findElement(By.linkText(collectionTitle)).click();
+    
+    WebElement collectionLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(collectionTitle)));
+    collectionLink.click();
+    
     WebElement moveDialog = driver.findElement(By.id("moveItem"));
     moveDialog.findElement(By.xpath(".//input[@value='Move' and @class='imj_submitButton']")).click();
 

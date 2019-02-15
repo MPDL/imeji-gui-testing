@@ -22,8 +22,7 @@ public class MoveDialog extends BasePage {
   }
 
   public CollectionEntryPage moveToCollection(String nameOfNewParentCollection) {
-    WebElement newParentCollectionElement =
-        driver.findElement(By.xpath("//div[@id='tree']//a[text()='" + nameOfNewParentCollection + "']"));
+    WebElement newParentCollectionElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='tree']//a[text()='" + nameOfNewParentCollection + "']")));
     newParentCollectionElement.click();
     wait.until(ExpectedConditions.stalenessOf(newParentCollectionElement));
 

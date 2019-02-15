@@ -182,12 +182,12 @@ public class MoveItemsPrivate extends BaseSelenium {
 		collectionEntry = collectionEntry.moveSelectedItemsToPrivateCollection(collectionTitle2);
 		
 		for (String item : items) {
-			Assert.assertFalse(collectionEntry.findItem(item));
+			Assert.assertFalse(collectionEntry.findItem(item), "Item '" + item + "' not found in collection.");
 		}
 		
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle2);
 		for (String item : items) {
-			Assert.assertTrue(collectionEntry.findItem(item));
+			Assert.assertTrue(collectionEntry.findItem(item), "Item '" + item + "' not found in collection.");
 		}
 	}
 	

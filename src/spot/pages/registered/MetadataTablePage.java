@@ -113,7 +113,11 @@ public class MetadataTablePage extends BasePage {
 	}
 	
 	private CollectionEntryPage submit() {
+		WebElement staleElement = driver.findElement(By.id("editItemsTable"));
+		
 		submitButton.click();
+		
+		wait.until(ExpectedConditions.stalenessOf(staleElement));
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}

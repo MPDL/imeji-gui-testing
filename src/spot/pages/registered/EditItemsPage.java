@@ -38,6 +38,8 @@ public class EditItemsPage extends BasePage {
 	@FindBy(xpath = "//input[contains(@value, 'Overwrite')]")
 	private WebElement overwriteAllValues;
 	
+	//TODO: Refactor this class: Maybe split it in multiple Page Object Subclasses, Replace the Thread.sleeps with explicit waits
+	
 	public EditItemsPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -148,6 +150,8 @@ public class EditItemsPage extends BasePage {
 	private void addKey(String key) {
 		wait.until(ExpectedConditions.visibilityOf(metadataButton));
 		metadataButton.click();
+		
+		WebElement keyBox = driver.findElement(By.id("editBatchForm:select:filterMd"));
 		keyBox.clear();
 		keyBox.sendKeys(key);
 		
@@ -161,7 +165,7 @@ public class EditItemsPage extends BasePage {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(key)));
 			// The metadata to click can still be stale (if there is another ajax reload). Therefore use retryFindClick to avoid a stale exception.
 			retryingFindClick(By.linkText(key));
-			return;
+			wait.until(ExpectedConditions.stalenessOf(keyBox));
 		} catch (TimeoutException exc) {
 			throw new NoSuchElementException("Statement " + key + " is not available.");
 		}

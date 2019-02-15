@@ -122,6 +122,9 @@ public class ActionComponent extends BasePage {
 		try { Thread.sleep(2500); } catch (InterruptedException e) { }
 		
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#withdrawCollection .imj_submitPanel .imj_submitButton').click();");
+		
+		wait.until(ExpectedConditions.stalenessOf(discardBox));
+		
 		return PageFactory.initElements(driver, CollectionsPage.class);
 	}
 	
