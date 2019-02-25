@@ -41,8 +41,8 @@ public class SeleniumTestSuite {
 
 	public static final String DEV_IMEJI = "https://dev-imeji.mpdl.mpg.de/imeji/";
 
-	 public static final String TEST_ENV_URL = QA_IMEJI;
-	// public static final String TEST_ENV_URL = DEV_IMEJI;
+//	 public static final String TEST_ENV_URL = QA_IMEJI;
+	 public static final String TEST_ENV_URL = DEV_IMEJI;
 //	public static final String TEST_ENV_URL = QA_CESAR;
 
 	private static final Logger log4j = LogManager.getLogger(SeleniumTestSuite.class.getName());
@@ -105,11 +105,6 @@ public class SeleniumTestSuite {
 		log4j.info("Window maximised.");
 
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-		// TODO: Remove the implicitlyWait. Check and fix all tests that wont't
-		// run if there is no implicitlyWait.
-		// The implicitlyWait is a problem wherever driver.findElements()-method
-		// finds no element, then it waits the whole implicitlyWait time..
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	private WebDriver initFirefoxDriver() {
