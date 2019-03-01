@@ -1,6 +1,7 @@
 package spot.pages.registered;
 
 import static test.base.SeleniumWrapper.textToBePresentInAllElements;
+import static test.base.SeleniumWrapper.textToBePresentInElementIgnoreCase;
 
 import java.util.List;
 
@@ -37,6 +38,8 @@ public class EditItemsPage extends BasePage {
 	
 	@FindBy(xpath = "//input[contains(@value, 'Overwrite')]")
 	private WebElement overwriteAllValues;
+	
+	private final By addMetadataButtonCssSelector = By.cssSelector("#editBatchForm\\:select\\:statementList .selectMdButton");
 	
 	//TODO: Refactor this class: Maybe split it in multiple Page Object Subclasses, Replace the Thread.sleeps with explicit waits
 	
@@ -83,12 +86,12 @@ public class EditItemsPage extends BasePage {
 	public EditItemsPage addOwnMetadataAll(String key, String value) {
 		metadataButton.click();
 		keyBox.sendKeys(key);
-		try {
-			Thread.sleep(5000);
-		} 
-		catch (InterruptedException e) {}
 		
-		driver.findElement(By.cssSelector("#editBatchForm\\:select\\:statementList .selectMdButton")).click();
+		// Wait until the full metadata name is shown in the add metadata button before clicking it
+		wait.until(textToBePresentInElementIgnoreCase(addMetadataButtonCssSelector, key));
+		WebElement addMetadataButton = driver.findElement(addMetadataButtonCssSelector);
+		addMetadataButton.click();
+		
 		WebElement confirm = retryingElement(By.id("editBatchForm:select:dialog:btnCreateStatement"));
 		confirm.click();
 		
@@ -106,12 +109,12 @@ public class EditItemsPage extends BasePage {
 	public EditItemsPage addOwnMetadataAll(String key, String value, final List<String> predefinedValues) {
 		metadataButton.click();
 		keyBox.sendKeys(key);
-		try {
-			Thread.sleep(5000);
-		} 
-		catch (InterruptedException e) {}
 		
-		driver.findElement(By.cssSelector("#editBatchForm\\:select\\:statementList .selectMdButton")).click();
+		// Wait until the full metadata name is shown in the add metadata button before clicking it
+		wait.until(textToBePresentInElementIgnoreCase(addMetadataButtonCssSelector, key));
+		WebElement addMetadataButton = driver.findElement(addMetadataButtonCssSelector);
+		addMetadataButton.click();
+		
 		WebElement confirm = retryingElement(By.id("editBatchForm:select:dialog:btnCreateStatement"));
 		confirm.click();
 		

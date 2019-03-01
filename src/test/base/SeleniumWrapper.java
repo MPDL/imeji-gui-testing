@@ -59,6 +59,9 @@ public class SeleniumWrapper {
 	
 	/**
   	 * An expectation for checking if the given text is present in ALL specified elements. <br>
+  	 * 
+  	 * Equal to ExpectedConditions.textToBePresentInElementLocated() but checking all specified elements and ignoring case <br>
+  	 * 
 	 * This method can be used to wait for the ExpectedCondition to become true: <br>
 	 * -> wait.until(textToBePresentInAllElements(locator, text));
 	 * 
@@ -88,7 +91,38 @@ public class SeleniumWrapper {
 
           @Override
           public String toString() {
-              return String.format("inner text '%s' to be the value of all elements located %s", text, locator);
+              return String.format("text ('%s') to be present in all elements located by %s ignoring case", text, locator);
+          }
+      };
+  }
+	
+	/**
+  	 * An expectation for checking if the given text is present in the specified element. <br>
+  	 * 
+  	 * Equal to ExpectedConditions.textToBePresentInElementLocated() but ignoring case <br>
+  	 * 
+	 * This method can be used to wait for the ExpectedCondition to become true: <br>
+	 * -> wait.until(textToBePresentInAllElements(locator, text));
+	 * 
+	 * @param locator used to find the element
+	 * @param text to be present the element
+	 * @return true once the element contains the given text
+	 */
+	public static ExpectedCondition<Boolean> textToBePresentInElementIgnoreCase(final By locator, final String text) {
+      return new ExpectedCondition<Boolean>() {
+          @Override
+          public Boolean apply(WebDriver driver) {
+              try {
+                  String elementText = driver.findElement(locator).getText();
+                  return elementText.toLowerCase().contains(text.toLowerCase());
+              } catch (StaleElementReferenceException e) {
+                  return null;
+              }
+          }
+
+          @Override
+          public String toString() {
+              return String.format("text ('%s') to be present in element located by %s ignoring case", text, locator);
           }
       };
   }
