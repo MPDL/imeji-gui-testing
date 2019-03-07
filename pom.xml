@@ -42,15 +42,15 @@
 							<name>geckodriver</name>
 							<platform>windows</platform>
 							<bit>64</bit>
-							<version>0.23.0</version>
-							<url>https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-win64.zip</url>
+							<version>0.24.0</version>
+							<url>https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-win64.zip</url>
 						</driver>
 						<driver>
 							<name>geckodriver</name>
 							<platform>linux</platform>
 							<bit>64</bit>
-							<version>0.23.0</version>
-							<url>https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz</url>
+							<version>0.24.0</version>
+							<url>https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz</url>
 						</driver>
 						<driver>
 							<name>chromedriver</name>
@@ -113,7 +113,6 @@
 			<artifactId>log4j-core</artifactId>
 			<version>2.11.1</version>
 		</dependency>
-		
 	</dependencies>
 
 	<profiles>
