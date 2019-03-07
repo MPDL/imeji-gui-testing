@@ -105,6 +105,8 @@ public class SeleniumTestSuite {
 		log4j.info("Window maximised.");
 
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		//TODO: Remove implicitlyWait again, as soon as Bug - Firefox crashing on Jenkins (NoSuchSessionException) - is fixed
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	private WebDriver initFirefoxDriver() {
