@@ -266,4 +266,11 @@ public abstract class BaseSelenium {
     }
   }
 
+	// TODO: Instead of this method, put log4j instance in all the classes!?
+	@BeforeClass
+	public void logTestClass() {
+	  String testClassName = this.getClass().getName();
+	  log4j.info("Testing - " + testClassName);
+	}
+
 }
