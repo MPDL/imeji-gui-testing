@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
@@ -136,6 +137,12 @@ public class CreateNewStatementPrivate extends BaseSelenium {
 			String statementValueEmpty, String statementValueOverwrite, String statementOneItemValue, String tableValue) {
 		statement.buildStatement(type, statementName, isPredefined, statementValue,
 				statementValueEmpty, statementValueOverwrite, statementOneItemValue, tableValue);
+	}
+	
+	@BeforeClass
+	public void resetDriver() {
+		// Restart the browser to prevent Firefox from crashing (see Ticket #40 'Firefox memory leak')
+		restartDriver();
 	}
 	
 	/**

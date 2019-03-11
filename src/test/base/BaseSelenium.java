@@ -118,6 +118,11 @@ public abstract class BaseSelenium {
     if (driver == null)
       driver = new FirefoxDriver();
   }
+  
+  public void restartDriver() {
+	  SeleniumTestSuite.restartDriver();
+	  this.setup();
+  }
 
   public String getPropertyAttribute(String key) {
     return getProperties().getProperty(key);
