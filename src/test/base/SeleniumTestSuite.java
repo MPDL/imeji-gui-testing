@@ -3,7 +3,6 @@ package test.base;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -26,7 +25,8 @@ import org.testng.annotations.Parameters;
 public class SeleniumTestSuite {
 
 	private static WebDriver driver;
-
+	private static String browser;
+	
 	/**
 	 * properties file with required login information for test user and admin
 	 **/
@@ -37,7 +37,7 @@ public class SeleniumTestSuite {
 
 	public static final String QA_EDMOND = "http://qa-edmond.mpdl.mpg.de/imeji/";
 	public static final String QA_IMEJI = "http://qa-imeji.mpdl.mpg.de/imeji/";
-	private static final String QA_CESAR = "http://qa-caesar.mpdl.mpg.de/imeji/";
+	public static final String QA_CESAR = "http://qa-caesar.mpdl.mpg.de/imeji/";
 
 	public static final String DEV_IMEJI = "https://dev-imeji.mpdl.mpg.de/imeji/";
 
@@ -49,9 +49,11 @@ public class SeleniumTestSuite {
 
 	@Parameters("browserType")
 	@BeforeSuite
-	public void launchDriver(String browserType) throws MalformedURLException, FileNotFoundException {
+	public static void launchDriver(String browserType) throws FileNotFoundException {
 		log4j.info("Launching driver...");
 		log4j.info("Browser is " + browserType);
+		
+		browser = browserType;
 
 		setDriver(browserType);
 		loadPropertiesFile();
@@ -61,11 +63,11 @@ public class SeleniumTestSuite {
 		log4j.info("Running Tests on: " + TEST_ENV_URL);
 	}
 
-	private void loadPropertiesFile() throws FileNotFoundException {
+	private static void loadPropertiesFile() {
 		log4j.info("Reading properties file...");
 		properties = new Properties();
-		InputStream input = this.getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE_NAME);
-
+		InputStream input = SeleniumTestSuite.class.getClassLoader().getResourceAsStream(PROPERTIES_FILE_NAME);
+		
 		try {
 			properties.load(input);
 			log4j.info("Successfully loaded testData.properties");
@@ -89,7 +91,7 @@ public class SeleniumTestSuite {
 	 * 
 	 * @param browserType
 	 */
-	private void setDriver(String browserType) {
+	private static void setDriver(String browserType) {
 		switch (browserType) {
 		case "chrome":
 			driver = initChromeDriver();
@@ -107,7 +109,7 @@ public class SeleniumTestSuite {
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 	}
 
-	private WebDriver initFirefoxDriver() {
+	private static WebDriver initFirefoxDriver() {
 		log4j.info("Launching Firefox browser...");
 		// The system property webdriver.gecko.driver must be set to the
 		// webdriver-executable-file -> this is done by Maven!
@@ -133,7 +135,7 @@ public class SeleniumTestSuite {
 		return webDriver;
 	}
 
-	private WebDriver initChromeDriver() {
+	private static WebDriver initChromeDriver() {
 		log4j.info("Launching Chrome browser...");
 		// The system property webdriver.chrome.driver must be set to the
 		// webdriver-executable-file -> this is done by Maven!
@@ -161,7 +163,7 @@ public class SeleniumTestSuite {
 		return webDriver;
 	}
 
-	private FirefoxProfile initFirefoxProfile() {
+	private static FirefoxProfile initFirefoxProfile() {
 		FirefoxProfile profile = new FirefoxProfile();
 		profile.setPreference("browser.download.folderList", 2);
 		profile.setPreference("browser.download.manager.showWhenStarting", false);
@@ -186,9 +188,19 @@ public class SeleniumTestSuite {
 		log4j.info("Quitting driver...");
 		driver.quit();
 	}
+	
+	public static void restartDriver() {
+		log4j.info("Quitting and Restarting driver:");
+		quitDriver();
+		setDriver(browser);
+	}
 
 	public static WebDriver getDriver() {
 		return driver;
+	}
+	
+	public static String getBrwoserType() {
+		return browser;
 	}
 
 	public static Properties getProperties() {
