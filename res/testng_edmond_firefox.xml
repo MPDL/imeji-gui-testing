@@ -18,7 +18,7 @@
 		<classes>
 		
 			<!-- Basic Edmond -->
-<!-- 			
+			
 			<class name="test.scripts.basicEdmond.OneAuthorLogo"></class>
 
 			<class name="test.scripts.basicEdmond.OneAuthorTwoOUs"></class>
@@ -34,35 +34,35 @@
 			<class name="test.scripts.basicEdmond.MoveItems"></class>
 
 			<class name="test.scripts.basicEdmond.MetadataSelectedItems"></class>
- -->			
+			
 			<!-- End of Basic Edmond -->
 			
 			<!-- Basic Outbox -->
-<!-- 			
+			
 			<class name="test.scripts.basicOutbox.AdminSharesWithUser"></class>
 			
 			<class name="test.scripts.basicOutbox.AdminSharesWithUserGroup"></class>
 
 			<class name="test.scripts.basicOutbox.MoveItemsPrivate"></class>
- -->			
+			
 			<!-- End of Basic Outbox -->
 			
 			<!-- Cesar -->
-<!-- 			
+			
 			<class name="test.scripts.cesar.CesarDefault"></class>
- -->			
+			
 			<!-- End of Cesar -->
 			
 			<!-- Gluons -->
-<!-- 			
+			
 			<class name="test.scripts.gluons.Default"></class>
 			
 			<class name="test.scripts.gluons.DefaultExternalInvitation"></class>
- -->			
+			
 			<!-- End of Gluons -->
 
 			<!-- Basic Home -->
-<!-- 
+			
  			<class name="test.scripts.home.AdvancedSearchPageTest"></class>
  			
  			<class name="test.scripts.home.BrowsePageTest"></class>
@@ -84,11 +84,11 @@
 			<class name="test.scripts.home.SearchTest"></class>
 
 			<class name="test.scripts.home.SearchSpecialCharactersTest"></class>
- -->
+			
 			<!--  End of Basic Home -->
 			
 			<!-- Facets -->
-<!-- 
+			
 			<class name="test.scripts.facets.CreateDefaultFacets"></class>
 			
 			<class name="test.scripts.facets.CreateMetadataFacet"></class>
@@ -96,7 +96,7 @@
 			<class name="test.scripts.facets.CreateDefaultFacetsPrivate"></class>
 			
 			<class name="test.scripts.facets.CreateMetadataFacetPrivate"></class>
- -->			
+			
 			<!-- End of Facets -->
 
 			<!-- Subcollections -->
@@ -115,13 +115,13 @@
 			<!-- Statements -->
 			
 			<class name="test.scripts.statements.CreateDefaultStatementTest"></class>
-<!-- 
+			
 			<class name="test.scripts.statements.CreateNewStatementTest"></class>
 			
 			<class name="test.scripts.statements.CreateDefaultStatementPrivate"></class>
 
 			<class name="test.scripts.statements.CreateNewStatementPrivate"></class>
- -->			
+			
 			<!-- End of Statements -->
 			
 		</classes>
