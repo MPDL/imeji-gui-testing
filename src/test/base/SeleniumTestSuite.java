@@ -107,8 +107,6 @@ public class SeleniumTestSuite {
 		log4j.info("Window maximised.");
 
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-		//TODO: Remove implicitlyWait again, as soon as Bugs Firefox/Jenkins crashing are fixed
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	private static WebDriver initFirefoxDriver() {
