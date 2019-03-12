@@ -141,9 +141,8 @@ public class CreateNewStatementPrivate extends BaseSelenium {
 	
 	@BeforeClass
 	public void resetDriver() {
-		//FIXME: Restarting the bowser leads to a crash on Jenkins
 		// Restart the browser to prevent Firefox from crashing (see Ticket #40 'Firefox memory leak')
-//		restartDriver();
+		restartDriver();
 	}
 	
 	/**

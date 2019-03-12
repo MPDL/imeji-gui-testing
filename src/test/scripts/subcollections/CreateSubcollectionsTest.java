@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.CollectionEntryPage;
@@ -36,6 +37,12 @@ public class CreateSubcollectionsTest extends BaseSelenium {
 
   private List<String> subcollectionHierachyNames = new ArrayList<>();
 
+  @BeforeClass
+  public void resetDriver() {
+	// Restart the browser to prevent Firefox from crashing (see Ticket #40 'Firefox memory leak')
+	restartDriver();
+  }
+  
   /**
    * IMJ-21, IMJ-226
    */
