@@ -1,6 +1,6 @@
 package spot.pages.admin;
 
-import static test.base.SeleniumWrapper.waitForReloadOfElement;
+import static test.base.SeleniumWrapper.waitForAjaxLoad;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ public class UsersOverviewPage extends BasePage {
 		for (char c : charArray) {
 			userListElement = driver.findElement(By.xpath("//div[contains(@id, ':userListForm:userList')]"));
 			searchBox.sendKeys(Character.toString(c));
-			waitForReloadOfElement(wait, userListElement);
+			waitForAjaxLoad(wait, userListElement);
 		}
 		
 		return userList;

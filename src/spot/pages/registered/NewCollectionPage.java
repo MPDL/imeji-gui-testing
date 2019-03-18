@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import spot.pages.BasePage;
 import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
+import test.base.SeleniumWrapper;
 
 public class NewCollectionPage extends BasePage {
 
@@ -136,11 +137,10 @@ public class NewCollectionPage extends BasePage {
 	}
 	
 	private void submitForm() {
+		WebElement saveButton = driver.findElement(By.id("editContainer:form:save"));
 		((JavascriptExecutor)driver).executeScript("arguments[0].click();", saveButton);
-
-		//Find the loaderWrapper with the style-attribute to get the actual, non-stale loaderWrapper
-		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper[style]"));
-		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+		
+		SeleniumWrapper.waitForPageLoad(wait, saveButton);
 	}
 
 	private void setTitle(String title) {

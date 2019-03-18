@@ -15,6 +15,7 @@ import spot.pages.CollectionsPage;
 import spot.pages.registered.EditItemsPage;
 import spot.pages.registered.EditLicensePage;
 import spot.pages.registered.MetadataTablePage;
+import test.base.SeleniumWrapper;
 
 public class ActionComponent extends BasePage {
 
@@ -93,17 +94,17 @@ public class ActionComponent extends BasePage {
 		new Actions(driver).moveToElement(menuCollection).perform();
 		releaseCollection.click();
 		
-		((JavascriptExecutor) driver).executeScript("document.querySelector('#releaseCollection .imj_submitPanel .imj_submitButton').click();");
+		WebElement submitButton = driver.findElement(By.cssSelector("#releaseCollection .imj_submitPanel .imj_submitButton"));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitButton);
 		
-		//Find the loaderWrapper with the style-attribute to get the actual, non-stale loaderWrapper
-		WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper[style]"));
-		wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+		SeleniumWrapper.waitForPageLoad(wait, submitButton);
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
 	public CollectionsPage deleteCollection() {
 		new Actions(driver).moveToElement(menuCollection).perform();
+		wait.until(ExpectedConditions.elementToBeClickable(deleteCollection));
 		deleteCollection.click();
 		
 		((JavascriptExecutor) driver).executeScript("document.querySelector('#deleteCollection .imj_submitPanel .imj_submitButton').click();");

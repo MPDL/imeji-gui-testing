@@ -1,6 +1,6 @@
 package spot.pages;
 
-import static test.base.SeleniumWrapper.waitForReloadOfCurrentPage;
+import static test.base.SeleniumWrapper.waitForPageLoad;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +33,7 @@ import spot.pages.registered.EditLicensePage;
 import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.MetadataTablePage;
 import spot.pages.registered.SharePage;
+import test.base.SeleniumWrapper;
 
 public class CollectionEntryPage extends BasePage {
 
@@ -163,7 +164,7 @@ public class CollectionEntryPage extends BasePage {
 	  
     new Actions(driver).moveToElement(editButton).moveToElement(editInfoOption).click().build().perform();
 
-    wait.until(ExpectedConditions.stalenessOf(staleElement));
+    SeleniumWrapper.waitForPageLoad(wait, staleElement);
     
     return PageFactory.initElements(driver, EditCollectionPage.class);
   }
@@ -560,7 +561,7 @@ public class CollectionEntryPage extends BasePage {
     ((JavascriptExecutor) driver)
         .executeScript("document.querySelector('#deleteSelectedItems .imj_submitPanel .imj_submitButton').click();");
 
-    waitForReloadOfCurrentPage(wait, selectedItemsDropDown);
+    waitForPageLoad(wait, selectedItemsDropDown);
 
     return PageFactory.initElements(driver, CollectionEntryPage.class);
   }
@@ -576,7 +577,7 @@ public class CollectionEntryPage extends BasePage {
     ((JavascriptExecutor) driver)
         .executeScript("document.querySelector('#withdrawSelectedItems .imj_submitPanel .imj_submitButton').click();");
 
-    waitForReloadOfCurrentPage(wait, selectedItemsDropDown);
+    waitForPageLoad(wait, selectedItemsDropDown);
 
     return PageFactory.initElements(driver, CollectionEntryPage.class);
   }
@@ -590,7 +591,7 @@ public class CollectionEntryPage extends BasePage {
     WebElement collectionLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(collectionTitle)));
     collectionLink.click();
 
-    waitForReloadOfCurrentPage(wait, move);
+    waitForPageLoad(wait, move);
 
     return PageFactory.initElements(driver, CollectionEntryPage.class);
   }
@@ -607,7 +608,7 @@ public class CollectionEntryPage extends BasePage {
     WebElement moveDialog = driver.findElement(By.id("moveSelected"));
     moveDialog.findElement(By.className("imj_submitButton")).click();
 
-    waitForReloadOfCurrentPage(wait, move);
+    waitForPageLoad(wait, move);
 
     return PageFactory.initElements(driver, CollectionEntryPage.class);
   }

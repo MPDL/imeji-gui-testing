@@ -8,13 +8,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.components.DisplaySearchQueryComponent;
 import spot.components.SortingComponent;
 import spot.components.StateComponent;
 import spot.components.StateComponent.StateOptions;
 import spot.pages.registered.NewCollectionPage;
+import test.base.SeleniumWrapper;
 
 public class CollectionsPage extends BasePage {
 
@@ -116,7 +116,7 @@ public class CollectionsPage extends BasePage {
     WebElement collectionInQuestion = findCollectionByTitle(collectionTitle);
     collectionInQuestion.findElement(By.tagName("a")).click();
 
-    wait.until(ExpectedConditions.stalenessOf(collectionInQuestion));
+    SeleniumWrapper.waitForPageLoad(wait, collectionInQuestion);
 
     return PageFactory.initElements(driver, CollectionEntryPage.class);
   }

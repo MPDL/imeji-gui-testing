@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
+import test.base.SeleniumWrapper;
 
 public class BrowseStatementsPage extends BasePage {
 	
@@ -33,7 +34,7 @@ public class BrowseStatementsPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOf(dialogDeleteButton));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", dialogDeleteButton);
 		
-		wait.until(ExpectedConditions.stalenessOf(statement));
+		SeleniumWrapper.waitForPageLoad(wait, statement);
 		
 		return PageFactory.initElements(driver, BrowseStatementsPage.class);
 	}

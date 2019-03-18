@@ -3,6 +3,7 @@ package test.base;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,20 +20,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class SeleniumWrapper {
 
 	/**
-	 * Wait until the current page is reloaded. <br>
+	 * Wait until the (next) page is loaded. <br>
 	 * Uses waiting for an element to become stale (not present on the DOM) to detect that the old page doesn't exist anymore. <br>
 	 * The staleElement must be a WebElement of the old page. It must be initialized before the event, that led to the page reload. <br>
 	 * The staleElement must NOT be a Page Object field, which uses lazy loading.
 	 * 
 	 * @param wait The WebDriverWait, which defines the wait timeout in seconds
-	 * @param staleElement An element of the current page which becomes stale after the page reload 
+	 * @param staleElement An element of the current page which becomes stale after the page load 
 	 */
-	public static void waitForReloadOfCurrentPage(WebDriverWait wait, WebElement staleElement) {
+	public static void waitForPageLoad(WebDriverWait wait, WebElement staleElement) {
 		wait.until(ExpectedConditions.stalenessOf(staleElement));
+		wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
 	}
 	
 	/**
-	 * Wait until a certain component/element of the page is reloaded. <br>
+	 * Wait until a certain component/element of the page is (re)loaded. <br>
 	 * Uses waiting for the element to become stale (not present on the DOM) to detect that the old element doesn't exist anymore. <br>
 	 * The elementToBecomeReloaded must be the WebElement that will be reloaded. It must be initialized before the event, that led to the partial reload. <br>
 	 * The elementToBecomeReloaded must NOT be a Page Object field, which uses lazy loading.
@@ -40,21 +42,9 @@ public class SeleniumWrapper {
 	 * @param wait The WebDriverWait, which defines the wait timeout in seconds
 	 * @param elementToBecomeReloaded An element of the current page which will be reload 
 	 */
-	public static void waitForReloadOfElement(WebDriverWait wait, WebElement elementToBecomeReloaded) {
+	public static void waitForAjaxLoad(WebDriverWait wait, WebElement elementToBecomeReloaded) {
 		wait.until(ExpectedConditions.stalenessOf(elementToBecomeReloaded));
-	}
-	
-	/**
-	 * Wait until the new/next page is loaded. <br>
-	 * Uses waiting for an old element to become invisible (not present on the DOM) to detect that the old page doesn't exist anymore. <br>
-	 * The oldElement must be a WebElement of the old page. It must be initialized before the event, that led to the page reload. <br>
-	 * The oldElement can be a Page Object field, which does not exist in the new page.
-	 * 
-	 * @param wait The WebDriverWait, which defines the wait timeout in seconds
-	 * @param oldElement An element of the current page which is no longer present (or invisible) after the page reload 
-	 */
-	public static void waitForLoadOfNewPage(WebDriverWait wait, WebElement oldElement) {
-		wait.until(ExpectedConditions.invisibilityOf(oldElement));
+		//TODO: Wait for Ajax request finished loading the Element -> xhr.readyState == 4
 	}
 	
 	/**
