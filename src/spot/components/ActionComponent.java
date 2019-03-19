@@ -63,6 +63,7 @@ public class ActionComponent extends BasePage {
 	
 	public EditItemsPage editAllItems() {
 		new Actions(driver).moveToElement(menuItems).perform();
+		wait.until(ExpectedConditions.elementToBeClickable(editItems));
 		editItems.click();
 		
 		//Find the loaderWrapper with the style-attribute to get the actual, non-stale loaderWrapper
@@ -74,6 +75,7 @@ public class ActionComponent extends BasePage {
 	
 	public MetadataTablePage editSelectedItems() {
 		new Actions(driver).moveToElement(selectedMenu).perform();
+		wait.until(ExpectedConditions.elementToBeClickable(editSelectedItems));
 		editSelectedItems.click();
 		
 		//Find the loaderWrapper with the specified parent to get the actual, non-stale loaderWrapper
@@ -85,6 +87,7 @@ public class ActionComponent extends BasePage {
 	
 	public EditLicensePage editAllLicenses() {
 		new Actions(driver).moveToElement(menuItems).perform();
+		wait.until(ExpectedConditions.elementToBeClickable(editLicenses));
 		editLicenses.click();
 
 		return PageFactory.initElements(driver, EditLicensePage.class);
@@ -92,6 +95,7 @@ public class ActionComponent extends BasePage {
 	
 	public CollectionEntryPage releaseCollection() {
 		new Actions(driver).moveToElement(menuCollection).perform();
+		wait.until(ExpectedConditions.elementToBeClickable(releaseCollection));
 		releaseCollection.click();
 		
 		WebElement submitButton = driver.findElement(By.cssSelector("#releaseCollection .imj_submitPanel .imj_submitButton"));
@@ -116,6 +120,7 @@ public class ActionComponent extends BasePage {
 	
 	public CollectionsPage discardCollection() {
 		new Actions(driver).moveToElement(menuCollection).perform();
+		wait.until(ExpectedConditions.elementToBeClickable(discardCollection));
 		discardCollection.click();
 		
 		WebElement discardBox = driver.findElement(By.className("imj_dialogReasonText"));
@@ -133,6 +138,7 @@ public class ActionComponent extends BasePage {
 		WebElement staleElement = driver.findElement(By.id("pageTitle"));
 		
 		new Actions(driver).moveToElement(menuCollection).perform();
+		wait.until(ExpectedConditions.elementToBeClickable(addDOI));
 		addDOI.click();
 		
 		retryingFindClick(By.cssSelector("#getDOIDialog>form>.imj_submitPanel>.imj_submitButton"));
