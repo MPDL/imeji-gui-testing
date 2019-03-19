@@ -38,6 +38,9 @@ public class EditFacetPage extends BasePage {
 			driver.findElement(By.linkText(newSelection)).click();
 			submitButton.click();
 			
+			//Wait until BrowseFacetsPage is loaded
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("createFacet")));
+			
 			return PageFactory.initElements(driver, BrowseFacetsPage.class);
 		}
 		catch (NoSuchElementException exc) {
@@ -63,6 +66,9 @@ public class EditFacetPage extends BasePage {
 			
 			submitButton.click();
 			
+			//Wait until BrowseFacetsPage is loaded
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("createFacet")));
+			
 			return PageFactory.initElements(driver, BrowseFacetsPage.class);
 		}
 		catch (StaleElementReferenceException exc) {
@@ -74,6 +80,9 @@ public class EditFacetPage extends BasePage {
 		facetTitleBox.clear();
 		facetTitleBox.sendKeys(newTitle);
 		submitButton.click();
+		
+		//Wait until BrowseFacetsPage is loaded
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("createFacet")));
 		
 		return PageFactory.initElements(driver, BrowseFacetsPage.class);
 	}
