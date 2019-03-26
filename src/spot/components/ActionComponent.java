@@ -2,6 +2,7 @@ package spot.components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -111,9 +112,10 @@ public class ActionComponent extends BasePage {
 		wait.until(ExpectedConditions.elementToBeClickable(deleteCollection));
 		deleteCollection.click();
 		
-		((JavascriptExecutor) driver).executeScript("document.querySelector('#deleteCollection .imj_submitPanel .imj_submitButton').click();");
+		WebElement deleteButton = driver.findElement(By.cssSelector("#deleteCollection .imj_submitPanel .imj_submitButton"));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", deleteButton);
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text()[2],'New collection')]")));
+		SeleniumWrapper.waitForPageLoad(wait, deleteButton);
 		
 		return PageFactory.initElements(driver, CollectionsPage.class);
 	}
@@ -125,11 +127,17 @@ public class ActionComponent extends BasePage {
 		
 		WebElement discardBox = driver.findElement(By.className("imj_dialogReasonText"));
 		discardBox.sendKeys("Discarding for testing purposes.");
-		try { Thread.sleep(2500); } catch (InterruptedException e) { }
 		
-		((JavascriptExecutor) driver).executeScript("document.querySelector('#withdrawCollection .imj_submitPanel .imj_submitButton').click();");
+		try {
+			WebElement discardButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#withdrawCollection .imj_submitPanel .imj_submitButton")));
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", discardButton);
+		} catch(StaleElementReferenceException e) {
+			// The discardButton gets reloaded two times by Ajax therefore it can be stale the first time. In this case find and click it again.
+			WebElement discardButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#withdrawCollection .imj_submitPanel .imj_submitButton")));
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", discardButton);
+		}
 		
-		wait.until(ExpectedConditions.stalenessOf(discardBox));
+		SeleniumWrapper.waitForPageLoad(wait, discardBox);
 		
 		return PageFactory.initElements(driver, CollectionsPage.class);
 	}

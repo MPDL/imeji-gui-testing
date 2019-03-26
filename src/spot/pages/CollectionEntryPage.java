@@ -315,8 +315,8 @@ public class CollectionEntryPage extends BasePage {
 	WebElement staleElement = driver.findElement(By.cssSelector("#colForm>.dropdown"));
 	  
     new Actions(driver).moveToElement(editButton).moveToElement(share).click().build().perform();
-
-    wait.until(ExpectedConditions.stalenessOf(staleElement));
+    
+    SeleniumWrapper.waitForPageLoad(wait, staleElement);
     
     return PageFactory.initElements(driver, SharePage.class);
   }
@@ -699,7 +699,7 @@ public class CollectionEntryPage extends BasePage {
     EditSubcollectionDialog subcollectionDialog = new EditSubcollectionDialog(driver);
     CollectionEntryPage subcollectionPage = subcollectionDialog.changeCollectionName(subcollectionName);
 
-    wait.until(ExpectedConditions.elementToBeClickable(uploadButton));
+    wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
 
     return subcollectionPage;
   }

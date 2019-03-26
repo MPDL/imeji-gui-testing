@@ -12,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
+import test.base.SeleniumWrapper;
 
 public class CreateFacetPage extends BasePage {
 
@@ -58,37 +59,31 @@ public class CreateFacetPage extends BasePage {
 			facetTitleBox.sendKeys(facetTitle);
 			driver.findElement(By.linkText(type)).click();
 			
+			WebElement indexLabel = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[@class='imj_metadataLabel' and text()=' Index']")));
 			wait.until(ExpectedConditions.elementToBeClickable(submitButton));
 			submitButton.click();
+			
+			SeleniumWrapper.waitForPageLoad(wait, indexLabel);
 			
 			return PageFactory.initElements(driver, BrowseFacetsPage.class);
 		}
 		catch (NoSuchElementException exc) {
 			throw new NoSuchElementException("System facet type " + type + " was not found: it either doesn't exist, or is already used by another system facet.");
 		}
-		catch (StaleElementReferenceException exc) {
-			return goToAdminPage().createSystemFacet(facetTitle, type);
-		}
 	}
 	
 	public BrowseFacetsPage createFacet(String facetTitle, String metadata) {
-		try {
-			facetTitleBox.sendKeys(facetTitle);
-			
-			WebElement metadataLink = findMetadata(metadata);
-			metadataLink.click();
-			try {
-				Thread.sleep(2500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			submitButton.click();
-			
-			return PageFactory.initElements(driver, BrowseFacetsPage.class);
-		}
-		catch (StaleElementReferenceException exc) {
-			return goToAdminPage().createFacet(facetTitle, metadata);
-		}
+		facetTitleBox.sendKeys(facetTitle);
+		
+		WebElement metadataLink = findMetadata(metadata);
+		metadataLink.click();
+		
+		WebElement indexLabel = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[@class='imj_metadataLabel' and text()=' Index']")));
+		wait.until(ExpectedConditions.elementToBeClickable(submitButton));
+		submitButton.click();
+		
+		SeleniumWrapper.waitForPageLoad(wait, indexLabel);
+		
+		return PageFactory.initElements(driver, BrowseFacetsPage.class);
 	}
 }
