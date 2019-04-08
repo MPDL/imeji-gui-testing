@@ -298,7 +298,9 @@ public class ItemViewPage extends BasePage {
   // IMJ-277
   public ItemViewPage moveItemToPrivateCollection(String collectionTitle) {
     moveButton.click();
-    driver.findElement(By.linkText(collectionTitle)).click();
+    
+    WebElement collectionLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(collectionTitle)));
+    collectionLink.click();
 
     WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
     wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
