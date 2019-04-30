@@ -2,6 +2,7 @@ package test.scripts.facets;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.components.MessageComponent.MessageType;
@@ -62,6 +63,12 @@ public class CreateMetadataFacet extends BaseSelenium {
 	private String statementNewNumberValue = "2000.0";
 	
 	//NOTE: Facets of type Geolocation are not allowed to be created (see Imeji Ticket: #900) => Therefore there is no test step "facetGeolocation"
+	
+	@BeforeClass
+	public void resetDriver() {
+		// Restart the browser to prevent Firefox from crashing (see Ticket #40 'Firefox memory leak')
+		restartDriver();
+	}
 	
 	/**
 	 * IMJ-21

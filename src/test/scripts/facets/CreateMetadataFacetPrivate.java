@@ -2,6 +2,7 @@ package test.scripts.facets;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.components.MessageComponent.MessageType;
@@ -61,6 +62,12 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	private String numberValue = "1000.0";
 	private String statementNewNumber = "New Number statement: " + TimeStamp.getTimeStamp();
 	private String statementNewNumberValue = "2000.0";
+	
+	@BeforeClass
+	public void resetDriver() {
+		// Restart the browser to prevent Firefox from crashing (see Ticket #40 'Firefox memory leak')
+		restartDriver();
+	}
 	
 	@Test(priority = 1)
 	public void switchPrivateMode() {

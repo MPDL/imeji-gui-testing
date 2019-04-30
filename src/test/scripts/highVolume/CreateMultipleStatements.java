@@ -2,6 +2,7 @@ package test.scripts.highVolume;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.LoginPage;
@@ -22,6 +23,9 @@ public class CreateMultipleStatements extends BaseSelenium{
 	private String genericStatementName = TimeStamp.getTimeStamp() + " temp_test_statement_"; 
 	
 	private final int numberOfStatements = 550;
+	
+	//FIXME: Running this test can lead in a crash of Firefox (see Ticket #40 'Firefox memory leak').
+	//Workaround: Use Chrome in stead of Firefox to run this tests class.
 	
 	/**
 	 * IMJ-21
