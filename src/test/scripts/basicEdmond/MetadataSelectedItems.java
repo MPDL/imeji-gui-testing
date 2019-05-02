@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import spot.pages.CollectionEntryPage;
@@ -30,6 +31,13 @@ public class MetadataSelectedItems extends BaseSelenium {
 	private String collectionDescription = "default description 123 äüö ? (ß) μ å";
 	String[] items = {"SamplePDFFile.pdf", "SampleCSVFile.csv", "SampleJPGFile.jpg", "SampleJPGFile2.jpg",
 			"SampleTXTFile.txt", "SampleWordFile.docx", "SampleXLSXFile.xlsx"};
+	
+	@BeforeClass
+	public void resetDriver() {
+		// Restart the browser to prevent Firefox from crashing (see Ticket #40 'Firefox memory leak')
+		// Add the browser restart here for running this test in context with the other tests (this test alone would not lead to a firefox crash)
+		restartDriver();
+	}
 	
 	@Test(priority = 1)
 	public void disablePrivateMode() {
