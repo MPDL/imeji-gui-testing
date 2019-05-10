@@ -286,7 +286,7 @@ public class OneAuthorTwoOUs extends BaseSelenium {
     collectionEntry.hideMessages();
     collectionEntry = collectionEntry.goToCollectionPage().openCollectionByTitle(collectionTitle);
 
-    collectionEntry = collectionEntry.openDescription();
+    collectionEntry = collectionEntry.openMoreInformation();
     String actualDOI = collectionEntry.getDOI();
     Assert.assertNotEquals(actualDOI, "", "DOIs do not match.");
   }

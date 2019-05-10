@@ -31,7 +31,8 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
 
   private String collectionTitle = TimeStamp.getTimeStamp() + " 3 authors public mode";
   private String collectionDescription = "default description 123 äüö ? (ß) μ å";
-  private String extLabel = "Custom information";
+  private String collectionMetadataLabel = "Metadata 1";
+  private String collectionMetadataValue = "Metadata value 1";
 
   /**
    * IMJ-1
@@ -55,18 +56,18 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
   }
 
   /**
-   * IMJ-127
+   * [IMJ-127 -> see EditCollectionPage.addInformation()]
    */
   @Test(priority = 3, dependsOnMethods = {"createCollection3Authors"})
-  public void createExternalReference() {
+  public void addCollectionMetadata() {
     collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
     EditCollectionPage editCollection = collectionEntry.editInformation();
-    editCollection.addInformation(extLabel, "https://mpdl.mpg.de/");
+    editCollection.addMaterialAndMethods(collectionMetadataLabel, collectionMetadataValue);
     collectionEntry = editCollection.submitChanges();
 
-    collectionEntry = collectionEntry.openDescription();
-    boolean labelDisplayed = collectionEntry.labelDisplayed(extLabel);
-    Assert.assertTrue(labelDisplayed, "Label is not displayed.");
+    collectionEntry = collectionEntry.openMoreInformation();
+    boolean collectionMetadataDisplayed = collectionEntry.isCollectionMetadataPresent(collectionMetadataLabel, collectionMetadataValue);
+    Assert.assertTrue(collectionMetadataDisplayed, "The collection metadata are not displayed.");
   }
 
   /**
@@ -294,7 +295,7 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
     collectionEntry = collectionEntry.setDOI();
     collectionEntry.hideMessages();
 
-    collectionEntry = collectionEntry.openDescription();
+    collectionEntry = collectionEntry.openMoreInformation();
     String actualDOI = collectionEntry.getDOI();
     Assert.assertNotEquals(actualDOI, "", "DOIs do not match.");
   }
@@ -304,8 +305,8 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
    */
   @Test(priority = 20, dependsOnMethods = {"createCollection3Authors"})
   public void discardItem() {
+	collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
     int itemCount = collectionEntry.getTotalItemNumber();
-    collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
     collectionEntry = collectionEntry.selectItem(0);
     collectionEntry = collectionEntry.discardSelectedItems();
     collectionEntry.hideMessages();
@@ -316,11 +317,11 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
   }
 
   @Test(priority = 21, dependsOnMethods = {"createCollection3Authors"})
-  public void checkExternalReference() {
+  public void checkCollectionMetadata() {
     collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-    collectionEntry = collectionEntry.openDescription();
-    boolean labelDisplayed = collectionEntry.labelDisplayed(extLabel);
-    Assert.assertTrue(labelDisplayed, "Label is not displayed.");
+    collectionEntry = collectionEntry.openMoreInformation();
+    boolean collectionMetadataDisplayed = collectionEntry.isCollectionMetadataPresent(collectionMetadataLabel, collectionMetadataValue);
+    Assert.assertTrue(collectionMetadataDisplayed, "The collection metadata are not displayed.");
   }
 
   /**

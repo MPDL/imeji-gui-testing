@@ -68,18 +68,18 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	}
 	
 	/**
-	 * IMJ-127
+	 * [IMJ-127 -> see EditCollectionPage.addInformation()]
 	 */
 	@Test(priority = 4, dependsOnMethods = {"createDefaultCollection"})
-	public void createExternalReference() {
+	public void addCollectionMetadata() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
-		editCollection.addInformation("Custom information", "https://mpdl.mpg.de/");
+		editCollection.addMaterialAndMethods("Metadata 1", "Metadata value 1");
 		collectionEntry = editCollection.submitChanges();
 		
-		collectionEntry = collectionEntry.openDescription();
-		boolean labelDisplayed = collectionEntry.labelDisplayed("Custom information");
-		Assert.assertTrue(labelDisplayed, "External reference is not displayed.");
+		collectionEntry = collectionEntry.openMoreInformation();
+		boolean collectionMetadataDisplayed = collectionEntry.isCollectionMetadataPresent("Metadata 1", "Metadata value 1");
+	    Assert.assertTrue(collectionMetadataDisplayed, "The collection metadata are not displayed.");
 	}
 
 	/**

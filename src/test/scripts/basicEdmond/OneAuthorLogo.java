@@ -383,7 +383,7 @@ public class OneAuthorLogo extends BaseSelenium {
     collectionEntry = collectionEntry.setDOI();
     collectionEntry.hideMessages();
 
-    collectionEntry = collectionEntry.openDescription();
+    collectionEntry = collectionEntry.openMoreInformation();
     String actualDOI = collectionEntry.getDOI();
     Assert.assertNotEquals(actualDOI, "", "DOI should not be empty.");
   }

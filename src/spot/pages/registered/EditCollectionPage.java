@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
 import spot.pages.CollectionEntryPage;
+import test.base.SeleniumWrapper;
 
 public class EditCollectionPage extends BasePage {
 
@@ -96,12 +97,21 @@ public class EditCollectionPage extends BasePage {
 	}
 	
 	// IMJ-127
+	// The additional informations field does not exist anymore. Use addMaterialAndMethods() instead of addInformation().
+	@Deprecated
 	public void addInformation(String label, String link) {
 		additionalInfo.findElement(By.className("fa-plus-square-o")).click();
 		
 		infoLabelBox.sendKeys(label);
 		infoTextBox.sendKeys("This is a test collection.");
 		infoUrlBox.sendKeys(link);
+	}
+	
+	public void addMaterialAndMethods(String label, String value) {
+		additionalInfo.findElement(By.className("fa-plus-square-o")).click();
+		
+		infoLabelBox.sendKeys(label);
+		infoTextBox.sendKeys(value);
 	}
 	
 	// IMJ-243
@@ -136,13 +146,15 @@ public class EditCollectionPage extends BasePage {
 	}
 	
 	public CollectionEntryPage submitChanges() {
+		WebElement staleElement = driver.findElement(By.id("uploader"));
+		
 		// Clicking the saveButton throws no Exceptions but the click does not work correctly (is not recognized)
 		// Scrolling the saveButton into view solves this problem
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].scrollIntoView();", saveButton);
 		saveButton.click();
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("colForm:upload")));
+		SeleniumWrapper.waitForPageLoad(wait, staleElement);
 		this.hideMessages();
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);

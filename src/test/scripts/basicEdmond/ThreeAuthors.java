@@ -315,7 +315,7 @@ public class ThreeAuthors extends BaseSelenium {
     collectionEntry = collectionEntry.setDOI();
     collectionEntry.hideMessages();
 
-    collectionEntry = collectionEntry.openDescription();
+    collectionEntry = collectionEntry.openMoreInformation();
     String actualDOI = collectionEntry.getDOI();
     Assert.assertNotEquals(actualDOI, "", "DOI should not be empty.");
   }
@@ -325,8 +325,8 @@ public class ThreeAuthors extends BaseSelenium {
    */
   @Test(priority = 22, dependsOnMethods = {"createCollection3Authors"})
   public void discardItem() {
-    int itemCount = collectionEntry.getTotalItemNumber();
     collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
+    int itemCount = collectionEntry.getTotalItemNumber();
     collectionEntry = collectionEntry.selectItem(0);
     collectionEntry = collectionEntry.discardSelectedItems();
 

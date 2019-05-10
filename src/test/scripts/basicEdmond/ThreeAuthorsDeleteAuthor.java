@@ -77,7 +77,7 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
 
     homepage = new StartPage(driver).goToHomepage(homepage);
     collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-    collectionEntry = collectionEntry.openDescription();
+    collectionEntry = collectionEntry.openMoreInformation();
     String authors = collectionEntry.getAuthor();
     Assert.assertFalse(authors.contains("Thethird"), "Third author should not be present");
   }
@@ -300,7 +300,7 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
     collectionEntry = collectionEntry.setDOI();
     collectionEntry.hideMessages();
 
-    collectionEntry = collectionEntry.openDescription();
+    collectionEntry = collectionEntry.openMoreInformation();
     String actualDOI = collectionEntry.getDOI();
     Assert.assertNotEquals(actualDOI, "", "DOIs do not match.");
   }
@@ -319,14 +319,14 @@ public class ThreeAuthorsDeleteAuthor extends BaseSelenium {
     Assert.assertFalse(itemInList, "Discarded item should not be in item list.");
   }
 
-  //TODO: The successful deletion of the third author should be tested above and not in this way! Maybe remove this test-method?
+  //TODO: The successful deletion of the third author should be tested above and not only by counting the authors occurrence! Maybe remove this test-method?
   /**
    * Postcondition
    */
   @Test(priority = 22, dependsOnMethods = {"createCollection3Authors"})
   public void deletedAuthorTest() {
     collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
-    collectionEntry = collectionEntry.openDescription();
+    collectionEntry = collectionEntry.openMoreInformation();
     String authors = collectionEntry.getAuthor();
     Assert.assertFalse(authors.contains("Thethird"), "Third author should not be present");
 

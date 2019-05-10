@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -33,10 +35,13 @@ import spot.pages.registered.EditLicensePage;
 import spot.pages.registered.KindOfSharePage;
 import spot.pages.registered.MetadataTablePage;
 import spot.pages.registered.SharePage;
+import test.base.SeleniumTestSuite;
 import test.base.SeleniumWrapper;
 
 public class CollectionEntryPage extends BasePage {
 
+  private static final Logger log4j = LogManager.getLogger(SeleniumTestSuite.class.getName());
+	
   private ActionComponent actionComponent;
   private ShareComponent shareComponent;
   private FacetsComponent facetsComponent;
@@ -151,11 +156,11 @@ public class CollectionEntryPage extends BasePage {
   }
 
   public String getAuthor() {
-    return openDescription().getValue("Authors");
+    return openMoreInformation().getValue("Authors");
   }
 
   public String getDescription() {
-    openDescription();
+    openMoreInformation();
     return description.getText();
   }
 
@@ -195,6 +200,8 @@ public class CollectionEntryPage extends BasePage {
     }
   }
 
+  // Use isCollectionMetadataPresent() instead of labelDisplayed() if possible
+  @Deprecated
   public boolean labelDisplayed(String label) {
     List<WebElement> allSets = driver.findElements(By.className("imj_infodataSet"));
     for (WebElement set : allSets) {
@@ -202,6 +209,16 @@ public class CollectionEntryPage extends BasePage {
         return true;
     }
     return false;
+  }
+  
+  public boolean isCollectionMetadataPresent(String label, String value) {
+	  List<WebElement> collectionMetadataMatches = driver.findElements(By.xpath("//div[@class='imj_infodataSet']/span[@class='imj_infodataLabel' and text()='"+ label +"']/following-sibling::span[@class='imj_infodataValue']/pre[normalize-space(text())='"+ value +"']"));
+	  
+	  if(collectionMetadataMatches.size() > 1) {
+		  log4j.warn("More than one collection metadata with label '"+ label +"' and value '"+ value +"' found.");
+	  }
+	  
+	  return !collectionMetadataMatches.isEmpty();
   }
 
   public boolean isThumbnailViewActivated() {
@@ -214,7 +231,7 @@ public class CollectionEntryPage extends BasePage {
   }
 
   public String getValue(String label) {
-    openDescription();
+    openMoreInformation();
     List<WebElement> labels = driver.findElements(By.className("imj_infodataLabel"));
     List<WebElement> values = driver.findElements(By.className("imj_infodataValue"));
     int numLabels = labels.size();
@@ -381,7 +398,7 @@ public class CollectionEntryPage extends BasePage {
       throw new IllegalArgumentException("No item with index " + index + ". Total count: " + itemCount);
   }
 
-  public CollectionEntryPage openDescription() {
+  public CollectionEntryPage openMoreInformation() {
     ((JavascriptExecutor) driver).executeScript("arguments[0].style.visibility = 'visible';", aboutLink);
     ((JavascriptExecutor) driver).executeScript("arguments[0].style.display = 'block';", aboutLink);
     try {
@@ -389,12 +406,15 @@ public class CollectionEntryPage extends BasePage {
     } catch (ElementNotVisibleException exc) {
       // description is already open
     }
+    
+    WebElement collectionInformations = driver.findElement(By.xpath("//div[@class='collectionAbout']"));
+    wait.until(ExpectedConditions.visibilityOf(collectionInformations));
 
     return PageFactory.initElements(driver, CollectionEntryPage.class);
   }
 
   public boolean hasLogo() {
-    openDescription();
+    openMoreInformation();
 
     try {
       return logo.isDisplayed();
