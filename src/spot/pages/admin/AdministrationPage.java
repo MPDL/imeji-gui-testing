@@ -29,6 +29,9 @@ public class AdministrationPage extends BasePage {
 	@FindBy(css=".imj_administrationTiledList .imj_userConfig:nth-of-type(5) a")
 	private WebElement configurationEdit;
 	
+	@FindBy(css=".imj_administrationTiledList .imj_userConfig:nth-of-type(5) li:nth-of-type(4)>a")
+	private WebElement configurationCollections;
+	
 	@FindBy(css = ".imj_listBody>.imj_adminPanel:nth-of-type(3)>.imj_content li:nth-of-type(1)>a")
 	private WebElement createStatement;
 	
@@ -50,6 +53,12 @@ public class AdministrationPage extends BasePage {
 	    configurationEdit.click();
 	    ConfigurationPage configurationEditPage = new ConfigurationPage(driver);
 	    return configurationEditPage;
+	}
+	
+	public CollectionsConfigurationPage goToCollectionsConfigurationPage() {
+	    configurationCollections.click();
+	    CollectionsConfigurationPage collectionsConfigurationPage = new CollectionsConfigurationPage(driver);
+	    return collectionsConfigurationPage;
 	}
 
 	public UserProfilePage createNewUser(String newUserName) {

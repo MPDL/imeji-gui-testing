@@ -211,6 +211,22 @@ public class CollectionEntryPage extends BasePage {
     return false;
   }
   
+  public boolean areStudyTypesPresent(List<String> values) {
+	  WebElement studyTypesLabel = driver.findElement(By.xpath("//div[@class='imj_infodataSet']/span[@class='imj_infodataLabel' and text()='Study Type(s)']"));
+	  WebElement studyTypesValues = studyTypesLabel.findElement(By.xpath("./following-sibling::span[@class='imj_infodataValue']"));
+	  
+	  String studyTypes = studyTypesValues.getText();
+	  
+	  for (String studyTypValue : values) {
+		  if (!studyTypes.contains(studyTypValue)) {
+			return false;
+		}
+	  }
+	  
+	  return true;
+  }
+  
+  //TODO: Merge with getValue
   public boolean isCollectionMetadataPresent(String label, String value) {
 	  List<WebElement> collectionMetadataMatches = driver.findElements(By.xpath("//div[@class='imj_infodataSet']/span[@class='imj_infodataLabel' and text()='"+ label +"']/following-sibling::span[@class='imj_infodataValue']/pre[normalize-space(text())='"+ value +"']"));
 	  

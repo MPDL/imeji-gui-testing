@@ -74,7 +74,7 @@ public class DefaultExternalInvitation extends BaseSelenium {
 	public void addCollectionMetadata() {
 		collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
-		editCollection.addMaterialAndMethods("Metadata 1", "Metadata value 1");
+		editCollection.addOwnStudyContext("Metadata 1", "Metadata value 1");
 		collectionEntry = editCollection.submitChanges();
 		
 		collectionEntry = collectionEntry.openMoreInformation();

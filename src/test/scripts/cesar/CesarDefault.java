@@ -85,7 +85,7 @@ public class CesarDefault extends BaseSelenium {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
 		collectionEntry = adminHomepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
 		EditCollectionPage editCollection = collectionEntry.editInformation();
-		editCollection.addMaterialAndMethods("Metadata 1", "Metadata value 1");
+		editCollection.addOwnStudyContext("Metadata 1", "Metadata value 1");
 		collectionEntry = editCollection.submitChanges();
 		collectionEntry.hideMessages();
 		

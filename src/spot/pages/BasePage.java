@@ -52,6 +52,9 @@ public abstract class BasePage {
 	@FindBy(css=".imj_siteContentHeadline>h1")
 	private WebElement siteContentHeadline;
 	
+	@FindBy(id = "lnkLogout")
+	private WebElement logoutButton;
+	
 	@FindBy (id="langForm:sel")
 	private WebElement languageButton;
 	
@@ -318,6 +321,12 @@ public abstract class BasePage {
     		}
     		// else: the language is already German => nothing to do
   	    }
+	}
+	
+	// IMJ-2
+	public void logout() {
+		logoutButton.click();
+		this.hideMessages();
 	}
 	
 	/**

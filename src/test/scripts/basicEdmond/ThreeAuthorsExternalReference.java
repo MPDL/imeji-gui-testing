@@ -62,7 +62,7 @@ public class ThreeAuthorsExternalReference extends BaseSelenium {
   public void addCollectionMetadata() {
     collectionEntry = homepage.goToCollectionPage().openCollectionByTitle(collectionTitle);
     EditCollectionPage editCollection = collectionEntry.editInformation();
-    editCollection.addMaterialAndMethods(collectionMetadataLabel, collectionMetadataValue);
+    editCollection.addOwnStudyContext(collectionMetadataLabel, collectionMetadataValue);
     collectionEntry = editCollection.submitChanges();
 
     collectionEntry = collectionEntry.openMoreInformation();

@@ -1,5 +1,9 @@
 package spot.pages.registered;
 
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -12,10 +16,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import spot.pages.BasePage;
 import spot.pages.CollectionEntryPage;
 import spot.pages.CollectionsPage;
+import spot.pages.StartPage;
 import test.base.SeleniumWrapper;
 
+//TODO: Merge with EditCollectionPage!?
 public class NewCollectionPage extends BasePage {
 
+	private static final Logger log4j = LogManager.getLogger(NewCollectionPage.class.getName());
+	
 	// error occurred while filling in 'create new collection' form
 	private boolean errorOccurred;
 	
@@ -83,6 +91,12 @@ public class NewCollectionPage extends BasePage {
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
 	
+	public CollectionEntryPage createCollection(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName, List<String> studyTypes) {
+		selectStudyTypes(studyTypes);
+		
+		return createCollection(collectionTitle, collectionDescription, givenName, familyName, orgName);
+	}
+	
 	// IMJ-86
 	public CollectionEntryPage createCollection3Authors(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
 		try {
@@ -125,6 +139,7 @@ public class NewCollectionPage extends BasePage {
 		clearSomePrefilledTextFields(familyName, orgName);
 	}
 	
+	//FIXME: familyName and orgName is not set, only the fields are cleared
 	private void clearSomePrefilledTextFields(String familyName, String orgName) {
 		if (familyName.equals("")) {
 			familyNameTextField.clear();
@@ -178,6 +193,38 @@ public class NewCollectionPage extends BasePage {
 		addOrganizationButton.click();
 		
 		wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//input[contains(@id,'inputOrgaName')]"), organisationInputElementCound+1));
+	}
+	
+	public void selectStudyTypes(List<String> studyTypes) {
+		for (String studyType : studyTypes) {
+			selectStudyType(studyType);
+		}
+	}
+	
+	public void deselectStudyTypes(List<String> studyTypes) {
+		for (String studyType : studyTypes) {
+			deselectStudyType(studyType);
+		}
+	}
+	
+	public void selectStudyType(String studyType) {
+		WebElement studyTypeCheckbox = driver.findElement(By.xpath("//input[@value='"+ studyType +"' and @type='checkbox']"));
+		
+		if(!studyTypeCheckbox.isSelected()) {
+			studyTypeCheckbox.click();
+		}else {
+			log4j.warn("Study Type '" + studyType + "' allready selected!");
+		}
+	}
+	
+	public void deselectStudyType(String studyType) {
+		WebElement studyTypeCheckbox = driver.findElement(By.xpath("//input[@value='"+ studyType +"' and @type='checkbox']"));
+		
+		if(studyTypeCheckbox.isSelected()) {
+			studyTypeCheckbox.click();
+		}else {
+			log4j.warn("Study Type '" + studyType + "' is not selected!");
+		}
 	}
 	
 }

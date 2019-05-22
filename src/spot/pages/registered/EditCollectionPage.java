@@ -3,6 +3,8 @@ package spot.pages.registered;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +17,10 @@ import spot.pages.BasePage;
 import spot.pages.CollectionEntryPage;
 import test.base.SeleniumWrapper;
 
+//TODO: Merge with NewCollectionPage!?
 public class EditCollectionPage extends BasePage {
+	
+	private static final Logger log4j = LogManager.getLogger(EditCollectionPage.class.getName());
 
 	@FindBy(id = "editContainer:form:inputTitleText")
 	private WebElement titleBox;
@@ -96,8 +101,61 @@ public class EditCollectionPage extends BasePage {
 		organisation2Name.sendKeys(organisation);
 	}
 	
+	public void selectStudyTypes(List<String> studyTypes) {
+		for (String studyType : studyTypes) {
+			selectStudyType(studyType);
+		}
+	}
+	
+	public void deselectStudyTypes(List<String> studyTypes) {
+		for (String studyType : studyTypes) {
+			deselectStudyType(studyType);
+		}
+	}
+	
+	public void selectStudyType(String studyType) {
+		WebElement studyTypeCheckbox = driver.findElement(By.xpath("//input[@value='"+ studyType +"' and @type='checkbox']"));
+		
+		if(!studyTypeCheckbox.isSelected()) {
+			studyTypeCheckbox.click();
+		}else {
+			log4j.warn("Study Type '" + studyType + "' allready selected!");
+		}
+	}
+	
+	public void deselectStudyType(String studyType) {
+		WebElement studyTypeCheckbox = driver.findElement(By.xpath("//input[@value='"+ studyType +"' and @type='checkbox']"));
+		
+		if(studyTypeCheckbox.isSelected()) {
+			studyTypeCheckbox.click();
+		}else {
+			log4j.warn("Study Type '" + studyType + "' is not selected!");
+		}
+	}
+	
+	public void editCollectionMetadata(String key, String value) {
+		WebElement metadataValueInputField = driver.findElement(By.xpath("//span[contains(@id,'additionalInfos')]//span[text()='"+ key +"']/following-sibling::textarea"));
+		metadataValueInputField.clear();
+		metadataValueInputField.sendKeys(value);
+	}
+	
+	public void addAutoSuggestedStudyContext(String key, String value) {
+		WebElement emptyMetadataKeyInputField = driver.findElement(By.xpath("//span[contains(@id,'additionalInfos')]//input[contains(@id,'inputInfoLabel') and not(@value)]"));
+		emptyMetadataKeyInputField.clear();
+		emptyMetadataKeyInputField.sendKeys(key);
+		
+		WebElement autosuggestedMetadataKey = driver.findElement(By.xpath("//li/a[text()='"+ key +"']"));
+		autosuggestedMetadataKey.click();
+		
+		WebElement metadataValueInputField = emptyMetadataKeyInputField.findElement(By.xpath("./following::textarea[contains(@id,'inputInfoText')]"));
+		metadataValueInputField.sendKeys(value);
+		
+		//click the + button to add anothor empty Study Context field for possible additional added collection metadata. 
+		additionalInfo.findElement(By.className("fa-plus-square-o")).click();
+	}
+	
 	// IMJ-127
-	// The additional informations field does not exist anymore. Use addMaterialAndMethods() instead of addInformation().
+	// The additional informations field does not exist anymore. Use addStudyContext() instead of addInformation().
 	@Deprecated
 	public void addInformation(String label, String link) {
 		additionalInfo.findElement(By.className("fa-plus-square-o")).click();
@@ -107,10 +165,11 @@ public class EditCollectionPage extends BasePage {
 		infoUrlBox.sendKeys(link);
 	}
 	
-	public void addMaterialAndMethods(String label, String value) {
+	//FIXME: Only works if no other Study Context is defined.
+	public void addOwnStudyContext(String key, String value) {
 		additionalInfo.findElement(By.className("fa-plus-square-o")).click();
 		
-		infoLabelBox.sendKeys(label);
+		infoLabelBox.sendKeys(key);
 		infoTextBox.sendKeys(value);
 	}
 	
