@@ -17,6 +17,12 @@
 	<test name="Single Imeji Gui Tests">
 		<classes>
 		
+			<!-- Collection Metadata-->
+			
+			<class name="test.scripts.collectionMetadata.CollectionMetadataTest"></class>
+			
+			<!-- End of Collection Metadata -->
+			
 			<!-- Basic Edmond -->
 			
 			<class name="test.scripts.basicEdmond.OneAuthorLogo"></class>
