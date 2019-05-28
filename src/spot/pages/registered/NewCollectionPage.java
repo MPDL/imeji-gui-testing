@@ -122,7 +122,7 @@ public class NewCollectionPage extends BasePage {
 	public CollectionEntryPage createCollection1Author2OUs(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
 		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
 		addOrganizationToFirstAuthor();
-		WebElement org2 = driver.findElement(By.xpath("//input[contains(@name, '1:inputOrgaName1')]"));
+		WebElement org2 = driver.findElement(By.xpath("(//input[contains(@name, 'inputOrgaName')])[2]"));
 		org2.sendKeys("MPDL");
 		
 		submitForm();

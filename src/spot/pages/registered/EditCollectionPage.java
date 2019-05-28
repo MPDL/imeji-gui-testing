@@ -221,7 +221,7 @@ public class EditCollectionPage extends BasePage {
 	
 	public List<String> getOrganisations() {
 		List<String> ous = new LinkedList<>();
-		List<WebElement> ouBoxes = driver.findElements(By.xpath("//input[contains(@id, 'inputOrgaName1')]"));
+		List<WebElement> ouBoxes = driver.findElements(By.xpath("//input[contains(@id, 'inputOrgaName')]"));
 		for (WebElement box : ouBoxes) {
 			ous.add(box.getAttribute("value"));
 		}
