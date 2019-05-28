@@ -39,7 +39,8 @@ public class NewCollectionPage extends BasePage {
 	@FindBy(name="editContainer:form:persons:0:collectionAuthor:inputGiveNameText")
 	private WebElement givenNameTextField;
 	
-	@FindBy(xpath="//input[contains(@id, '0:inputOrgaName1')]")
+	//TODO: Rework the use of the organization field in this class
+	@FindBy(xpath="//input[contains(@id, 'inputOrgaName')]")
 	private WebElement organizationNameTextField;
 	
 	@FindBy(id="editContainer:form:save")
