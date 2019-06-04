@@ -441,19 +441,14 @@ public class CollectionEntryPage extends BasePage {
 
   // IMJ-56
   public CollectionEntryPage uploadFile(String filepath) {
-    WebElement staleElement = driver.findElement(By.id("colForm:upload"));
+    WebElement elementToBecomeReloaded = driver.findElement(By.className("itemsArea"));
 
     uploadButton.click();
     UploadWindow upload = new UploadWindow(driver);
     upload.uploadFiles(filepath);
-
-    // Wait for page reload
-    wait.until(ExpectedConditions.stalenessOf(staleElement));
-    // Find  loaderWrapper with the style-attribute to get the actual, non-stale
-    // loaderWrapper and wait for its invisibility 
-    WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper[style]"));
-    wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
-
+    
+    SeleniumWrapper.waitForAjaxLoad(wait, elementToBecomeReloaded);
+    
     return PageFactory.initElements(driver, CollectionEntryPage.class);
   }
 

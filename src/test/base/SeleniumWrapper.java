@@ -29,7 +29,9 @@ public class SeleniumWrapper {
 	 * @param staleElement An element of the current page which becomes stale after the page load 
 	 */
 	public static void waitForPageLoad(WebDriverWait wait, WebElement staleElement) {
+		// 1) element is stale => loading started
 		wait.until(ExpectedConditions.stalenessOf(staleElement));
+		// 2) document.readyState equals "complete" => page finished loading
 		wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
 	}
 	
@@ -43,8 +45,10 @@ public class SeleniumWrapper {
 	 * @param elementToBecomeReloaded An element of the current page which will be reload 
 	 */
 	public static void waitForAjaxLoad(WebDriverWait wait, WebElement elementToBecomeReloaded) {
+		// 1) element is stale => loading started
 		wait.until(ExpectedConditions.stalenessOf(elementToBecomeReloaded));
-		//TODO: Wait for Ajax request finished loading the Element -> xhr.readyState == 4
+		// 2) jQuery.active == 0 => no active Ajax request => Ajax request finished loading
+		wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return jQuery.active == 0"));
 	}
 	
 	/**
