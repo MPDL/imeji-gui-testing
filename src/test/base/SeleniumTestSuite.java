@@ -36,16 +36,16 @@ public class SeleniumTestSuite {
 	public static final boolean HEADLESS = true;
 
 	public static final String QA_EDMOND = "http://qa-edmond.mpdl.mpg.de/imeji/";
-	public static final String QA_IMEJI = "http://qa-imeji.mpdl.mpg.de/imeji/";
 	public static final String QA_CESAR = "http://qa-caesar.mpdl.mpg.de/imeji/";
 
+	public static final String QA_IMEJI = "http://qa-imeji.mpdl.mpg.de/imeji/";
 	public static final String DEV_IMEJI = "https://dev-imeji.mpdl.mpg.de/imeji/";
 	
 	public static final String LOCAL_IMEJI = "http://localhost:8080/imeji/";
 
-	 public static final String TEST_ENV_URL = QA_IMEJI;
-//	 public static final String TEST_ENV_URL = DEV_IMEJI;
-//	public static final String TEST_ENV_URL = QA_CESAR;
+//	 public static final String TEST_ENV_URL = QA_IMEJI;
+	 public static final String TEST_ENV_URL = DEV_IMEJI;
+//	 public static final String TEST_ENV_URL = QA_CESAR;
 //	 public static final String TEST_ENV_URL = LOCAL_IMEJI;
 
 	private static final Logger log4j = LogManager.getLogger(SeleniumTestSuite.class.getName());
@@ -122,6 +122,7 @@ public class SeleniumTestSuite {
 		
 		// Set a different binary if another Version of Firefox should be used for the tests
 //		options.setBinary("C:/Program Files/Firefox Nightly/firefox.exe");
+//		options.setBinary("C:/Program Files/Firefox Developer Edition/firefox.exe");
 		
 		options.setCapability("marionette", true);
 		options.setHeadless(HEADLESS);
