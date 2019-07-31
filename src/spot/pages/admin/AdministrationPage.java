@@ -185,17 +185,17 @@ public class AdministrationPage extends BasePage {
 	}
 	
 	// IMJ-298
-	public BrowseFacetsPage createSystemFacet(String facetTitle, String type) {
+	public BrowseFacetsPage createItemFacet(String facetTitle, String facetIndexType) {
 		createFacet.click();
 		CreateFacetPage createFacet = new CreateFacetPage(driver);
-		return createFacet.createSystemFacet(facetTitle, type);
+		return createFacet.createItemFacet(facetTitle, facetIndexType);
 	}
 	
 	// IMJ-282
-	public BrowseFacetsPage createFacet(String facetTitle, String metadata) {
+	public BrowseFacetsPage createMetadataFacet(String facetTitle, String metadata) {
 		createFacet.click();
 		CreateFacetPage createFacet = new CreateFacetPage(driver);
-		return createFacet.createFacet(facetTitle, metadata);
+		return createFacet.createMetadataFacet(facetTitle, metadata);
 	}
 	
 	public CreateFacetPage goToCreateFacetPage() {

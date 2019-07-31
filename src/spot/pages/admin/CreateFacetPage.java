@@ -54,10 +54,21 @@ public class CreateFacetPage extends BasePage {
 		}
 	}
 	
-	public BrowseFacetsPage createSystemFacet(String facetTitle, String type) {
+	public BrowseFacetsPage createItemFacet(String facetTitle, String facetIndexType) {
+		String facetObjectType = "item";		
+		return this.createSystemFacet(facetTitle, facetIndexType, facetObjectType);
+	}
+	
+	public BrowseFacetsPage createCollectionFacet(String facetTitle, String facetIndexType) {
+		String facetObjectType = "collection";		
+		return this.createSystemFacet(facetTitle, facetIndexType, facetObjectType);
+	}
+	
+	private BrowseFacetsPage createSystemFacet(String facetTitle, String facetIndexType, String facetObjectType) {
 		try {
 			facetTitleBox.sendKeys(facetTitle);
-			driver.findElement(By.linkText(type)).click();
+			String facetIndexLinkText = facetIndexType + " " + "(" + facetObjectType + ")";
+			driver.findElement(By.linkText(facetIndexLinkText)).click();
 			
 			WebElement indexLabel = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[@class='imj_metadataLabel' and text()=' Index']")));
 			wait.until(ExpectedConditions.elementToBeClickable(submitButton));
@@ -68,11 +79,11 @@ public class CreateFacetPage extends BasePage {
 			return PageFactory.initElements(driver, BrowseFacetsPage.class);
 		}
 		catch (NoSuchElementException exc) {
-			throw new NoSuchElementException("System facet type " + type + " was not found: it either doesn't exist, or is already used by another system facet.");
+			throw new NoSuchElementException("System facet type " + facetIndexType + " was not found: it either doesn't exist, or is already used by another system facet.");
 		}
 	}
 	
-	public BrowseFacetsPage createFacet(String facetTitle, String metadata) {
+	public BrowseFacetsPage createMetadataFacet(String facetTitle, String metadata) {
 		facetTitleBox.sendKeys(facetTitle);
 		
 		WebElement metadataLink = findMetadata(metadata);

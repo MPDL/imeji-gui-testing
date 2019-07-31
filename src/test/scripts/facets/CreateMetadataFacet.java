@@ -118,7 +118,7 @@ public class CreateMetadataFacet extends BaseSelenium {
 	// IMJ-282
 	private void createFacetTest(String facetTitle, String metadata) {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
-		BrowseFacetsPage browseFacets = adminHomepage.goToAdminPage().createFacet(facetTitle, metadata);
+		BrowseFacetsPage browseFacets = adminHomepage.goToAdminPage().createMetadataFacet(facetTitle, metadata);
 		boolean facetListed = browseFacets.facetListed(facetTitle);
 		Assert.assertTrue(facetListed, "Facet " + facetTitle + " is not listed.");
 	}
