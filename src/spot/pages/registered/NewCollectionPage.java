@@ -137,19 +137,8 @@ public class NewCollectionPage extends BasePage {
 	private void fillForm(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
 		setTitle(collectionTitle);
 		setDescription(collectionDescription);
-		clearSomePrefilledTextFields(familyName, orgName);
-	}
-	
-	//FIXME: familyName and orgName is not set, only the fields are cleared
-	private void clearSomePrefilledTextFields(String familyName, String orgName) {
-		if (familyName.equals("")) {
-			familyNameTextField.clear();
-			errorOccurred = true;
-		}
-		if (orgName.equals("")) {
-			organizationNameTextField.clear();
-			errorOccurred = true;
-		}
+		setFamilyName(familyName);
+		setOrganizationName(orgName);
 	}
 	
 	private void submitForm() {
@@ -168,6 +157,16 @@ public class NewCollectionPage extends BasePage {
 	
 	private void setDescription(String description) {
 		descriptionTextField.sendKeys(description);
+	}
+	
+	private void setFamilyName(String familyName) {
+		familyNameTextField.clear();
+		familyNameTextField.sendKeys(familyName);
+	}
+	
+	private void setOrganizationName(String orgName) {
+		organizationNameTextField.clear();
+		organizationNameTextField.sendKeys(orgName);
 	}
 	
 	public void addAuthor(String familyName, String organisationName) {
