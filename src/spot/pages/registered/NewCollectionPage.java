@@ -175,6 +175,7 @@ public class NewCollectionPage extends BasePage {
 		WebElement additionalAuthorName = driver.findElement(By.xpath("//input[contains(@id, 'form:persons:1') and contains(@id, 'inputFamilyNameText')]"));
 		additionalAuthorName.sendKeys(familyName);
 		WebElement additionalAuthorOrganisation = driver.findElement(By.xpath("//input[contains(@id, 'form:persons:1') and contains(@id, 'inputOrgaName')]"));
+		additionalAuthorOrganisation.clear();
 		additionalAuthorOrganisation.sendKeys(organisationName);
 	}
 
