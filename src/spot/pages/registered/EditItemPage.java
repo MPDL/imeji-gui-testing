@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import spot.pages.BasePage;
 import spot.pages.ItemViewPage;
+import test.base.SeleniumWrapper;
 
 public class EditItemPage extends BasePage {
 
@@ -116,12 +117,9 @@ public class EditItemPage extends BasePage {
 		licenseName.sendKeys(name);
 		licenseLink.sendKeys(link);
 		
-		// FIXME: Replace the Thread.sleep with an explicit wait
-		// Problem: Clicking on another field after changing licenseName and licenseLink results in a short loading screen (loaderWrapper)
-		// But nothing is loaded, therefore an explicit wait is not possible for now, because there is nothing (race condition safe) to wait for!
-		try { Thread.sleep(2000); } catch (InterruptedException e) {}
-		
+		WebElement metadataListToBecomeReloaded = driver.findElement(By.className("imj_listBody"));
 		saveButton.click();
+		SeleniumWrapper.waitForAjaxLoad(wait, metadataListToBecomeReloaded);
 		
 		return PageFactory.initElements(driver, ItemViewPage.class);
 	}
