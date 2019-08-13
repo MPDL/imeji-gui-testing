@@ -203,10 +203,10 @@ public class AdministrationPage extends BasePage {
 		return PageFactory.initElements(driver, CreateFacetPage.class);
 	}
 	
-	public BrowseFacetsPage changeSystemFacetSelection(String facetTitle, String newSelection) {
+	public BrowseFacetsPage changeFacetSelectionToItemFacet(String facetTitle, String newSelection) {
 		browseFacet.click();
 		BrowseFacetsPage browseFacets = new BrowseFacetsPage(driver);
-		return browseFacets.changeSystemFacetSelection(facetTitle, newSelection);
+		return browseFacets.changeFacetSelectionToItemFacet(facetTitle, newSelection);
 	}
 	
 	public BrowseFacetsPage changeMetadataFacetSelection(String facetTitle, String newSelection) {

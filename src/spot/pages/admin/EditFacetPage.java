@@ -29,13 +29,29 @@ public class EditFacetPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public BrowseFacetsPage changeSystemFacetSelection(String newSelection) {
+	public BrowseFacetsPage changeFacetSelectionToItemFacet(String newFacetIndexType) {
+		String facetObjectType = "item";
+		return this.changeFacetSelection(newFacetIndexType, facetObjectType);
+	}
+	
+	public BrowseFacetsPage changeFacetSelectionToCollectionFacet(String newFacetIndexType) {
+		String facetObjectType = "collection";
+		return this.changeFacetSelection(newFacetIndexType, facetObjectType);
+	}
+	
+	private BrowseFacetsPage changeFacetSelection(String newFacetIndexType, String facetObjectType) {
 		try {
 			resetButton.click();
 			try { Thread.sleep(2000); } catch (InterruptedException e) {}
 			PageFactory.initElements(driver, this);
 			
-			driver.findElement(By.linkText(newSelection)).click();
+			String facetIndexLinkText = newFacetIndexType + " " + "(" + facetObjectType + ")";
+			WebElement facetIndexLink = driver.findElement(By.linkText(facetIndexLinkText));
+			
+			wait.until(ExpectedConditions.elementToBeClickable(facetIndexLink));
+			facetIndexLink.click();
+			
+			wait.until(ExpectedConditions.elementToBeClickable(submitButton));
 			submitButton.click();
 			
 			//Wait until BrowseFacetsPage is loaded
@@ -44,10 +60,7 @@ public class EditFacetPage extends BasePage {
 			return PageFactory.initElements(driver, BrowseFacetsPage.class);
 		}
 		catch (NoSuchElementException exc) {
-			throw new NoSuchElementException("System facet type " + newSelection + " was not found: it either doesn't exist, or is already used by another system facet.");
-		}
-		catch (StaleElementReferenceException exc) {
-			return goToAdminPage().changeSystemFacetSelection(facetTitleBox.getText(), newSelection);
+			throw new NoSuchElementException("System facet type " + newFacetIndexType + " was not found: it either doesn't exist, or is already used by another system facet.");
 		}
 	}
 	

@@ -97,7 +97,7 @@ public class CreateDefaultFacetsPrivate extends BaseSelenium {
 	
 	private void changeSystemFacetSelectionTest(String facetTitle, String newSelection, String selectionAlias) {
 		adminHomepage = (AdminHomepage) new StartPage(driver).goToHomepage(adminHomepage);
-		BrowseFacetsPage browseFacets = adminHomepage.goToAdminPage().changeSystemFacetSelection(facetTitle, newSelection);
+		BrowseFacetsPage browseFacets = adminHomepage.goToAdminPage().changeFacetSelectionToItemFacet(facetTitle, newSelection);
 		
 		String alias = browseFacets.editFacet(facetTitle).getTypeAlias();
 		Assert.assertEquals(selectionAlias, alias, "Facet selection was not changed.");

@@ -41,11 +41,11 @@ public class BrowseFacetsPage extends BasePage {
 		}
 	}
 	
-	public BrowseFacetsPage changeSystemFacetSelection(String facetTitle, String newSelection) {
+	public BrowseFacetsPage changeFacetSelectionToItemFacet(String facetTitle, String newSelection) {
 		WebElement facet = findFacet(facetTitle);
 		facet.findElement(By.partialLinkText("Edit")).click();
 		EditFacetPage editFacet = PageFactory.initElements(driver, EditFacetPage.class);
-		return editFacet.changeSystemFacetSelection(newSelection);
+		return editFacet.changeFacetSelectionToItemFacet(newSelection);
 	}
 	
 	public BrowseFacetsPage changeMetadataFacetSelection(String facetTitle, String newSelection) {
