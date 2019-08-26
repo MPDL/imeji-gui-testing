@@ -18,7 +18,7 @@ public class RegistrationPage extends BasePage {
 	@FindBy(id = "userForm:userPersonRegister:inputGiveNameText")
 	private WebElement givenNameTextField;
 	
-	@FindBy(xpath = "//input[contains(@id, 'inputOrgaName')]")
+	@FindBy(xpath = "//input[contains(@id, 'OrgaName')]")
 	private WebElement organizationTextField;
 	
 	@FindBy(id = "userForm:accept_terms")

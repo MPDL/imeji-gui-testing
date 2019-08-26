@@ -20,7 +20,7 @@ public class NewUserPage extends BasePage {
 	@FindBy(id="userForm:userPerson:inputGiveNameText")
 	private WebElement givenNameTextField;
 	
-	@FindBy(xpath="//input[contains(@id, 'inputOrgaName')]")
+	@FindBy(xpath="//input[contains(@id, 'OrgaName')]")
 	private WebElement organizationNameTextField;
 	
 	@FindBy(css=".imj_content>div:nth-last-child(3) input")

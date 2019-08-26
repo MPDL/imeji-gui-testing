@@ -40,7 +40,7 @@ public class EditCollectionPage extends BasePage {
 	@FindBy(id = "editContainer:form:persons:1:collectionAuthor:inputFamilyNameText")
 	private WebElement author2FamilyName;
 	
-	@FindBy(xpath = "//input[contains(@id, 'editContainer:form:persons:1:collectionAuthor') and contains(@id, 'inputOrgaName')]")
+	@FindBy(xpath = "//input[contains(@id, 'editContainer:form:persons:1:collectionAuthor') and contains(@id, 'OrgaName')]")
 	private WebElement organisation2Name;
 	
 	@FindBy(id = "editContainer:form:additionalInfos")
@@ -221,7 +221,7 @@ public class EditCollectionPage extends BasePage {
 	
 	public List<String> getOrganisations() {
 		List<String> ous = new LinkedList<>();
-		List<WebElement> ouBoxes = driver.findElements(By.xpath("//input[contains(@id, 'inputOrgaName')]"));
+		List<WebElement> ouBoxes = driver.findElements(By.xpath("//input[contains(@id, 'OrgaName')]"));
 		for (WebElement box : ouBoxes) {
 			ous.add(box.getAttribute("value"));
 		}

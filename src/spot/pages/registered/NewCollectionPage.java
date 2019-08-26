@@ -39,8 +39,8 @@ public class NewCollectionPage extends BasePage {
 	@FindBy(name="editContainer:form:persons:0:collectionAuthor:inputGiveNameText")
 	private WebElement givenNameTextField;
 	
-	//TODO: Rework the use of the organization field in this class
-	@FindBy(xpath="//input[contains(@id, 'inputOrgaName')]")
+	//TODO: Set id-/class-names which are used in several classes like 'OrgaName' as global constants.
+	@FindBy(xpath="//input[contains(@id, 'OrgaName')]")
 	private WebElement organizationNameTextField;
 	
 	@FindBy(id="editContainer:form:save")
@@ -123,7 +123,7 @@ public class NewCollectionPage extends BasePage {
 	public CollectionEntryPage createCollection1Author2OUs(String collectionTitle, String collectionDescription, String givenName, String familyName, String orgName) {
 		fillForm(collectionTitle, collectionDescription, givenName, familyName, orgName);
 		addOrganizationToFirstAuthor();
-		WebElement org2 = driver.findElement(By.xpath("(//input[contains(@name, 'inputOrgaName')])[2]"));
+		WebElement org2 = driver.findElement(By.xpath("(//input[contains(@name, 'OrgaName')])[2]"));
 		org2.sendKeys("MPDL");
 		
 		submitForm();
@@ -174,7 +174,7 @@ public class NewCollectionPage extends BasePage {
 		// addAuthor() always adds authors behind the first author: Therefore selecting the elements containing '1' as counter in the selection-expression is correct
 		WebElement additionalAuthorName = driver.findElement(By.xpath("//input[contains(@id, 'form:persons:1') and contains(@id, 'inputFamilyNameText')]"));
 		additionalAuthorName.sendKeys(familyName);
-		WebElement additionalAuthorOrganisation = driver.findElement(By.xpath("//input[contains(@id, 'form:persons:1') and contains(@id, 'inputOrgaName')]"));
+		WebElement additionalAuthorOrganisation = driver.findElement(By.xpath("//input[contains(@id, 'form:persons:1') and contains(@id, 'OrgaName')]"));
 		additionalAuthorOrganisation.clear();
 		additionalAuthorOrganisation.sendKeys(organisationName);
 	}
@@ -189,11 +189,11 @@ public class NewCollectionPage extends BasePage {
 	}
 
 	public void addOrganizationToFirstAuthor() {
-		int organisationInputElementCound = driver.findElements(By.xpath("//input[contains(@id,'inputOrgaName')]")).size();
+		int organisationInputElementCound = driver.findElements(By.xpath("//input[contains(@id,'OrgaName')]")).size();
 		
 		addOrganizationButton.click();
 		
-		wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//input[contains(@id,'inputOrgaName')]"), organisationInputElementCound+1));
+		wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//input[contains(@id,'OrgaName')]"), organisationInputElementCound+1));
 	}
 	
 	public void selectStudyTypes(List<String> studyTypes) {
