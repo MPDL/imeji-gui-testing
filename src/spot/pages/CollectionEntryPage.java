@@ -448,6 +448,8 @@ public class CollectionEntryPage extends BasePage {
     upload.uploadFiles(filepath);
     
     SeleniumWrapper.waitForAjaxLoad(wait, elementToBecomeReloaded);
+    //Wait until loaderWrapper (which is shown after the Ajax reload) is not visible anymore, by waiting if uploadButton is clickable.
+    wait.until(ExpectedConditions.elementToBeClickable(uploadButton));
     
     return PageFactory.initElements(driver, CollectionEntryPage.class);
   }

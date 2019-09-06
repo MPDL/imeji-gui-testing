@@ -11,7 +11,7 @@ import spot.pages.admin.ConfigurationPage;
 
 public class ConfigurationAutosuggestionPanel extends BasePage {
 	
-	@FindBy(xpath = "//div[@class='imj_adminPanel']/descendant::h2[contains(text(),'Automatic suggestion')]")
+	@FindBy(xpath = "//div[@class='imj_adminPanel']//h2[contains(text(),'Automatic suggestion')]")
 	private WebElement autosuggestionPanelReveal;
 	
 	@FindBy(xpath = "//h2[contains(text(),'Automatic suggestion')]/../following-sibling::div[@class='imj_content']")
