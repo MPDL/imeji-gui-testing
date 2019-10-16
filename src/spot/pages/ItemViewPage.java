@@ -16,6 +16,7 @@ import spot.components.SearchComponent.CategoryType;
 import spot.components.ShareComponent;
 import spot.pages.registered.EditItemPage;
 import spot.pages.registered.KindOfSharePage;
+import test.base.SeleniumWrapper;
 
 public class ItemViewPage extends BasePage {
 
@@ -75,8 +76,8 @@ public class ItemViewPage extends BasePage {
   @FindBy(css = "#metadata .imj_metadataSet")
   private List<WebElement> metadata;
 
-  @FindBy(css = ".imj_siteContentHeadline h1 a")
-  private WebElement back;
+  @FindBy(xpath = "//*[@class='imj_siteContentHeadline']//h1/a[last()]")
+  private WebElement collectionTitleLink;
 
   public ItemViewPage(WebDriver driver) {
     super(driver);
@@ -283,14 +284,15 @@ public class ItemViewPage extends BasePage {
   public ItemViewPage moveItemToReleasedCollection(String collectionTitle) {
     moveButton.click();
     
+    WebElement staleElement = driver.findElement(By.className("fa-hand-o-right"));
+    
     WebElement collectionLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(collectionTitle)));
     collectionLink.click();
     
     WebElement moveDialog = driver.findElement(By.id("moveItem"));
     moveDialog.findElement(By.xpath(".//input[@value='Move' and @class='imj_submitButton']")).click();
-
-    WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
-    wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+    
+    SeleniumWrapper.waitForPageLoad(wait, staleElement);
 
     return PageFactory.initElements(driver, ItemViewPage.class);
   }
@@ -299,17 +301,21 @@ public class ItemViewPage extends BasePage {
   public ItemViewPage moveItemToPrivateCollection(String collectionTitle) {
     moveButton.click();
     
+    WebElement staleElement = driver.findElement(By.className("fa-hand-o-right"));
+    
     WebElement collectionLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(collectionTitle)));
     collectionLink.click();
-
-    WebElement loaderWrapper = driver.findElement(By.cssSelector(".loaderWrapper"));
-    wait.until(ExpectedConditions.invisibilityOf(loaderWrapper));
+    
+    SeleniumWrapper.waitForPageLoad(wait, staleElement);
 
     return PageFactory.initElements(driver, ItemViewPage.class);
   }
 
   public CollectionEntryPage goToCollectionEntry() {
-    back.click();
+	WebElement staleElement = driver.findElement(By.xpath("//*[@class='imj_siteContentHeadline']//h1/a[last()]"));
+    collectionTitleLink.click();
+    
+    SeleniumWrapper.waitForPageLoad(wait, staleElement);
 
     return PageFactory.initElements(driver, CollectionEntryPage.class);
   }

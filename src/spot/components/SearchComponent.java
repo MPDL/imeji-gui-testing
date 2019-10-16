@@ -15,6 +15,7 @@ import spot.pages.CollectionsPage;
 import spot.pages.LoginPage;
 import spot.pages.SearchResultsPage;
 import spot.pages.admin.BrowseUsersPage;
+import test.base.SeleniumWrapper;
 
 public class SearchComponent {
 	
@@ -81,6 +82,8 @@ public class SearchComponent {
 		quickSearchTextField.clear();
 		quickSearchTextField.sendKeys(searchQuery);
 		
+		WebElement staleElement = driver.findElement(By.id("simpleSearchInputText"));
+		
 		switch(category) {
 			case ITEM:
 				searchItems.click();
@@ -95,6 +98,8 @@ public class SearchComponent {
 				searchItems.click();
 				break;
 		}
+		
+		SeleniumWrapper.waitForPageLoad(wait, staleElement);
 		
 		return PageFactory.initElements(driver, SearchResultsPage.class);
 	}

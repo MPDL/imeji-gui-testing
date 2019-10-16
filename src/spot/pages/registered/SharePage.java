@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
 import spot.pages.CollectionEntryPage;
+import test.base.SeleniumWrapper;
 
 public class SharePage extends BasePage {
 	
@@ -184,7 +185,7 @@ public class SharePage extends BasePage {
 		
 		WebElement staleElement = driver.findElement(By.xpath("//div[@id='shareBtn']"));
 		shareButton.click();
-		wait.until(ExpectedConditions.stalenessOf(staleElement));
+		SeleniumWrapper.waitForPageLoad(wait, staleElement);
 		
 		return PageFactory.initElements(driver, SharePage.class);
 	}
