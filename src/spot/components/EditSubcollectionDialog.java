@@ -1,9 +1,11 @@
 package spot.components;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
 import spot.pages.CollectionEntryPage;
@@ -31,8 +33,7 @@ public class EditSubcollectionDialog extends BasePage {
     this.nameInputField.sendKeys(subcollectionName);
 
     this.changeCollectionNameButton.click();
-    //TODO: Readd the wait as soon as the bug that the page is not reloaded is fixed
-    //    wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1//span[text()='" + subcollectionName + "']")));
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1//span[text()='" + subcollectionName + "']")));
 
     return PageFactory.initElements(driver, CollectionEntryPage.class);
   }
