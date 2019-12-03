@@ -59,9 +59,9 @@ public class CreateMetadataFacetPrivate extends BaseSelenium {
 	
 	private String facetNumber = "Number facet: " + TimeStamp.getTimeStamp();
 	private String statementNumber = "Number statement: " + TimeStamp.getTimeStamp();	
-	private String numberValue = "1000.0";
+	private String numberValue = "1000.1";
 	private String statementNewNumber = "New Number statement: " + TimeStamp.getTimeStamp();
-	private String statementNewNumberValue = "2000.0";
+	private String statementNewNumberValue = "2000.2";
 	
 	@BeforeClass
 	public void resetDriver() {

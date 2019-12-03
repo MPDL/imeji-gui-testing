@@ -1,4 +1,4 @@
-StatementType.NUMBER,Number statement,false,1.0,2.0,3.0,4.0,5.0
+StatementType.NUMBER,Number statement,false,0,0.2,3,4.4,5.67
 StatementType.TEXT,Text statement,false,abcd,efgh,ijkl,mnop,qrst
 StatementType.TEXT,Text statement,true,textValueA,textValueB,textValueC,textValueD,textValueE
 StatementType.DATE,Date statement,false,2017-01-01,2017-02-02,2017-03-03,2017-04-04,2017-05-05

@@ -58,9 +58,9 @@ public class CreateMetadataFacet extends BaseSelenium {
 	
 	private String facetNumber = "Number facet: " + TimeStamp.getTimeStamp();
 	private String statementNumber = "Number statement: " + TimeStamp.getTimeStamp();	
-	private String numberValue = "1000.0";
+	private String numberValue = "1000.1";
 	private String statementNewNumber = "New Number statement: " + TimeStamp.getTimeStamp();
-	private String statementNewNumberValue = "2000.0";
+	private String statementNewNumberValue = "2000.2";
 	
 	//NOTE: Facets of type Geolocation are not allowed to be created (see Imeji Ticket: #900) => Therefore there is no test step "facetGeolocation"
 	
