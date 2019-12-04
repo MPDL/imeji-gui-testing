@@ -97,12 +97,16 @@ public class ActionComponent extends BasePage {
 	public CollectionEntryPage releaseCollection() {
 		new Actions(driver).moveToElement(menuCollection).perform();
 		wait.until(ExpectedConditions.elementToBeClickable(releaseCollection));
+		WebElement submitButton = driver.findElement(By.cssSelector("#releaseCollection .imj_submitPanel .imj_submitButton"));
 		releaseCollection.click();
 		
-		WebElement submitButton = driver.findElement(By.cssSelector("#releaseCollection .imj_submitPanel .imj_submitButton"));
+		//The 'submitButton' gets reloaded after clicking 'releaseCollection'
+		wait.until(ExpectedConditions.stalenessOf(submitButton));
+		submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#releaseCollection .imj_submitPanel .imj_submitButton")));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitButton);
 		
-		SeleniumWrapper.waitForPageLoad(wait, submitButton);
+		//Wait for CollectionEntryPage finished loading, by waiting for the published-symbol to be available
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='imj_statusHeaderArea']//span[contains(@class,'fa-globe')]")));
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
