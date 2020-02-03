@@ -22,6 +22,8 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class SeleniumTestSuite {
 
 	private static WebDriver driver;
@@ -114,8 +116,11 @@ public class SeleniumTestSuite {
 
 	private static WebDriver initFirefoxDriver() {
 		log4j.info("Launching Firefox browser...");
+		
+		WebDriverManager.firefoxdriver().setup();
+		
 		// The system property webdriver.gecko.driver must be set to the
-		// webdriver-executable-file -> this is done by Maven!
+		// webdriver-executable-file -> this is done by the WebDriverManager!
 		log4j.info("Found system property webdriver.gecko.driver: " + System.getProperty("webdriver.gecko.driver"));
 		
 		FirefoxOptions options = new FirefoxOptions();
@@ -141,8 +146,11 @@ public class SeleniumTestSuite {
 
 	private static WebDriver initChromeDriver() {
 		log4j.info("Launching Chrome browser...");
+		
+		WebDriverManager.chromedriver().setup();
+		
 		// The system property webdriver.chrome.driver must be set to the
-		// webdriver-executable-file -> this is done by Maven!
+		// webdriver-executable-file -> this is done by the WebDriverManager!
 		log4j.info("Found system property webdriver.chrome.driver: " + System.getProperty("webdriver.chrome.driver"));
 
 		ChromeOptions options = new ChromeOptions();
