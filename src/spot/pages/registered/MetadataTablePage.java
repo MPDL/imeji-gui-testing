@@ -118,6 +118,8 @@ public class MetadataTablePage extends BasePage {
 		submitButton.click();
 		
 		wait.until(ExpectedConditions.stalenessOf(staleElement));
+		//Wait for the CollectionEntryPage by waiting for the title element to be visible
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("pageTitle")));
 		
 		return PageFactory.initElements(driver, CollectionEntryPage.class);
 	}
