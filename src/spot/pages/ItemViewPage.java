@@ -290,7 +290,9 @@ public class ItemViewPage extends BasePage {
     collectionLink.click();
     
     WebElement moveDialog = driver.findElement(By.id("moveItem"));
-    moveDialog.findElement(By.xpath(".//input[@value='Move' and @class='imj_submitButton']")).click();
+    WebElement moveButton = moveDialog.findElement(By.xpath(".//input[@value='Move' and @class='imj_submitButton']"));
+    wait.until(ExpectedConditions.elementToBeClickable(moveButton));
+    moveButton.click();
     
     SeleniumWrapper.waitForPageLoad(wait, staleElement);
 

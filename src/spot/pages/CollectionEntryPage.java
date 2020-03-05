@@ -639,7 +639,9 @@ public class CollectionEntryPage extends BasePage {
     collectionLink.click();
     
     WebElement moveDialog = driver.findElement(By.id("moveSelected"));
-    moveDialog.findElement(By.className("imj_submitButton")).click();
+    WebElement moveButton = moveDialog.findElement(By.className("imj_submitButton"));
+    wait.until(ExpectedConditions.elementToBeClickable(moveButton));
+    moveButton.click();
 
     waitForPageLoad(wait, move);
 
