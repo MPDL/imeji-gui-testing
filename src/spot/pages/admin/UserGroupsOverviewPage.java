@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import spot.pages.BasePage;
+import test.base.SeleniumWrapper;
 
 public class UserGroupsOverviewPage extends BasePage {
 
@@ -33,8 +34,8 @@ public class UserGroupsOverviewPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOf(deleteDialog));
 		
 		WebElement confirmDeleteButton = deleteDialog.findElement(By.className("imj_submitButton"));
-		confirmDeleteButton.click();		
-		wait.until(ExpectedConditions.stalenessOf(toBeDeletedUserGroup));
+		confirmDeleteButton.click();
+		SeleniumWrapper.waitForPageLoad(wait, toBeDeletedUserGroup);
 		
 		return PageFactory.initElements(driver, UserGroupsOverviewPage.class);
 	}
