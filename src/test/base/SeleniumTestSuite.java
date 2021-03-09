@@ -40,7 +40,7 @@ public class SeleniumTestSuite {
 	public static final String QA_EDMOND = "http://qa-edmond.mpdl.mpg.de/imeji/";
 	public static final String QA_CESAR = "http://qa-caesar.mpdl.mpg.de/imeji/";
 
-	public static final String QA_IMEJI = "http://qa-imeji.mpdl.mpg.de/imeji/";
+	public static final String QA_IMEJI = "https://qa-imeji.mpdl.mpg.de/imeji/";
 	public static final String DEV_IMEJI = "https://dev-imeji.mpdl.mpg.de/imeji/";
 	
 	public static final String LOCAL_IMEJI = "http://localhost:8080/imeji/";
