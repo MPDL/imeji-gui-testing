@@ -45,8 +45,8 @@ public class SeleniumTestSuite {
 	
 	public static final String LOCAL_IMEJI = "http://localhost:8080/imeji/";
 
-//	 public static final String TEST_ENV_URL = QA_IMEJI;
-	 public static final String TEST_ENV_URL = DEV_IMEJI;
+	 public static final String TEST_ENV_URL = QA_IMEJI;
+//	 public static final String TEST_ENV_URL = DEV_IMEJI;
 //	 public static final String TEST_ENV_URL = QA_CESAR;
 //	 public static final String TEST_ENV_URL = LOCAL_IMEJI;
 
